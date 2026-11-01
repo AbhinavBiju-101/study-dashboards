@@ -1,7 +1,7 @@
 """Registry of study dashboards shown on the hub.
 
 To add a new subject:
-  1. Drop its Flask project in dashboards/<slug>/ (it must expose `app` in app.py).
+  1. Drop its Flask project in dashboards/<slug>-dashboard/ (it must expose `app` in app.py).
   2. Add one entry below.  That's it: it is mounted at /<slug>/ and gets a card.
 """
 

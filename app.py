@@ -1,4 +1,4 @@
-"""Study Hub: a parent site that lists every study dashboard and mounts each one
+"""Study Dashboards: a parent site that lists every study dashboard and mounts each one
 under its own URL prefix (/evs, /be, /baeng101, /phy) inside ONE web service.
 
 Why one service?  Render gives each web service a single public port, so the
@@ -47,7 +47,7 @@ def count_questions(node):
 
 def load_subapp(slug):
     """Import dashboards/<slug>/app.py under a unique module name and return its Flask app."""
-    path = ROOT / "dashboards" / slug / "app.py"
+    path = ROOT / "dashboards" / f"{slug}-dashboard" / "app.py"
     spec = importlib.util.spec_from_file_location(f"dash_{slug}", path)
     mod = importlib.util.module_from_spec(spec)
     sys.modules[spec.name] = mod
@@ -80,7 +80,7 @@ def subject_cards():
     for s in SUBJECTS:
         card = dict(s)
         try:
-            bank = json.loads((ROOT / "dashboards" / s["slug"] / "data" / "quiz_bank.json").read_text("utf-8"))
+            bank = json.loads((ROOT / "dashboards" / f"{s['slug']}-dashboard" / "data" / "quiz_bank.json").read_text("utf-8"))
             card["questions"] = count_questions(bank)
         except (OSError, ValueError):
             card["questions"] = 0

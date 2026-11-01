@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Study Hub</title>
+<title>Study Dashboards</title>
 <meta name="description" content="All my study dashboards in one place.">
 <link rel="stylesheet" href="{{ url_for('static', filename='hub.css') }}">
 </head>
 <body>
 <header class="top">
   <div class="wrap">
-    <p class="eyebrow">Study Hub</p>
+    <p class="eyebrow">Study Dashboards</p>
     <h1>Pick a subject.</h1>
     <p class="lede">{{ subjects|length }} dashboards, {{ "{:,}".format(total_q) }} practice questions. Notes, syllabus trees and quizzes for each subject live one click away.</p>
     <label class="search"><span class="sr">Filter subjects</span>

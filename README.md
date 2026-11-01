@@ -1,4 +1,4 @@
-# Study Hub
+# Study Dashboards
 
 Parent site that lists every study dashboard and routes to it. All dashboards are mounted
 inside **one** Render web service (Render exposes one port per service, so 4000/4001/4002/4005
@@ -15,25 +15,28 @@ can't be hosted side by side).
 app.py            hub + mounts each dashboard (DispatcherMiddleware)
 subjects.py       the registry: one entry per subject (card text, colour)
 templates/ static/  landing page
-dashboards/<slug>/  your Flask projects, unchanged
+dashboards/<slug>-dashboard/  your Flask projects, unchanged (evs-dashboard, be-dashboard, ...)
 render.yaml       Render blueprint
 ```
 
 ## Run locally
+With Docker: `docker build -t study-dashboards . && docker run -p 3000:10000 -e SECRET_KEY=dev study-dashboards` then open http://127.0.0.1:3000.
+
+Without Docker:
 ```
 pip install -r requirements.txt
 python app.py          # http://127.0.0.1:3000
 ```
-Each dashboard can still be run on its own (`cd dashboards/evs && python app.py`).
+Each dashboard can still be run on its own (`cd dashboards/evs-dashboard && python app.py`).
 
 ## Deploy to Render
 1. Push this folder to a GitHub repo.
-2. Render -> New -> **Blueprint** -> pick the repo (it reads `render.yaml`). Or New -> Web Service with
-   build `pip install -r requirements.txt` and start `gunicorn app:app --bind 0.0.0.0:$PORT --workers 2 --threads 4`.
+2. Render -> New -> **Blueprint** -> pick the repo (it reads `render.yaml` and builds the `Dockerfile`).
+   Or New -> Web Service -> Language: Docker. Render supplies `$PORT`; the container honours it.
 3. `SECRET_KEY` is generated for you. Free instances sleep after idle, so the first load can take ~30-60 s.
 
 ## Add a subject later
-Put the Flask project in `dashboards/<slug>/` (must expose `app` in `app.py`, use `url_for` for links),
+Put the Flask project in `dashboards/<slug>-dashboard/` (must expose `app` in `app.py`, use `url_for` for links),
 add one entry to `subjects.py`. It is mounted and gets a card automatically.
 
 ## Notes
