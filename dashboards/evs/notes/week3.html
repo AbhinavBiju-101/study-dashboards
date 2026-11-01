@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EVS Week 3 — Energy Resources, Thermal Pollution &amp; Sustainable Transport</title>
+<style>
+  :root{
+    --paper:#f3f4ee; --paper2:#e9ecdd; --ink:#1b2530; --ink-soft:#4a5768; --rule:#cdd6c8;
+    --blue:#2b5f7a; --blue-dk:#1c4256; --blue-bg:#e1ebf0;
+    --amber:#b0742a; --amber-bg:#f3e6cd;
+    --green:#3c6e4f; --green-bg:#e3eee2;
+    --rust:#a4432c; --rust-bg:#f4e2dc;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family: ui-sans-serif,"Segoe UI",Helvetica,Arial,sans-serif;line-height:1.6;}
+  h1,h2,h3,h4{font-family:Georgia,"Iowan Old Style","Palatino Linotype",serif;color:var(--blue-dk);line-height:1.25;margin-top:0;}
+  .wrap{max-width:880px;margin:0 auto;padding:0 24px 100px;}
+  header.hero{background:linear-gradient(180deg,#122b3a,#2b5f7a 140%);color:#eaf3f6;padding:56px 24px 44px;margin-bottom:8px;}
+  header.hero .inner{max-width:880px;margin:0 auto;}
+  header.hero .kicker{font-size:.95rem;color:#bfd9e3;margin-bottom:10px;}
+  header.hero h1{color:#f7fbfc;font-size:2.3rem;margin-bottom:10px;max-width:17ch;}
+  header.hero p{color:#d8e7ec;max-width:62ch;font-size:1.05rem;margin:0;}
+  nav.toc{background:var(--paper2);border:1px solid var(--rule);border-radius:4px;padding:20px 26px;margin:32px 0 40px;}
+  nav.toc h2{font-size:1.05rem;margin-bottom:12px;color:var(--ink);}
+  nav.toc ol{margin:0;padding-left:1.2em;columns:2;column-gap:28px;}
+  nav.toc li{margin-bottom:6px;font-size:.95rem;break-inside:avoid;}
+  nav.toc a{color:var(--blue-dk);text-decoration:none;border-bottom:1px solid transparent;}
+  nav.toc a:hover{border-bottom-color:var(--blue-dk);}
+  section{margin:52px 0;}
+  section h2{font-size:1.55rem;border-bottom:2px solid var(--blue);padding-bottom:8px;margin-bottom:18px;}
+  section h2 .num{color:var(--amber);margin-right:.4em;}
+  h3{font-size:1.18rem;margin:28px 0 10px;color:var(--blue-dk);}
+  h4{font-size:1.02rem;margin:18px 0 6px;color:var(--amber);}
+  p{margin:0 0 14px;max-width:74ch;}
+  ul,ol{margin:0 0 14px;padding-left:1.3em;max-width:70ch;}
+  li{margin-bottom:5px;}
+  strong{color:var(--blue-dk);}
+  .box{border-left:4px solid var(--ink-soft);background:#fff;padding:16px 20px;margin:20px 0;border-radius:0 4px 4px 0;}
+  .box .label{font-size:.75rem;font-weight:700;letter-spacing:.06em;display:block;margin-bottom:6px;}
+  .box p:last-child, .box ul:last-child, .box ol:last-child{margin-bottom:0;}
+  .box.def{border-color:var(--green);background:var(--green-bg);} .box.def .label{color:var(--green);}
+  .box.mis{border-color:var(--rust);background:var(--rust-bg);} .box.mis .label{color:var(--rust);}
+  .box.why{border-color:var(--blue);background:var(--blue-bg);} .box.why .label{color:var(--blue-dk);}
+  .box.ex{border-color:var(--amber);background:var(--amber-bg);} .box.ex .label{color:var(--amber);}
+  figure{margin:26px 0;background:#fff;border:1px solid var(--rule);border-radius:6px;padding:18px 18px 14px;}
+  figure svg{width:100%;height:auto;display:block;}
+  figcaption{font-size:.88rem;color:var(--ink-soft);margin-top:10px;padding-top:10px;border-top:1px dashed var(--rule);}
+  figcaption b{color:var(--ink);}
+  table{border-collapse:collapse;width:100%;margin:18px 0;font-size:.92rem;background:#fff;}
+  caption{caption-side:top;text-align:left;font-size:.85rem;color:var(--ink-soft);margin-bottom:6px;font-style:italic;}
+  th,td{border:1px solid var(--rule);padding:8px 10px;text-align:left;vertical-align:top;}
+  th{background:var(--paper2);color:var(--blue-dk);}
+  tr:nth-child(even) td{background:#fbfbf7;}
+  .formula{background:var(--paper2);border:1px dashed var(--rule);border-radius:4px;padding:12px 16px;font-family:Georgia,serif;font-size:1.1rem;text-align:center;margin:16px 0;color:var(--blue-dk);}
+  .checklist{list-style:none;padding-left:0;}
+  .checklist li{padding:10px 14px 10px 40px;background:#fff;border:1px solid var(--rule);border-radius:4px;margin-bottom:8px;position:relative;max-width:70ch;}
+  .checklist li::before{content:"";position:absolute;left:14px;top:12px;width:16px;height:16px;border:2px solid var(--blue);border-radius:3px;}
+  .divider{text-align:center;color:var(--amber);letter-spacing:.3em;margin:40px 0;font-size:.9rem;}
+  footer{text-align:center;color:var(--ink-soft);font-size:.85rem;padding:30px 0 10px;border-top:1px solid var(--rule);margin-top:60px;}
+  @media(max-width:640px){nav.toc ol{columns:1;} header.hero h1{font-size:1.7rem;}}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="inner">
+    <div class="kicker">Environmental Studies · Week 3 of 6</div>
+    <h1>Energy Resources, Thermal Pollution &amp; Sustainable Transport</h1>
+    <p>How five different renewable sources actually convert a natural flow into electricity, why waste heat is pollution in its own right, how water gets managed at scale, and what's really different about EVs and CNG under the hood.</p>
+  </div>
+</header>
+
+<div class="wrap">
+
+<nav class="toc">
+  <h2>Contents</h2>
+  <ol>
+    <li><a href="#s1">Hydroelectric power</a></li>
+    <li><a href="#s2">Wind energy</a></li>
+    <li><a href="#s3">Ocean thermal energy (OTEC)</a></li>
+    <li><a href="#s4">Geothermal energy</a></li>
+    <li><a href="#s5">Comparing the five renewables</a></li>
+    <li><a href="#s6">Thermal pollution</a></li>
+    <li><a href="#s7">Water management &amp; conservation</a></li>
+    <li><a href="#s8">Electric &amp; CNG vehicles</a></li>
+    <li><a href="#test">Self-test checklist</a></li>
+  </ol>
+</nav>
+
+<!-- 1 -->
+<section id="s1">
+  <h2><span class="num">1</span>Hydroelectric Power</h2>
+  <div class="box def">
+    <span class="label">DEFINITION</span>
+    Hydroelectric power converts the <strong>gravitational potential energy</strong> of stored water into electricity: water falls, spins a turbine, the turbine's shaft spins a generator. Globally it supplies over 18% of all electricity — the fourth-largest energy source worldwide.
+  </div>
+
+  <figure>
+    <svg viewBox="0 0 640 300" xmlns="http://www.w3.org/2000/svg" font-family="ui-sans-serif,Arial,sans-serif" font-size="12">
+      <rect x="20" y="20" width="180" height="130" fill="#c7dbe6"/>
+      <text x="110" y="40" text-anchor="middle" font-weight="700" fill="#1c4256">Reservoir</text>
+      <rect x="200" y="20" width="30" height="230" fill="#8c9ba3"/>
+      <text x="215" y="15" text-anchor="middle" font-size="11">Dam wall</text>
+      <path d="M230 130 L 340 210" stroke="#2b5f7a" stroke-width="10" fill="none"/>
+      <text x="270" y="155" fill="#1c4256" font-size="11">Penstock</text>
+      <circle cx="360" cy="220" r="26" fill="#b0742a"/>
+      <text x="360" y="225" text-anchor="middle" fill="#fff" font-size="11">Turbine</text>
+      <rect x="400" y="195" width="70" height="50" rx="6" fill="#3c6e4f"/>
+      <text x="435" y="215" text-anchor="middle" fill="#fff" font-size="11">Gener-</text><text x="435" y="230" text-anchor="middle" fill="#fff" font-size="11">ator</text>
+      <line x1="470" y1="215" x2="560" y2="180" stroke="#b0742a" stroke-width="2" marker-end="url(#h1)"/>
+      <text x="540" y="165" font-size="11">to grid</text>
+      <path d="M386 235 L 600 260" stroke="#8fb6cc" stroke-width="8" fill="none"/>
+      <text x="560" y="280" font-size="11">river continues</text>
+      <rect x="0" y="250" width="640" height="30" fill="#dfe8ea"/>
+      <defs><marker id="h1" markerWidth="7" markerHeight="7" refX="3.5" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 z" fill="#b0742a"/></marker></defs>
+    </svg>
+    <figcaption><b>Notice:</b> the water's <em>fall height</em> is what matters, not its final speed at the bottom — this is why reservoirs are built to be as high above the turbine as geography allows: potential energy scales directly with height.</figcaption>
+  </figure>
+
+  <h3>Two methods to harvest hydropower</h3>
+  <table>
+    <tr><th>Method</th><th>How it works</th></tr>
+    <tr><td>Dam-based</td><td>Reservoir accumulates water; opening underwater gates releases it through the penstock to spin turbines; output is throttled by how far the gates are opened</td></tr>
+    <tr><td>Pumped-storage</td><td>Two reservoirs at different elevations. Off-peak surplus electricity pumps water from the lower to the upper reservoir; during peak demand, that water is released back down to generate electricity on demand</td></tr>
+  </table>
+  <div class="box why">
+    <span class="label">WHY PUMPED-STORAGE IS EFFECTIVELY A BATTERY</span>
+    A conventional dam only converts energy once — stored water height into electricity. A pumped-storage plant converts energy <em>twice</em>: off-peak electricity (cheap, often surplus) into stored gravitational potential energy, then back into on-demand electricity during peak hours. It doesn't generate net new energy — it shifts <em>when</em> electricity is available, which is precisely the function a battery serves in a power grid.
+  </div>
+
+  <table>
+    <tr><th>Advantages</th><th>Disadvantages</th></tr>
+    <tr><td>High efficiency (&gt;80%, vs. ~40% for thermal plants); low running cost; output is controllable on demand; 40–50 year operational lifespan; near-zero emissions once built</td><td>Very high construction cost; floods large areas, displacing people (often tribal communities); disrupts river ecosystems and fish migration; alters downstream flow, sometimes across national borders</td></tr>
+  </table>
+</section>
+
+<!-- 2 -->
+<section id="s2">
+  <h2><span class="num">2</span>Wind Energy</h2>
+  <div class="box def">
+    <span class="label">DEFINITION</span>
+    Wind energy is <strong>indirect solar energy</strong>: the sun heats Earth's surface unevenly, creating differences in temperature, density, and pressure that drive air movement. A wind turbine converts that moving air's kinetic energy into electricity via a spinning shaft and generator — mechanically the same last step as hydropower, just a different upstream energy source.
+  </div>
+
+  <figure>
+    <svg viewBox="0 0 640 260" xmlns="http://www.w3.org/2000/svg" font-family="ui-sans-serif,Arial,sans-serif" font-size="12">
+      <line x1="120" y1="240" x2="120" y2="60" stroke="#8c9ba3" stroke-width="8"/>
+      <circle cx="120" cy="55" r="10" fill="#b0742a"/>
+      <g stroke="#2b5f7a" stroke-width="6" stroke-linecap="round">
+        <line x1="120" y1="55" x2="70" y2="15"/>
+        <line x1="120" y1="55" x2="175" y2="25"/>
+        <line x1="120" y1="55" x2="140" y2="105"/>
+      </g>
+      <line x1="140" y1="55" x2="220" y2="55" stroke="#4a5768" stroke-width="2"/>
+      <rect x="220" y="45" width="60" height="24" rx="4" fill="#b0742a"/><text x="250" y="61" text-anchor="middle" fill="#fff" font-size="10">Gear Box</text>
+      <rect x="290" y="40" width="70" height="34" rx="18" fill="#2b5f7a"/><text x="325" y="61" text-anchor="middle" fill="#fff" font-size="10">Generator</text>
+      <rect x="290" y="90" width="70" height="34" rx="6" fill="#3c6e4f"/><text x="325" y="111" text-anchor="middle" fill="#fff" font-size="10">Converter</text>
+      <line x1="325" y1="74" x2="325" y2="90" stroke="#4a5768"/>
+      <line x1="360" y1="57" x2="440" y2="57" stroke="#b0742a" stroke-width="2" marker-end="url(#w1)"/>
+      <text x="440" y="45" font-size="11">Power System (grid)</text>
+      <defs><marker id="w1" markerWidth="7" markerHeight="7" refX="3.5" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 z" fill="#b0742a"/></marker></defs>
+      <text x="120" y="255" text-anchor="middle" font-size="11">Horizontal-axis turbine (most common, most efficient)</text>
+    </svg>
+    <figcaption><b>Notice:</b> the chain is identical in kind to hydropower's — kinetic/rotational energy → shaft → generator — the only difference is what's spinning the shaft (wind blades vs. water-driven turbine blades).</figcaption>
+  </figure>
+
+  <table>
+    <tr><th>Type</th><th>Axis of rotation</th><th>Note</th></tr>
+    <tr><td>Horizontal-axis</td><td>Horizontal</td><td>Most widely used; more efficient than vertical-axis</td></tr>
+    <tr><td>Vertical-axis</td><td>Vertical</td><td>Less common, less efficient, but works regardless of wind direction</td></tr>
+  </table>
+  <p>India is the world's fifth-largest producer of wind power, led by Tamil Nadu and Gujarat.</p>
+  <table>
+    <tr><th>Advantages</th><th>Disadvantages</th></tr>
+    <tr><td>Renewable, inexhaustible, low-cost once built; zero greenhouse gas emissions during operation</td><td>Unreliable — wind speed/availability is inconsistent; noise pollution; location-specific (windiest sites are often remote); visual impact; bird/bat mortality from collisions</td></tr>
+  </table>
+</section>
+
+<!-- 3 -->
+<section id="s3">
+  <h2><span class="num">3</span>Ocean Thermal Energy (OTEC)</h2>
+  <div class="box def">
+    <span class="label">DEFINITION</span>
+    <strong>Ocean Thermal Energy Conversion (OTEC)</strong> exploits the temperature difference between sun-warmed surface seawater and cold deep seawater to generate electricity. It requires a temperature gradient of at least <strong>20 °C</strong>, which is why it only works well in the tropics (where the gradient reaches ~20–25 °C).
+  </div>
+
+  <div class="box why">
+    <span class="label">WHY EFFICIENCY IS SO LOW (1–3%) YET IT'S STILL WORTH BUILDING</span>
+    OTEC's efficiency is fundamentally limited by thermodynamics: the smaller the temperature difference driving a heat engine, the lower its maximum possible efficiency — and a 20 °C gap is tiny compared to the hundreds of degrees driving a coal plant's steam cycle. But OTEC's <em>fuel</em> (the temperature gradient itself) is free and continuously renewed by the sun, so low efficiency matters far less than it would for a fuel-consuming plant — the meaningful comparison is availability and running cost, not raw thermodynamic efficiency.
+  </div>
+
+  <figure>
+    <svg viewBox="0 0 640 260" xmlns="http://www.w3.org/2000/svg" font-family="ui-sans-serif,Arial,sans-serif" font-size="12">
+      <rect x="0" y="0" width="640" height="130" fill="#f6c98a"/>
+      <rect x="0" y="130" width="640" height="130" fill="#2b5f7a"/>
+      <text x="30" y="25" fill="#7a4d10" font-size="11">Warm surface water (~25 °C)</text>
+      <text x="30" y="245" fill="#cfe4ee" font-size="11">Cold deep water (~4 °C)</text>
+      <rect x="240" y="60" width="90" height="40" rx="6" fill="#fff" stroke="#b0742a"/><text x="285" y="84" text-anchor="middle" font-size="10">Evaporator</text>
+      <rect x="240" y="160" width="90" height="40" rx="6" fill="#fff" stroke="#2b5f7a"/><text x="285" y="184" text-anchor="middle" font-size="10">Condenser</text>
+      <rect x="380" y="105" width="90" height="50" rx="6" fill="#3c6e4f"/><text x="425" y="126" text-anchor="middle" fill="#fff" font-size="10">Turbo-</text><text x="425" y="141" text-anchor="middle" fill="#fff" font-size="10">generator</text>
+      <line x1="150" y1="80" x2="238" y2="80" stroke="#b0742a" stroke-width="2" marker-end="url(#o1)"/>
+      <line x1="330" y1="80" x2="380" y2="120" stroke="#b0742a" stroke-width="2" marker-end="url(#o1)"/>
+      <line x1="425" y1="155" x2="330" y2="180" stroke="#2b5f7a" stroke-width="2" marker-end="url(#o1)"/>
+      <line x1="240" y1="180" x2="170" y2="180" stroke="#2b5f7a" stroke-width="2" marker-end="url(#o1)"/>
+      <line x1="285" y1="100" x2="285" y2="160" stroke="#8c9ba3" stroke-width="6"/>
+      <text x="150" y="70" font-size="10" fill="#7a4d10">warm water in</text>
+      <text x="60" y="195" font-size="10" fill="#cfe4ee">cold water in</text>
+      <defs><marker id="o1" markerWidth="7" markerHeight="7" refX="3.5" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 z" fill="#4a5768"/></marker></defs>
+    </svg>
+    <figcaption><b>Notice:</b> in the closed-cycle design, warm surface water vaporizes a low-boiling-point working fluid (ammonia, boiling at −33 °C) in the evaporator; that vapour spins the turbine; cold deep water then condenses the vapour back to liquid, and the fluid recycles. The seawater itself never enters the turbine loop.</figcaption>
+  </figure>
+
+  <table>
+    <tr><th>Method</th><th>Mechanism</th><th>Bonus output</th></tr>
+    <tr><td>Closed-cycle</td><td>Warm water vaporizes a separate low-boiling working fluid (ammonia/propane/R-134a); cold water condenses it back to liquid for reuse</td><td>None extra — fluid is fully recycled</td></tr>
+    <tr><td>Open-cycle</td><td>Warm seawater itself is flashed to steam in a low-pressure chamber (lowering pressure drops the boiling point); that steam drives the turbine directly</td><td><strong>Desalinated water</strong> — the steam condenses back to pure, impurity-free water</td></tr>
+  </table>
+  <p><strong>Advantages:</strong> reliable regardless of weather (unlike wind/solar, since the temperature gradient exists as long as the sun shines); no pollution; open-cycle plants also produce freshwater as a byproduct. <strong>Disadvantages:</strong> very expensive to install; low efficiency; location-specific (needs coastline + deep cold water nearby); pumping large water volumes disrupts marine life.</p>
+</section>
+
+<!-- 4 -->
+<section id="s4">
+  <h2><span class="num">4</span>Geothermal Energy</h2>
+  <div class="box def">
+    <span class="label">DEFINITION</span>
+    Geothermal energy taps heat stored deep inside the Earth — <strong>not</strong> a form of solar energy at all, but heat generated by ongoing nuclear fusion-like reactions in the Earth's core. Temperature increases roughly <strong>1 °C per 35–40 m of depth</strong>.
+  </div>
+  <div class="box mis">
+    <span class="label">COMMON MISCONCEPTION</span>
+    Because wind and OTEC are both "indirect solar energy," it's tempting to assume all renewables trace back to the sun. Geothermal is the exception in this set — its energy source is the Earth's own internal heat, which is why it is available 24/7/365 regardless of weather or sunlight, unlike every other renewable covered this week.
+  </div>
+
+  <figure>
+    <svg viewBox="0 0 640 220" xmlns="http://www.w3.org/2000/svg" font-family="ui-sans-serif,Arial,sans-serif" font-size="12">
+      <rect x="0" y="0" width="640" height="60" fill="#e3eee2"/>
+      <text x="20" y="30" fill="#3c6e4f" font-size="11">Generating Station</text>
+      <rect x="150" y="10" width="60" height="35" fill="#8c9ba3"/>
+      <line x1="120" y1="60" x2="120" y2="140" stroke="#2b5f7a" stroke-width="8"/>
+      <text x="80" y="120" fill="#1c4256" font-size="11">Cold water</text>
+      <text x="80" y="134" fill="#1c4256" font-size="11">pumped down</text>
+      <path d="M120 140 Q 250 180 380 150" stroke="#2b5f7a" stroke-width="4" fill="none"/>
+      <line x1="440" y1="140" x2="440" y2="60" stroke="#a4432c" stroke-width="8"/>
+      <text x="450" y="120" fill="#a4432c" font-size="11">Steam &amp; hot</text>
+      <text x="450" y="134" fill="#a4432c" font-size="11">water rises</text>
+      <path d="M380 150 Q 400 148 440 140" stroke="#a4432c" stroke-width="4" fill="none"/>
+      <rect x="0" y="140" width="640" height="80" fill="#e7d9b6"/>
+      <text x="20" y="200" font-size="11" fill="#7a4d10">Hot rock / magma-heated zone</text>
+      <defs><marker id="ge1" markerWidth="7" markerHeight="7" refX="3.5" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 z" fill="#a4432c"/></marker></defs>
+    </svg>
+    <figcaption><b>Notice:</b> cold water is deliberately pumped <em>down</em> one well; it heats up underground and rises back up a separate well as steam, because pressure drops as it nears the surface, forcing it to boil. The two wells never mix — one is always "cold in," the other "hot out."</figcaption>
+  </figure>
+
+  <h3>Where geothermal energy is harvested</h3>
+  <p>Magma rising from the mantle creates localized "hot spots." When magma meets underground water, steam forms — and where that steam finds a natural surface opening, you get a hot spring or geyser. Geothermal plants are therefore built near known hot springs, geysers, or volcanic activity, using a <strong>hydrothermal convection system</strong>: wells drilled 1–2 miles deep bring the heat to a turbine at the surface.</p>
+
+  <table>
+    <tr><th>Advantages</th><th>Disadvantages</th></tr>
+    <tr><td>Available 24/7/365 for an estimated 2–3 billion years; renewable; non-polluting; no by-products</td><td>High drilling/installation cost; strictly location-specific (needs geologically active sites); drilling can trigger earthquakes; can release toxic gases (SO₂, H₂S)</td></tr>
+  </table>
+</section>
+
+<!-- 5 -->
+<section id="s5">
+  <h2><span class="num">5</span>Comparing the Five Renewables</h2>
+  <table>
+    <caption>All five ultimately do the same last step — spin a shaft, drive a generator. What differs is the upstream energy source and its reliability.</caption>
+    <tr><th>Source</th><th>Upstream energy origin</th><th>Reliability</th><th>Location constraint</th></tr>
+    <tr><td>Hydroelectric</td><td>Solar-driven water cycle (rain → rivers) + gravity</td><td>High, controllable on demand</td><td>Needs a large river/suitable dam site</td></tr>
+    <tr><td>Wind</td><td>Indirect solar (uneven surface heating)</td><td>Low — intermittent</td><td>Needs consistently windy sites, often remote</td></tr>
+    <tr><td>OTEC</td><td>Direct solar heating of ocean surface</td><td>High — gradient persists as long as sun shines</td><td>Needs tropical coastline with deep cold water nearby</td></tr>
+    <tr><td>Geothermal</td><td><strong>Not solar</strong> — Earth's internal heat</td><td>Very high — 24/7 regardless of weather</td><td>Needs geologically active zones (hot springs, volcanoes)</td></tr>
+  </table>
+  <div class="box why">
+    <span class="label">WHY RELIABILITY VARIES SO MUCH ACROSS "RENEWABLE" SOURCES</span>
+    "Renewable" only describes whether the source replenishes naturally — it says nothing about whether that source is <em>steady</em>. Wind is renewable but wildly variable minute-to-minute; geothermal is renewable and essentially constant. This is exactly why grid planners pair intermittent sources (wind) with controllable/steady ones (hydro's pumped-storage, geothermal) rather than relying on one renewable alone.
+  </div>
+</section>
+
+<!-- 6 -->
+<section id="s6">
+  <h2><span class="num">6</span>Thermal Pollution</h2>
+  <div class="box def">
+    <span class="label">DEFINITION</span>
+    Thermal pollution is a <strong>sudden rise or fall</strong> in a water body's temperature caused by human activity, disrupting the aquatic ecosystem — heat contamination, not chemical contamination. A power plant might return cooling water at 40–50 °C into a river that naturally sits at 20–25 °C.
+  </div>
+
+  <div class="box mis">
+    <span class="label">COMMON MISCONCEPTION</span>
+    "A degree or two of warming can't matter much — it's not like dumping a toxic chemical." In fact even a <strong>1–1.5 °C</strong> rise can measurably reduce oxygen solubility in water and stress aquatic organisms, because warmer water simply holds less dissolved gas — this is a direct physical/chemical property of water, not a biological tolerance issue that organisms could adapt around quickly.
+  </div>
+
+  <h3>Causes</h3>
+  <ul>
+    <li>Industrial discharges (steel mills, refineries, paper/chemical plants) using water for cooling</li>
+    <li>Power plants (nuclear and coal-fired) — the largest single contributor</li>
+    <li>Hydroelectric projects — water released from the bottom of a reservoir is cooler than surface releases, creating temperature swings downstream</li>
+    <li>Deforestation/soil erosion — removes shade, increases turbidity (which absorbs more heat)</li>
+    <li>Urban sewage discharge — typically warmer than the receiving water</li>
+  </ul>
+
+  <h3>Consequences — a causal chain, not a list of unrelated symptoms</h3>
+  <figure>
+    <svg viewBox="0 0 640 200" xmlns="http://www.w3.org/2000/svg" font-family="ui-sans-serif,Arial,sans-serif" font-size="12">
+      <rect x="10" y="70" width="120" height="45" rx="6" fill="#a4432c"/><text x="70" y="90" text-anchor="middle" fill="#fff" font-size="11">Water temp</text><text x="70" y="105" text-anchor="middle" fill="#fff" font-size="11">rises</text>
+      <line x1="130" y1="92" x2="170" y2="92" stroke="#b0742a" stroke-width="2" marker-end="url(#t1)"/>
+      <rect x="175" y="70" width="130" height="45" rx="6" fill="#2b5f7a"/><text x="240" y="90" text-anchor="middle" fill="#fff" font-size="11">O₂ solubility</text><text x="240" y="105" text-anchor="middle" fill="#fff" font-size="11">falls</text>
+      <line x1="305" y1="92" x2="345" y2="92" stroke="#b0742a" stroke-width="2" marker-end="url(#t1)"/>
+      <rect x="350" y="70" width="130" height="45" rx="6" fill="#3c6e4f"/><text x="415" y="90" text-anchor="middle" fill="#fff" font-size="11">Sensitive species</text><text x="415" y="105" text-anchor="middle" fill="#fff" font-size="11">die/migrate</text>
+      <line x1="480" y1="92" x2="520" y2="92" stroke="#b0742a" stroke-width="2" marker-end="url(#t1)"/>
+      <rect x="525" y="70" width="105" height="45" rx="6" fill="#b0742a"/><text x="577" y="90" text-anchor="middle" fill="#fff" font-size="11">Invasive species</text><text x="577" y="105" text-anchor="middle" fill="#fff" font-size="11">take over</text>
+      <defs><marker id="t1" markerWidth="7" markerHeight="7" refX="3.5" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 z" fill="#b0742a"/></marker></defs>
+      <text x="320" y="150" text-anchor="middle" fill="#4b564c">Also in parallel: faster chemical reactions → more toxic phenols/heavy metals dissolve;</text>
+      <text x="320" y="168" text-anchor="middle" fill="#4b564c">warm water accelerates algal blooms (eutrophication) and bacterial/parasite growth</text>
+    </svg>
+    <figcaption><b>Notice:</b> the oxygen-depletion pathway (top row) and the reaction-rate pathway (bottom text) are two independent mechanisms triggered by the same temperature rise — thermal pollution does chemical and biological damage simultaneously, through different physics.</figcaption>
+  </figure>
+
+  <h3>Remedial measures</h3>
+  <table>
+    <tr><th>Measure</th><th>How it dissipates heat</th></tr>
+    <tr><td>Cooling ponds</td><td>Shallow reservoirs — evaporation, convection, radiation before discharge</td></tr>
+    <tr><td>Cooling towers (wet)</td><td>Hot water sprayed downward, cooled by rising air + evaporation</td></tr>
+    <tr><td>Cooling towers (dry)</td><td>Cools air without any water loss</td></tr>
+    <tr><td>Spray ponds</td><td>Nozzles break hot water into droplets to speed evaporative cooling</td></tr>
+    <tr><td>Closed-loop recycling</td><td>Reuses warm water internally instead of discharging it</td></tr>
+  </table>
+  <p style="font-size:.9rem;color:var(--ink-soft)">This same mechanism connects directly back to Week 1's oxygen-solubility chemistry and Week 2's eutrophication chain — thermal pollution is really "eutrophication's accelerant," not a separate phenomenon.</p>
+</section>
+
+<!-- 7 -->
+<section id="s7">
+  <h2><span class="num">7</span>Water Management &amp; Conservation</h2>
+  <div class="box def">
+    <span class="label">DEFINITION</span>
+    Only <strong>2.5–3% of Earth's water is fresh</strong>, and less than 1% is easily accessible for human use. <strong>Water management</strong> is planning/distributing that scarce resource; <strong>conservation</strong> is using it efficiently to reduce waste. Together they're the practical response to a hard physical constraint, not a lifestyle preference.
+  </div>
+
+  <h3>Principles of water management</h3>
+  <table>
+    <tr><th>Principle</th><th>Meaning</th></tr>
+    <tr><td>Sustainability</td><td>Today's use must not compromise tomorrow's supply</td></tr>
+    <tr><td>Equity</td><td>Fair distribution across agriculture, industry, and domestic users</td></tr>
+    <tr><td>Efficiency</td><td>Minimising losses in storage, transmission, and end use</td></tr>
+    <tr><td>IWRM</td><td>Integrated Water Resources Management — coordinating water, land and related resources together rather than in silos</td></tr>
+  </table>
+
+  <h3>Conservation methods, with their real-world savings</h3>
+  <table>
+    <tr><th>Method</th><th>Typical savings</th></tr>
+    <tr><td>Drip / micro-irrigation</td><td>28–35% (up to 80% in Israeli smart-drip systems, which also boosted yield 100%)</td></tr>
+    <tr><td>Rainwater harvesting</td><td>10–30%+ reduction in household water use</td></tr>
+    <tr><td>Wastewater reuse &amp; recycling</td><td>Can displace ~82% of potable-water demand for non-drinking uses</td></tr>
+    <tr><td>Industrial water recycling</td><td>~26% global efficiency improvement (2006–2015)</td></tr>
+  </table>
+  <div class="box why">
+    <span class="label">WHY DRIP IRRIGATION SAVES SO MUCH MORE THAN IT "SHOULD"</span>
+    Flood/surface irrigation loses water to two places a plant never benefits from: evaporation off exposed wet soil, and runoff past the root zone. Drip irrigation delivers water directly to the root, cutting <em>both</em> loss pathways simultaneously — which is why the savings (28–80%) are so much larger than a naive "more careful watering" would suggest; it's not incremental efficiency, it's eliminating two structural waste routes at once.
+  </div>
+
+  <h3>India's key water policies</h3>
+  <ul>
+    <li><strong>National Water Policy</strong> (1987, 2002, 2012) — IWRM, rainwater harvesting, groundwater regulation</li>
+    <li><strong>Jal Shakti Abhiyan</strong> (2019) — nationwide rainwater harvesting &amp; water-body renovation campaign</li>
+    <li><strong>PMKSY</strong> ("Per Drop More Crop") — promotes drip/sprinkler irrigation</li>
+    <li><strong>Atal Bhujal Yojana</strong> — community-driven groundwater management</li>
+  </ul>
+  <p><strong>State examples:</strong> Rajasthan (drip irrigation → ~50% less water for vegetables in arid land), Kerala (System of Rice Intensification saves ~30% water in paddy), Maharashtra (farm ponds storing rainwater for rabi crops).</p>
+</section>
+
+<!-- 8 -->
+<section id="s8">
+  <h2><span class="num">8</span>Electric &amp; CNG Vehicles</h2>
+  <div class="box def">
+    <span class="label">DEFINITION</span>
+    An <strong>Electric Vehicle (EV)</strong> replaces the internal combustion engine with an electric motor powered by a battery. Three core components: <strong>battery → controller → electric motor</strong>. When the pedal is pressed, the controller draws exactly the right amount of energy from the battery and delivers it to the motor, which converts electrical energy into the mechanical energy that turns the wheels.
+  </div>
+
+  <h3>Four types of electric vehicle — the real distinction is "where does the energy come from?"</h3>
+  <table>
+    <tr><th>Type</th><th>Energy source</th><th>Can plug into the grid?</th></tr>
+    <tr><td>BEV (Battery EV / All-Electric)</td><td>Onboard battery only</td><td>Yes — sole charging method</td></tr>
+    <tr><td>PHEV (Plug-in Hybrid)</td><td>Battery + combustion engine (backup)</td><td>Yes, plus can run on fuel for long trips</td></tr>
+    <tr><td>HEV (Hybrid)</td><td>Combustion engine + regenerative braking only</td><td><strong>No</strong> — cannot be plugged in at all</td></tr>
+    <tr><td>FCEV (Fuel-Cell)</td><td>Hydrogen + oxygen reacted to generate electricity on the fly</td><td>No — refuels with hydrogen, not electricity</td></tr>
+  </table>
+  <div class="box mis">
+    <span class="label">COMMON MISCONCEPTION</span>
+    "A hybrid (HEV) is basically a smaller plug-in hybrid." They are fundamentally different in one crucial way: an HEV <strong>cannot be recharged from the power grid at all</strong> — all its electrical energy originates from gasoline combustion and regenerative braking. A PHEV genuinely can plug in. Confusing the two misses the entire point of what "plug-in" means in PHEV's name.
+  </div>
+
+  <h3>Why EVs are more energy-efficient, not just cleaner</h3>
+  <div class="box why">
+    <span class="label">MECHANISM</span>
+    EV batteries convert roughly <strong>59–62%</strong> of stored energy into actual vehicle movement; a gasoline engine converts only <strong>17–21%</strong> — the rest is lost as waste heat through the fundamental inefficiency of internal combustion. This efficiency gap exists independent of emissions entirely: even ignoring tailpipe pollution, an EV simply wastes far less energy turning stored fuel into motion. Regenerative braking adds a further efficiency layer unique to EVs — braking energy that would be lost as friction heat in a combustion car is instead captured back into the battery.
+  </div>
+
+  <table>
+    <tr><th>EV advantages</th><th>EV disadvantages</th></tr>
+    <tr><td>No tailpipe emissions; ~99% fewer moving parts than combustion engines → lower maintenance; near-silent operation; lower centre of gravity improves crash stability</td><td>High upfront cost; shorter range (~100–200 km typical, up to ~300 miles premium); charging takes 30 min–12+ hrs depending on charger speed; battery replacement needed every 3–10 years; risk of thermal runaway (fire/explosion) in damaged battery packs</td></tr>
+  </table>
+
+  <h3>CNG (Compressed Natural Gas)</h3>
+  <div class="box def">
+    <span class="label">DEFINITION</span>
+    CNG is natural gas (mostly methane) compressed to under 1% of its normal volume (3000–3600 psi), making it dense enough to store onboard a vehicle. It is <strong>not the same</strong> as LPG (which is propane/butane, stored as a liquid).
+  </div>
+  <table>
+    <tr><th>CNG advantages</th><th>CNG disadvantages</th></tr>
+    <tr><td>~1/3 to 1/5 the cost of petrol; burns cleaner — up to 95% less CO, CO₂ and NOₓ than gasoline; no additive residue, so engine oil and spark plugs stay cleaner for longer, reducing maintenance</td><td>Limited refuelling station availability in many regions; heavy, bulky storage tank affects vehicle handling and braking distance; methane itself is a potent greenhouse gas if it leaks</td></tr>
+  </table>
+</section>
+
+<div class="divider">⁂</div>
+
+<section id="test">
+  <h2>Self-Test Checklist</h2>
+  <ul class="checklist">
+    <li>Explain why a pumped-storage plant is functionally a "battery" for the electrical grid, not a net energy generator.</li>
+    <li>Trace the common final mechanical step shared by hydroelectric, wind, and geothermal power generation.</li>
+    <li>Explain why OTEC's low efficiency (1–3%) matters less than it would for a fuel-burning plant.</li>
+    <li>Identify the one renewable source in this week's set that is <em>not</em> ultimately solar-powered, and explain why that makes it uniquely reliable.</li>
+    <li>Trace the full causal chain of thermal pollution from temperature rise to invasive-species takeover.</li>
+    <li>Explain why drip irrigation saves so much more water than "just being more careful" would predict.</li>
+    <li>Distinguish an HEV from a PHEV using the single defining test: can it be plugged into the grid?</li>
+    <li>State the efficiency gap between EV and combustion-engine energy conversion, and explain where the lost energy in a combustion engine actually goes.</li>
+  </ul>
+</section>
+
+</div>
+
+<footer>Week 3 of 6 · Environmental Studies illustrated notes · built from your uploaded lecture notes (Hydroelectric/Wind, Ocean Thermal/Geothermal, Thermal Pollution W3-S4, Water Management W3-S5, EV/CNG)</footer>
+
+</body>
+</html>

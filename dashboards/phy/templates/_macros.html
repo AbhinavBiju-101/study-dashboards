@@ -1,0 +1,18 @@
+{# Consistent box types: Definition, Why it works, Worked example, Misconception, Try it #}
+{% macro box(kind, title=None) -%}
+<div class="box {{ kind }}"><div class="box-title">{{ title or {'def':'Definition','why':'Why it works','ex':'Worked example','mis':'Misconception','try':'Try it'}[kind] }}</div><div class="box-body">{{ caller() }}</div></div>
+{%- endmacro %}
+{% macro sub(id, num, title) -%}
+<section class="sub" id="{{ id }}"><h3><span class="num">{{ num }}</span>{{ title }}</h3>{{ caller() }}</section>
+{%- endmacro %}
+{% macro sec(id, num, title) -%}
+<section class="sec" id="{{ id }}"><h2><span class="num">{{ num }}</span>{{ title }}</h2>{{ caller() }}</section>
+{%- endmacro %}
+{% macro fig(caption) -%}
+<figure class="fig">{{ caller() }}<figcaption>{{ caption|safe }}</figcaption></figure>
+{%- endmacro %}
+{% macro mat(rows) -%}
+<span class="mat"><table>{% for r in rows %}<tr>{% for c in r %}<td>{{ c|safe }}</td>{% endfor %}</tr>{% endfor %}</table></span>
+{%- endmacro %}
+{% macro ket(s) -%}<span class="ket">|{{ s|safe }}⟩</span>{%- endmacro %}
+{% macro bra(s) -%}<span class="ket">⟨{{ s|safe }}|</span>{%- endmacro %}

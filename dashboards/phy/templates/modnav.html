@@ -1,0 +1,7 @@
+{% macro modnav(cls='') %}
+<div class="modnav {{ cls }}">
+  {% if prev_m %}<a href="{{ url_for('module', n=prev_m.n) }}">← Module {{ prev_m.n }}: {{ prev_m.short }}</a>{% else %}<a href="{{ url_for('dashboard') }}">← Dashboard</a>{% endif %}
+  <span class="mid">Module {{ n }} of 5 · {{ cur.short }}</span>
+  {% if next_m %}<a href="{{ url_for('module', n=next_m.n) }}">Module {{ next_m.n }}: {{ next_m.short }} →</a>{% else %}<a href="{{ url_for('recap') }}">Exam recap →</a>{% endif %}
+</div>
+{% endmacro %}

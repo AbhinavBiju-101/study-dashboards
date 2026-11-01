@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Basic Engineering Quiz — Setup</title>
+<style>
+  :root{
+    --paper:#f6f3ea; --paper2:#efeadb; --ink:#1e2a22; --ink-soft:#5a6459; --rule:#d8d0ba;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font-family: ui-sans-serif,"Segoe UI",Helvetica,Arial,sans-serif; line-height:1.6;
+  }
+  header.hero{
+    background:linear-gradient(135deg,#1e2a22,#2f6b4f 55%,#2b5f7a 100%);
+    color:#fbf8ee; padding:52px 24px 40px; text-align:center;
+  }
+  header.hero h1{
+    font-family: Georgia,"Iowan Old Style","Palatino Linotype",serif;
+    font-size:2rem; margin:0 0 10px;
+  }
+  header.hero p{ max-width:56ch; margin:0 auto; color:#e3ecdf; }
+  header.hero a.back{
+    display:inline-block; margin-top:16px; color:#e3ecdf; font-size:.88rem;
+    text-decoration:none; border:1px solid rgba(255,255,255,.35); padding:5px 14px; border-radius:14px;
+  }
+  header.hero a.back:hover{ background:rgba(255,255,255,.12); }
+
+  main{ max-width:920px; margin:0 auto; padding:36px 24px 100px; }
+
+  .flash{
+    background:#f4e2dc; border:1px solid #a4432c; color:#6d2c1c;
+    padding:12px 18px; border-radius:6px; margin-bottom:24px; font-size:.92rem;
+  }
+
+  .week-block{
+    background:#fff; border:1px solid var(--rule); border-radius:10px;
+    margin-bottom:16px; border-top:5px solid var(--accent,#2f6b4f); overflow:hidden;
+  }
+  .week-head{
+    display:flex; align-items:center; gap:12px; padding:16px 20px; cursor:pointer;
+  }
+  .week-head input[type=checkbox]{ width:18px; height:18px; accent-color:var(--accent,#2f6b4f); flex-shrink:0; }
+  .week-head .w-title{ flex:1; }
+  .week-head .w-title .tag{
+    font-size:.74rem; font-weight:700; letter-spacing:.07em; color:var(--accent-dk,#204a37);
+    text-transform:uppercase; display:block;
+  }
+  .week-head .w-title h2{
+    font-family: Georgia,"Iowan Old Style","Palatino Linotype",serif;
+    font-size:1.12rem; margin:2px 0 0; color:var(--ink);
+  }
+  .week-head .w-count{ font-size:.8rem; color:var(--ink-soft); white-space:nowrap; }
+  .week-head .w-toggle{
+    font-size:.78rem; color:var(--accent-dk,#204a37); border:1px solid var(--rule);
+    border-radius:14px; padding:4px 12px; background:none; cursor:pointer; white-space:nowrap;
+  }
+
+  .topic-grid{
+    padding:4px 20px 18px 52px;
+    display:grid; grid-template-columns:repeat(2,1fr); gap:4px 16px;
+    border-top:1px dashed var(--rule);
+  }
+  .topic-row{
+    display:flex; align-items:center; gap:8px; padding:6px 8px; border-radius:5px;
+  }
+  .topic-row:hover{ background:var(--paper2); }
+  .topic-row input[type=checkbox]{ accent-color:var(--accent,#2f6b4f); flex-shrink:0; }
+  .topic-row label{ font-size:.88rem; flex:1; cursor:pointer; }
+  .topic-row .t-n{ font-size:.74rem; color:var(--ink-soft); white-space:nowrap; }
+
+  .control-bar{
+    position:sticky; bottom:0; background:#fff; border:1px solid var(--rule); border-radius:10px;
+    padding:18px 22px; margin-top:24px; box-shadow:0 -6px 18px rgba(30,42,34,.08);
+    display:flex; align-items:center; gap:18px; flex-wrap:wrap;
+  }
+  .control-bar .count-field{ display:flex; align-items:center; gap:8px; }
+  .control-bar label{ font-size:.9rem; font-weight:600; }
+  .control-bar input[type=number]{
+    width:80px; padding:8px 10px; font-size:1rem; border:1px solid var(--rule); border-radius:6px;
+  }
+  .control-bar .avail{ font-size:.82rem; color:var(--ink-soft); }
+  .control-bar .grow{ flex:1; }
+  .control-bar .selected-count{ font-size:.85rem; color:var(--ink-soft); }
+  .backtrack-field{
+    display:flex; align-items:center; gap:8px; font-size:.86rem; color:var(--ink);
+    cursor:pointer;
+  }
+  .backtrack-field input{ accent-color:#2f6b4f; width:16px; height:16px; }
+  .start-btn{
+    background:#2f6b4f; color:#fff; border:none; font-size:1rem; font-weight:700;
+    padding:13px 28px; border-radius:8px; cursor:pointer;
+  }
+  .start-btn:hover{ background:#204a37; }
+  .start-btn:disabled{ background:#a9b3a5; cursor:not-allowed; }
+
+  footer{ text-align:center; color:var(--ink-soft); font-size:.85rem; padding:18px 0 0; }
+
+  @media(max-width:640px){
+    .topic-grid{ grid-template-columns:1fr; padding-left:24px; }
+    .week-head{ flex-wrap:wrap; }
+    .control-bar{ flex-direction:column; align-items:stretch; }
+    .start-btn{ width:100%; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <h1>Build a Quiz</h1>
+  <p>Pick whole topics, or drill into specific subtopics. Choose how many questions you want — every question's options are freshly shuffled each time you take it.</p>
+  <a class="back" href="{{ url_for('dashboard') }}">☰ Back to Dashboard</a>
+</header>
+
+<main>
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      {% for m in messages %}<div class="flash">{{ m }}</div>{% endfor %}
+    {% endif %}
+  {% endwith %}
+
+  <form method="post" action="{{ url_for('quiz_start') }}" id="quiz-form">
+    {% for w in weeks %}
+    <section class="week-block" style="--accent:{{ w.accent }}; --accent-dk:{{ w.accent_dk }};">
+      <div class="week-head">
+        <input type="checkbox" class="week-check" data-week="{{ w.num }}">
+        <div class="w-title">
+          <span class="tag">Topic {{ w.num }}</span>
+          <h2>{{ w.title }}</h2>
+        </div>
+        <span class="w-count">{{ w.total_available }} questions available</span>
+        <button type="button" class="w-toggle" data-week-toggle="{{ w.num }}">Expand subtopics</button>
+      </div>
+      <div class="topic-grid" id="topics-{{ w.num }}" style="display:none;">
+        {% for t in w.topics %}
+        <div class="topic-row">
+          <input type="checkbox" name="topics" value="{{ w.num }}:{{ t.id }}"
+                 class="topic-check" data-week="{{ w.num }}" id="tc-{{ w.num }}-{{ t.id }}">
+          <label for="tc-{{ w.num }}-{{ t.id }}">{{ t.label }}</label>
+          <span class="t-n">{{ t.count }} q</span>
+        </div>
+        {% endfor %}
+      </div>
+    </section>
+    {% endfor %}
+
+    <div class="control-bar">
+      <div class="count-field">
+        <label for="count">Number of questions</label>
+        <input type="number" id="count" name="count" min="1" value="10">
+      </div>
+      <label class="backtrack-field">
+        <input type="checkbox" name="backtracking" checked>
+        Allow going back to previous questions
+      </label>
+      <span class="avail" id="avail-note">Select topics to see how many are available</span>
+      <span class="grow"></span>
+      <span class="selected-count" id="selected-count">0 subtopics selected</span>
+      <button type="submit" class="start-btn" id="start-btn" disabled>Start Quiz →</button>
+    </div>
+  </form>
+</main>
+
+<footer>{{ grand_total }} questions total across both topics</footer>
+
+<script>
+  const topicChecks = Array.from(document.querySelectorAll('.topic-check'));
+  const weekChecks = Array.from(document.querySelectorAll('.week-check'));
+  const countInput = document.getElementById('count');
+  const availNote = document.getElementById('avail-note');
+  const selectedCountEl = document.getElementById('selected-count');
+  const startBtn = document.getElementById('start-btn');
+
+  // per-topic question counts, keyed the same way as the checkbox value
+  const counts = {};
+  topicChecks.forEach(cb => { counts[cb.value] = parseInt(cb.closest('.topic-row').querySelector('.t-n').textContent); });
+
+  function weekTopics(weekNum){
+    return topicChecks.filter(cb => cb.dataset.week === String(weekNum));
+  }
+
+  function syncWeekCheckbox(weekNum){
+    const kids = weekTopics(weekNum);
+    const allOn = kids.every(cb => cb.checked);
+    const noneOn = kids.every(cb => !cb.checked);
+    const weekBox = document.querySelector(`.week-check[data-week="${weekNum}"]`);
+    weekBox.checked = allOn;
+    weekBox.indeterminate = !allOn && !noneOn;
+  }
+
+  function updateTotals(){
+    const checked = topicChecks.filter(cb => cb.checked);
+    const total = checked.reduce((s, cb) => s + counts[cb.value], 0);
+    selectedCountEl.textContent = `${checked.length} subtopic${checked.length===1?'':'s'} selected`;
+    availNote.textContent = total > 0 ? `${total} question${total===1?'':'s'} available from your selection` : 'Select topics to see how many are available';
+    countInput.max = total || 1;
+    if (total > 0 && parseInt(countInput.value) > total) countInput.value = total;
+    startBtn.disabled = total === 0;
+  }
+
+  weekChecks.forEach(wb => {
+    wb.addEventListener('change', () => {
+      weekTopics(wb.dataset.week).forEach(cb => cb.checked = wb.checked);
+      wb.indeterminate = false;
+      updateTotals();
+    });
+  });
+
+  topicChecks.forEach(cb => {
+    cb.addEventListener('change', () => {
+      syncWeekCheckbox(cb.dataset.week);
+      updateTotals();
+    });
+  });
+
+  document.querySelectorAll('[data-week-toggle]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const n = btn.getAttribute('data-week-toggle');
+      const grid = document.getElementById('topics-' + n);
+      const open = grid.style.display !== 'none';
+      grid.style.display = open ? 'none' : 'grid';
+      btn.textContent = open ? 'Expand subtopics' : 'Collapse subtopics';
+    });
+  });
+
+  updateTotals();
+</script>
+
+</body>
+</html>

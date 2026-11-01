@@ -1,0 +1,536 @@
+{% extends "base.html" %}
+{% from "_macros.html" import box, sub, sec, fig, mat, ket, bra %}
+{% from "modnav.html" import modnav with context %}
+{% block title %}Module 2 · Mathematical foundations{% endblock %}
+{% block bodyclass %}mod2{% endblock %}
+{% block modnav_top %}{{ modnav() }}{% endblock %}
+{% block modnav_bottom %}{{ modnav('bottom') }}{% endblock %}
+{% block content %}
+<header class="hero m2"><div class="in"><h1>Module 2 · Mathematical Foundations of Quantum Mechanics</h1>
+<p>The language every later module speaks: vector spaces, Dirac notation, operators, eigenvalues, Pauli matrices and commutators. Everything here is covered.</p></div></header>
+<div class="notes">
+<div class="toc"><b>Contents</b><ol>
+{% for t in cur.topics %}<li><a href="#{{ t.id }}">{{ t.title }}</a></li>{% endfor %}
+<li><a href="#m2-check">Self-test checklist</a></li></ol>
+<p class="small muted">Why this module matters: Module 3 states the postulates in this language (states are kets, observables are Hermitian operators, probabilities come from projections), and Module 4 solves one concrete problem in it (the box's ψₙ are an orthonormal basis).</p></div>
+
+{% call sec('m2-1','1','Linear vector spaces') %}
+
+{% call sub('m2-1-1','1.1','Vector spaces and scalars') %}
+<div class="intuition"><b>Why it matters.</b> A quantum state can be added to another state and scaled, and the result is again a state (superposition). "Something you can add and scale without leaving the set" is exactly a vector space. We need it before anything else.</div>
+{% call box('def') %}A <b>vector space</b> V over a set of scalars is a set of objects (vectors) with addition and scalar multiplication such that the usual arithmetic rules hold: addition is commutative and associative, there is a zero vector 0 with 0 + v = v, the distributive laws hold, and 1·v = v. Sums and scalar multiples of vectors in V stay in V (<b>closure</b>). The scalars are real numbers for a <i>real</i> vector space and complex numbers for a <i>complex</i> one (any field works: ℚ, ℝ, ℂ).{% endcall %}
+<table class="t"><tr><th>Is it a vector space?</th><th>Verdict</th><th>Reason</th></tr>
+<tr><td>ℝᵐ (columns of m real numbers)</td><td>Yes</td><td>Add entrywise, scale entrywise.</td></tr>
+<tr><td>m×n matrices</td><td>Yes</td><td>Add entrywise; the zero matrix is the zero vector.</td></tr>
+<tr><td>Continuous functions; polynomials; polynomials of degree ≤ n</td><td>Yes</td><td>The sum of two such functions is one; the zero function is the zero vector.</td></tr>
+<tr><td>Polynomials of degree <i>exactly</i> n</td><td>No</td><td>x² + (−x² + 1) = 1 has degree 0: closure fails.</td></tr>
+<tr><td>The set of all matrices (any size)</td><td>No</td><td>Matrices of different sizes cannot be added.</td></tr></table>
+{% call box('ex') %}
+<div class="step"><b>Problem.</b> Is S = {(x, y) : x + y = 1} a vector space? Is T = {2×2 matrices with trace 0} one?</div>
+<div class="step"><b>S:</b> the zero vector (0,0) gives 0 + 0 = 0 ≠ 1, so 0 ∉ S. Not a vector space.</div>
+<div class="step"><b>T:</b> if tr A = 0 and tr B = 0 then tr(A + B) = 0 and tr(cA) = c·0 = 0, so T is closed; the zero matrix has trace 0. T is a vector space.</div>
+<div class="check"><b>Check.</b> Take (1,0) and (0,1) in S: their sum (1,1) has x + y = 2 ≠ 1, confirming closure fails for S.</div>
+{% endcall %}
+{% call box('mis') %}"A set of arrows is a vector space." Not automatically. What matters is closure and the zero vector; the "arrow" picture is only one example. Quantum kets live in a <i>complex</i> space, so scalars like i are allowed: a state such as (|0⟩ + i|1⟩)/√2 is legitimate.{% endcall %}
+<div class="next">Next: 1.2 shows how to build new vectors from a few given ones.</div>
+{% endcall %}
+
+<hr class="div">
+{% call sub('m2-1-2','1.2','Linear combinations and span') %}
+<div class="intuition"><b>Why it matters.</b> "The state is a superposition of |0⟩ and |1⟩" is a statement that the state is a <i>linear combination</i> of them. The span answers "which vectors can I reach using only these?"</div>
+{% call box('def') %}A vector v is a <b>linear combination</b> of v₁,…,vₙ if v = x₁v₁ + … + xₙvₙ for some scalars xᵢ. The set of all linear combinations is the <b>span</b> of the vectors. If the span is the whole space V, the set is <b>complete</b> for V. In ℝᵐ, writing v as a combination of columns v₁…vₙ means solving the linear system Bx = v, where B has those columns.{% endcall %}
+{% call fig('Left: two non-parallel vectors a and b reach every point of the plane (the parallelogram builds a + b). Right: parallel vectors reach only a line. <i>Notice</i> that in the right panel the second vector adds nothing new.') %}
+<svg viewBox="0 0 640 230" width="640" role="img" aria-label="Span of two independent versus two parallel vectors">
+<defs><marker id="ar1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#0f766e"/></marker><marker id="ar1b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#b45309"/></marker></defs>
+<g transform="translate(20,0)"><rect x="0" y="10" width="280" height="200" fill="#f6fbfa" stroke="#cfd" />
+<line x1="20" y1="180" x2="270" y2="180" stroke="#999"/><line x1="40" y1="200" x2="40" y2="20" stroke="#999"/>
+<polygon points="40,180 120,140 160,60 80,100" fill="#0f766e" fill-opacity=".12" stroke="#0f766e" stroke-dasharray="4 3"/>
+<line x1="40" y1="180" x2="120" y2="140" stroke="#0f766e" stroke-width="2.5" marker-end="url(#ar1)"/><text x="122" y="150" font-size="14">a</text>
+<line x1="40" y1="180" x2="80" y2="100" stroke="#b45309" stroke-width="2.5" marker-end="url(#ar1b)"/><text x="60" y="95" font-size="14">b</text>
+<line x1="40" y1="180" x2="160" y2="60" stroke="#333" stroke-width="2" marker-end="url(#ar1)"/><text x="165" y="60" font-size="14">a + b</text>
+<text x="120" y="204" font-size="13" text-anchor="middle">independent: span = whole plane</text></g>
+<g transform="translate(340,0)"><rect x="0" y="10" width="280" height="200" fill="#fdf7f0" stroke="#edc" />
+<line x1="20" y1="180" x2="270" y2="180" stroke="#999"/><line x1="40" y1="200" x2="40" y2="20" stroke="#999"/>
+<line x1="20" y1="200" x2="260" y2="80" stroke="#bbb" stroke-dasharray="5 4"/>
+<line x1="40" y1="180" x2="120" y2="140" stroke="#0f766e" stroke-width="2.5" marker-end="url(#ar1)"/><text x="122" y="150" font-size="14">a</text>
+<line x1="40" y1="180" x2="80" y2="160" stroke="#b45309" stroke-width="2.5" marker-end="url(#ar1b)"/><text x="60" y="176" font-size="14">c = ½a</text>
+<text x="140" y="204" font-size="13" text-anchor="middle">dependent: span = one line only</text></g></svg>
+{% endcall %}
+{% call box('ex') %}
+<div class="step"><b>Problem.</b> With v₁ = (1,0,1) and v₂ = (0,1,1), is (2,3,5) in their span? Is (1,1,3)?</div>
+<div class="step">Solve x₁v₁ + x₂v₂ = (x₁, x₂, x₁ + x₂). For (2,3,5): x₁ = 2, x₂ = 3, and the third entry x₁ + x₂ = 5 ✓. So (2,3,5) = 2v₁ + 3v₂.</div>
+<div class="step">For (1,1,3): x₁ = 1, x₂ = 1 forces the third entry to be 2, not 3. Contradiction: (1,1,3) is <b>not</b> in the span.</div>
+<div class="check"><b>Check.</b> 2(1,0,1) + 3(0,1,1) = (2,0,2) + (0,3,3) = (2,3,5) ✓. Geometrically, the span is the plane z = x + y, and 3 ≠ 1 + 1.</div>
+{% endcall %}
+{% call box('mis') %}"Two vectors always span a plane." Only if they are not parallel. Two collinear vectors span just a line (right panel), which is why we need the independence test in 1.3.{% endcall %}
+<div class="next">Next: 1.3 gives the exact test for "no vector in the set is redundant".</div>
+{% endcall %}
+
+<hr class="div">
+{% call sub('m2-1-3','1.3','Linear independence') %}
+<div class="intuition"><b>Why it matters.</b> A set with a redundant vector describes the same space with wasted effort, and coordinates with respect to it are not unique. Independence is the condition that removes the waste; it is one half of the definition of a basis (1.4).</div>
+{% call box('def') %}Vectors v₁,…,vₙ are <b>linearly independent</b> if x₁v₁ + … + xₙvₙ = 0 forces x₁ = … = xₙ = 0 (equivalently, none is a combination of the others). Otherwise they are <b>dependent</b>. For the columns of a matrix B: independent ⇔ Bx = 0 has only x = 0 ⇔ the row-reduced form has a pivot in every column. For n vectors in ℝⁿ: independent ⇔ det B ≠ 0.{% endcall %}
+<table class="t"><tr><th>Method</th><th>How</th><th>Best when</th></tr>
+<tr><td>Definition</td><td>Solve Σxᵢvᵢ = 0; only the trivial solution means independent</td><td>Functions and polynomials (compare coefficients)</td></tr>
+<tr><td>Determinant</td><td>Square case: det ≠ 0 ⇔ independent</td><td>n vectors in ℝⁿ or ℂⁿ</td></tr>
+<tr><td>Row reduction</td><td>Pivot in every column ⇔ independent; pivot-free columns are the redundant ones</td><td>Any number of vectors</td></tr></table>
+{% call box('ex') %}
+<div class="step"><b>Problem.</b> Are v₁ = (1,2,3), v₂ = (2,1,0), v₃ = (4,5,6) independent?</div>
+<div class="step"><b>Determinant test.</b> Put them as columns: det [[1,2,4],[2,1,5],[3,0,6]] = 1(1·6 − 5·0) − 2(2·6 − 5·3) + 4(2·0 − 1·3) = 6 − 2(−3) + 4(−3) = 6 + 6 − 12 = 0. So they are <b>dependent</b>.</div>
+<div class="step"><b>Find the relation.</b> Try v₃ = a v₁ + b v₂. Third entry: 3a = 6, so a = 2. First entry: 2 + 2b = 4, so b = 1. Then v₃ = 2v₁ + v₂, i.e. 2v₁ + v₂ − v₃ = 0 (a non-trivial combination giving zero).</div>
+<div class="check"><b>Check.</b> Second entry: 2·2 + 1 = 5 ✓ (matches v₃'s 5). Two independent tests (determinant and explicit relation) agree.</div>
+{% endcall %}
+{% call box('mis') %}"Independent means perpendicular." No. (1,0) and (1,1) are independent but not perpendicular. Perpendicularity is the stronger property in 2.1. Also: "three vectors in ℝ² can be independent" is impossible; ℝ² has room for at most 2.{% endcall %}
+<div class="next">Next: 1.4 combines independence with completeness to define a basis.</div>
+{% endcall %}
+
+<hr class="div">
+{% call sub('m2-1-4','1.4','Basis vectors and dimension') %}
+<div class="intuition"><b>Why it matters.</b> A basis is the coordinate system of a vector space. Choosing |0⟩, |1⟩ (or |+⟩, |−⟩) as a basis for a qubit is exactly this idea, and the Stern-Gerlach experiments in Module 3 are about changing basis.</div>
+{% call box('def') %}A <b>basis</b> of V is a set of linearly independent vectors whose span is V (independent <i>and</i> complete). Every basis of V has the same number of vectors, the <b>dimension</b> of V. For an m×m matrix B these are equivalent: columns complete ⇔ columns independent ⇔ columns form a basis ⇔ B is invertible. The <b>standard basis</b> of ℝᵐ is e₁,…,eₘ with a single 1 in position i.{% endcall %}
+{% call fig('The same vector (3,1) has different coordinates in different bases. Standard basis: (3, 1). Basis {(1,1), (1,−1)}: coordinates (2, 1). The arrow does not change; only its description does.') %}
+<svg viewBox="0 0 420 240" width="420" role="img" aria-label="Vector (3,1) in two bases">
+<defs><marker id="ar2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#333"/></marker><marker id="ar2g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#0f766e"/></marker><marker id="ar2o" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#b45309"/></marker></defs>
+<line x1="20" y1="150" x2="400" y2="150" stroke="#aaa"/><line x1="60" y1="235" x2="60" y2="10" stroke="#aaa"/>
+<text x="402" y="154" font-size="12" fill="#666">x</text><text x="64" y="14" font-size="12" fill="#666">y</text>
+<line x1="60" y1="150" x2="120" y2="90" stroke="#0f766e" stroke-width="2.5" marker-end="url(#ar2g)"/><text x="82" y="100" font-size="13" fill="#0f766e">(1,1)</text>
+<line x1="60" y1="150" x2="120" y2="210" stroke="#b45309" stroke-width="2.5" marker-end="url(#ar2o)"/><text x="82" y="218" font-size="13" fill="#b45309">(1,−1)</text>
+<line x1="60" y1="150" x2="240" y2="90" stroke="#333" stroke-width="2.5" marker-end="url(#ar2)"/><text x="246" y="86" font-size="14">v = (3,1)</text>
+<line x1="60" y1="150" x2="180" y2="30" stroke="#0f766e" stroke-dasharray="4 3"/><text x="104" y="52" font-size="12" fill="#0f766e">2·(1,1)</text>
+<line x1="180" y1="30" x2="240" y2="90" stroke="#b45309" stroke-dasharray="4 3"/><text x="222" y="46" font-size="12" fill="#b45309">+1·(1,−1)</text>
+<text x="250" y="200" font-size="12" fill="#555">scale: 1 unit = 60 px on both axes</text></svg>
+{% endcall %}
+{% call box('ex') %}
+<div class="step"><b>Problem.</b> Show B = {(1,1), (1,−1)} is a basis of ℝ² and find the coordinates of v = (3,1).</div>
+<div class="step">Matrix with these columns: [[1,1],[1,−1]], det = −1 − 1 = −2 ≠ 0. Two independent vectors in a 2D space form a basis.</div>
+<div class="step">Solve a(1,1) + b(1,−1) = (3,1): a + b = 3 and a − b = 1. Adding: 2a = 4, so a = 2, then b = 1.</div>
+<div class="check"><b>Check.</b> 2(1,1) + 1(1,−1) = (2+1, 2−1) = (3,1) ✓. Dimension count: P₂ (polynomials of degree ≤ 2) has basis {1, x, x²}, so dim P₂ = 3.</div>
+{% endcall %}
+{% call box('mis') %}"A vector has one set of coordinates." Coordinates belong to a (vector, basis) pair. Writing |ψ⟩ = (a, b)ᵀ silently assumes a basis. Also, "any n vectors in an n-dimensional space form a basis": only if they are independent.{% endcall %}
+<div class="next">Next: 1.5 looks at smaller spaces inside a space, and at the two subspaces every matrix carries.</div>
+{% endcall %}
+
+<hr class="div">
+{% call sub('m2-1-5','1.5','Subspaces, column space and null space') %}
+<div class="intuition"><b>Why it matters.</b> Measurement in Module 3 projects a state onto a <i>subspace</i> (the eigenspace of the result). The null space and column space are the standard worked examples of subspaces.</div>
+{% call box('def') %}A <b>subspace</b> W of V is a non-empty subset closed under addition and scalar multiplication (so it contains 0). Lines and planes through the origin are subspaces of ℝ³. For a matrix A: the <b>column space</b> C(A) = span of the columns of A (dimension = number of pivots = rank); the <b>null space</b> N(A) = {x : Ax = 0} (dimension = number of free variables = nullity). <b>Rank + nullity = number of columns.</b> A basis for N(A): row-reduce, solve Rx = 0, write the solution in terms of the free variables.{% endcall %}
+{% call box('ex') %}
+<div class="step"><b>Problem.</b> Find a basis for the null space of A = [[1,2,3],[2,4,6]].</div>
+<div class="step">Row 2 = 2 × row 1, so row reduction gives R = [[1,2,3],[0,0,0]]. One pivot (column 1), so x₂ and x₃ are free. The equation is x₁ + 2x₂ + 3x₃ = 0, so x₁ = −2x₂ − 3x₃.</div>
+<div class="step">x = x₂(−2,1,0) + x₃(−3,0,1). A basis is {(−2,1,0), (−3,0,1)}; they are independent (look at the last two entries).</div>
+<div class="check"><b>Check.</b> A(−2,1,0) = (−2+2+0, −4+4+0) = (0,0) ✓; A(−3,0,1) = (−3+0+3, −6+0+6) = (0,0) ✓. Rank 1 + nullity 2 = 3 columns ✓.</div>
+{% endcall %}
+{% call box('mis') %}"The set of solutions to Ax = b is a subspace." Only when b = 0. For b ≠ 0 the solution set misses the origin, exactly like the set S in 1.1.{% endcall %}
+<div class="next">Next: Section 2 adds the missing ingredient, a notion of angle and length, giving orthonormal sets and Hilbert space.</div>
+{% endcall %}
+{% endcall %}{# end sec 1 #}
+
+<hr class="div">
+{% call sec('m2-2','2','Orthonormal sets and Hilbert space') %}
+
+{% call sub('m2-2-1','2.1','Orthogonality, normalisation and orthonormal sets') %}
+<div class="intuition"><b>Why it matters.</b> With an <i>orthonormal</i> basis, finding the coordinates of a vector needs no equation-solving: each coordinate is one inner product. In quantum mechanics that coordinate is the amplitude, and its squared size is a probability (Module 3).</div>
+{% call box('def') %}Two vectors are <b>orthogonal</b> if their inner product is 0. A vector is <b>normalised</b> if its norm is 1 (⟨v|v⟩ = 1). A set {eᵢ} is <b>orthonormal</b> if ⟨eᵢ|eⱼ⟩ = δᵢⱼ (1 if i = j, 0 otherwise). For an orthonormal basis, every vector expands as v = Σ cᵢeᵢ with <b>cᵢ = ⟨eᵢ|v⟩</b>, and ⟨v|v⟩ = Σ|cᵢ|². To normalise a vector, divide it by its norm √⟨v|v⟩.{% endcall %}
+{% call fig('Expanding v in an orthonormal basis: the coefficient along each axis is the length of the shadow (projection) of v on it. <i>Notice</i> that c₁² + c₂² equals the squared length of v, exactly Pythagoras.') %}
+<svg viewBox="0 0 360 230" width="360" role="img" aria-label="Coefficients as projections">
+<defs><marker id="ar3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#333"/></marker></defs>
+<line x1="40" y1="190" x2="330" y2="190" stroke="#888"/><line x1="40" y1="190" x2="40" y2="20" stroke="#888"/>
+<text x="332" y="194" font-size="13">e₁</text><text x="26" y="20" font-size="13">e₂</text>
+<line x1="40" y1="190" x2="250" y2="70" stroke="#333" stroke-width="2.5" marker-end="url(#ar3)"/><text x="255" y="68" font-size="14">v</text>
+<line x1="250" y1="70" x2="250" y2="190" stroke="#0f766e" stroke-dasharray="4 3"/><line x1="250" y1="70" x2="40" y2="70" stroke="#b45309" stroke-dasharray="4 3"/>
+<text x="140" y="208" font-size="13" fill="#0f766e">c₁ = ⟨e₁|v⟩</text><text x="52" y="62" font-size="13" fill="#b45309">c₂ = ⟨e₂|v⟩</text>
+<rect x="240" y="180" width="10" height="10" fill="none" stroke="#666"/></svg>
+{% endcall %}
+{% call box('ex') %}
+<div class="step"><b>Problem.</b> Show e₁ = (1,1,0)/√2, e₂ = (1,−1,0)/√2, e₃ = (0,0,1) are orthonormal, then expand v = (3,1,2).</div>
+<div class="step"><b>Orthonormal?</b> ⟨e₁|e₂⟩ = (1 − 1)/2 = 0; ⟨e₁|e₃⟩ = ⟨e₂|e₃⟩ = 0; ⟨e₁|e₁⟩ = (1+1)/2 = 1, ⟨e₂|e₂⟩ = 1, ⟨e₃|e₃⟩ = 1 ✓.</div>
+<div class="step"><b>Coefficients.</b> c₁ = ⟨e₁|v⟩ = (3+1)/√2 = 2√2; c₂ = (3−1)/√2 = √2; c₃ = 2.</div>
+<div class="check"><b>Check.</b> Σ|cᵢ|² = 8 + 2 + 4 = 14 and ⟨v|v⟩ = 9 + 1 + 4 = 14 ✓. Rebuild: 2√2·(1,1,0)/√2 + √2·(1,−1,0)/√2 + 2(0,0,1) = (2,2,0) + (1,−1,0) + (0,0,2) = (3,1,2) ✓.</div>
+{% endcall %}
+{% call box('mis') %}"Orthogonal vectors are automatically unit vectors." No: (2,0) and (0,3) are orthogonal but not normalised. Another trap with complex vectors: normalise using |cᵢ|², not cᵢ². For (1, i), ⟨v|v⟩ = 1 + 1 = 2 (not 1 + i² = 0).{% endcall %}
+<div class="next">Next: 2.2 packages "complex vector space + inner product + completeness" into the Hilbert space; the sin(nπx/L) functions of Module 4 are its orthonormal basis vectors.</div>
+{% endcall %}
+
+<hr class="div">
+{% call sub('m2-2-2','2.2','Hilbert space') %}
+<div class="intuition"><b>Why it matters.</b> The Hilbert space is the stage on which all of quantum mechanics is played: states are vectors in it, observables are operators on it, and probabilities come from its inner product. Wavefunctions ψ(x) are vectors too, with an integral as the inner product.</div>
+{% call box('def') %}A <b>Hilbert space</b> ℋ is a complete complex vector space with an inner product. <i>Complete</i> means every sequence of vectors that keeps getting closer together converges to a vector inside the space, so superpositions never leave it. Its dimension can be finite (2 for a qubit's spin) or infinite (position and momentum). For functions, the inner product is ⟨φ|ψ⟩ = ∫ φ*(x) ψ(x) dx, and a state is normalised when ∫|ψ|²dx = 1.{% endcall %}
+<table class="t"><tr><th></th><th>Column vectors</th><th>Wavefunctions</th></tr>
+<tr><td>Vector</td><td>(a₁,…,aₙ)ᵀ</td><td>ψ(x)</td></tr>
+<tr><td>Inner product</td><td>Σ aᵢ* bᵢ</td><td>∫ φ*(x) ψ(x) dx</td></tr>
+<tr><td>Norm²</td><td>Σ|aᵢ|²</td><td>∫|ψ|²dx</td></tr>
+<tr><td>Orthonormal basis</td><td>e₁,…,eₙ</td><td>e.g. √(2/L) sin(nπx/L) on [0, L] (Module 4)</td></tr></table>
+{% call box('ex') %}
+<div class="step"><b>Problem.</b> (a) Normalise ψ(x) = A x(1−x) on [0,1]. (b) Show sin(πx) and sin(2πx) are orthogonal on [0,1].</div>
+<div class="step"><b>(a)</b> ∫₀¹ x²(1−x)² dx = ∫(x² − 2x³ + x⁴)dx = 1/3 − 1/2 + 1/5 = (10 − 15 + 6)/30 = 1/30. So A²/30 = 1, giving A = √30.</div>
+<div class="step"><b>(b)</b> sin(πx)sin(2πx) = ½[cos(πx) − cos(3πx)]. Integrating over [0,1]: ½[sin(πx)/π − sin(3πx)/(3π)]₀¹ = ½[0 − 0] = 0 ✓.</div>
+<div class="check"><b>Check.</b> (a) With A = √30: 30 × 1/30 = 1 ✓ (also confirmed by numerical integration). (b) A second look: the functions have 1 and 2 half-waves, one positive lobe cancelling against the other, consistent with 0.</div>
+{% endcall %}
+{% call box('mis') %}"Hilbert space is just ℝ³ with more dimensions." Two differences matter: the scalars are <i>complex</i>, and the inner product conjugates its first slot. Also, an unnormalised function is a vector but not a valid <i>state</i> until you divide by its norm.{% endcall %}
+<div class="next">Next: Section 3 gives us Dirac's compact notation for all of this.</div>
+{% endcall %}
+{% endcall %}{# end sec 2 #}
+
+<hr class="div">
+{% call sec('m2-3','3','Dirac notation, inner, outer and tensor products') %}
+
+{% call sub('m2-3-1','3.1','Kets and bras') %}
+<div class="intuition"><b>Why it matters.</b> Dirac notation lets you write a state without committing to a basis, and turns most calculations into mechanical bracket-pushing. Every formula in Modules 3 and 4 uses it.</div>
+{% call box('def') %}A <b>ket</b> |ψ⟩ is a vector in the Hilbert space (think: column vector). Each ket has a unique <b>bra</b> ⟨ψ| in the dual space (think: the conjugate transpose, a row vector). The correspondence is <b>antilinear</b>: if |φ⟩ = a|ψ⟩ then ⟨φ| = a*⟨ψ|. In components, ⟨ψ| = (ψ₁*, ψ₂*, …).{% endcall %}
+<table class="t"><tr><th>Object</th><th>Symbol</th><th>Column/row picture</th><th>Lives in</th></tr>
+<tr><td>Ket</td><td>|ψ⟩</td><td>column</td><td>Hilbert space ℋ</td></tr>
+<tr><td>Bra</td><td>⟨ψ|</td><td>row, entries conjugated</td><td>dual space</td></tr>
+<tr><td>Bra-ket (inner product)</td><td>⟨φ|ψ⟩</td><td>row × column = number</td><td>ℂ</td></tr>
+<tr><td>Ket-bra (outer product)</td><td>|ψ⟩⟨φ|</td><td>column × row = matrix</td><td>operators</td></tr></table>
+{% call box('ex') %}
+<div class="step"><b>Problem.</b> For |ψ⟩ = (2, 1−i)ᵀ write ⟨ψ|, and verify the antilinear rule for a = i.</div>
+<div class="step">⟨ψ| = (2*, (1−i)*) = (2, 1+i).</div>
+<div class="step">i|ψ⟩ = (2i, i(1−i)) = (2i, i + 1). Its bra is the conjugate: (−2i, 1−i).</div>
+<div class="check"><b>Check.</b> a*⟨ψ| = (−i)(2, 1+i) = (−2i, −i − i²) = (−2i, 1 − i) ✓ — the same row. The scalar came out conjugated, as the rule says.</div>
+{% endcall %}
+{% call box('mis') %}"The bra is just the ket written sideways." It is written sideways <i>and conjugated</i>. Forgetting the conjugation turns ⟨ψ|ψ⟩ = Σ|ψᵢ|² into Σψᵢ², which can even be zero for a non-zero vector such as (1, i).{% endcall %}
+<div class="next">Next: 3.2 multiplies a bra by a ket to get a number.</div>
+{% endcall %}
+
+<hr class="div">
+{% call sub('m2-3-2','3.2','Inner product') %}
+<div class="intuition"><b>Why it matters.</b> ⟨φ|ψ⟩ is the <i>amplitude</i> for finding the state φ when the system is in ψ. Its squared modulus is the probability (Module 3, 3.2).</div>
+{% call box('def') %}The <b>inner product</b> ⟨φ|ψ⟩ = Σ φᵢ*ψᵢ is a complex number. Properties: (1) <b>conjugate symmetry</b> ⟨φ|ψ⟩ = ⟨ψ|φ⟩*, so order matters; (2) ⟨ψ|ψ⟩ is real and ≥ 0, and = 0 only for ψ = 0, with <b>norm</b> ‖ψ‖ = √⟨ψ|ψ⟩; (3) <b>Schwarz inequality</b> |⟨φ|ψ⟩|² ≤ ⟨φ|φ⟩⟨ψ|ψ⟩; (4) <b>triangle inequality</b> ‖φ + ψ‖ ≤ ‖φ‖ + ‖ψ‖; (5) <b>orthogonal</b> if ⟨φ|ψ⟩ = 0; <b>orthonormal</b> if also both have norm 1.{% endcall %}
+{% call fig('Real-space analogue of the Schwarz inequality: |a·b| = |a||b| cos θ ≤ |a||b|. For complex vectors the same bound holds with |⟨a|b⟩|. Equality happens exactly when the vectors are parallel.') %}
+<svg viewBox="0 0 300 150" width="300" role="img" aria-label="Schwarz inequality geometry"><defs><marker id="ar4" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#333"/></marker></defs>
+<line x1="40" y1="120" x2="240" y2="120" stroke="#0f766e" stroke-width="2.5" marker-end="url(#ar4)"/><text x="245" y="124" font-size="14">b</text>
+<line x1="40" y1="120" x2="160" y2="40" stroke="#b45309" stroke-width="2.5" marker-end="url(#ar4)"/><text x="165" y="38" font-size="14">a</text>
+<line x1="160" y1="40" x2="160" y2="120" stroke="#888" stroke-dasharray="4 3"/><text x="100" y="112" font-size="12">|a|cos θ</text><path d="M75,120 A35,35 0 0 0 68,98" fill="none" stroke="#555"/><text x="80" y="108" font-size="12" >θ</text></svg>
+{% endcall %}
+{% call box('ex') %}
+<div class="step"><b>Problem.</b> For |a⟩ = (1, i, 2)ᵀ and |b⟩ = (2, 1, i)ᵀ find ⟨a|b⟩, ⟨b|a⟩, both norms, and test Schwarz.</div>
+<div class="step">⟨a| = (1, −i, 2). ⟨a|b⟩ = 1·2 + (−i)·1 + 2·i = 2 − i + 2i = <b>2 + i</b>.</div>
+<div class="step">⟨b| = (2, 1, −i). ⟨b|a⟩ = 2·1 + 1·i + (−i)·2 = 2 + i − 2i = <b>2 − i</b>.</div>
+<div class="step">⟨a|a⟩ = 1 + 1 + 4 = 6, so ‖a‖ = √6. ⟨b|b⟩ = 4 + 1 + 1 = 6, so ‖b‖ = √6.</div>
+<div class="check"><b>Check.</b> ⟨b|a⟩ = (2 + i)* = 2 − i ✓ (conjugate symmetry). Schwarz: |⟨a|b⟩|² = 4 + 1 = 5 ≤ 6·6 = 36 ✓.</div>
+{% endcall %}
+{% call box('mis') %}"⟨a|b⟩ = ⟨b|a⟩." Only for real vectors. In general they are complex conjugates. That is why you must read left-to-right: the <i>left</i> vector is conjugated.{% endcall %}
+<div class="next">Next: 3.3 multiplies in the opposite order and gets a matrix instead of a number.</div>
+{% endcall %}
+
+<hr class="div">
+{% call sub('m2-3-3','3.3','Outer product') %}
+<div class="intuition"><b>Why it matters.</b> The outer product is how you <i>build operators from states</i>. The projection operator |a⟩⟨a| (4.5) is an outer product, and so is the completeness relation Σ|eᵢ⟩⟨eᵢ| = I.</div>
+{% call box('def') %}The <b>outer product</b> |a⟩⟨b| is the operator that acts as (|a⟩⟨b|)|c⟩ = |a⟩ ⟨b|c⟩ (multiply |a⟩ by the number ⟨b|c⟩). As matrices it is column × row: its (i,j) entry is aᵢ bⱼ*. It is the reverse order of the inner product ⟨b|a⟩, which gives a number.{% endcall %}
+<table class="t"><tr><th></th><th>Inner ⟨b|a⟩</th><th>Outer |a⟩⟨b|</th></tr>
+<tr><td>Shape</td><td>row × column</td><td>column × row</td></tr>
+<tr><td>Result</td><td>a number (1×1)</td><td>an n×n matrix</td></tr>
+<tr><td>Entry</td><td>Σ bᵢ*aᵢ</td><td>aᵢbⱼ* at (i,j)</td></tr>
+<tr><td>Role</td><td>amplitude</td><td>operator</td></tr></table>
+{% call box('ex') %}
+<div class="step"><b>Problem.</b> For |a⟩ = (1, i)ᵀ, |b⟩ = (2, 1)ᵀ, find |a⟩⟨b| and apply it to |c⟩ = (1, 1)ᵀ.</div>
+<div class="step">⟨b| = (2, 1). |a⟩⟨b| = [[1·2, 1·1],[i·2, i·1]] = {{ mat([['2','1'],['2i','i']]) }}.</div>
+<div class="step">Apply to (1,1): (2+1, 2i+i) = (3, 3i).</div>
+<div class="check"><b>Check.</b> Other route: ⟨b|c⟩ = 2 + 1 = 3, then |a⟩·3 = (3, 3i) ✓. Also (|a⟩⟨b|)† = |b⟩⟨a| = [[2,−2i],[1,−i]], which is the conjugate transpose of the matrix above ✓.</div>
+{% endcall %}
+{% call box('mis') %}"|a⟩⟨b| = |b⟩⟨a|." No: they are conjugate-transposes (adjoints) of each other. Also "|a⟩⟨b| is a number" confuses it with ⟨b|a⟩.{% endcall %}
+<div class="next">Next: 3.4 combines vectors from <i>different</i> spaces.</div>
+{% endcall %}
+
+<hr class="div">
+{% call sub('m2-3-4','3.4','Tensor product of vector spaces') %}
+<div class="intuition"><b>Why it matters.</b> A system made of two parts (for example a spin and an orbital motion) lives in the tensor product of the two spaces. It is also how two-qubit states are built.</div>
+{% call box('def') %}If V has basis {|αᵢ⟩} (n vectors) and W has basis {|βⱼ⟩} (m vectors), the <b>tensor product</b> V ⊗ W is an <b>nm-dimensional</b> space with basis {|αᵢ⟩⊗|βⱼ⟩}. Rules: (v₁ + v₂)⊗w = v₁⊗w + v₂⊗w; v⊗(w₁ + w₂) = v⊗w₁ + v⊗w₂; (a v)⊗w = v⊗(a w) = a(v⊗w). In components: (a₁,a₂)⊗(b₁,b₂) = (a₁b₁, a₁b₂, a₂b₁, a₂b₂). Products like |ψ⟩|φ⟩ within the <i>same</i> space are not meaningful; the tensor product is for different spaces.{% endcall %}
+{% call fig('Dimensions multiply: a 2-dimensional space tensor a 2-dimensional space gives 4 basis vectors, one for every pairing. <i>Notice</i> the grid: each cell is one basis vector |αᵢ⟩⊗|βⱼ⟩.') %}
+<svg viewBox="0 0 360 170" width="360" role="img" aria-label="Tensor product basis grid">
+<text x="20" y="40" font-size="13">|α₁⟩</text><text x="20" y="100" font-size="13">|α₂⟩</text><text x="120" y="20" font-size="13">|β₁⟩</text><text x="230" y="20" font-size="13">|β₂⟩</text>
+<rect x="70" y="26" width="110" height="50" fill="#e6f4f2" stroke="#0f766e"/><rect x="180" y="26" width="110" height="50" fill="#fdf1e0" stroke="#b45309"/>
+<rect x="70" y="76" width="110" height="50" fill="#fdf1e0" stroke="#b45309"/><rect x="180" y="76" width="110" height="50" fill="#e6f4f2" stroke="#0f766e"/>
+<text x="125" y="56" font-size="13" text-anchor="middle">α₁⊗β₁</text><text x="235" y="56" font-size="13" text-anchor="middle">α₁⊗β₂</text>
+<text x="125" y="106" font-size="13" text-anchor="middle">α₂⊗β₁</text><text x="235" y="106" font-size="13" text-anchor="middle">α₂⊗β₂</text>
+<text x="180" y="152" font-size="13" text-anchor="middle">2 × 2 = 4 basis vectors</text></svg>
+{% endcall %}
+{% call box('ex') %}
+<div class="step"><b>Problem.</b> Compute (1,2)ᵀ ⊗ (3,1)ᵀ, and verify the norm rule ⟨v⊗w|v⊗w⟩ = ⟨v|v⟩⟨w|w⟩.</div>
+<div class="step">(1·3, 1·1, 2·3, 2·1) = (3, 1, 6, 2).</div>
+<div class="step">Norm² of the product: 9 + 1 + 36 + 4 = 50.</div>
+<div class="check"><b>Check.</b> ⟨v|v⟩ = 1 + 4 = 5, ⟨w|w⟩ = 9 + 1 = 10, and 5 × 10 = 50 ✓. Extra check: not every 4-vector is a product. (1,0,0,1) would need a₁b₁ = 1, a₂b₂ = 1 but a₁b₂ = 0 = a₂b₁, impossible; such vectors are called entangled (mentioned only to show the product space is bigger than the products).</div>
+{% endcall %}
+{% call box('mis') %}"Tensor product means add the dimensions." It multiplies them (2 ⊗ 2 = 4, not 4 by coincidence: 2 ⊗ 3 = 6, not 5). And "order does not matter": (1,2)⊗(3,1) = (3,1,6,2) but (3,1)⊗(1,2) = (3,6,1,2), a different arrangement of entries.{% endcall %}
+<div class="next">Next: Section 4 introduces operators, the things that act on all these vectors.</div>
+{% endcall %}
+{% endcall %}{# end sec 3 #}
+
+<hr class="div">
+{% call sec('m2-4','4','Linear operators and matrix algebra') %}
+
+{% call sub('m2-4-1','4.1','Linear operators') %}
+<div class="intuition"><b>Why it matters.</b> Every measurable quantity, every symmetry and every time-evolution step in quantum mechanics is a linear operator. Linearity is what makes superposition survive the operation.</div>
+{% call box('def') %}An <b>operator</b> Â is a rule turning a ket into another ket of the same space: Â|ψ⟩ = |φ⟩. It is <b>linear</b> if Â(a₁|ψ₁⟩ + a₂|ψ₂⟩) = a₁Â|ψ₁⟩ + a₂Â|ψ₂⟩. Operator products are <b>associative</b> (ÂB̂)Ĉ = Â(B̂Ĉ) but in general <b>not commutative</b>: ÂB̂ ≠ B̂ Â. The identity operator Î leaves every ket unchanged. Examples: multiplication by x; d/dx; the momentum operator p̂ = −iħ d/dx; the outer product |a⟩⟨b|.{% endcall %}
+{% call box('ex') %}
+<div class="step"><b>Problem.</b> Is Â f = x f linear? Is B̂ f = f² linear?</div>
+<div class="step">Â(a f + b g) = x(a f + b g) = a x f + b x g = a Âf + b Âg ✓ linear.</div>
+<div class="step">B̂(f + g) = (f + g)² = f² + 2fg + g² ≠ f² + g² = B̂f + B̂g. Not linear.</div>
+<div class="check"><b>Check with numbers.</b> Take f = g = 1 (constants): B̂(f + g) = (2)² = 4 but B̂f + B̂g = 1 + 1 = 2 ✗, so B̂ fails linearity, while Â(1 + 1) = 2x = x + x ✓.</div>
+{% endcall %}
+{% call box('mis') %}"ÂB̂ = B̂Â because both are just operations." Order matters. Compare "put on socks, then shoes" with the reverse. In 4.2 you will see a two-line matrix example, and in 7.1 the commutator measures exactly this difference.{% endcall %}
+<div class="next">Next: 4.2 turns operators into matrices once a basis is chosen.</div>
+{% endcall %}
+
+<hr class="div">
+{% call sub('m2-4-2','4.2','Matrix algebra and matrix representation') %}
+<div class="intuition"><b>Why it matters.</b> Once you pick a basis, an operator becomes a grid of numbers you can multiply, and eigenvalue problems (Section 5) become algebra. The matrix element Aᵢⱼ = ⟨i|Â|j⟩ is the amplitude to go from basis state j to basis state i.</div>
+{% call box('def') %}In an orthonormal basis {|i⟩}, the operator Â has matrix elements <b>Aᵢⱼ = ⟨i|Â|j⟩</b>; column j of the matrix is the image Â|j⟩. Basic operations: addition and scalar multiples entrywise (matrices must have the same shape); product (AB)ᵢⱼ = Σₖ AᵢₖBₖⱼ (not commutative); <b>transpose</b> Aᵀ swaps rows/columns; <b>conjugate</b> A* conjugates entries; <b>adjoint (dagger)</b> A† = (A*)ᵀ; <b>trace</b> Tr A = Σ Aᵢᵢ; and for products (AB)† = B†A†, Tr(AB) = Tr(BA).{% endcall %}
+<table class="t"><tr><th>Operation</th><th>Symbol</th><th>Rule</th></tr>
+<tr><td>Transpose</td><td>Aᵀ</td><td>(Aᵀ)ᵢⱼ = Aⱼᵢ</td></tr><tr><td>Complex conjugate</td><td>A*</td><td>entries conjugated</td></tr>
+<tr><td>Adjoint</td><td>A†</td><td>conjugate then transpose</td></tr><tr><td>Trace</td><td>Tr A</td><td>sum of the diagonal</td></tr>
+<tr><td>Product</td><td>AB</td><td>row × column; usually AB ≠ BA</td></tr></table>
+{% call box('ex') %}
+<div class="step"><b>Problem 1.</b> An operator obeys Â|0⟩ = 3|0⟩ + i|1⟩ and Â|1⟩ = −i|0⟩ + 2|1⟩. Write its matrix and apply it to (1,1)ᵀ.</div>
+<div class="step">Columns are the images: A = {{ mat([['3','−i'],['i','2']]) }}. Then A(1,1)ᵀ = (3 − i, i + 2)ᵀ.</div>
+<div class="step"><b>Problem 2.</b> For A = [[1,2],[0,1]] and B = [[1,0],[3,1]] compute AB and BA.</div>
+<div class="step">AB = [[1+6, 2],[3, 1]] = [[7,2],[3,1]]; BA = [[1, 2],[3, 6+1]] = [[1,2],[3,7]].</div>
+<div class="check"><b>Check.</b> (1) Direct from the definition: Â(|0⟩ + |1⟩) = (3|0⟩ + i|1⟩) + (−i|0⟩ + 2|1⟩) = (3−i)|0⟩ + (i+2)|1⟩ ✓. (2) AB ≠ BA (so order matters), yet Tr(AB) = 7 + 1 = 8 = 1 + 7 = Tr(BA) ✓.</div>
+{% endcall %}
+{% call box('mis') %}"Rows of the matrix are the images of the basis kets." The <i>columns</i> are. Another slip: (AB)† = A†B†; it is B†A† (order reverses).{% endcall %}
+<div class="next">Next: 4.3, 4.4 and 4.5 study the three special classes of operator that quantum mechanics is built on.</div>
+{% endcall %}
+
+<hr class="div">
+{% call sub('m2-4-3','4.3','Hermitian operators') %}
+<div class="intuition"><b>Why it matters.</b> Measured values are real numbers. Hermitian operators are exactly the ones guaranteed to have real eigenvalues, which is why Module 3 says <i>every observable is a Hermitian operator</i>.</div>
+{% call box('def') %}An operator is <b>Hermitian</b> (self-adjoint) if <b>Â = Â†</b>. For a matrix: A equals its conjugate transpose (real diagonal, Aⱼᵢ = Aᵢⱼ*). Key properties: (1) eigenvalues are <b>real</b>; (2) eigenvectors of <b>distinct</b> eigenvalues are <b>orthogonal</b>; (3) the eigenvectors form a complete orthonormal set; (4) real linear combinations of Hermitian operators are Hermitian; (5) ⟨ψ|Â|ψ⟩ is real.{% endcall %}
+{% call box('why','Why real eigenvalues follow') %}Suppose Â|a⟩ = λ|a⟩ with ⟨a|a⟩ = 1. Then ⟨a|Â|a⟩ = λ. Take the complex conjugate: λ* = ⟨a|Â|a⟩* = ⟨a|Â†|a⟩ = ⟨a|Â|a⟩ = λ, using Â† = Â. A number equal to its own conjugate is real. (Same style of argument, applied to two eigenvectors, gives orthogonality; see the check below.){% endcall %}
+{% call box('ex') %}
+<div class="step"><b>Problem.</b> Show H = {{ mat([['2','1−i'],['1+i','3']]) }} is Hermitian, find its eigenvalues, and check that the eigenvectors are orthogonal. Then show B = {{ mat([['1','i'],['i','1']]) }} is not Hermitian.</div>
+<div class="step"><b>Hermitian:</b> conjugate then transpose: (1−i)* = 1+i in the (2,1) slot and (1+i)* = 1−i in the (1,2) slot, so H† = H ✓; the diagonal (2, 3) is real.</div>
+<div class="step"><b>Eigenvalues:</b> Tr H = 5, det H = 6 − (1−i)(1+i) = 6 − 2 = 4. So λ² − 5λ + 4 = 0, giving λ = 1 and λ = 4 (real ✓).</div>
+<div class="step"><b>Eigenvectors:</b> λ = 1: (H − I)u = 0 gives u₁ + (1−i)u₂ = 0, so u = (−1 + i, 1). λ = 4: −2v₁ + (1−i)v₂ = 0, so v = (1 − i, 2).</div>
+<div class="step"><b>Orthogonal?</b> ⟨u|v⟩ = (−1 − i)(1 − i) + 1·2 = −(1 + i)(1 − i) + 2 = −2 + 2 = 0 ✓.</div>
+<div class="step"><b>B:</b> B† = [[1,−i],[−i,1]] ≠ B, so B is not Hermitian.</div>
+<div class="check"><b>Check.</b> H u = (2(−1+i) + (1−i)·1, (1+i)(−1+i) + 3) = (−1 + i, −2 + 3) = (−1+i, 1) = 1·u ✓ (using (1+i)(−1+i) = −1 + i − i + i² = −2). H v = (2(1−i) + 2(1−i), (1+i)(1−i) + 6) = (4(1−i), 8) = 4v ✓.</div>
+{% endcall %}
+{% call box('mis') %}"A symmetric matrix is Hermitian." Only if its entries are real. For complex entries you need the <i>conjugate</i> transpose. The matrix B above is symmetric (Bᵀ = B) but not Hermitian.{% endcall %}
+<div class="next">Next: 4.4 covers the operators that preserve length, and 4.5 the ones that select components.</div>
+{% endcall %}
+
+<hr class="div">
+{% call sub('m2-4-4','4.4','Unitary operators') %}
+<div class="intuition"><b>Why it matters.</b> Probability must stay 1 as a closed system evolves. Unitary operators are the length-preserving ones, so they describe time evolution and every qubit gate (except measurement).</div>
+{% call box('def') %}An operator is <b>unitary</b> if <b>Û†Û = ÛÛ† = Î</b>, i.e. its adjoint is its inverse. Consequences: it preserves inner products and norms, ⟨Uφ|Uψ⟩ = ⟨φ|ψ⟩; its eigenvalues have the form e<sup>iθ</sup>, so |λ| = 1 (they lie on the unit circle); it acts as a rotation in Hilbert space, adding phases to eigenstates. In quantum mechanics: time evolution is unitary, |ψ(t)⟩ = e<sup>−iĤt/ħ</sup>|ψ(0)⟩, and quantum gates are unitary matrices.{% endcall %}
+{% call fig('A unitary map is a (complex) rotation: the vector turns but its length does not change. <i>Notice</i> that the two circles are the same size: the norm is preserved, and the probability with it.') %}
+<svg viewBox="0 0 300 180" width="300" role="img" aria-label="Unitary preserves length"><defs><marker id="ar5" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#333"/></marker></defs>
+<circle cx="120" cy="90" r="70" fill="none" stroke="#bbb" stroke-dasharray="4 3"/>
+<line x1="120" y1="90" x2="190" y2="90" stroke="#0f766e" stroke-width="2.5" marker-end="url(#ar5)"/><text x="194" y="94" font-size="14">|ψ⟩</text>
+<line x1="120" y1="90" x2="169.5" y2="40.5" stroke="#b45309" stroke-width="2.5" marker-end="url(#ar5)"/><text x="173" y="38" font-size="14">U|ψ⟩</text>
+<path d="M150,90 A30,30 0 0 0 141,69" fill="none" stroke="#555"/><text x="148" y="78" font-size="11">θ</text>
+<text x="20" y="170" font-size="12">‖U ψ‖ = ‖ψ‖ (both arrows reach the circle)</text></svg>
+{% endcall %}
+{% call box('ex') %}
+<div class="step"><b>Problem.</b> Show U = (1/√2)[[1,1],[1,−1]] is unitary, and check it preserves the norm of v = (3,4)ᵀ.</div>
+<div class="step">U is real and symmetric, so U† = U. U†U = ½[[1+1, 1−1],[1−1, 1+1]] = ½[[2,0],[0,2]] = I ✓.</div>
+<div class="step">Uv = (1/√2)(3+4, 3−4) = (7, −1)/√2. ‖Uv‖² = (49 + 1)/2 = 25.</div>
+<div class="check"><b>Check.</b> ‖v‖² = 9 + 16 = 25 ✓. Eigenvalues: tr U = 0 and det U = −½ − ½ = −1, so λ² − 1 = 0, λ = ±1, and |±1| = 1 ✓ (unit modulus). Another example: diag(1, i) has eigenvalues 1 and i, both with modulus 1.</div>
+{% endcall %}
+{% call box('mis') %}"Unitary means Hermitian." Different conditions (U†U = I versus A† = A). Some matrices are both (like the U above), which is why the check can hide the difference; diag(1, i) is unitary but not Hermitian. Also "unitary eigenvalues are real": they only need |λ| = 1.{% endcall %}
+<div class="next">Next: 4.5, the projection operator, is the one Module 3 uses to compute measurement probabilities.</div>
+{% endcall %}
+
+<hr class="div">
+{% call sub('m2-4-5','4.5','Projection operators') %}
+<div class="intuition"><b>Why it matters.</b> A measurement asks "how much of the state is along this direction?" A projection operator answers exactly that. The probability formula of Module 3 (3.2) is written with it.</div>
+{% call box('def') %}A <b>projection operator</b> is Hermitian and idempotent: <b>P̂ = P̂† and P̂² = P̂</b>. For a normalised |u⟩, P̂ = |u⟩⟨u| projects onto the direction of u. Properties: eigenvalues are only 0 and 1; projectors onto orthogonal directions multiply to zero (P̂ᵢP̂ⱼ = 0 for i ≠ j); for an orthonormal basis, Σ|eᵢ⟩⟨eᵢ| = Î (completeness). Probability of finding u in |ψ⟩: ⟨ψ|P̂|ψ⟩ = ‖P̂ψ‖² = |⟨u|ψ⟩|² (for normalised ψ).{% endcall %}
+{% call fig('P sends v to its shadow Pv along u; what is left over, v − Pv, is perpendicular to u. <i>Notice</i> the right angle: that is what idempotent means geometrically (projecting twice changes nothing).') %}
+<svg viewBox="0 0 320 180" width="320" role="img" aria-label="Projection onto a line"><defs><marker id="ar6" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#333"/></marker></defs>
+<line x1="30" y1="150" x2="290" y2="150" stroke="#0f766e" stroke-width="2"/><text x="292" y="154" font-size="13" fill="#0f766e">line of u</text>
+<line x1="30" y1="150" x2="220" y2="40" stroke="#333" stroke-width="2.5" marker-end="url(#ar6)"/><text x="224" y="38" font-size="14">v</text>
+<line x1="30" y1="150" x2="220" y2="150" stroke="#b45309" stroke-width="3" marker-end="url(#ar6)"/><text x="120" y="168" font-size="13" fill="#b45309">Pv</text>
+<line x1="220" y1="40" x2="220" y2="150" stroke="#888" stroke-dasharray="4 3"/><rect x="210" y="140" width="10" height="10" fill="none" stroke="#666"/><text x="228" y="100" font-size="12">v − Pv</text></svg>
+{% endcall %}
+{% call box('ex') %}
+<div class="step"><b>Problem.</b> Let |u⟩ = (1,1)ᵀ/√2 and |v⟩ = (3,1)ᵀ. Build P, check it is a projector, and find the probability of finding u in v.</div>
+<div class="step">P = |u⟩⟨u| = ½[[1,1],[1,1]]. P is real symmetric, so P† = P. P² = ¼[[2,2],[2,2]] = ½[[1,1],[1,1]] = P ✓.</div>
+<div class="step">Pv = ½(3+1, 3+1) = (2,2). Probability (v is not normalised, so divide): ⟨v|Pv⟩/⟨v|v⟩ = (3·2 + 1·2)/10 = 8/10 = <b>0.8</b>.</div>
+<div class="check"><b>Check.</b> Leftover v − Pv = (1,−1) is orthogonal to u: (1·1 + 1·(−1))/√2 = 0 ✓. The complementary projector P⊥ = ½[[1,−1],[−1,1]] satisfies P + P⊥ = I ✓, and its probability is 1 − 0.8 = 0.2. Direct: P⊥v = ½(3−1, −3+1) = (1,−1), ⟨v|P⊥v⟩ = 3·1 + 1·(−1) = 2, and 2/10 = 0.2 ✓. The two probabilities add to 1.</div>
+{% endcall %}
+{% call box('mis') %}"|u⟩⟨u| projects properly for any u." Only for a <i>normalised</i> u; otherwise P² = ‖u‖²P ≠ P. Also "a projector has any eigenvalues": only 0 (removed directions) and 1 (kept directions).{% endcall %}
+<div class="next">Next: Section 5 studies the special vectors an operator does not rotate, and how a state is expanded in them.</div>
+{% endcall %}
+{% endcall %}{# end sec 4 #}
+
+<hr class="div">
+{% call sec('m2-5','5','Eigenvalues and eigenvectors') %}
+
+{% call sub('m2-5-1','5.1','The eigenvalue equation and how to solve it') %}
+<div class="intuition"><b>Why it matters.</b> The possible results of measuring an observable are the <i>eigenvalues</i> of its operator; the states that give one of those results with certainty are the <i>eigenvectors</i> (Module 3, 1.4). This is the most-used calculation in the whole course.</div>
+{% call box('def') %}A non-zero vector |v⟩ is an <b>eigenvector</b> of Â with <b>eigenvalue</b> λ if <b>Â|v⟩ = λ|v⟩</b>: Â only rescales it. Method: (1) solve the <b>characteristic equation</b> det(Â − λÎ) = 0 for λ; (2) for each λ solve (Â − λÎ)|v⟩ = 0 for |v⟩; (3) normalise if required. For a 2×2 matrix, det(A − λI) = λ² − (Tr A)λ + det A, so the eigenvalues add to Tr A and multiply to det A.{% endcall %}
+{% call fig('Under A, a generic vector changes direction (left), but an eigenvector only stretches along its own line (right, here λ = 3). <i>Notice</i> that the eigenvector and its image lie on the same line through the origin.') %}
+<svg viewBox="0 0 640 190" width="640" role="img" aria-label="Eigenvector keeps its direction"><defs><marker id="ar7" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#333"/></marker></defs>
+<g transform="translate(10,0)"><rect x="0" y="5" width="300" height="175" fill="#faf7f0" stroke="#e5dcc6"/>
+<line x1="40" y1="150" x2="120" y2="110" stroke="#0f766e" stroke-width="2.5" marker-end="url(#ar7)"/><text x="122" y="112" font-size="13">v</text>
+<line x1="40" y1="150" x2="150" y2="50" stroke="#b45309" stroke-width="2.5" marker-end="url(#ar7)"/><text x="153" y="50" font-size="13">Av (new direction)</text>
+<text x="150" y="172" font-size="12" text-anchor="middle">generic vector: turned</text></g>
+<g transform="translate(330,0)"><rect x="0" y="5" width="300" height="175" fill="#f4faf9" stroke="#cfe6e2"/>
+<line x1="20" y1="160" x2="280" y2="30" stroke="#ccc" stroke-dasharray="5 4"/>
+<line x1="40" y1="150" x2="100" y2="120" stroke="#0f766e" stroke-width="2.5" marker-end="url(#ar7)"/><text x="60" y="140" font-size="13" fill="#0f766e">v</text>
+<line x1="40" y1="150" x2="220" y2="60" stroke="#b45309" stroke-width="2.5" marker-end="url(#ar7)"/><text x="225" y="60" font-size="13" fill="#b45309">Av = 3v</text>
+<text x="150" y="172" font-size="12" text-anchor="middle">eigenvector: same line, scaled by λ</text></g></svg>
+{% endcall %}
+{% call box('ex') %}
+<div class="step"><b>Problem.</b> Find eigenvalues and normalised eigenvectors of A = {{ mat([['2','−i'],['i','2']]) }}.</div>
+<div class="step"><b>Characteristic equation:</b> det(A − λI) = (2−λ)² − (−i)(i) = (2−λ)² − 1 = 0, so 2 − λ = ±1, giving λ = 1 and λ = 3. (Trace 4 = 1 + 3 ✓, det 4 − 1 = 3 = 1·3 ✓.)</div>
+<div class="step"><b>λ = 3:</b> (A − 3I)v = 0 → −v₁ − i v₂ = 0, so v₁ = −i v₂. Take v = (−i, 1); norm² = 1 + 1 = 2, so |v₃⟩ = (−i, 1)/√2.</div>
+<div class="step"><b>λ = 1:</b> (A − I)v = 0 → v₁ − i v₂ = 0, so v₁ = i v₂. Take v = (i, 1); |v₁⟩ = (i, 1)/√2.</div>
+<div class="check"><b>Check.</b> A(−i, 1) = (2(−i) + (−i)(1), i(−i) + 2) = (−3i, 3) = 3(−i, 1) ✓. A(i, 1) = (2i − i, i·i + 2) = (i, 1) ✓. The two eigenvectors are orthogonal: ⟨(i,1)|(−i,1)⟩ = (−i)(−i) + 1 = i² + 1 = 0 ✓ (as expected for a Hermitian matrix). This matrix equals 2I + σ_y, which is why Section 6 will feel familiar.</div>
+{% endcall %}
+{% call box('mis') %}"Eigenvectors are unique." Only up to a scalar: (i,1) and 5(i,1) are both fine, and so is e<sup>iφ</sup>(i,1). Another trap is to solve for the eigenvector with the <i>wrong sign</i> of the entries after substituting λ; always substitute back into Av = λv, as in the check.{% endcall %}
+<div class="next">Next: 5.2 uses the structure of Hermitian and unitary eigenvalues, and expands a state in an eigenbasis (Module 3 turns these coefficients into probabilities).</div>
+{% endcall %}
+
+<hr class="div">
+{% call sub('m2-5-2','5.2','Eigenvalues of Hermitian and unitary operators, and expansion in an eigenbasis') %}
+<div class="intuition"><b>Why it matters.</b> This is the bridge to Module 3: expand the state in the eigenbasis of the observable, and the squared coefficients are the probabilities of each result.</div>
+<table class="t"><tr><th>Operator type</th><th>Eigenvalues</th><th>Eigenvectors</th></tr>
+<tr><td>Hermitian (A = A†)</td><td>real</td><td>orthogonal for distinct eigenvalues; complete set</td></tr>
+<tr><td>Unitary (U†U = I)</td><td>e<sup>iθ</sup>, |λ| = 1</td><td>orthogonal for distinct eigenvalues (unitary is a "normal" operator)</td></tr>
+<tr><td>Projection (P² = P, P = P†)</td><td>0 or 1</td><td>range of P (eigenvalue 1) and its orthogonal complement (eigenvalue 0)</td></tr></table>
+{% call box('def') %}If {|aₙ⟩} are the orthonormal eigenvectors of a Hermitian operator Â (eigenvalues λₙ), any state expands as |ψ⟩ = Σ cₙ|aₙ⟩ with cₙ = ⟨aₙ|ψ⟩, and ⟨ψ|Â|ψ⟩ = Σ |cₙ|² λₙ. If |ψ⟩ is normalised, Σ|cₙ|² = 1.{% endcall %}
+{% call box('ex') %}
+<div class="step"><b>Problem.</b> The state |ψ⟩ = (3/5, 4i/5)ᵀ is expanded in the eigenbasis of σ_z = diag(1, −1). Find the coefficients and ⟨σ_z⟩.</div>
+<div class="step">Eigenvectors of σ_z: |0⟩ = (1,0) (λ = +1), |1⟩ = (0,1) (λ = −1). Coefficients: c₀ = ⟨0|ψ⟩ = 3/5, c₁ = ⟨1|ψ⟩ = 4i/5.</div>
+<div class="step">|c₀|² = 9/25, |c₁|² = 16/25. ⟨σ_z⟩ = (9/25)(+1) + (16/25)(−1) = −7/25.</div>
+<div class="check"><b>Check.</b> Normalisation: 9/25 + 16/25 = 1 ✓. Direct matrix route: σ_zψ = (3/5, −4i/5)ᵀ and ⟨ψ| = (3/5, −4i/5), so ⟨ψ|σ_z|ψ⟩ = (3/5)(3/5) + (−4i/5)(−4i/5) = 9/25 + 16i²/25 = 9/25 − 16/25 = −7/25 ✓.</div>
+{% endcall %}
+{% call box('mis') %}"The coefficients are the probabilities." The <i>squared moduli</i> are; the coefficients themselves are amplitudes and can be negative or complex. The phase of 4i/5 above does not change |c₁|².{% endcall %}
+<div class="next">Next: Section 6 gives the most important 2×2 example of everything so far: the Pauli matrices.</div>
+{% endcall %}
+{% endcall %}{# end sec 5 #}
+
+<hr class="div">
+{% call sec('m2-6','6','Pauli matrices') %}
+
+{% call sub('m2-6-1','6.1','The three Pauli matrices and their properties') %}
+<div class="intuition"><b>Why it matters.</b> Spin-½ is a two-dimensional problem, and every observable in it is a combination of the identity and the three Pauli matrices. The Stern-Gerlach analysers of Module 3 measure σ_z or σ_x. As qubit gates, X is the NOT gate.</div>
+{% call box('def') %}<div class="eq">σ_x = {{ mat([['0','1'],['1','0']]) }}, σ_y = {{ mat([['0','−i'],['i','0']]) }}, σ_z = {{ mat([['1','0'],['0','−1']]) }}</div>Properties of each σᵢ: <b>Hermitian</b> (σᵢ† = σᵢ, so they are observables); <b>unitary</b> (σᵢ†σᵢ = I, equivalently σᵢ² = I); <b>determinant −1</b>; <b>trace 0</b>; <b>eigenvalues ±1</b> (the possible measurement outcomes). They satisfy [σᵢ, σⱼ] = 2i ε_{ijk} σₖ and {σᵢ, σⱼ} = 2δᵢⱼ I. Spin operators are Sᵢ = (ħ/2)σᵢ.{% endcall %}
+<table class="t"><tr><th></th><th>σ_x</th><th>σ_y</th><th>σ_z</th></tr>
+<tr><td>Hermitian?</td><td>yes</td><td>yes</td><td>yes</td></tr><tr><td>σ² = I?</td><td>yes</td><td>yes</td><td>yes</td></tr>
+<tr><td>Trace / det</td><td>0 / −1</td><td>0 / −1</td><td>0 / −1</td></tr><tr><td>Eigenvalues</td><td>±1</td><td>±1</td><td>±1</td></tr>
+<tr><td>Measures spin along</td><td>x</td><td>y</td><td>z</td></tr>
+<tr><td>Gate role</td><td>bit flip (NOT)</td><td>combined flip and phase</td><td>phase flip</td></tr></table>
+{% call box('ex') %}
+<div class="step"><b>Problem.</b> Verify that σ_y is Hermitian and σ_y² = I, and compute σ_xσ_y.</div>
+<div class="step">σ_y† : transpose gives [[0, i],[−i, 0]], conjugate gives [[0, −i],[i, 0]] = σ_y ✓.</div>
+<div class="step">σ_y² = [[0·0 + (−i)(i), 0],[0, i(−i) + 0]] = [[1,0],[0,1]] = I ✓.</div>
+<div class="step">σ_xσ_y = [[0·0 + 1·i, 0·(−i) + 1·0],[1·0 + 0·i, 1·(−i) + 0]] = [[i, 0],[0, −i]] = iσ_z.</div>
+<div class="check"><b>Check.</b> σ_xσ_y = iσ_z is exactly the "cyclic rule" (xy → z) stated in 6.2, and taking the determinant of both sides: det(σ_xσ_y) = (−1)(−1) = 1 and det(iσ_z) = (i)²·(−1) = 1 ✓.</div>
+{% endcall %}
+{% call box('mis') %}"Pauli matrices commute like numbers." They do not: σ_xσ_y = iσ_z but σ_yσ_x = −iσ_z. Also "σ_y is anti-Hermitian because it has i": the i's sit in mirror positions with opposite signs, which makes it Hermitian.{% endcall %}
+<div class="next">Next: 6.2 finds the eigenstates and the multiplication rule.</div>
+{% endcall %}
+
+<hr class="div">
+{% call sub('m2-6-2','6.2','Pauli eigenstates and products') %}
+<div class="intuition"><b>Why it matters.</b> The eigenstates of σ_x are the states |±⟩ᵪ from Stern-Gerlach experiment 2 (Module 3, 4.3): they are equal superpositions of the σ_z eigenstates, which is why the counts split 50/50.</div>
+<table class="t"><tr><th>Matrix</th><th>Eigenvalue +1</th><th>Eigenvalue −1</th></tr>
+<tr><td>σ_z</td><td>(1, 0)ᵀ = |0⟩ (spin up)</td><td>(0, 1)ᵀ = |1⟩ (spin down)</td></tr>
+<tr><td>σ_x</td><td>(1, 1)ᵀ/√2 = (|0⟩+|1⟩)/√2</td><td>(1, −1)ᵀ/√2 = (|0⟩−|1⟩)/√2</td></tr>
+<tr><td>σ_y</td><td>(1, i)ᵀ/√2</td><td>(1, −i)ᵀ/√2</td></tr></table>
+{% call box('def','Multiplication rules') %}σ_xσ_y = iσ_z, σ_yσ_z = iσ_x, σ_zσ_x = iσ_y (cyclic order x→y→z→x); reversing the order flips the sign: σ_yσ_x = −iσ_z, etc. Same-matrix products: σᵢ² = I. Hence the anticommutator {σᵢ, σⱼ} = 0 for i ≠ j.{% endcall %}
+{% call fig('The Pauli cycle: going round the circle x → y → z multiplies by +i, going against it by −i. <i>Notice</i> this is the whole multiplication table in one picture.') %}
+<svg viewBox="0 0 240 170" width="240" role="img" aria-label="Pauli cyclic order"><defs><marker id="ar8" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#0f766e"/></marker></defs>
+<circle cx="120" cy="35" r="18" fill="#e6f4f2" stroke="#0f766e"/><text x="120" y="40" font-size="14" text-anchor="middle">σx</text>
+<circle cx="50" cy="130" r="18" fill="#e6f4f2" stroke="#0f766e"/><text x="50" y="135" font-size="14" text-anchor="middle">σy</text>
+<circle cx="190" cy="130" r="18" fill="#e6f4f2" stroke="#0f766e"/><text x="190" y="135" font-size="14" text-anchor="middle">σz</text>
+<path d="M108,52 Q70,80 60,112" fill="none" stroke="#0f766e" stroke-width="2" marker-end="url(#ar8)"/>
+<path d="M70,132 Q120,150 170,132" fill="none" stroke="#0f766e" stroke-width="2" marker-end="url(#ar8)"/>
+<path d="M180,112 Q170,80 132,52" fill="none" stroke="#0f766e" stroke-width="2" marker-end="url(#ar8)"/>
+<text x="120" y="98" font-size="12" text-anchor="middle">forward: ×(+i)</text></svg>
+{% endcall %}
+{% call box('ex') %}
+<div class="step"><b>Problem.</b> Show (1, i)ᵀ/√2 is the +1 eigenvector of σ_y, and find the probabilities when σ_x is measured on |0⟩.</div>
+<div class="step">σ_y(1, i)ᵀ = (0·1 + (−i)(i), i·1 + 0)ᵀ = (1, i)ᵀ, eigenvalue +1 ✓.</div>
+<div class="step">σ_x eigenvectors are |±⟩ᵪ = (1, ±1)/√2. From |0⟩ = (1,0): amplitudes ⟨+ᵪ|0⟩ = 1/√2 and ⟨−ᵪ|0⟩ = 1/√2, so both probabilities are ½.</div>
+<div class="check"><b>Check.</b> ½ + ½ = 1 ✓, and this 50/50 is exactly the Stern-Gerlach experiment 2 result. Also |0⟩ = (|+ᵪ⟩ + |−ᵪ⟩)/√2: (1,1)/√2 + (1,−1)/√2 = (2, 0)/√2 divided by √2 gives (1, 0) ✓.</div>
+{% endcall %}
+{% call box('mis') %}"Different Pauli matrices have different eigenvalues." All three have eigenvalues +1 and −1; what differs are the <i>eigenvectors</i> (the axes). Also, students often mistake (1,i)/√2 for a "complex, unphysical" state; it is a perfectly good spin state along +y.{% endcall %}
+<div class="next">Next: Section 7 formalises "order matters" with the commutator; you will see [σ_x, σ_y] = 2iσ_z again there.</div>
+{% endcall %}
+{% endcall %}{# end sec 6 #}
+
+<hr class="div">
+{% call sec('m2-7','7','Commutation relations') %}
+
+{% call sub('m2-7-1','7.1','Commutators, anticommutators and identities') %}
+<div class="intuition"><b>Why it matters.</b> The commutator is the yes/no test for "can these two quantities be known at the same time?". It is behind the Heisenberg uncertainty principle and behind the Stern-Gerlach result of Module 3, 4.4.</div>
+{% call box('def') %}<b>Commutator:</b> [Â, B̂] = ÂB̂ − B̂Â. <b>Anticommutator:</b> {Â, B̂} = ÂB̂ + B̂Â. Â and B̂ <b>commute</b> if [Â, B̂] = 0. Identities: [Â, B̂] = −[B̂, Â]; [Â, B̂ + Ĉ] = [Â, B̂] + [Â, Ĉ]; <b>[Â, B̂Ĉ] = [Â, B̂]Ĉ + B̂[Â, Ĉ]</b>; [ÂB̂, Ĉ] = Â[B̂, Ĉ] + [Â, Ĉ]B̂; [Â, B̂ⁿ] = nB̂ⁿ⁻¹[Â, B̂] when [Â, B̂] commutes with B̂; <b>Jacobi:</b> [Â,[B̂,Ĉ]] + [B̂,[Ĉ,Â]] + [Ĉ,[Â,B̂]] = 0. Also ÂB̂ = ½[Â, B̂] + ½{Â, B̂}.{% endcall %}
+{% call box('why','Why the product rule works') %}Expand the right side: [Â,B̂]Ĉ + B̂[Â,Ĉ] = ÂB̂Ĉ − B̂ÂĈ + B̂ÂĈ − B̂ĈÂ. The middle terms cancel, leaving ÂB̂Ĉ − B̂ĈÂ = [Â, B̂Ĉ]. This "add and subtract the same term" trick is how you compute commutators of products without touching matrices.{% endcall %}
+{% call fig('Commuting means the two routes end in the same place; non-commuting means they end in different places. <i>Notice</i> the difference operator [A,B] is exactly the gap between the two results.') %}
+<svg viewBox="0 0 520 150" width="520" role="img" aria-label="Commutator as a path difference"><defs><marker id="ar9" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#333"/></marker></defs>
+<circle cx="60" cy="75" r="20" fill="#e6f4f2" stroke="#0f766e"/><text x="60" y="80" font-size="14" text-anchor="middle">|ψ⟩</text>
+<line x1="80" y1="65" x2="210" y2="30" stroke="#333" marker-end="url(#ar9)"/><text x="130" y="38" font-size="13">B first</text>
+<line x1="80" y1="85" x2="210" y2="120" stroke="#333" marker-end="url(#ar9)"/><text x="130" y="128" font-size="13">A first</text>
+<circle cx="240" cy="30" r="28" fill="#fdf1e0" stroke="#b45309"/><text x="240" y="35" font-size="13" text-anchor="middle">AB|ψ⟩</text>
+<circle cx="240" cy="120" r="28" fill="#fdf1e0" stroke="#b45309"/><text x="240" y="125" font-size="13" text-anchor="middle">BA|ψ⟩</text>
+<line x1="240" y1="60" x2="240" y2="90" stroke="#c0392b" stroke-width="2" marker-end="url(#ar9)"/>
+<text x="280" y="80" font-size="13" fill="#c0392b">difference = [A,B]|ψ⟩</text>
+<text x="280" y="105" font-size="12" fill="#555">[A,B] = 0 ⇒ the two circles coincide</text></svg>
+{% endcall %}
+{% call box('ex') %}
+<div class="step"><b>Problem.</b> (a) For A = [[0,1],[0,0]], B = [[0,0],[1,0]] compute [A,B]. (b) Compute [x², p̂] using the product rule, given [x, p̂] = iħ.</div>
+<div class="step"><b>(a)</b> AB = [[1,0],[0,0]], BA = [[0,0],[0,1]], so [A,B] = [[1,0],[0,−1]] = σ_z.</div>
+<div class="step"><b>(b)</b> [x², p̂] = [x·x, p̂] = x[x, p̂] + [x, p̂]x = x(iħ) + (iħ)x = 2iħx.</div>
+<div class="check"><b>Check.</b> (a) Tr[A,B] = 1 − 1 = 0, as it must be for any commutator (Tr AB = Tr BA). (b) Apply to a test function f: x²(−iħf′) − (−iħ)(x²f)′ = −iħx²f′ + iħ(2xf + x²f′) = 2iħx f ✓.</div>
+{% endcall %}
+{% call box('mis') %}"[A,B] = 0 means A = B, or that one of them is zero." No: σ_z and the identity commute, and so do x and V(x). Another: "[A,B]C = [A,BC]"; the correct product rule has two terms.{% endcall %}
+<div class="next">Next: 7.2 lists the commutators you actually need and what "commute" means physically.</div>
+{% endcall %}
+
+<hr class="div">
+{% call sub('m2-7-2','7.2','Key commutators and their physical meaning') %}
+<div class="intuition"><b>Why it matters.</b> Commuting observables share eigenvectors and can be measured together; non-commuting ones cannot, and the more precisely one is fixed the less the other is.</div>
+<table class="t"><tr><th>Pair</th><th>Relation</th><th>Consequence</th></tr>
+<tr><td>Position, momentum</td><td>[x̂, p̂] = iħ</td><td>cannot both be sharp: uncertainty principle</td></tr>
+<tr><td>Angular momentum</td><td>[Lₓ, L_y] = iħL_z (and cyclic)</td><td>components cannot all be sharp at once</td></tr>
+<tr><td>Pauli matrices</td><td>[σᵢ, σⱼ] = 2iε_{ijk}σₖ; {σᵢ, σⱼ} = 2δᵢⱼI</td><td>spin along different axes is incompatible (Module 3, 4.4)</td></tr>
+<tr><td>Harmonic-oscillator ladder operators</td><td>[a, a†] = 1</td><td>generates the equally spaced levels</td></tr>
+<tr><td>Momentum p̂ₓ and the free-particle Hamiltonian</td><td>[p̂ₓ, Ĥ] = 0</td><td>momentum and energy can be known together (as in the slides' example)</td></tr></table>
+{% call box('def','What commuting gives you') %}If [Â, B̂] = 0 then (1) the order of applying them does not matter; (2) the observables can be measured simultaneously with perfect precision; (3) they share a common set of eigenfunctions. If [Â, B̂] ≠ 0 there is a trade-off between their precisions, as in Heisenberg's principle.{% endcall %}
+{% call box('ex') %}
+<div class="step"><b>Problem.</b> Do σ_z and σ_x commute? What does that mean for measuring spin along z and then x?</div>
+<div class="step">σ_zσ_x = [[1,0],[0,−1]]·[[0,1],[1,0]] = [[0,1],[−1,0]]; σ_xσ_z = [[0,1],[1,0]]·[[1,0],[0,−1]] = [[0,−1],[1,0]]. So [σ_z, σ_x] = [[0,2],[−2,0]].</div>
+<div class="step">Compare 2iσ_y = 2i·[[0,−i],[i,0]]: the (1,2) entry is 2i·(−i) = 2 and the (2,1) entry is 2i·i = −2, giving [[0,2],[−2,0]].</div>
+<div class="check"><b>Check.</b> [σ_z, σ_x] = 2iσ_y ✓ (matches the general rule with (i,j,k) = (z,x,y), which is a cyclic order). It is non-zero, so σ_z and σ_x do <b>not</b> commute: they have no common eigenbasis, and measuring σ_x erases the certainty about σ_z. This is precisely Stern-Gerlach experiment 3.</div>
+{% endcall %}
+{% call box('mis') %}"Non-commuting means impossible to measure." Each can be measured on its own; what is impossible is a state with sharp values for both. Also "commuting operators have the same eigenvectors for every state": they share <i>a</i> common eigenbasis; a given state is not required to be in it.{% endcall %}
+<div class="next">Next: Module 3 states the postulates that give all these objects their physical meaning. This ends Module 2.</div>
+{% endcall %}
+{% endcall %}{# end sec 7 #}
+
+<hr class="div">
+<section id="m2-check"><h2>Self-test checklist</h2>
+<p class="muted small">Tick each item only if you can do it without looking. Ticks are kept in this browser.</p>
+<ul class="checklist" data-key="m2-check">
+<li><label><input type="checkbox"> Decide whether a given set (matrices, polynomials, a constrained set of vectors) is a vector space using closure and the zero vector.</label></li>
+<li><label><input type="checkbox"> Test three vectors for linear independence by determinant and find the dependence relation when it fails.</label></li>
+<li><label><input type="checkbox"> Find coordinates of a vector in a non-standard basis; find a basis for a null space and check rank + nullity.</label></li>
+<li><label><input type="checkbox"> Normalise a complex vector and a function on an interval; expand a vector in an orthonormal basis with cᵢ = ⟨eᵢ|v⟩.</label></li>
+<li><label><input type="checkbox"> Write the bra of a ket, compute ⟨a|b⟩ and check ⟨b|a⟩ = ⟨a|b⟩*, and test the Schwarz inequality.</label></li>
+<li><label><input type="checkbox"> Compute an outer product as a matrix and apply it to a ket two ways.</label></li>
+<li><label><input type="checkbox"> Form a tensor product of two column vectors and state the dimension of the product space.</label></li>
+<li><label><input type="checkbox"> Build the matrix of an operator from its action on basis kets (columns are the images).</label></li>
+<li><label><input type="checkbox"> Check if a matrix is Hermitian, unitary or a projector, and say what each property guarantees.</label></li>
+<li><label><input type="checkbox"> Solve the characteristic equation of a 2×2 matrix and find normalised eigenvectors, checking Av = λv.</label></li>
+<li><label><input type="checkbox"> Write σ_x, σ_y, σ_z from memory with their eigenvectors and the rule σ_xσ_y = iσ_z.</label></li>
+<li><label><input type="checkbox"> Compute [A,B] for matrices and, using the product rule, for operators such as [x², p̂]; explain what [A,B] = 0 means physically.</label></li>
+</ul></section>
+</div>{# end notes #}
+{% endblock %}
+{% block scripts %}
+<script>
+(function(){
+  document.querySelectorAll('.checklist').forEach(function(ul){
+    var key='qm_check_'+ul.dataset.key, saved={};
+    try{ saved=JSON.parse(localStorage.getItem(key)||'{}'); }catch(e){}
+    ul.querySelectorAll('input').forEach(function(cb,i){
+      cb.checked=!!saved[i];
+      cb.addEventListener('change',function(){ saved[i]=cb.checked; try{ localStorage.setItem(key,JSON.stringify(saved)); }catch(e){} });
+    });
+  });
+})();
+</script>
+{% endblock %}

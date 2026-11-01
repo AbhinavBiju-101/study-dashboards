@@ -1,0 +1,769 @@
+{% extends "base.html" %}
+{% block title %}Basic Engineering — Topic 1: DC & AC Circuits{% endblock %}
+{% block extra_style %}
+<style>
+  :root{
+    --ink:#1b1f24; --sub:#4a5568; --bg:#fbfbfa; --card:#ffffff;
+    --def:#4a5568; --def-bg:#f3f4f6;
+    --why:#1e468c; --why-bg:#eef3fb;
+    --mis:#b45a0a; --mis-bg:#fdf3e7;
+    --ex:#166e3c; --ex-bg:#eaf6ee;
+    --line:#e3e6ea; --accent:#7c3aed;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; font-family:"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    background:var(--bg); color:var(--ink); line-height:1.55;
+  }
+  .wrap{max-width:900px;margin:0 auto;padding:0 22px 80px;}
+  header.hero{
+    background:linear-gradient(135deg,#1e2a4a,#3949ab 60%,#7c3aed);
+    color:#fff; padding:48px 22px 60px; text-align:center;
+  }
+  header.hero h1{margin:0 0 8px;font-size:2rem;}
+  header.hero p{margin:4px 0;opacity:.9;font-size:1.05rem;}
+  nav.toc{
+    background:var(--card); border:1px solid var(--line); border-radius:12px;
+    padding:20px 26px; margin:-36px auto 34px; max-width:860px;
+    box-shadow:0 6px 24px rgba(20,20,40,.08);
+  }
+  nav.toc h2{margin-top:0;font-size:1.05rem;color:var(--sub);text-transform:uppercase;letter-spacing:.06em;}
+  nav.toc ol{columns:2;column-gap:30px;padding-left:20px;margin:0;}
+  nav.toc li{margin-bottom:6px;break-inside:avoid;}
+  nav.toc a{color:var(--accent);text-decoration:none;font-size:.95rem;}
+  nav.toc a:hover{text-decoration:underline;}
+  h2.part{
+    font-size:1.6rem;margin-top:64px;padding-bottom:10px;border-bottom:3px solid var(--accent);
+  }
+  h3.topic{
+    font-size:1.25rem;margin-top:42px;color:#1e2a4a;
+    border-left:5px solid var(--accent);padding-left:12px;
+  }
+  h4.sub{margin-top:26px;font-size:1.05rem;color:var(--sub);}
+  p{margin:10px 0;}
+  .box{border-radius:10px;padding:16px 18px;margin:16px 0;border:1px solid transparent;}
+  .box .label{font-weight:700;font-size:.78rem;text-transform:uppercase;letter-spacing:.05em;display:block;margin-bottom:8px;}
+  .def{background:var(--def-bg);border-color:#d4d8de;}
+  .def .label{color:var(--def);}
+  .why{background:var(--why-bg);border-color:#c3d4ef;}
+  .why .label{color:var(--why);}
+  .mis{background:var(--mis-bg);border-color:#f1cf9f;}
+  .mis .label{color:var(--mis);}
+  .ex{background:var(--ex-bg);border-color:#b8e2c6;}
+  .ex .label{color:var(--ex);}
+  .foreshadow{background:#f4effc;border:1px dashed #b39ce8;border-radius:8px;padding:10px 14px;font-size:.93rem;color:#4b3480;margin:14px 0;}
+  .foreshadow::before{content:"↳ ";font-weight:700;}
+  table{border-collapse:collapse;width:100%;margin:14px 0;font-size:.93rem;}
+  th,td{border:1px solid var(--line);padding:7px 10px;text-align:left;}
+  th{background:#eef0f4;}
+  .diagram{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px;margin:18px 0;text-align:center;}
+  .diagram svg{max-width:100%;height:auto;}
+  .caption{font-size:.85rem;color:var(--sub);margin-top:8px;font-style:italic;}
+  code{background:#eef0f4;padding:1px 5px;border-radius:4px;font-size:.92em;}
+  .formula{
+    background:#fff; border:1px solid var(--line); border-left:4px solid var(--accent);
+    padding:10px 16px; margin:12px 0; font-size:1.05rem; overflow-x:auto;
+  }
+  .checklist{list-style:none;padding-left:0;}
+  .checklist li{padding:8px 0 8px 30px;position:relative;border-bottom:1px dashed var(--line);}
+  .checklist li::before{content:"☐";position:absolute;left:0;font-size:1.2rem;color:var(--accent);}
+  .marks{display:inline-block;background:#1e2a4a;color:#fff;font-size:.72rem;padding:2px 8px;border-radius:12px;margin-left:8px;vertical-align:middle;}
+  footer{text-align:center;color:var(--sub);font-size:.85rem;margin-top:60px;padding-top:20px;border-top:1px solid var(--line);}
+  .backtop{position:fixed;bottom:20px;right:20px;background:var(--accent);color:#fff;border-radius:50%;width:42px;height:42px;text-align:center;line-height:42px;text-decoration:none;box-shadow:0 4px 12px rgba(0,0,0,.2);font-size:1.1rem;}
+</style>
+{% endblock %}
+{% block content %}
+<div class="wrap">
+<header class="hero" style="border-radius:12px; margin-top:24px;">
+  <h1>Topic 1 — DC &amp; AC Circuits</h1>
+  <p>Ohm's Law through Superposition, then the same logic redone with phasors for AC.</p>
+</header>
+<nav class="toc">
+<h2>Subtopics in this page</h2>
+<ol>
+  <li><a href="#a1">1. Ohm's Law &amp; Circuit Elements</a></li>
+  <li><a href="#a2">2. Kirchhoff's Laws (KCL, KVL)</a></li>
+  <li><a href="#a3">3. Series, Parallel &amp; Dividers</a></li>
+  <li><a href="#a4">4. Node-Voltage Analysis</a></li>
+  <li><a href="#a5">5. Mesh-Current Analysis</a></li>
+  <li><a href="#a6">6. Source Transformation</a></li>
+  <li><a href="#a7">7. Thevenin's &amp; Norton's Theorem</a></li>
+  <li><a href="#a8">8. Maximum Power Transfer</a></li>
+  <li><a href="#a9">9. Superposition Theorem</a></li>
+  <li><a href="#b1">10. Generating an AC Waveform</a></li>
+  <li><a href="#b2">11. RMS, Average, Form &amp; Peak Factor</a></li>
+  <li><a href="#b3">12. Phasors &amp; Impedance</a></li>
+  <li><a href="#b4">13. Series RL, RC, RLC Circuits</a></li>
+  <li><a href="#b5">14. Power &amp; Power Factor in AC</a></li>
+</ol>
+</nav>
+<h2 class="part" id="parta">Part A — DC Circuits <span class="marks">core of Module 1</span></h2>
+<p>Every AC circuit technique you'll meet in Part B is <em>the same algebra</em> applied to phasors instead of plain numbers. Master this part cold and Part B becomes "DC with complex numbers," not a new subject.</p>
+
+<h3 class="topic" id="a1">A1. Ohm's Law &amp; Circuit Elements</h3>
+
+<div class="box def"><span class="label">Definition</span>
+For a resistor, the voltage across it and the current through it are directly proportional:
+<div class="formula">V = I·R</div>
+where V is in volts, I in amperes, R in ohms (Ω). Equivalently, <code>I = V/R</code> and <code>R = V/I</code>.
+</div>
+
+<div class="diagram">
+<svg viewBox="0 0 380 150" xmlns="http://www.w3.org/2000/svg">
+  <line x1="40" y1="30" x2="40" y2="120" stroke="#1b1f24" stroke-width="2"/>
+  <line x1="40" y1="120" x2="340" y2="120" stroke="#1b1f24" stroke-width="2"/>
+  <line x1="340" y1="120" x2="340" y2="30" stroke="#1b1f24" stroke-width="2"/>
+  <!-- battery symbol on left -->
+  <line x1="40" y1="30" x2="40" y2="60" stroke="#1b1f24" stroke-width="2"/>
+  <line x1="20" y1="60" x2="60" y2="60" stroke="#1b1f24" stroke-width="4"/>
+  <line x1="28" y1="70" x2="52" y2="70" stroke="#1b1f24" stroke-width="2"/>
+  <line x1="40" y1="70" x2="40" y2="90" stroke="#1b1f24" stroke-width="2"/>
+  <line x1="40" y1="90" x2="40" y2="120" stroke="#1b1f24" stroke-width="2"/>
+  <text x="10" y="50" font-size="13">+</text>
+  <text x="10" y="85" font-size="13">−</text>
+  <text x="0" y="98" font-size="13">V</text>
+  <!-- top wire with resistor -->
+  <line x1="40" y1="30" x2="150" y2="30" stroke="#1b1f24" stroke-width="2"/>
+  <path d="M150,30 l8,-10 l14,20 l14,-20 l14,20 l14,-20 l8,10" fill="none" stroke="#1b1f24" stroke-width="2"/>
+  <line x1="222" y1="30" x2="340" y2="30" stroke="#1b1f24" stroke-width="2"/>
+  <text x="165" y="18" font-size="14" font-weight="bold">R</text>
+  <path d="M90,45 L110,45" stroke="#c0392b" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="80" y="62" font-size="13" fill="#c0392b">I</text>
+  <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#c0392b"/></marker></defs>
+</svg>
+<p class="caption">A single-loop circuit: source V drives current I clockwise through resistor R. Ohm's law links the three labelled quantities.</p>
+</div>
+
+<div class="box mis"><span class="label">Fixing a common misconception</span>
+Students often think "more resistance always means less current, full stop" — true only if V is fixed. If a circuit has <em>multiple</em> resistors, changing one resistor changes the current distribution everywhere (Section A3), not just through itself. Ohm's law is a local law for one element; predicting the whole circuit needs Kirchhoff's laws (A2).
+</div>
+
+<div class="box ex"><span class="label">Worked example</span>
+A 12 V battery drives a 4 Ω resistor. Find the current and the power dissipated.<br>
+<code>I = V/R = 12/4 = 3 A</code><br>
+<code>P = VI = 12 × 3 = 36 W</code> (check: <code>P = I²R = 3² × 4 = 36 W</code> ✓ — two independent formulas, same answer)
+</div>
+
+<div class="foreshadow">The "compute two ways, check they agree" habit above is the same trick you'll use to verify Thevenin equivalents (A7) and to check power balance in superposition (A9).</div>
+
+<h3 class="topic" id="a2">A2. Kirchhoff's Laws</h3>
+
+<div class="box def"><span class="label">Definition</span>
+<b>KCL (Current Law):</b> the sum of currents entering a node equals the sum leaving it — charge cannot pile up at a point.
+<div class="formula">Σ I<sub>in</sub> = Σ I<sub>out</sub></div>
+<b>KVL (Voltage Law):</b> the sum of voltage rises around any closed loop equals the sum of voltage drops.
+<div class="formula">Σ V<sub>rises</sub> = Σ V<sub>drops</sub>  (equivalently, Σ V = 0 around the loop)</div>
+</div>
+
+<div class="box why"><span class="label">Why this is true</span>
+KCL is conservation of charge applied to a single point: charge is neither created nor stored at an ideal node, so whatever flows in must flow out.<br>
+KVL is conservation of energy applied to a charge that travels once around a loop and returns to its start: since voltage is potential energy per unit charge, and the charge is back where it began, the net change in potential energy over the round trip must be zero.
+</div>
+
+<div class="diagram">
+<svg viewBox="0 0 760 210" xmlns="http://www.w3.org/2000/svg">
+  <!-- KCL node -->
+  <g>
+    <circle cx="130" cy="100" r="5" fill="#1b1f24"/>
+    <line x1="130" y1="100" x2="40" y2="50"  stroke="#1b1f24" stroke-width="2"/>
+    <line x1="130" y1="100" x2="40" y2="150" stroke="#1b1f24" stroke-width="2"/>
+    <line x1="130" y1="100" x2="230" y2="100" stroke="#1b1f24" stroke-width="2"/>
+    <path d="M70,65 L100,88" stroke="#c0392b" stroke-width="2" marker-end="url(#a2)"/>
+    <path d="M70,135 L100,112" stroke="#c0392b" stroke-width="2" marker-end="url(#a2)"/>
+    <path d="M160,100 L195,100" stroke="#c0392b" stroke-width="2" marker-end="url(#a2)"/>
+    <text x="30" y="45" font-size="13">I₁</text>
+    <text x="30" y="165" font-size="13">I₂</text>
+    <text x="205" y="93" font-size="13">I₃</text>
+    <text x="70" y="200" font-size="13" text-anchor="middle">KCL: I₁ + I₂ = I₃</text>
+    <defs><marker id="a2" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#c0392b"/></marker></defs>
+  </g>
+  <!-- KVL loop -->
+  <g transform="translate(380,0)">
+    <line x1="40" y1="40" x2="40" y2="160" stroke="#1b1f24" stroke-width="2"/>
+    <line x1="40" y1="160" x2="330" y2="160" stroke="#1b1f24" stroke-width="2"/>
+    <line x1="330" y1="160" x2="330" y2="40" stroke="#1b1f24" stroke-width="2"/>
+    <line x1="40" y1="40" x2="130" y2="40" stroke="#1b1f24" stroke-width="2"/>
+    <path d="M130,40 l7,-9 l13,18 l13,-18 l13,18 l13,-18 l7,9" fill="none" stroke="#1b1f24" stroke-width="2"/>
+    <line x1="203" y1="40" x2="240" y2="40" stroke="#1b1f24" stroke-width="2"/>
+    <path d="M240,40 l7,-9 l13,18 l13,-18 l13,18 l13,-18 l7,9" fill="none" stroke="#1b1f24" stroke-width="2"/>
+    <line x1="313" y1="40" x2="330" y2="40" stroke="#1b1f24" stroke-width="2"/>
+    <text x="150" y="28" font-size="13" font-weight="bold">R1</text>
+    <text x="260" y="28" font-size="13" font-weight="bold">R2</text>
+    <line x1="40" y1="160" x2="40" y2="130" stroke="#1b1f24" stroke-width="2"/>
+    <line x1="20" y1="130" x2="60" y2="130" stroke="#1b1f24" stroke-width="4"/>
+    <line x1="28" y1="120" x2="52" y2="120" stroke="#1b1f24" stroke-width="2"/>
+    <text x="8" y="108" font-size="13">V</text>
+    <path d="M90,90 A100,60 0 1 1 280,90" fill="none" stroke="#7c3aed" stroke-width="2" stroke-dasharray="4,3" marker-end="url(#a3)"/>
+    <defs><marker id="a3" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#7c3aed"/></marker></defs>
+    <text x="185" y="200" font-size="13" text-anchor="middle">KVL: V = I·R1 + I·R2</text>
+  </g>
+</svg>
+<p class="caption">Left: KCL at a node — arrows into the dot must balance arrows out. Right: KVL round the dashed loop — the source's rise equals the two resistors' drops.</p>
+</div>
+
+<div class="box ex"><span class="label">Worked example</span>
+In the KVL loop above, V = 20 V, R1 = 2 Ω, R2 = 3 Ω. Since it's a single loop, the same current I flows through everything, so:<br>
+<code>20 = I(2) + I(3) = 5I  ⟹  I = 4 A</code><br>
+Drop across R1 = 8 V, across R2 = 12 V. Check: 8 + 12 = 20 V ✓ (rises = drops).
+</div>
+
+<div class="foreshadow">KVL written once per loop is exactly the equation you write <em>n</em> times in Mesh-Current Analysis (A5); KCL written once per node is exactly what you write in Node-Voltage Analysis (A4). Everything from here to A9 is KCL/KVL done systematically for bigger circuits.</div>
+
+<h3 class="topic" id="a3">A3. Series, Parallel &amp; Dividers</h3>
+
+<div class="box def"><span class="label">Definition</span>
+<b>Series</b> (same current through each element): R<sub>eq</sub> = R1 + R2 + ⋯<br>
+<b>Parallel</b> (same voltage across each element): 1/R<sub>eq</sub> = 1/R1 + 1/R2 + ⋯  (two only: R<sub>eq</sub> = R1R2/(R1+R2))
+</div>
+
+<div class="diagram">
+<svg viewBox="0 0 720 190" xmlns="http://www.w3.org/2000/svg">
+  <g>
+    <text x="130" y="20" font-size="14" text-anchor="middle" font-weight="bold">Series</text>
+    <line x1="20" y1="90" x2="60" y2="90" stroke="#1b1f24" stroke-width="2"/>
+    <path d="M60,90 l7,-9 l13,18 l13,-18 l13,18 l13,-18 l7,9" fill="none" stroke="#1b1f24" stroke-width="2"/>
+    <line x1="133" y1="90" x2="160" y2="90" stroke="#1b1f24" stroke-width="2"/>
+    <path d="M160,90 l7,-9 l13,18 l13,-18 l13,18 l13,-18 l7,9" fill="none" stroke="#1b1f24" stroke-width="2"/>
+    <line x1="233" y1="90" x2="260" y2="90" stroke="#1b1f24" stroke-width="2"/>
+    <text x="90" y="75" font-size="12">R1</text>
+    <text x="190" y="75" font-size="12">R2</text>
+    <text x="130" y="130" font-size="12" text-anchor="middle">same I through R1 &amp; R2</text>
+  </g>
+  <g transform="translate(360,0)">
+    <text x="140" y="20" font-size="14" text-anchor="middle" font-weight="bold">Parallel</text>
+    <line x1="30" y1="40" x2="30" y2="150" stroke="#1b1f24" stroke-width="2"/>
+    <line x1="250" y1="40" x2="250" y2="150" stroke="#1b1f24" stroke-width="2"/>
+    <line x1="30" y1="70" x2="90" y2="70" stroke="#1b1f24" stroke-width="2"/>
+    <path d="M90,70 l7,-9 l13,18 l13,-18 l13,18 l13,-18 l7,9" fill="none" stroke="#1b1f24" stroke-width="2"/>
+    <line x1="163" y1="70" x2="250" y2="70" stroke="#1b1f24" stroke-width="2"/>
+    <line x1="30" y1="120" x2="90" y2="120" stroke="#1b1f24" stroke-width="2"/>
+    <path d="M90,120 l7,-9 l13,18 l13,-18 l13,18 l13,-18 l7,9" fill="none" stroke="#1b1f24" stroke-width="2"/>
+    <line x1="163" y1="120" x2="250" y2="120" stroke="#1b1f24" stroke-width="2"/>
+    <text x="120" y="60" font-size="12">R1</text>
+    <text x="120" y="110" font-size="12">R2</text>
+    <text x="140" y="180" font-size="12" text-anchor="middle">same V across R1 &amp; R2</text>
+  </g>
+</svg>
+<p class="caption">Series elements share one current path end-to-end; parallel elements share both end nodes, so they share the same voltage.</p>
+</div>
+
+<div class="box why"><span class="label">Why this is true</span>
+Series: current has only one path, so by KCL the same I flows through every element in the chain. Summing V=IR drops around the loop by KVL gives V<sub>total</sub> = I(R1+R2+…) = I·R<sub>eq</sub>.<br>
+Parallel: both elements touch the same pair of nodes, so by definition of voltage (potential difference between two points) they see the same V. By KCL, the source current splits: I = V/R1 + V/R2 = V(1/R1 + 1/R2) = V/R<sub>eq</sub>.
+</div>
+
+<div class="box def"><span class="label">Divider formulas</span>
+<b>Voltage divider</b> (series R1, R2 across V): <code>V<sub>R2</sub> = V · R2/(R1+R2)</code><br>
+<b>Current divider</b> (parallel R1, R2 fed by I): <code>I<sub>R2</sub> = I · R1/(R1+R2)</code> — note it's the <em>other</em> resistor on top.
+</div>
+
+<div class="box mis"><span class="label">Fixing a common misconception</span>
+Students often copy the voltage-divider formula into the current-divider formula and put R2 on top for I<sub>R2</sub> as well. It's flipped: in a current divider, the branch with the <em>smaller</em> resistance takes the <em>larger</em> share of current, so I<sub>R2</sub>'s share must be weighted by the other resistor, R1.
+</div>
+
+<div class="box ex"><span class="label">Worked example</span>
+R1 = 6 Ω and R2 = 3 Ω are in parallel, fed by a 9 A source. Find the current through each.<br>
+<code>R<sub>eq</sub> = (6×3)/(6+3) = 2 Ω</code>, so <code>V = I·R<sub>eq</sub> = 9×2 = 18 V</code> across both.<br>
+<code>I<sub>R1</sub> = 18/6 = 3 A</code>, <code>I<sub>R2</sub> = 18/3 = 6 A</code>. Check: 3 + 6 = 9 A ✓ (KCL).<br>
+Via the divider shortcut: <code>I<sub>R2</sub> = 9 × 6/(6+3) = 6 A</code> ✓ — same answer without solving for V first.
+</div>
+
+<div class="foreshadow">R<sub>eq</sub> reduction is the first move in almost every Thevenin problem (A7): reduce everything except the load to one resistor, exactly as done here.</div>
+
+<h3 class="topic" id="a4">A4. Node-Voltage Analysis</h3>
+
+<div class="box def"><span class="label">Definition</span>
+Pick one node as the reference (0 V, "ground"). Assign an unknown voltage to every other node. At each unknown node, write one KCL equation using Ohm's law to express every branch current in terms of node voltages. Solve the resulting simultaneous equations.
+</div>
+
+<div class="diagram">
+<svg viewBox="0 0 340 190" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="80" cy="60" r="4" fill="#1b1f24"/><text x="60" y="45" font-size="13" font-weight="bold">A</text>
+  <circle cx="220" cy="60" r="4" fill="#1b1f24"/><text x="228" y="45" font-size="13" font-weight="bold">B</text>
+  <line x1="80" y1="60" x2="220" y2="60" stroke="#1b1f24" stroke-width="2"/>
+  <text x="130" y="50" font-size="12">R2 = 4Ω</text>
+  <line x1="80" y1="60" x2="80" y2="150" stroke="#1b1f24" stroke-width="2"/>
+  <text x="90" y="110" font-size="12">R1 = 4Ω</text>
+  <line x1="220" y1="60" x2="220" y2="150" stroke="#1b1f24" stroke-width="2"/>
+  <text x="228" y="110" font-size="12">R3 = 4Ω</text>
+  <line x1="20" y1="150" x2="280" y2="150" stroke="#1b1f24" stroke-width="3"/>
+  <text x="140" y="170" font-size="12" text-anchor="middle">reference node (0 V)</text>
+  <circle cx="30" cy="60" r="10" fill="none" stroke="#c0392b" stroke-width="2"/>
+  <path d="M30,66 L30,54 M24,60 L36,60" stroke="#c0392b" stroke-width="1.5"/>
+  <line x1="40" y1="60" x2="80" y2="60" stroke="#c0392b" stroke-width="2"/>
+  <line x1="30" y1="70" x2="30" y2="150" stroke="#c0392b" stroke-width="2"/>
+  <text x="0" y="115" font-size="12" fill="#c0392b">6 A</text>
+</svg>
+<p class="caption">Two unknown nodes A, B. A 6 A source injects current only at A; the bottom rail is the 0 V reference.</p>
+</div>
+
+<div class="box ex"><span class="label">Worked example</span>
+Write KCL at each node (current leaving a node through a resistor to a lower-potential node is (V<sub>here</sub>−V<sub>there</sub>)/R):<br>
+<code>Node A: 6 = V<sub>A</sub>/R1 + (V<sub>A</sub>−V<sub>B</sub>)/R2 = V<sub>A</sub>/4 + (V<sub>A</sub>−V<sub>B</sub>)/4</code><br>
+<code>Node B: 0 = (V<sub>B</sub>−V<sub>A</sub>)/R2 + V<sub>B</sub>/R3 = (V<sub>B</sub>−V<sub>A</sub>)/4 + V<sub>B</sub>/4</code><br>
+From the B-equation: <code>V<sub>B</sub> = V<sub>A</sub>/2</code>. Substituting into the A-equation:
+<code>6 = V<sub>A</sub>/4 + (V<sub>A</sub>−V<sub>A</sub>/2)/4 = 3V<sub>A</sub>/8 ⟹ V<sub>A</sub> = 16 V, V<sub>B</sub> = 8 V.</code><br>
+<b>Check (KCL at A):</b> current out through R1 = 16/4 = 4 A; through R2 = (16−8)/4 = 2 A. Total out = 6 A = current in ✓.
+</div>
+
+<div class="foreshadow">Keep <b>V<sub>A</sub>=16 V</b> in mind — the same numbers reappear, from a totally different method, as the Thevenin voltage in A7 and the superposition example in A9. That agreement is not a coincidence; it's the same physical circuit.</div>
+
+<h3 class="topic" id="a5">A5. Mesh-Current Analysis</h3>
+
+<div class="box def"><span class="label">Definition</span>
+Assign a circulating current to each independent loop ("mesh") of a <em>planar</em> circuit, all in the same rotational sense (say, clockwise). Write one KVL equation per mesh; a branch shared by two meshes carries the <em>difference</em> of their two mesh currents. Solve simultaneously, then recover real branch currents from the mesh currents.
+</div>
+
+<div class="diagram">
+<svg viewBox="0 0 420 190" xmlns="http://www.w3.org/2000/svg">
+  <line x1="30" y1="30" x2="30" y2="160" stroke="#1b1f24" stroke-width="2"/>
+  <line x1="30" y1="160" x2="390" y2="160" stroke="#1b1f24" stroke-width="2"/>
+  <line x1="390" y1="160" x2="390" y2="30" stroke="#1b1f24" stroke-width="2"/>
+  <line x1="30" y1="30" x2="140" y2="30" stroke="#1b1f24" stroke-width="2"/>
+  <line x1="280" y1="30" x2="390" y2="30" stroke="#1b1f24" stroke-width="2"/>
+  <line x1="210" y1="30" x2="210" y2="160" stroke="#1b1f24" stroke-width="2"/>
+  <!-- V1 source top-left -->
+  <line x1="140" y1="30" x2="150" y2="30" stroke="#1b1f24" stroke-width="2"/>
+  <line x1="150" y1="18" x2="150" y2="42" stroke="#1b1f24" stroke-width="4"/>
+  <line x1="160" y1="22" x2="160" y2="38" stroke="#1b1f24" stroke-width="2"/>
+  <line x1="160" y1="30" x2="170" y2="30" stroke="#1b1f24" stroke-width="2"/>
+  <path d="M170,30 l6,-8 l12,16 l12,-16 l12,16 l6,-8" fill="none" stroke="#1b1f24" stroke-width="2"/>
+  <line x1="218" y1="30" x2="280" y2="30" stroke="#1b1f24" stroke-width="2"/>
+  <text x="140" y="15" font-size="12">V1=16V</text>
+  <text x="175" y="15" font-size="12">R1=4Ω</text>
+  <path d="M280,30 l6,-8 l12,16 l12,-16 l12,16 l6,-8" fill="none" stroke="#1b1f24" stroke-width="2"/>
+  <text x="290" y="15" font-size="12">V2=2V</text>
+  <text x="330" y="15" font-size="12"></text>
+  <!-- shared branch with Rs -->
+  <path d="M210,80 l-8,6 l16,12 l-16,12 l16,12 l-8,6" fill="none" stroke="#1b1f24" stroke-width="2" transform="rotate(90 210 100)"/>
+  <text x="222" y="100" font-size="12">Rs=2Ω</text>
+  <!-- R2 exclusive to mesh2 -->
+  <line x1="390" y1="90" x2="390" y2="110" stroke="#1b1f24" stroke-width="2"/>
+  <text x="330" y="95" font-size="12">R2=6Ω (in mesh 2 leg, right side)</text>
+  <text x="105" y="105" font-size="16" font-weight="bold">I1 ↻</text>
+  <text x="290" y="105" font-size="16" font-weight="bold">I2 ↻</text>
+</svg>
+<p class="caption">Two-mesh circuit. Mesh 1 (left loop) contains V1, R1 and the shared branch Rs; Mesh 2 (right loop) contains V2, R2 and the same Rs.</p>
+</div>
+
+<div class="box ex"><span class="label">Worked example</span>
+V1=16 V, R1=4 Ω, Rs=2 Ω (shared), R2=6 Ω, V2=2 V, both sources driving their mesh clockwise.<br>
+<code>Mesh 1: V1 = I1(R1+Rs) − I2·Rs  ⟹  16 = 6I1 − 2I2</code><br>
+<code>Mesh 2: V2 = I2(R2+Rs) − I1·Rs  ⟹  2 = 8I2 − 2I1</code><br>
+From the first equation: <code>I2 = 3I1 − 8</code>. Substitute into the second:<br>
+<code>2 = 8(3I1−8) − 2I1 = 22I1 − 64  ⟹  I1 = 3 A,  I2 = 1 A.</code><br>
+Actual current through the shared resistor Rs = I1 − I2 = <b>2 A</b> (from mesh-1 side toward mesh-2 side).
+</div>
+
+<div class="foreshadow">Notice the pattern in the equations: each mesh's own resistors get a <code>+</code> sign, the shared resistor gets a <code>−I<sub>other</sub>·R<sub>shared</sub></code> term. This is structurally identical to the node-voltage equations of A4 — swap "current source" ↔ "voltage source" and "resistor to ground" ↔ "resistor around the mesh," and it's the same bookkeeping. Two roads, same destination.</div>
+
+<h3 class="topic" id="a6">A6. Source Transformation</h3>
+
+<div class="box def"><span class="label">Definition</span>
+A real voltage source V<sub>s</sub> with series resistance R is <em>externally indistinguishable</em> from a real current source I<sub>s</sub> = V<sub>s</sub>/R with the <em>same</em> R in parallel, and vice versa (I<sub>s</sub> with parallel R ↔ V<sub>s</sub>=I<sub>s</sub>R with series R).
+</div>
+
+<div class="diagram">
+<svg viewBox="0 0 460 150" xmlns="http://www.w3.org/2000/svg">
+  <g>
+    <text x="90" y="18" font-size="13" text-anchor="middle" font-weight="bold">Voltage-source form</text>
+    <line x1="30" y1="100" x2="30" y2="60" stroke="#1b1f24" stroke-width="2"/>
+    <line x1="15" y1="60" x2="45" y2="60" stroke="#1b1f24" stroke-width="4"/>
+    <line x1="20" y1="50" x2="40" y2="50" stroke="#1b1f24" stroke-width="2"/>
+    <line x1="30" y1="50" x2="30" y2="30" stroke="#1b1f24" stroke-width="2"/>
+    <line x1="30" y1="30" x2="100" y2="30" stroke="#1b1f24" stroke-width="2"/>
+    <path d="M100,30 l6,-8 l12,16 l12,-16 l12,16 l6,-8" fill="none" stroke="#1b1f24" stroke-width="2"/>
+    <line x1="148" y1="30" x2="160" y2="30" stroke="#1b1f24" stroke-width="2"/>
+    <line x1="160" y1="30" x2="160" y2="100" stroke="#1b1f24" stroke-width="2"/>
+    <line x1="30" y1="100" x2="160" y2="100" stroke="#1b1f24" stroke-width="2"/>
+    <text x="5" y="80" font-size="12">12V</text>
+    <text x="110" y="18" font-size="12">4Ω</text>
+    <circle cx="160" cy="65" r="3" fill="#c0392b"/><circle cx="30" cy="65" r="3" fill="#c0392b"/>
+    <text x="60" y="130" font-size="12" text-anchor="middle">terminals a–b</text>
+  </g>
+  <text x="220" y="75" font-size="22" text-anchor="middle">⇌</text>
+  <g transform="translate(260,0)">
+    <text x="90" y="18" font-size="13" text-anchor="middle" font-weight="bold">Current-source form</text>
+    <line x1="30" y1="30" x2="30" y2="100" stroke="#1b1f24" stroke-width="2"/>
+    <line x1="160" y1="30" x2="160" y2="100" stroke="#1b1f24" stroke-width="2"/>
+    <line x1="30" y1="100" x2="160" y2="100" stroke="#1b1f24" stroke-width="2"/>
+    <line x1="30" y1="30" x2="70" y2="30" stroke="#1b1f24" stroke-width="2"/>
+    <line x1="120" y1="30" x2="160" y2="30" stroke="#1b1f24" stroke-width="2"/>
+    <circle cx="95" cy="30" r="25" fill="none" stroke="#1b1f24" stroke-width="2"/>
+    <path d="M95,45 L95,15" stroke="#1b1f24" stroke-width="2" marker-end="url(#a6)"/>
+    <defs><marker id="a6" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#1b1f24"/></marker></defs>
+    <text x="95" y="10" font-size="11" text-anchor="middle">3A</text>
+    <line x1="30" y1="65" x2="30" y2="65" stroke="#1b1f24" stroke-width="2"/>
+    <path d="M160,65 l6,-8 l0,16 l-6,-8 M160,50 l0,30" fill="none" stroke="#1b1f24" stroke-width="2"/>
+    <text x="168" y="70" font-size="12">4Ω</text>
+    <text x="95" y="130" font-size="12" text-anchor="middle">terminals a–b</text>
+  </g>
+</svg>
+<p class="caption">12 V in series with 4 Ω looks, from terminals a–b, exactly like a 3 A source (=12/4) in parallel with the same 4 Ω.</p>
+</div>
+
+<div class="box why"><span class="label">Why this is true</span>
+Two black boxes are "externally indistinguishable" if they produce the same V–I relationship at the terminals. Left box: open-circuit voltage = 12 V (no current, no drop across R); short-circuit current = 12/4 = 3 A. Right box: open-circuit voltage = 3 A × 4 Ω = 12 V (all current forced through R since the external path is open); short-circuit current = 3 A (all current bypasses R through the short). Same two extreme points ⟹ same straight-line V–I relationship ⟹ identical behaviour for <em>any</em> load attached at a–b.
+</div>
+
+<div class="foreshadow">This V=IR ↔ I=V/R swap is exactly what makes Thevenin ⟷ Norton equivalents (next section) interchangeable — a Thevenin source is nothing but a voltage source, and a Norton source is its current-source transform.</div>
+
+<h3 class="topic" id="a7">A7. Thevenin's &amp; Norton's Theorem</h3>
+
+<div class="box def"><span class="label">Definition</span>
+Any linear resistive network, viewed from two terminals a–b, behaves exactly like a single source in series (or parallel) with a single resistance:
+<div class="formula">Thevenin: V<sub>th</sub> in series with R<sub>th</sub>  &nbsp;&nbsp;⟺&nbsp;&nbsp;  Norton: I<sub>N</sub>=V<sub>th</sub>/R<sub>th</sub> in parallel with R<sub>N</sub>=R<sub>th</sub></div>
+<b>V<sub>th</sub></b> = open-circuit voltage at a–b. <b>R<sub>th</sub></b> = resistance seen at a–b with all independent sources killed (voltage sources shorted, current sources opened).
+</div>
+
+<div class="diagram">
+<svg viewBox="0 0 460 170" xmlns="http://www.w3.org/2000/svg">
+  <g>
+    <text x="100" y="16" font-size="13" text-anchor="middle" font-weight="bold">Original network</text>
+    <line x1="30" y1="130" x2="30" y2="90" stroke="#1b1f24" stroke-width="2"/>
+    <line x1="15" y1="90" x2="45" y2="90" stroke="#1b1f24" stroke-width="4"/>
+    <line x1="20" y1="80" x2="40" y2="80" stroke="#1b1f24" stroke-width="2"/>
+    <line x1="30" y1="80" x2="30" y2="40" stroke="#1b1f24" stroke-width="2"/>
+    <line x1="30" y1="40" x2="90" y2="40" stroke="#1b1f24" stroke-width="2"/>
+    <path d="M90,40 l6,-8 l12,16 l12,-16 l12,16 l6,-8" fill="none" stroke="#1b1f24" stroke-width="2"/>
+    <line x1="138" y1="40" x2="180" y2="40" stroke="#1b1f24" stroke-width="2"/>
+    <line x1="180" y1="40" x2="180" y2="60" stroke="#1b1f24" stroke-width="2"/>
+    <path d="M180,60 l-8,6 l16,12 l-16,12 l16,12 l-8,6" fill="none" stroke="#1b1f24" stroke-width="2"/>
+    <line x1="180" y1="118" x2="180" y2="130" stroke="#1b1f24" stroke-width="2"/>
+    <line x1="30" y1="130" x2="180" y2="130" stroke="#1b1f24" stroke-width="2"/>
+    <line x1="180" y1="90" x2="220" y2="90" stroke="#1b1f24" stroke-width="2" stroke-dasharray="3,3"/>
+    <line x1="180" y1="130" x2="220" y2="130" stroke="#1b1f24" stroke-width="2" stroke-dasharray="3,3"/>
+    <circle cx="220" cy="90" r="3" fill="#c0392b"/><text x="228" y="94" font-size="12">a</text>
+    <circle cx="220" cy="130" r="3" fill="#c0392b"/><text x="228" y="134" font-size="12">b</text>
+    <text x="5" y="65" font-size="12">24V</text>
+    <text x="100" y="25" font-size="12">6Ω</text>
+    <text x="188" y="90" font-size="12">12Ω</text>
+  </g>
+  <text x="255" y="90" font-size="22" text-anchor="middle">≡</text>
+  <g transform="translate(280,0)">
+    <text x="90" y="16" font-size="13" text-anchor="middle" font-weight="bold">Thevenin equivalent</text>
+    <line x1="30" y1="130" x2="30" y2="90" stroke="#1b1f24" stroke-width="2"/>
+    <line x1="15" y1="90" x2="45" y2="90" stroke="#1b1f24" stroke-width="4"/>
+    <line x1="20" y1="80" x2="40" y2="80" stroke="#1b1f24" stroke-width="2"/>
+    <line x1="30" y1="80" x2="30" y2="40" stroke="#1b1f24" stroke-width="2"/>
+    <line x1="30" y1="40" x2="90" y2="40" stroke="#1b1f24" stroke-width="2"/>
+    <path d="M90,40 l6,-8 l12,16 l12,-16 l12,16 l6,-8" fill="none" stroke="#1b1f24" stroke-width="2"/>
+    <line x1="138" y1="40" x2="160" y2="40" stroke="#1b1f24" stroke-width="2"/>
+    <line x1="160" y1="40" x2="160" y2="130" stroke="#1b1f24" stroke-width="2" stroke-dasharray="3,3"/>
+    <line x1="30" y1="130" x2="160" y2="130" stroke="#1b1f24" stroke-width="2"/>
+    <text x="5" y="65" font-size="12">Vth=16V</text>
+    <text x="95" y="25" font-size="12">Rth=4Ω</text>
+    <circle cx="160" cy="40" r="3" fill="#c0392b"/><text x="168" y="35" font-size="12">a</text>
+    <circle cx="160" cy="130" r="3" fill="#c0392b"/><text x="168" y="134" font-size="12">b</text>
+  </g>
+</svg>
+<p class="caption">Same 24 V / 6 Ω / 12 Ω network as A4 (with the load removed) collapses to a 16 V source in series with 4 Ω — from terminals a–b, nothing else about the original network matters.</p>
+</div>
+
+<div class="box ex"><span class="label">Worked example</span>
+<b>Find V<sub>th</sub>:</b> with a–b open, no current flows anywhere except around the single loop 24 V–6 Ω–12 Ω:
+<code>I = 24/(6+12) = 4/3 A</code>. Voltage across the 12 Ω (this <em>is</em> V<sub>ab</sub> since nothing else drops between a and b) = <code>(4/3)(12) = 16 V = V<sub>th</sub></code>.<br>
+<b>Find R<sub>th</sub>:</b> kill the 24 V source (replace with a short). Looking into a–b now sees 6 Ω and 12 Ω in <em>parallel</em>: <code>R<sub>th</sub> = (6×12)/(6+12) = 4 Ω.</code><br>
+<b>Norton form:</b> <code>I<sub>N</sub> = V<sub>th</sub>/R<sub>th</sub> = 16/4 = 4 A</code>, R<sub>N</sub> = 4 Ω.
+</div>
+
+<div class="foreshadow">V<sub>th</sub>=16 V is the <em>exact same number</em> as node A's voltage in the A4 example — no surprise, since Thevenin's theorem is just node/mesh analysis packaged for one pair of terminals. Keep V<sub>th</sub>=16 V, R<sub>th</sub>=4 Ω on hand: A8 attaches a load here to find maximum power, and A9 re-derives this 16 V by superposition.</div>
+
+<h3 class="topic" id="a8">A8. Maximum Power Transfer Theorem</h3>
+
+<div class="box def"><span class="label">Definition</span>
+A source with Thevenin resistance R<sub>th</sub> delivers <em>maximum power</em> to a load R<sub>L</sub> when
+<div class="formula">R<sub>L</sub> = R<sub>th</sub></div>
+and that maximum power is <code>P<sub>max</sub> = V<sub>th</sub>² / (4R<sub>th</sub>)</code>.
+</div>
+
+<div class="box why"><span class="label">Why this is true (derivation)</span>
+Current in the loop: <code>I = V<sub>th</sub>/(R<sub>th</sub>+R<sub>L</sub>)</code>. Power in the load:
+<div class="formula">P = I²R<sub>L</sub> = V<sub>th</sub>² · R<sub>L</sub> / (R<sub>th</sub>+R<sub>L</sub>)²</div>
+Maximise P over R<sub>L</sub> by setting dP/dR<sub>L</sub>=0. Using the quotient rule on R<sub>L</sub>/(R<sub>th</sub>+R<sub>L</sub>)²:
+<div class="formula">dP/dR<sub>L</sub> ∝ (R<sub>th</sub>+R<sub>L</sub>)² − R<sub>L</sub>·2(R<sub>th</sub>+R<sub>L</sub>) = (R<sub>th</sub>+R<sub>L</sub>)[(R<sub>th</sub>+R<sub>L</sub>) − 2R<sub>L</sub>] = (R<sub>th</sub>+R<sub>L</sub>)(R<sub>th</sub>−R<sub>L</sub>)</div>
+This is zero (and changes sign from + to −, confirming a maximum) exactly when R<sub>L</sub>=R<sub>th</sub>. Substituting back: P<sub>max</sub> = V<sub>th</sub>²·R<sub>th</sub>/(2R<sub>th</sub>)² = V<sub>th</sub>²/(4R<sub>th</sub>).
+</div>
+
+<div class="diagram">
+<svg viewBox="0 0 420 220" xmlns="http://www.w3.org/2000/svg">
+  <line x1="50" y1="190" x2="400" y2="190" stroke="#1b1f24" stroke-width="1.5"/>
+  <line x1="50" y1="190" x2="50" y2="20" stroke="#1b1f24" stroke-width="1.5"/>
+  <text x="220" y="212" font-size="12" text-anchor="middle">R_L (Ω)</text>
+  <text x="15" y="100" font-size="12" transform="rotate(-90 15 100)">P (W)</text>
+  <path d="M55,188 C 110,60 170,25 220,25 C 270,25 330,60 395,188" fill="none" stroke="#7c3aed" stroke-width="2.5"/>
+  <line x1="220" y1="190" x2="220" y2="25" stroke="#c0392b" stroke-dasharray="4,3" stroke-width="1.5"/>
+  <line x1="50" y1="25" x2="220" y2="25" stroke="#c0392b" stroke-dasharray="4,3" stroke-width="1.5"/>
+  <circle cx="220" cy="25" r="4" fill="#c0392b"/>
+  <text x="225" y="20" font-size="12" fill="#c0392b">P_max = 16 W</text>
+  <text x="222" y="205" font-size="12" fill="#c0392b">R_L = R_th = 4Ω</text>
+</svg>
+<p class="caption">Power delivered to R<sub>L</sub> rises, peaks exactly at R<sub>L</sub>=R<sub>th</sub>, then falls — the calculus above proves the peak sits precisely there.</p>
+</div>
+
+<div class="box mis"><span class="label">Fixing a common misconception</span>
+"Maximum power transfer" does <em>not</em> mean maximum efficiency. At R<sub>L</sub>=R<sub>th</sub>, exactly half the total power is dissipated in R<sub>th</sub> itself — efficiency is only 50%. Power systems engineers actually want R<sub>L</sub> ≫ R<sub>th</sub> for high efficiency (low loss in supply resistance); matched loading is what you want in signal/communication circuits, where getting the largest possible power to a small receiver matters more than wasting some in the source.
+</div>
+
+<div class="box ex"><span class="label">Worked example</span>
+Continuing the A7 circuit (V<sub>th</sub>=16 V, R<sub>th</sub>=4 Ω): attach R<sub>L</sub>=4 Ω.<br>
+<code>I = 16/(4+4) = 2 A</code>, <code>P<sub>L</sub> = I²R<sub>L</sub> = 4×4 = 16 W</code>.<br>
+Check against the formula: <code>P<sub>max</sub> = 16²/(4×4) = 256/16 = 16 W</code> ✓.
+</div>
+
+<h3 class="topic" id="a9">A9. Superposition Theorem</h3>
+
+<div class="box def"><span class="label">Definition</span>
+In a linear circuit with multiple independent sources, the response (any voltage or current) equals the <em>sum</em> of the responses caused by each source acting alone, with all other independent sources killed (voltage sources shorted, current sources opened).
+</div>
+
+<div class="box why"><span class="label">Why this is true</span>
+Every equation Ohm's/Kirchhoff's laws produce for a resistive circuit is <em>linear</em> in the source values (no squares or products of sources appear). For linear equations, the solution for a sum of inputs is exactly the sum of the solutions for each input separately — this is the defining property of linearity, and it's the same property that makes A4's node equations solvable by straightforward elimination in the first place.
+</div>
+
+<div class="diagram">
+<svg viewBox="0 0 460 170" xmlns="http://www.w3.org/2000/svg">
+  <g>
+    <text x="70" y="16" font-size="12" text-anchor="middle" font-weight="bold">V1 alone (I2 opened)</text>
+    <line x1="20" y1="130" x2="20" y2="90" stroke="#1b1f24" stroke-width="2"/>
+    <line x1="8" y1="90" x2="32" y2="90" stroke="#1b1f24" stroke-width="4"/>
+    <line x1="12" y1="82" x2="28" y2="82" stroke="#1b1f24" stroke-width="2"/>
+    <line x1="20" y1="82" x2="20" y2="40" stroke="#1b1f24" stroke-width="2"/>
+    <line x1="20" y1="40" x2="60" y2="40" stroke="#1b1f24" stroke-width="2"/>
+    <path d="M60,40 l5,-7 l10,14 l10,-14 l10,14 l5,-7" fill="none" stroke="#1b1f24" stroke-width="2"/>
+    <line x1="100" y1="40" x2="130" y2="40" stroke="#1b1f24" stroke-width="2"/>
+    <line x1="130" y1="40" x2="130" y2="60" stroke="#1b1f24" stroke-width="2"/>
+    <path d="M130,60 l-6,5 l12,10 l-12,10 l12,10 l-6,5" fill="none" stroke="#1b1f24" stroke-width="2"/>
+    <line x1="130" y1="100" x2="130" y2="130" stroke="#1b1f24" stroke-width="2"/>
+    <line x1="20" y1="130" x2="130" y2="130" stroke="#1b1f24" stroke-width="2"/>
+    <text x="0" y="65" font-size="11">24V</text><text x="65" y="30" font-size="11">6Ω</text><text x="136" y="90" font-size="11">12Ω</text>
+    <text x="60" y="150" font-size="12" text-anchor="middle">V_A1 = 16 V</text>
+  </g>
+  <text x="150" y="90" font-size="20" text-anchor="middle">+</text>
+  <g transform="translate(170,0)">
+    <text x="90" y="16" font-size="12" text-anchor="middle" font-weight="bold">2A source alone (V1 shorted)</text>
+    <line x1="30" y1="40" x2="30" y2="130" stroke="#1b1f24" stroke-width="2"/>
+    <line x1="30" y1="40" x2="80" y2="40" stroke="#1b1f24" stroke-width="2"/>
+    <path d="M80,40 l5,-7 l10,14 l10,-14 l10,14 l5,-7" fill="none" stroke="#1b1f24" stroke-width="2"/>
+    <line x1="120" y1="40" x2="150" y2="40" stroke="#1b1f24" stroke-width="2"/>
+    <line x1="150" y1="40" x2="150" y2="130" stroke="#1b1f24" stroke-width="2"/>
+    <line x1="30" y1="130" x2="150" y2="130" stroke="#1b1f24" stroke-width="2"/>
+    <circle cx="30" cy="85" r="18" fill="none" stroke="#1b1f24" stroke-width="2"/>
+    <path d="M30,98 L30,72" stroke="#1b1f24" stroke-width="2" marker-end="url(#a9)"/>
+    <defs><marker id="a9" markerWidth="7" markerHeight="7" refX="3.5" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 z" fill="#1b1f24"/></marker></defs>
+    <text x="0" y="85" font-size="11">2A</text>
+    <text x="85" y="30" font-size="11">6Ω</text>
+    <text x="156" y="90" font-size="11">12Ω</text>
+    <text x="90" y="150" font-size="12" text-anchor="middle">V_A2 = 8 V</text>
+  </g>
+</svg>
+<p class="caption">Extend the A7 circuit with a 2 A source injected at node a. Solve each source's contribution separately, then add.</p>
+</div>
+
+<div class="box ex"><span class="label">Worked example</span>
+Add a 2 A current source injecting into node a of the A7 circuit (24 V, 6 Ω, 12 Ω). Find V<sub>a</sub> by superposition.<br>
+<b>Step 1 — V1 acting alone</b> (open the current source): this is exactly the A7 Thevenin calculation — <code>V<sub>a1</sub> = 16 V</code>.<br>
+<b>Step 2 — 2 A source acting alone</b> (short the 24 V source): now 6 Ω and 12 Ω are both simply tied from node a to ground — they're in <em>parallel</em>, R<sub>eq</sub>=(6×12)/18=4 Ω. All 2 A flows into this 4 Ω: <code>V<sub>a2</sub> = 2×4 = 8 V</code>.<br>
+<b>Total:</b> <code>V<sub>a</sub> = V<sub>a1</sub> + V<sub>a2</sub> = 16 + 8 = 24 V</code>.<br>
+<b>Independent check</b> (direct node analysis with both sources active): <code>(V<sub>a</sub>−24)/6 + V<sub>a</sub>/12 − 2 = 0 ⟹ 3V<sub>a</sub> = 72 ⟹ V<sub>a</sub> = 24 V</code> ✓ — matches exactly.
+</div>
+
+<table>
+<tr><th>Method</th><th>Best suited to…</th><th>What you solve</th></tr>
+<tr><td>Node-Voltage</td><td>circuits with many parallel branches / current sources</td><td>n−1 equations for n nodes</td></tr>
+<tr><td>Mesh-Current</td><td>planar circuits with many series loops / voltage sources</td><td>one equation per independent loop</td></tr>
+<tr><td>Thevenin/Norton</td><td>finding behaviour at <em>one pair</em> of terminals, esp. varying load</td><td>V<sub>th</sub>, R<sub>th</sub> once, reuse for any R<sub>L</sub></td></tr>
+<tr><td>Superposition</td><td>circuits with multiple independent sources, need contribution of each</td><td>one simpler circuit per source</td></tr>
+</table>
+
+<div class="foreshadow">Everything above assumed pure resistors and DC (unchanging) sources. Part B repeats this <em>exact same logic</em> — KVL, KCL, series/parallel, even a "divider" — but the numbers become <b>phasors</b> (complex numbers) because inductors and capacitors react differently to changing current than resistors do.</div>
+
+<h2 class="part" id="partb">Part B — AC Circuits <span class="marks">Module 1, continued</span></h2>
+
+<h3 class="topic" id="b1">B1. Generating an AC Waveform</h3>
+
+<div class="box def"><span class="label">Definition</span>
+A coil rotating at constant angular speed ω inside a uniform magnetic field produces a sinusoidal EMF:
+<div class="formula">v(t) = V<sub>m</sub> sin(ωt)</div>
+where V<sub>m</sub> is the peak value and ω = 2πf (f = frequency in Hz).
+</div>
+
+<div class="diagram">
+<svg viewBox="0 0 420 160" xmlns="http://www.w3.org/2000/svg">
+  <line x1="20" y1="80" x2="400" y2="80" stroke="#1b1f24" stroke-width="1"/>
+  <line x1="20" y1="20" x2="20" y2="150" stroke="#1b1f24" stroke-width="1"/>
+  <path d="M20,80 C 55,10 90,10 125,80 C 160,150 195,150 230,80 C 265,10 300,10 335,80 C 370,150 400,150 400,110" fill="none" stroke="#7c3aed" stroke-width="2.5"/>
+  <text x="405" y="14" font-size="12">v</text><text x="405" y="150" font-size="12">t</text>
+  <text x="120" y="8" font-size="11" text-anchor="middle">Vm at ωt=90°</text>
+  <text x="225" y="158" font-size="11" text-anchor="middle">−Vm at ωt=270°</text>
+  <line x1="125" y1="80" x2="125" y2="14" stroke="#c0392b" stroke-dasharray="3,2"/>
+</svg>
+<p class="caption">One full rotation of the coil (360°) traces one full sine cycle: peak at 90°, zero at 180°, trough at 270°.</p>
+</div>
+
+<div class="foreshadow">This same coil-in-a-field picture is exactly the DC generator principle used later (Module 2) — the only difference is a commutator "rectifies" this AC waveform into a one-directional (DC) output.</div>
+
+<h3 class="topic" id="b2">B2. RMS, Average, Form Factor &amp; Peak Factor</h3>
+
+<div class="box mis"><span class="label">Fixing a common misconception</span>
+"Average value of a sine wave is Vm/2" — <b>false</b>. Averaged over a <em>full</em> cycle, a sine wave's true average is exactly zero (equal area above and below the axis cancels). "Average value" in this topic always means the average of the <em>rectified</em> waveform, i.e. averaged over one half-cycle only.
+</div>
+
+<div class="box why"><span class="label">Why V<sub>rms</sub> = V<sub>m</sub>/√2 (derivation)</span>
+RMS = "root of the mean of the square." Square the waveform, average it over one period, then take the square root.
+<div class="formula">V<sub>rms</sub>² = (1/T)∫<sub>0</sub><sup>T</sup> V<sub>m</sub>² sin²(ωt) dt</div>
+Use the identity sin²θ = (1−cos2θ)/2:
+<div class="formula">V<sub>rms</sub>² = (V<sub>m</sub>²/T)∫<sub>0</sub><sup>T</sup> (1−cos2ωt)/2 dt = (V<sub>m</sub>²/2T)[T − 0] = V<sub>m</sub>²/2</div>
+(the cos2ωt term integrates to exactly zero over a whole number of its own periods). Taking the square root: <code>V<sub>rms</sub> = V<sub>m</sub>/√2 ≈ 0.707 V<sub>m</sub></code>.
+</div>
+
+<div class="box why"><span class="label">Why V<sub>avg</sub> = 2V<sub>m</sub>/π (derivation)</span>
+Average the waveform over one half-cycle (θ from 0 to π), where sinθ ≥ 0 throughout:
+<div class="formula">V<sub>avg</sub> = (1/π)∫<sub>0</sub><sup>π</sup> V<sub>m</sub> sinθ dθ = (V<sub>m</sub>/π)[−cosθ]<sub>0</sub><sup>π</sup> = (V<sub>m</sub>/π)(1−(−1)) = 2V<sub>m</sub>/π ≈ 0.637 V<sub>m</sub></div>
+</div>
+
+<div class="diagram">
+<svg viewBox="0 0 420 170" xmlns="http://www.w3.org/2000/svg">
+  <line x1="20" y1="130" x2="400" y2="130" stroke="#1b1f24" stroke-width="1"/>
+  <path d="M20,130 C 55,60 90,60 125,130" fill="none" stroke="#7c3aed" stroke-width="2.5"/>
+  <line x1="20" y1="60" x2="125" y2="60" stroke="#c0392b" stroke-dasharray="2,2"/>
+  <text x="130" y="62" font-size="11" fill="#c0392b">Vm (peak) = 100 V</text>
+  <line x1="20" y1="88" x2="125" y2="88" stroke="#1e468c" stroke-dasharray="2,2"/>
+  <text x="130" y="90" font-size="11" fill="#1e468c">Vrms = 70.7 V</text>
+  <line x1="20" y1="104" x2="125" y2="104" stroke="#166e3c" stroke-dasharray="2,2"/>
+  <text x="130" y="106" font-size="11" fill="#166e3c">Vavg = 63.7 V</text>
+</svg>
+<p class="caption">All three "heights" describe the same 100 V-peak sine wave — RMS sits above average because squaring weights the (always-positive) larger excursions more heavily.</p>
+</div>
+
+<div class="box def"><span class="label">Definitions</span>
+<div class="formula">Form Factor = V<sub>rms</sub>/V<sub>avg</sub> = (V<sub>m</sub>/√2)/(2V<sub>m</sub>/π) = π/(2√2) ≈ 1.11</div>
+<div class="formula">Peak Factor (crest factor) = V<sub>m</sub>/V<sub>rms</sub> = √2 ≈ 1.414</div>
+</div>
+
+<div class="box ex"><span class="label">Worked example</span>
+A sinusoidal supply has V<sub>m</sub> = 100 V. Find V<sub>rms</sub>, V<sub>avg</sub>, form factor, peak factor.<br>
+<code>V<sub>rms</sub> = 100/√2 = 70.7 V</code> &nbsp; <code>V<sub>avg</sub> = 2(100)/π = 63.7 V</code><br>
+<code>FF = 70.7/63.7 = 1.11</code> &nbsp; <code>PF = 100/70.7 = 1.414</code><br>
+<b>Note:</b> every household "230 V AC" or "120 V AC" rating is the RMS value — the actual peak in a 230 V mains supply is 230×√2 ≈ 325 V.
+</div>
+
+<h3 class="topic" id="b3">B3. Phasors &amp; Impedance</h3>
+
+<div class="box def"><span class="label">Definition</span>
+A <b>phasor</b> is a complex number that represents a sinusoid's magnitude and phase, freezing the rotating picture of B1 at t=0. <b>Impedance</b> Z is the AC generalisation of resistance — the ratio of voltage phasor to current phasor:
+<div class="formula">Z = V/I = R + jX &nbsp;(Ω), &nbsp; |Z| = √(R²+X²), &nbsp; φ = arctan(X/R)</div>
+Resistor: Z<sub>R</sub>=R (in phase). Inductor: Z<sub>L</sub>=jωL=jX<sub>L</sub> (voltage leads current by 90°). Capacitor: Z<sub>C</sub>=1/(jωC)=−jX<sub>C</sub> (voltage lags current by 90°).
+</div>
+
+<div class="box why"><span class="label">Why phasors are allowed to replace calculus</span>
+For a linear circuit driven by a single-frequency sinusoid, every voltage and current in steady state is a sinusoid at that <em>same</em> frequency — only magnitude and phase differ. Since d/dt(A sin(ωt+θ)) is again a sinusoid at frequency ω (just scaled by ω and shifted 90°), differentiation becomes multiplication by jω in the phasor domain. This turns differential equations for L and C into plain algebra — exactly the same KVL/KCL algebra as Part A, just with complex numbers standing in for the resistor-only calculation.
+</div>
+
+<div class="diagram">
+<svg viewBox="0 0 380 200" xmlns="http://www.w3.org/2000/svg">
+  <line x1="30" y1="170" x2="350" y2="170" stroke="#1b1f24" stroke-width="1"/>
+  <line x1="30" y1="170" x2="30" y2="20" stroke="#1b1f24" stroke-width="1"/>
+  <text x="355" y="174" font-size="11">Re</text><text x="20" y="15" font-size="11">Im</text>
+  <line x1="30" y1="170" x2="250" y2="170" stroke="#c0392b" stroke-width="2.5" marker-end="url(#pA)"/>
+  <text x="255" y="175" font-size="12" fill="#c0392b">I (reference, 0°)</text>
+  <line x1="30" y1="170" x2="160" y2="60" stroke="#1e468c" stroke-width="2.5" marker-end="url(#pA)"/>
+  <text x="165" y="55" font-size="12" fill="#1e468c">V (leads I by φ)</text>
+  <path d="M 90,170 A 60,60 0 0 0 130,120" fill="none" stroke="#7c3aed" stroke-width="1.5"/>
+  <text x="95" y="145" font-size="12" fill="#7c3aed">φ</text>
+  <defs><marker id="pA" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z"/></marker></defs>
+</svg>
+<p class="caption">Phasor diagram for an inductive (RL) circuit: current is the reference; voltage sits ahead of it by the impedance angle φ.</p>
+</div>
+
+<div class="foreshadow">Every diagram, formula and worked example from Part A carries over unchanged if you mentally replace every "R" with "Z" and every real number with a phasor — that's the entire content of the next section.</div>
+
+<h3 class="topic" id="b4">B4. Series RL, RC, RLC Circuits</h3>
+
+<div class="box def"><span class="label">Definition</span>
+<table>
+<tr><th>Circuit</th><th>Impedance Z</th><th>Phase angle φ</th><th>Behaviour</th></tr>
+<tr><td>Series RL</td><td>R + jX<sub>L</sub></td><td>tan⁻¹(X<sub>L</sub>/R), positive</td><td>current <b>lags</b> voltage</td></tr>
+<tr><td>Series RC</td><td>R − jX<sub>C</sub></td><td>tan⁻¹(X<sub>C</sub>/R), negative</td><td>current <b>leads</b> voltage</td></tr>
+<tr><td>Series RLC</td><td>R + j(X<sub>L</sub>−X<sub>C</sub>)</td><td>tan⁻¹((X<sub>L</sub>−X<sub>C</sub>)/R)</td><td>lag if X<sub>L</sub>&gt;X<sub>C</sub>, lead if X<sub>C</sub>&gt;X<sub>L</sub>, in phase if equal (<b>resonance</b>)</td></tr>
+</table>
+</div>
+
+<div class="diagram">
+<svg viewBox="0 0 420 190" xmlns="http://www.w3.org/2000/svg">
+  <g>
+    <text x="90" y="18" font-size="13" text-anchor="middle" font-weight="bold">Series RL circuit</text>
+    <line x1="20" y1="80" x2="60" y2="80" stroke="#1b1f24" stroke-width="2"/>
+    <path d="M60,80 l6,-8 l12,16 l12,-16 l12,16 l6,-8" fill="none" stroke="#1b1f24" stroke-width="2"/>
+    <line x1="108" y1="80" x2="140" y2="80" stroke="#1b1f24" stroke-width="2"/>
+    <path d="M140,65 q8,-15 16,0 q8,15 16,0 q8,-15 16,0" fill="none" stroke="#1b1f24" stroke-width="2"/>
+    <line x1="188" y1="80" x2="220" y2="80" stroke="#1b1f24" stroke-width="2"/>
+    <text x="75" y="65" font-size="11">R=3Ω</text><text x="150" y="50" font-size="11">L (X_L=4Ω)</text>
+    <text x="120" y="130" font-size="12" text-anchor="middle">Z = 3+j4 ⟹ |Z|=5Ω, φ=53.1°</text>
+  </g>
+  <g transform="translate(230,0)">
+    <text x="90" y="18" font-size="13" text-anchor="middle" font-weight="bold">Impedance triangle</text>
+    <line x1="40" y1="140" x2="160" y2="140" stroke="#1b1f24" stroke-width="2"/>
+    <line x1="40" y1="140" x2="40" y2="60" stroke="#1b1f24" stroke-width="2"/>
+    <line x1="40" y1="60" x2="160" y2="140" stroke="#7c3aed" stroke-width="2.5"/>
+    <text x="85" y="158" font-size="12">R = 3Ω</text>
+    <text x="5" y="105" font-size="12">X_L = 4Ω</text>
+    <text x="90" y="95" font-size="12" fill="#7c3aed">Z = 5Ω</text>
+    <path d="M40,125 A15,15 0 0 1 55,140" fill="none" stroke="#c0392b"/>
+    <text x="52" y="128" font-size="11" fill="#c0392b">φ</text>
+  </g>
+</svg>
+<p class="caption">A 3-4-5 right triangle: resistance and reactance are the two legs, impedance is the hypotenuse — this triangle IS the phasor diagram of B3, just drawn with the shared current cancelled out.</p>
+</div>
+
+<div class="box ex"><span class="label">Worked example</span>
+A series RL circuit has R = 3 Ω, X<sub>L</sub> = 4 Ω, supplied by V = 50 V (rms). Find |Z|, φ, and I.<br>
+<code>|Z| = √(3²+4²) = √25 = 5 Ω</code> &nbsp; <code>φ = tan⁻¹(4/3) = 53.13°</code> (current lags voltage)<br>
+<code>I = V/|Z| = 50/5 = 10 A</code>
+</div>
+
+<div class="foreshadow">Keep V=50 V, I=10 A, φ=53.13° — Section B5 uses this exact same circuit to compute real, reactive and apparent power.</div>
+
+<h3 class="topic" id="b5">B5. Power &amp; Power Factor in AC Circuits</h3>
+
+<div class="box def"><span class="label">Definition</span>
+<div class="formula">Apparent power &nbsp;S = VI &nbsp;(VA) &nbsp;&nbsp;|&nbsp;&nbsp; Real power &nbsp;P = VI cosφ &nbsp;(W) &nbsp;&nbsp;|&nbsp;&nbsp; Reactive power &nbsp;Q = VI sinφ &nbsp;(VAR)</div>
+<div class="formula">S² = P² + Q² &nbsp;&nbsp;&nbsp; Power factor = cosφ = P/S</div>
+</div>
+
+<div class="box why"><span class="label">Why real power involves cosφ</span>
+Instantaneous power is p(t)=v(t)i(t). With v=V<sub>m</sub>sin(ωt) and i=I<sub>m</sub>sin(ωt−φ), the product expands (via a standard trig identity) into a constant term plus a term oscillating at 2ω. Averaged over a full cycle, the oscillating term vanishes and only the constant term survives:
+<div class="formula">P<sub>avg</sub> = (V<sub>m</sub>I<sub>m</sub>/2)cosφ = V<sub>rms</sub>I<sub>rms</sub>cosφ</div>
+This is genuinely the only part of VI that does <em>net</em> work over a cycle — the rest sloshes energy back and forth into the inductor/capacitor's field and back, which is exactly what "reactive" power Q means.
+</div>
+
+<div class="diagram">
+<svg viewBox="0 0 300 190" xmlns="http://www.w3.org/2000/svg">
+  <line x1="30" y1="160" x2="270" y2="160" stroke="#1b1f24" stroke-width="1"/>
+  <line x1="30" y1="160" x2="30" y2="20" stroke="#1b1f24" stroke-width="1"/>
+  <line x1="30" y1="160" x2="180" y2="160" stroke="#166e3c" stroke-width="2.5" marker-end="url(#pB)"/>
+  <text x="185" y="164" font-size="12" fill="#166e3c">P = 300 W</text>
+  <line x1="180" y1="160" x2="180" y2="60" stroke="#1e468c" stroke-width="2.5" marker-end="url(#pB)"/>
+  <text x="185" y="60" font-size="12" fill="#1e468c">Q = 400 VAR</text>
+  <line x1="30" y1="160" x2="180" y2="60" stroke="#7c3aed" stroke-width="2.5" marker-end="url(#pB)"/>
+  <text x="65" y="105" font-size="12" fill="#7c3aed">S = 500 VA</text>
+  <defs><marker id="pB" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z"/></marker></defs>
+</svg>
+<p class="caption">The power triangle — same 3-4-5 shape as the impedance triangle in B4, because P, Q, S are just V×I times R, X, Z respectively.</p>
+</div>
+
+<div class="box ex"><span class="label">Worked example</span>
+Continuing B4's circuit: V=50 V, I=10 A, φ=53.13° (cosφ=0.6, sinφ=0.8).<br>
+<code>S = VI = 500 VA</code> &nbsp; <code>P = 500×0.6 = 300 W</code> &nbsp; <code>Q = 500×0.8 = 400 VAR</code><br>
+<b>Check:</b> <code>P²+Q² = 300²+400² = 90000+160000 = 250000 = 500² = S²</code> ✓
+</div>
+
+<div class="box mis"><span class="label">Fixing a common misconception</span>
+A low power factor is <em>not</em> "wasted power" in the sense of heat — reactive power Q isn't dissipated, it's shuttled back and forth. But a low cosφ still costs money: for the same real power P, a lower cosφ demands a <em>larger</em> current I=P/(Vcosφ), which means thicker cables and bigger transformers just to deliver the same useful watts. That's why factories with inductive loads (motors) install capacitor banks to raise their power factor.
+</div>
+
+<div class="foreshadow">Every motor in Topic 2 (Electrical Machines) — DC or three-phase induction — has winding inductance, so every one of them draws a lagging power factor exactly like this RL example. The induction motor there is, electrically, just a big rotating RL/RLC load.</div>
+
+</div>
+<a href="#top" class="backtop">↑</a>
+{% endblock %}

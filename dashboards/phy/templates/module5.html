@@ -1,0 +1,429 @@
+{% extends "base.html" %}
+{% from "_macros.html" import box, sub, sec, fig, mat, ket, bra %}
+{% from "modnav.html" import modnav with context %}
+{% block title %}Module 5 · Elements of quantum computing{% endblock %}
+{% block bodyclass %}mod5{% endblock %}
+{% block modnav_top %}{{ modnav() }}{% endblock %}
+{% block modnav_bottom %}{{ modnav('bottom') }}{% endblock %}
+{% block content %}
+<header class="hero m5"><div class="in"><h1>Module 5 · Elements of Quantum Computing</h1>
+<p>Qubits, the Bloch sphere, two-qubit systems, entanglement and Bell states, and the quantum gates X, Y, Z, H and CNOT. Everything here is Module 2 (vectors, tensor products, unitary matrices) and Module 3 (superposition, measurement) put to work.</p></div></header>
+<div class="notes">
+<div class="toc"><b>Contents</b><ol>
+{% for t in cur.topics %}<li><a href="#{{ t.id }}">{{ t.title }}</a></li>{% endfor %}
+<li><a href="#m5-check">Self-test checklist</a></li></ol>
+<p class="small muted"><b>Source note.</b> Topics follow the syllabus line: introduction to qubits, single-qubit states and the Bloch sphere, two-qubit systems, entanglement and Bell states, Pauli and Hadamard gates, CNOT, and generation of entangled states. Your deck marks the S and T gates as "for information, not in syllabus"; they are kept to a short box (5.6), and the SWAP, controlled-Z and Toffoli gates from the separate notes file are in 6.4. The deck refers to "hand written material" on CNOT and entangled-state generation, which was not uploaded, so those parts are built from the slides and worked out step by step.</p></div>
+
+{% call sec('m5-1','1','Qubits: from the bit to the quantum bit') %}
+
+{% call sub('m5-1-1','1.1','Classical bit versus qubit') %}
+<div class="intuition"><b>Why it matters.</b> A classical computer is built from objects that are either 0 or 1. Shrinking transistors toward atomic size means quantum effects can no longer be ignored (your notes file, on the end of Moore's law), so the idea is to use them instead. The qubit is the unit that makes this possible.</div>
+{% call box('def') %}A <b>bit</b> is an object with two distinct states, 0 and 1 (for example, low or high voltage), and it is in exactly one of them at a time. A <b>qubit</b> (quantum bit) is a quantum system with two basis states |0⟩ and |1⟩ that can also be in a <b>superposition</b> α|0⟩ + β|1⟩ of them, with α and β complex numbers, until it is measured. A measurement always returns a definite 0 or 1.{% endcall %}
+<table class="t"><tr><th>Feature</th><th>Classical bit</th><th>Qubit</th></tr>
+<tr><td>State</td><td>0 or 1</td><td>α|0⟩ + β|1⟩, with |α|² + |β|² = 1</td></tr>
+<tr><td>Measurement</td><td>reveals the value; no disturbance</td><td>gives 0 with probability |α|² and 1 with |β|²; state collapses</td></tr>
+<tr><td>Processing</td><td>Boolean gates (AND, OR, NOT); deterministic</td><td>unitary gates (X, Y, Z, H, CNOT); outcomes probabilistic</td></tr>
+<tr><td>Correlation</td><td>independent bits</td><td>qubits can be entangled</td></tr>
+<tr><td>Scaling</td><td>n bits hold one n-bit value</td><td>n qubits are described by 2ⁿ amplitudes</td></tr>
+<tr><td>Noise</td><td>stable, low error</td><td>very sensitive; needs error correction</td></tr></table>
+<p class="small muted">Table condensed from your deck's comparison table (slides 5 to 9) and notes file.</p>
+{% call box('mis') %}"A qubit is both 0 and 1, so it stores two bits." Before measurement it has a definite <i>state</i> (a vector); on measurement you get one bit. Two things from your deck's table deserve care. It says a qubit has "infinite information density" because its amplitudes are continuous; but you only ever read out a single 0 or 1. And "n qubits can hold all 2ⁿ values at once" means the state has 2ⁿ amplitudes, not that you can read all 2ⁿ values out (the notes file's "a 4-qubit register can store all 16 numbers" should be read in this sense).{% endcall %}
+<div class="next">Next: 1.2 writes down what a qubit actually is as a vector.</div>
+{% endcall %}
+
+<hr class="div">
+{% call sub('m5-1-2','1.2','The qubit as a vector in Hilbert space') %}
+<div class="intuition"><b>Why it matters.</b> This is Module 2 again: a qubit is a unit vector in a two-dimensional complex vector space, and |0⟩, |1⟩ are an orthonormal basis of it. Everything later is matrix algebra on 2-component columns.</div>
+{% call box('def') %}The two <b>computational basis</b> states are the column vectors <b>|0⟩ = (1, 0)ᵀ</b> and <b>|1⟩ = (0, 1)ᵀ</b>. They are orthonormal (⟨0|0⟩ = ⟨1|1⟩ = 1, ⟨0|1⟩ = 0) and span the two-dimensional Hilbert space of the qubit. A general qubit state is <b>|ψ⟩ = α|0⟩ + β|1⟩ = (α, β)ᵀ</b>. Physical choices for |0⟩ and |1⟩ (your slide 6): spin up/down of a nucleus or electron; no photon / one photon in a cavity; ground / excited atomic level; horizontal / vertical photon polarisation; also superconducting circuits and trapped ions.{% endcall %}
+{% call fig('Two physical encodings of one qubit. Left: energy levels (ground state |0⟩, excited state |1⟩, gap ΔE = E₁ − E₀). Right: spin down/up. <i>Notice</i> the maths is identical whichever encoding is used; only the labelling differs.') %}
+<svg viewBox="0 0 420 170" width="420" role="img" aria-label="Qubit encodings"><line x1="50" y1="15" x2="50" y2="150" stroke="#555"/><text x="56" y="20" font-size="12">Energy</text>
+<line x1="70" y1="40" x2="170" y2="40" stroke="#6d28d9" stroke-width="3"/><text x="176" y="44" font-size="13">E₁ , |1⟩ excited</text><line x1="70" y1="120" x2="170" y2="120" stroke="#6d28d9" stroke-width="3"/><text x="176" y="124" font-size="13">E₀ , |0⟩ ground</text><line x1="120" y1="45" x2="120" y2="115" stroke="#333" marker-start="url(#a121)" marker-end="url(#a121)"/><text x="126" y="84" font-size="12">ΔE</text>
+<defs><marker id="a121" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#333"/></marker></defs>
+<text x="330" y="60" font-size="13">spin</text><line x1="340" y1="105" x2="340" y2="70" stroke="#0f766e" stroke-width="3" marker-end="url(#a121)"/><text x="350" y="92" font-size="12">↑ = |0⟩</text><line x1="340" y1="115" x2="340" y2="150" stroke="#b45309" stroke-width="3" marker-end="url(#a121)"/><text x="350" y="138" font-size="12">↓ = |1⟩</text></svg>
+{% endcall %}
+{% call box('ex') %}
+<div class="step"><b>Problem.</b> Write |ψ⟩ = (3/5)|0⟩ + (4i/5)|1⟩ as a column vector, check it is a valid qubit state, and give the measurement probabilities.</div>
+<div class="step">|ψ⟩ = (3/5, 4i/5)ᵀ. Norm: |α|² + |β|² = 9/25 + |4i/5|² = 9/25 + 16/25 = <b>1</b>, so it is a valid state.</div>
+<div class="step">P(0) = |α|² = <b>0.36</b>; P(1) = |β|² = <b>0.64</b>. The i in β does not change the probabilities (|i|² = 1); it is a relative phase.</div>
+<div class="check"><b>Check.</b> 0.36 + 0.64 = 1 ✓. Using the bra: ⟨ψ| = (3/5, −4i/5), so ⟨ψ|ψ⟩ = 9/25 + (−4i/5)(4i/5) = 9/25 + 16/25 = 1 ✓ (the conjugate matters: without it you would get 9/25 − 16/25).</div>
+{% endcall %}
+{% call box('mis') %}"Normalised means α + β = 1." The condition is on <i>squared moduli</i>: |α|² + |β|² = 1. The state (1/2)|0⟩ + (1/2)|1⟩ has α + β = 1 but is <i>not</i> normalised (its norm² is 1/2).{% endcall %}
+<div class="next">Next: 1.3 gets the physics of superposition and measurement.</div>
+{% endcall %}
+
+<hr class="div">
+{% call sub('m5-1-3','1.3','Superposition, amplitudes and measurement') %}
+<div class="intuition"><b>Why it matters.</b> Superposition is not "the qubit secretly being 0 or 1". The amplitudes can interfere (as waves do), which is why different gates give different final results. Measurement then turns the amplitudes into probabilities (Module 3, postulates).</div>
+{% call box('def') %}Because the Schrödinger equation is linear, any linear combination of allowed states is an allowed state (your slide 7): this is <b>superposition</b>. In |ψ⟩ = α|0⟩ + β|1⟩, α and β are <b>probability amplitudes</b>. Measuring in the {|0⟩, |1⟩} basis gives <b>0 with probability |α|²</b> and <b>1 with probability |β|²</b>, and the state <b>collapses</b> to the result: afterwards it is |0⟩ or |1⟩, so repeating the measurement gives the same answer. The two special states |±⟩ = (|0⟩ ± |1⟩)/√2 are equal superpositions.{% endcall %}
+<table class="t"><tr><th>State</th><th>α</th><th>β</th><th>P(0)</th><th>P(1)</th></tr>
+<tr><td>|0⟩</td><td>1</td><td>0</td><td>1</td><td>0</td></tr><tr><td>|+⟩ = (|0⟩ + |1⟩)/√2</td><td>1/√2</td><td>1/√2</td><td>1/2</td><td>1/2</td></tr>
+<tr><td>|−⟩ = (|0⟩ − |1⟩)/√2</td><td>1/√2</td><td>−1/√2</td><td>1/2</td><td>1/2</td></tr></table>
+<p class="small muted">|+⟩ and |−⟩ give the same measurement probabilities in the {|0⟩,|1⟩} basis but are different states: they differ by a relative sign (phase), which later gates can detect.</p>
+{% call box('ex') %}
+<div class="step"><b>Problem.</b> A qubit is in |ψ⟩ = (1/√3)|0⟩ + √(2/3) e<sup>iπ/4</sup>|1⟩. Find P(0) and P(1). After a measurement that gives 1, what is the state and what would a second measurement give?</div>
+<div class="step">|α|² = 1/3; |β|² = 2/3 (the phase factor has modulus 1). So P(0) = <b>1/3</b>, P(1) = <b>2/3</b>.</div>
+<div class="step">After getting 1 the state is |1⟩ (collapse); a second measurement gives 1 with probability <b>1</b>.</div>
+<div class="check"><b>Check.</b> 1/3 + 2/3 = 1 ✓ so the state was normalised. Collapse is the same measurement postulate as Module 3, 3.</div>
+{% endcall %}
+{% call box('mis') %}"Superposition means the qubit is in many states until measured and we just don't know which." The standard picture is not ignorance about a hidden value: the superposition itself is the state, and its phases matter for what later gates do. Deck's dimmer-switch picture: the qubit is anywhere between fully off and fully on, but a measurement is always a definite off or on.{% endcall %}
+<div class="next">Next: 1.4 is a first look at entanglement, developed fully in Section 4.</div>
+{% endcall %}
+
+<hr class="div">
+{% call sub('m5-1-4','1.4','Entanglement: a first look') %}
+<div class="intuition"><b>Why it matters.</b> Superposition alone could be imitated by tricks with probabilities; entanglement cannot. Together they are what the deck gives as the source of quantum computing's power.</div>
+{% call box('def') %}Two or more qubits are <b>entangled</b> when their joint state cannot be written as a separate state for each qubit. Each qubit alone has no definite value, but the joint state is well defined and the outcomes are strongly correlated (your slide 25: "the entanglement lies not in the values themselves, but in the correlation between the values"). Entanglement can occur naturally (for example atomic decay) or be created with optical techniques such as parametric down-conversion, with quantum gates such as CNOT, or with laser or microwave control. The deck's coin analogy: two independent fair coins both show heads with probability 1/4; for "linked" coins it is 1/2.{% endcall %}
+{% call box('mis') %}"Measuring one entangled qubit sends a signal to the other." The deck says measuring one qubit "instantly influences" the other. The correlation is real, but each person's own results are still random (50% 0, 50% 1 for the state in 4.2), so the other end learns nothing until the results are compared by ordinary communication. This no-signalling remark is my addition (it is standard quantum mechanics), not from your deck; it is the safe way to phrase an exam answer.{% endcall %}
+<div class="next">Next: Section 2 gives a picture of a single qubit's state.</div>
+{% endcall %}
+{% endcall %}{# end sec 1 #}
+
+<hr class="div">
+{% call sec('m5-2','2','The Bloch sphere') %}
+<p class="muted small">From slides 13 to 16 of your deck and the notes file.</p>
+
+{% call sub('m5-2-1','2.1','What the Bloch sphere is') %}
+<div class="intuition"><b>Why it matters.</b> A qubit state has two complex numbers α and β, which is hard to picture. After removing two redundancies (normalisation and an overall phase), what is left is just two angles, so every qubit state is a point on an ordinary sphere. Gates then become rotations you can see.</div>
+{% call box('def') %}The <b>Bloch sphere</b> is a unit sphere whose surface points correspond one-to-one to the pure states of a single qubit. The <b>north pole is |0⟩</b> (the +z direction) and the <b>south pole is |1⟩</b>. Every other point is a superposition of |0⟩ and |1⟩. The state is drawn as a unit vector from the centre to the surface point. Applying a quantum gate corresponds to <b>rotating</b> this vector.{% endcall %}
+{% call fig('Bloch sphere with the state vector |ψ⟩ at polar angle θ from the +z axis and azimuth φ from the +x axis. <i>Notice</i> the poles are |0⟩ and |1⟩, and the equator (θ = π/2) holds the equal superpositions.') %}
+<svg viewBox="0 0 400 240" width="400" role="img" aria-label="Bloch sphere"><defs><marker id="a21" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#333"/></marker></defs>
+<circle cx="170" cy="120" r="88" fill="#f7f3e6" stroke="#333"/><ellipse cx="170" cy="120" rx="88" ry="28" fill="none" stroke="#777" stroke-dasharray="5 4"/>
+<line x1="170" y1="120" x2="170" y2="20" stroke="#333" marker-end="url(#a21)"/><text x="176" y="20" font-size="13">z</text><text x="150" y="16" font-size="13" fill="#6d28d9">|0⟩</text>
+<line x1="170" y1="120" x2="270" y2="130" stroke="#333" marker-end="url(#a21)"/><text x="274" y="134" font-size="13">y</text>
+<line x1="170" y1="120" x2="115" y2="170" stroke="#333" marker-end="url(#a21)"/><text x="104" y="184" font-size="13">x</text>
+<circle cx="170" cy="208" r="4" fill="#b45309"/><text x="178" y="222" font-size="13" fill="#b45309">|1⟩ (south pole)</text><line x1="170" y1="120" x2="170" y2="204" stroke="#bbb" stroke-dasharray="3 3"/>
+<line x1="170" y1="120" x2="222" y2="64" stroke="#c0392b" stroke-width="3" marker-end="url(#a21)"/><text x="228" y="62" font-size="14" fill="#c0392b">|ψ⟩</text>
+<path d="M170,92 A28,28 0 0 1 186,98" fill="none" stroke="#c0392b"/><text x="186" y="92" font-size="12" fill="#c0392b">θ</text>
+<line x1="222" y1="64" x2="222" y2="116" stroke="#c0392b" stroke-dasharray="3 3"/><line x1="170" y1="120" x2="222" y2="116" stroke="#c0392b" stroke-dasharray="3 3"/><text x="196" y="132" font-size="12" fill="#c0392b">φ</text></svg>
+{% endcall %}
+<table class="t"><tr><th>Direction</th><th>Point</th><th>State</th></tr>
+<tr><td>+z / −z</td><td>north / south pole</td><td>|0⟩ / |1⟩</td></tr><tr><td>+x / −x</td><td>on the equator</td><td>|+⟩ = (|0⟩+|1⟩)/√2 / |−⟩ = (|0⟩−|1⟩)/√2</td></tr><tr><td>+y / −y</td><td>on the equator</td><td>(|0⟩+i|1⟩)/√2 / (|0⟩−i|1⟩)/√2</td></tr></table>
+<p class="small muted">The y states are read off the table in your slide 15 (θ = π/2, φ = ±π/2).</p>
+{% call box('mis') %}"Orthogonal states are at right angles on the Bloch sphere." Orthogonal qubit states are at <i>opposite</i> points (180° apart): |0⟩ and |1⟩ are the two poles, |+⟩ and |−⟩ the two ends of the x axis. The sphere's angle is twice the "Hilbert-space angle" (this follows from the θ/2 in the formula below).{% endcall %}
+<div class="next">Next: 2.2 gives the formula that turns angles into amplitudes.</div>
+{% endcall %}
+
+<hr class="div">
+{% call sub('m5-2-2','2.2','Coordinates, the state formula and special points') %}
+<div class="intuition"><b>Why it matters.</b> This is the formula the exam will ask you to use: convert (θ, φ) to amplitudes and probabilities, and back.</div>
+{% call box('def') %}θ is the <b>polar angle</b> from the +z axis (0 ≤ θ ≤ π) and φ the <b>azimuthal angle</b> from the +x axis in the xy plane (0 ≤ φ &lt; 2π). The general pure qubit state is <b>|ψ⟩ = cos(θ/2)|0⟩ + e<sup>iφ</sup> sin(θ/2)|1⟩</b>, and the Bloch vector is <b>r = (sin θ cos φ, sin θ sin φ, cos θ)</b>. So θ controls how much of |0⟩ against |1⟩ there is, and φ the relative phase between them. Measurement probabilities: <b>P(0) = cos²(θ/2) = (1 + cos θ)/2</b>, <b>P(1) = sin²(θ/2) = (1 − cos θ)/2</b> (the last forms follow from the double-angle identity).{% endcall %}
+<table class="t"><tr><th>(θ, φ)</th><th>State</th><th>Where</th></tr>
+<tr><td>(0, anything)</td><td>|0⟩</td><td>north pole</td></tr><tr><td>(π, anything)</td><td>|1⟩</td><td>south pole</td></tr>
+<tr><td>(π/2, 0)</td><td>(|0⟩ + |1⟩)/√2 = |+⟩</td><td>+x</td></tr><tr><td>(π/2, π)</td><td>(|0⟩ − |1⟩)/√2 = |−⟩</td><td>−x</td></tr>
+<tr><td>(π/2, π/2)</td><td>(|0⟩ + i|1⟩)/√2</td><td>+y</td></tr><tr><td>(π/2, −π/2)</td><td>(|0⟩ − i|1⟩)/√2</td><td>−y</td></tr></table>
+{% call box('ex') %}
+<div class="step"><b>Problem.</b> Find the state, the measurement probabilities and the Bloch vector for θ = 2π/3, φ = π.</div>
+<div class="step">θ/2 = π/3. cos(π/3) = 1/2, sin(π/3) = √3/2 ≈ 0.866, e<sup>iπ</sup> = −1. So |ψ⟩ = <b>(1/2)|0⟩ − (√3/2)|1⟩</b>.</div>
+<div class="step">P(0) = 1/4 = <b>0.25</b>, P(1) = 3/4 = <b>0.75</b>. Bloch vector: (sin 120° cos 180°, sin 120° sin 180°, cos 120°) = <b>(−0.866, 0, −0.5)</b>.</div>
+<div class="check"><b>Check.</b> Norm: 1/4 + 3/4 = 1 ✓. P(0) from the other formula: (1 + cos θ)/2 = (1 − 0.5)/2 = 0.25 ✓. The vector has length √(0.75 + 0 + 0.25) = 1 ✓ (a point on the unit sphere). It lies in the lower half (z &lt; 0), consistent with |1⟩ being more probable ✓.</div>
+{% endcall %}
+{% call box('mis') %}"θ = π gives a different state from θ = 0 only in θ." True, but also note φ is meaningless at the poles (cos(θ/2) or sin(θ/2) is zero there), and an <i>overall</i> phase of the whole state is unobservable, so only the <i>relative</i> phase φ matters.{% endcall %}
+<div class="next">Next: Section 3 moves from one qubit to two.</div>
+{% endcall %}
+{% endcall %}{# end sec 2 #}
+
+<hr class="div">
+{% call sec('m5-3','3','Two-qubit systems') %}
+<p class="muted small">From slides 17 to 24 of your deck. The deck's own words: two qubits are a "bipartite system".</p>
+
+{% call sub('m5-3-1','3.1','The tensor product and the computational basis') %}
+<div class="intuition"><b>Why it matters.</b> This is Module 2, tensor product of vector spaces, applied: two 2-dimensional spaces combine into one 4-dimensional space, not a 2 + 2 = 4 by addition but 2 × 2 = 4 by multiplication. That multiplication is why n qubits need 2ⁿ numbers.</div>
+{% call box('def') %}For qubits A and B the joint space is <b>H_A ⊗ H_B</b> with dimension 2 × 2 = <b>4</b>. The four <b>computational basis states</b> are the tensor products of the single-qubit ones: |0⟩⊗|0⟩ = |00⟩, |0⟩⊗|1⟩ = |01⟩, |1⟩⊗|0⟩ = |10⟩, |1⟩⊗|1⟩ = |11⟩, with column vectors <b>|00⟩ = (1,0,0,0)ᵀ, |01⟩ = (0,1,0,0)ᵀ, |10⟩ = (0,0,1,0)ᵀ, |11⟩ = (0,0,0,1)ᵀ</b>. The first label is qubit A, the second is B. For n qubits the space has dimension <b>2ⁿ</b>. The notation H₍₂₎ means "tensor product of order two" and is <i>not</i> a dimension-2 space (the dimension is still 4).{% endcall %}
+<table class="t"><tr><th>Tensor product</th><th>Short form</th><th>Encoded (slide 21)</th><th>Column vector</th></tr>
+<tr><td>|0⟩⊗|0⟩</td><td>|00⟩</td><td>|0⟩²</td><td>(1,0,0,0)ᵀ</td></tr><tr><td>|0⟩⊗|1⟩</td><td>|01⟩</td><td>|1⟩²</td><td>(0,1,0,0)ᵀ</td></tr>
+<tr><td>|1⟩⊗|0⟩</td><td>|10⟩</td><td>|2⟩²</td><td>(0,0,1,0)ᵀ</td></tr><tr><td>|1⟩⊗|1⟩</td><td>|11⟩</td><td>|3⟩²</td><td>(0,0,0,1)ᵀ</td></tr></table>
+{% call fig('Kronecker product of two column vectors: (a, b)ᵀ ⊗ (c, d)ᵀ = (ac, ad, bc, bd)ᵀ. <i>Notice</i> the order: each entry of the first vector multiplies a whole copy of the second.') %}
+<svg viewBox="0 0 420 110" width="420" role="img" aria-label="Kronecker product"><text x="20" y="62" font-size="16">( a )</text><text x="20" y="82" font-size="16">( b )</text><text x="75" y="72" font-size="18">⊗</text><text x="100" y="62" font-size="16">( c )</text><text x="100" y="82" font-size="16">( d )</text><text x="160" y="72" font-size="18">=</text>
+<text x="190" y="40" font-size="16">( a·c )</text><text x="190" y="62" font-size="16">( a·d )</text><text x="190" y="84" font-size="16">( b·c )</text><text x="190" y="106" font-size="16">( b·d )</text>
+<rect x="15" y="44" width="40" height="22" fill="none" stroke="#0f766e"/><text x="270" y="62" font-size="12" fill="#0f766e">a multiplies the whole</text><text x="270" y="78" font-size="12" fill="#0f766e">second vector, then b does</text></svg>
+{% endcall %}
+{% call box('ex') %}
+<div class="step"><b>Problem.</b> For |ψ₁⟩ = a|0⟩ + b|1⟩ and |ψ₂⟩ = c|0⟩ + d|1⟩, write |ψ₁⟩⊗|ψ₂⟩ in the basis, and evaluate it for |ψ₁⟩ = |+⟩ and |ψ₂⟩ = |0⟩.</div>
+<div class="step">Expanding (as in your slide 23): |ψ⟩ = <b>ac|00⟩ + ad|01⟩ + bc|10⟩ + bd|11⟩</b>.</div>
+<div class="step">For |+⟩⊗|0⟩: a = b = 1/√2, c = 1, d = 0, so |ψ⟩ = (1/√2)|00⟩ + (1/√2)|10⟩ = <b>(|00⟩ + |10⟩)/√2</b>, as the column (1/√2)(1, 0, 1, 0)ᵀ.</div>
+<div class="check"><b>Check.</b> Norm: 1/2 + 1/2 = 1 ✓. The four coefficients satisfy (ac)(bd) = (ad)(bc), here (1/√2)(0) = (0)(1/√2) ✓; this identity will be the test for a product state in 4.1.</div>
+{% endcall %}
+{% call box('mis') %}"|01⟩ and |10⟩ are the same state." The order is the qubit label: |01⟩ has A = 0, B = 1; |10⟩ has A = 1, B = 0. They are orthogonal basis vectors. The tensor product is not commutative as a labelling.{% endcall %}
+<div class="next">Next: 3.2 builds general two-qubit states and measures them.</div>
+{% endcall %}
+
+<hr class="div">
+{% call sub('m5-3-2','3.2','General two-qubit state and measurement probabilities') %}
+<div class="intuition"><b>Why it matters.</b> A general two-qubit state has four complex amplitudes. Most of them are <i>not</i> a simple product of two single-qubit states, which is where entanglement comes from (Section 4).</div>
+{% call box('def') %}A general two-qubit state is <b>|Ψ⟩ = α₀₀|00⟩ + α₀₁|01⟩ + α₁₀|10⟩ + α₁₁|11⟩</b> with <b>|α₀₀|² + |α₀₁|² + |α₁₀|² + |α₁₁|² = 1</b>. Measuring both qubits gives |αᵢⱼ|² for outcome ij. The probability that the first qubit alone reads 0 is |α₀₀|² + |α₀₁|², and then the state collapses to the part with first qubit 0, renormalised.{% endcall %}
+{% call box('ex') %}
+<div class="step"><b>Problem.</b> |Ψ⟩ = (|00⟩ + |01⟩ + |10⟩)/√3. Find the probability of each outcome, the probability that the first qubit is 0, and the state after the first qubit is measured as 0.</div>
+<div class="step">Each present basis state has amplitude 1/√3, so P(00) = P(01) = P(10) = <b>1/3</b> and P(11) = 0.</div>
+<div class="step">First qubit = 0 corresponds to |00⟩ and |01⟩: P = 1/3 + 1/3 = <b>2/3</b>.</div>
+<div class="step">Keep only those terms: (|00⟩ + |01⟩)/√3, then renormalise by dividing by √(2/3): (|00⟩ + |01⟩)/√2 = <b>|0⟩⊗|+⟩</b>.</div>
+<div class="check"><b>Check.</b> 3 × 1/3 = 1 ✓. After collapse the second qubit is |+⟩, so measuring it next gives 0 or 1 with 50% each ✓ (amplitudes 1/√2 each). The renormalisation step is the same as the collapse postulate of Module 3.</div>
+{% endcall %}
+{% call box('mis') %}"Independent measurements: P(first = 0) × P(second = 0) = P(00)." That multiplication rule (the one used on your slide 18 for independent qubits) holds only for <i>product</i> states. For the state above, P(first = 0) × P(second = 0) = (2/3)(2/3) = 4/9, but P(00) = 1/3: so the qubits are not independent (this state is entangled).{% endcall %}
+<div class="next">Next: 3.3 explains the shorthand you will see in the slides.</div>
+{% endcall %}
+
+<hr class="div">
+{% call sub('m5-3-3','3.3','Notation: shorthand, encoded form and the x basis') %}
+<div class="intuition"><b>Why it matters.</b> The slides use several equivalent ways to write the same states. Knowing the dictionary avoids confusion in an exam question that changes notation.</div>
+{% call box('def') %}Equivalent forms of the same basis state: |0⟩⊗|1⟩ = |0⟩|1⟩ = |01⟩ = |1⟩² (the encoded form: the binary string read as an integer, the superscript 2 giving the number of qubits). Subscripts A and B label which space each factor lives in (H_A ⊗ H_B). One can also use other bases: the <b>x basis</b> {|+⟩|+⟩, |+⟩|−⟩, |−⟩|+⟩, |−⟩|−⟩} = {|++⟩, |+−⟩, |−+⟩, |−−⟩} (your slide 22), where |±⟩ = (|0⟩ ± |1⟩)/√2.{% endcall %}
+{% call box('ex') %}
+<div class="step"><b>Problem.</b> Write |2⟩² and |3⟩² as ordinary kets and as columns, and express |++⟩ in the computational basis.</div>
+<div class="step">|2⟩² = |10⟩ = (0,0,1,0)ᵀ; |3⟩² = |11⟩ = (0,0,0,1)ᵀ.</div>
+<div class="step">|++⟩ = |+⟩⊗|+⟩ = (1/2)(|00⟩ + |01⟩ + |10⟩ + |11⟩), a column (1/2)(1,1,1,1)ᵀ.</div>
+<div class="check"><b>Check.</b> Norm: 4 × (1/2)² = 1 ✓. Orthogonality with |+−⟩ = (1/2)(|00⟩ − |01⟩ + |10⟩ − |11⟩): inner product = (1/4)(1 − 1 + 1 − 1) = 0 ✓.</div>
+{% endcall %}
+<div class="next">Next: Section 4 shows which two-qubit states are product states and which are entangled.</div>
+{% endcall %}
+{% endcall %}{# end sec 3 #}
+
+<hr class="div">
+{% call sec('m5-4','4','Entanglement and Bell states') %}
+<p class="muted small">From slides 10 and 25 to 29 of your deck.</p>
+
+{% call sub('m5-4-1','4.1','Product states versus entangled states') %}
+<div class="intuition"><b>Why it matters.</b> Some two-qubit states are just two independent qubits side by side. Others cannot be split. You need a quick test to tell which is which.</div>
+{% call box('def') %}A two-qubit state is a <b>product state</b> if it can be written |ψ₁⟩ ⊗ |ψ₂⟩; otherwise it is <b>entangled</b>. From 3.1, a product state has amplitudes (ac, ad, bc, bd), so <b>α₀₀α₁₁ = α₀₁α₁₀</b>. If this equality <b>fails</b>, the state is entangled. (This test follows directly from the slide-23 expansion; it is my packaging of it, not a statement in the deck.){% endcall %}
+<table class="t"><tr><th>State</th><th>α₀₀α₁₁</th><th>α₀₁α₁₀</th><th>Verdict</th></tr>
+<tr><td>(|00⟩ + |01⟩ + |10⟩ + |11⟩)/2 = |++⟩</td><td>1/4</td><td>1/4</td><td>product</td></tr>
+<tr><td>(|00⟩ + |11⟩)/√2</td><td>1/2</td><td>0</td><td>entangled</td></tr>
+<tr><td>(|00⟩ + |01⟩ + |10⟩)/√3</td><td>0</td><td>1/3</td><td>entangled</td></tr>
+<tr><td>(|00⟩ + |10⟩)/√2 = |+⟩|0⟩</td><td>0</td><td>0</td><td>product</td></tr></table>
+{% call box('ex') %}
+<div class="step"><b>Problem.</b> Show that (|00⟩ + |11⟩)/√2 cannot be written as (a|0⟩ + b|1⟩)⊗(c|0⟩ + d|1⟩).</div>
+<div class="step">A product has amplitudes ac, ad, bc, bd. We need ad = 0 (no |01⟩ term) and bc = 0 (no |10⟩ term), but ac = bd = 1/√2 ≠ 0.</div>
+<div class="step">ad = 0 means a = 0 or d = 0. If a = 0 then ac = 0, a contradiction; if d = 0 then bd = 0, a contradiction. So <b>no such a, b, c, d exist</b>: the state is entangled.</div>
+<div class="check"><b>Check.</b> Same conclusion as the test: α₀₀α₁₁ = 1/2 ≠ α₀₁α₁₀ = 0 ✓.</div>
+{% endcall %}
+{% call box('mis') %}"Any superposition of two basis states is entangled." (|00⟩ + |10⟩)/√2 is a superposition of two basis states, but it factors as |+⟩|0⟩, so it is a product state. Entanglement is about whether the state factors, not how many terms it has.{% endcall %}
+<div class="next">Next: 4.2 lists the four maximally entangled states.</div>
+{% endcall %}
+
+<hr class="div">
+{% call sub('m5-4-2','4.2','The four Bell states') %}
+<div class="intuition"><b>Why it matters.</b> The Bell states are the standard "most entangled" two-qubit states and the examples every question uses. They also form a complete orthonormal basis of the two-qubit space.</div>
+{% call box('def') %}The <b>Bell states</b> (EPR pairs) are
+<b>|Φ⁺⟩ = (|00⟩ + |11⟩)/√2</b>, <b>|Φ⁻⟩ = (|00⟩ − |11⟩)/√2</b>, <b>|Ψ⁺⟩ = (|01⟩ + |10⟩)/√2</b>, <b>|Ψ⁻⟩ = (|01⟩ − |10⟩)/√2</b>.
+They are <b>maximally entangled</b> (the correlation between the qubits is as strong as possible) and form an <b>orthonormal basis</b> of the four-dimensional two-qubit space.{% endcall %}
+<table class="t"><tr><th>State</th><th>Possible results (A,B)</th><th>Each with probability</th><th>Relation</th></tr>
+<tr><td>|Φ⁺⟩</td><td>00, 11</td><td>1/2</td><td>correlated (same)</td></tr><tr><td>|Φ⁻⟩</td><td>00, 11</td><td>1/2</td><td>correlated (same)</td></tr>
+<tr><td>|Ψ⁺⟩</td><td>01, 10</td><td>1/2</td><td>anti-correlated (opposite)</td></tr><tr><td>|Ψ⁻⟩</td><td>01, 10</td><td>1/2</td><td>anti-correlated (opposite)</td></tr></table>
+<p class="small muted">|Φ⁺⟩ and |Φ⁻⟩ differ only by a relative minus sign, as do |Ψ⁺⟩ and |Ψ⁻⟩. In the computational basis the sign cannot be seen, which is why they are distinct states with the same probabilities.</p>
+{% call box('ex') %}
+<div class="step"><b>Problem.</b> Show that |Φ⁺⟩ and |Φ⁻⟩ are orthogonal and normalised, and find what happens if qubit A of |Ψ⁻⟩ is measured as 1.</div>
+<div class="step">⟨Φ⁺|Φ⁻⟩ = (1/2)(⟨00| + ⟨11|)(|00⟩ − |11⟩) = (1/2)(1 − 1) = <b>0</b>. ⟨Φ⁺|Φ⁺⟩ = (1/2)(1 + 1) = <b>1</b>; same for Φ⁻.</div>
+<div class="step">|Ψ⁻⟩ = (|01⟩ − |10⟩)/√2. A = 1 selects the term |10⟩ only, with probability |−1/√2|² = <b>1/2</b>. The state collapses to |10⟩, so B is <b>0</b> with certainty.</div>
+<div class="check"><b>Check.</b> The other outcome A = 0 selects |01⟩ (probability 1/2, then B = 1); 1/2 + 1/2 = 1 ✓. Opposite results, as the table says for a Ψ state ✓.</div>
+{% endcall %}
+{% call box('mis') %}"In a Φ state each qubit already is |0⟩ or |1⟩." Neither qubit alone has a definite value: each one's result is 50/50. Only the <i>pair</i> is definite (equal for Φ, opposite for Ψ).{% endcall %}
+<div class="next">Next: 4.3 collects the uses and the experimental status.</div>
+{% endcall %}
+
+<hr class="div">
+{% call sub('m5-4-3','4.3','Correlations, applications and experiments') %}
+<div class="intuition"><b>Why it matters.</b> "State two applications of Bell states or entanglement" is a standard short question; your deck lists them on slide 29.</div>
+{% call box('def') %}Applications (slide 29): <b>quantum teleportation</b> (transferring an unknown qubit state using entanglement), <b>quantum cryptography / QKD</b> (secure communication), <b>superdense coding</b> (sending 2 classical bits using 1 qubit, with a shared entangled pair), and <b>quantum error correction</b> in some fault-tolerant models. Experimental realisations: photon-polarisation entanglement, trapped ions, superconducting qubits and spin entanglement in quantum dots. Experiments show Bell states <b>violate Bell inequalities</b>, so the correlations are non-local and stronger than any classical correlation.{% endcall %}
+{% call fig('Two measurement stations A and B sharing an entangled pair |Φ⁺⟩. Each local result is random; the pair always matches. <i>Notice</i> the "?" at each station: neither can predict its own result.') %}
+<svg viewBox="0 0 420 120" width="420" role="img" aria-label="Entangled pair"><rect x="20" y="30" width="80" height="50" fill="#e8f1f1" stroke="#0f766e"/><text x="40" y="60" font-size="14">A : ?</text><rect x="320" y="30" width="80" height="50" fill="#e8f1f1" stroke="#0f766e"/><text x="340" y="60" font-size="14">B : ?</text>
+<circle cx="210" cy="55" r="18" fill="#fdf8ee" stroke="#6d28d9" stroke-width="2"/><text x="190" y="59" font-size="12" fill="#6d28d9">|Φ⁺⟩</text><line x1="100" y1="55" x2="190" y2="55" stroke="#6d28d9" stroke-dasharray="5 4"/><line x1="230" y1="55" x2="320" y2="55" stroke="#6d28d9" stroke-dasharray="5 4"/><text x="110" y="110" font-size="13">results: (0,0) or (1,1), each 1/2</text></svg>
+{% endcall %}
+{% call box('try') %}Without looking: list the four Bell states, say which pair are "correlated", and name two applications. Then show that H followed by CNOT on |00⟩ gives |Φ⁺⟩ (that is 6.3).{% endcall %}
+{% endcall %}
+{% endcall %}{# end sec 4 #}
+
+<hr class="div">
+{% call sec('m5-5','5','Single-qubit quantum gates') %}
+<p class="muted small">From slides 21 to 29 and 33 to 53 of your deck, and the notes file. Your deck's scope remark (slide 33): X, Y, Z and H are in the syllabus; S and T are "for information, not in syllabus".</p>
+
+{% call sub('m5-5-1','5.1','What a quantum gate is: unitary and reversible') %}
+<div class="intuition"><b>Why it matters.</b> A quantum gate has to keep probabilities adding to 1 and must not destroy information, or the output would not be a valid state. Both requirements are the single property "unitary", from Module 2.</div>
+{% call box('def') %}A <b>quantum gate</b> is a unitary operator U (U†U = UU† = I) acting on the qubit state vector. Single-qubit gates are 2×2 unitary matrices; two-qubit gates are 4×4. Unitary means the gate (i) <b>preserves the norm</b>, so total probability stays 1, and (ii) is <b>reversible</b>: U† undoes it. A quantum gate has the <b>same number of input and output qubits</b> (the number of qubits is conserved), unlike a classical AND gate with two inputs and one output. Gates are drawn as boxes on a wire carrying the qubit left to right.{% endcall %}
+<table class="t"><tr><th>Gate</th><th>Matrix</th><th>Does</th></tr>
+<tr><td>X (NOT)</td><td>[[0, 1], [1, 0]]</td><td>bit flip |0⟩ ↔ |1⟩</td></tr><tr><td>Y</td><td>[[0, −i], [i, 0]]</td><td>flip with phases ±i</td></tr>
+<tr><td>Z</td><td>[[1, 0], [0, −1]]</td><td>phase flip: |1⟩ → −|1⟩</td></tr><tr><td>H</td><td>(1/√2)[[1, 1], [1, −1]]</td><td>makes superpositions</td></tr></table>
+<p class="small muted">Matrices as in your slide 11 (where i is written j, as in electronics).</p>
+{% call fig('Gate symbols on a qubit wire, as in the deck. <i>Notice</i> inputs and outputs are equal in number.') %}
+<svg viewBox="0 0 420 70" width="420" role="img" aria-label="Gate symbols"><g font-size="14" fill="#fff" text-anchor="middle"><line x1="10" y1="35" x2="410" y2="35" stroke="#333"/>
+<rect x="30" y="20" width="30" height="30" fill="#6d28d9"/><text x="45" y="40">X</text><rect x="120" y="20" width="30" height="30" fill="#6d28d9"/><text x="135" y="40">Y</text><rect x="210" y="20" width="30" height="30" fill="#6d28d9"/><text x="225" y="40">Z</text><rect x="300" y="20" width="30" height="30" fill="#6d28d9"/><text x="315" y="40">H</text></g></svg>
+{% endcall %}
+{% call box('ex') %}
+<div class="step"><b>Problem.</b> Show that the Hadamard matrix is unitary, and show an AND gate cannot be reversed.</div>
+<div class="step">H = (1/√2)[[1,1],[1,−1]] is real and symmetric, so H† = H. H² = (1/2)[[1+1, 1−1],[1−1, 1+1]] = (1/2)[[2,0],[0,2]] = <b>I</b>. So H†H = I ✓ (unitary), and H is its own inverse.</div>
+<div class="step">AND: inputs 00, 01, 10 all give output 0 (your slide 33: "information is being destroyed"). Given only output 0, you cannot tell which input it was, so the gate is <b>not reversible</b>.</div>
+<div class="check"><b>Check.</b> For a unitary U the columns are orthonormal; the two columns of H are (1,1)/√2 and (1,−1)/√2: norms 1, dot product (1 − 1)/2 = 0 ✓.</div>
+{% endcall %}
+{% call box('mis') %}"Any 2×2 matrix is a quantum gate." Only unitary ones. For example [[1,1],[0,1]] would change the norm of |1⟩ (it sends (0,1)ᵀ to (1,1)ᵀ, norm √2) and is not allowed.{% endcall %}
+<div class="next">Next: 5.2 to 5.5 take the four gates in turn.</div>
+{% endcall %}
+
+<hr class="div">
+{% call sub('m5-5-2','5.2','Pauli-X gate (the quantum NOT)') %}
+<div class="intuition"><b>Why it matters.</b> X is the simplest gate and the template for proving what any gate does: write the matrix, write the state, multiply, read off the result (your slide 36 lists exactly these steps).</div>
+{% call box('def') %}<b>X = [[0, 1], [1, 0]]</b>. X|0⟩ = |1⟩ and X|1⟩ = |0⟩ (the quantum NOT, a "bit flip"). On a general state, <b>X(α|0⟩ + β|1⟩) = β|0⟩ + α|1⟩</b>: it swaps the two amplitudes. X² = I. Special states: X|+⟩ = |+⟩ and X|−⟩ = −|−⟩, so |±⟩ are eigenvectors of X with eigenvalues +1 and −1 (slide 24). On the Bloch sphere X is a rotation by π about the x axis.{% endcall %}
+{% call box('ex') %}
+<div class="step"><b>Problem.</b> Prove the action of X on α|0⟩ + β|1⟩, and find X|ψ⟩ for |ψ⟩ = (3/5)|0⟩ + (4i/5)|1⟩.</div>
+<div class="step">X(α, β)ᵀ: row 1 = 0·α + 1·β = β; row 2 = 1·α + 0·β = α. So X|ψ⟩ = (β, α)ᵀ = β|0⟩ + α|1⟩.</div>
+<div class="step">For |ψ⟩: X|ψ⟩ = (4i/5)|0⟩ + (3/5)|1⟩.</div>
+<div class="check"><b>Check.</b> Norm: |4i/5|² + (3/5)² = 16/25 + 9/25 = 1 ✓. Probabilities swapped: P(0) was 0.36, now 0.64 ✓. Eigenvector check: X(1,1)ᵀ/√2 = (1,1)ᵀ/√2 ✓ (eigenvalue +1).</div>
+{% endcall %}
+{% call box('mis') %}"X turns every state into its opposite, including |+⟩." X leaves |+⟩ unchanged; it swaps the <i>amplitudes</i>, and |+⟩ has two equal amplitudes.{% endcall %}
+<div class="next">Next: 5.3 adds phases to the flip.</div>
+{% endcall %}
+
+<hr class="div">
+{% call sub('m5-5-3','5.3','Pauli-Y gate') %}
+<div class="intuition"><b>Why it matters.</b> Y is a flip combined with imaginary phases, which shows why complex numbers appear in quantum computing.</div>
+{% call box('def') %}<b>Y = [[0, −i], [i, 0]]</b> (written with j in your slides). <b>Y|0⟩ = i|1⟩</b> and <b>Y|1⟩ = −i|0⟩</b>. On a general state: <b>Y(α|0⟩ + β|1⟩) = −iβ|0⟩ + iα|1⟩</b>. It is a π rotation about the y axis of the Bloch sphere.{% endcall %}
+{% call box('ex') %}
+<div class="step"><b>Problem.</b> Prove Y|0⟩ = i|1⟩ and find Y|+⟩.</div>
+<div class="step">Y(1, 0)ᵀ = (0·1 + (−i)·0, i·1 + 0·0)ᵀ = (0, i)ᵀ = <b>i|1⟩</b>.</div>
+<div class="step">Y|+⟩ = (Y|0⟩ + Y|1⟩)/√2 = (i|1⟩ − i|0⟩)/√2 = <b>−i(|0⟩ − |1⟩)/√2 = −i|−⟩</b>.</div>
+<div class="check"><b>Check.</b> The result has norm 1 ✓. It moves the +x point to the −x point, with an overall factor −i that has no physical effect ✓. Also Y² = [[(−i)(i), 0],[0, (i)(−i)]] = I ✓.</div>
+{% endcall %}
+{% call box('mis') %}Your slide 38 says "the Y matrix is anti-Hermitian". That is wrong: Y† = Y (the conjugate transpose of [[0,−i],[i,0]] is the same matrix), so Y <b>is</b> Hermitian, like X and Z (see Module 2, 6.1). It is also unitary. These notes use the Hermitian result because it matches the Pauli matrices of Module 2; if your lecturer says otherwise for this module, tell me.{% endcall %}
+<div class="next">Next: 5.4 is the phase-only gate.</div>
+{% endcall %}
+
+<hr class="div">
+{% call sub('m5-5-4','5.4','Pauli-Z gate (phase flip)') %}
+<div class="intuition"><b>Why it matters.</b> Z does nothing to probabilities in the computational basis, yet it changes the state. It is the cleanest example of a gate acting on phase.</div>
+{% call box('def') %}<b>Z = [[1, 0], [0, −1]]</b>. Z|0⟩ = |0⟩ and Z|1⟩ = −|1⟩. On a general state: <b>Z(α|0⟩ + β|1⟩) = α|0⟩ − β|1⟩</b>: it keeps the amplitude of |0⟩ and adds a minus sign (a π phase) to |1⟩. It is a π rotation about the z axis. In the x basis Z acts as a flip: Z|+⟩ = |−⟩ and Z|−⟩ = |+⟩.{% endcall %}
+{% call box('ex') %}
+<div class="step"><b>Problem.</b> Find Z|+⟩ and the measurement probabilities before and after.</div>
+<div class="step">Z|+⟩ = (Z|0⟩ + Z|1⟩)/√2 = (|0⟩ − |1⟩)/√2 = <b>|−⟩</b>.</div>
+<div class="step">Before: P(0) = P(1) = 1/2. After: P(0) = P(1) = 1/2. The probabilities do not change, but the state does.</div>
+<div class="check"><b>Check.</b> Apply H to each: H|+⟩ = |0⟩ but H|−⟩ = |1⟩, so a final measurement gives 0 with certainty for one and 1 with certainty for the other: the hidden phase becomes visible ✓ (this uses 5.5).</div>
+{% endcall %}
+{% call box('mis') %}"A phase change is not a real change." A <i>relative</i> phase between |0⟩ and |1⟩ (the φ on the Bloch sphere) is physical; only the overall phase of the whole state is unobservable.{% endcall %}
+<div class="next">Next: 5.5 makes superpositions.</div>
+{% endcall %}
+
+<hr class="div">
+{% call sub('m5-5-5','5.5','Hadamard gate') %}
+<div class="intuition"><b>Why it matters.</b> H is the gate that creates superposition. Quantum algorithms usually begin by applying H, and H followed by CNOT makes entanglement (Section 6).</div>
+{% call box('def') %}<b>H = (1/√2)[[1, 1], [1, −1]]</b>. <b>H|0⟩ = (|0⟩ + |1⟩)/√2 = |+⟩</b>, <b>H|1⟩ = (|0⟩ − |1⟩)/√2 = |−⟩</b>. On a general state: <b>H(α|0⟩ + β|1⟩) = [(α + β)|0⟩ + (α − β)|1⟩]/√2</b>. H² = I (reversible: applying it twice returns the original state). On the Bloch sphere it takes the north pole |0⟩ to the equator point +x.{% endcall %}
+{% call box('ex') %}
+<div class="step"><b>Problem.</b> Apply H to |ψ⟩ = (3/5)|0⟩ + (4/5)|1⟩, find the measurement probabilities, then apply H again.</div>
+<div class="step">α + β = 7/5, α − β = −1/5. So H|ψ⟩ = (7/(5√2))|0⟩ − (1/(5√2))|1⟩ ≈ <b>0.990|0⟩ − 0.141|1⟩</b>.</div>
+<div class="step">P(0) = 49/50 = <b>0.98</b>, P(1) = 1/50 = <b>0.02</b>.</div>
+<div class="step">Apply H again: new α′ = (0.990 − 0.141)/√2 = 0.6 and β′ = (0.990 + 0.141)/√2 = 0.8, i.e. (3/5)|0⟩ + (4/5)|1⟩, the original state.</div>
+<div class="check"><b>Check.</b> 0.98 + 0.02 = 1 ✓; H² = I confirmed by returning to the start ✓. Also H|−⟩ = (|+⟩ − |−⟩)/√2 = |1⟩ ✓.</div>
+{% endcall %}
+{% call box('mis') %}"H|0⟩ is a random bit, so H is a coin flip." Applying H once and measuring is a fair coin, but applying H <i>twice</i> returns |0⟩ with certainty. The two amplitude paths interfere; a classical random coin could never do that.{% endcall %}
+<div class="next">Next: 5.6 sees all of these as rotations.</div>
+{% endcall %}
+
+<hr class="div">
+{% call sub('m5-5-6','5.6','Gates as rotations on the Bloch sphere') %}
+<div class="intuition"><b>Why it matters.</b> Instead of multiplying matrices you can predict a gate's effect by picturing a rotation of the Bloch vector.</div>
+{% call box('def') %}On the Bloch sphere (your slides 26 and 32): <b>X, Y, Z</b> are rotations by <b>π</b> about the x, y, z axes; <b>H</b> takes |0⟩ to |+⟩ on the equator. The deck also mentions two other single-qubit gates, <b>for information only (marked "not in syllabus")</b>: the <b>S (phase) gate</b> = [[1, 0], [0, i]], a quarter turn (90°) about z, and the <b>T (π/8) gate</b> = [[1, 0], [0, e<sup>iπ/4</sup>]], an eighth turn (45°) about z.{% endcall %}
+<table class="t"><tr><th>Gate</th><th>|0⟩ →</th><th>|1⟩ →</th><th>|+⟩ →</th><th>Rotation</th></tr>
+<tr><td>X</td><td>|1⟩</td><td>|0⟩</td><td>|+⟩</td><td>π about x</td></tr><tr><td>Y</td><td>i|1⟩</td><td>−i|0⟩</td><td>−i|−⟩</td><td>π about y</td></tr>
+<tr><td>Z</td><td>|0⟩</td><td>−|1⟩</td><td>|−⟩</td><td>π about z</td></tr><tr><td>H</td><td>|+⟩</td><td>|−⟩</td><td>|0⟩</td><td>π about the axis halfway between x and z</td></tr></table>
+<p class="small muted">The H axis is my addition to complete the table; the deck only says H takes |0⟩ to the equator along x. All entries come from the matrix products in 5.2 to 5.5.</p>
+{% call box('ex') %}
+<div class="step"><b>Problem.</b> Starting at |0⟩, predict the result of H, then Z, then H, and confirm with matrices.</div>
+<div class="step">H: |0⟩ → |+⟩ (+x). Z: rotation by π about z sends +x to −x, i.e. |+⟩ → |−⟩. H: |−⟩ → |1⟩ (south pole).</div>
+<div class="step">Matrices: H|0⟩ = |+⟩; Z|+⟩ = |−⟩; H|−⟩ = |1⟩. So the circuit sends |0⟩ to <b>|1⟩</b>, the same as X|0⟩.</div>
+<div class="check"><b>Check.</b> HZH = (1/2)[[1,1],[1,−1]]·[[1,0],[0,−1]]·[[1,1],[1,−1]] = (1/2)[[1,−1],[1,1]]·[[1,1],[1,−1]] = (1/2)[[0,2],[2,0]] = X ✓.</div>
+{% endcall %}
+<div class="next">Next: Section 6 uses two qubits at once.</div>
+{% endcall %}
+{% endcall %}{# end sec 5 #}
+
+<hr class="div">
+{% call sec('m5-6','6','Two-qubit gates and generating entanglement') %}
+<p class="muted small">From slides 30 to 35 and 54 to 60 of your deck and the notes file.</p>
+
+{% call sub('m5-6-1','6.1','The CNOT gate') %}
+<div class="intuition"><b>Why it matters.</b> CNOT is the standard two-qubit gate: it makes one qubit's value depend on another. With single-qubit gates it builds any computation, and it is how entanglement is produced.</div>
+{% call box('def') %}<b>CNOT (controlled-NOT)</b> has a <b>control</b> qubit (first) and a <b>target</b> qubit (second). If the control is |1⟩ it applies X to the target; if the control is |0⟩ it leaves the target alone. The control is not changed. Classical rule: target output = control ⊕ target (XOR). Action: <b>|00⟩ → |00⟩, |01⟩ → |01⟩, |10⟩ → |11⟩, |11⟩ → |10⟩</b>, i.e. |c, t⟩ → |c, c ⊕ t⟩. CNOT is reversible: applying it twice returns the original state.{% endcall %}
+{% call fig('CNOT symbol (dot on the control wire, ⊕ on the target wire) and its truth table. <i>Notice</i> only the rows with control = 1 change the target.') %}
+<svg viewBox="0 0 420 130" width="420" role="img" aria-label="CNOT symbol and truth table"><line x1="20" y1="35" x2="170" y2="35" stroke="#333"/><line x1="20" y1="95" x2="170" y2="95" stroke="#333"/><circle cx="95" cy="35" r="6" fill="#333"/><line x1="95" y1="35" x2="95" y2="83" stroke="#333"/><circle cx="95" cy="95" r="12" fill="#fdf8ee" stroke="#333"/><line x1="83" y1="95" x2="107" y2="95" stroke="#333"/><line x1="95" y1="83" x2="95" y2="107" stroke="#333"/><text x="8" y="30" font-size="11">c</text><text x="8" y="90" font-size="11">t</text>
+<g font-size="12"><text x="220" y="25">in (c t)</text><text x="300" y="25">out (c t)</text><text x="225" y="50">0 0</text><text x="310" y="50">0 0</text><text x="225" y="70">0 1</text><text x="310" y="70">0 1</text><text x="225" y="90">1 0</text><text x="310" y="90" fill="#c0392b">1 1</text><text x="225" y="110">1 1</text><text x="310" y="110" fill="#c0392b">1 0</text></g></svg>
+{% endcall %}
+{% call box('ex') %}
+<div class="step"><b>Problem.</b> Find CNOT acting on (α|0⟩ + β|1⟩)⊗|0⟩ and on |+⟩⊗|1⟩.</div>
+<div class="step">(α|0⟩ + β|1⟩)|0⟩ = α|00⟩ + β|10⟩. CNOT: |00⟩ → |00⟩, |10⟩ → |11⟩. Result: <b>α|00⟩ + β|11⟩</b>.</div>
+<div class="step">|+⟩|1⟩ = (|01⟩ + |11⟩)/√2. CNOT: |01⟩ → |01⟩, |11⟩ → |10⟩. Result: <b>(|01⟩ + |10⟩)/√2 = |Ψ⁺⟩</b>.</div>
+<div class="check"><b>Check.</b> Norms preserved ✓. The first result for α = β = 1/√2 is |Φ⁺⟩, the Bell state that 6.3 builds ✓. Both outputs are entangled (for the first, α₀₀α₁₁ = αβ ≠ 0 = α₀₁α₁₀ when αβ ≠ 0).</div>
+{% endcall %}
+{% call box('mis') %}"The control is unchanged, so CNOT does nothing to it." On a basis state the control is unchanged. When the control is in a superposition, control and target become correlated, so neither qubit has a state of its own any more: that is entanglement.{% endcall %}
+<div class="next">Next: 6.2 does the CNOT calculation in matrix form.</div>
+{% endcall %}
+
+<hr class="div">
+{% call sub('m5-6-2','6.2','The CNOT matrix and a matrix calculation') %}
+<div class="intuition"><b>Why it matters.</b> The slide-57 example is the exam format: write the 4×4 matrix, write the ket as a column, multiply, convert back.</div>
+{% call box('def') %}In the basis order |00⟩, |01⟩, |10⟩, |11⟩: <b>CNOT = [[1,0,0,0],[0,1,0,0],[0,0,0,1],[0,0,1,0]]</b>. Each column is the image of a basis state: column 3 (input |10⟩) is |11⟩ = (0,0,0,1)ᵀ, column 4 is |10⟩. It is a permutation matrix, so it is real, unitary and its own inverse. In Module 2 language, CNOT = |0⟩⟨0| ⊗ I + |1⟩⟨1| ⊗ X (my addition, linking to outer and tensor products: "if control is 0 do nothing, if 1 do X").{% endcall %}
+{% call box('ex') %}
+<div class="step"><b>Problem.</b> Using the matrix, find CNOT|10⟩ (slide 57), then CNOT applied to (|00⟩ + |10⟩)/√2.</div>
+<div class="step">|10⟩ = (0,0,1,0)ᵀ. Rows give: row 1 = 0, row 2 = 0, row 3 = 0·0 + 0·0 + 0·1 + 1·0 = 0, row 4 = 0·0 + 0·0 + 1·1 + 0·0 = 1. Result (0,0,0,1)ᵀ = <b>|11⟩</b>.</div>
+<div class="step">(|00⟩ + |10⟩)/√2 = (1/√2)(1,0,1,0)ᵀ. Multiply: row 1 → 1, row 2 → 0, row 3 → 0, row 4 → 1. Result (1/√2)(1,0,0,1)ᵀ = <b>(|00⟩ + |11⟩)/√2</b>.</div>
+<div class="check"><b>Check.</b> CNOT² = I: applying the matrix to (0,0,0,1)ᵀ gives (0,0,1,0)ᵀ = |10⟩ ✓. The second answer matches the action table (|00⟩ → |00⟩, |10⟩ → |11⟩) ✓.</div>
+{% endcall %}
+{% call box('mis') %}"Row times row." Matrix times column: multiply each matrix row entry by entry with the single column and add. The basis order matters: the third entry is |10⟩, not |01⟩.{% endcall %}
+<div class="next">Next: 6.3 builds a Bell state from |00⟩.</div>
+{% endcall %}
+
+<hr class="div">
+{% call sub('m5-6-3','6.3','Creating entanglement: H then CNOT') %}
+<div class="intuition"><b>Why it matters.</b> This is the circuit in your deck (slide 35 and 59 to 60): H makes the superposition and CNOT copies the choice into the target, turning two independent qubits into one entangled pair.</div>
+{% call box('def') %}Start with |00⟩. (1) Apply H to the first qubit: |00⟩ → (|0⟩ + |1⟩)|0⟩/√2 = (|00⟩ + |10⟩)/√2. (2) Apply CNOT (control = first qubit, target = second): |00⟩ → |00⟩ and |10⟩ → |11⟩. Result: <b>(|00⟩ + |11⟩)/√2 = |Φ⁺⟩</b>. Without the Hadamard (control not in superposition) CNOT cannot entangle: CNOT|10⟩ = |11⟩ is still a product state.{% endcall %}
+{% call fig('Bell-state circuit: H on the top wire, then CNOT with the top wire as control; the state at each stage is shown below. <i>Notice</i> the state is still a product after H and entangled only after CNOT.') %}
+<svg viewBox="0 0 460 140" width="460" role="img" aria-label="Bell circuit"><line x1="30" y1="40" x2="440" y2="40" stroke="#333"/><line x1="30" y1="100" x2="440" y2="100" stroke="#333"/><text x="2" y="44" font-size="13">|0⟩</text><text x="2" y="104" font-size="13">|0⟩</text>
+<rect x="90" y="25" width="30" height="30" fill="#6d28d9"/><text x="99" y="46" font-size="14" fill="#fff">H</text><circle cx="230" cy="40" r="6" fill="#333"/><line x1="230" y1="40" x2="230" y2="88" stroke="#333"/><circle cx="230" cy="100" r="12" fill="#fdf8ee" stroke="#333"/><line x1="218" y1="100" x2="242" y2="100" stroke="#333"/><line x1="230" y1="88" x2="230" y2="112" stroke="#333"/>
+<line x1="150" y1="10" x2="150" y2="125" stroke="#c0392b" stroke-dasharray="4 3"/><line x1="290" y1="10" x2="290" y2="125" stroke="#c0392b" stroke-dasharray="4 3"/><text x="30" y="128" font-size="12" fill="#c0392b">|00⟩</text><text x="152" y="128" font-size="12" fill="#c0392b">(|00⟩+|10⟩)/√2</text><text x="294" y="128" font-size="12" fill="#c0392b">(|00⟩+|11⟩)/√2</text></svg>
+{% endcall %}
+<table class="t"><tr><th>Input</th><th>After H on qubit 1</th><th>After CNOT</th><th>Bell state</th></tr>
+<tr><td>|00⟩</td><td>(|00⟩ + |10⟩)/√2</td><td>(|00⟩ + |11⟩)/√2</td><td>|Φ⁺⟩</td></tr><tr><td>|01⟩</td><td>(|01⟩ + |11⟩)/√2</td><td>(|01⟩ + |10⟩)/√2</td><td>|Ψ⁺⟩</td></tr>
+<tr><td>|10⟩</td><td>(|00⟩ − |10⟩)/√2</td><td>(|00⟩ − |11⟩)/√2</td><td>|Φ⁻⟩</td></tr><tr><td>|11⟩</td><td>(|01⟩ − |11⟩)/√2</td><td>(|01⟩ − |10⟩)/√2</td><td>|Ψ⁻⟩</td></tr></table>
+<p class="small muted">Your deck shows only the |00⟩ case. The other three rows were worked out with the same two steps; each gives a different Bell state, so the circuit maps the computational basis onto the Bell basis.</p>
+{% call box('ex') %}
+<div class="step"><b>Problem.</b> Show by matrices that CNOT·(H⊗I)|00⟩ = |Φ⁺⟩.</div>
+<div class="step">H⊗I acting on |00⟩ = (1,0,0,0)ᵀ gives (1/√2)(1, 0, 1, 0)ᵀ (qubit 1 in |+⟩, qubit 2 still |0⟩).</div>
+<div class="step">CNOT on that column swaps entries 3 and 4: (1/√2)(1, 0, 0, 1)ᵀ = <b>(|00⟩ + |11⟩)/√2</b>.</div>
+<div class="check"><b>Check.</b> Entanglement test: α₀₀α₁₁ = 1/2 ≠ α₀₁α₁₀ = 0 ✓. Measured, it gives 00 or 11 with probability 1/2 each and never 01 or 10 ✓.</div>
+{% endcall %}
+{% call box('mis') %}"CNOT first, then H gives the same." The order matters. CNOT on |00⟩ does nothing (control 0), and H on qubit 1 then gives the product state (|00⟩ + |10⟩)/√2, which is not entangled. In a circuit diagram the leftmost gate acts first, though in the matrix product it is written rightmost.{% endcall %}
+<div class="next">Next: 6.4 lists the rest of the gate set, for information only.</div>
+{% endcall %}
+
+<hr class="div">
+{% call sub('m5-6-4','6.4','Other multi-qubit gates (for information)') %}
+<div class="intuition"><b>Why it matters.</b> Your separate notes file also lists SWAP, controlled-Z and Toffoli. Your slide deck draws the line at X, Y, Z, H and CNOT, so treat this as optional reading.</div>
+{% call box('def') %}<b>SWAP</b> exchanges two qubits: |01⟩ ↔ |10⟩, with |00⟩ and |11⟩ unchanged; it equals three CNOTs (alternating control and target). <b>Controlled-Z</b> = diag(1, 1, 1, −1): applies Z to the target if the control is |1⟩, so only |11⟩ → −|11⟩. <b>Toffoli (CCNOT)</b> has two controls and one target and flips the target only if both controls are 1: |110⟩ ↔ |111⟩, all other basis states unchanged.{% endcall %}
+{% call box('mis') %}The notes file's SWAP action lines (as extracted from the PDF) read |10⟩ → |11⟩ and |11⟩ → |10⟩. That is the <i>CNOT</i> table, not SWAP: SWAP sends |10⟩ → |01⟩ and leaves |11⟩ alone. Its Toffoli truth table also appears to list |100⟩ twice and omit |000⟩. Use the definitions above.{% endcall %}
+{% endcall %}
+{% endcall %}{# end sec 6 #}
+
+<hr class="div">
+<section id="m5-check"><h2>Self-test checklist</h2>
+<p class="muted small">Tick only what you can do unaided. Ticks are kept in this browser.</p>
+<ul class="checklist" data-key="m5-check">
+<li><label><input type="checkbox"> Compare a bit and a qubit and state the normalisation condition |α|² + |β|² = 1.</label></li>
+<li><label><input type="checkbox"> Write |0⟩, |1⟩ and a general qubit as column vectors, and find measurement probabilities.</label></li>
+<li><label><input type="checkbox"> Give the Bloch-sphere state formula and convert (θ, φ) to amplitudes, probabilities and a Bloch vector.</label></li>
+<li><label><input type="checkbox"> Form the tensor product of two qubits and write the four two-qubit basis states as columns.</label></li>
+<li><label><input type="checkbox"> Find outcome probabilities and the collapsed state for a general two-qubit state.</label></li>
+<li><label><input type="checkbox"> Decide whether a two-qubit state is a product or an entangled state.</label></li>
+<li><label><input type="checkbox"> Write the four Bell states and say which are correlated and which anti-correlated.</label></li>
+<li><label><input type="checkbox"> Explain why quantum gates must be unitary and reversible.</label></li>
+<li><label><input type="checkbox"> Prove the action of X, Y, Z and H on a general qubit using matrix multiplication.</label></li>
+<li><label><input type="checkbox"> Describe X, Y, Z and H as rotations on the Bloch sphere.</label></li>
+<li><label><input type="checkbox"> Write the CNOT truth table and matrix, and apply it to a ket by matrix multiplication.</label></li>
+<li><label><input type="checkbox"> Build |Φ⁺⟩ from |00⟩ with H and CNOT, showing the state at each step.</label></li>
+</ul></section>
+</div>
+<script>
+(function(){
+  document.querySelectorAll('.checklist').forEach(function(ul){
+    var key='qm_check_'+ul.dataset.key, saved={};
+    try{ saved=JSON.parse(localStorage.getItem(key)||'{}'); }catch(e){}
+    ul.querySelectorAll('input').forEach(function(cb,i){
+      cb.checked=!!saved[i];
+      cb.addEventListener('change',function(){ saved[i]=cb.checked; try{ localStorage.setItem(key,JSON.stringify(saved)); }catch(e){} });
+    });
+  });
+})();
+</script>
+{% endblock %}

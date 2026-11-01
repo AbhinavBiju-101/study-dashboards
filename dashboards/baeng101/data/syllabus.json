@@ -1,0 +1,416 @@
+[
+ {
+  "num": 3,
+  "title": "Module 3 · Reading",
+  "desc": "Analysing definitions, drawing inferences from scientific texts, and reading a research article critically.",
+  "accent": "#2b5f7a",
+  "accent_dk": "#1d4459",
+  "page": 3,
+  "topics": [
+   {
+    "label": "Part 1: Analysing Definitions",
+    "summary": "Types of definitions, the eight methods of expansion, and how to spot faulty definitions.",
+    "subtopics": [
+     {
+      "id": "s0",
+      "label": "1.1 What Is a Definition?",
+      "summary": "A definition fixes a term's meaning, scope and boundaries; the type must suit purpose and audience.",
+      "page": 3,
+      "anchor": "n-d1",
+      "count": 10
+     },
+     {
+      "id": "s1",
+      "label": "1.2 Formal, Informal, Operational and Negative Definitions (*Analysing Definitions* deck)",
+      "summary": "Formal = term + class + distinguishing features; informal = plain words; operational = what is measured + threshold; negative = what it is not (weak alone).",
+      "page": 3,
+      "anchor": "n-d2",
+      "count": 12
+     },
+     {
+      "id": "s2",
+      "label": "1.3 Expanded Definitions: The Key Focus and Methods of Expanding Definitions",
+      "summary": "Extended definitions combine 2–4 expansion methods (function, structure, process, analogy, example, history, comparison, etymology).",
+      "page": 3,
+      "anchor": "n-d3",
+      "count": 11
+     },
+     {
+      "id": "s3",
+      "label": "1.4 Extended Definition Breakdown: Artificial Intelligence (Parts 1 and 2)",
+      "summary": "The AI example expands one simple definition through all eight methods, each answering a different question.",
+      "page": 3,
+      "anchor": "n-d3w",
+      "count": 10
+     },
+     {
+      "id": "s4",
+      "label": "1.5 Exam Tips and Classroom Application",
+      "summary": "Score by opening formally, using 3–4 methods, avoiding circular wording and keeping the flow smooth.",
+      "page": 3,
+      "anchor": "n-d5",
+      "count": 10
+     },
+     {
+      "id": "s5",
+      "label": "1.6 The 8 Types of Definitions, and Lexical vs Stipulative (*Module 3* deck)",
+      "summary": "The Module 3 deck lists eight types (lexical, stipulative, operational, conceptual, extensional, synonym, ostensive, genus & difference).",
+      "page": 3,
+      "anchor": "n-d6",
+      "count": 12
+     },
+     {
+      "id": "s6",
+      "label": "1.7 Operational Definitions and Descriptive Definitions",
+      "summary": "Operational definitions make ideas measurable and repeatable; descriptive ones list observable features without prescribing.",
+      "page": 3,
+      "anchor": "n-d2o",
+      "count": 10
+     },
+     {
+      "id": "s7",
+      "label": "1.8 Simple vs Extended Definitions, and Methods for Expanding a Definition (*Module 3* deck)",
+      "summary": "Simple definitions (class + characteristics) suit familiar readers; extended ones suit complex or contested concepts.",
+      "page": 3,
+      "anchor": "n-d8",
+      "count": 13
+     },
+     {
+      "id": "s8",
+      "label": "1.9 Definition Pitfalls: A Hall of Shame",
+      "summary": "Four faults: circular, too broad, too narrow, figurative only. Aim for one term, one clear meaning.",
+      "page": 3,
+      "anchor": "n-d4",
+      "count": 10
+     }
+    ]
+   },
+   {
+    "label": "Part 2: Reading Comprehension and Drawing Inferences",
+    "summary": "Surface vs deep reading, hedging, limitations and the four traps in research texts.",
+    "subtopics": [
+     {
+      "id": "s9",
+      "label": "2.1 Surface Reading vs Deep Reading",
+      "summary": "Surface reading grasps the words; deep reading grasps what the text implies, assumes and avoids saying.",
+      "page": 3,
+      "anchor": "n-i1",
+      "count": 10
+     },
+     {
+      "id": "s10",
+      "label": "2.2 How to Draw Inferences Like a Pro",
+      "summary": "An inference is a reasoned conclusion from evidence: hunt hedges, read limitations, challenge the data, bring context.",
+      "page": 3,
+      "anchor": "n-i2",
+      "count": 10
+     },
+     {
+      "id": "s11",
+      "label": "2.3 Common Traps When Reading Research",
+      "summary": "Four traps: correlation as causation, cherry-picked data, jargon hiding weak claims, overgeneralisation.",
+      "page": 3,
+      "anchor": "n-i3",
+      "count": 10
+     }
+    ]
+   },
+   {
+    "label": "Part 3: The Research Article — Decoded",
+    "summary": "IMRaD and the article map, plus abstracts, introductions and reading order.",
+    "subtopics": [
+     {
+      "id": "s12",
+      "label": "3.1 IMRaD: The Universal Language of Science",
+      "summary": "IMRaD: Introduction (problem), Methods (repeatable), Results (data only), Discussion (meaning).",
+      "page": 3,
+      "anchor": "n-s0",
+      "count": 10
+     },
+     {
+      "id": "s13",
+      "label": "3.2 Anatomy of a Research Article: The Full Map (Parts 1 and 2), with the Recap's Section Table",
+      "summary": "Full article map from title and abstract to references, each part with a distinct job.",
+      "page": 3,
+      "anchor": "n-s1",
+      "count": 6
+     },
+     {
+      "id": "s14",
+      "label": "3.3 How an Introduction Actually Works",
+      "summary": "Introductions make three moves: establish the territory, establish the niche (the gap), occupy the niche.",
+      "page": 3,
+      "anchor": "n-s3",
+      "count": 10
+     },
+     {
+      "id": "s15",
+      "label": "3.4 The Sixty-Second Abstract Test",
+      "summary": "An abstract answers what, why, how and so what, in order; vague methods are a warning sign.",
+      "page": 3,
+      "anchor": "n-s2",
+      "count": 10
+     },
+     {
+      "id": "s16",
+      "label": "3.5 Read in This Order, Not That One",
+      "summary": "Read abstract, conclusion, figures, methods first; introduction and discussion next; references last.",
+      "page": 3,
+      "anchor": "n-s4",
+      "count": 10
+     }
+    ]
+   },
+   {
+    "label": "Part 4: Analysing a Research Article",
+    "summary": "Critical-reading checklist, empirical vs humanities articles, and the annotate-and-return activity.",
+    "subtopics": [
+     {
+      "id": "s17",
+      "label": "4.1 The Critical Reading Checklist",
+      "summary": "Six checks: specific question, fitting method, unspun results, discussion follows results, honest limitations, supported claims.",
+      "page": 3,
+      "anchor": "n-s5",
+      "count": 11
+     },
+     {
+      "id": "s18",
+      "label": "4.2 Not Every Article Is IMRaD",
+      "summary": "IMRaD is the empirical-science convention; humanities articles are thematic and may state the thesis late.",
+      "page": 3,
+      "anchor": "n-s6",
+      "count": 10
+     },
+     {
+      "id": "s19",
+      "label": "4.3 Activity: Read, Annotate, Return, and The One Thing to Remember",
+      "summary": "Five layered tasks on one article: label structure, define terms, draw inferences, separate claim from data, defend one sentence.",
+      "page": 3,
+      "anchor": "n-s7",
+      "count": 10
+     }
+    ]
+   },
+   {
+    "label": "Module 3 Worksheet A — CAT-2 Preparation (Open Book)",
+    "summary": "Open-book practice on two passages, definitions, article sections and abstract writing.",
+    "subtopics": [
+     {
+      "id": "s20",
+      "label": "Section A: Passage A — Reflective Roof Coatings in Informal Housing",
+      "summary": "Passage A (roof coatings): state findings, infer, spot what was not measured, compare hedged and overclaimed conclusions.",
+      "page": 3,
+      "anchor": "n-i",
+      "count": 12
+     },
+     {
+      "id": "s21",
+      "label": "Section B: Passage B — Evening Screen Use and Sleep Quality",
+      "summary": "Passage B (screen use and sleep): operational definition via PSQI, unclear direction, unreliable self-estimates, other factors.",
+      "page": 3,
+      "anchor": "n-i",
+      "count": 10
+     },
+     {
+      "id": "s22",
+      "label": "Section C: Working with Definitions",
+      "summary": "Sentence definitions with class and features, stipulative and operational definitions, fixing faults, expanding with three methods.",
+      "page": 3,
+      "anchor": "n-d",
+      "count": 10
+     },
+     {
+      "id": "s23",
+      "label": "Section D: Parts of a Research Article",
+      "summary": "Place extracts by wording, not topic: literature review, methods, results, discussion, conclusion.",
+      "page": 3,
+      "anchor": "n-s",
+      "count": 10
+     },
+     {
+      "id": "s24",
+      "label": "Section E: Putting It Together",
+      "summary": "Putting it together: write an abstract under 70 words and explain what a discussion or conclusion paragraph does that results do not.",
+      "page": 3,
+      "anchor": "n-s2",
+      "count": 5
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "num": 4,
+  "title": "Module 4 · Writing",
+  "desc": "Review papers, the literature review, and APA / IEEE referencing.",
+  "accent": "#a4432c",
+  "accent_dk": "#7d3220",
+  "page": 4,
+  "topics": [
+   {
+    "label": "Review Papers & Literature Review",
+    "summary": "Five review types, how to tell them apart, and how to write a literature review.",
+    "subtopics": [
+     {
+      "id": "s25",
+      "label": "5.1 What Even IS a Review Paper? and Anatomy of a Review Paper",
+      "summary": "A review synthesises existing research; skeleton runs from abstract to thematic body, discussion, conclusion and references.",
+      "page": 4,
+      "anchor": "n-r",
+      "count": 10
+     },
+     {
+      "id": "s26",
+      "label": "5.2 The 5 Types of Reviews and Side-by-Side Showdown (with the Recap's Type Table)",
+      "summary": "Five review types (narrative, systematic, meta-analysis, scoping, critical) compared by scope, method and best use.",
+      "page": 4,
+      "anchor": "n-r1",
+      "count": 5
+     },
+     {
+      "id": "s27",
+      "label": "5.3 Type 1: Narrative Review and Type 2: Systematic Review",
+      "summary": "Narrative: broad, author-driven, biased risk. Systematic: strict reproducible protocol from identification to inclusion.",
+      "page": 4,
+      "anchor": "n-r2",
+      "count": 12
+     },
+     {
+      "id": "s28",
+      "label": "5.4 Type 3: Meta-Analysis and Type 4: Scoping Review",
+      "summary": "Meta-analysis pools comparable studies into a combined effect size; scoping maps how much research exists and the gaps.",
+      "page": 4,
+      "anchor": "n-r4",
+      "count": 12
+     },
+     {
+      "id": "s29",
+      "label": "5.5 Type 5: Critical Review",
+      "summary": "Critical reviews judge the quality and validity of literature; the point is judgement, not coverage.",
+      "page": 4,
+      "anchor": "n-r6",
+      "count": 10
+     },
+     {
+      "id": "s30",
+      "label": "5.6 The Literature Review: Your Research GPS and the 5-Step Formula",
+      "summary": "A literature review is a critical conversation: define scope, search, evaluate, synthesise by theme, write and cite in one style.",
+      "page": 4,
+      "anchor": "n-l",
+      "count": 11
+     }
+    ]
+   },
+   {
+    "label": "Referencing",
+    "summary": "Why referencing matters; APA vs IEEE for journal articles and books.",
+    "subtopics": [
+     {
+      "id": "s31",
+      "label": "5.7 Referencing: Why It's Not Optional, and the 5 Referencing Styles",
+      "summary": "Plagiarism costs marks and record; citation gives credit. Five styles exist: APA, IEEE, MLA, Chicago, Harvard.",
+      "page": 4,
+      "anchor": "n-c",
+      "count": 11
+     },
+     {
+      "id": "s32",
+      "label": "5.8 APA vs IEEE, MLA/Chicago/Harvard, In-Text Citations, and Reference Lists vs Bibliographies",
+      "summary": "APA is author-date, IEEE numbered; a reference list holds cited sources, a bibliography all consulted.",
+      "page": 4,
+      "anchor": "n-c2",
+      "count": 11
+     },
+     {
+      "id": "s33",
+      "label": "5.9 Citation Cheat Sheet: One Example, Five Styles, and One Journal Article, Five Styles",
+      "summary": "One book and one article in five styles: only order, punctuation and italics change; never mix styles.",
+      "page": 4,
+      "anchor": "n-c3",
+      "count": 10
+     },
+     {
+      "id": "s34",
+      "label": "5.10 IEEE and APA, Rule by Rule, and Spot the Errors",
+      "summary": "Six APA/IEEE differences (author, year, title, journal, volume/issue, pages) and how to fix IEEE errors.",
+      "page": 4,
+      "anchor": "n-c4",
+      "count": 12
+     },
+     {
+      "id": "s35",
+      "label": "5.11 Name That Style, Common Citation Mistakes, and What CAT-2 May Ask You to Do",
+      "summary": "Recognise Harvard, MLA and Chicago by their giveaways; avoid mixed styles and uncited paraphrase.",
+      "page": 4,
+      "anchor": "n-c5",
+      "count": 12
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "num": 5,
+  "title": "CAT-2 · Recap",
+  "desc": "Revision aids and the model CAT-2 paper, linked back to the notes.",
+  "accent": "#6b4a8a",
+  "accent_dk": "#4c3364",
+  "page": 5,
+  "topics": [
+   {
+    "label": "CAT-2 Recap & Model Paper",
+    "summary": "Exam-focused revision and the model CAT-2 paper.",
+    "subtopics": [
+     {
+      "id": "s36",
+      "label": "R1. What the Paper Looks Like and Before You Walk In",
+      "summary": "CAT-2 has five 10-mark questions; not examined: in-text citation, MLA, Chicago, Harvard; avoid summarising instead of inferring.",
+      "page": 5,
+      "anchor": "n-k1",
+      "count": 10
+     },
+     {
+      "id": "s37",
+      "label": "R2. Model Paper Q1 — The Canteen Passage",
+      "summary": "Canteen passage: surface vs deep reading, hedging, the causation trap, limitations, weighed vs self-reported data.",
+      "page": 5,
+      "anchor": "n-k2",
+      "count": 10
+     },
+     {
+      "id": "s38",
+      "label": "R3. Model Paper Q2 — Definitions (Drip Irrigation, Extract A)",
+      "summary": "Drip irrigation extract: formal, operational and informal definitions, then expansion methods.",
+      "page": 5,
+      "anchor": "n-k3",
+      "count": 11
+     },
+     {
+      "id": "s39",
+      "label": "R4. Model Paper Q3 — Sections of a Research Article and the Abstract",
+      "summary": "Place five extracts by section with their job; write an abstract under 70 words answering four questions in order.",
+      "page": 5,
+      "anchor": "n-k4",
+      "count": 10
+     },
+     {
+      "id": "s40",
+      "label": "R5. Model Paper Q4 — Types of Review",
+      "summary": "Identify scoping (counts, no quality check) vs systematic (registered protocol), justified by scope, method and best use.",
+      "page": 5,
+      "anchor": "n-k5",
+      "count": 10
+     },
+     {
+      "id": "s41",
+      "label": "R6. Model Paper Q5 and Recap — APA and IEEE",
+      "summary": "APA and IEEE for one, two and three authors: pick or convert, watching &, \"and\", the comma, year position and pp.",
+      "page": 5,
+      "anchor": "n-k6",
+      "count": 5
+     }
+    ]
+   }
+  ]
+ }
+]

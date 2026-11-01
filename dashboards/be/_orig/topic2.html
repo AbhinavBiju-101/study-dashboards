@@ -1,0 +1,356 @@
+{% extends "base.html" %}
+{% block title %}Basic Engineering — Topic 2: Electrical Machines{% endblock %}
+{% block extra_style %}
+<style>
+  :root{
+    --ink:#1b1f24; --sub:#4a5568; --bg:#fbfbfa; --card:#ffffff;
+    --def:#4a5568; --def-bg:#f3f4f6;
+    --why:#1e468c; --why-bg:#eef3fb;
+    --mis:#b45a0a; --mis-bg:#fdf3e7;
+    --ex:#166e3c; --ex-bg:#eaf6ee;
+    --line:#e3e6ea; --accent:#7c3aed;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; font-family:"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    background:var(--bg); color:var(--ink); line-height:1.55;
+  }
+  .wrap{max-width:900px;margin:0 auto;padding:0 22px 80px;}
+  header.hero{
+    background:linear-gradient(135deg,#1e2a4a,#3949ab 60%,#7c3aed);
+    color:#fff; padding:48px 22px 60px; text-align:center;
+  }
+  header.hero h1{margin:0 0 8px;font-size:2rem;}
+  header.hero p{margin:4px 0;opacity:.9;font-size:1.05rem;}
+  nav.toc{
+    background:var(--card); border:1px solid var(--line); border-radius:12px;
+    padding:20px 26px; margin:-36px auto 34px; max-width:860px;
+    box-shadow:0 6px 24px rgba(20,20,40,.08);
+  }
+  nav.toc h2{margin-top:0;font-size:1.05rem;color:var(--sub);text-transform:uppercase;letter-spacing:.06em;}
+  nav.toc ol{columns:2;column-gap:30px;padding-left:20px;margin:0;}
+  nav.toc li{margin-bottom:6px;break-inside:avoid;}
+  nav.toc a{color:var(--accent);text-decoration:none;font-size:.95rem;}
+  nav.toc a:hover{text-decoration:underline;}
+  h2.part{
+    font-size:1.6rem;margin-top:64px;padding-bottom:10px;border-bottom:3px solid var(--accent);
+  }
+  h3.topic{
+    font-size:1.25rem;margin-top:42px;color:#1e2a4a;
+    border-left:5px solid var(--accent);padding-left:12px;
+  }
+  h4.sub{margin-top:26px;font-size:1.05rem;color:var(--sub);}
+  p{margin:10px 0;}
+  .box{border-radius:10px;padding:16px 18px;margin:16px 0;border:1px solid transparent;}
+  .box .label{font-weight:700;font-size:.78rem;text-transform:uppercase;letter-spacing:.05em;display:block;margin-bottom:8px;}
+  .def{background:var(--def-bg);border-color:#d4d8de;}
+  .def .label{color:var(--def);}
+  .why{background:var(--why-bg);border-color:#c3d4ef;}
+  .why .label{color:var(--why);}
+  .mis{background:var(--mis-bg);border-color:#f1cf9f;}
+  .mis .label{color:var(--mis);}
+  .ex{background:var(--ex-bg);border-color:#b8e2c6;}
+  .ex .label{color:var(--ex);}
+  .foreshadow{background:#f4effc;border:1px dashed #b39ce8;border-radius:8px;padding:10px 14px;font-size:.93rem;color:#4b3480;margin:14px 0;}
+  .foreshadow::before{content:"↳ ";font-weight:700;}
+  table{border-collapse:collapse;width:100%;margin:14px 0;font-size:.93rem;}
+  th,td{border:1px solid var(--line);padding:7px 10px;text-align:left;}
+  th{background:#eef0f4;}
+  .diagram{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px;margin:18px 0;text-align:center;}
+  .diagram svg{max-width:100%;height:auto;}
+  .caption{font-size:.85rem;color:var(--sub);margin-top:8px;font-style:italic;}
+  code{background:#eef0f4;padding:1px 5px;border-radius:4px;font-size:.92em;}
+  .formula{
+    background:#fff; border:1px solid var(--line); border-left:4px solid var(--accent);
+    padding:10px 16px; margin:12px 0; font-size:1.05rem; overflow-x:auto;
+  }
+  .checklist{list-style:none;padding-left:0;}
+  .checklist li{padding:8px 0 8px 30px;position:relative;border-bottom:1px dashed var(--line);}
+  .checklist li::before{content:"☐";position:absolute;left:0;font-size:1.2rem;color:var(--accent);}
+  .marks{display:inline-block;background:#1e2a4a;color:#fff;font-size:.72rem;padding:2px 8px;border-radius:12px;margin-left:8px;vertical-align:middle;}
+  footer{text-align:center;color:var(--sub);font-size:.85rem;margin-top:60px;padding-top:20px;border-top:1px solid var(--line);}
+  .backtop{position:fixed;bottom:20px;right:20px;background:var(--accent);color:#fff;border-radius:50%;width:42px;height:42px;text-align:center;line-height:42px;text-decoration:none;box-shadow:0 4px 12px rgba(0,0,0,.2);font-size:1.1rem;}
+</style>
+{% endblock %}
+{% block content %}
+<div class="wrap">
+<header class="hero" style="border-radius:12px; margin-top:24px;">
+  <h1>Topic 2 — Electrical Machines</h1>
+  <p>DC motors, transformers, and the three-phase induction motor — where circuit theory meets rotating iron.</p>
+</header>
+<nav class="toc">
+<h2>Subtopics in this page</h2>
+<ol>
+  <li><a href="#c1">1. DC Motor: Construction</a></li>
+  <li><a href="#c2">2. DC Motor: Working &amp; Back EMF</a></li>
+  <li><a href="#c3">3. Types of DC Motors</a></li>
+  <li><a href="#c4">4. Transformer: Construction</a></li>
+  <li><a href="#c5">5. Transformer: EMF Equation</a></li>
+  <li><a href="#c6">6. Three-Phase Induction Motor</a></li>
+  <li><a href="#selftest">Self-Test Checklist</a></li>
+</ol>
+</nav>
+<h2 class="part" id="partc">Part C — Electrical Machines <span class="marks">Module 2</span></h2>
+<p>Machines convert energy between electrical and mechanical forms. Every derivation below leans on two things you already have: <b>Fleming's left/right hand rules</b> for force/EMF direction, and the <b>RMS/phasor</b> machinery from Part B for the transformer's alternating flux.</p>
+
+<h3 class="topic" id="c1">C1. DC Motor: Construction</h3>
+
+<div class="box def"><span class="label">Definition</span>
+A DC motor has four essential parts: the <b>yoke</b> (outer magnetic frame), the <b>field system</b> (poles + field winding, produces the magnetic flux), the <b>armature</b> (rotating core + winding, carries current and experiences force), and the <b>commutator + brushes</b> (mechanically reverse the current in each armature coil every half-turn).
+</div>
+
+<div class="diagram">
+<svg viewBox="0 0 300 260" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="150" cy="120" r="100" fill="none" stroke="#1b1f24" stroke-width="6"/>
+  <text x="150" y="35" font-size="14" text-anchor="middle" font-weight="bold">N</text>
+  <text x="150" y="212" font-size="14" text-anchor="middle" font-weight="bold">S</text>
+  <circle cx="150" cy="120" r="55" fill="#eef0f4" stroke="#1b1f24" stroke-width="2"/>
+  <text x="150" y="85" font-size="10" text-anchor="middle">armature core</text>
+  <circle cx="150" cy="120" r="14" fill="#fff" stroke="#7c3aed" stroke-width="2"/>
+  <text x="150" y="124" font-size="8" text-anchor="middle">shaft</text>
+  <rect x="140" y="160" width="20" height="10" fill="#c0392b"/>
+  <text x="150" y="185" font-size="10" text-anchor="middle">commutator + brush</text>
+  <line x1="90" y1="90" x2="115" y2="105" stroke="#1e468c" stroke-width="2"/>
+  <line x1="210" y1="90" x2="185" y2="105" stroke="#1e468c" stroke-width="2"/>
+  <line x1="90" y1="150" x2="115" y2="135" stroke="#1e468c" stroke-width="2"/>
+  <line x1="210" y1="150" x2="185" y2="135" stroke="#1e468c" stroke-width="2"/>
+  <text x="60" y="95" font-size="9" fill="#1e468c">armature conductors</text>
+</svg>
+<p class="caption">Cross section of a two-pole DC machine: N and S poles set up radial flux; conductors in the slots carry current axially.</p>
+</div>
+
+<div class="foreshadow">The commutator here is doing the reverse job of the diode bridge you'd see in a rectifier — both take an alternating quantity and make it one-directional. The DC generator (same machine, opposite energy flow) uses exactly this commutator to turn the AC EMF from B1's rotating-coil picture into DC.</div>
+
+<h3 class="topic" id="c2">C2. DC Motor: Working Principle &amp; Back EMF</h3>
+
+<div class="box def"><span class="label">Definition — force on a current-carrying conductor</span>
+<div class="formula">F = BIL sinθ &nbsp;(N)</div>
+where B is flux density (T), I is conductor current (A), L is conductor length in the field (m), θ the angle between conductor and field (usually 90°, so F=BIL). Direction: <b>Fleming's Left-Hand Rule.</b>
+</div>
+
+<div class="diagram">
+<svg viewBox="0 0 260 180" xmlns="http://www.w3.org/2000/svg">
+  <line x1="130" y1="150" x2="130" y2="50" stroke="#166e3c" stroke-width="3" marker-end="url(#fA)"/>
+  <text x="138" y="55" font-size="12" fill="#166e3c">Force (thuMb)</text>
+  <line x1="130" y1="150" x2="60" y2="90" stroke="#1e468c" stroke-width="3" marker-end="url(#fA)"/>
+  <text x="10" y="85" font-size="12" fill="#1e468c">Field (First finger)</text>
+  <line x1="130" y1="150" x2="200" y2="110" stroke="#c0392b" stroke-width="3" marker-end="url(#fA)"/>
+  <text x="195" y="130" font-size="12" fill="#c0392b">Current (seCond finger)</text>
+  <defs><marker id="fA" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z"/></marker></defs>
+</svg>
+<p class="caption">Fleming's Left-Hand Rule: thu<b>M</b>b = <b>M</b>otion/force, <b>F</b>irst finger = <b>F</b>ield, se<b>C</b>ond finger = <b>C</b>urrent — all mutually perpendicular.</p>
+</div>
+
+<div class="box why"><span class="label">Why the motor also generates a back EMF</span>
+The instant the armature conductor starts moving (because of the force above), it is itself a conductor moving through a magnetic field — which is precisely the generator condition of B1/C1. By Lenz's law this induced EMF must oppose the very current that created the motion, so it is called <b>back EMF, E<sub>b</sub></b>, and it grows with speed N and flux Φ (E<sub>b</sub> ∝ ΦN). The armature circuit equation is:
+<div class="formula">V = E<sub>b</sub> + I<sub>a</sub>R<sub>a</sub></div>
+This is nothing but Ohm's law / KVL from Part A applied to the armature loop: supply voltage = back EMF (a voltage source opposing V) + the I<sub>a</sub>R<sub>a</sub> drop across armature resistance.
+</div>
+
+<div class="box mis"><span class="label">Fixing a common misconception</span>
+"Back EMF wastes energy" — no. Back EMF is exactly how the motor converts electrical power into mechanical power: the electrical power associated with it, E<sub>b</sub>I<sub>a</sub>, <em>is</em> the mechanical power developed (minus small losses). Only the I<sub>a</sub>²R<sub>a</sub> term is a genuine (heat) loss.
+</div>
+
+<div class="box ex"><span class="label">Worked example</span>
+A DC motor has V=220 V, R<sub>a</sub>=1 Ω, and draws I<sub>a</sub>=20 A. Find E<sub>b</sub> and the mechanical power developed.<br>
+<code>E<sub>b</sub> = V − I<sub>a</sub>R<sub>a</sub> = 220 − 20(1) = 200 V</code><br>
+<code>Mechanical power = E<sub>b</sub>I<sub>a</sub> = 200×20 = 4000 W = 4 kW</code><br>
+Input power = VI<sub>a</sub> = 220×20 = 4400 W. Armature copper loss = I<sub>a</sub>²R<sub>a</sub> = 400 W. Check: 4000+400=4400 W ✓.
+</div>
+
+<h3 class="topic" id="c3">C3. Types of DC Motors</h3>
+
+<div class="diagram">
+<svg viewBox="0 0 640 190" xmlns="http://www.w3.org/2000/svg">
+  <g>
+    <text x="90" y="16" font-size="12" text-anchor="middle" font-weight="bold">Shunt</text>
+    <circle cx="90" cy="100" r="30" fill="none" stroke="#1b1f24" stroke-width="2"/>
+    <text x="90" y="105" font-size="10" text-anchor="middle">Ea,Ra</text>
+    <line x1="10" y1="60" x2="10" y2="150" stroke="#1b1f24" stroke-width="2"/>
+    <line x1="170" y1="60" x2="170" y2="150" stroke="#1b1f24" stroke-width="2"/>
+    <line x1="10" y1="150" x2="170" y2="150" stroke="#1b1f24" stroke-width="2"/>
+    <line x1="60" y1="70" x2="60" y2="150" stroke="#1b1f24" stroke-width="2"/>
+    <path d="M50,72 q5,-8 0,-16 q-5,-8 0,-16 q5,-8 0,-16" fill="none" stroke="#1b1f24" stroke-width="2" transform="translate(10,0)"/>
+    <text x="30" y="65" font-size="9">Rsh (field)</text>
+    <line x1="10" y1="60" x2="60" y2="60" stroke="#1b1f24" stroke-width="2"/>
+    <line x1="120" y1="100" x2="170" y2="100" stroke="#1b1f24" stroke-width="2"/>
+    <text x="60" y="178" font-size="10" text-anchor="middle">Ia=Ish+I; field ∥ armature</text>
+  </g>
+  <g transform="translate(220,0)">
+    <text x="90" y="16" font-size="12" text-anchor="middle" font-weight="bold">Series</text>
+    <circle cx="70" cy="100" r="30" fill="none" stroke="#1b1f24" stroke-width="2"/>
+    <text x="70" y="105" font-size="10" text-anchor="middle">Ea,Ra</text>
+    <line x1="10" y1="60" x2="10" y2="150" stroke="#1b1f24" stroke-width="2"/>
+    <line x1="170" y1="60" x2="170" y2="150" stroke="#1b1f24" stroke-width="2"/>
+    <line x1="10" y1="150" x2="170" y2="150" stroke="#1b1f24" stroke-width="2"/>
+    <line x1="10" y1="60" x2="100" y2="60" stroke="#1b1f24" stroke-width="2"/>
+    <path d="M100,52 q6,-8 12,0 q6,8 12,0 q6,-8 12,0" fill="none" stroke="#1b1f24" stroke-width="2" transform="translate(0,8)"/>
+    <text x="105" y="45" font-size="9">Rse</text>
+    <line x1="136" y1="60" x2="170" y2="60" stroke="#1b1f24" stroke-width="2"/>
+    <line x1="170" y1="60" x2="170" y2="60" stroke="#1b1f24" stroke-width="2"/>
+    <line x1="100" y1="100" x2="170" y2="100" stroke="#1b1f24" stroke-width="0" />
+    <text x="90" y="178" font-size="10" text-anchor="middle">Ia=Ise=I; field IN SERIES</text>
+  </g>
+  <g transform="translate(430,0)">
+    <text x="90" y="16" font-size="12" text-anchor="middle" font-weight="bold">Compound</text>
+    <circle cx="70" cy="100" r="30" fill="none" stroke="#1b1f24" stroke-width="2"/>
+    <text x="70" y="105" font-size="10" text-anchor="middle">Ea,Ra</text>
+    <line x1="10" y1="60" x2="10" y2="150" stroke="#1b1f24" stroke-width="2"/>
+    <line x1="180" y1="60" x2="180" y2="150" stroke="#1b1f24" stroke-width="2"/>
+    <line x1="10" y1="150" x2="180" y2="150" stroke="#1b1f24" stroke-width="2"/>
+    <line x1="10" y1="60" x2="100" y2="60" stroke="#1b1f24" stroke-width="2"/>
+    <path d="M100,52 q6,-8 12,0 q6,8 12,0" fill="none" stroke="#1b1f24" stroke-width="2" transform="translate(0,8)"/>
+    <line x1="124" y1="60" x2="140" y2="60" stroke="#1b1f24" stroke-width="2"/>
+    <line x1="140" y1="60" x2="180" y2="100" stroke="#1b1f24" stroke-width="0"/>
+    <line x1="40" y1="70" x2="40" y2="150" stroke="#1b1f24" stroke-width="2"/>
+    <path d="M30,72 q5,-8 0,-16 q-5,-8 0,-16" fill="none" stroke="#1b1f24" stroke-width="2" transform="translate(10,10)"/>
+    <text x="8" y="75" font-size="9">Rsh</text>
+    <text x="90" y="178" font-size="10" text-anchor="middle">both series &amp; shunt fields</text>
+  </g>
+</svg>
+<p class="caption">Three ways to connect the field winding relative to the armature — each gives a different speed/torque personality.</p>
+</div>
+
+<table>
+<tr><th>Type</th><th>Key relation</th><th>Speed vs Load</th><th>Typical application</th></tr>
+<tr><td>Shunt</td><td>I<sub>a</sub>=I−I<sub>sh</sub>, I<sub>sh</sub>=V/R<sub>sh</sub></td><td>nearly constant speed</td><td>fans, blowers, lathes</td></tr>
+<tr><td>Series</td><td>I<sub>a</sub>=I<sub>se</sub>=I, V=E<sub>b</sub>+I<sub>a</sub>(R<sub>a</sub>+R<sub>se</sub>)</td><td>high starting torque, speed falls sharply as load rises</td><td>cranes, traction, hair dryers</td></tr>
+<tr><td>Compound</td><td>combines both windings</td><td>compromise of the two</td><td>presses, rolling mills, elevators</td></tr>
+</table>
+
+<div class="box mis"><span class="label">Fixing a common misconception</span>
+"A series motor is just a shunt motor wired differently, so it behaves similarly" — no: a series motor must <em>never</em> be started with no mechanical load. With Φ nearly zero at no load, E<sub>b</sub>=V−I<sub>a</sub>R<sub>a</sub> stays small, so I<sub>a</sub> (and hence speed, since low flux needs high speed to build back-EMF) can run away dangerously. A shunt motor's flux is fixed by V regardless of load, so it has no such runaway risk.
+</div>
+
+<h3 class="topic" id="c4">C4. Transformer: Construction</h3>
+
+<div class="box def"><span class="label">Definition</span>
+A transformer has a laminated silicon-steel core (thin, insulated sheets — reduces eddy-current loss) carrying two windings, primary and secondary, linked by the same magnetic flux but with <em>no electrical connection</em> between them. <b>Core type:</b> windings surround two limbs of a rectangular core. <b>Shell type:</b> both windings sit on the central limb of a three-limb core.
+</div>
+
+<div class="diagram">
+<svg viewBox="0 0 340 170" xmlns="http://www.w3.org/2000/svg">
+  <rect x="40" y="20" width="160" height="130" fill="none" stroke="#1b1f24" stroke-width="10"/>
+  <rect x="70" y="20" width="100" height="130" fill="#fbfbfa" stroke="none"/>
+  <rect x="60" y="45" width="20" height="80" fill="#c0392b" opacity="0.75"/>
+  <text x="70" y="40" font-size="10" text-anchor="middle">Primary</text>
+  <rect x="160" y="45" width="20" height="80" fill="#1e468c" opacity="0.75"/>
+  <text x="170" y="40" font-size="10" text-anchor="middle">Secondary</text>
+  <path d="M120,50 Q140,85 120,120" fill="none" stroke="#7c3aed" stroke-width="2" marker-end="url(#tf)"/>
+  <text x="126" y="90" font-size="10" fill="#7c3aed">Φ</text>
+  <defs><marker id="tf" markerWidth="7" markerHeight="7" refX="3.5" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 z" fill="#7c3aed"/></marker></defs>
+  <text x="120" y="165" font-size="11" text-anchor="middle">Core-type: same flux Φ links both windings</text>
+</svg>
+<p class="caption">Core-type construction: mutual flux Φ, set up by the primary's current, links the secondary winding on the opposite limb.</p>
+</div>
+
+<h3 class="topic" id="c5">C5. Transformer: EMF Equation</h3>
+
+<div class="box why"><span class="label">Derivation</span>
+Assume a sinusoidal mutual flux Φ = Φ<sub>m</sub> sin(ωt). By Faraday's law, the EMF induced in a winding of N turns is:
+<div class="formula">e = −N dΦ/dt = −NΦ<sub>m</sub>ω cos(ωt)</div>
+The magnitude of this EMF peaks at <code>E<sub>m</sub> = NΦ<sub>m</sub>ω = NΦ<sub>m</sub>(2πf)</code>. Just as in B2, the <b>RMS</b> value of a sinusoid is its peak divided by √2:
+<div class="formula">E = E<sub>m</sub>/√2 = 2πfΦ<sub>m</sub>N/√2 = 4.44 f Φ<sub>m</sub> N</div>
+Applying this to both windings: E<sub>1</sub>=4.44fΦ<sub>m</sub>N<sub>1</sub>, E<sub>2</sub>=4.44fΦ<sub>m</sub>N<sub>2</sub>. Since the <em>same</em> Φ<sub>m</sub> and f appear in both, dividing gives the turns-ratio rule:
+<div class="formula">E<sub>1</sub>/E<sub>2</sub> = N<sub>1</sub>/N<sub>2</sub></div>
+</div>
+
+<div class="foreshadow">The "4.44" is nothing mysterious — it's 2π/√2 (≈4.44), the exact same √2 that converted peak to RMS back in B2. Anywhere you see 4.44 in a machines formula, a sinusoidal-flux EMF derivation like this one is hiding behind it.</div>
+
+<div class="box ex"><span class="label">Worked example</span>
+A transformer has N<sub>1</sub>=1000 turns, N<sub>2</sub>=250 turns, is supplied at 50 Hz, and the core flux is Φ<sub>m</sub>=0.02 Wb. Find E<sub>1</sub>, E<sub>2</sub>, and state whether it's step-up or step-down.<br>
+<code>E<sub>1</sub> = 4.44×50×0.02×1000 = 4440 V</code><br>
+<code>E<sub>2</sub> = 4.44×50×0.02×250 = 1110 V</code><br>
+Check via turns ratio: <code>E<sub>1</sub>/E<sub>2</sub> = 1000/250 = 4</code>, and <code>4440/1110 = 4</code> ✓. Since N<sub>2</sub>&lt;N<sub>1</sub> (E<sub>2</sub>&lt;E<sub>1</sub>), this is a <b>step-down</b> transformer.
+</div>
+
+<h3 class="topic" id="c6">C6. Three-Phase Induction Motor</h3>
+
+<div class="box def"><span class="label">Definition</span>
+The stator carries three windings spaced 120° apart in <em>space</em>, fed by three currents 120° apart in <em>time</em> (a balanced 3-phase supply). Their combined magnetomotive force produces a magnetic field of <em>constant magnitude that rotates</em> at synchronous speed:
+<div class="formula">N<sub>s</sub> = 120f/P &nbsp;(rpm), &nbsp; P = number of poles</div>
+This rotating field cuts the stationary rotor bars, inducing currents in them (transformer action — no electrical connection needed, hence "induction" motor); those currents, in the rotating field, experience a force (Fleming's left-hand rule again) that drags the rotor around.
+</div>
+
+<div class="diagram">
+<svg viewBox="0 0 460 170" xmlns="http://www.w3.org/2000/svg">
+  <g>
+    <circle cx="80" cy="90" r="55" fill="none" stroke="#1b1f24" stroke-width="2"/>
+    <line x1="80" y1="90" x2="80" y2="35" stroke="#7c3aed" stroke-width="3" marker-end="url(#rA)"/>
+    <text x="80" y="20" font-size="11" text-anchor="middle">t=0°</text>
+  </g>
+  <g transform="translate(150,0)">
+    <circle cx="80" cy="90" r="55" fill="none" stroke="#1b1f24" stroke-width="2"/>
+    <line x1="80" y1="90" x2="128" y2="118" stroke="#7c3aed" stroke-width="3" marker-end="url(#rA)"/>
+    <text x="80" y="20" font-size="11" text-anchor="middle">t=T/3 (120°)</text>
+  </g>
+  <g transform="translate(300,0)">
+    <circle cx="80" cy="90" r="55" fill="none" stroke="#1b1f24" stroke-width="2"/>
+    <line x1="80" y1="90" x2="32" y2="118" stroke="#7c3aed" stroke-width="3" marker-end="url(#rA)"/>
+    <text x="80" y="20" font-size="11" text-anchor="middle">t=2T/3 (240°)</text>
+  </g>
+  <defs><marker id="rA" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#7c3aed"/></marker></defs>
+</svg>
+<p class="caption">Snapshots of the resultant stator flux vector at three instants — same magnitude, rotated by 120° each 1/3 of a cycle. This is the "rotating field" produced purely by three fixed windings and time-varying currents.</p>
+</div>
+
+<div class="box def"><span class="label">Slip</span>
+The rotor can never spin at exactly N<sub>s</sub> (if it did, the field would no longer cut the rotor bars, no EMF would be induced, and no torque would be produced). The fractional difference is called <b>slip</b>:
+<div class="formula">s = (N<sub>s</sub>−N<sub>r</sub>)/N<sub>s</sub></div>
+</div>
+
+<table>
+<tr><th>Feature</th><th>Squirrel-cage rotor</th><th>Wound (slip-ring) rotor</th></tr>
+<tr><td>Rotor winding</td><td>bars short-circuited by end rings</td><td>3-phase winding, brought out to slip rings</td></tr>
+<tr><td>External resistance</td><td>not possible</td><td>possible, via brushes — boosts starting torque</td></tr>
+<tr><td>Cost / maintenance</td><td>low</td><td>higher</td></tr>
+<tr><td>Typical use</td><td>fans, pumps, machine tools (~75% of industrial motors)</td><td>cranes, hoists, compressors (high starting torque needed)</td></tr>
+</table>
+
+<div class="box ex"><span class="label">Worked example</span>
+A 4-pole, 3-phase induction motor is supplied at 50 Hz and runs at 1440 rpm. Find the synchronous speed and the slip.<br>
+<code>N<sub>s</sub> = 120f/P = 120×50/4 = 1500 rpm</code><br>
+<code>s = (1500−1440)/1500 = 60/1500 = 0.04 = 4%</code>
+</div>
+
+<div class="foreshadow">This is exactly the same "difference from a reference" idea as R<sub>th</sub> in A7 or φ in B4 — a small deviation from an idealised reference value that governs everything else about the system's behaviour.</div>
+
+<table>
+<tr><th>Machine</th><th>Core relation</th><th>Governing equation</th></tr>
+<tr><td>DC motor</td><td>electrical → mechanical</td><td>V = E<sub>b</sub> + I<sub>a</sub>R<sub>a</sub>, T ∝ ΦI<sub>a</sub></td></tr>
+<tr><td>Transformer</td><td>AC electrical → AC electrical (voltage level change)</td><td>E = 4.44fΦ<sub>m</sub>N, E1/E2 = N1/N2</td></tr>
+<tr><td>3-phase induction motor</td><td>rotating field → mechanical</td><td>N<sub>s</sub>=120f/P, s=(N<sub>s</sub>−N<sub>r</sub>)/N<sub>s</sub></td></tr>
+</table>
+
+<h2 class="part" id="selftest">Self-Test Checklist</h2>
+<p>Can you do each of these <em>right now</em>, without looking back? If not, that's exactly the section to re-read.</p>
+<ul class="checklist">
+  <li>State Ohm's law and use it to find power two independent ways for the same resistor.</li>
+  <li>Write KCL at a node and KVL around a loop for a circuit you sketch yourself.</li>
+  <li>Derive the current-divider formula from KCL + Ohm's law (don't just quote it).</li>
+  <li>Solve a 2-node circuit by node-voltage analysis, unaided.</li>
+  <li>Solve a 2-mesh circuit by mesh-current analysis, and recover the actual branch current in the shared resistor.</li>
+  <li>Transform a voltage source + series R into its current-source equivalent, and explain why they're indistinguishable from outside.</li>
+  <li>Find V<sub>th</sub> and R<sub>th</sub> for a simple network and state Norton's equivalent from it.</li>
+  <li>Derive, from calculus, why R<sub>L</sub>=R<sub>th</sub> maximises load power — and explain why this is <em>not</em> the same as maximum efficiency.</li>
+  <li>Use superposition to solve for one unknown in a two-source circuit, and check it against a direct method.</li>
+  <li>Derive V<sub>rms</sub>=V<sub>m</sub>/√2 and V<sub>avg</sub>=2V<sub>m</sub>/π from the defining integrals.</li>
+  <li>Explain in one sentence why phasors turn AC differential equations into algebra.</li>
+  <li>Given R and X<sub>L</sub> for a series RL circuit, find |Z|, φ, and I — and draw the impedance triangle.</li>
+  <li>Compute P, Q, S for an AC circuit and verify S²=P²+Q².</li>
+  <li>Explain why a low power factor costs money even though Q isn't dissipated as heat.</li>
+  <li>Sketch a DC motor cross-section and apply Fleming's left-hand rule to find the force direction.</li>
+  <li>Write V=E<sub>b</sub>+I<sub>a</sub>R<sub>a</sub> and use it to find mechanical power developed.</li>
+  <li>State the difference between shunt, series and compound DC motors, and why a series motor must never run unloaded.</li>
+  <li>Derive the transformer EMF equation E=4.44fΦ<sub>m</sub>N from Faraday's law.</li>
+  <li>Compute synchronous speed and slip for a 3-phase induction motor given pole count, frequency and rotor speed.</li>
+  <li>Explain, in your own words, why the induction motor needs a nonzero slip to produce any torque at all.</li>
+</ul>
+
+<footer>
+  Original notes prepared for exam revision — worked examples use invented numbers chosen for clean arithmetic, not reproduced from any textbook.
+</footer>
+
+</div>
+<a href="#top" class="backtop">↑</a>
+{% endblock %}

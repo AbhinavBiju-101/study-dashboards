@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Basic Engineering Illustrated Notes — Dashboard</title>
+<style>
+  :root{
+    --paper:#fbfbfa;
+    --paper2:#f0f0f5;
+    --ink:#1b1f24;
+    --ink-soft:#5a6072;
+    --rule:#e3e6ea;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family: ui-sans-serif, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height:1.6;
+  }
+  header.hero{
+    background:linear-gradient(135deg,#1e2a4a,#3949ab 55%,#7c3aed 100%);
+    color:#fbf8ee;
+    padding:60px 24px 46px;
+    text-align:center;
+  }
+  header.hero h1{
+    font-size:2.15rem;
+    margin:0 0 12px;
+  }
+  header.hero p{
+    max-width:58ch;
+    margin:0 auto;
+    color:#e6e6f5;
+    font-size:1.03rem;
+  }
+  main{
+    max-width:920px;
+    margin:0 auto;
+    padding:40px 24px 90px;
+  }
+  .syllabus-note{
+    background:var(--paper2);
+    border:1px solid var(--rule);
+    border-radius:8px;
+    padding:14px 20px;
+    font-size:.92rem;
+    color:var(--ink-soft);
+    margin-bottom:32px;
+  }
+  .syllabus-note strong{ color:var(--ink); }
+
+  .card{
+    background:#fff;
+    border:1px solid var(--rule);
+    border-radius:10px;
+    padding:24px 26px 20px;
+    margin-bottom:20px;
+    border-top:5px solid var(--accent, #7c3aed);
+  }
+  .card .row{
+    display:flex;
+    align-items:flex-start;
+    justify-content:space-between;
+    gap:16px;
+    flex-wrap:wrap;
+  }
+  .card .tag{
+    font-size:.76rem;
+    font-weight:700;
+    letter-spacing:.08em;
+    color:var(--accent-dk, #1e2a4a);
+    text-transform:uppercase;
+    display:block;
+    margin-bottom:6px;
+  }
+  .card h2{
+    font-size:1.3rem;
+    margin:0 0 8px;
+    color:var(--accent-dk, #1e2a4a);
+    line-height:1.3;
+  }
+  .card h2 a{
+    color:inherit;
+    text-decoration:none;
+  }
+  .card h2 a:hover{ text-decoration:underline; }
+  .card p.desc{
+    margin:0 0 6px;
+    font-size:.95rem;
+    color:var(--ink-soft);
+    max-width:62ch;
+  }
+  .card .open-btn{
+    flex-shrink:0;
+    align-self:flex-start;
+    background:var(--accent, #7c3aed);
+    color:#fff;
+    text-decoration:none;
+    font-size:.86rem;
+    font-weight:600;
+    padding:9px 16px;
+    border-radius:6px;
+    white-space:nowrap;
+  }
+  .card .open-btn:hover{ filter:brightness(1.08); }
+
+  details.topics{
+    margin-top:14px;
+    border-top:1px dashed var(--rule);
+    padding-top:10px;
+  }
+  details.topics > summary{
+    cursor:pointer;
+    font-size:.88rem;
+    font-weight:600;
+    color:var(--accent-dk, #1e2a4a);
+    list-style:none;
+    display:flex;
+    align-items:center;
+    gap:6px;
+  }
+  details summary::-webkit-details-marker{ display:none; }
+  details.topics > summary::before,
+  details.topic-item > summary::before{
+    content:"▸";
+    display:inline-block;
+    transition:transform .15s ease;
+    font-size:.8rem;
+    flex-shrink:0;
+  }
+  details[open] > summary::before{
+    transform:rotate(90deg);
+  }
+  .topic-tree{
+    margin:12px 0 4px;
+    display:flex;
+    flex-direction:column;
+    gap:2px;
+  }
+
+  /* one subtopic row */
+  details.topic-item{
+    border-radius:6px;
+  }
+  details.topic-item > summary{
+    cursor:pointer;
+    list-style:none;
+    display:flex;
+    align-items:baseline;
+    gap:8px;
+    padding:7px 10px 7px 4px;
+    border-radius:5px;
+    border-left:3px solid var(--paper2);
+  }
+  details.topic-item > summary:hover{
+    background:var(--paper2);
+    border-left-color:var(--accent, #7c3aed);
+  }
+  details.topic-item .t-label{
+    font-size:.92rem;
+    font-weight:600;
+    color:var(--ink);
+    flex:1;
+  }
+  details.topic-item[open] > summary .t-label{
+    color:var(--accent-dk, #1e2a4a);
+  }
+  details.topic-item .t-count{
+    font-size:.72rem;
+    color:var(--ink-soft);
+    white-space:nowrap;
+  }
+
+  .topic-body{
+    padding:2px 10px 14px 26px;
+  }
+  .topic-body > .t-summary{
+    margin:0 0 10px;
+    font-size:.87rem;
+    color:var(--ink-soft);
+    max-width:60ch;
+  }
+  .topic-body > .t-jump{
+    display:inline-block;
+    font-size:.8rem;
+    font-weight:600;
+    color:var(--accent-dk, #1e2a4a);
+    text-decoration:none;
+    padding:5px 12px;
+    border:1px solid var(--rule);
+    border-radius:14px;
+    margin-bottom:12px;
+  }
+  .topic-body > .t-jump:hover{
+    background:var(--accent, #7c3aed);
+    border-color:var(--accent, #7c3aed);
+    color:#fff;
+  }
+  ul.subtopics{
+    list-style:none;
+    margin:0;
+    padding:0;
+    display:flex;
+    flex-direction:column;
+    gap:3px;
+  }
+  ul.subtopics li a{
+    display:block;
+    text-decoration:none;
+    padding:6px 12px;
+    border-radius:5px;
+    border-left:3px solid var(--paper2);
+  }
+  ul.subtopics li a:hover{
+    background:var(--paper2);
+    border-left-color:var(--accent, #7c3aed);
+  }
+  ul.subtopics .st-label{
+    display:block;
+    font-size:.87rem;
+    font-weight:600;
+    color:var(--ink);
+  }
+  ul.subtopics li a:hover .st-label{
+    color:var(--accent-dk, #1e2a4a);
+  }
+  ul.subtopics .st-summary{
+    display:block;
+    font-size:.81rem;
+    color:var(--ink-soft);
+    margin-top:1px;
+  }
+  footer{
+    text-align:center;
+    color:var(--ink-soft);
+    font-size:.85rem;
+    padding:10px 0 40px;
+  }
+  @media(max-width:640px){
+    header.hero h1{font-size:1.65rem;}
+    .card .row{ flex-direction:column; }
+    .card .open-btn{ align-self:stretch; text-align:center; }
+    details.topic-item > summary{ flex-wrap:wrap; }
+    details.topic-item .t-jump{ order:10; width:100%; text-align:center; margin-top:4px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <h1>Basic Engineering — Full Syllabus</h1>
+  <p>Two topics, illustrated for deep understanding rather than quick skimming. Expand a topic to scope its subtopics, or jump straight to one you need.</p>
+  <a href="{{ url_for('quiz_setup') }}" style="display:inline-block;margin-top:18px;background:#fff;color:#1e2a4a;font-weight:700;font-size:.92rem;padding:10px 22px;border-radius:20px;text-decoration:none;">📝 Take a Quiz →</a>
+</header>
+
+<main>
+  <p class="syllabus-note">
+    <strong>How to use this:</strong> click a topic's title or "Open notebook" to read it start to finish.
+    Click "subtopics covered" on any card to expand its subtopics — each one links straight to that
+    section, so you can scope a single subtopic without opening the whole topic.
+  </p>
+
+  {% for w in weeks %}
+  <article class="card" style="--accent:{{ w.accent }}; --accent-dk:{{ w.accent_dk }};">
+    <div class="row">
+      <div>
+        <span class="tag">Topic {{ w.num }} of {{ total }}</span>
+        <h2><a href="{{ url_for('topic_page', num=w.num) }}">{{ w.title }}</a></h2>
+        <p class="desc">{{ w.desc }}</p>
+      </div>
+      <a class="open-btn" href="{{ url_for('topic_page', num=w.num) }}">Open notebook →</a>
+    </div>
+
+    <details class="topics">
+      <summary>{{ w.topics|length }} subtopics covered — expand to scope</summary>
+      <div class="topic-tree">
+        {% for t in w.topics %}
+        <details class="topic-item">
+          <summary>
+            <span class="t-label">{{ t.label }}</span>
+            {% if t.subtopics %}<span class="t-count">{{ t.subtopics|length }} parts</span>{% endif %}
+          </summary>
+          <div class="topic-body">
+            <p class="t-summary">{{ t.summary }}</p>
+            <a class="t-jump" href="{{ url_for('topic_page', num=w.num) }}#{{ t.id }}">Open this subtopic in the notebook →</a>
+            {% if t.subtopics %}
+            <ul class="subtopics">
+              {% for st in t.subtopics %}
+              <li>
+                <a href="{{ url_for('topic_page', num=w.num) }}#{{ st.id }}">
+                  <span class="st-label">{{ st.label }}</span>
+                  <span class="st-summary">{{ st.summary }}</span>
+                </a>
+              </li>
+              {% endfor %}
+            </ul>
+            {% endif %}
+          </div>
+        </details>
+        {% endfor %}
+      </div>
+    </details>
+  </article>
+  {% endfor %}
+</main>
+
+<footer>Served locally by Flask · use the Dashboard / Prev / Next bar on each page to navigate</footer>
+
+</body>
+</html>

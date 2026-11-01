@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EVS Quiz</title>
+<style>
+  :root{
+    --paper:#f6f3ea; --paper2:#efeadb; --ink:#1e2a22; --ink-soft:#5a6459; --rule:#d8d0ba;
+    --green:#2f6b4f; --green-dk:#204a37; --rust:#a4432c; --amber:#a6742d; --slate:#2b5f7a;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font-family: ui-sans-serif,"Segoe UI",Helvetica,Arial,sans-serif; line-height:1.6;
+  }
+  h1,h2,h3{ font-family: Georgia,"Iowan Old Style","Palatino Linotype",serif; color:var(--green-dk); }
+
+  .topbar{
+    position:sticky; top:0; z-index:20; background:#1b1f1a; color:#f2efe4;
+    display:flex; align-items:center; gap:14px; padding:10px 20px; font-size:.9rem; flex-wrap:wrap;
+  }
+  .topbar a{ color:#f2efe4; text-decoration:none; border:1px solid rgba(242,239,228,.3); padding:5px 12px; border-radius:14px; }
+  .topbar a:hover{ background:rgba(242,239,228,.12); }
+  .topbar .grow{ flex:1; }
+  .topbar .timer{ font-variant-numeric:tabular-nums; color:#cfe0ea; }
+
+  main{ max-width:820px; margin:0 auto; padding:28px 20px 100px; }
+
+  /* ---------- palette ---------- */
+  .palette{ display:flex; flex-wrap:wrap; gap:6px; margin-bottom:22px; }
+  .palette button{
+    position:relative;
+    width:34px; height:34px; border-radius:6px; border:1px solid var(--rule); background:#fff;
+    color:var(--ink-soft); font-size:.82rem; cursor:pointer;
+  }
+  .palette button.answered{ background:var(--green); border-color:var(--green); color:#fff; }
+  .palette button.current{ outline:3px solid var(--amber); outline-offset:1px; }
+  .palette button.flagged::after{
+    content:"🚩"; position:absolute; top:-9px; right:-7px; font-size:.72rem; line-height:1;
+  }
+  .palette button.locked{ opacity:.35; cursor:not-allowed; }
+
+  /* ---------- question card ---------- */
+  .qcard{ background:#fff; border:1px solid var(--rule); border-radius:12px; padding:26px 28px; }
+  .qcard .meta{ display:flex; gap:8px; margin-bottom:14px; flex-wrap:wrap; align-items:center; }
+  .qmeta-tag{
+    font-size:.72rem; font-weight:700; letter-spacing:.05em; text-transform:uppercase;
+    padding:3px 10px; border-radius:10px; background:var(--paper2); color:var(--green-dk);
+  }
+  .qmeta-tag.level{ background:#e4ecf1; color:var(--slate); }
+  .flag-btn{
+    margin-left:auto; font-size:.8rem; font-weight:600; padding:5px 12px; border-radius:14px;
+    border:1px solid var(--rule); background:#fff; color:var(--ink-soft); cursor:pointer;
+  }
+  .flag-btn.on{ background:#f3e9d4; border-color:var(--amber); color:#7a4d10; }
+  .qcard .stem{ font-size:1.14rem; margin:0 0 20px; color:var(--ink); }
+  .options{ display:flex; flex-direction:column; gap:10px; }
+  .opt{
+    display:flex; align-items:flex-start; gap:12px; text-align:left;
+    border:1.5px solid var(--rule); border-radius:8px; padding:13px 16px;
+    background:#fff; cursor:pointer; font-size:.98rem; color:var(--ink); width:100%;
+  }
+  .opt:hover{ border-color:var(--green); background:var(--paper2); }
+  .opt.selected{ border-color:var(--green); background:var(--green); color:#fff; }
+  .opt .letter{
+    flex-shrink:0; width:22px; height:22px; border-radius:50%; border:1.5px solid currentColor;
+    display:flex; align-items:center; justify-content:center; font-size:.78rem; font-weight:700;
+  }
+
+  .nav-row{ display:flex; justify-content:space-between; align-items:center; margin-top:22px; gap:10px; }
+  .nav-row button{
+    font-size:.92rem; font-weight:600; padding:10px 18px; border-radius:8px; border:1px solid var(--rule);
+    background:#fff; color:var(--ink); cursor:pointer;
+  }
+  .nav-row button:disabled{ opacity:.4; cursor:not-allowed; }
+  .nav-row button.primary{ background:var(--green); border-color:var(--green); color:#fff; }
+  .nav-row button.submit{ background:var(--rust); border-color:var(--rust); color:#fff; }
+
+  /* ---------- results ---------- */
+  #results{ display:none; }
+  .score-hero{
+    background:linear-gradient(135deg,#1e2a22,#2f6b4f 55%,#2b5f7a 100%); color:#fbf8ee;
+    border-radius:14px; padding:36px 28px; text-align:center; margin-bottom:28px;
+  }
+  .score-hero .big{ font-size:3rem; font-family:Georgia,serif; font-weight:700; }
+  .score-hero .sub{ color:#dfe9de; margin-top:6px; }
+  .score-stats{ display:flex; justify-content:center; gap:28px; margin-top:18px; flex-wrap:wrap; }
+  .score-stats div{ font-size:.86rem; color:#e3ecdf; }
+  .score-stats strong{ display:block; font-size:1.3rem; color:#fff; }
+
+  .panel{ background:#fff; border:1px solid var(--rule); border-radius:10px; padding:22px 26px; margin-bottom:22px; }
+  .panel h2{ font-size:1.2rem; margin:0 0 16px; border-bottom:2px solid var(--green); padding-bottom:8px; }
+
+  .bar-row{ margin-bottom:12px; }
+  .bar-row .bar-label{ display:flex; justify-content:space-between; font-size:.87rem; margin-bottom:4px; }
+  .bar-row .bar-label .pct{ font-weight:700; }
+  .bar-track{ background:var(--paper2); border-radius:6px; height:14px; overflow:hidden; }
+  .bar-fill{ height:100%; border-radius:6px; background:var(--green); }
+  .bar-fill.warn{ background:var(--amber); }
+  .bar-fill.bad{ background:var(--rust); }
+
+  .time-row{ display:flex; align-items:center; gap:10px; margin-bottom:8px; font-size:.85rem; }
+  .time-row .t-label{ flex:0 0 210px; color:var(--ink-soft); overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .time-row .bar-track{ flex:1; }
+  .time-row .t-val{ flex:0 0 46px; text-align:right; color:var(--ink-soft); }
+  .time-summary{ display:flex; gap:26px; flex-wrap:wrap; margin-bottom:18px; }
+  .time-summary div{ font-size:.85rem; color:var(--ink-soft); }
+  .time-summary strong{ display:block; font-size:1.15rem; color:var(--ink); }
+
+  .review-item{ border-bottom:1px solid var(--rule); padding:14px 0; }
+  .review-item:last-child{ border-bottom:none; }
+  .review-item .r-meta{ display:flex; gap:8px; margin-bottom:6px; flex-wrap:wrap; }
+  .review-item .r-q{ font-weight:600; margin-bottom:8px; }
+  .review-item .r-opt{ font-size:.9rem; padding:6px 10px; border-radius:6px; margin-bottom:4px; }
+  .review-item .r-opt.correct{ background:#e3ece3; color:var(--green-dk); font-weight:600; }
+  .review-item .r-opt.wrong-pick{ background:#f4e2dc; color:#6d2c1c; font-weight:600; text-decoration:line-through; }
+  .review-item .r-opt.skipped-note{ background:#f4e2dc; color:#6d2c1c; font-style:italic; }
+  .review-empty{ font-size:.9rem; color:var(--ink-soft); padding:10px 0; }
+
+  .filter-bar{ display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin-bottom:18px; }
+  .filter-group{ display:flex; gap:6px; }
+  .filter-btn{
+    font-size:.84rem; font-weight:600; padding:6px 14px; border-radius:14px;
+    border:1px solid var(--rule); background:#fff; color:var(--ink-soft); cursor:pointer;
+  }
+  .filter-btn.active{ background:var(--green); border-color:var(--green); color:#fff; }
+  .filter-flag{
+    display:flex; align-items:center; gap:6px; font-size:.84rem; color:var(--ink);
+    padding:6px 12px; border:1px dashed var(--rule); border-radius:14px; cursor:pointer;
+  }
+  .filter-flag input{ accent-color:var(--amber); }
+  .filter-count{ font-size:.8rem; color:var(--ink-soft); margin-left:auto; }
+  .result-actions{ display:flex; gap:12px; flex-wrap:wrap; margin-top:6px; }
+  .result-actions button, .result-actions a{
+    padding:11px 20px; border-radius:8px; font-weight:600; font-size:.92rem; cursor:pointer;
+    text-decoration:none; text-align:center; border:1px solid var(--rule); color:var(--ink); background:#fff;
+  }
+  .result-actions .primary{ background:var(--green); border-color:var(--green); color:#fff; }
+
+  @media(max-width:640px){
+    .qcard{ padding:20px; }
+    .time-row .t-label{ flex-basis:120px; font-size:.78rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <a href="{{ url_for('quiz_setup') }}">← New setup</a>
+  <a href="{{ url_for('dashboard') }}">☰ Dashboard</a>
+  <span class="grow"></span>
+  {% if not backtracking %}<span class="qmeta-tag" style="background:#f4e2dc;color:#6d2c1c;">🔒 No backtracking</span>{% endif %}
+  <span id="progress-label">Question 1 of {{ questions|length }}</span>
+  <span class="timer" id="timer">00:00</span>
+</div>
+
+<main>
+  {% if requested_count > pool_size %}
+  <div class="panel" style="border-color:#a6742d;">
+    You asked for {{ requested_count }} questions, but only {{ pool_size }} were available from your
+    selected topics — this quiz uses all {{ pool_size }}.
+  </div>
+  {% endif %}
+
+  <div id="quiz-area">
+    <div class="palette" id="palette"></div>
+
+    <div class="qcard">
+      <div class="meta">
+        <span class="qmeta-tag" id="q-topic"></span>
+        <span class="qmeta-tag level" id="q-level"></span>
+        <button type="button" class="flag-btn" id="flag-btn">🚩 Flag for review</button>
+      </div>
+      <p class="stem" id="q-stem"></p>
+      <div class="options" id="q-options"></div>
+    </div>
+
+    <div class="nav-row">
+      <button id="prev-btn">← Previous</button>
+      <button id="next-btn" class="primary">Next →</button>
+      <button id="submit-btn" class="submit">Submit Quiz</button>
+    </div>
+  </div>
+
+  <div id="results">
+    <div class="score-hero">
+      <div class="big" id="r-score">0 / 0</div>
+      <div class="sub" id="r-pct">0% correct</div>
+      <div class="score-stats">
+        <div><strong id="r-correct">0</strong>Correct</div>
+        <div><strong id="r-wrong">0</strong>Incorrect</div>
+        <div><strong id="r-skipped">0</strong>Skipped</div>
+        <div><strong id="r-time">0:00</strong>Total time</div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h2>Accuracy by week</h2>
+      <div id="week-bars"></div>
+    </div>
+
+    <div class="panel">
+      <h2>Accuracy by topic</h2>
+      <div id="topic-bars"></div>
+    </div>
+
+    <div class="panel">
+      <h2>Time analysis</h2>
+      <div class="time-summary">
+        <div><strong id="t-avg">0s</strong>Avg. time / question</div>
+        <div><strong id="t-fastest">–</strong>Fastest question</div>
+        <div><strong id="t-slowest">–</strong>Slowest question</div>
+      </div>
+      <div id="time-bars"></div>
+    </div>
+
+    <div class="panel">
+      <h2>Full review</h2>
+      <div class="filter-bar">
+        <div class="filter-group" id="filter-correctness">
+          <button type="button" class="filter-btn active" data-filter="all">All</button>
+          <button type="button" class="filter-btn" data-filter="correct">Correct</button>
+          <button type="button" class="filter-btn" data-filter="wrong">Wrong</button>
+          <button type="button" class="filter-btn" data-filter="skipped">Skipped</button>
+        </div>
+        <label class="filter-flag">
+          <input type="checkbox" id="filter-flagged-only">
+          🚩 Flagged only
+        </label>
+        <span class="filter-count" id="filter-count"></span>
+      </div>
+      <div id="review-list"></div>
+    </div>
+
+    <div class="result-actions">
+      <form method="post" action="{{ url_for('quiz_start') }}" id="retake-form">
+        <input type="hidden" name="count" value="{{ requested_count }}">
+        {% if backtracking %}<input type="hidden" name="backtracking" value="on">{% endif %}
+        {% for t in selected_topics %}<input type="hidden" name="topics" value="{{ t }}">{% endfor %}
+        <button type="submit" class="primary" style="border:none;">🔀 New shuffle, same topics</button>
+      </form>
+      <a href="{{ url_for('quiz_setup') }}">Change topics</a>
+      <a href="{{ url_for('dashboard') }}">Back to Dashboard</a>
+    </div>
+  </div>
+</main>
+
+<script>
+const QUESTIONS = {{ questions | tojson }};
+const BACKTRACKING = {{ 'true' if backtracking else 'false' }};
+const WEEK_TITLES = {{ week_titles | tojson }};
+const answers = new Array(QUESTIONS.length).fill(null);
+const flags = new Array(QUESTIONS.length).fill(false);
+const firstVisit = new Array(QUESTIONS.length).fill(null);
+const timeSpent = new Array(QUESTIONS.length).fill(null);
+let current = 0;
+let furthestReached = 0;
+let submitted = false;
+let overallStart = Date.now();
+let reviewFilter = 'all';
+let reviewFlaggedOnly = false;
+
+const paletteEl = document.getElementById('palette');
+const progressLabel = document.getElementById('progress-label');
+const topicEl = document.getElementById('q-topic');
+const levelEl = document.getElementById('q-level');
+const stemEl = document.getElementById('q-stem');
+const optionsEl = document.getElementById('q-options');
+const prevBtn = document.getElementById('prev-btn');
+const nextBtn = document.getElementById('next-btn');
+const submitBtn = document.getElementById('submit-btn');
+const timerEl = document.getElementById('timer');
+const flagBtn = document.getElementById('flag-btn');
+
+function buildPalette(){
+  paletteEl.innerHTML = '';
+  QUESTIONS.forEach((q, i) => {
+    const b = document.createElement('button');
+    b.textContent = i + 1;
+    b.addEventListener('click', () => goTo(i));
+    paletteEl.appendChild(b);
+  });
+}
+
+function refreshPalette(){
+  Array.from(paletteEl.children).forEach((b, i) => {
+    b.classList.toggle('answered', answers[i] !== null);
+    b.classList.toggle('current', i === current);
+    b.classList.toggle('flagged', flags[i]);
+    const locked = !BACKTRACKING && i < furthestReached && i !== current;
+    b.classList.toggle('locked', locked);
+  });
+}
+
+function closeOutTiming(idx){
+  if (firstVisit[idx] !== null && timeSpent[idx] === null){
+    timeSpent[idx] = (Date.now() - firstVisit[idx]) / 1000;
+  }
+}
+
+function goTo(idx){
+  if (idx < 0 || idx >= QUESTIONS.length) return;
+  if (!BACKTRACKING && idx < furthestReached && idx !== current) return; // locked out
+  closeOutTiming(current);
+  current = idx;
+  furthestReached = Math.max(furthestReached, current);
+  if (firstVisit[current] === null) firstVisit[current] = Date.now();
+  render();
+}
+
+function render(){
+  const q = QUESTIONS[current];
+  progressLabel.textContent = `Question ${current + 1} of ${QUESTIONS.length}`;
+  topicEl.textContent = `Week ${q.week} · ${q.topic_label}`;
+  levelEl.textContent = q.level;
+  stemEl.textContent = q.q;
+  flagBtn.textContent = flags[current] ? '🚩 Flagged' : '🚩 Flag for review';
+  flagBtn.classList.toggle('on', flags[current]);
+  optionsEl.innerHTML = '';
+  const letters = ['A','B','C','D'];
+  q.options.forEach((opt, i) => {
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'opt' + (answers[current] === i ? ' selected' : '');
+    btn.innerHTML = `<span class="letter">${letters[i]}</span><span>${opt}</span>`;
+    btn.addEventListener('click', () => {
+      answers[current] = i;
+      render();
+      refreshPalette();
+    });
+    optionsEl.appendChild(btn);
+  });
+  if (BACKTRACKING){
+    prevBtn.style.display = '';
+    prevBtn.disabled = current === 0;
+  } else {
+    prevBtn.style.display = 'none';
+  }
+  nextBtn.textContent = current === QUESTIONS.length - 1 ? 'Finish reviewing' : 'Next →';
+  refreshPalette();
+}
+
+prevBtn.addEventListener('click', () => goTo(current - 1));
+nextBtn.addEventListener('click', () => goTo(Math.min(current + 1, QUESTIONS.length - 1)));
+
+flagBtn.addEventListener('click', () => {
+  flags[current] = !flags[current];
+  render();
+  refreshPalette();
+});
+
+submitBtn.addEventListener('click', () => {
+  const unanswered = answers.filter(a => a === null).length;
+  if (unanswered > 0 && !confirm(`${unanswered} question(s) unanswered — submit anyway?`)) return;
+  closeOutTiming(current);
+  finishQuiz();
+});
+
+setInterval(() => {
+  if (submitted) return;
+  const secs = Math.floor((Date.now() - overallStart) / 1000);
+  const m = String(Math.floor(secs / 60)).padStart(2,'0');
+  const s = String(secs % 60).padStart(2,'0');
+  timerEl.textContent = `${m}:${s}`;
+}, 1000);
+
+function fmtTime(s){
+  if (s === null || s === undefined) return '–';
+  if (s < 60) return `${s.toFixed(1)}s`;
+  const m = Math.floor(s / 60), r = Math.round(s % 60);
+  return `${m}m ${r}s`;
+}
+
+function finishQuiz(){
+  submitted = true;
+  document.getElementById('quiz-area').style.display = 'none';
+  document.getElementById('results').style.display = 'block';
+  window.scrollTo({top:0, behavior:'smooth'});
+
+  let correct = 0, wrong = 0, skipped = 0;
+  const byTopic = {};   // "W1 · Topic label" -> {correct, total}
+  const byWeek = {};    // week number -> {correct, total}
+  QUESTIONS.forEach((q, i) => {
+    const a = answers[i];
+    const key = `W${q.week} · ${q.topic_label}`;
+    if (!byTopic[key]) byTopic[key] = {correct:0, total:0};
+    if (!byWeek[q.week]) byWeek[q.week] = {correct:0, total:0};
+    byTopic[key].total++;
+    byWeek[q.week].total++;
+    if (a === null){ skipped++; }
+    else if (a === q.answer){ correct++; byTopic[key].correct++; byWeek[q.week].correct++; }
+    else { wrong++; }
+  });
+  const total = QUESTIONS.length;
+  const pct = total ? Math.round((correct/total)*100) : 0;
+
+  document.getElementById('r-score').textContent = `${correct} / ${total}`;
+  document.getElementById('r-pct').textContent = `${pct}% correct`;
+  document.getElementById('r-correct').textContent = correct;
+  document.getElementById('r-wrong').textContent = wrong;
+  document.getElementById('r-skipped').textContent = skipped;
+  const totalTime = timeSpent.reduce((s,t) => s + (t||0), 0);
+  document.getElementById('r-time').textContent = fmtTime(totalTime).replace(' ','');
+
+  // accuracy by week — the "weak weeks" view
+  const weekBarsEl = document.getElementById('week-bars');
+  weekBarsEl.innerHTML = '';
+  Object.entries(byWeek).sort((a,b) => Number(a[0]) - Number(b[0])).forEach(([wk, s]) => {
+    const p = Math.round((s.correct / s.total) * 100);
+    const cls = p >= 80 ? '' : (p >= 50 ? 'warn' : 'bad');
+    const title = WEEK_TITLES[wk] || `Week ${wk}`;
+    const row = document.createElement('div');
+    row.className = 'bar-row';
+    row.innerHTML = `
+      <div class="bar-label"><span>Week ${wk} — ${title}</span><span class="pct">${s.correct}/${s.total} · ${p}%</span></div>
+      <div class="bar-track"><div class="bar-fill ${cls}" style="width:${p}%"></div></div>`;
+    weekBarsEl.appendChild(row);
+  });
+
+  // topic-wise bar chart
+  const topicBarsEl = document.getElementById('topic-bars');
+  topicBarsEl.innerHTML = '';
+  Object.entries(byTopic).sort((a,b) => a[0].localeCompare(b[0])).forEach(([label, s]) => {
+    const p = Math.round((s.correct / s.total) * 100);
+    const cls = p >= 80 ? '' : (p >= 50 ? 'warn' : 'bad');
+    const row = document.createElement('div');
+    row.className = 'bar-row';
+    row.innerHTML = `
+      <div class="bar-label"><span>${label}</span><span class="pct">${s.correct}/${s.total} · ${p}%</span></div>
+      <div class="bar-track"><div class="bar-fill ${cls}" style="width:${p}%"></div></div>`;
+    topicBarsEl.appendChild(row);
+  });
+
+  // time analysis
+  const validTimes = QUESTIONS.map((q,i) => timeSpent[i]).filter(t => t !== null);
+  const avg = validTimes.length ? validTimes.reduce((a,b)=>a+b,0)/validTimes.length : 0;
+  document.getElementById('t-avg').textContent = fmtTime(avg);
+  if (validTimes.length){
+    let fastestIdx = -1, slowestIdx = -1, fastestVal = Infinity, slowestVal = -Infinity;
+    QUESTIONS.forEach((q,i) => {
+      const t = timeSpent[i];
+      if (t === null) return;
+      if (t < fastestVal){ fastestVal = t; fastestIdx = i; }
+      if (t > slowestVal){ slowestVal = t; slowestIdx = i; }
+    });
+    document.getElementById('t-fastest').textContent = `Q${fastestIdx+1} · ${fmtTime(fastestVal)}`;
+    document.getElementById('t-slowest').textContent = `Q${slowestIdx+1} · ${fmtTime(slowestVal)}`;
+  }
+  const maxTime = Math.max(...validTimes, 1);
+  const timeBarsEl = document.getElementById('time-bars');
+  timeBarsEl.innerHTML = '';
+  QUESTIONS.forEach((q, i) => {
+    const t = timeSpent[i];
+    const w = t !== null ? Math.max(4, Math.round((t / maxTime) * 100)) : 0;
+    const row = document.createElement('div');
+    row.className = 'time-row';
+    row.innerHTML = `
+      <span class="t-label">Q${i+1} · W${q.week} ${q.topic_label}</span>
+      <div class="bar-track"><div class="bar-fill" style="width:${w}%; background:var(--slate);"></div></div>
+      <span class="t-val">${t !== null ? fmtTime(t) : 'skip'}</span>`;
+    timeBarsEl.appendChild(row);
+  });
+
+  // full review — filterable by correctness and by flagged status
+  renderReview();
+}
+
+function questionState(i){
+  const a = answers[i];
+  if (a === null) return 'skipped';
+  return a === QUESTIONS[i].answer ? 'correct' : 'wrong';
+}
+
+function renderReview(){
+  const reviewEl = document.getElementById('review-list');
+  const countEl = document.getElementById('filter-count');
+  reviewEl.innerHTML = '';
+  const letters = ['A','B','C','D'];
+
+  const indices = QUESTIONS.map((_, i) => i).filter(i => {
+    if (reviewFlaggedOnly && !flags[i]) return false;
+    if (reviewFilter === 'all') return true;
+    return questionState(i) === reviewFilter;
+  });
+
+  countEl.textContent = `Showing ${indices.length} of ${QUESTIONS.length}`;
+
+  if (indices.length === 0){
+    reviewEl.innerHTML = `<div class="review-empty">No questions match this filter.</div>`;
+    return;
+  }
+
+  indices.forEach(i => {
+    const q = QUESTIONS[i];
+    const a = answers[i];
+    const state = questionState(i);
+    const item = document.createElement('div');
+    item.className = 'review-item';
+    let optsHtml = '';
+    q.options.forEach((opt, j) => {
+      let cls = '';
+      if (j === q.answer) cls = 'correct';
+      else if (j === a) cls = 'wrong-pick';
+      if (cls) optsHtml += `<div class="r-opt ${cls}">${letters[j]}. ${opt}${j===q.answer ? ' ✓ correct answer' : (j===a ? ' ✗ your answer' : '')}</div>`;
+    });
+    if (a === null) optsHtml += `<div class="r-opt skipped-note">Skipped — no answer selected</div>`;
+    const stateColors = {
+      correct: ['#e3ece3', '#204a37'],
+      wrong: ['#f4e2dc', '#6d2c1c'],
+      skipped: ['#f4e2dc', '#6d2c1c'],
+    };
+    const [bg, fg] = stateColors[state];
+    const stateLabel = state === 'correct' ? 'Correct' : (state === 'skipped' ? 'Skipped' : 'Incorrect');
+    item.innerHTML = `
+      <div class="r-meta">
+        <span class="qmeta-tag">W${q.week} · ${q.topic_label}</span>
+        <span class="qmeta-tag level">${q.level}</span>
+        <span class="qmeta-tag" style="background:${bg}; color:${fg};">${stateLabel}</span>
+        ${flags[i] ? '<span class="qmeta-tag" style="background:#f3e9d4;color:#7a4d10;">🚩 Flagged</span>' : ''}
+      </div>
+      <div class="r-q">${i+1}. ${q.q}</div>
+      ${optsHtml}`;
+    reviewEl.appendChild(item);
+  });
+}
+
+document.querySelectorAll('#filter-correctness .filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    reviewFilter = btn.dataset.filter;
+    document.querySelectorAll('#filter-correctness .filter-btn').forEach(b => b.classList.toggle('active', b === btn));
+    renderReview();
+  });
+});
+document.getElementById('filter-flagged-only').addEventListener('change', (e) => {
+  reviewFlaggedOnly = e.target.checked;
+  renderReview();
+});
+
+buildPalette();
+firstVisit[0] = Date.now();
+render();
+</script>
+
+</body>
+</html>

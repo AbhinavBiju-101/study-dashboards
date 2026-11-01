@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% from "_macros.html" import box %}
+{% block title %}Exam recap · QM Illustrated Notes{% endblock %}
+{% block bodyclass %}recap{% endblock %}
+{% block content %}
+<header class="hero recap"><div class="in"><h1>Exam recap</h1>
+<p>Format, exclusions, marks-costing mistakes, and model answers.</p></div></header>
+<main class="wrap">
+<div class="note warn"><b>This page is a labelled placeholder.</b> The exam-recap file and the model paper were not in the uploaded files (the uploads were the slide decks, problem sets, four textbooks and the syllabus screenshot). The exam format, the "not examined" list, the marks-costing mistakes and the model answers can only come from those two files, so none of it has been guessed. Send them and this page will be filled in from them.</div>
+
+<h2>Exam format</h2>
+<table class="t"><tr><th>Item</th><th>Value</th></tr>
+<tr><td>Duration</td><td>[PLACEHOLDER: from recap file]</td></tr>
+<tr><td>Total marks</td><td>[PLACEHOLDER: from recap file]</td></tr>
+<tr><td>Sections and question types</td><td>[PLACEHOLDER: from recap file]</td></tr>
+<tr><td>Choice / compulsory questions</td><td>[PLACEHOLDER: from recap file]</td></tr>
+<tr><td>Formula sheet or data given</td><td>[PLACEHOLDER: from recap file]</td></tr></table>
+
+<h2>What is NOT examined</h2>
+<div class="stub">[PLACEHOLDER: the recap file's "not examined" list goes here.] Until then, all five modules are written in full against the syllabus lines (the earlier exclusions of the Schrödinger equations, degeneracy and tunnelling have been lifted at your request). Nothing in these notes is marked "not examined", because only a recap can say that.</div>
+
+<h2>Mistakes that cost marks</h2>
+<div class="stub">[PLACEHOLDER: the recap file's list of costly mistakes, each with a fix.] The notes already carry a "Misconception" box in every subsection; the topic-level ones are a good starting point for revision in the meantime.</div>
+
+<h2>Question types: toolkit and model answers</h2>
+<div class="stub">[PLACEHOLDER: one toolkit box and one model answer per question type, worked from the model paper. When filled in, this page will state plainly that the model answers are mine and are not an official key.]</div>
+
+<h2>What the practice problem sets do show (not the exam format)</h2>
+<p>These are the kinds of numerical problem that appear in your uploaded practice sets. This is <i>not</i> confirmed as the exam's format. It is only a map from practice-problem type to the notes section that teaches the method.</p>
+<table class="t"><tr><th>Practice problem type (from your problem sets)</th><th>Where the method is taught</th></tr>
+<tr><td>Linear independence and basis vectors of given vectors</td><td><a href="{{ url_for('module', n=2) }}#m2-1-3">2 · 1.3</a>, <a href="{{ url_for('module', n=2) }}#m2-1-4">1.4</a></td></tr>
+<tr><td>Orthonormal sets</td><td><a href="{{ url_for('module', n=2) }}#m2-2-1">2 · 2.1</a></td></tr>
+<tr><td>Inner product, norm, outer product, tensor product</td><td><a href="{{ url_for('module', n=2) }}#m2-3-2">2 · 3.2</a>–<a href="{{ url_for('module', n=2) }}#m2-3-4">3.4</a></td></tr>
+<tr><td>Linear operators and matrix algebra</td><td><a href="{{ url_for('module', n=2) }}#m2-4-1">2 · 4.1</a>, <a href="{{ url_for('module', n=2) }}#m2-4-2">4.2</a></td></tr>
+<tr><td>Projection operators</td><td><a href="{{ url_for('module', n=2) }}#m2-4-5">2 · 4.5</a></td></tr>
+<tr><td>Eigenvalues and eigenvectors</td><td><a href="{{ url_for('module', n=2) }}#m2-5-1">2 · 5.1</a></td></tr>
+<tr><td>Pauli matrices</td><td><a href="{{ url_for('module', n=2) }}#m2-6-1">2 · 6.1</a></td></tr>
+<tr><td>Commutation relations</td><td><a href="{{ url_for('module', n=2) }}#m2-7-1">2 · 7.1</a></td></tr>
+<tr><td>Expectation values (x, p, E)</td><td><a href="{{ url_for('module', n=3) }}#m3-2-2">3 · 2.2</a></td></tr>
+<tr><td>Normalise a box wavefunction; probability in a region</td><td><a href="{{ url_for('module', n=4) }}#m4-1-5">4 · 1.5</a>, <a href="{{ url_for('module', n=4) }}#m4-2-4">2.4</a></td></tr>
+<tr><td>Energy levels of an electron in a box; de Broglie wavelength in a box</td><td><a href="{{ url_for('module', n=4) }}#m4-1-4">4 · 1.4</a>, <a href="{{ url_for('module', n=4) }}#m4-2-5">2.5</a></td></tr></table>
+<div class="note"><b>A discrepancy worth knowing about.</b> In the 1D-problems deck, the two worked answers for an electron in a 1 Å box (5.68 eV and 0.58 eV) do not match their own working. With the deck's constants, h²/(8ma²) = 6.03×10⁻¹⁸ J = 37.6 eV. The numbers in the deck's other problems (for example 6 eV for a 0.25 nm well) do check out. Since there is no recap to overrule it, these notes use the recomputed value and flag it where it appears in <a href="{{ url_for('module', n=4) }}#m4-1-4">Module 4, 1.4</a>. If your recap or lecturer gives a different convention, tell me and I will follow it.</div>
+</main>
+{% endblock %}

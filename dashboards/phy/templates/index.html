@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block title %}Dashboard · QM Illustrated Notes{% endblock %}
+{% block content %}
+<header class="hero"><div class="in">
+  <h1>Quantum Mechanics: Illustrated Study Notes</h1>
+  <p>Modules 1 to 5 of BAPHY105 (VIT Chennai): wave-particle duality, the mathematics of quantum mechanics, the postulates with sequential Stern-Gerlach, the particle in a box with degeneracy and tunnelling, and the elements of quantum computing. Written as teaching notes with diagrams, worked examples and self-tests.</p>
+  <div class="stats">
+    <div class="stat"><b id="stat-acc">–</b>overall quiz accuracy</div>
+    <div class="stat"><b id="stat-att">0</b>questions attempted</div>
+    <div class="stat"><b>{{ n_topics }}</b>topics</div>
+    <div class="stat"><b>{{ n_subs }}</b>subtopics</div>
+  </div>
+</div></header>
+<main class="wrap">
+  <div class="note"><b>How to use this page.</b> Click a <i>subtopic</i> to jump to its section in the notes. Click the small <span class="qlink">Quiz</span> pill next to a module, topic or subtopic to open the quiz setup with it pre-selected. Accuracy chips fill in as you finish quizzes (they are stored only in this browser). Modules 1 and 5 have notes but no quiz questions yet, because your question bank covers Modules 2 to 4 only.</div>
+  <div class="note warn"><b>Still missing.</b> The exam-recap file and the model paper were not among the uploaded files, so the <a href="{{ url_for('recap') }}">Exam recap</a> page is a labelled placeholder. The quiz is live: it uses your MCQ bank ({{ n_questions }} questions).</div>
+  <div class="grid">
+  {% for m in modules %}
+    <article class="card m{{ m.n }}">
+      <h2><a href="{{ url_for('module', n=m.n) }}">Module {{ m.n }}: {{ m.title }}</a>
+        {% if counts.get(m.n, 0) %}<a class="qlink" href="{{ url_for('quiz_setup', module=m.n) }}">Quiz</a>{% endif %}</h2>
+      <div class="muted small">{{ m.hours }} hours · {{ m.scope }}</div>
+      {% for t in m.topics %}
+      <details class="topic" {% if loop.first %}open{% endif %}>
+        <summary>{{ loop.index }}. {{ t.title }}
+          {% if t.excluded %}<span class="tag-out">not covered</span>{% elif counts.get(t.id, 0) %}<a class="qlink" href="{{ url_for('quiz_setup', topic=t.id) }}">Quiz</a>{% endif %}
+          <span class="sumline">{{ t.summary }}</span></summary>
+        {% if t.excluded %}
+          <p class="small"><a href="{{ url_for('module', n=m.n) }}#{{ t.id }}">See the note on this section</a></p>
+        {% else %}
+        <p class="small" style="margin:4px 0 0 14px"><a href="{{ url_for('module', n=m.n) }}#{{ t.id }}">Open topic {{ loop.index }} in the notes</a></p>
+        <ul class="sublist">
+          {% for s in t.subtopics %}
+          <li><a href="{{ url_for('module', n=m.n) }}#{{ s.id }}"><b>{{ loop.index }}.</b> {{ s.title }}</a>
+              {% if counts.get(s.id, 0) %}<a class="qlink" href="{{ url_for('quiz_setup', sub=s.id) }}">Quiz</a>{% endif %}
+              {% if counts.get(s.id, 0) %}<span class="chip" data-chip="{{ s.id }}">no attempts</span>{% else %}<span class="chip">no questions in your bank</span>{% endif %}
+              <span class="sumline">{{ s.summary }}</span></li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+      </details>
+      {% endfor %}
+    </article>
+  {% endfor %}
+    <article class="card recap"><h2><a href="{{ url_for('recap') }}">Exam recap</a></h2>
+      <p class="small">Exam format, what is not examined, marks-costing mistakes and model answers. Currently a placeholder page: the recap file and model paper were not supplied.</p></article>
+    <article class="card quiz"><h2><a href="{{ url_for('quiz_setup') }}">Quiz</a></h2>
+      <p class="small">Choose modules, topics, subtopics and Bloom's levels, then sit a timed quiz from your {{ n_questions }}-question MCQ bank.</p></article>
+  </div>
+</main>
+{% endblock %}
+{% block scripts %}
+<script src="{{ url_for('static', filename='progress.js') }}"></script>
+<script>
+(function(){
+  var p = QMProgress.load();
+  var right=0,total=0;
+  Object.keys(p.sub||{}).forEach(function(k){right+=p.sub[k].right;total+=p.sub[k].total;
+    document.querySelectorAll('[data-chip="'+k+'"]').forEach(function(el){
+      var a=p.sub[k].right/p.sub[k].total; el.textContent=Math.round(a*100)+'% ('+p.sub[k].right+'/'+p.sub[k].total+')';
+      el.className='chip '+(a>=.8?'good':a>=.5?'mid':'bad');});});
+  if(total){document.getElementById('stat-acc').textContent=Math.round(100*right/total)+'%';}
+  document.getElementById('stat-att').textContent=total;
+})();
+</script>
+{% endblock %}

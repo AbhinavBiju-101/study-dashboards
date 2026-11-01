@@ -1,0 +1,503 @@
+{% extends "base.html" %}
+{% from "_macros.html" import box, sub, sec, fig, mat, ket, bra %}
+{% from "modnav.html" import modnav with context %}
+{% block title %}Module 4 · Applications: the particle in a box{% endblock %}
+{% block bodyclass %}mod4{% endblock %}
+{% block modnav_top %}{{ modnav() }}{% endblock %}
+{% block modnav_bottom %}{{ modnav('bottom') }}{% endblock %}
+{% block content %}
+<header class="hero m4"><div class="in"><h1>Module 4 · Applications of Quantum Mechanics</h1>
+<p>The particle in a one-dimensional box, and its extension to more dimensions. Sections 4 and 5 cover degeneracy of energy levels and quantum tunnelling with the tunnelling probability.</p></div></header>
+<div class="notes">
+<div class="toc"><b>Contents</b><ol>
+{% for t in cur.topics %}<li><a href="#{{ t.id }}">{{ t.title }}</a>{% if t.excluded %} <span class="tag-out">not covered</span>{% endif %}</li>{% endfor %}
+<li><a href="#m4-check">Self-test checklist</a></li></ol>
+<p class="small muted">This module is a worked application of Modules 2 and 3: the box's energies are eigenvalues (Module 3, 1.4), its wavefunctions are an orthonormal basis (Module 2, 2.1), and ⟨x⟩, ⟨p²⟩, Δx·Δp use the expectation-value machinery (Module 3, 2). The time-independent Schrödinger equation is quoted in 1.2; its derivation is in Module 3, Section 5.</p></div>
+
+{% call sec('m4-1','1','The particle in a 1D box') %}
+
+{% call sub('m4-1-1','1.1','The setup: classical versus quantum') %}
+<div class="intuition"><b>Why it matters.</b> This is the simplest system where the postulates give a complete answer you can compute by hand. It is also a model for electrons confined in tiny structures, so the numbers have real scale.</div>
+{% call box('def') %}A particle of mass m is confined to 0 &lt; x &lt; L by infinitely high walls: <b>V(x) = 0 for 0 &lt; x &lt; L, and V = ∞ otherwise</b>. The particle can never be found outside, so ψ = 0 outside. Classically, any energy E ≥ 0 is allowed, the speed is constant, and the particle is equally likely to be anywhere. Quantum mechanically, the wavefunction must fit the box and only certain energies survive.{% endcall %}
+{% call fig('The infinite square well: potential is zero inside and infinite at the walls x = 0 and x = L. <i>Notice</i> the walls are vertical lines: no part of the particle leaks out.') %}
+<svg viewBox="0 0 360 190" width="360" role="img" aria-label="Infinite square well"><defs><marker id="a411" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#333"/></marker></defs>
+<line x1="60" y1="10" x2="60" y2="150" stroke="#b45309" stroke-width="4"/><line x1="300" y1="10" x2="300" y2="150" stroke="#b45309" stroke-width="4"/>
+<line x1="60" y1="150" x2="300" y2="150" stroke="#b45309" stroke-width="4"/>
+<text x="60" y="172" font-size="13" text-anchor="middle">x = 0</text><text x="300" y="172" font-size="13" text-anchor="middle">x = L</text>
+<text x="180" y="110" font-size="14" text-anchor="middle">V = 0 (free inside)</text><text x="30" y="60" font-size="13" text-anchor="middle">V = ∞</text><text x="330" y="60" font-size="13" text-anchor="middle">V = ∞</text>
+<line x1="60" y1="135" x2="300" y2="135" stroke="#555" stroke-dasharray="3 3"/><line x1="182" y1="135" x2="182" y2="150" stroke="none"/></svg>
+{% endcall %}
+<table class="t"><tr><th></th><th>Classical</th><th>Quantum</th></tr>
+<tr><td>Allowed energies</td><td>any E ≥ 0</td><td>only Eₙ (discrete)</td></tr><tr><td>Lowest energy</td><td>0 (at rest)</td><td>E₁ &gt; 0</td></tr>
+<tr><td>Where is it found?</td><td>anywhere equally</td><td>by |ψₙ|², with nodes</td></tr></table>
+{% call box('ex') %}
+<div class="step"><b>Problem.</b> Which of these is a valid "box" potential: (a) V = 0 for 0 &lt; x &lt; L, V = 10 eV outside; (b) V = 0 for 0 &lt; x &lt; L, V = ∞ outside?</div>
+<div class="step">(a) finite walls, so the wavefunction leaks into the walls (the subject of tunnelling, Section 5). (b) is the infinite well used in this module.</div>
+<div class="check"><b>Check.</b> The definition of the infinite well is "ψ = 0 at and beyond the walls". Only (b) forces that boundary condition, which Section 1.3 uses.</div>
+{% endcall %}
+{% call box('mis') %}"In the box the particle bounces back and forth, so any energy works." That is the classical picture. The wave nature requires the wavefunction to vanish at the walls, which quantises the energy.{% endcall %}
+<div class="next">Next: 1.2 writes the equation that governs the inside of the box.</div>
+{% endcall %}
+
+<hr class="div">
+{% call sub('m4-1-2','1.2','The equation inside the box') %}
+<div class="intuition"><b>Why it matters.</b> This reduces the problem to an equation whose solutions you already know from school calculus: sines and cosines.</div>
+{% call box('def') %}The <b>time-independent Schrödinger equation</b> (quoted here; its derivation is outside the scope of these notes) is Ĥψ = Eψ, i.e. <b>−(ħ²/2m) d²ψ/dx² + V(x)ψ = Eψ</b>. Inside the box V = 0, so d²ψ/dx² = −(2mE/ħ²)ψ = <b>−k²ψ</b> with <b>k = √(2mE)/ħ</b>. This is the eigenvalue problem for the Hamiltonian operator of Module 3, 1.2: the allowed E are its eigenvalues and the solutions ψ are its eigenfunctions.{% endcall %}
+<table class="t"><tr><th>Equation</th><th>General solution</th></tr>
+<tr><td>ψ″ = −k²ψ (k real)</td><td>A sin kx + B cos kx (oscillating, fits a box)</td></tr>
+<tr><td>ψ″ = +κ²ψ</td><td>Ce<sup>κx</sup> + De<sup>−κx</sup> (grows or decays; cannot vanish at both walls)</td></tr></table>
+{% call box('ex') %}
+<div class="step"><b>Problem.</b> Show ψ = sin(kx) satisfies ψ″ = −k²ψ and find the E it corresponds to when k = 2π/L.</div>
+<div class="step">ψ′ = k cos kx, ψ″ = −k² sin kx = −k²ψ ✓. E = ħ²k²/2m = ħ²(2π/L)²/2m = 2π²ħ²/(mL²).</div>
+<div class="check"><b>Check.</b> Substituting into −(ħ²/2m)ψ″ gives (ħ²k²/2m) sin kx = E·ψ ✓. (Compare with 1.4: this k = 2π/L is n = 2, and E = 4π²ħ²/(2mL²) = 2π²ħ²/(mL²) ✓.)</div>
+{% endcall %}
+{% call box('mis') %}"E can be negative inside the box." With V = 0 inside, E = ħ²k²/2m ≥ 0. A negative E would make k imaginary and the solutions exponential, which cannot be zero at both walls.{% endcall %}
+<div class="next">Next: 1.3 applies the wall conditions.</div>
+{% endcall %}
+
+<hr class="div">
+{% call sub('m4-1-3','1.3','Boundary conditions and the wavefunction') %}
+<div class="intuition"><b>Why it matters.</b> This is where the quantisation is born. No new physics is added; only "ψ = 0 at the walls" is imposed.</div>
+{% call box('def') %}The wavefunction must be continuous, and since ψ = 0 outside the box, <b>ψ(0) = 0 and ψ(L) = 0</b>. Take ψ = A sin kx + B cos kx. At x = 0: ψ(0) = B = 0, so <b>ψ = A sin kx</b>. At x = L: A sin kL = 0, and A ≠ 0 (else ψ ≡ 0), so <b>sin kL = 0 ⇒ kL = nπ, n = 1, 2, 3, …</b> Hence kₙ = nπ/L. n = 0 gives ψ ≡ 0 (no particle), and negative n only flips the sign of ψ (same state).{% endcall %}
+{% call fig('Only waves that fit the box with zero at both ends are allowed: n = 1, 2, 3 are shown. <i>Notice</i> each has exactly n half-wavelengths inside the box. A wave with a non-whole number of half-waves (such as 2.5) cannot be zero at both walls, as the example below shows.') %}
+<svg viewBox="0 0 340 130" width="340" role="img" aria-label="Allowed waves in the box (n=1,2,3 and a forbidden non-integer)"><line x1="10" y1="65" x2="330" y2="65" stroke="#aaa"/>
+<polyline points="{{ wave_svg(1,'psi',320,130) }}" fill="none" stroke="#b45309" stroke-width="2"/><polyline points="{{ wave_svg(2,'psi',320,130) }}" fill="none" stroke="#0f766e" stroke-width="2"/><polyline points="{{ wave_svg(3,'psi',320,130) }}" fill="none" stroke="#6d28d9" stroke-width="2"/>
+<text x="16" y="12" font-size="11" fill="#b45309">n=1</text><text x="16" y="25" font-size="11" fill="#0f766e">n=2</text><text x="16" y="38" font-size="11" fill="#6d28d9">n=3</text></svg>
+{% endcall %}
+{% call box('ex') %}
+<div class="step"><b>Problem.</b> Would k = 2.5π/L be allowed? What is ψ(L) for it?</div>
+<div class="step">ψ = A sin(2.5πx/L), so ψ(L) = A sin(2.5π) = A·sin(π/2) = A ≠ 0.</div>
+<div class="check"><b>Check.</b> Since ψ(L) ≠ 0 the boundary condition fails, so k = 2.5π/L is not allowed: kL must be a whole multiple of π ✓ (n = 2.5 is not an integer).</div>
+{% endcall %}
+{% call box('mis') %}"Both the sine and the cosine solutions survive." The cosine is killed at x = 0 (cos 0 = 1 ≠ 0). For a box from −L/2 to L/2 the roles swap, but here the walls are at 0 and L.{% endcall %}
+<div class="next">Next: 1.4 converts kₙ into energies.</div>
+{% endcall %}
+
+<hr class="div">
+{% call sub('m4-1-4','1.4','Energy eigenvalues') %}
+<div class="intuition"><b>Why it matters.</b> This formula is what almost every numerical problem in the module uses.</div>
+{% call box('def') %}From kₙ = nπ/L and E = ħ²k²/2m: <b>Eₙ = n²π²ħ²/(2mL²) = n²h²/(8mL²)</b>, n = 1, 2, 3, … (using ħ = h/2π). The ground state is E₁ = h²/(8mL²), and <b>Eₙ = n²E₁</b> (ratios 1 : 4 : 9 : 16 …). Energy is <b>quantised</b>, with n the quantum number. Shrinking the box (L smaller) or using a lighter particle (m smaller) raises the energies.{% endcall %}
+{% call fig('Energy levels of the box, drawn to scale: Eₙ = n²E₁. <i>Notice</i> the gaps grow with n (3E₁, 5E₁, 7E₁…), unlike the equal spacing of a spring.') %}
+<svg viewBox="0 0 360 240" width="360" role="img" aria-label="Energy levels n squared"><line x1="60" y1="10" x2="60" y2="225" stroke="#555"/><text x="62" y="10" font-size="12">E</text>
+<line x1="60" y1="215" x2="260" y2="215" stroke="#b45309" stroke-width="3"/><text x="270" y="219" font-size="13">n=1  E₁</text>
+<line x1="60" y1="179" x2="260" y2="179" stroke="#b45309" stroke-width="3"/><text x="270" y="183" font-size="13">n=2  4E₁</text>
+<line x1="60" y1="119" x2="260" y2="119" stroke="#b45309" stroke-width="3"/><text x="270" y="123" font-size="13">n=3  9E₁</text>
+<line x1="60" y1="37" x2="260" y2="37" stroke="#b45309" stroke-width="3"/><text x="270" y="41" font-size="13">n=4  16E₁</text>
+<text x="20" y="232" font-size="11" fill="#666">vertical scale ∝ energy (E₁ = 12 px)</text></svg>
+{% endcall %}
+{% call box('ex') %}
+<div class="step"><b>Problem.</b> An electron (m = 9.109×10⁻³¹ kg) is in a box of width L = 0.5 nm. Find E₁, E₂, E₃ in eV and the wavelength of a photon emitted in the n = 2 → 1 transition. (h = 6.626×10⁻³⁴ J·s, 1 eV = 1.602×10⁻¹⁹ J.)</div>
+<div class="step">E₁ = h²/(8mL²) = (6.626×10⁻³⁴)²/(8 × 9.109×10⁻³¹ × (0.5×10⁻⁹)²) = 4.390×10⁻⁶⁷ / 1.822×10⁻⁴⁸ = 2.41×10⁻¹⁹ J = <b>1.50 eV</b>.</div>
+<div class="step">E₂ = 4E₁ = <b>6.02 eV</b>, E₃ = 9E₁ = <b>13.5 eV</b>. ΔE(2→1) = 3E₁ = 4.51 eV.</div>
+<div class="step">λ = hc/ΔE ≈ 1239.8 eV·nm / 4.51 eV ≈ <b>275 nm</b> (ultraviolet).</div>
+<div class="check"><b>Check.</b> Units: h²/(mL²) is J²s²/(kg m²) = J ✓. Ratios 1 : 4 : 9 ✓. Independent route: for n = 1, p = h/2L gives E = p²/2m = the same 1.50 eV (see 2.5).</div>
+{% endcall %}
+{% call box('mis') %}"Eₙ ∝ n" or "Eₙ ∝ n²/L". It is ∝ n²/L². Also a caution from your problem deck: its worked answers for an electron in a 1 Å box (5.68 eV and, in another slide, 0.58 eV) do not agree with their own working. With the deck's constants h²/(8ma²) = 6.03×10⁻¹⁸ J ≈ <b>37.6 eV</b> for a = 1 Å; the deck's other problem, a 0.25 nm well (about 6 eV), is consistent with the formula. These notes use the formula. If your exam material follows the deck's number instead, go with that and let me know.{% endcall %}
+<div class="next">Next: 1.5 fixes the constant A so that ψ is a proper state.</div>
+{% endcall %}
+
+<hr class="div">
+{% call sub('m4-1-5','1.5','Normalisation and the eigenfunctions') %}
+<div class="intuition"><b>Why it matters.</b> A probability must total 1. Normalisation gives the final, usable ψₙ and makes the set an orthonormal basis (Module 2, 2.1).</div>
+{% call box('def') %}Require ∫₀ᴸ|ψ|²dx = 1. With ψ = A sin(nπx/L): A²∫₀ᴸ sin²(nπx/L)dx = A²·L/2 = 1, so <b>A = √(2/L)</b> and <b>ψₙ(x) = √(2/L) sin(nπx/L)</b>, 0 &lt; x &lt; L. The ψₙ are <b>orthonormal</b>: ∫ψₘψₙdx = δₘₙ (the m ≠ n integral vanishes, as verified in Module 2, 2.2).{% endcall %}
+{% call box('why','Why the integral is L/2') %}sin²θ = (1 − cos 2θ)/2. Over a whole number of half-waves, the cos term integrates to zero, leaving half the length: ∫₀ᴸ sin²(nπx/L)dx = L/2, independent of n.{% endcall %}
+{% call box('ex') %}
+<div class="step"><b>Problem.</b> Find A for a box of width L = 2 nm, and ψ₁ at x = 0.5 nm.</div>
+<div class="step">A = √(2/L) = √(2/2 nm) = 1 nm^(−1/2). ψ₁(0.5 nm) = 1 · sin(π·0.5/2) = sin(π/4) = 0.707 nm^(−1/2).</div>
+<div class="check"><b>Check.</b> Units: |ψ|² has units 1/length, so that ∫|ψ|²dx is dimensionless ✓. Numerical check: A²(L/2) = 1 × 1 nm⁻¹ × 1 nm = 1 ✓.</div>
+{% endcall %}
+{% call box('mis') %}"A = 1/√L" or "A = 2/L". The factor is √(2/L) because the average of sin² is ½. Always check with A²·L/2 = 1.{% endcall %}
+<div class="next">Next: Section 2 reads the physics out of Eₙ and ψₙ.</div>
+{% endcall %}
+{% endcall %}{# end sec 1 #}
+
+<hr class="div">
+{% call sec('m4-2','2','What the solution tells us') %}
+
+{% call sub('m4-2-1','2.1','Quantisation, spacing and the quantum number') %}
+<div class="intuition"><b>Why it matters.</b> It connects the box to real spectra: transitions between levels give photons of specific energies.</div>
+{% call box('def') %}Level spacing: <b>Eₙ₊₁ − Eₙ = (2n + 1)E₁</b>, so the gaps increase with n. The relative spacing (Eₙ₊₁ − Eₙ)/Eₙ = (2n+1)/n² shrinks with n. For a transition n → n′, the photon energy is hν = Eₙ′ − Eₙ.{% endcall %}
+<table class="t"><tr><th>n</th><th>Eₙ / E₁</th><th>gap to next / E₁</th></tr><tr><td>1</td><td>1</td><td>3</td></tr><tr><td>2</td><td>4</td><td>5</td></tr><tr><td>3</td><td>9</td><td>7</td></tr><tr><td>4</td><td>16</td><td>9</td></tr></table>
+{% call box('ex') %}
+<div class="step"><b>Problem.</b> For the electron in the 0.5 nm box (E₁ = 1.50 eV), find the energy needed to excite it from n = 2 to n = 4.</div>
+<div class="step">ΔE = (16 − 4)E₁ = 12 × 1.50 eV = <b>18.1 eV</b> (using E₁ = 1.504 eV).</div>
+<div class="check"><b>Check.</b> Via the gaps: (2·2+1) + (2·3+1) = 5 + 7 = 12 ✓.</div>
+{% endcall %}
+{% call box('mis') %}"The levels are equally spaced." That is the oscillator. In the box the spacing grows with n.{% endcall %}
+<div class="next">Next: 2.2 explains why n = 0 is forbidden and what that means.</div>
+{% endcall %}
+
+<hr class="div">
+{% call sub('m4-2-2','2.2','Zero-point energy') %}
+<div class="intuition"><b>Why it matters.</b> It is the simplest demonstration that a confined quantum particle can never be at rest.</div>
+{% call box('def') %}The lowest allowed energy is E₁ = h²/(8mL²) &gt; 0, because n = 0 gives ψ ≡ 0. This <b>zero-point energy</b> is forced by the uncertainty principle: confining the particle to width ~L gives Δx ≲ L, so Δp ≳ ħ/2L, and a non-zero Δp means non-zero kinetic energy. It scales as 1/L² (tighter confinement, larger zero-point energy).{% endcall %}
+{% call box('ex') %}
+<div class="step"><b>Problem.</b> Compare the zero-point energy of an electron in a 1 nm box with that of a 1 g ball in a 10 cm box.</div>
+<div class="step">Electron: E₁ = 4.390×10⁻⁶⁷ / (8 × 9.109×10⁻³¹ × 10⁻¹⁸) = 6.02×10⁻²⁰ J = 0.376 eV.</div>
+<div class="step">Ball: E₁ = 4.390×10⁻⁶⁷ / (8 × 10⁻³ × 10⁻²) = 5.5×10⁻⁶³ J.</div>
+<div class="check"><b>Check.</b> The ratio is 10⁴³: for macroscopic objects the quantisation is far too small to see, consistent with why nobody notices it in everyday life. Dimension check: both in joules ✓.</div>
+{% endcall %}
+{% call box('mis') %}"Zero-point energy means the particle is moving at its lowest speed and could be slowed to 0." It cannot be lowered further: E₁ is the minimum allowed by the wave's shape.{% endcall %}
+<div class="next">Next: 2.3 looks at where the particle can be found.</div>
+{% endcall %}
+
+<hr class="div">
+{% call sub('m4-2-3','2.3','Nodes, antinodes and probability density') %}
+<div class="intuition"><b>Why it matters.</b> The probability density |ψ|² is the quantity you integrate in every "find the probability" question, and its shape contradicts the classical uniform distribution.</div>
+{% call box('def') %}ψₙ has <b>n − 1 interior nodes</b> (zeros) at x = jL/n, j = 1,…,n−1, and n antinodes (maxima of |ψ|²) at x = (2j − 1)L/2n. The probability density is |ψₙ|² = (2/L) sin²(nπx/L). It is zero at the nodes: the particle is never found there. <b>Counting convention:</b> these notes count only <i>interior</i> nodes (n − 1). Your question bank counts the two walls as nodes too, so there n = 1 has 2 nodes and ψₙ has n + 1 nodes (n antinodes either way). Same physics; read the question to see which counting it uses.{% endcall %}
+{% call fig('ψₙ (top row) and |ψₙ|² (bottom row) for n = 1, 2, 3, computed from the formula. <i>Notice</i> n = 2 has a node at the centre, so the particle is never found in the middle of the box in that state.') %}
+<svg viewBox="0 0 660 260" width="660" role="img" aria-label="Wavefunctions and probability densities for n=1,2,3">
+{% for n in (1,2,3) %}<g transform="translate({{ (n-1)*220 }},0)">
+<rect x="10" y="5" width="200" height="120" fill="#fdf8ee" stroke="#e5dcc6"/><line x1="15" y1="65" x2="205" y2="65" stroke="#ccc"/>
+<polyline transform="translate(0,5) scale(0.66,0.92) translate(0,0)" points="{{ wave_svg(n,'psi',300,120) }}" fill="none" stroke="#b45309" stroke-width="2"/>
+<text x="110" y="140" font-size="12" text-anchor="middle">ψ{{ n }}</text>
+<rect x="10" y="145" width="200" height="105" fill="#f3faf8" stroke="#cfe6e2"/>
+<polyline transform="translate(0,140) scale(0.66,0.72)" points="{{ wave_svg(n,'rho',300,120) }}" fill="none" stroke="#0f766e" stroke-width="2"/>
+<text x="110" y="246" font-size="12" text-anchor="middle">|ψ{{ n }}|²  ({{ n-1 }} interior node{{ 's' if n != 2 else '' }})</text></g>{% endfor %}</svg>
+{% endcall %}
+{% call box('ex') %}
+<div class="step"><b>Problem.</b> For n = 3 locate the nodes and the antinodes.</div>
+<div class="step">Nodes: sin(3πx/L) = 0 ⇒ x = L/3, 2L/3 (and the walls 0, L). Antinodes: |sin| = 1 ⇒ 3πx/L = π/2, 3π/2, 5π/2 ⇒ x = L/6, L/2, 5L/6.</div>
+<div class="check"><b>Check.</b> Count: n − 1 = 2 interior nodes ✓; n = 3 antinodes ✓; nodes and antinodes alternate along the box (L/6 &lt; L/3 &lt; L/2 &lt; 2L/3 &lt; 5L/6) ✓.</div>
+{% endcall %}
+{% call box('mis') %}"The walls are nodes, so the count of nodes is n." Interior nodes are n − 1 (the wall zeros are not counted). Also: "at a node the particle cannot cross it"; it can be found on either side, just never exactly at a node.{% endcall %}
+<div class="next">Next: 2.4 turns |ψ|² into actual probabilities.</div>
+{% endcall %}
+
+<hr class="div">
+{% call sub('m4-2-4','2.4','Probability in a region and the correspondence principle') %}
+<div class="intuition"><b>Why it matters.</b> "Find the probability between a and b" is a standard exam question, and the large-n limit shows quantum mechanics recovering the classical result.</div>
+{% call box('def') %}The probability of finding the particle between a and b is <b>P = ∫ₐᵇ|ψₙ|²dx = (2/L)∫ₐᵇ sin²(nπx/L)dx</b>. For large n, |ψₙ|² oscillates so fast that P → (b − a)/L, the uniform classical value (<b>correspondence principle</b>: at large quantum numbers quantum predictions approach classical ones).{% endcall %}
+{% call box('ex') %}
+<div class="step"><b>Problem.</b> Find P for the middle third (L/3 &lt; x &lt; 2L/3) for n = 1 and n = 2.</div>
+<div class="step">P = (1/L)∫(1 − cos(2nπx/L))dx = [x/L − sin(2nπx/L)/(2nπ)] between the limits = 1/3 − [sin(4nπ/3) − sin(2nπ/3)]/(2nπ).</div>
+<div class="step">n = 1: sin(4π/3) = −√3/2, sin(2π/3) = +√3/2, so P = 1/3 + √3/(2π) = 0.333 + 0.276 = <b>0.609</b>. n = 2: sin(8π/3) = +√3/2, sin(4π/3) = −√3/2, so P = 1/3 − √3/(4π) = 0.333 − 0.138 = <b>0.196</b>.</div>
+<div class="check"><b>Check.</b> n = 1 is peaked at the centre, so more than the classical 1/3 ✓. n = 2 has a node at the centre, so less than 1/3 ✓. Both confirmed by numerical integration. Large n: the oscillating term shrinks like 1/n, so P → 1/3 ✓.</div>
+{% endcall %}
+{% call box('mis') %}"The probability in a region is |ψ|² at its midpoint." You must integrate. Also "P = (b−a)/L for every n": only in the classical (large n) limit.{% endcall %}
+<div class="next">Next: 2.5 gives the same energies from a completely different argument.</div>
+{% endcall %}
+
+<hr class="div">
+{% call sub('m4-2-5','2.5','The standing-wave (de Broglie) picture') %}
+<div class="intuition"><b>Why it matters.</b> It is a quick cross-check that catches algebra slips and shows why quantisation arises: waves that fit.</div>
+{% call box('def') %}A wave that vanishes at both walls must fit a whole number of half-wavelengths: <b>L = nλ/2, so λ = 2L/n</b>. With de Broglie's p = h/λ = nh/2L, and E = p²/2m = <b>n²h²/(8mL²)</b>, exactly the result of 1.4.{% endcall %}
+{% call box('ex') %}
+<div class="step"><b>Problem.</b> Verify E₁ for the electron in the 0.5 nm box from its de Broglie wavelength.</div>
+<div class="step">n = 1: λ = 2L = 1.0 nm; p = h/λ = 6.626×10⁻³⁴ / 10⁻⁹ = 6.63×10⁻²⁵ kg·m/s.</div>
+<div class="step">E = p²/2m = (6.63×10⁻²⁵)² / (2 × 9.109×10⁻³¹) = 2.41×10⁻¹⁹ J = 1.50 eV.</div>
+<div class="check"><b>Check.</b> Matches E₁ = 1.50 eV from 1.4 ✓ — two independent routes agree.</div>
+{% endcall %}
+{% call box('mis') %}"L = nλ" (full wavelengths). The condition is half-wavelengths, because the wave must be zero (not just repeat) at each wall.{% endcall %}
+<div class="next">Next: Section 3 adds more dimensions.</div>
+{% endcall %}
+{% endcall %}{# end sec 2 #}
+
+<hr class="div">
+{% call sec('m4-3','3','Extension to two and three dimensions') %}
+
+{% call sub('m4-3-1','3.1','Separation of variables in a box') %}
+<div class="intuition"><b>Why it matters.</b> A real confined electron (a quantum dot, a metal block) lives in three dimensions, and the 1D result builds the 3D one almost for free.</div>
+{% call box('def') %}For a rectangular box 0 &lt; x &lt; a, 0 &lt; y &lt; b, 0 &lt; z &lt; c with V = 0 inside and ∞ outside, the equation is −(ħ²/2m)(∂²/∂x² + ∂²/∂y² + ∂²/∂z²)ψ = Eψ. Try a product <b>ψ = X(x)Y(y)Z(z)</b>. Dividing by XYZ splits the equation into three 1D equations, each with its own separation constant, and <b>E = Eₓ + E_y + E_z</b>. Each factor obeys its own walls, exactly like the 1D box.{% endcall %}
+{% call fig('Separation of variables: one 3D problem becomes three independent 1D problems whose energies add. <i>Notice</i> that the energies add but the wavefunctions multiply.') %}
+<svg viewBox="0 0 520 120" width="520" role="img" aria-label="Separation of variables"><defs><marker id="a431" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#333"/></marker></defs>
+<rect x="10" y="40" width="130" height="40" rx="8" fill="#fdf1e0" stroke="#b45309"/><text x="75" y="64" font-size="13" text-anchor="middle">3D: ψ(x,y,z), E</text>
+<line x1="140" y1="50" x2="220" y2="25" stroke="#333" marker-end="url(#a431)"/><line x1="140" y1="60" x2="220" y2="60" stroke="#333" marker-end="url(#a431)"/><line x1="140" y1="70" x2="220" y2="95" stroke="#333" marker-end="url(#a431)"/>
+<rect x="225" y="8" width="160" height="30" rx="6" fill="#e6f4f2" stroke="#0f766e"/><text x="305" y="28" font-size="12" text-anchor="middle">X(x) box of width a → Eₓ</text>
+<rect x="225" y="45" width="160" height="30" rx="6" fill="#e6f4f2" stroke="#0f766e"/><text x="305" y="65" font-size="12" text-anchor="middle">Y(y) box of width b → E_y</text>
+<rect x="225" y="82" width="160" height="30" rx="6" fill="#e6f4f2" stroke="#0f766e"/><text x="305" y="102" font-size="12" text-anchor="middle">Z(z) box of width c → E_z</text>
+<text x="395" y="65" font-size="13">→ ψ = XYZ, E = Eₓ+E_y+E_z</text></svg>
+{% endcall %}
+{% call box('ex') %}
+<div class="step"><b>Problem.</b> An electron is in a 2D square box of side L (take the z-direction as absent). Write ψ and E in terms of nₓ and n<sub>y</sub>, and find the lowest two energies in units of E₀ = h²/(8mL²).</div>
+<div class="step">ψ = (2/L) sin(nₓπx/L) sin(n_yπy/L), E = E₀(nₓ² + n_y²).</div>
+<div class="step">Lowest: (1,1) gives 2E₀. Next: (1,2) or (2,1) give 5E₀.</div>
+<div class="check"><b>Check.</b> Normalisation: (2/L)² × (L/2)(L/2) = 1 ✓. Each 1D factor is the ψₙ of 1.5 ✓. (That (1,2) and (2,1) have the same energy is a coincidence of the square shape; the general treatment of this is degeneracy, Section 4.)</div>
+{% endcall %}
+{% call box('mis') %}"E = Eₓ · E_y · E_z" or "ψ = ψₓ + ψ_y + ψ_z". The wavefunctions multiply and the energies add.{% endcall %}
+<div class="next">Next: 3.2 writes the complete 3D result.</div>
+{% endcall %}
+
+<hr class="div">
+{% call sub('m4-3-2','3.2','Energy eigenvalues and eigenfunctions in 3D') %}
+<div class="intuition"><b>Why it matters.</b> It is the formula you will actually use: three quantum numbers, one product of sines.</div>
+{% call box('def') %}<b>ψ_{nₓn_yn_z}(x,y,z) = √(8/(abc)) sin(nₓπx/a) sin(n_yπy/b) sin(n_zπz/c)</b>, <b>E = (h²/8m)(nₓ²/a² + n_y²/b² + n_z²/c²)</b>, with nₓ, n<sub>y</sub>, n<sub>z</sub> = 1, 2, 3, … Three quantum numbers label a state. For a cube a = b = c = L: E = (h²/8mL²)(nₓ² + n_y² + n_z²). The ground state is (1,1,1).{% endcall %}
+<table class="t"><tr><th>Dimension</th><th>Quantum numbers</th><th>Lowest E</th></tr>
+<tr><td>1D (width L)</td><td>n</td><td>E₁ = h²/(8mL²)</td></tr><tr><td>2D square</td><td>nₓ, n<sub>y</sub></td><td>2 E₀</td></tr><tr><td>3D cube</td><td>nₓ, n<sub>y</sub>, n<sub>z</sub></td><td>3 E₀</td></tr></table>
+{% call box('ex') %}
+<div class="step"><b>Problem.</b> An electron is in a box a = b = 1 nm, c = 2 nm. Find the lowest two energies in eV and verify the normalisation constant.</div>
+<div class="step">E₀ = h²/(8m(1 nm)²) = 0.376 eV. E = E₀(nₓ² + n_y² + n_z²/4).</div>
+<div class="step">(1,1,1): E₀(1 + 1 + ¼) = 2.25E₀ = <b>0.846 eV</b>. (1,1,2): E₀(1 + 1 + 1) = 3E₀ = <b>1.13 eV</b>. No other combination is lower (for example (1,1,3) gives 4.25E₀, (1,2,1) gives 5.25E₀).</div>
+<div class="step">Normalisation: (2/a)(2/b)(2/c) = 8/(abc) = 8/(1·1·2 nm³) = 4 nm⁻³, so the constant is √(8/abc) = 2 nm^(−3/2).</div>
+<div class="check"><b>Check.</b> The three 1D factors each integrate to 1 (1.5), so the product integrates to 1 ✓. A brute-force listing of all (nₓ, n<sub>y</sub>, n<sub>z</sub>) up to 3 confirms 2.25E₀ and 3E₀ are the two lowest ✓.</div>
+{% endcall %}
+{% call box('mis') %}"The ground state is (0,0,0)." Every quantum number starts at 1 (zero would make ψ ≡ 0), so the ground state energy is 3E₀ in a cube, three times the 1D zero-point energy.{% endcall %}
+<div class="next">Next: 3.3 uses the 3D wavefunction for normalisation and probability.</div>
+{% endcall %}
+
+<hr class="div">
+{% call sub('m4-3-3','3.3','Normalisation and probability in a 3D box') %}
+<div class="intuition"><b>Why it matters.</b> Normalising and finding probabilities in 3D look harder than in 1D, but because ψ is a product, each question splits into three 1D integrals you already know from 1.5 and 2.4.</div>
+{% call box('def') %}For ψ = C sin(nₓπx/L) sin(n_yπy/L) sin(n_zπz/L) in a cube of side L, ∫|ψ|²dV = 1 splits into three integrals, each equal to L/2, so |C|²(L/2)³ = 1 and <b>C = (2/L)<sup>3/2</sup></b> (for sides a, b, c: C = √(8/abc), as in 3.2). The probability of finding the particle in the slab 0 &lt; x &lt; X is <b>P = (2/L)∫₀^X sin²(nₓπx/L)dx</b>: the y and z integrals run over the whole box and each give 1, so only nₓ matters. For X = L/4: <b>P = 1/4 − sin(nₓπ/2)/(2nₓπ)</b>.{% endcall %}
+{% call fig('The slab 0 &lt; x &lt; L/4 of a cube. Only the x-direction limits are restricted; y and z span the whole box, so their integrals are 1. <i>Notice</i> the probability therefore depends on nₓ alone.') %}
+<svg viewBox="0 0 300 190" width="300" role="img" aria-label="Slab in a cube"><rect x="40" y="50" width="120" height="120" fill="#fdf8ee" stroke="#b45309" stroke-width="2"/><polygon points="40,50 80,20 200,20 160,50" fill="#f3ecda" stroke="#b45309"/><polygon points="160,50 200,20 200,140 160,170" fill="#ece3cc" stroke="#b45309"/>
+<rect x="40" y="50" width="30" height="120" fill="#b45309" fill-opacity=".35"/><polygon points="40,50 80,20 110,20 70,50" fill="#b45309" fill-opacity=".35"/>
+<text x="40" y="186" font-size="12">x = 0</text><text x="150" y="186" font-size="12">x = L</text><text x="215" y="90" font-size="12">y, z span the box</text><text x="40" y="12" font-size="12" fill="#b45309">shaded: 0 &lt; x &lt; L/4</text></svg>
+{% endcall %}
+<table class="t"><tr><th>nₓ</th><th>P(0 &lt; x &lt; L/4)</th><th>Value</th></tr>
+<tr><td>1</td><td>1/4 − 1/(2π)</td><td>0.091</td></tr><tr><td>2</td><td>1/4</td><td>0.250</td></tr><tr><td>3</td><td>1/4 + 1/(6π)</td><td>0.303</td></tr></table>
+<p class="small muted">This table is the three cases of the worked example in your slides ((1,2,1), (2,1,1), (3,1,1)); the values match the slide's 0.091 for the first case and I computed the other two the same way (also confirmed by numerical integration).</p>
+{% call box('ex') %}
+<div class="step"><b>Problem.</b> In a cubical box of side L, find the probability of finding the particle in the slab 0 &lt; z &lt; L/3 for n<sub>z</sub> = 1 and for n<sub>z</sub> = 3, whatever nₓ and n<sub>y</sub> are.</div>
+<div class="step">P = (2/L)∫₀<sup>L/3</sup> sin²(n_zπz/L)dz = 1/3 − sin(2n_zπ/3)/(2n_zπ) (the same steps as 2.4, with the upper limit L/3).</div>
+<div class="step">n<sub>z</sub> = 1: sin(2π/3) = √3/2, so P = 1/3 − 0.866/6.283 = 0.333 − 0.138 = <b>0.196</b>. n<sub>z</sub> = 3: sin(2π) = 0, so P = <b>1/3</b>.</div>
+<div class="check"><b>Check.</b> Cross-check with 2.4: for n = 1 the middle third had P = 0.609, so the two outer thirds share 1 − 0.609 = 0.391, i.e. 0.196 each ✓. And n<sub>z</sub> = 3 has exactly three half-waves, so each third holds the same share, 1/3 ✓.</div>
+{% endcall %}
+{% call box('mis') %}"The probability in a 3D region needs all three quantum numbers." Only for the directions you restrict. Unrestricted directions integrate to 1 because ψ is normalised. A second slip is using C = √(2/L) (the 1D constant); in 3D it is (2/L)<sup>3/2</sup>.{% endcall %}
+<div class="next">Next: Section 4 explains why some 3D levels contain several states.</div>
+{% endcall %}
+{% endcall %}{# end sec 3 #}
+
+<hr class="div">
+{% call sec('m4-4','4','Degeneracy of energy levels') %}
+<p class="muted small">Built from the 3D-box slides of your deck (the level diagram on slide 24 and the table on slide 26). One inconsistency in the deck is flagged where it appears.</p>
+
+{% call sub('m4-4-1','4.1','What degeneracy means') %}
+<div class="intuition"><b>Why it matters.</b> In 1D every level was a single state. In 3D, several different wavefunctions can have exactly the same energy. Counting them is a standard exam task and it also tells you how many electrons a level can hold.</div>
+{% call box('def') %}Energy levels are <b>degenerate</b> if the same energy is obtained from more than one quantum state. The number of states at one energy is the <b>degree of degeneracy</b>. A level with only one wavefunction is <b>non-degenerate</b>. Example from your slides: (nₓ, n<sub>y</sub>, n<sub>z</sub>) = (2,1,1), (1,2,1), (1,1,2) in a cube all have E = 6h²/8mL², three different wavefunctions, so the level is 3-fold degenerate. Degeneracy reflects an underlying symmetry: a cube has three equivalent directions.{% endcall %}
+<table class="t"><tr><th>System</th><th>Is there degeneracy?</th><th>Why</th></tr>
+<tr><td>1D box</td><td>no</td><td>Eₙ = n²E₁ is strictly increasing, so each n has its own energy</td></tr>
+<tr><td>2D square box</td><td>yes</td><td>(1,2) and (2,1) give the same nₓ² + n_y²</td></tr>
+<tr><td>3D cubical box</td><td>yes</td><td>permuting (nₓ, n<sub>y</sub>, n<sub>z</sub>) leaves the sum of squares unchanged</td></tr>
+<tr><td>Box with three different sides</td><td>generally no</td><td>no permutation symmetry (see 4.3)</td></tr></table>
+{% call fig('Energy-level picture for a cube (units of E₁ = h²/8mL²): the ground level 3E₁ holds one state, the next level 6E₁ holds three. Wavefunctions with a node plane along x, y or z respectively are different states with one energy. <i>Notice</i> each line is one energy; the dots are the states on it.') %}
+<svg viewBox="0 0 420 170" width="420" role="img" aria-label="Degenerate level in a cube"><line x1="50" y1="10" x2="50" y2="150" stroke="#555"/><text x="54" y="14" font-size="12">E</text>
+<line x1="50" y1="130" x2="300" y2="130" stroke="#b45309" stroke-width="3"/><text x="310" y="134" font-size="13">3E₁ : (1,1,1)  non-degenerate</text><circle cx="175" cy="130" r="6" fill="#0f766e"/>
+<line x1="50" y1="70" x2="300" y2="70" stroke="#b45309" stroke-width="3"/><text x="310" y="74" font-size="13">6E₁ : 3-fold degenerate</text><circle cx="110" cy="70" r="6" fill="#0f766e"/><circle cx="175" cy="70" r="6" fill="#6d28d9"/><circle cx="240" cy="70" r="6" fill="#b45309"/>
+<text x="85" y="55" font-size="11">(2,1,1)</text><text x="150" y="55" font-size="11">(1,2,1)</text><text x="215" y="55" font-size="11">(1,1,2)</text></svg>
+{% endcall %}
+{% call box('ex') %}
+<div class="step"><b>Problem.</b> For an electron in a cube of side L = 1 nm, show that (2,1,1), (1,2,1) and (1,1,2) have the same energy, and give it in eV. Compare with (1,1,1).</div>
+<div class="step">E = (h²/8mL²)(nₓ² + n_y² + n_z²) with h²/8mL² = 0.376 eV. Each triple gives 4 + 1 + 1 = 6, so E = 6 × 0.376 = <b>2.26 eV</b> for all three.</div>
+<div class="step">(1,1,1): 1 + 1 + 1 = 3, so E = 3 × 0.376 = <b>1.13 eV</b>, a single state.</div>
+<div class="check"><b>Check.</b> The three wavefunctions are different functions (for (2,1,1) the node plane is x = L/2, for (1,2,1) it is y = L/2), yet one energy: degree 3 ✓. The ground energy matches the 3E₀ = 1.13 eV found in 3.2 for this cube ✓.</div>
+{% endcall %}
+{% call box('mis') %}"Degenerate means the quantum numbers are equal" or "degenerate means unstable." Degenerate states have <i>different</i> quantum-number sets and one energy. Also, degeneracy is a statement about counting states at one energy; it says nothing about stability.{% endcall %}
+<div class="next">Next: 4.2 gives a systematic way to count the states of every level of a cube.</div>
+{% endcall %}
+
+<hr class="div">
+{% call sub('m4-4-2','4.2','Counting the levels of a cubical box') %}
+<div class="intuition"><b>Why it matters.</b> "Find the degree of degeneracy of the level with energy …" is answered by one procedure: list every triple of positive integers with the right sum of squares.</div>
+{% call box('def') %}For a cube, E = (h²/8mL²)·N with <b>N = nₓ² + n_y² + n_z²</b> (nᵢ = 1, 2, 3, …). <b>Method:</b> (1) find all <i>unordered</i> sets of three positive integers whose squares add to N; (2) for each set count its orderings: all three different → 6, exactly two equal → 3, all equal → 1; (3) add them up: that is the degree of degeneracy. The slides label levels in units of E₁,₁,₁ = 3h²/8mL², so N/3 of those.{% endcall %}
+<table class="t"><tr><th>N</th><th>Triples (unordered)</th><th>Degree</th><th>Slide label (× E₁,₁,₁)</th></tr>
+<tr><td>3</td><td>(1,1,1)</td><td>1</td><td>1</td></tr><tr><td>6</td><td>(1,1,2)</td><td>3</td><td>2</td></tr><tr><td>9</td><td>(1,2,2)</td><td>3</td><td>3</td></tr>
+<tr><td>11</td><td>(1,1,3)</td><td>3</td><td>11/3</td></tr><tr><td>12</td><td>(2,2,2)</td><td>1</td><td>4</td></tr><tr><td>14</td><td>(1,2,3)</td><td>6</td><td>14/3</td></tr></table>
+{% call fig('The first six levels of a cube, to scale in N (the sum of squares). The number on each line is the degree of degeneracy. <i>Notice</i> the pattern 1, 3, 3, 3, 1, 6 and the uneven gaps.') %}
+<svg viewBox="0 0 420 260" width="420" role="img" aria-label="Energy ladder of a cube with degrees"><line x1="50" y1="10" x2="50" y2="250" stroke="#555"/><text x="54" y="14" font-size="12">N</text>
+{% for N, deg in ((3,1),(6,3),(9,3),(11,3),(12,1),(14,6)) %}<line x1="50" y1="{{ 255 - N*16 }}" x2="260" y2="{{ 255 - N*16 }}" stroke="#b45309" stroke-width="3"/><text x="270" y="{{ 259 - N*16 }}" font-size="12">N = {{ N }} · {{ deg }}-fold</text>{% endfor %}</svg>
+{% endcall %}
+{% call box('ex') %}
+<div class="step"><b>Problem.</b> Find the degree of degeneracy of the cube levels with N = 21 and N = 17, and the energy of the N = 21 level for L = 1 nm.</div>
+<div class="step">N = 21: the only way is 1 + 4 + 16, i.e. (1,2,4); all different, so 6 orderings: <b>6-fold</b>. N = 17: only 4 + 4 + 9, i.e. (2,2,3); two equal, so 3 orderings: <b>3-fold</b>.</div>
+<div class="step">E(N = 21) = 21 × 0.376 eV = <b>7.90 eV</b>.</div>
+<div class="check"><b>Check.</b> A brute-force listing of all triples up to 8 gives exactly the same sets for N = 17 and N = 21 ✓. The counts follow the 6/3/1 rule ✓.</div>
+{% endcall %}
+{% call box('mis') %}"A level made of equal numbers, like (3,3,3), is non-degenerate." Permuting (3,3,3) gives nothing new, but N = 27 is also reached by (1,1,5), so that level holds (3,3,3), (5,1,1), (1,5,1) and (1,1,5): <b>4-fold</b>. Coincidences that the cube's symmetry does not explain are called accidental, which is why you must search for <i>all</i> triples, not just permutations. Separately, the table on slide 26 of your deck starts the quantum numbers at 0 and shows a 3-fold lowest level; that contradicts slide 24 (ground state (1,1,1), non-degenerate) and the rule that n = 0 gives ψ = 0 (1.3). These notes follow n ≥ 1, matching slide 24.{% endcall %}
+<div class="next">Next: 4.3 shows what happens to the degeneracy when the box is no longer a cube.</div>
+{% endcall %}
+
+<hr class="div">
+{% call sub('m4-4-3','4.3','Symmetry and breaking the degeneracy') %}
+<div class="intuition"><b>Why it matters.</b> The degeneracy came from the cube's symmetry. Remove the symmetry and the levels split, which is how real systems show fine structure.</div>
+{% call box('def') %}For a box with sides a, b, c: E = (π²ħ²/2m)(nₓ²/a² + n_y²/b² + n_z²/c²) (the slides' form with ħ, equivalent to the h²/8m form in 3.2). If the sides differ, permuting the quantum numbers changes the energy, so the permutation degeneracy is <b>broken</b>. A box with two equal sides keeps the degeneracy between those two directions only.{% endcall %}
+{% call fig('One level splitting when the cube is stretched along z (c = 2L, a = b = L). The cube\'s 3-fold level at 6E₁ becomes a 2-fold level (5.25) and a single level (3.0), in units of E₁ = h²/8mL². <i>Notice</i> the state that was stretched, (1,1,2), moves down; the other two stay together because a = b still holds.') %}
+<svg viewBox="0 0 640 215" width="640" role="img" aria-label="Splitting of a degenerate level"><defs><marker id="a443" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#333"/></marker></defs>
+<text x="40" y="14" font-size="13">cube (a = b = c = L)</text><text x="330" y="14" font-size="13">c = 2L</text>
+<line x1="30" y1="70" x2="180" y2="70" stroke="#b45309" stroke-width="3"/><text x="186" y="74" font-size="12">6 (3-fold)</text>
+<line x1="30" y1="160" x2="180" y2="160" stroke="#b45309" stroke-width="3"/><text x="186" y="164" font-size="12">3 (1,1,1)</text>
+<line x1="330" y1="90" x2="420" y2="90" stroke="#b45309" stroke-width="3"/><text x="426" y="94" font-size="12">5.25 : (2,1,1), (1,2,1)</text>
+<line x1="330" y1="160" x2="420" y2="160" stroke="#b45309" stroke-width="3"/><text x="426" y="164" font-size="12">3.0 : (1,1,2)</text>
+<line x1="330" y1="182" x2="420" y2="182" stroke="#b45309" stroke-width="3"/><text x="426" y="186" font-size="12">2.25 : (1,1,1)</text>
+<line x1="260" y1="72" x2="326" y2="89" stroke="#333" marker-end="url(#a443)"/><line x1="260" y1="72" x2="326" y2="158" stroke="#333" marker-end="url(#a443)"/><line x1="260" y1="162" x2="326" y2="181" stroke="#333" marker-end="url(#a443)"/></svg>
+{% endcall %}
+{% call box('ex') %}
+<div class="step"><b>Problem.</b> A box has a = b = 1 nm and c = 2 nm. Find the energies of (2,1,1), (1,2,1) and (1,1,2) in eV and say whether the level is still degenerate.</div>
+<div class="step">E = 0.376 eV × (nₓ²/a² + n_y²/b² + n_z²/c²) with a = b = 1 and c = 2 (in units of 1 nm): (2,1,1): 4 + 1 + ¼ = 5.25 → <b>1.97 eV</b>. (1,2,1): 1 + 4 + ¼ = 5.25 → <b>1.97 eV</b>. (1,1,2): 1 + 1 + 1 = 3 → <b>1.13 eV</b>.</div>
+<div class="step">So the old 3-fold level has split into a 2-fold level (1.97 eV) and a non-degenerate level (1.13 eV).</div>
+<div class="check"><b>Check.</b> With c = L the three energies were all 2.26 eV (4.1), so the splitting comes only from c ≠ a. The remaining pair is degenerate because a = b, the symmetry that is left ✓. Making all three sides different would split that pair too.</div>
+{% endcall %}
+{% call box('mis') %}"Degeneracy is removed by making the box bigger." Size alone does not matter (a bigger cube still has the same pattern 1, 3, 3, …); what matters is the loss of symmetry between directions.{% endcall %}
+<div class="next">Next: Section 5 moves from confined particles to particles meeting a barrier: quantum tunnelling.</div>
+{% endcall %}
+{% endcall %}{# end sec 4 #}
+
+<hr class="div">
+{% call sec('m4-5','5','Quantum tunnelling and tunnelling probability') %}
+<p class="muted small">Built from your tunnelling deck (slides 3–15). Where its formulas are cruder than the exact result, that is said explicitly in 5.5. Numerical values below are my own calculations.</p>
+
+{% call sub('m4-5-1','5.1','Classical versus quantum behaviour at a barrier') %}
+<div class="intuition"><b>Why it matters.</b> This is the headline result of the module: a particle with E &lt; V₀ is not stopped dead by a barrier. A ball rolling at a hill it cannot climb always comes back; an electron wave leaks through.</div>
+{% call box('def') %}<b>Quantum tunnelling</b> is the passage of a particle through a potential barrier whose height V₀ exceeds the particle's energy E. Classically this region is <i>forbidden</i> (it would need negative kinetic energy E − V₀ &lt; 0), so the classical particle is always reflected. Quantum mechanically, the particle's wavefunction is not zero inside the barrier and continues beyond it, so there is a small but finite probability to find the particle on the far side. The energy of a transmitted particle is unchanged; only the <i>amplitude</i> is reduced (your slide 8: "reduced probability, but not reduced energy").{% endcall %}
+<table class="t"><tr><th></th><th>Classical (E &lt; V₀)</th><th>Quantum (E &lt; V₀)</th></tr>
+<tr><td>Inside the barrier</td><td>cannot enter</td><td>ψ decays exponentially</td></tr>
+<tr><td>Beyond the barrier</td><td>never found</td><td>found with probability T &gt; 0</td></tr>
+<tr><td>Outcome</td><td>reflected with certainty</td><td>R + T = 1, with 0 &lt; T &lt; 1</td></tr></table>
+{% call fig('Classical ball (top) versus quantum wave (bottom) at a barrier. The wave amplitude shrinks inside the barrier but is not zero on the far side. <i>Notice</i> the wavelength outside is the same on both sides (same E), only the amplitude changes.') %}
+<svg viewBox="0 0 420 200" width="420" role="img" aria-label="Classical versus quantum at a barrier"><rect x="190" y="20" width="40" height="70" fill="#b45309" fill-opacity=".5"/><circle cx="90" cy="78" r="9" fill="#0f766e"/><line x1="105" y1="78" x2="170" y2="78" stroke="#333" marker-end="url(#a51)"/><line x1="170" y1="62" x2="110" y2="62" stroke="#c0392b" stroke-dasharray="4 3" marker-end="url(#a51)"/><text x="10" y="14" font-size="12">Classical: bounces back</text>
+<rect x="190" y="110" width="40" height="80" fill="#b45309" fill-opacity=".5"/><text x="10" y="106" font-size="12">Quantum: part transmitted</text>
+<path d="M10,150 q12,-32 24,0 t24,0 t24,0 t24,0 t24,0 t24,0 q8,-14 14,-8 t14,8" fill="none" stroke="#0f766e" stroke-width="2"/><path d="M230,150 q8,-8 16,0 t16,0 t16,0 t16,0 t16,0 t16,0 t16,0" fill="none" stroke="#0f766e" stroke-width="2"/><defs><marker id="a51" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#333"/></marker></defs></svg>
+{% endcall %}
+{% call box('mis') %}"The tunnelling particle loses energy to get through." No: E is the same before and after. What drops is the probability amplitude. Also, tunnelling is not the particle "borrowing" energy to climb over the top; the wave simply extends into the forbidden region.{% endcall %}
+<div class="next">Next: 5.2 sets up the equations for the three regions.</div>
+{% endcall %}
+
+<hr class="div">
+{% call sub('m4-5-2','5.2','The barrier problem: regions, wave numbers and solutions') %}
+<div class="intuition"><b>Why it matters.</b> Everything about tunnelling follows from solving the time-independent Schrödinger equation (Module 3, §5) separately in three regions and joining the pieces.</div>
+{% call box('def') %}A particle of energy E comes from the left on a rectangular barrier of height V₀ and width L (V = 0 for x &lt; 0 and x &gt; L, V = V₀ for 0 &lt; x &lt; L). Region I: x &lt; 0; Region II: 0 &lt; x &lt; L; Region III: x &gt; L. In each region ψ″ + (2m/ħ²)(E − V)ψ = 0. <b>Outside</b> (V = 0): k = √(2mE)/ħ, and ψ<sub>I</sub> = Ae<sup>ikx</sup> + Be<sup>−ikx</sup>, ψ<sub>III</sub> = Fe<sup>ikx</sup> + Ge<sup>−ikx</sup>. <b>Inside, for E &gt; V₀</b> (your slides 5–6): k<sub>II</sub> = √(2m(E − V₀))/ħ, an oscillating solution Ce<sup>ik_IIx</sup> + De<sup>−ik_IIx</sup>. The incident wave is Ae<sup>ikx</sup>, the reflected wave Be<sup>−ikx</sup>, the transmitted wave Fe<sup>ikx</sup>; with nothing coming from the right, G = 0.{% endcall %}
+<table class="t"><tr><th>Region</th><th>Potential</th><th>Solution (E &lt; V₀)</th><th>Type</th></tr>
+<tr><td>I (x &lt; 0)</td><td>0</td><td>Ae<sup>ikx</sup> + Be<sup>−ikx</sup></td><td>incident + reflected waves</td></tr>
+<tr><td>II (0 &lt; x &lt; L)</td><td>V₀</td><td>Ce<sup>κx</sup> + De<sup>−κx</sup></td><td>real exponentials</td></tr>
+<tr><td>III (x &gt; L)</td><td>0</td><td>Fe<sup>ikx</sup></td><td>transmitted wave only</td></tr></table>
+{% call fig('The three regions of the barrier problem for E &lt; V₀. <i>Notice</i> the energy line E sits below the top of the barrier, so inside Region II the kinetic energy E − V₀ is negative.') %}
+<svg viewBox="0 0 420 190" width="420" role="img" aria-label="Barrier regions"><line x1="30" y1="10" x2="30" y2="160" stroke="#555"/><line x1="30" y1="160" x2="400" y2="160" stroke="#555"/><text x="34" y="14" font-size="12">V(x)</text>
+<polyline points="30,160 150,160 150,50 250,50 250,160 400,160" fill="none" stroke="#b45309" stroke-width="2.5"/><line x1="30" y1="105" x2="400" y2="105" stroke="#0f766e" stroke-dasharray="6 4"/><text x="36" y="100" font-size="12" fill="#0f766e">E</text><text x="255" y="46" font-size="12">V₀</text>
+<text x="148" y="176" font-size="12">0</text><text x="248" y="176" font-size="12">L</text><text x="70" y="140" font-size="13">I</text><text x="190" y="140" font-size="13">II</text><text x="320" y="140" font-size="13">III</text></svg>
+{% endcall %}
+{% call box('mis') %}"Region II also has a reflected wave Be<sup>−ikx</sup>." Region I has the reflected wave. In Region II both terms Ce<sup>κx</sup> and De<sup>−κx</sup> are present (reflection at x = L feeds the growing term); in Region III there is only the transmitted wave, since nothing arrives from x = +∞.{% endcall %}
+<div class="next">Next: 5.3 turns the amplitudes into probabilities.</div>
+{% endcall %}
+
+<hr class="div">
+{% call sub('m4-5-3','5.3','Reflection and transmission probabilities') %}
+<div class="intuition"><b>Why it matters.</b> R and T are what you are asked to compute: the fraction reflected and the fraction transmitted.</div>
+{% call box('def') %}<b>R = |ψ<sub>I</sub>(reflected)|²/|ψ<sub>I</sub>(incident)|² = B*B/A*A</b> and <b>T = |ψ<sub>III</sub>(transmitted)|²/|ψ<sub>I</sub>(incident)|² = F*F/A*A</b>. Every particle is either reflected or transmitted, so <b>R + T = 1</b>. The amplitudes are fixed by the boundary conditions: ψ and dψ/dx continuous at x = 0 and x = L (four equations for B, C, D, F in terms of A).{% endcall %}
+{% call box('ex') %}
+<div class="step"><b>Problem.</b> For a barrier, B*B/A*A = 0.235. Find T and say what fraction of 1000 incident particles is transmitted.</div>
+<div class="step">R = 0.235, so T = 1 − R = <b>0.765</b>; about <b>765</b> of 1000 particles on average.</div>
+<div class="check"><b>Check.</b> R + T = 1 ✓. (These numbers are from my own solution of the matching equations for E = 2, V₀ = 5, L = 0.3 in units where ħ²/2m = 1, which gives R = 0.2352 and T = 0.7648.)</div>
+{% endcall %}
+{% call box('mis') %}"T = F/A." Probabilities use the squared modulus: T = |F|²/|A|². Both outer regions have the same k here (same V = 0), so no extra k-ratio factor appears.{% endcall %}
+<div class="next">Next: 5.4 looks inside the barrier.</div>
+{% endcall %}
+
+<hr class="div">
+{% call sub('m4-5-4','5.4','The wavefunction inside the barrier (E < V₀)') %}
+<div class="intuition"><b>Why it matters.</b> This is the actual mechanism: in the forbidden region the oscillating wave becomes a decaying exponential.</div>
+{% call box('def') %}For E &lt; V₀, the equation in Region II is ψ″ = κ²ψ with <b>κ = √(2m(V₀ − E))/ħ</b> (your slides write this k₂). The solution is <b>ψ<sub>II</sub> = Ce<sup>κx</sup> + De<sup>−κx</sup></b>: real exponentials, no oscillation. Since κL is usually large, the e<sup>−κx</sup> term dominates, and ψ decays across the barrier. It does not drop to zero at x = L, so a transmitted wave exists in Region III.{% endcall %}
+{% set bw = barrier_wave(2.0,5.0,1.0) %}
+{% call fig('Re ψ across a barrier (E = 2, V₀ = 5, L = 1 in units where ħ²/2m = 1), computed by solving the four matching conditions exactly. Outside: oscillating; inside: decaying; beyond: oscillating with smaller amplitude and the same wavelength. <i>Notice</i> this is computed, not hand-drawn: R = ' ~ ('%.3f'|format(bw.R)) ~ ', T = ' ~ ('%.3f'|format(bw.T)) ~ '.') %}
+<svg viewBox="0 0 620 210" width="620" role="img" aria-label="Computed wavefunction across a barrier"><rect x="{{ bw.x_left }}" y="5" width="{{ bw.x_right - bw.x_left }}" height="200" fill="#b45309" fill-opacity=".15"/><line x1="0" y1="105" x2="620" y2="105" stroke="#999"/><polyline points="{{ bw.pts }}" fill="none" stroke="#0f766e" stroke-width="2"/><text x="{{ bw.x_left + 6 }}" y="18" font-size="12">barrier</text></svg>
+{% endcall %}
+{% call box('ex') %}
+<div class="step"><b>Problem.</b> Find κ for an electron with E = 2 eV meeting a barrier of V₀ = 5 eV, and the factor by which the amplitude falls across L = 0.2 nm (using e<sup>−κL</sup> for the dominant term).</div>
+<div class="step">κ = √(2m(V₀ − E))/ħ = √(2 × 9.109×10⁻³¹ × 3 × 1.602×10⁻¹⁹)/1.055×10⁻³⁴ = <b>8.87×10⁹ m⁻¹</b> (8.87 nm⁻¹).</div>
+<div class="step">κL = 8.87 × 0.2 = 1.77; e<sup>−1.77</sup> = <b>0.17</b>. The amplitude falls to about 17%, and the probability (squared) to about 3%.</div>
+<div class="check"><b>Check.</b> Units: √(kg·J)/(J·s) = m⁻¹ ✓. The squared factor e<sup>−2κL</sup> = 0.029 agrees with the "crude" T below (0.029) ✓.</div>
+{% endcall %}
+{% call box('mis') %}"ψ inside the barrier is zero, so nothing gets through." ψ is small, not zero, and it must join smoothly to the outside waves. A zero ψ at x = L would also give zero at x = L⁺ and so no transmitted wave, which is the infinite-wall case, not a finite barrier.{% endcall %}
+<div class="next">Next: 5.5 turns κ and L into a number for T.</div>
+{% endcall %}
+
+<hr class="div">
+{% call sub('m4-5-5','5.5','Tunnelling probability') %}
+<div class="intuition"><b>Why it matters.</b> The formula that every numerical question uses. Notice that T depends <i>exponentially</i> on both the width L and √(V₀ − E), so small changes make large differences.</div>
+{% call box('def') %}Applying the boundary conditions gives, for κL ≫ 1 (your slide 12): <b>T ≈ 16 (E/V₀)(1 − E/V₀) e<sup>−2κL</sup></b>, with κ = √(2m(V₀ − E))/ħ. The slides also give the cruder estimate <b>T ≈ e<sup>−2κL</sup></b>, "since the bracketed quantity is always of order 1" (slide 11). The exact result for a rectangular barrier is T = 1/[1 + V₀² sinh²(κL)/(4E(V₀ − E))], which reduces to the 16(E/V₀)(1 − E/V₀)e<sup>−2κL</sup> form when κL is large.{% endcall %}
+<table class="t"><tr><th>L (nm)</th><th>κL</th><th>Exact T</th><th>16(E/V₀)(1−E/V₀)e<sup>−2κL</sup></th><th>e<sup>−2κL</sup></th></tr>
+{% for L in (0.1, 0.2, 0.3, 0.5) %}{% set r = tunnel_T(2.0, 5.0, L) %}<tr><td>{{ L }}</td><td>{{ "%.2f"|format(r.kappa*L*1e-9) }}</td><td>{{ "%.3g"|format(r.exact) }}</td><td>{{ "%.3g"|format(r.s12) }}</td><td>{{ "%.3g"|format(r.approx) }}</td></tr>{% endfor %}</table>
+<p class="small muted">Electron, E = 2 eV, V₀ = 5 eV. The table is computed live by the app from the formulas. The slide-12 form tracks the exact result once κL is around 1.7 or more; the plain e<sup>−2κL</sup> estimate is an order-of-magnitude guide (here about 3–4 times too small).</p>
+{% call box('ex') %}
+<div class="step"><b>Problem.</b> An electron of energy 2 eV meets a barrier of height 5 eV and width 0.2 nm. Estimate T.</div>
+<div class="step">κ = 8.87 nm⁻¹ (5.4), so 2κL = 3.55 and e<sup>−3.55</sup> = 0.0287. Prefactor 16(E/V₀)(1 − E/V₀) = 16 × 0.4 × 0.6 = 3.84. So T ≈ 3.84 × 0.0287 = <b>0.110</b>.</div>
+<div class="step">The cruder estimate gives T ≈ e<sup>−2κL</sup> = <b>0.029</b>; the exact formula gives <b>0.105</b>.</div>
+<div class="check"><b>Check.</b> Reduce the width and T must rise: at L = 0.1 nm the exact T is 0.49; at 0.5 nm it is 5.4×10⁻⁴ ✓ (monotonic, as in the table). Doubling the width squares the e<sup>−2κL</sup> factor: T falls far faster than linearly.</div>
+{% endcall %}
+{% call box('mis') %}"T = e<sup>−2κL</sup>, always." That is an order-of-magnitude estimate. If a question gives E and V₀, use the 16(E/V₀)(1 − E/V₀) prefactor, and state which form you used. Also note slide 7's version 16/[4 + (k₂/k₁)²]·e<sup>−2k₂L</sup> is a different (less accurate) prefactor; in the example above it gives 0.084 against the exact 0.105, so prefer the slide-12 formula when both are available and say so in your answer. (Slide 7's remark that there is a situation with T = 1 refers to E &gt; V₀ with κL replaced by kL: T = 1 when sin(k<sub>II</sub>L) = 0, i.e. resonance.){% endcall %}
+<div class="next">Next: 5.6 to 5.9 are the physical applications.</div>
+{% endcall %}
+
+<hr class="div">
+{% call sub('m4-5-6','5.6','Analogy with wave optics') %}
+<div class="intuition"><b>Why it matters.</b> Tunnelling is a wave effect, so light shows it too. It is the best way to remember that tunnelling is not special to electrons.</div>
+{% call box('def') %}When light inside a glass prism meets the surface at more than the critical angle, it is totally internally reflected, but the electromagnetic field is not exactly zero just outside the surface (an <b>evanescent wave</b>, decaying exponentially). If a second prism is brought very close, light appears in it: <b>frustrated total internal reflection</b>. The intensity of the second beam falls off exponentially with the gap, just as T falls exponentially with L. (From your slide 13; the effect was observed by Newton.){% endcall %}
+{% call fig('Two prisms: the air gap plays the role of the barrier. A small gap lets part of the beam through; a wide gap does not. <i>Notice</i> the transmitted intensity is exponential in the gap.') %}
+<svg viewBox="0 0 420 150" width="420" role="img" aria-label="Frustrated total internal reflection"><polygon points="60,20 60,130 170,130" fill="#e8f1f1" stroke="#0f766e"/><polygon points="190,20 190,130 300,20" fill="#e8f1f1" stroke="#0f766e" transform="translate(10,0)"/><line x1="20" y1="75" x2="115" y2="75" stroke="#b45309" stroke-width="2"/><line x1="200" y1="75" x2="400" y2="75" stroke="#b45309" stroke-width="1.5" stroke-dasharray="5 4"/><text x="150" y="146" font-size="12">gap ≈ barrier</text></svg>
+{% endcall %}
+{% call box('mis') %}"Total internal reflection means no light at all on the other side." The field is non-zero just outside; it is the same leakage as inside a tunnelling barrier.{% endcall %}
+<div class="next">Next: 5.7 uses this in a microscope.</div>
+{% endcall %}
+
+<hr class="div">
+{% call sub('m4-5-7','5.7','Scanning tunnelling microscope') %}
+<div class="intuition"><b>Why it matters.</b> The STM is the standard worked application: it uses the exponential sensitivity of T to see single atoms.</div>
+{% call box('def') %}In the <b>scanning tunnelling microscope</b> (Binnig and Rohrer at IBM, Nobel Prize 1986, per your slide 10), a sharp metal tip is brought close to a conducting surface. Electrons tunnel across the gap between tip and surface, giving a current. Because T depends exponentially on the gap, the current changes strongly with tip height. Holding the current constant and recording the tip height maps out the surface contours with atomic resolution.{% endcall %}
+{% call box('ex') %}
+<div class="step"><b>Problem.</b> If the tunnelling probability scales as e<sup>−2κd</sup>, by what factor does the current change when the gap d increases by 0.1 nm, for κ = 8.87 nm⁻¹?</div>
+<div class="step">Factor = e<sup>−2κΔd</sup> = e<sup>−2 × 8.87 × 0.1</sup> = e<sup>−1.77</sup> = <b>0.17</b>. A 0.1 nm change (a fraction of an atom's diameter) cuts the current to about one sixth.</div>
+<div class="check"><b>Check.</b> This is why atomic-scale bumps appear clearly in the current: the signal is hypersensitive to height ✓. (κ here is the value for 2 eV in a 5 eV barrier from 5.4; real STM barriers depend on the material, so treat this as an illustration, not a data value.)</div>
+{% endcall %}
+{% call box('mis') %}"The STM touches the surface." The tip stays a small distance away; the current flows by tunnelling across the gap.{% endcall %}
+<div class="next">Next: 5.8 applies tunnelling inside the nucleus.</div>
+{% endcall %}
+
+<hr class="div">
+{% call sub('m4-5-8','5.8','Alpha-particle decay') %}
+<div class="intuition"><b>Why it matters.</b> Historically the first success of tunnelling: it explains why some nuclei decay and why half-lives vary enormously.</div>
+{% call box('def') %}Inside a nucleus an alpha particle feels the strong, short-range nuclear attraction (roughly a square well inside the nuclear radius r<sub>N</sub>) and, outside, the repulsive Coulomb potential. The Coulomb barrier at r<sub>N</sub> is several times the alpha particle's energy E<sub>α</sub>, so classically it could never escape. Quantum mechanically it <b>tunnels</b> through the barrier (from r<sub>N</sub> to r′ = r<sub>N</sub> + L in your slide-14 figure), which is observed as radioactive decay. A wider or higher barrier means a much smaller T and a much longer half-life.{% endcall %}
+{% call fig('Potential V(r) for an alpha particle: attractive well inside r<sub>N</sub>, Coulomb barrier outside. The particle energy E<sub>α</sub> lies below the top of the barrier, so it must tunnel through the region between r<sub>N</sub> and r′. <i>Notice</i> the barrier width L is the horizontal distance at height E<sub>α</sub>.') %}
+<svg viewBox="0 0 420 190" width="420" role="img" aria-label="Alpha decay potential"><line x1="40" y1="10" x2="40" y2="170" stroke="#555"/><line x1="40" y1="130" x2="400" y2="130" stroke="#555"/><text x="46" y="14" font-size="12">V(r)</text>
+<polyline points="40,170 90,170 90,45 100,48 130,66 170,86 220,102 270,114 340,122 400,126" fill="none" stroke="#b45309" stroke-width="2.5"/><line x1="40" y1="100" x2="400" y2="100" stroke="#0f766e" stroke-dasharray="6 4"/><text x="44" y="95" font-size="12" fill="#0f766e">E<tspan dy="3" font-size="9">α</tspan></text><text x="82" y="184" font-size="12">r<tspan dy="3" font-size="9">N</tspan></text><text x="200" y="150" font-size="12">r′ = r<tspan dy="3" font-size="9">N</tspan><tspan dy="-3"> + L</tspan></text><line x1="90" y1="100" x2="225" y2="100" stroke="#6d28d9" stroke-width="3"/><text x="130" y="118" font-size="12" fill="#6d28d9">tunnels through here</text></svg>
+{% endcall %}
+{% call box('mis') %}"The alpha particle gains enough energy to climb over the barrier." Its energy stays the same; it goes through the barrier, which is why decays happen at all for nuclei whose E<sub>α</sub> is below the barrier top.{% endcall %}
+<div class="next">Next: 5.9 lists other tunnelling phenomena.</div>
+{% endcall %}
+
+<hr class="div">
+{% call sub('m4-5-9','5.9','Other tunnelling phenomena') %}
+<div class="intuition"><b>Why it matters.</b> Slide 11 gives a short list that is often asked as "name any three effects explained by tunnelling".</div>
+{% call box('def') %}Your deck lists these as explained by tunnelling: <b>emission of alpha particles</b> from a radioactive element (5.8); <b>electrical breakdown of insulators</b>; the <b>switching action of a tunnel diode</b>; and <b>field emission of electrons</b> from a metallic surface. Together with the STM (5.7) and frustrated total internal reflection (5.6), these are the examples to quote. The deck states these as a list only; for the details of the tunnel diode and field emission, <b>the deck is silent</b>, so I have not added any.{% endcall %}
+<table class="t"><tr><th>Phenomenon</th><th>What tunnels</th><th>Detail from your deck</th></tr>
+<tr><td>Alpha decay</td><td>alpha particle through the Coulomb barrier</td><td>slide 14</td></tr><tr><td>STM</td><td>electrons across the tip-surface gap</td><td>slide 10</td></tr>
+<tr><td>Frustrated TIR</td><td>light across an air gap</td><td>slide 13</td></tr><tr><td>Tunnel diode, field emission, breakdown of insulators</td><td>electrons through a barrier</td><td>named only (slide 11)</td></tr></table>
+{% call box('try') %}Without looking: state R + T = 1, write κ, and compute T for a barrier twice as wide as the one in 5.5 (L = 0.4 nm). Answer: T ≈ 0.0032 (exact 0.00317), about 33 times smaller than 0.105; doubling the width does far more than halve T.{% endcall %}
+{% endcall %}
+{% endcall %}{# end sec 5 #}
+
+<hr class="div">
+<section id="m4-check"><h2>Self-test checklist</h2>
+<p class="muted small">Tick only what you can do unaided. Ticks are kept in this browser.</p>
+<ul class="checklist" data-key="m4-check">
+<li><label><input type="checkbox"> Describe the infinite well and say why the wavefunction must vanish at the walls.</label></li>
+<li><label><input type="checkbox"> Go from ψ″ = −k²ψ through ψ(0) = ψ(L) = 0 to kL = nπ, stating why B = 0 and why n = 0 is excluded.</label></li>
+<li><label><input type="checkbox"> Derive Eₙ = n²h²/(8mL²) and compute it for an electron in a given box, in J and eV.</label></li>
+<li><label><input type="checkbox"> Normalise ψ = A sin(nπx/L) to get A = √(2/L).</label></li>
+<li><label><input type="checkbox"> Explain zero-point energy using the uncertainty principle.</label></li>
+<li><label><input type="checkbox"> Find nodes and antinodes of ψₙ and sketch |ψₙ|² for n = 1, 2, 3.</label></li>
+<li><label><input type="checkbox"> Compute the probability of finding the particle in a region, and explain the large-n limit.</label></li>
+<li><label><input type="checkbox"> Cross-check Eₙ using L = nλ/2 and de Broglie.</label></li>
+<li><label><input type="checkbox"> Compute the photon wavelength for a transition between two box levels.</label></li>
+<li><label><input type="checkbox"> Write ψ and E for a 3D rectangular box and find the lowest energies for given sides.</label></li>
+<li><label><input type="checkbox"> Normalise a 3D box wavefunction (C = (2/L)<sup>3/2</sup>) and find the probability in a slab.</label></li>
+<li><label><input type="checkbox"> Define degeneracy and find the degree of a cube level by listing triples with the same sum of squares.</label></li>
+<li><label><input type="checkbox"> Explain how unequal box sides break the degeneracy.</label></li>
+<li><label><input type="checkbox"> Set up the three-region barrier problem, with solutions in each region, and state R + T = 1.</label></li>
+<li><label><input type="checkbox"> Compute κ and the tunnelling probability T for an electron at a barrier, and say which formula you used.</label></li>
+<li><label><input type="checkbox"> Explain tunnelling in the STM, in alpha decay and in frustrated total internal reflection.</label></li>
+</ul></section>
+</div>{# end notes #}
+{% endblock %}
+{% block scripts %}
+<script>
+(function(){
+  document.querySelectorAll('.checklist').forEach(function(ul){
+    var key='qm_check_'+ul.dataset.key, saved={};
+    try{ saved=JSON.parse(localStorage.getItem(key)||'{}'); }catch(e){}
+    ul.querySelectorAll('input').forEach(function(cb,i){
+      cb.checked=!!saved[i];
+      cb.addEventListener('change',function(){ saved[i]=cb.checked; try{ localStorage.setItem(key,JSON.stringify(saved)); }catch(e){} });
+    });
+  });
+})();
+</script>
+{% endblock %}

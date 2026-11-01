@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Study Hub</title>
+<meta name="description" content="All my study dashboards in one place.">
+<link rel="stylesheet" href="{{ url_for('static', filename='hub.css') }}">
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <p class="eyebrow">Study Hub</p>
+    <h1>Pick a subject.</h1>
+    <p class="lede">{{ subjects|length }} dashboards, {{ "{:,}".format(total_q) }} practice questions. Notes, syllabus trees and quizzes for each subject live one click away.</p>
+    <label class="search"><span class="sr">Filter subjects</span>
+      <input id="q" type="search" placeholder="Filter subjects…" autocomplete="off">
+    </label>
+  </div>
+</header>
+
+<main class="wrap">
+  <ul class="grid" id="grid">
+  {% for s in subjects %}
+    <li class="card" style="--accent: {{ s.accent }}" data-text="{{ (s.code ~ ' ' ~ s.title ~ ' ' ~ s.blurb)|lower }}">
+      <a class="card-link" href="{{ '/' ~ s.slug ~ '/' }}" aria-label="Open {{ s.title }}"></a>
+      <span class="code">{{ s.code }}</span>
+      <h2>{{ s.title }}</h2>
+      <p>{{ s.blurb }}</p>
+      <dl class="stats">
+        <div><dt>{{ s.unit|capitalize }}</dt><dd>{{ s.units }}</dd></div>
+        <div><dt>Questions</dt><dd>{{ s.questions }}</dd></div>
+      </dl>
+      <div class="actions">
+        <a class="btn primary" href="{{ '/' ~ s.slug ~ '/' }}">Open notes</a>
+        <a class="btn" href="{{ '/' ~ s.slug ~ '/quiz' }}">Take a quiz</a>
+      </div>
+    </li>
+  {% endfor %}
+  </ul>
+  <p class="empty" id="empty" hidden>No subject matches that filter.</p>
+</main>
+
+<footer class="wrap foot">
+  <span>Each subject runs as its own dashboard, mounted under <code>/&lt;subject&gt;</code>.</span>
+</footer>
+
+<script>
+(function(){
+  var q=document.getElementById('q'), cards=[].slice.call(document.querySelectorAll('.card')), empty=document.getElementById('empty');
+  q.addEventListener('input',function(){
+    var t=q.value.trim().toLowerCase(), shown=0;
+    cards.forEach(function(c){var ok=!t||c.dataset.text.indexOf(t)>-1; c.hidden=!ok; if(ok)shown++;});
+    empty.hidden=shown>0;
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% block title %}Quiz setup · QM Illustrated Notes{% endblock %}
+{% block bodyclass %}quiz{% endblock %}
+{% block content %}
+<header class="hero quiz"><div class="in"><h1>Quiz setup</h1>
+<p>Pick what to be tested on. Options are shuffled every attempt and the answer key is remapped to match.</p></div></header>
+<main class="wrap">
+{% if total == 0 %}
+<div class="note warn"><b>The question bank is empty.</b> {{ bank_note }} The setup controls below work, but there is nothing to sample until a bank is built. Question counts on this page come from the bank, so they show 0.</div>
+{% endif %}
+<form method="post" action="{{ url_for('quiz_start') }}" id="setup" class="grid" style="grid-template-columns:2fr 1fr">
+  <div class="card quiz tree" id="tree">
+    <h3>1. Content</h3>
+    <p class="small muted">Tick a module or topic to tick everything inside it. A dash means some of its children are ticked.</p>
+    <ul>
+    {% for m in modules %}
+      <li><label><input type="checkbox" class="cb-mod" data-id="{{ m.n }}"> <b>Module {{ m.n }}: {{ m.title }}</b> <span class="chip">{{ counts.get(m.n, 0) }}</span></label>
+        <ul>
+        {% for t in m.topics if not t.excluded %}
+          <li><label><input type="checkbox" class="cb-top" data-id="{{ t.id }}" data-mod="{{ m.n }}"> {{ t.title }} <span class="chip">{{ counts.get(t.id, 0) }}</span></label>
+            <ul>
+            {% for s in t.subtopics %}
+              <li><label><input type="checkbox" class="cb-sub" name="sub" value="{{ s.id }}" data-top="{{ t.id }}" data-mod="{{ m.n }}"> {{ s.title }} <span class="chip">{{ counts.get(s.id, 0) }}</span></label></li>
+            {% endfor %}
+            </ul></li>
+        {% endfor %}
+        </ul></li>
+    {% endfor %}
+    </ul>
+  </div>
+  <div>
+    <div class="card quiz"><h3>2. Bloom's level</h3>
+      {% if blooms %}{% for b in blooms %}<label style="display:block"><input type="checkbox" name="bloom" value="{{ b }}" class="cb-bloom" checked> {{ b }}</label>{% endfor %}
+      {% else %}<p class="small muted">No Bloom's levels yet (empty bank).</p>{% endif %}
+    </div>
+    <div class="card quiz" style="margin-top:16px"><h3>3. Options</h3>
+      <label>Number of questions <input type="number" name="count" id="count" min="1" value="10" style="width:5em"></label>
+      <p class="small">Available for this selection: <b id="avail">0</b></p>
+      <label><input type="checkbox" name="allow_back" checked> Allow going back to earlier questions</label>
+      <p><button class="btn" id="go" type="submit" disabled>Start quiz</button></p>
+    </div>
+  </div>
+</form>
+</main>
+{% endblock %}
+{% block scripts %}
+<script>
+var META = {{ questions_meta|tojson }};
+var MODS = {{ modules|map(attribute='n')|list|tojson }};
+(function(){
+  var q = new URLSearchParams(location.search);
+  var subs=[].slice.call(document.querySelectorAll('.cb-sub')), tops=[].slice.call(document.querySelectorAll('.cb-top')), mods=[].slice.call(document.querySelectorAll('.cb-mod'));
+  function refreshParents(){
+    tops.forEach(function(t){ var ch=subs.filter(function(s){return s.dataset.top===t.dataset.id;}); var n=ch.filter(function(s){return s.checked;}).length;
+      t.checked = n===ch.length && n>0; t.indeterminate = n>0 && n<ch.length; });
+    mods.forEach(function(m){ var ch=subs.filter(function(s){return s.dataset.mod===m.dataset.id;}); var n=ch.filter(function(s){return s.checked;}).length;
+      m.checked = n===ch.length && n>0; m.indeterminate = n>0 && n<ch.length; });
+  }
+  function avail(){
+    var ticked={}; subs.forEach(function(s){ if(s.checked) ticked[s.value]=1; });
+    var bl=[].slice.call(document.querySelectorAll('.cb-bloom')); var blOn={}; bl.forEach(function(b){ if(b.checked) blOn[b.value]=1; });
+    var n=META.filter(function(m){ return ticked[m.subtopic] && (bl.length===0 || blOn[m.bloom]); }).length;
+    document.getElementById('avail').textContent=n;
+    var c=document.getElementById('count'); c.max=n; if(n>0 && (+c.value>n||+c.value<1)) c.value=Math.min(Math.max(1,+c.value||10),n);
+    document.getElementById('go').disabled = n===0;
+  }
+  tops.forEach(function(t){ t.addEventListener('change',function(){ subs.forEach(function(s){ if(s.dataset.top===t.dataset.id) s.checked=t.checked; }); refreshParents(); avail(); }); });
+  mods.forEach(function(m){ m.addEventListener('change',function(){ subs.forEach(function(s){ if(s.dataset.mod===m.dataset.id) s.checked=m.checked; }); refreshParents(); avail(); }); });
+  subs.forEach(function(s){ s.addEventListener('change',function(){ refreshParents(); avail(); }); });
+  document.querySelectorAll('.cb-bloom').forEach(function(b){ b.addEventListener('change',avail); });
+  document.getElementById('count').addEventListener('input',avail);
+  // pre-selection from the dashboard: ?sub=..&topic=..&module=..
+  var ps=q.getAll('sub'), pt=q.getAll('topic'), pm=q.getAll('module');
+  subs.forEach(function(s){ if(ps.indexOf(s.value)>-1 || pt.indexOf(s.dataset.top)>-1 || pm.indexOf(s.dataset.mod)>-1) s.checked=true; });
+  refreshParents(); avail();
+})();
+</script>
+{% endblock %}

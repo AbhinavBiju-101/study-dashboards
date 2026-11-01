@@ -1,0 +1,877 @@
+{
+ "modules": [
+  {
+   "n": 1,
+   "key": "m1",
+   "title": "Wave Particle Duality",
+   "short": "Wave-particle duality",
+   "hours": 8,
+   "color": "#4d7c0f",
+   "scope": "Covered fully against the syllabus line. The photoelectric effect, Davisson-Germer experiment and uncertainty principle are not in the syllabus line but are in your decks, so they are included and marked as extra.",
+   "syllabus": "Dual nature of radiation – Young's double slit experiment – Blackbody radiation – Planck's hypothesis – de Broglie hypothesis – Wavefunction – Stern-Gerlach experiment.",
+   "topics": [
+    {
+     "id": "m1-1",
+     "title": "Dual nature of radiation and Young's double slit",
+     "summary": "Light shows interference (wave) yet comes in quanta (particle); Young's experiment is the wave evidence.",
+     "excluded": false,
+     "subtopics": [
+      {
+       "id": "m1-1-1",
+       "title": "Dual nature of radiation and matter",
+       "summary": "Wave and particle descriptions, linked by E = hν and λ = h/p."
+      },
+      {
+       "id": "m1-1-2",
+       "title": "Wave characteristics and the travelling wave",
+       "summary": "λ, k, f, T, v = fλ and y = A cos(ωt − kx)."
+      },
+      {
+       "id": "m1-1-3",
+       "title": "Superposition and interference",
+       "summary": "Waves add; in phase doubles the amplitude, in antiphase cancels."
+      },
+      {
+       "id": "m1-1-4",
+       "title": "Young's double-slit experiment",
+       "summary": "Fringes at y = nλD/d; fringe width β = λD/d."
+      }
+     ]
+    },
+    {
+     "id": "m1-2",
+     "title": "Blackbody radiation",
+     "summary": "The glow of a hot body, its laws, and the failure of classical theory.",
+     "excluded": false,
+     "subtopics": [
+      {
+       "id": "m1-2-1",
+       "title": "Thermal radiation, the blackbody and Kirchhoff's law",
+       "summary": "An ideal absorber is an ideal emitter."
+      },
+      {
+       "id": "m1-2-2",
+       "title": "Features of the spectrum: Stefan's and Wien's laws",
+       "summary": "R = σT⁴ and λ_max T = 2.898×10⁻³ m·K."
+      },
+      {
+       "id": "m1-2-3",
+       "title": "Rayleigh-Jeans law and the ultraviolet catastrophe",
+       "summary": "The classical curve diverges at short wavelength."
+      }
+     ]
+    },
+    {
+     "id": "m1-3",
+     "title": "Planck's hypothesis",
+     "summary": "Oscillator energies come in steps of hν; this gives the radiation law that fits the data.",
+     "excluded": false,
+     "subtopics": [
+      {
+       "id": "m1-3-1",
+       "title": "Quantisation of oscillator energy",
+       "summary": "Eₙ = nhν, quanta E = hν."
+      },
+      {
+       "id": "m1-3-2",
+       "title": "Planck's radiation law and its limits",
+       "summary": "Reduces to Rayleigh-Jeans at low ν and vanishes at high ν."
+      }
+     ]
+    },
+    {
+     "id": "m1-4",
+     "title": "The photoelectric effect (extra: in your decks, not in the syllabus line)",
+     "summary": "Evidence for photons; Einstein's equation hf = W₀ + KE_max.",
+     "excluded": false,
+     "subtopics": [
+      {
+       "id": "m1-4-1",
+       "title": "Observations and the laws of photoelectric emission",
+       "summary": "Threshold frequency, stopping potential, instantaneous emission."
+      },
+      {
+       "id": "m1-4-2",
+       "title": "Einstein's photoelectric equation",
+       "summary": "Photon energy splits into work function and kinetic energy."
+      }
+     ]
+    },
+    {
+     "id": "m1-5",
+     "title": "The de Broglie hypothesis and matter waves",
+     "summary": "Particles have wavelength λ = h/p; wave packets, phase and group velocity.",
+     "excluded": false,
+     "subtopics": [
+      {
+       "id": "m1-5-1",
+       "title": "De Broglie wavelength",
+       "summary": "Forms for kinetic energy, accelerating voltage and temperature."
+      },
+      {
+       "id": "m1-5-2",
+       "title": "Properties of matter waves",
+       "summary": "Not electromagnetic, independent of charge, probability waves."
+      },
+      {
+       "id": "m1-5-3",
+       "title": "Wave packets, phase velocity and group velocity",
+       "summary": "v_g = v and v_p = c²/v for de Broglie waves."
+      },
+      {
+       "id": "m1-5-4",
+       "title": "The Davisson-Germer experiment (extra)",
+       "summary": "Electrons diffract from a crystal."
+      }
+     ]
+    },
+    {
+     "id": "m1-6",
+     "title": "The Heisenberg uncertainty principle (extra: in your decks, not in the syllabus line)",
+     "summary": "Position and momentum cannot both be sharp: Δx Δp ≥ ħ/2.",
+     "excluded": false,
+     "subtopics": [
+      {
+       "id": "m1-6-1",
+       "title": "Statement of the principle",
+       "summary": "Δx Δp ≥ h/4π and ΔE Δt ≥ h/4π."
+      },
+      {
+       "id": "m1-6-2",
+       "title": "The microscope thought experiment",
+       "summary": "Short-wavelength photon: good position, big kick."
+      },
+      {
+       "id": "m1-6-3",
+       "title": "Energy-time uncertainty and applications",
+       "summary": "Zero-point energy, line width and others."
+      }
+     ]
+    },
+    {
+     "id": "m1-7",
+     "title": "The wavefunction",
+     "summary": "The state of a particle, its probability density, acceptable forms and the operators acting on it.",
+     "excluded": false,
+     "subtopics": [
+      {
+       "id": "m1-7-1",
+       "title": "Meaning of the wavefunction and probability density",
+       "summary": "|Ψ|² is the probability density."
+      },
+      {
+       "id": "m1-7-2",
+       "title": "Acceptable wavefunctions and normalisation",
+       "summary": "Single-valued, finite, continuous; ∫|Ψ|²dV = 1."
+      },
+      {
+       "id": "m1-7-3",
+       "title": "Operators, eigenfunctions and eigenvalues",
+       "summary": "p̂ = −iħ ∂/∂x and the eigenvalue equation."
+      }
+     ]
+    },
+    {
+     "id": "m1-8",
+     "title": "The Stern-Gerlach experiment",
+     "summary": "Listed in the Module 1 syllabus; written up in full in Module 3.",
+     "excluded": false,
+     "subtopics": [
+      {
+       "id": "m1-8-1",
+       "title": "Where the Stern-Gerlach experiment is covered",
+       "summary": "Pointer to Module 3, Section 4."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "key": "m2",
+   "title": "Mathematical Foundations of Quantum Mechanics",
+   "short": "Maths foundations",
+   "hours": 10,
+   "color": "#0f766e",
+   "scope": "Covered fully.",
+   "syllabus": "Introduction to linear vector space – Basis vectors – Orthonormal sets – Hilbert space – Representation of quantum states using Dirac notation – Inner and outer products – Tensor product of vector spaces – Linear operators – Matrix algebra – Hermitian, Unitary and Projection operators – Eigenvalues and eigenvectors – Pauli matrices – Commutation relations.",
+   "topics": [
+    {
+     "id": "m2-1",
+     "title": "Linear vector spaces",
+     "summary": "The arena: sets of objects you can add and scale, and how to describe them with a basis.",
+     "excluded": false,
+     "subtopics": [
+      {
+       "id": "m2-1-1",
+       "title": "Vector spaces and scalars",
+       "summary": "What makes a set a vector space, and why quantum mechanics needs complex scalars."
+      },
+      {
+       "id": "m2-1-2",
+       "title": "Linear combinations and span",
+       "summary": "Building vectors from others; the span is everything reachable."
+      },
+      {
+       "id": "m2-1-3",
+       "title": "Linear independence",
+       "summary": "No vector in the set is redundant; how to test it with a determinant or pivots."
+      },
+      {
+       "id": "m2-1-4",
+       "title": "Basis vectors and dimension",
+       "summary": "A minimal complete set of vectors; coordinates depend on the basis chosen."
+      },
+      {
+       "id": "m2-1-5",
+       "title": "Subspaces, column space and null space",
+       "summary": "Smaller spaces living inside a space; rank plus nullity equals the number of columns."
+      }
+     ]
+    },
+    {
+     "id": "m2-2",
+     "title": "Orthonormal sets and Hilbert space",
+     "summary": "Perpendicular unit-length bases make coordinates easy; a Hilbert space adds the inner product.",
+     "excluded": false,
+     "subtopics": [
+      {
+       "id": "m2-2-1",
+       "title": "Orthogonality, normalisation and orthonormal sets",
+       "summary": "Unit vectors that are mutually perpendicular; coefficients come from inner products."
+      },
+      {
+       "id": "m2-2-2",
+       "title": "Hilbert space",
+       "summary": "A complete complex vector space with an inner product; where quantum states live."
+      }
+     ]
+    },
+    {
+     "id": "m2-3",
+     "title": "Dirac notation, inner, outer and tensor products",
+     "summary": "Bras, kets and the three ways of multiplying them.",
+     "excluded": false,
+     "subtopics": [
+      {
+       "id": "m2-3-1",
+       "title": "Kets and bras",
+       "summary": "A ket is a column vector, its bra is the conjugate transpose."
+      },
+      {
+       "id": "m2-3-2",
+       "title": "Inner product",
+       "summary": "⟨a|b⟩ gives a complex number: norm, orthogonality, Schwarz inequality."
+      },
+      {
+       "id": "m2-3-3",
+       "title": "Outer product",
+       "summary": "|a⟩⟨b| gives a matrix (an operator), the reverse order of the inner product."
+      },
+      {
+       "id": "m2-3-4",
+       "title": "Tensor product of vector spaces",
+       "summary": "How two spaces combine into one of dimension n×m."
+      }
+     ]
+    },
+    {
+     "id": "m2-4",
+     "title": "Linear operators and matrix algebra",
+     "summary": "Operators act on kets; in a chosen basis they are matrices. Hermitian, unitary and projection operators are the three special classes.",
+     "excluded": false,
+     "subtopics": [
+      {
+       "id": "m2-4-1",
+       "title": "Linear operators",
+       "summary": "Rules that map kets to kets while respecting addition and scaling."
+      },
+      {
+       "id": "m2-4-2",
+       "title": "Matrix algebra and matrix representation",
+       "summary": "Matrix elements ⟨i|A|j⟩, products, transpose, dagger, trace."
+      },
+      {
+       "id": "m2-4-3",
+       "title": "Hermitian operators",
+       "summary": "A = A†: real eigenvalues, orthogonal eigenvectors, the observables."
+      },
+      {
+       "id": "m2-4-4",
+       "title": "Unitary operators",
+       "summary": "U†U = I: preserve norms; time evolution and gates."
+      },
+      {
+       "id": "m2-4-5",
+       "title": "Projection operators",
+       "summary": "P = P† = P²: pick out a component; the tool for measurement probabilities."
+      }
+     ]
+    },
+    {
+     "id": "m2-5",
+     "title": "Eigenvalues and eigenvectors",
+     "summary": "The directions an operator leaves unchanged, and the factors it stretches them by.",
+     "excluded": false,
+     "subtopics": [
+      {
+       "id": "m2-5-1",
+       "title": "The eigenvalue equation and how to solve it",
+       "summary": "Characteristic equation, then substitute back to find the vectors."
+      },
+      {
+       "id": "m2-5-2",
+       "title": "Eigenvalues of Hermitian and unitary operators, and expansion in an eigenbasis",
+       "summary": "Real versus unit-modulus eigenvalues; expanding a state in eigenvectors."
+      }
+     ]
+    },
+    {
+     "id": "m2-6",
+     "title": "Pauli matrices",
+     "summary": "Three 2×2 matrices that describe spin-½ and act as qubit gates.",
+     "excluded": false,
+     "subtopics": [
+      {
+       "id": "m2-6-1",
+       "title": "The three Pauli matrices and their properties",
+       "summary": "σx, σy, σz: Hermitian, unitary, traceless, eigenvalues ±1."
+      },
+      {
+       "id": "m2-6-2",
+       "title": "Pauli eigenstates and products",
+       "summary": "Eigenvectors of each matrix and the multiplication rules."
+      }
+     ]
+    },
+    {
+     "id": "m2-7",
+     "title": "Commutation relations",
+     "summary": "Whether the order of two operators matters, and what that means physically.",
+     "excluded": false,
+     "subtopics": [
+      {
+       "id": "m2-7-1",
+       "title": "Commutators, anticommutators and identities",
+       "summary": "[A,B] = AB − BA, and the rules for manipulating it."
+      },
+      {
+       "id": "m2-7-2",
+       "title": "Key commutators and their physical meaning",
+       "summary": "[x,p] = iħ, angular momentum, Pauli; commuting means simultaneously measurable."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "key": "m3",
+   "title": "Postulates of Quantum Mechanics",
+   "short": "Postulates",
+   "hours": 8,
+   "color": "#6d28d9",
+   "scope": "Covered fully, including the time-dependent and time-independent Schrödinger equations.",
+   "syllabus": "Observables – Expectation values – Measurement in Quantum Mechanics – Sequential Stern-Gerlach Experiment – Time-dependent and time-independent Schrödinger equations.",
+   "topics": [
+    {
+     "id": "m3-1",
+     "title": "Observables and operators",
+     "summary": "Every measurable quantity is a Hermitian operator; its eigenvalues are the possible results.",
+     "excluded": false,
+     "subtopics": [
+      {
+       "id": "m3-1-1",
+       "title": "What an observable is",
+       "summary": "Measurable property represented by a Hermitian operator, so results are real."
+      },
+      {
+       "id": "m3-1-2",
+       "title": "The standard operators",
+       "summary": "Position, momentum, angular momentum, kinetic, potential and total energy operators."
+      },
+      {
+       "id": "m3-1-3",
+       "title": "Where the momentum and energy operators come from",
+       "summary": "Differentiate a free-particle wave to read them off."
+      },
+      {
+       "id": "m3-1-4",
+       "title": "The eigenvalue postulate and quantised results",
+       "summary": "Only eigenvalues are ever observed, so measured values can be discrete."
+      }
+     ]
+    },
+    {
+     "id": "m3-2",
+     "title": "Expectation values",
+     "summary": "The probability-weighted average of many identical measurements.",
+     "excluded": false,
+     "subtopics": [
+      {
+       "id": "m3-2-1",
+       "title": "Meaning of an expectation value",
+       "summary": "An ensemble average, not necessarily a value you will see."
+      },
+      {
+       "id": "m3-2-2",
+       "title": "Computing ⟨x⟩, ⟨p⟩ and ⟨E⟩",
+       "summary": "Sandwich the operator between ψ* and ψ and integrate."
+      },
+      {
+       "id": "m3-2-3",
+       "title": "Shortcuts for real wavefunctions and ⟨p²⟩",
+       "summary": "⟨p⟩ = 0 for real ψ; ⟨p²⟩ = ħ²∫|ψ′|²dx."
+      },
+      {
+       "id": "m3-2-4",
+       "title": "Uncertainty from expectation values",
+       "summary": "Δx and Δp from ⟨x²⟩ − ⟨x⟩² and checking the uncertainty principle."
+      }
+     ]
+    },
+    {
+     "id": "m3-3",
+     "title": "Measurement in quantum mechanics",
+     "summary": "Outcomes are eigenvalues, probabilities come from projections, and the state collapses.",
+     "excluded": false,
+     "subtopics": [
+      {
+       "id": "m3-3-1",
+       "title": "Possible outcomes and definite states",
+       "summary": "Eigenvalues are outcomes; eigenvectors are states with a certain outcome."
+      },
+      {
+       "id": "m3-3-2",
+       "title": "Probabilities from projection operators",
+       "summary": "Prob = ‖Pψ‖² = |⟨a|ψ⟩|² for a normalised state."
+      },
+      {
+       "id": "m3-3-3",
+       "title": "Collapse and repeated measurement",
+       "summary": "After a measurement the state is the eigenvector found; repeating gives the same result."
+      }
+     ]
+    },
+    {
+     "id": "m3-4",
+     "title": "Sequential Stern-Gerlach experiment",
+     "summary": "Chains of spin analysers reveal superposition, incompatibility and interference.",
+     "excluded": false,
+     "subtopics": [
+      {
+       "id": "m3-4-1",
+       "title": "The Stern-Gerlach apparatus and spin-½",
+       "summary": "A beam splits into two; kets label the beams."
+      },
+      {
+       "id": "m3-4-2",
+       "title": "Experiment 1: z then z",
+       "summary": "A repeated identical measurement agrees with itself."
+      },
+      {
+       "id": "m3-4-3",
+       "title": "Experiment 2: z then x",
+       "summary": "A 50/50 split: the state |+⟩ is a superposition of x-states."
+      },
+      {
+       "id": "m3-4-4",
+       "title": "Experiment 3: z, x, then z",
+       "summary": "The x measurement erases the earlier z result: incompatible observables."
+      },
+      {
+       "id": "m3-4-5",
+       "title": "Experiment 4: recombined beams",
+       "summary": "Adding amplitudes (not probabilities) restores the z result."
+      },
+      {
+       "id": "m3-4-6",
+       "title": "Summary and the maths behind all four",
+       "summary": "Amplitude calculations that reproduce every count."
+      }
+     ]
+    },
+    {
+     "id": "m3-5",
+     "title": "Time-dependent and time-independent Schrödinger equations",
+     "summary": "The wave equation of matter: how it is built from de Broglie's idea, and its two forms.",
+     "excluded": false,
+     "subtopics": [
+      {
+       "id": "m3-5-1",
+       "title": "Why a wave equation, and its assumptions",
+       "summary": "Classical mechanics fails for atoms, so Schrödinger gives matter a wave function Ψ."
+      },
+      {
+       "id": "m3-5-2",
+       "title": "From the classical wave equation to a plane-wave starting point",
+       "summary": "Start from ∇²Ψ = (1/v²)∂²Ψ/∂t² with Ψ = Ψ₀e^{−iωt}."
+      },
+      {
+       "id": "m3-5-3",
+       "title": "The time-independent equation",
+       "summary": "Put in λ = h/mv and E = V + ½mv² to get ∇²ψ + (2m/ħ²)(E − V)ψ = 0, i.e. Ĥψ = Eψ."
+      },
+      {
+       "id": "m3-5-4",
+       "title": "The time-dependent equation",
+       "summary": "Eliminate E using E = ħω to get iħ ∂Ψ/∂t = ĤΨ."
+      },
+      {
+       "id": "m3-5-5",
+       "title": "Hamiltonian, stationary states and how the two forms connect",
+       "summary": "Ψ = ψ(x)e^{−iEt/ħ}: the time factor only changes the phase."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "key": "m4",
+   "title": "Applications of Quantum Mechanics",
+   "short": "1D box",
+   "hours": 7,
+   "color": "#b45309",
+   "scope": "Covered fully: the 1D box, its 3D extension, degeneracy, and quantum tunnelling.",
+   "syllabus": "Particle in a one-dimensional potential well – Extension to three-dimensional potential wells – Energy eigenvalues and eigenfunctions – Degeneracy of energy levels – Quantum tunneling phenomenon – Tunneling probability",
+   "topics": [
+    {
+     "id": "m4-1",
+     "title": "The particle in a 1D box",
+     "summary": "An infinite square well: the simplest system that shows quantisation.",
+     "excluded": false,
+     "subtopics": [
+      {
+       "id": "m4-1-1",
+       "title": "The setup: classical versus quantum",
+       "summary": "V = 0 inside, V = ∞ outside; what changes when the particle is a wave."
+      },
+      {
+       "id": "m4-1-2",
+       "title": "The equation inside the box",
+       "summary": "ψ″ = −k²ψ with k² = 2mE/ħ², whose solutions are sines and cosines."
+      },
+      {
+       "id": "m4-1-3",
+       "title": "Boundary conditions and the wavefunction",
+       "summary": "ψ(0) = ψ(L) = 0 forces B = 0 and kL = nπ."
+      },
+      {
+       "id": "m4-1-4",
+       "title": "Energy eigenvalues",
+       "summary": "Eₙ = n²h²/(8mL²): quantised and growing as n²."
+      },
+      {
+       "id": "m4-1-5",
+       "title": "Normalisation and the eigenfunctions",
+       "summary": "A = √(2/L), so ψₙ = √(2/L) sin(nπx/L)."
+      }
+     ]
+    },
+    {
+     "id": "m4-2",
+     "title": "What the solution tells us",
+     "summary": "Reading physics from Eₙ and ψₙ.",
+     "excluded": false,
+     "subtopics": [
+      {
+       "id": "m4-2-1",
+       "title": "Quantisation, spacing and the quantum number",
+       "summary": "Levels are discrete and not equally spaced."
+      },
+      {
+       "id": "m4-2-2",
+       "title": "Zero-point energy",
+       "summary": "n = 0 is impossible; confinement forces a minimum energy."
+      },
+      {
+       "id": "m4-2-3",
+       "title": "Nodes, antinodes and probability density",
+       "summary": "|ψₙ|² has n − 1 interior nodes; probability is not uniform."
+      },
+      {
+       "id": "m4-2-4",
+       "title": "Probability in a region and the correspondence principle",
+       "summary": "Integrate |ψ|² over an interval; large n looks classical."
+      },
+      {
+       "id": "m4-2-5",
+       "title": "The standing-wave (de Broglie) picture",
+       "summary": "L = nλ/2 gives the same energies."
+      }
+     ]
+    },
+    {
+     "id": "m4-3",
+     "title": "Extension to two and three dimensions",
+     "summary": "Separate the variables: the wavefunction is a product and the energies add.",
+     "excluded": false,
+     "subtopics": [
+      {
+       "id": "m4-3-1",
+       "title": "Separation of variables in a box",
+       "summary": "ψ = X(x)Y(y)Z(z) and E = Eₓ + E_y + E_z."
+      },
+      {
+       "id": "m4-3-2",
+       "title": "Energy eigenvalues and eigenfunctions in 3D",
+       "summary": "Three quantum numbers, product of sines."
+      },
+      {
+       "id": "m4-3-3",
+       "title": "Normalisation and probability in a 3D box",
+       "summary": "C = (2/L)^{3/2}; the probability in a slab is a product of three 1D integrals."
+      }
+     ]
+    },
+    {
+     "id": "m4-4",
+     "title": "Degeneracy of energy levels",
+     "summary": "Different states sharing one energy, and why a symmetric box has so many.",
+     "excluded": false,
+     "subtopics": [
+      {
+       "id": "m4-4-1",
+       "title": "What degeneracy means",
+       "summary": "Several wavefunctions with one eigenvalue; the number of them is the degree."
+      },
+      {
+       "id": "m4-4-2",
+       "title": "Counting the levels of a cubical box",
+       "summary": "List (nₓ,n_y,n_z) with the same n² sum; permutations give the degree."
+      },
+      {
+       "id": "m4-4-3",
+       "title": "Symmetry and breaking the degeneracy",
+       "summary": "Unequal sides split a degenerate level into separate ones."
+      }
+     ]
+    },
+    {
+     "id": "m4-5",
+     "title": "Quantum tunnelling and tunnelling probability",
+     "summary": "A particle can get through a barrier that classical mechanics says it cannot cross.",
+     "excluded": false,
+     "subtopics": [
+      {
+       "id": "m4-5-1",
+       "title": "Classical versus quantum behaviour at a barrier",
+       "summary": "Classically E < V₀ means total reflection; quantum mechanically a small part gets through."
+      },
+      {
+       "id": "m4-5-2",
+       "title": "The barrier problem: regions, wave numbers and solutions",
+       "summary": "Three regions, k₁ = k₃ outside and a different k inside."
+      },
+      {
+       "id": "m4-5-3",
+       "title": "Reflection and transmission probabilities",
+       "summary": "R = B*B/A*A, T = F*F/A*A, and R + T = 1."
+      },
+      {
+       "id": "m4-5-4",
+       "title": "The wavefunction inside the barrier (E < V₀)",
+       "summary": "Real exponentials Ce^{κx} + De^{−κx}: it decays but does not vanish."
+      },
+      {
+       "id": "m4-5-5",
+       "title": "Tunnelling probability",
+       "summary": "T ≈ 16(E/V₀)(1 − E/V₀)e^{−2κL}, or roughly e^{−2κL}."
+      },
+      {
+       "id": "m4-5-6",
+       "title": "Analogy with wave optics",
+       "summary": "Frustrated total internal reflection between two prisms."
+      },
+      {
+       "id": "m4-5-7",
+       "title": "Scanning tunnelling microscope",
+       "summary": "Tunnelling current depends exponentially on tip-surface distance."
+      },
+      {
+       "id": "m4-5-8",
+       "title": "Alpha-particle decay",
+       "summary": "An alpha particle tunnels out through the Coulomb barrier of the nucleus."
+      },
+      {
+       "id": "m4-5-9",
+       "title": "Other tunnelling phenomena",
+       "summary": "Tunnel diode, field emission, electrical breakdown of insulators."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "key": "m5",
+   "title": "Elements of Quantum Computing",
+   "short": "Quantum computing",
+   "hours": 10,
+   "color": "#0e7490",
+   "scope": "Covered fully against the syllabus line. S and T gates, SWAP, controlled-Z and Toffoli are only briefly covered because your deck marks them as not in the syllabus.",
+   "syllabus": "Introduction to qubits – Single qubit states and the Bloch Sphere – Two-qubit systems – Quantum entanglement and Bell states – Single-qubit gates: Pauli and Hadamard – Two-qubit gates: CNOT – Generation of entangled states.",
+   "topics": [
+    {
+     "id": "m5-1",
+     "title": "Qubits: from the bit to the quantum bit",
+     "summary": "What a qubit is, how it is written as a vector, and what superposition and measurement mean.",
+     "excluded": false,
+     "subtopics": [
+      {
+       "id": "m5-1-1",
+       "title": "Classical bit versus qubit",
+       "summary": "A bit is 0 or 1; a qubit is a normalised superposition and gives one outcome on measurement."
+      },
+      {
+       "id": "m5-1-2",
+       "title": "The qubit as a vector in Hilbert space",
+       "summary": "|0⟩ and |1⟩ as the columns (1,0) and (0,1); a general state (α, β)."
+      },
+      {
+       "id": "m5-1-3",
+       "title": "Superposition, amplitudes and measurement",
+       "summary": "P(0) = |α|², P(1) = |β|², and the state collapses on measurement."
+      },
+      {
+       "id": "m5-1-4",
+       "title": "Entanglement: a first look",
+       "summary": "Qubits whose joint state cannot be split into separate states."
+      }
+     ]
+    },
+    {
+     "id": "m5-2",
+     "title": "The Bloch sphere",
+     "summary": "Every single-qubit state is a point on a sphere with |0⟩ and |1⟩ at the poles.",
+     "excluded": false,
+     "subtopics": [
+      {
+       "id": "m5-2-1",
+       "title": "What the Bloch sphere is",
+       "summary": "Poles are |0⟩ and |1⟩; gates are rotations of the state vector."
+      },
+      {
+       "id": "m5-2-2",
+       "title": "Coordinates, the state formula and special points",
+       "summary": "|ψ⟩ = cos(θ/2)|0⟩ + e^{iφ} sin(θ/2)|1⟩ and the Bloch vector."
+      }
+     ]
+    },
+    {
+     "id": "m5-3",
+     "title": "Two-qubit systems",
+     "summary": "Two qubits live in a 4-dimensional space built with the tensor product.",
+     "excluded": false,
+     "subtopics": [
+      {
+       "id": "m5-3-1",
+       "title": "The tensor product and the computational basis",
+       "summary": "|00⟩, |01⟩, |10⟩, |11⟩ as 4-component columns; n qubits need 2ⁿ amplitudes."
+      },
+      {
+       "id": "m5-3-2",
+       "title": "General two-qubit state and measurement probabilities",
+       "summary": "Four amplitudes, P(ij) = |αᵢⱼ|², and collapse of one qubit."
+      },
+      {
+       "id": "m5-3-3",
+       "title": "Notation: shorthand, encoded form and the x basis",
+       "summary": "|01⟩ = |0⟩|1⟩ = |1⟩², and the |±⟩ product basis."
+      }
+     ]
+    },
+    {
+     "id": "m5-4",
+     "title": "Entanglement and Bell states",
+     "summary": "Which two-qubit states are entangled, the four maximally entangled Bell states, and their uses.",
+     "excluded": false,
+     "subtopics": [
+      {
+       "id": "m5-4-1",
+       "title": "Product states versus entangled states",
+       "summary": "A product state has α₀₀α₁₁ = α₀₁α₁₀; failing this means entangled."
+      },
+      {
+       "id": "m5-4-2",
+       "title": "The four Bell states",
+       "summary": "Φ± = (|00⟩ ± |11⟩)/√2, Ψ± = (|01⟩ ± |10⟩)/√2; an orthonormal basis."
+      },
+      {
+       "id": "m5-4-3",
+       "title": "Correlations, applications and experiments",
+       "summary": "Teleportation, QKD, superdense coding, error correction; Bell-inequality tests."
+      }
+     ]
+    },
+    {
+     "id": "m5-5",
+     "title": "Single-qubit quantum gates",
+     "summary": "Unitary, reversible operations on one qubit: X, Y, Z and H.",
+     "excluded": false,
+     "subtopics": [
+      {
+       "id": "m5-5-1",
+       "title": "What a quantum gate is: unitary and reversible",
+       "summary": "U†U = I preserves probability; contrast with irreversible AND."
+      },
+      {
+       "id": "m5-5-2",
+       "title": "Pauli-X gate (the quantum NOT)",
+       "summary": "Swaps the amplitudes of |0⟩ and |1⟩."
+      },
+      {
+       "id": "m5-5-3",
+       "title": "Pauli-Y gate",
+       "summary": "A flip with phases: Y|0⟩ = i|1⟩, Y|1⟩ = −i|0⟩."
+      },
+      {
+       "id": "m5-5-4",
+       "title": "Pauli-Z gate (phase flip)",
+       "summary": "Leaves |0⟩, sends |1⟩ to −|1⟩."
+      },
+      {
+       "id": "m5-5-5",
+       "title": "Hadamard gate",
+       "summary": "Turns basis states into equal superpositions; H² = I."
+      },
+      {
+       "id": "m5-5-6",
+       "title": "Gates as rotations on the Bloch sphere",
+       "summary": "X, Y, Z are π rotations; H takes the pole to the equator."
+      }
+     ]
+    },
+    {
+     "id": "m5-6",
+     "title": "Two-qubit gates and generating entanglement",
+     "summary": "CNOT, its matrix, and the H + CNOT circuit that makes a Bell state.",
+     "excluded": false,
+     "subtopics": [
+      {
+       "id": "m5-6-1",
+       "title": "The CNOT gate",
+       "summary": "Flips the target when the control is |1⟩."
+      },
+      {
+       "id": "m5-6-2",
+       "title": "The CNOT matrix and a matrix calculation",
+       "summary": "4×4 permutation matrix; worked as CNOT|10⟩ = |11⟩."
+      },
+      {
+       "id": "m5-6-3",
+       "title": "Creating entanglement: H then CNOT",
+       "summary": "|00⟩ → (|00⟩ + |11⟩)/√2, with all four Bell states from the four inputs."
+      },
+      {
+       "id": "m5-6-4",
+       "title": "Other multi-qubit gates (for information)",
+       "summary": "SWAP, controlled-Z and Toffoli; not in your deck's syllabus."
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

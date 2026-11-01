@@ -1,0 +1,7 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% block title %}BAENG101 Notes{% endblock %}</title><link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"></head>
+<body style="--accent:{{ accent|default('#2f6b4f') }};--accent-dk:{{ accent_dk|default('#204a37') }}">
+{% macro bar(cls) %}<nav class="site-nav {{ cls }}"><a class="dashboard-link" href="{{ url_for('dashboard') }}">☰ Dashboard</a><a href="{{ url_for('quiz_setup') }}">📝 Quiz</a>
+{% if prev_num %}<a href="{{ url_for('module', num=prev_num) }}">← {{ 'Recap' if prev_num==5 else 'Module %d'|format(prev_num) }}</a>{% else %}<a class="disabled">← Module</a>{% endif %}<span class="grow"></span><span class="current">{{ 'CAT-2 Recap' if current==5 else 'Module %d of 2'|format(current) }}</span><span class="grow"></span>
+{% if next_num %}<a href="{{ url_for('module', num=next_num) }}">{{ 'Recap' if next_num==5 else 'Module %d'|format(next_num) }} →</a>{% else %}<a class="disabled">Module →</a>{% endif %}</nav>{% endmacro %}
+{{ bar('top') }}{% block content %}{% endblock %}{{ bar('bottom') }}</body></html>

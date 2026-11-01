@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Basic Engineering — Topic 1: DC &amp; AC Circuits</title>
+<style>
+  :root{
+    --ink:#1b1f24; --sub:#4a5568; --bg:#fbfbfa; --card:#ffffff;
+    --def:#4a5568; --def-bg:#f3f4f6;
+    --why:#1e468c; --why-bg:#eef3fb;
+    --mis:#b45a0a; --mis-bg:#fdf3e7;
+    --ex:#166e3c; --ex-bg:#eaf6ee;
+    --line:#e3e6ea; --accent:#7c3aed;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; font-family:"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    background:var(--bg); color:var(--ink); line-height:1.55;
+  }
+  .wrap{max-width:900px;margin:0 auto;padding:0 22px 80px;}
+  header.hero{
+    background:linear-gradient(135deg,#1e2a4a,#3949ab 60%,#7c3aed);
+    color:#fff; padding:48px 22px 60px; text-align:center;
+  }
+  header.hero h1{margin:0 0 8px;font-size:2rem;}
+  header.hero p{margin:4px 0;opacity:.9;font-size:1.05rem;}
+  nav.toc{
+    background:var(--card); border:1px solid var(--line); border-radius:12px;
+    padding:20px 26px; margin:-36px auto 34px; max-width:860px;
+    box-shadow:0 6px 24px rgba(20,20,40,.08);
+  }
+  nav.toc h2{margin-top:0;font-size:1.05rem;color:var(--sub);text-transform:uppercase;letter-spacing:.06em;}
+  nav.toc ol{columns:2;column-gap:30px;padding-left:20px;margin:0;}
+  nav.toc li{margin-bottom:6px;break-inside:avoid;}
+  nav.toc a{color:var(--accent);text-decoration:none;font-size:.95rem;}
+  nav.toc a:hover{text-decoration:underline;}
+  h2.part{
+    font-size:1.6rem;margin-top:64px;padding-bottom:10px;border-bottom:3px solid var(--accent);
+  }
+  h3.topic{
+    font-size:1.25rem;margin-top:42px;color:#1e2a4a;
+    border-left:5px solid var(--accent);padding-left:12px;
+  }
+  h4.sub{margin-top:26px;font-size:1.05rem;color:var(--sub);}
+  p{margin:10px 0;}
+  .box{border-radius:10px;padding:16px 18px;margin:16px 0;border:1px solid transparent;}
+  .box .label{font-weight:700;font-size:.78rem;text-transform:uppercase;letter-spacing:.05em;display:block;margin-bottom:8px;}
+  .def{background:var(--def-bg);border-color:#d4d8de;}
+  .def .label{color:var(--def);}
+  .why{background:var(--why-bg);border-color:#c3d4ef;}
+  .why .label{color:var(--why);}
+  .mis{background:var(--mis-bg);border-color:#f1cf9f;}
+  .mis .label{color:var(--mis);}
+  .ex{background:var(--ex-bg);border-color:#b8e2c6;}
+  .ex .label{color:var(--ex);}
+  .foreshadow{background:#f4effc;border:1px dashed #b39ce8;border-radius:8px;padding:10px 14px;font-size:.93rem;color:#4b3480;margin:14px 0;}
+  .foreshadow::before{content:"↳ ";font-weight:700;}
+  table{border-collapse:collapse;width:100%;margin:14px 0;font-size:.93rem;}
+  th,td{border:1px solid var(--line);padding:7px 10px;text-align:left;}
+  th{background:#eef0f4;}
+  .diagram{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px;margin:18px 0;text-align:center;}
+  .diagram svg{max-width:100%;height:auto;}
+  .caption{font-size:.85rem;color:var(--sub);margin-top:8px;font-style:italic;}
+  code{background:#eef0f4;padding:1px 5px;border-radius:4px;font-size:.92em;}
+  .formula{
+    background:#fff; border:1px solid var(--line); border-left:4px solid var(--accent);
+    padding:10px 16px; margin:12px 0; font-size:1.05rem; overflow-x:auto;
+  }
+  .checklist{list-style:none;padding-left:0;}
+  .checklist li{padding:8px 0 8px 30px;position:relative;border-bottom:1px dashed var(--line);}
+  .checklist li::before{content:"☐";position:absolute;left:0;font-size:1.2rem;color:var(--accent);}
+  .marks{display:inline-block;background:#1e2a4a;color:#fff;font-size:.72rem;padding:2px 8px;border-radius:12px;margin-left:8px;vertical-align:middle;}
+  footer{text-align:center;color:var(--sub);font-size:.85rem;margin-top:60px;padding-top:20px;border-top:1px solid var(--line);}
+  .backtop{position:fixed;bottom:20px;right:20px;background:var(--accent);color:#fff;border-radius:50%;width:42px;height:42px;text-align:center;line-height:42px;text-decoration:none;box-shadow:0 4px 12px rgba(0,0,0,.2);font-size:1.1rem;}
+
+  .terms{background:#fff9e6;border-color:#f0dfa0;}
+  .terms .label{color:#8a6d00;}
+  .terms ul{list-style:none;margin:0;padding:0;}
+  .terms li{padding:5px 0;border-bottom:1px dotted #ecdca2;font-size:.94rem;}
+  .terms li:last-child{border-bottom:none;}
+  .terms li b{color:#5c4700;}
+  ol,ul{padding-left:22px;}
+  .gloss td:first-child{font-weight:600;white-space:nowrap;vertical-align:top;}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+<header class="hero" style="border-radius:12px; margin-top:24px;">
+  <h1>Topic 1 — DC &amp; AC Circuits</h1>
+  <p>Ohm's Law through Superposition, then the same logic redone with phasors for AC.</p>
+</header>
+<nav class="toc">
+<h2>Subtopics in this page</h2>
+<ol>
+  <li><a href="#a1">1. Ohm's Law &amp; Circuit Elements</a></li>
+  <li><a href="#a2">2. Kirchhoff's Laws (KCL, KVL)</a></li>
+  <li><a href="#a3">3. Series, Parallel &amp; Dividers</a></li>
+  <li><a href="#a4">4. Node-Voltage Analysis</a></li>
+  <li><a href="#a5">5. Mesh-Current Analysis</a></li>
+  <li><a href="#a6">6. Source Transformation</a></li>
+  <li><a href="#a7">7. Thevenin's &amp; Norton's Theorem</a></li>
+  <li><a href="#a8">8. Maximum Power Transfer</a></li>
+  <li><a href="#a9">9. Superposition Theorem</a></li>
+  <li><a href="#b1">10. Generating an AC Waveform</a></li>
+  <li><a href="#b2">11. RMS, Average, Form &amp; Peak Factor</a></li>
+  <li><a href="#b3">12. Phasors &amp; Impedance</a></li>
+  <li><a href="#b4">13. Series RL, RC, RLC Circuits</a></li>
+  <li><a href="#b5">14. Power &amp; Power Factor in AC</a></li>
+  <li><a href="#glossary">Glossary (A–Z)</a></li>
+</ol>
+</nav>
+<h2 class="part" id="parta">Part A — DC Circuits <span class="marks">core of Module 1</span></h2>
+<p>Every AC circuit technique you'll meet in Part B is <em>the same algebra</em> applied to phasors instead of plain numbers. Master this part cold and Part B becomes "DC with complex numbers," not a new subject.</p>
+
+<h3 class="topic" id="a1">A1. Ohm's Law &amp; Circuit Elements</h3>
+<div class="box terms"><span class="label">Key terms — know these words</span>
+<ul>
+<li><b>Charge (Q)</b> — the basic electrical quantity, measured in coulombs (C).</li>
+<li><b>Current (I)</b> — rate of flow of charge, I = dQ/dt; unit ampere (A = C/s). Conventional direction = the way positive charge would move (from + to −).</li>
+<li><b>Voltage / potential difference (V)</b> — energy per unit charge between <em>two points</em>; unit volt (V = J/C).</li>
+<li><b>Resistance (R)</b> — opposition to current flow; unit ohm (Ω). For a wire, R = ρL/A (resistivity × length ÷ area).</li>
+<li><b>Conductance (G)</b> — reciprocal of resistance, G = 1/R; unit siemens (S). Makes parallel-circuit sums easier.</li>
+<li><b>Power (P)</b> — rate of energy conversion, P = VI = I²R = V²/R; unit watt (W).</li>
+<li><b>Energy (W)</b> — power × time; unit joule (J). Electricity bills use the kilowatt-hour (1 kWh = 3.6 MJ).</li>
+<li><b>Ideal voltage source</b> — keeps its terminal voltage fixed whatever current it supplies (internal resistance = 0).</li>
+<li><b>Ideal current source</b> — forces a fixed current whatever voltage appears across it (internal resistance = ∞).</li>
+<li><b>Independent / dependent source</b> — independent: value set by itself. Dependent (controlled): value set by a voltage or current elsewhere in the circuit (drawn as a diamond).</li>
+<li><b>Active / passive element</b> — active elements (sources) can deliver energy; passive elements (R, L, C) only absorb, dissipate or store it.</li>
+<li><b>Linear element</b> — an element whose V–I graph is a straight line through the origin (double V, double I).</li>
+<li><b>Short circuit / open circuit</b> — short: R = 0, V = 0, any current. Open: R = ∞, I = 0, any voltage.</li>
+<li><b>Passive sign convention</b> — if current enters the <b>+</b> terminal of an element, then P = VI &gt; 0 means the element <em>absorbs</em> power; P &lt; 0 means it delivers power.</li>
+</ul>
+</div>
+
+
+<div class="box def"><span class="label">Definition</span>
+For a resistor, the voltage across it and the current through it are directly proportional:
+<div class="formula">V = I·R</div>
+where V is in volts, I in amperes, R in ohms (Ω). Equivalently, <code>I = V/R</code> and <code>R = V/I</code>.
+</div>
+
+<div class="diagram">
+<svg viewBox="0 0 480 210" width="480" style="max-width:100%;height:auto" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#1b1f24"><line x1="110.0" y1="45.0" x2="350.0" y2="45.0" stroke="#1b1f24" stroke-width="2" stroke-linecap="round"/><line x1="110.0" y1="165.0" x2="350.0" y2="165.0" stroke="#1b1f24" stroke-width="2" stroke-linecap="round"/><g transform="translate(110.0,105.0) rotate(-90.0)" fill="none" stroke="#1b1f24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><line x1="-60.0" y1="0" x2="-4" y2="0"/><line x1="4" y1="0" x2="60.0" y2="0"/><line x1="4" y1="-15" x2="4" y2="15" stroke-width="3.5"/><line x1="-4" y1="-8" x2="-4" y2="8" stroke-width="3.5"/></g><text x="86.0" y="109.0" text-anchor="end" fill="#1b1f24" font-size="13">V = 12 V</text><text x="125.0" y="95.0" text-anchor="middle" fill="#1b1f24" font-size="14" font-weight="bold">+</text><text x="125.0" y="125.0" text-anchor="middle" fill="#1b1f24" font-size="14" font-weight="bold">−</text><g transform="translate(350.0,105.0) rotate(90.0)" fill="none" stroke="#1b1f24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><line x1="-60.0" y1="0" x2="-30" y2="0"/><line x1="30" y1="0" x2="60.0" y2="0"/><polyline points="-30.0,0.0 -25.0,-9.0 -15.0,9.0 -5.0,-9.0 5.0,9.0 15.0,-9.0 25.0,9.0 30.0,0.0"/></g><text x="370.0" y="109.0" text-anchor="start" fill="#1b1f24" font-size="13">R = 4 Ω</text><line x1="190.0" y1="45.0" x2="252.8" y2="45.0" stroke="#c0392b" stroke-width="2.5" stroke-linecap="round"/><polygon points="260.0,45.0 251.0,48.8 251.0,41.2" fill="#c0392b"/><text x="225.0" y="33.0" text-anchor="middle" fill="#c0392b" font-size="15" font-weight="bold">I</text></svg>
+<p class="caption">A single-loop circuit: the source drives current I clockwise (leaving its + plate) through R. Ohm's law links V, I and R.</p>
+</div>
+
+<div class="box mis"><span class="label">Fixing a common misconception</span>
+Students often think "more resistance always means less current, full stop" — true only if V is fixed. If a circuit has <em>multiple</em> resistors, changing one resistor changes the current distribution everywhere (Section A3), not just through itself. Ohm's law is a local law for one element; predicting the whole circuit needs Kirchhoff's laws (A2).
+</div>
+
+<div class="box ex"><span class="label">Worked example</span>
+A 12 V battery drives a 4 Ω resistor. Find the current and the power dissipated.<br>
+<code>I = V/R = 12/4 = 3 A</code><br>
+<code>P = VI = 12 × 3 = 36 W</code> (check: <code>P = I²R = 3² × 4 = 36 W</code> ✓ — two independent formulas, same answer)
+</div>
+
+<div class="foreshadow">The "compute two ways, check they agree" habit above is the same trick you'll use to verify Thevenin equivalents (A7) and to check power balance in superposition (A9).</div>
+
+
+<h4 class="sub">Circuit elements at a glance</h4>
+<table>
+<tr><th>Element</th><th>Symbol idea</th><th>V–I relation</th><th>What it does</th></tr>
+<tr><td>Resistor</td><td>zig-zag</td><td>v = iR</td><td>dissipates energy as heat</td></tr>
+<tr><td>Inductor</td><td>coil</td><td>v = L di/dt</td><td>stores energy in a magnetic field; opposes <em>changes</em> in current</td></tr>
+<tr><td>Capacitor</td><td>two plates</td><td>i = C dv/dt</td><td>stores energy in an electric field; opposes <em>changes</em> in voltage</td></tr>
+<tr><td>Ideal voltage source</td><td>circle with ±</td><td>v fixed</td><td>supplies whatever current the circuit demands</td></tr>
+<tr><td>Ideal current source</td><td>circle with arrow</td><td>i fixed</td><td>supplies whatever voltage the circuit demands</td></tr>
+</table>
+<div class="box mis"><span class="label">Fixing a common misconception</span>
+<b>Short vs open circuit:</b> people mix these up. A <em>short</em> lets current flow freely with zero voltage across it (like a wire). An <em>open</em> circuit lets zero current flow with any voltage across it (like a switch turned off). A source is never 'shorted' safely unless it has internal resistance — a shorted ideal voltage source would demand infinite current.
+</div>
+<div class="box ex"><span class="label">Worked example — sign convention</span>
+A 12 V battery drives 3 A <em>out of</em> its + terminal. Battery: current leaves the + terminal, so P = −VI = −36 W (it <b>delivers</b> 36 W). The resistor it drives: current enters its + terminal, so P = +36 W (it <b>absorbs</b> 36 W). Total power in the circuit = −36 + 36 = 0 — energy is conserved.
+</div>
+
+<h3 class="topic" id="a2">A2. Kirchhoff's Laws</h3>
+<div class="box terms"><span class="label">Key terms — know these words</span>
+<ul>
+<li><b>Node</b> — a point where two or more circuit elements join.</li>
+<li><b>Essential node (junction)</b> — a node where <b>three or more</b> branches meet — the only nodes that need a KCL equation.</li>
+<li><b>Branch</b> — a single element (or a series string of elements) connecting two nodes; it carries one current.</li>
+<li><b>Loop</b> — any closed path that visits each node at most once.</li>
+<li><b>Mesh</b> — a loop that contains no other loop inside it (a 'window' of the circuit).</li>
+<li><b>Voltage rise / drop</b> — going through a source from − to + is a rise; going through a resistor <em>along</em> the current is a drop.</li>
+<li><b>Planar circuit</b> — a circuit that can be drawn on paper with no wires crossing — needed for mesh analysis.</li>
+</ul>
+</div>
+
+
+<div class="box def"><span class="label">Definition</span>
+<b>KCL (Current Law):</b> the sum of currents entering a node equals the sum leaving it — charge cannot pile up at a point.
+<div class="formula">Σ I<sub>in</sub> = Σ I<sub>out</sub></div>
+<b>KVL (Voltage Law):</b> the sum of voltage rises around any closed loop equals the sum of voltage drops.
+<div class="formula">Σ V<sub>rises</sub> = Σ V<sub>drops</sub>  (equivalently, Σ V = 0 around the loop)</div>
+</div>
+
+<div class="box why"><span class="label">Why this is true</span>
+KCL is conservation of charge applied to a single point: charge is neither created nor stored at an ideal node, so whatever flows in must flow out.<br>
+KVL is conservation of energy applied to a charge that travels once around a loop and returns to its start: since voltage is potential energy per unit charge, and the charge is back where it began, the net change in potential energy over the round trip must be zero.
+</div>
+
+<div class="diagram">
+<svg viewBox="0 0 720 220" width="720" style="max-width:100%;height:auto" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#1b1f24"><line x1="40.0" y1="40.0" x2="150.0" y2="100.0" stroke="#1b1f24" stroke-width="2" stroke-linecap="round"/><line x1="40.0" y1="160.0" x2="150.0" y2="100.0" stroke="#1b1f24" stroke-width="2" stroke-linecap="round"/><line x1="150.0" y1="100.0" x2="260.0" y2="100.0" stroke="#1b1f24" stroke-width="2" stroke-linecap="round"/><circle cx="150.0" cy="100.0" r="5" fill="#1b1f24"/><line x1="72.0" y1="58.0" x2="111.7" y2="80.5" stroke="#c0392b" stroke-width="2.5" stroke-linecap="round"/><polygon points="118.0,84.0 108.3,82.9 112.0,76.3" fill="#c0392b"/><line x1="72.0" y1="142.0" x2="111.7" y2="119.5" stroke="#c0392b" stroke-width="2.5" stroke-linecap="round"/><polygon points="118.0,116.0 112.0,123.7 108.3,117.1" fill="#c0392b"/><line x1="175.0" y1="100.0" x2="227.8" y2="100.0" stroke="#c0392b" stroke-width="2.5" stroke-linecap="round"/><polygon points="235.0,100.0 226.0,103.8 226.0,96.2" fill="#c0392b"/><text x="36.0" y="34.0" text-anchor="end" fill="#c0392b" font-size="14" font-weight="bold">I₁</text><text x="36.0" y="174.0" text-anchor="end" fill="#c0392b" font-size="14" font-weight="bold">I₂</text><text x="248.0" y="90.0" text-anchor="middle" fill="#c0392b" font-size="14" font-weight="bold">I₃</text><text x="150.0" y="205.0" text-anchor="middle" fill="#1b1f24" font-size="14" font-weight="bold">KCL: I₁ + I₂ = I₃</text><line x1="410.0" y1="40.0" x2="680.0" y2="40.0" stroke="#1b1f24" stroke-width="2" stroke-linecap="round"/><line x1="410.0" y1="160.0" x2="680.0" y2="160.0" stroke="#1b1f24" stroke-width="2" stroke-linecap="round"/><g transform="translate(410.0,100.0) rotate(-90.0)" fill="none" stroke="#1b1f24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><line x1="-60.0" y1="0" x2="-4" y2="0"/><line x1="4" y1="0" x2="60.0" y2="0"/><line x1="4" y1="-15" x2="4" y2="15" stroke-width="3.5"/><line x1="-4" y1="-8" x2="-4" y2="8" stroke-width="3.5"/></g><text x="386.0" y="104.0" text-anchor="end" fill="#1b1f24" font-size="13">V</text><text x="425.0" y="90.0" text-anchor="middle" fill="#1b1f24" font-size="14" font-weight="bold">+</text><text x="425.0" y="120.0" text-anchor="middle" fill="#1b1f24" font-size="14" font-weight="bold">−</text><g transform="translate(477.5,40.0) rotate(0.0)" fill="none" stroke="#1b1f24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><line x1="-67.5" y1="0" x2="-30" y2="0"/><line x1="30" y1="0" x2="67.5" y2="0"/><polyline points="-30.0,0.0 -25.0,-9.0 -15.0,9.0 -5.0,-9.0 5.0,9.0 15.0,-9.0 25.0,9.0 30.0,0.0"/></g><text x="477.5" y="22.0" text-anchor="middle" fill="#1b1f24" font-size="13">R₁</text><g transform="translate(612.5,40.0) rotate(0.0)" fill="none" stroke="#1b1f24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><line x1="-67.5" y1="0" x2="-30" y2="0"/><line x1="30" y1="0" x2="67.5" y2="0"/><polyline points="-30.0,0.0 -25.0,-9.0 -15.0,9.0 -5.0,-9.0 5.0,9.0 15.0,-9.0 25.0,9.0 30.0,0.0"/></g><text x="612.5" y="22.0" text-anchor="middle" fill="#1b1f24" font-size="13">R₂</text><line x1="680.0" y1="40.0" x2="680.0" y2="160.0" stroke="#1b1f24" stroke-width="2" stroke-linecap="round"/><path d="M561.0,72.3 A32,32 0 1 1 524.4,75.5" fill="none" stroke="#7c3aed" stroke-width="2.5"/><polygon points="524.4,75.5 520.5,83.2 516.1,78.1" fill="#7c3aed"/><text x="545.0" y="105.0" text-anchor="middle" fill="#7c3aed" font-size="13" font-style="italic">loop</text><text x="545.0" y="205.0" text-anchor="middle" fill="#1b1f24" font-size="14" font-weight="bold">KVL: V = I·R₁ + I·R₂</text></svg>
+<p class="caption">Left: KCL at a node — the arrows into the dot balance the arrow out. Right: KVL round the dashed loop — the source's rise equals the two resistors' drops.</p>
+</div>
+
+<div class="box ex"><span class="label">Worked example</span>
+In the KVL loop above, V = 20 V, R1 = 2 Ω, R2 = 3 Ω. Since it's a single loop, the same current I flows through everything, so:<br>
+<code>20 = I(2) + I(3) = 5I  ⟹  I = 4 A</code><br>
+Drop across R1 = 8 V, across R2 = 12 V. Check: 8 + 12 = 20 V ✓ (rises = drops).
+</div>
+
+<div class="foreshadow">KVL written once per loop is exactly the equation you write <em>n</em> times in Mesh-Current Analysis (A5); KCL written once per node is exactly what you write in Node-Voltage Analysis (A4). Everything from here to A9 is KCL/KVL done systematically for bigger circuits.</div>
+
+
+<h4 class="sub">Steps for applying KVL to a loop</h4>
+<ol>
+<li>Pick a direction (clockwise is conventional) and label current directions on each resistor.</li>
+<li>Walk once round the loop. Going through a source from − to + is a <b>rise (+)</b>; through a resistor <em>with</em> the current is a <b>drop (−)</b>.</li>
+<li>Write: Σ rises − Σ drops = 0.</li>
+<li>If a solved current comes out negative, it simply flows opposite to the way you drew it.</li>
+</ol>
+<div class="box ex"><span class="label">Worked example — KCL at two nodes</span>
+A node has 7 A entering along one wire, and leaves as 3 A and I<sub>x</sub>. KCL: 7 = 3 + I<sub>x</sub> ⟹ I<sub>x</sub> = 4 A. If I<sub>x</sub> then splits at the next node into 1 A and I<sub>y</sub>, I<sub>y</sub> = 4 − 1 = 3 A.
+</div>
+
+<h3 class="topic" id="a3">A3. Series, Parallel &amp; Dividers</h3>
+<div class="box terms"><span class="label">Key terms — know these words</span>
+<ul>
+<li><b>Equivalent resistance (R<sub>eq</sub>)</b> — the single resistor that draws the same current as the whole network at the same voltage.</li>
+<li><b>Series connection</b> — elements strung end-to-end so they carry the <em>same current</em>.</li>
+<li><b>Parallel connection</b> — elements joined across the <em>same two nodes</em> so they share the <em>same voltage</em>.</li>
+<li><b>Voltage divider</b> — series resistors splitting a supply voltage in proportion to their resistances.</li>
+<li><b>Current divider</b> — parallel resistors splitting a supply current in inverse proportion to their resistances.</li>
+<li><b>Series–parallel network</b> — a mix of both; reduce it step by step, innermost combination first.</li>
+</ul>
+</div>
+
+
+<div class="box def"><span class="label">Definition</span>
+<b>Series</b> (same current through each element): R<sub>eq</sub> = R1 + R2 + ⋯<br>
+<b>Parallel</b> (same voltage across each element): 1/R<sub>eq</sub> = 1/R1 + 1/R2 + ⋯  (two only: R<sub>eq</sub> = R1R2/(R1+R2))
+</div>
+
+<div class="diagram">
+<svg viewBox="0 0 680 205" width="680" style="max-width:100%;height:auto" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#1b1f24"><text x="130.0" y="24.0" text-anchor="middle" fill="#1b1f24" font-size="15" font-weight="bold">Series</text><g transform="translate(75.0,90.0) rotate(0.0)" fill="none" stroke="#1b1f24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><line x1="-55.0" y1="0" x2="-30" y2="0"/><line x1="30" y1="0" x2="55.0" y2="0"/><polyline points="-30.0,0.0 -25.0,-9.0 -15.0,9.0 -5.0,-9.0 5.0,9.0 15.0,-9.0 25.0,9.0 30.0,0.0"/></g><text x="75.0" y="72.0" text-anchor="middle" fill="#1b1f24" font-size="13">R₁</text><g transform="translate(185.0,90.0) rotate(0.0)" fill="none" stroke="#1b1f24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><line x1="-55.0" y1="0" x2="-30" y2="0"/><line x1="30" y1="0" x2="55.0" y2="0"/><polyline points="-30.0,0.0 -25.0,-9.0 -15.0,9.0 -5.0,-9.0 5.0,9.0 15.0,-9.0 25.0,9.0 30.0,0.0"/></g><text x="185.0" y="72.0" text-anchor="middle" fill="#1b1f24" font-size="13">R₂</text><circle cx="20.0" cy="90.0" r="4" fill="#1b1f24"/><circle cx="240.0" cy="90.0" r="4" fill="#1b1f24"/><text x="130.0" y="140.0" text-anchor="middle" fill="#8a93a3" font-size="13">same current I through R₁ and R₂</text><text x="490.0" y="24.0" text-anchor="middle" fill="#1b1f24" font-size="15" font-weight="bold">Parallel</text><line x1="360.0" y1="60.0" x2="360.0" y2="130.0" stroke="#1b1f24" stroke-width="2" stroke-linecap="round"/><line x1="620.0" y1="60.0" x2="620.0" y2="130.0" stroke="#1b1f24" stroke-width="2" stroke-linecap="round"/><g transform="translate(490.0,60.0) rotate(0.0)" fill="none" stroke="#1b1f24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><line x1="-130.0" y1="0" x2="-30" y2="0"/><line x1="30" y1="0" x2="130.0" y2="0"/><polyline points="-30.0,0.0 -25.0,-9.0 -15.0,9.0 -5.0,-9.0 5.0,9.0 15.0,-9.0 25.0,9.0 30.0,0.0"/></g><text x="490.0" y="42.0" text-anchor="middle" fill="#1b1f24" font-size="13">R₁</text><g transform="translate(490.0,130.0) rotate(0.0)" fill="none" stroke="#1b1f24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><line x1="-130.0" y1="0" x2="-30" y2="0"/><line x1="30" y1="0" x2="130.0" y2="0"/><polyline points="-30.0,0.0 -25.0,-9.0 -15.0,9.0 -5.0,-9.0 5.0,9.0 15.0,-9.0 25.0,9.0 30.0,0.0"/></g><text x="490.0" y="152.0" text-anchor="middle" fill="#1b1f24" font-size="13">R₂</text><line x1="330.0" y1="95.0" x2="360.0" y2="95.0" stroke="#1b1f24" stroke-width="2" stroke-linecap="round"/><line x1="620.0" y1="95.0" x2="650.0" y2="95.0" stroke="#1b1f24" stroke-width="2" stroke-linecap="round"/><circle cx="330.0" cy="95.0" r="4" fill="#1b1f24"/><circle cx="650.0" cy="95.0" r="4" fill="#1b1f24"/><circle cx="360.0" cy="95.0" r="4" fill="#1b1f24"/><circle cx="620.0" cy="95.0" r="4" fill="#1b1f24"/><text x="490.0" y="190.0" text-anchor="middle" fill="#8a93a3" font-size="13">same voltage V across R₁ and R₂</text></svg>
+<p class="caption">Series elements share one current path end to end; parallel elements share both end nodes, so they share the same voltage.</p>
+</div>
+
+<div class="box why"><span class="label">Why this is true</span>
+Series: current has only one path, so by KCL the same I flows through every element in the chain. Summing V=IR drops around the loop by KVL gives V<sub>total</sub> = I(R1+R2+…) = I·R<sub>eq</sub>.<br>
+Parallel: both elements touch the same pair of nodes, so by definition of voltage (potential difference between two points) they see the same V. By KCL, the source current splits: I = V/R1 + V/R2 = V(1/R1 + 1/R2) = V/R<sub>eq</sub>.
+</div>
+
+<div class="box def"><span class="label">Divider formulas</span>
+<b>Voltage divider</b> (series R1, R2 across V): <code>V<sub>R2</sub> = V · R2/(R1+R2)</code><br>
+<b>Current divider</b> (parallel R1, R2 fed by I): <code>I<sub>R2</sub> = I · R1/(R1+R2)</code> — note it's the <em>other</em> resistor on top.
+</div>
+
+<div class="box mis"><span class="label">Fixing a common misconception</span>
+Students often copy the voltage-divider formula into the current-divider formula and put R2 on top for I<sub>R2</sub> as well. It's flipped: in a current divider, the branch with the <em>smaller</em> resistance takes the <em>larger</em> share of current, so I<sub>R2</sub>'s share must be weighted by the other resistor, R1.
+</div>
+
+<div class="box ex"><span class="label">Worked example</span>
+R1 = 6 Ω and R2 = 3 Ω are in parallel, fed by a 9 A source. Find the current through each.<br>
+<code>R<sub>eq</sub> = (6×3)/(6+3) = 2 Ω</code>, so <code>V = I·R<sub>eq</sub> = 9×2 = 18 V</code> across both.<br>
+<code>I<sub>R1</sub> = 18/6 = 3 A</code>, <code>I<sub>R2</sub> = 18/3 = 6 A</code>. Check: 3 + 6 = 9 A ✓ (KCL).<br>
+Via the divider shortcut: <code>I<sub>R2</sub> = 9 × 6/(6+3) = 6 A</code> ✓ — same answer without solving for V first.
+</div>
+
+<div class="foreshadow">R<sub>eq</sub> reduction is the first move in almost every Thevenin problem (A7): reduce everything except the load to one resistor, exactly as done here.</div>
+
+
+<h4 class="sub">Useful shortcuts</h4>
+<ul>
+<li><b>n equal resistors in parallel:</b> R<sub>eq</sub> = R/n. Two 10 Ω in parallel give 5 Ω.</li>
+<li><b>Conductance form:</b> G<sub>eq</sub> = G<sub>1</sub> + G<sub>2</sub> + … for parallel (conductances add just like series resistances do).</li>
+<li><b>Parallel is always smaller</b> than the smallest branch — a quick sanity check on your answer.</li>
+<li><b>Power</b> divides too: in series the larger R dissipates more (P = I²R); in parallel the smaller R dissipates more (P = V²/R).</li>
+</ul>
+<div class="box ex"><span class="label">Worked example — series–parallel reduction</span>
+A 12 V source feeds 2 Ω in series with (6 Ω ∥ 3 Ω).<br>
+Step 1: 6 ∥ 3 = 18/9 = <code>2 Ω</code>. Step 2: R<sub>total</sub> = 2 + 2 = <code>4 Ω</code>. Step 3: I = 12/4 = <code>3 A</code>.<br>
+Voltage across the parallel pair = 3 × 2 = <code>6 V</code> ⟹ 6 Ω carries 1 A, 3 Ω carries 2 A (sum = 3 A ✓). Check the divider: I<sub>3Ω</sub> = 3 × 6/(6+3) = 2 A ✓.
+</div>
+
+<h3 class="topic" id="a4">A4. Node-Voltage Analysis</h3>
+<div class="box terms"><span class="label">Key terms — know these words</span>
+<ul>
+<li><b>Reference node (ground)</b> — the node chosen as 0 V; every other node voltage is measured relative to it.</li>
+<li><b>Node voltage</b> — the voltage of a node with respect to the reference node.</li>
+<li><b>Supernode</b> — two non-reference nodes joined by a voltage source; treated as one node for KCL, plus one extra equation from the source.</li>
+<li><b>Conductance form</b> — writing branch current as G × (voltage difference) instead of (voltage difference)/R; gives a symmetric equation matrix.</li>
+</ul>
+</div>
+
+
+<div class="box def"><span class="label">Definition</span>
+Pick one node as the reference (0 V, "ground"). Assign an unknown voltage to every other node. At each unknown node, write one KCL equation using Ohm's law to express every branch current in terms of node voltages. Solve the resulting simultaneous equations.
+</div>
+
+<div class="diagram">
+<svg viewBox="0 0 460 205" width="460" style="max-width:100%;height:auto" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#1b1f24"><line x1="50.0" y1="170.0" x2="350.0" y2="170.0" stroke="#1b1f24" stroke-width="3" stroke-linecap="round"/><g transform="translate(70.0,115.0) rotate(-90.0)" fill="none" stroke="#1b1f24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><line x1="-55.0" y1="0" x2="-18" y2="0"/><line x1="18" y1="0" x2="55.0" y2="0"/><circle cx="0" cy="0" r="18"/></g><line x1="70.0" y1="125.0" x2="70.0" y2="110.4" stroke="#1b1f24" stroke-width="2" stroke-linecap="round"/><polygon points="70.0,104.0 73.4,112.0 66.6,112.0" fill="#1b1f24"/><text x="40.0" y="119.0" text-anchor="end" fill="#1b1f24" font-size="13">6 A</text><line x1="70.0" y1="60.0" x2="170.0" y2="60.0" stroke="#1b1f24" stroke-width="2" stroke-linecap="round"/><g transform="translate(260.0,60.0) rotate(0.0)" fill="none" stroke="#1b1f24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><line x1="-90.0" y1="0" x2="-30" y2="0"/><line x1="30" y1="0" x2="90.0" y2="0"/><polyline points="-30.0,0.0 -25.0,-9.0 -15.0,9.0 -5.0,-9.0 5.0,9.0 15.0,-9.0 25.0,9.0 30.0,0.0"/></g><text x="260.0" y="42.0" text-anchor="middle" fill="#1b1f24" font-size="13">R₂ = 4 Ω</text><g transform="translate(170.0,115.0) rotate(90.0)" fill="none" stroke="#1b1f24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><line x1="-55.0" y1="0" x2="-30" y2="0"/><line x1="30" y1="0" x2="55.0" y2="0"/><polyline points="-30.0,0.0 -25.0,-9.0 -15.0,9.0 -5.0,-9.0 5.0,9.0 15.0,-9.0 25.0,9.0 30.0,0.0"/></g><text x="190.0" y="119.0" text-anchor="start" fill="#1b1f24" font-size="13">R₁ = 4 Ω</text><g transform="translate(350.0,115.0) rotate(90.0)" fill="none" stroke="#1b1f24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><line x1="-55.0" y1="0" x2="-30" y2="0"/><line x1="30" y1="0" x2="55.0" y2="0"/><polyline points="-30.0,0.0 -25.0,-9.0 -15.0,9.0 -5.0,-9.0 5.0,9.0 15.0,-9.0 25.0,9.0 30.0,0.0"/></g><text x="370.0" y="119.0" text-anchor="start" fill="#1b1f24" font-size="13">R₃ = 4 Ω</text><circle cx="170.0" cy="60.0" r="5" fill="#1b1f24"/><circle cx="350.0" cy="60.0" r="5" fill="#1b1f24"/><text x="162.0" y="50.0" text-anchor="end" fill="#1e468c" font-size="15" font-weight="bold">A</text><text x="360.0" y="50.0" text-anchor="start" fill="#1e468c" font-size="15" font-weight="bold">B</text><text x="200.0" y="196.0" text-anchor="middle" fill="#8a93a3" font-size="13">reference node (0 V)</text></svg>
+<p class="caption">Two unknown nodes A and B. The 6 A source injects current into A; the bottom rail is the 0 V reference.</p>
+</div>
+
+<div class="box ex"><span class="label">Worked example</span>
+Write KCL at each node (current leaving a node through a resistor to a lower-potential node is (V<sub>here</sub>−V<sub>there</sub>)/R):<br>
+<code>Node A: 6 = V<sub>A</sub>/R1 + (V<sub>A</sub>−V<sub>B</sub>)/R2 = V<sub>A</sub>/4 + (V<sub>A</sub>−V<sub>B</sub>)/4</code><br>
+<code>Node B: 0 = (V<sub>B</sub>−V<sub>A</sub>)/R2 + V<sub>B</sub>/R3 = (V<sub>B</sub>−V<sub>A</sub>)/4 + V<sub>B</sub>/4</code><br>
+From the B-equation: <code>V<sub>B</sub> = V<sub>A</sub>/2</code>. Substituting into the A-equation:
+<code>6 = V<sub>A</sub>/4 + (V<sub>A</sub>−V<sub>A</sub>/2)/4 = 3V<sub>A</sub>/8 ⟹ V<sub>A</sub> = 16 V, V<sub>B</sub> = 8 V.</code><br>
+<b>Check (KCL at A):</b> current out through R1 = 16/4 = 4 A; through R2 = (16−8)/4 = 2 A. Total out = 6 A = current in ✓.
+</div>
+
+<div class="foreshadow">Keep <b>V<sub>A</sub>=16 V</b> in mind — the same numbers reappear, from a totally different method, as the Thevenin voltage in A7 and the superposition example in A9. That agreement is not a coincidence; it's the same physical circuit.</div>
+
+
+<h4 class="sub">Steps</h4>
+<ol>
+<li>Mark all nodes; choose the one with the most branches as the reference (0 V).</li>
+<li>Label the remaining node voltages V<sub>1</sub>, V<sub>2</sub>, …</li>
+<li>At each unknown node write KCL: Σ (currents leaving) = 0, with each resistor current = (V<sub>node</sub> − V<sub>neighbour</sub>)/R.</li>
+<li>Solve the n − 1 linear equations. Then find any branch current with Ohm's law.</li>
+</ol>
+<h4 class="sub">Matrix (conductance) form — spot the pattern</h4>
+<p>For the A4 example (three 4 Ω resistors, G = 0.25 S each) the equations collapse to:</p>
+<div class="formula">[ 0.5  −0.25 ; −0.25  0.5 ] · [V<sub>A</sub> ; V<sub>B</sub>] = [ 6 ; 0 ]</div>
+<p>Diagonal = sum of conductances touching that node; off-diagonal = minus the conductance <em>between</em> the two nodes; right-hand side = current sources injected. You can write this by inspection — a real time-saver in exams.</p>
+<div class="box why"><span class="label">Supernode — the only tricky case</span>
+If a voltage source sits <em>between two non-reference nodes</em>, you cannot write a current through it (an ideal voltage source can carry any current). So merge the two nodes into a <b>supernode</b>: write one KCL for the pair, and add one extra equation V<sub>1</sub> − V<sub>2</sub> = V<sub>source</sub>.
+</div>
+
+<h3 class="topic" id="a5">A5. Mesh-Current Analysis</h3>
+<div class="box terms"><span class="label">Key terms — know these words</span>
+<ul>
+<li><b>Mesh current</b> — an imaginary current circulating round one mesh; real branch currents are built from these.</li>
+<li><b>Shared (common) branch</b> — a branch belonging to two meshes; its real current = difference of the two mesh currents.</li>
+<li><b>Supermesh</b> — two meshes sharing a current source; the source's branch is left out and one KVL is written round the combined outer loop.</li>
+<li><b>Clockwise convention</b> — choosing every mesh current clockwise makes all the shared-resistor terms negative — a built-in error check.</li>
+</ul>
+</div>
+
+
+<div class="box def"><span class="label">Definition</span>
+Assign a circulating current to each independent loop ("mesh") of a <em>planar</em> circuit, all in the same rotational sense (say, clockwise). Write one KVL equation per mesh; a branch shared by two meshes carries the <em>difference</em> of their two mesh currents. Solve simultaneously, then recover real branch currents from the mesh currents.
+</div>
+
+<div class="diagram">
+<svg viewBox="0 0 610 225" width="610" style="max-width:100%;height:auto" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#1b1f24"><line x1="110.0" y1="195.0" x2="500.0" y2="195.0" stroke="#1b1f24" stroke-width="2" stroke-linecap="round"/><g transform="translate(110.0,120.0) rotate(-90.0)" fill="none" stroke="#1b1f24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><line x1="-75.0" y1="0" x2="-4" y2="0"/><line x1="4" y1="0" x2="75.0" y2="0"/><line x1="4" y1="-15" x2="4" y2="15" stroke-width="3.5"/><line x1="-4" y1="-8" x2="-4" y2="8" stroke-width="3.5"/></g><text x="86.0" y="124.0" text-anchor="end" fill="#1b1f24" font-size="13">V₁ = 16 V</text><text x="125.0" y="110.0" text-anchor="middle" fill="#1b1f24" font-size="14" font-weight="bold">+</text><text x="125.0" y="140.0" text-anchor="middle" fill="#1b1f24" font-size="14" font-weight="bold">−</text><g transform="translate(200.0,45.0) rotate(0.0)" fill="none" stroke="#1b1f24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><line x1="-90.0" y1="0" x2="-30" y2="0"/><line x1="30" y1="0" x2="90.0" y2="0"/><polyline points="-30.0,0.0 -25.0,-9.0 -15.0,9.0 -5.0,-9.0 5.0,9.0 15.0,-9.0 25.0,9.0 30.0,0.0"/></g><text x="200.0" y="27.0" text-anchor="middle" fill="#1b1f24" font-size="13">R₁ = 4 Ω</text><g transform="translate(395.0,45.0) rotate(0.0)" fill="none" stroke="#1b1f24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><line x1="-105.0" y1="0" x2="-30" y2="0"/><line x1="30" y1="0" x2="105.0" y2="0"/><polyline points="-30.0,0.0 -25.0,-9.0 -15.0,9.0 -5.0,-9.0 5.0,9.0 15.0,-9.0 25.0,9.0 30.0,0.0"/></g><text x="395.0" y="27.0" text-anchor="middle" fill="#1b1f24" font-size="13">R₂ = 6 Ω</text><g transform="translate(290.0,120.0) rotate(90.0)" fill="none" stroke="#1b1f24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><line x1="-75.0" y1="0" x2="-30" y2="0"/><line x1="30" y1="0" x2="75.0" y2="0"/><polyline points="-30.0,0.0 -25.0,-9.0 -15.0,9.0 -5.0,-9.0 5.0,9.0 15.0,-9.0 25.0,9.0 30.0,0.0"/></g><text x="310.0" y="124.0" text-anchor="start" fill="#1b1f24" font-size="13">Rs = 2 Ω</text><g transform="translate(500.0,120.0) rotate(90.0)" fill="none" stroke="#1b1f24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><line x1="-75.0" y1="0" x2="-4" y2="0"/><line x1="4" y1="0" x2="75.0" y2="0"/><line x1="4" y1="-15" x2="4" y2="15" stroke-width="3.5"/><line x1="-4" y1="-8" x2="-4" y2="8" stroke-width="3.5"/></g><text x="524.0" y="124.0" text-anchor="start" fill="#1b1f24" font-size="13">V₂ = 2 V</text><text x="485.0" y="140.0" text-anchor="middle" fill="#1b1f24" font-size="14" font-weight="bold">+</text><text x="485.0" y="110.0" text-anchor="middle" fill="#1b1f24" font-size="14" font-weight="bold">−</text><circle cx="290.0" cy="45.0" r="4" fill="#1b1f24"/><circle cx="290.0" cy="195.0" r="4" fill="#1b1f24"/><path d="M215.0,94.0 A30,30 0 1 1 182.8,95.4" fill="none" stroke="#7c3aed" stroke-width="2.5"/><polygon points="182.8,95.4 178.2,102.8 174.3,97.3" fill="#7c3aed"/><text x="200.0" y="126.0" text-anchor="middle" fill="#7c3aed" font-size="15" font-weight="bold">I₁</text><path d="M423.0,94.0 A30,30 0 1 1 390.8,95.4" fill="none" stroke="#7c3aed" stroke-width="2.5"/><polygon points="390.8,95.4 386.2,102.8 382.3,97.3" fill="#7c3aed"/><text x="408.0" y="126.0" text-anchor="middle" fill="#7c3aed" font-size="15" font-weight="bold">I₂</text></svg>
+<p class="caption">Two-mesh circuit. Mesh 1 (left) holds V₁, R₁ and the shared branch Rs; mesh 2 (right) holds V₂, R₂ and the same Rs. Both mesh currents are drawn clockwise, and both sources push current clockwise.</p>
+</div>
+
+<div class="box ex"><span class="label">Worked example</span>
+V1=16 V, R1=4 Ω, Rs=2 Ω (shared), R2=6 Ω, V2=2 V, both sources driving their mesh clockwise.<br>
+<code>Mesh 1: V1 = I1(R1+Rs) − I2·Rs  ⟹  16 = 6I1 − 2I2</code><br>
+<code>Mesh 2: V2 = I2(R2+Rs) − I1·Rs  ⟹  2 = 8I2 − 2I1</code><br>
+From the first equation: <code>I2 = 3I1 − 8</code>. Substitute into the second:<br>
+<code>2 = 8(3I1−8) − 2I1 = 22I1 − 64  ⟹  I1 = 3 A,  I2 = 1 A.</code><br>
+Actual current through the shared resistor Rs = I1 − I2 = <b>2 A</b> (from mesh-1 side toward mesh-2 side).
+</div>
+
+<div class="foreshadow">Notice the pattern in the equations: each mesh's own resistors get a <code>+</code> sign, the shared resistor gets a <code>−I<sub>other</sub>·R<sub>shared</sub></code> term. This is structurally identical to the node-voltage equations of A4 — swap "current source" ↔ "voltage source" and "resistor to ground" ↔ "resistor around the mesh," and it's the same bookkeeping. Two roads, same destination.</div>
+
+
+<h4 class="sub">Steps</h4>
+<ol>
+<li>Count meshes (windows). Draw a clockwise mesh current in each.</li>
+<li>Write KVL round each mesh: (sum of R in the mesh) × own current − (shared R) × neighbour current = (source rise driving that mesh).</li>
+<li>Solve the simultaneous equations.</li>
+<li>Real current in a shared branch = difference of the two mesh currents (with sign showing direction).</li>
+</ol>
+<div class="box why"><span class="label">Supermesh — the only tricky case</span>
+If a <em>current source</em> is a shared branch between two meshes, you can't write KVL across it (unknown voltage). Skip it: write one KVL round the big outer loop of the two meshes, and add the constraint I<sub>1</sub> − I<sub>2</sub> = I<sub>source</sub>.
+</div>
+<table>
+<tr><th>Situation</th><th>Choose</th></tr>
+<tr><td>Many current sources, few nodes</td><td>Node-voltage</td></tr>
+<tr><td>Many voltage sources, few meshes</td><td>Mesh-current</td></tr>
+<tr><td>Non-planar circuit</td><td>Node-voltage (mesh analysis needs planar)</td></tr>
+</table>
+
+<h3 class="topic" id="a6">A6. Source Transformation</h3>
+<div class="box terms"><span class="label">Key terms — know these words</span>
+<ul>
+<li><b>Ideal source</b> — no internal resistance; the source transformation does <b>not</b> apply to an ideal source on its own.</li>
+<li><b>Practical source</b> — an ideal source plus its internal resistance (in series for a voltage source, in parallel for a current source).</li>
+<li><b>Internal resistance</b> — the resistance inside a real source that makes its terminal voltage sag under load.</li>
+<li><b>Equivalent sources</b> — two sources with identical open-circuit voltage and short-circuit current at the terminals.</li>
+</ul>
+</div>
+
+
+<div class="box def"><span class="label">Definition</span>
+A real voltage source V<sub>s</sub> with series resistance R is <em>externally indistinguishable</em> from a real current source I<sub>s</sub> = V<sub>s</sub>/R with the <em>same</em> R in parallel, and vice versa (I<sub>s</sub> with parallel R ↔ V<sub>s</sub>=I<sub>s</sub>R with series R).
+</div>
+
+<div class="diagram">
+<svg viewBox="0 0 700 205" width="700" style="max-width:100%;height:auto" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#1b1f24"><text x="150.0" y="18.0" text-anchor="middle" fill="#1b1f24" font-size="14" font-weight="bold">Voltage-source form</text><line x1="85.0" y1="165.0" x2="250.0" y2="165.0" stroke="#1b1f24" stroke-width="2" stroke-linecap="round"/><g transform="translate(85.0,117.5) rotate(-90.0)" fill="none" stroke="#1b1f24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><line x1="-47.5" y1="0" x2="-4" y2="0"/><line x1="4" y1="0" x2="47.5" y2="0"/><line x1="4" y1="-15" x2="4" y2="15" stroke-width="3.5"/><line x1="-4" y1="-8" x2="-4" y2="8" stroke-width="3.5"/></g><text x="61.0" y="121.5" text-anchor="end" fill="#1b1f24" font-size="13">12 V</text><text x="100.0" y="107.5" text-anchor="middle" fill="#1b1f24" font-size="14" font-weight="bold">+</text><text x="100.0" y="137.5" text-anchor="middle" fill="#1b1f24" font-size="14" font-weight="bold">−</text><g transform="translate(152.5,70.0) rotate(0.0)" fill="none" stroke="#1b1f24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><line x1="-67.5" y1="0" x2="-30" y2="0"/><line x1="30" y1="0" x2="67.5" y2="0"/><polyline points="-30.0,0.0 -25.0,-9.0 -15.0,9.0 -5.0,-9.0 5.0,9.0 15.0,-9.0 25.0,9.0 30.0,0.0"/></g><text x="152.5" y="52.0" text-anchor="middle" fill="#1b1f24" font-size="13">4 Ω</text><line x1="220.0" y1="70.0" x2="250.0" y2="70.0" stroke="#1b1f24" stroke-width="2" stroke-linecap="round"/><circle cx="250.0" cy="70.0" r="5" fill="#c0392b"/><circle cx="250.0" cy="165.0" r="5" fill="#c0392b"/><text x="262.0" y="74.0" text-anchor="start" fill="#c0392b" font-size="14" font-weight="bold">a</text><text x="262.0" y="169.0" text-anchor="start" fill="#c0392b" font-size="14" font-weight="bold">b</text><text x="340.0" y="120.0" text-anchor="middle" fill="#1b1f24" font-size="30">⇌</text><text x="550.0" y="18.0" text-anchor="middle" fill="#1b1f24" font-size="14" font-weight="bold">Current-source form</text><line x1="485.0" y1="70.0" x2="650.0" y2="70.0" stroke="#1b1f24" stroke-width="2" stroke-linecap="round"/><line x1="485.0" y1="165.0" x2="650.0" y2="165.0" stroke="#1b1f24" stroke-width="2" stroke-linecap="round"/><g transform="translate(485.0,117.5) rotate(-90.0)" fill="none" stroke="#1b1f24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><line x1="-47.5" y1="0" x2="-18" y2="0"/><line x1="18" y1="0" x2="47.5" y2="0"/><circle cx="0" cy="0" r="18"/></g><line x1="485.0" y1="127.5" x2="485.0" y2="112.9" stroke="#1b1f24" stroke-width="2" stroke-linecap="round"/><polygon points="485.0,106.5 488.4,114.5 481.6,114.5" fill="#1b1f24"/><text x="455.0" y="121.5" text-anchor="end" fill="#1b1f24" font-size="13">3 A</text><g transform="translate(585.0,117.5) rotate(90.0)" fill="none" stroke="#1b1f24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><line x1="-47.5" y1="0" x2="-30" y2="0"/><line x1="30" y1="0" x2="47.5" y2="0"/><polyline points="-30.0,0.0 -25.0,-9.0 -15.0,9.0 -5.0,-9.0 5.0,9.0 15.0,-9.0 25.0,9.0 30.0,0.0"/></g><text x="605.0" y="121.5" text-anchor="start" fill="#1b1f24" font-size="13">4 Ω</text><circle cx="650.0" cy="70.0" r="5" fill="#c0392b"/><circle cx="650.0" cy="165.0" r="5" fill="#c0392b"/><text x="662.0" y="74.0" text-anchor="start" fill="#c0392b" font-size="14" font-weight="bold">a</text><text x="662.0" y="169.0" text-anchor="start" fill="#c0392b" font-size="14" font-weight="bold">b</text></svg>
+<p class="caption">12 V in series with 4 Ω looks, from terminals a–b, exactly like a 3 A source (12/4) in parallel with the same 4 Ω.</p>
+</div>
+
+<div class="box why"><span class="label">Why this is true</span>
+Two black boxes are "externally indistinguishable" if they produce the same V–I relationship at the terminals. Left box: open-circuit voltage = 12 V (no current, no drop across R); short-circuit current = 12/4 = 3 A. Right box: open-circuit voltage = 3 A × 4 Ω = 12 V (all current forced through R since the external path is open); short-circuit current = 3 A (all current bypasses R through the short). Same two extreme points ⟹ same straight-line V–I relationship ⟹ identical behaviour for <em>any</em> load attached at a–b.
+</div>
+
+<div class="foreshadow">This V=IR ↔ I=V/R swap is exactly what makes Thevenin ⟷ Norton equivalents (next section) interchangeable — a Thevenin source is nothing but a voltage source, and a Norton source is its current-source transform.</div>
+
+
+<div class="box mis"><span class="label">Two traps</span>
+<b>1. Direction/polarity:</b> the current-source arrow must point <em>toward the + terminal</em> of the equivalent voltage source (the terminal the arrow leaves from is the + side).<br>
+<b>2. Ideal sources:</b> a voltage source with <em>no</em> series resistance (or a current source with no parallel resistance) cannot be transformed. Also, a resistor in <em>parallel</em> with a voltage source, or in <em>series</em> with a current source, does not affect what the other elements see, so it can be dropped when analysing the rest of the circuit.
+</div>
+<div class="box ex"><span class="label">Worked example — going the other way</span>
+A 2 A current source in parallel with 5 Ω ⟹ voltage source V = I·R = 2 × 5 = <code>10 V</code> in series with the same 5 Ω. Check: open-circuit voltage of the original = 2 × 5 = 10 V ✓; short-circuit current of the new one = 10/5 = 2 A ✓.
+</div>
+<p><b>Why bother?</b> Transform repeatedly to turn a ladder of mixed sources into one source with one resistor — often faster than writing any equation at all.</p>
+
+<h3 class="topic" id="a7">A7. Thevenin's &amp; Norton's Theorem</h3>
+<div class="box terms"><span class="label">Key terms — know these words</span>
+<ul>
+<li><b>Linear network</b> — a network whose elements obey superposition/proportionality; Thevenin's theorem holds only for these.</li>
+<li><b>Terminals a–b</b> — the two points where the load will connect and from which we 'look into' the network.</li>
+<li><b>Open-circuit voltage (V<sub>oc</sub>)</b> — voltage across a–b with nothing connected; equals V<sub>th</sub>.</li>
+<li><b>Short-circuit current (I<sub>sc</sub>)</b> — current when a–b are shorted together; equals I<sub>N</sub>.</li>
+<li><b>Thevenin resistance (R<sub>th</sub>)</b> — resistance seen at a–b with independent sources killed; also R<sub>th</sub> = V<sub>oc</sub>/I<sub>sc</sub>.</li>
+<li><b>Norton equivalent</b> — current source I<sub>N</sub> in parallel with R<sub>N</sub> = R<sub>th</sub>.</li>
+<li><b>Killing a source</b> — voltage source → replace by a short; current source → replace by an open circuit.</li>
+</ul>
+</div>
+
+
+<div class="box def"><span class="label">Definition</span>
+Any linear resistive network, viewed from two terminals a–b, behaves exactly like a single source in series (or parallel) with a single resistance:
+<div class="formula">Thevenin: V<sub>th</sub> in series with R<sub>th</sub>  &nbsp;&nbsp;⟺&nbsp;&nbsp;  Norton: I<sub>N</sub>=V<sub>th</sub>/R<sub>th</sub> in parallel with R<sub>N</sub>=R<sub>th</sub></div>
+<b>V<sub>th</sub></b> = open-circuit voltage at a–b. <b>R<sub>th</sub></b> = resistance seen at a–b with all independent sources killed (voltage sources shorted, current sources opened).
+</div>
+
+<div class="diagram">
+<svg viewBox="0 0 750 210" width="750" style="max-width:100%;height:auto" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#1b1f24"><text x="170.0" y="18.0" text-anchor="middle" fill="#1b1f24" font-size="14" font-weight="bold">Original network</text><line x1="90.0" y1="175.0" x2="280.0" y2="175.0" stroke="#1b1f24" stroke-width="2" stroke-linecap="round"/><g transform="translate(90.0,125.0) rotate(-90.0)" fill="none" stroke="#1b1f24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><line x1="-50.0" y1="0" x2="-4" y2="0"/><line x1="4" y1="0" x2="50.0" y2="0"/><line x1="4" y1="-15" x2="4" y2="15" stroke-width="3.5"/><line x1="-4" y1="-8" x2="-4" y2="8" stroke-width="3.5"/></g><text x="66.0" y="129.0" text-anchor="end" fill="#1b1f24" font-size="13">24 V</text><text x="105.0" y="115.0" text-anchor="middle" fill="#1b1f24" font-size="14" font-weight="bold">+</text><text x="105.0" y="145.0" text-anchor="middle" fill="#1b1f24" font-size="14" font-weight="bold">−</text><g transform="translate(155.0,75.0) rotate(0.0)" fill="none" stroke="#1b1f24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><line x1="-65.0" y1="0" x2="-30" y2="0"/><line x1="30" y1="0" x2="65.0" y2="0"/><polyline points="-30.0,0.0 -25.0,-9.0 -15.0,9.0 -5.0,-9.0 5.0,9.0 15.0,-9.0 25.0,9.0 30.0,0.0"/></g><text x="155.0" y="57.0" text-anchor="middle" fill="#1b1f24" font-size="13">6 Ω</text><line x1="220.0" y1="75.0" x2="280.0" y2="75.0" stroke="#1b1f24" stroke-width="2" stroke-linecap="round"/><g transform="translate(220.0,125.0) rotate(90.0)" fill="none" stroke="#1b1f24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><line x1="-50.0" y1="0" x2="-30" y2="0"/><line x1="30" y1="0" x2="50.0" y2="0"/><polyline points="-30.0,0.0 -25.0,-9.0 -15.0,9.0 -5.0,-9.0 5.0,9.0 15.0,-9.0 25.0,9.0 30.0,0.0"/></g><text x="240.0" y="129.0" text-anchor="start" fill="#1b1f24" font-size="13">12 Ω</text><circle cx="280.0" cy="75.0" r="5" fill="#c0392b"/><circle cx="280.0" cy="175.0" r="5" fill="#c0392b"/><text x="292.0" y="79.0" text-anchor="start" fill="#c0392b" font-size="14" font-weight="bold">a</text><text x="292.0" y="179.0" text-anchor="start" fill="#c0392b" font-size="14" font-weight="bold">b</text><text x="390.0" y="128.0" text-anchor="middle" fill="#1b1f24" font-size="34">≡</text><text x="590.0" y="18.0" text-anchor="middle" fill="#1b1f24" font-size="14" font-weight="bold">Thevenin equivalent</text><line x1="500.0" y1="175.0" x2="700.0" y2="175.0" stroke="#1b1f24" stroke-width="2" stroke-linecap="round"/><g transform="translate(500.0,125.0) rotate(-90.0)" fill="none" stroke="#1b1f24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><line x1="-50.0" y1="0" x2="-4" y2="0"/><line x1="4" y1="0" x2="50.0" y2="0"/><line x1="4" y1="-15" x2="4" y2="15" stroke-width="3.5"/><line x1="-4" y1="-8" x2="-4" y2="8" stroke-width="3.5"/></g><text x="476.0" y="129.0" text-anchor="end" fill="#1b1f24" font-size="13">V<tspan baseline-shift="sub" font-size="75%">th</tspan> = 16 V</text><text x="515.0" y="115.0" text-anchor="middle" fill="#1b1f24" font-size="14" font-weight="bold">+</text><text x="515.0" y="145.0" text-anchor="middle" fill="#1b1f24" font-size="14" font-weight="bold">−</text><g transform="translate(580.0,75.0) rotate(0.0)" fill="none" stroke="#1b1f24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><line x1="-80.0" y1="0" x2="-30" y2="0"/><line x1="30" y1="0" x2="80.0" y2="0"/><polyline points="-30.0,0.0 -25.0,-9.0 -15.0,9.0 -5.0,-9.0 5.0,9.0 15.0,-9.0 25.0,9.0 30.0,0.0"/></g><text x="580.0" y="57.0" text-anchor="middle" fill="#1b1f24" font-size="13">R<tspan baseline-shift="sub" font-size="75%">th</tspan> = 4 Ω</text><line x1="660.0" y1="75.0" x2="700.0" y2="75.0" stroke="#1b1f24" stroke-width="2" stroke-linecap="round"/><circle cx="700.0" cy="75.0" r="5" fill="#c0392b"/><circle cx="700.0" cy="175.0" r="5" fill="#c0392b"/><text x="712.0" y="79.0" text-anchor="start" fill="#c0392b" font-size="14" font-weight="bold">a</text><text x="712.0" y="179.0" text-anchor="start" fill="#c0392b" font-size="14" font-weight="bold">b</text></svg>
+<p class="caption">The 24 V / 6 Ω / 12 Ω network (load removed) collapses, as seen from a–b, to a 16 V source in series with 4 Ω.</p>
+</div>
+
+<div class="box ex"><span class="label">Worked example</span>
+<b>Find V<sub>th</sub>:</b> with a–b open, no current flows anywhere except around the single loop 24 V–6 Ω–12 Ω:
+<code>I = 24/(6+12) = 4/3 A</code>. Voltage across the 12 Ω (this <em>is</em> V<sub>ab</sub> since nothing else drops between a and b) = <code>(4/3)(12) = 16 V = V<sub>th</sub></code>.<br>
+<b>Find R<sub>th</sub>:</b> kill the 24 V source (replace with a short). Looking into a–b now sees 6 Ω and 12 Ω in <em>parallel</em>: <code>R<sub>th</sub> = (6×12)/(6+12) = 4 Ω.</code><br>
+<b>Norton form:</b> <code>I<sub>N</sub> = V<sub>th</sub>/R<sub>th</sub> = 16/4 = 4 A</code>, R<sub>N</sub> = 4 Ω.
+</div>
+
+<div class="foreshadow">V<sub>th</sub>=16 V is the <em>exact same number</em> as node A's voltage in the A4 example — no surprise, since Thevenin's theorem is just node/mesh analysis packaged for one pair of terminals. Keep V<sub>th</sub>=16 V, R<sub>th</sub>=4 Ω on hand: A8 attaches a load here to find maximum power, and A9 re-derives this 16 V by superposition.</div>
+
+
+<h4 class="sub">Procedure</h4>
+<ol>
+<li>Remove the load; label terminals a–b.</li>
+<li><b>V<sub>th</sub></b>: calculate the open-circuit voltage across a–b (any method).</li>
+<li><b>R<sub>th</sub></b>: kill independent sources and find the resistance looking into a–b — <em>or</em> compute R<sub>th</sub> = V<sub>oc</sub>/I<sub>sc</sub>.</li>
+<li>Draw V<sub>th</sub> in series with R<sub>th</sub>, reconnect the load, and solve the simple one-loop circuit.</li>
+</ol>
+<div class="box why"><span class="label">Why the second R<sub>th</sub> method works</span>
+The Thevenin equivalent has an open-circuit voltage V<sub>th</sub> and, when shorted, delivers I<sub>sc</sub> = V<sub>th</sub>/R<sub>th</sub>. Rearranging gives R<sub>th</sub> = V<sub>oc</sub>/I<sub>sc</sub>. Useful when the network contains <b>dependent sources</b>: they must <em>not</em> be killed, so use V<sub>oc</sub>/I<sub>sc</sub> (or apply a test source) instead.
+</div>
+<div class="box ex"><span class="label">Worked example — using it to change the load</span>
+With V<sub>th</sub> = 16 V and R<sub>th</sub> = 4 Ω (from above), what does a 12 Ω load draw?<br>
+<code>I = 16/(4+12) = 1 A</code>, <code>V<sub>load</sub> = 12 V</code>. For a 4 Ω load: 2 A; for 28 Ω: 0.5 A. That is the power of Thevenin — solve the network once, then any load is a one-line calculation.
+</div>
+
+<h3 class="topic" id="a8">A8. Maximum Power Transfer Theorem</h3>
+<div class="box terms"><span class="label">Key terms — know these words</span>
+<ul>
+<li><b>Load (R<sub>L</sub>)</b> — the element receiving power from the source network.</li>
+<li><b>Matched load</b> — R<sub>L</sub> = R<sub>th</sub>; the condition for maximum power to the load.</li>
+<li><b>Efficiency (η)</b> — η = power in load ÷ total power supplied = R<sub>L</sub>/(R<sub>th</sub> + R<sub>L</sub>).</li>
+<li><b>P<sub>max</sub></b> — V<sub>th</sub>²/(4R<sub>th</sub>) — the peak of the power-vs-R<sub>L</sub> curve.</li>
+</ul>
+</div>
+
+
+<div class="box def"><span class="label">Definition</span>
+A source with Thevenin resistance R<sub>th</sub> delivers <em>maximum power</em> to a load R<sub>L</sub> when
+<div class="formula">R<sub>L</sub> = R<sub>th</sub></div>
+and that maximum power is <code>P<sub>max</sub> = V<sub>th</sub>² / (4R<sub>th</sub>)</code>.
+</div>
+
+<div class="box why"><span class="label">Why this is true (derivation)</span>
+Current in the loop: <code>I = V<sub>th</sub>/(R<sub>th</sub>+R<sub>L</sub>)</code>. Power in the load:
+<div class="formula">P = I²R<sub>L</sub> = V<sub>th</sub>² · R<sub>L</sub> / (R<sub>th</sub>+R<sub>L</sub>)²</div>
+Maximise P over R<sub>L</sub> by setting dP/dR<sub>L</sub>=0. Using the quotient rule on R<sub>L</sub>/(R<sub>th</sub>+R<sub>L</sub>)²:
+<div class="formula">dP/dR<sub>L</sub> ∝ (R<sub>th</sub>+R<sub>L</sub>)² − R<sub>L</sub>·2(R<sub>th</sub>+R<sub>L</sub>) = (R<sub>th</sub>+R<sub>L</sub>)[(R<sub>th</sub>+R<sub>L</sub>) − 2R<sub>L</sub>] = (R<sub>th</sub>+R<sub>L</sub>)(R<sub>th</sub>−R<sub>L</sub>)</div>
+This is zero (and changes sign from + to −, confirming a maximum) exactly when R<sub>L</sub>=R<sub>th</sub>. Substituting back: P<sub>max</sub> = V<sub>th</sub>²·R<sub>th</sub>/(2R<sub>th</sub>)² = V<sub>th</sub>²/(4R<sub>th</sub>).
+</div>
+
+<div class="diagram">
+<svg viewBox="0 0 520 262" width="520" style="max-width:100%;height:auto" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#1b1f24"><line x1="60.0" y1="200.0" x2="450.0" y2="200.0" stroke="#1b1f24" stroke-width="2" stroke-linecap="round"/><line x1="60.0" y1="200.0" x2="60.0" y2="25.0" stroke="#1b1f24" stroke-width="2" stroke-linecap="round"/><polyline points="60.0,200.0 61.9,184.8 63.8,171.0 65.7,158.5 67.6,147.1 69.5,136.8 71.4,127.4 73.3,118.9 75.2,111.1 77.1,104.0 79.0,97.6 80.9,91.7 82.8,86.4 84.7,81.5 86.6,77.1 88.5,73.1 90.4,69.4 92.3,66.1 94.2,63.0 96.1,60.3 98.0,57.8 99.9,55.5 101.8,53.5 103.7,51.7 105.6,50.0 107.5,48.5 109.4,47.2 111.3,46.0 113.2,45.0 115.1,44.1 117.0,43.3 118.9,42.6 120.8,42.0 122.7,41.5 124.6,41.1 126.5,40.7 128.4,40.4 130.3,40.2 132.2,40.1 134.1,40.0 136.0,40.0 137.9,40.0 139.8,40.1 141.7,40.2 143.6,40.4 145.5,40.6 147.4,40.8 149.3,41.0 151.2,41.3 153.1,41.6 155.0,42.0 156.9,42.3 158.8,42.7 160.7,43.1 162.6,43.5 164.5,44.0 166.4,44.4 168.3,44.9 170.2,45.4 172.1,45.9 174.0,46.4 175.9,46.9 177.8,47.4 179.7,48.0 181.6,48.5 183.5,49.1 185.4,49.6 187.3,50.2 189.2,50.8 191.1,51.3 193.0,51.9 194.9,52.5 196.8,53.1 198.7,53.6 200.6,54.2 202.5,54.8 204.4,55.4 206.3,56.0 208.2,56.6 210.1,57.2 212.0,57.8 213.9,58.4 215.8,59.0 217.7,59.6 219.6,60.1 221.5,60.7 223.4,61.3 225.3,61.9 227.2,62.5 229.1,63.1 231.0,63.7 232.9,64.3 234.8,64.8 236.7,65.4 238.6,66.0 240.5,66.6 242.4,67.1 244.3,67.7 246.2,68.3 248.1,68.8 250.0,69.4 251.9,69.9 253.8,70.5 255.7,71.1 257.6,71.6 259.5,72.2 261.4,72.7 263.3,73.2 265.2,73.8 267.1,74.3 269.0,74.8 270.9,75.4 272.8,75.9 274.7,76.4 276.6,76.9 278.5,77.5 280.4,78.0 282.3,78.5 284.2,79.0 286.1,79.5 288.0,80.0 289.9,80.5 291.8,81.0 293.7,81.5 295.6,82.0 297.5,82.5 299.4,82.9 301.3,83.4 303.2,83.9 305.1,84.4 307.0,84.8 308.9,85.3 310.8,85.8 312.7,86.2 314.6,86.7 316.5,87.2 318.4,87.6 320.3,88.1 322.2,88.5 324.1,88.9 326.0,89.4 327.9,89.8 329.8,90.3 331.7,90.7 333.6,91.1 335.5,91.5 337.4,92.0 339.3,92.4 341.2,92.8 343.1,93.2 345.0,93.6 346.9,94.0 348.8,94.4 350.7,94.8 352.6,95.2 354.5,95.6 356.4,96.0 358.3,96.4 360.2,96.8 362.1,97.2 364.0,97.6 365.9,98.0 367.8,98.4 369.7,98.7 371.6,99.1 373.5,99.5 375.4,99.9 377.3,100.2 379.2,100.6 381.1,101.0 383.0,101.3 384.9,101.7 386.8,102.0 388.7,102.4 390.6,102.7 392.5,103.1 394.4,103.4 396.3,103.8 398.2,104.1 400.1,104.5 402.0,104.8 403.9,105.1 405.8,105.5 407.7,105.8 409.6,106.1 411.5,106.4 413.4,106.8 415.3,107.1 417.2,107.4 419.1,107.7 421.0,108.1 422.9,108.4 424.8,108.7 426.7,109.0 428.6,109.3 430.5,109.6 432.4,109.9 434.3,110.2 436.2,110.5 438.1,110.8 440.0,111.1" fill="none" stroke="#7c3aed" stroke-width="2.8" stroke-linejoin="round"/><line x1="60.0" y1="200.0" x2="60.0" y2="205.0" stroke="#1b1f24" stroke-width="2" stroke-linecap="round"/><text x="60.0" y="220.0" text-anchor="middle" fill="#8a93a3" font-size="12">0</text><line x1="136.0" y1="200.0" x2="136.0" y2="205.0" stroke="#1b1f24" stroke-width="2" stroke-linecap="round"/><text x="136.0" y="220.0" text-anchor="middle" fill="#8a93a3" font-size="12">4</text><line x1="212.0" y1="200.0" x2="212.0" y2="205.0" stroke="#1b1f24" stroke-width="2" stroke-linecap="round"/><text x="212.0" y="220.0" text-anchor="middle" fill="#8a93a3" font-size="12">8</text><line x1="288.0" y1="200.0" x2="288.0" y2="205.0" stroke="#1b1f24" stroke-width="2" stroke-linecap="round"/><text x="288.0" y="220.0" text-anchor="middle" fill="#8a93a3" font-size="12">12</text><line x1="364.0" y1="200.0" x2="364.0" y2="205.0" stroke="#1b1f24" stroke-width="2" stroke-linecap="round"/><text x="364.0" y="220.0" text-anchor="middle" fill="#8a93a3" font-size="12">16</text><line x1="440.0" y1="200.0" x2="440.0" y2="205.0" stroke="#1b1f24" stroke-width="2" stroke-linecap="round"/><text x="440.0" y="220.0" text-anchor="middle" fill="#8a93a3" font-size="12">20</text><line x1="55.0" y1="200.0" x2="60.0" y2="200.0" stroke="#1b1f24" stroke-width="2" stroke-linecap="round"/><text x="51.0" y="204.0" text-anchor="end" fill="#8a93a3" font-size="12">0</text><line x1="55.0" y1="160.0" x2="60.0" y2="160.0" stroke="#1b1f24" stroke-width="2" stroke-linecap="round"/><text x="51.0" y="164.0" text-anchor="end" fill="#8a93a3" font-size="12">4</text><line x1="55.0" y1="120.0" x2="60.0" y2="120.0" stroke="#1b1f24" stroke-width="2" stroke-linecap="round"/><text x="51.0" y="124.0" text-anchor="end" fill="#8a93a3" font-size="12">8</text><line x1="55.0" y1="80.0" x2="60.0" y2="80.0" stroke="#1b1f24" stroke-width="2" stroke-linecap="round"/><text x="51.0" y="84.0" text-anchor="end" fill="#8a93a3" font-size="12">12</text><line x1="55.0" y1="40.0" x2="60.0" y2="40.0" stroke="#1b1f24" stroke-width="2" stroke-linecap="round"/><text x="51.0" y="44.0" text-anchor="end" fill="#8a93a3" font-size="12">16</text><line x1="136.0" y1="200.0" x2="136.0" y2="40.0" stroke="#c0392b" stroke-width="1.5" stroke-dasharray="4,3" stroke-linecap="round"/><line x1="60.0" y1="40.0" x2="136.0" y2="40.0" stroke="#c0392b" stroke-width="1.5" stroke-dasharray="4,3" stroke-linecap="round"/><circle cx="136.0" cy="40.0" r="5" fill="#c0392b"/><text x="148.0" y="32.0" text-anchor="start" fill="#c0392b" font-size="13" font-weight="bold">P<tspan baseline-shift="sub" font-size="75%">max</tspan> = 16 W at R<tspan baseline-shift="sub" font-size="75%">L</tspan> = R<tspan baseline-shift="sub" font-size="75%">th</tspan> = 4 Ω</text><text x="250.0" y="242.0" text-anchor="middle" fill="#1b1f24" font-size="13">load resistance R<tspan baseline-shift="sub" font-size="75%">L</tspan> (Ω)</text><text transform="rotate(-90 18 120.0)" x="18.0" y="120.0" text-anchor="middle" fill="#1b1f24" font-size="13">power P (W)</text></svg>
+<p class="caption">Power delivered to R<sub>L</sub> (V<sub>th</sub> = 16 V, R<sub>th</sub> = 4 Ω): it rises, peaks exactly at R<sub>L</sub> = R<sub>th</sub>, then falls — the calculus in the box above proves the peak sits there.</p>
+</div>
+
+<div class="box mis"><span class="label">Fixing a common misconception</span>
+"Maximum power transfer" does <em>not</em> mean maximum efficiency. At R<sub>L</sub>=R<sub>th</sub>, exactly half the total power is dissipated in R<sub>th</sub> itself — efficiency is only 50%. Power systems engineers actually want R<sub>L</sub> ≫ R<sub>th</sub> for high efficiency (low loss in supply resistance); matched loading is what you want in signal/communication circuits, where getting the largest possible power to a small receiver matters more than wasting some in the source.
+</div>
+
+<div class="box ex"><span class="label">Worked example</span>
+Continuing the A7 circuit (V<sub>th</sub>=16 V, R<sub>th</sub>=4 Ω): attach R<sub>L</sub>=4 Ω.<br>
+<code>I = 16/(4+4) = 2 A</code>, <code>P<sub>L</sub> = I²R<sub>L</sub> = 4×4 = 16 W</code>.<br>
+Check against the formula: <code>P<sub>max</sub> = 16²/(4×4) = 256/16 = 16 W</code> ✓.
+</div>
+
+
+<div class="box why"><span class="label">Efficiency vs power</span>
+The current is I = V<sub>th</sub>/(R<sub>th</sub> + R<sub>L</sub>), so
+<div class="formula">η = P<sub>load</sub>/P<sub>total</sub> = I²R<sub>L</sub> / [I²(R<sub>th</sub> + R<sub>L</sub>)] = R<sub>L</sub>/(R<sub>th</sub> + R<sub>L</sub>)</div>
+At R<sub>L</sub> = R<sub>th</sub>, η = 1/2 = 50%. As R<sub>L</sub> → ∞, η → 100% but the power delivered drops to zero (almost no current). There's the trade-off.
+</div>
+<table>
+<tr><th>R<sub>L</sub> (Ω) with V<sub>th</sub>=16 V, R<sub>th</sub>=4 Ω</th><th>I (A)</th><th>P<sub>load</sub> (W)</th><th>η</th></tr>
+<tr><td>1</td><td>3.2</td><td>10.2</td><td>20%</td></tr>
+<tr><td>2</td><td>2.67</td><td>14.2</td><td>33%</td></tr>
+<tr><td><b>4 (matched)</b></td><td>2</td><td><b>16</b></td><td>50%</td></tr>
+<tr><td>8</td><td>1.33</td><td>14.2</td><td>67%</td></tr>
+<tr><td>16</td><td>0.8</td><td>10.2</td><td>80%</td></tr>
+</table>
+<p>Notice the symmetry: R<sub>L</sub> = 1 Ω and 16 Ω give the same power (R<sub>L</sub> and R<sub>th</sub>²/R<sub>L</sub> always pair up), with the peak between them.</p>
+
+<h3 class="topic" id="a9">A9. Superposition Theorem</h3>
+<div class="box terms"><span class="label">Key terms — know these words</span>
+<ul>
+<li><b>Independent source</b> — a source whose value does not depend on anything else in the circuit.</li>
+<li><b>Response</b> — the voltage or current you are solving for.</li>
+<li><b>Superposition</b> — total response = algebraic sum of responses to each independent source acting alone.</li>
+<li><b>Dependent source (caution)</b> — stays <em>in</em> the circuit during superposition; only independent sources are killed.</li>
+</ul>
+</div>
+
+
+<div class="box def"><span class="label">Definition</span>
+In a linear circuit with multiple independent sources, the response (any voltage or current) equals the <em>sum</em> of the responses caused by each source acting alone, with all other independent sources killed (voltage sources shorted, current sources opened).
+</div>
+
+<div class="box why"><span class="label">Why this is true</span>
+Every equation Ohm's/Kirchhoff's laws produce for a resistive circuit is <em>linear</em> in the source values (no squares or products of sources appear). For linear equations, the solution for a sum of inputs is exactly the sum of the solutions for each input separately — this is the defining property of linearity, and it's the same property that makes A4's node equations solvable by straightforward elimination in the first place.
+</div>
+
+<div class="diagram">
+<svg viewBox="0 0 760 235" width="760" style="max-width:100%;height:auto" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#1b1f24"><text x="170.0" y="18.0" text-anchor="middle" fill="#1b1f24" font-size="13" font-weight="bold">V₁ alone (current source opened)</text><line x1="95.0" y1="180.0" x2="250.0" y2="180.0" stroke="#1b1f24" stroke-width="2" stroke-linecap="round"/><g transform="translate(95.0,130.0) rotate(-90.0)" fill="none" stroke="#1b1f24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><line x1="-50.0" y1="0" x2="-4" y2="0"/><line x1="4" y1="0" x2="50.0" y2="0"/><line x1="4" y1="-15" x2="4" y2="15" stroke-width="3.5"/><line x1="-4" y1="-8" x2="-4" y2="8" stroke-width="3.5"/></g><text x="71.0" y="134.0" text-anchor="end" fill="#1b1f24" font-size="13">24 V</text><text x="110.0" y="120.0" text-anchor="middle" fill="#1b1f24" font-size="14" font-weight="bold">+</text><text x="110.0" y="150.0" text-anchor="middle" fill="#1b1f24" font-size="14" font-weight="bold">−</text><g transform="translate(172.5,80.0) rotate(0.0)" fill="none" stroke="#1b1f24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><line x1="-77.5" y1="0" x2="-30" y2="0"/><line x1="30" y1="0" x2="77.5" y2="0"/><polyline points="-30.0,0.0 -25.0,-9.0 -15.0,9.0 -5.0,-9.0 5.0,9.0 15.0,-9.0 25.0,9.0 30.0,0.0"/></g><text x="172.5" y="62.0" text-anchor="middle" fill="#1b1f24" font-size="13">6 Ω</text><g transform="translate(250.0,130.0) rotate(90.0)" fill="none" stroke="#1b1f24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><line x1="-50.0" y1="0" x2="-30" y2="0"/><line x1="30" y1="0" x2="50.0" y2="0"/><polyline points="-30.0,0.0 -25.0,-9.0 -15.0,9.0 -5.0,-9.0 5.0,9.0 15.0,-9.0 25.0,9.0 30.0,0.0"/></g><text x="270.0" y="134.0" text-anchor="start" fill="#1b1f24" font-size="13">12 Ω</text><circle cx="250.0" cy="80.0" r="5" fill="#1e468c"/><text x="262.0" y="72.0" text-anchor="start" fill="#1e468c" font-size="14" font-weight="bold">A</text><text x="170.0" y="218.0" text-anchor="middle" fill="#166e3c" font-size="14" font-weight="bold">V<tspan baseline-shift="sub" font-size="75%">A1</tspan> = 16 V</text><text x="370.0" y="130.0" text-anchor="middle" fill="#1b1f24" font-size="30">+</text><text x="590.0" y="18.0" text-anchor="middle" fill="#1b1f24" font-size="13" font-weight="bold">2 A source alone (V₁ shorted)</text><line x1="480.0" y1="80.0" x2="670.0" y2="80.0" stroke="#1b1f24" stroke-width="2" stroke-linecap="round"/><line x1="480.0" y1="180.0" x2="670.0" y2="180.0" stroke="#1b1f24" stroke-width="2" stroke-linecap="round"/><g transform="translate(480.0,130.0) rotate(-90.0)" fill="none" stroke="#1b1f24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><line x1="-50.0" y1="0" x2="-18" y2="0"/><line x1="18" y1="0" x2="50.0" y2="0"/><circle cx="0" cy="0" r="18"/></g><line x1="480.0" y1="140.0" x2="480.0" y2="125.4" stroke="#1b1f24" stroke-width="2" stroke-linecap="round"/><polygon points="480.0,119.0 483.4,127.0 476.6,127.0" fill="#1b1f24"/><text x="450.0" y="134.0" text-anchor="end" fill="#1b1f24" font-size="13">2 A</text><g transform="translate(570.0,130.0) rotate(90.0)" fill="none" stroke="#1b1f24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><line x1="-50.0" y1="0" x2="-30" y2="0"/><line x1="30" y1="0" x2="50.0" y2="0"/><polyline points="-30.0,0.0 -25.0,-9.0 -15.0,9.0 -5.0,-9.0 5.0,9.0 15.0,-9.0 25.0,9.0 30.0,0.0"/></g><text x="590.0" y="134.0" text-anchor="start" fill="#1b1f24" font-size="13">6 Ω</text><g transform="translate(670.0,130.0) rotate(90.0)" fill="none" stroke="#1b1f24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><line x1="-50.0" y1="0" x2="-30" y2="0"/><line x1="30" y1="0" x2="50.0" y2="0"/><polyline points="-30.0,0.0 -25.0,-9.0 -15.0,9.0 -5.0,-9.0 5.0,9.0 15.0,-9.0 25.0,9.0 30.0,0.0"/></g><text x="690.0" y="134.0" text-anchor="start" fill="#1b1f24" font-size="13">12 Ω</text><circle cx="570.0" cy="80.0" r="5" fill="#1e468c"/><text x="560.0" y="70.0" text-anchor="end" fill="#1e468c" font-size="14" font-weight="bold">A</text><text x="590.0" y="218.0" text-anchor="middle" fill="#166e3c" font-size="14" font-weight="bold">V<tspan baseline-shift="sub" font-size="75%">A2</tspan> = 8 V</text></svg>
+<p class="caption">The network with a 2 A source added at node A. Left: only the 24 V source acts. Right: the 24 V source is replaced by a short, so 6 Ω and 12 Ω sit in parallel. Add the node voltages: 16 + 8 = 24 V.</p>
+</div>
+
+<div class="box ex"><span class="label">Worked example</span>
+Add a 2 A current source injecting into node a of the A7 circuit (24 V, 6 Ω, 12 Ω). Find V<sub>a</sub> by superposition.<br>
+<b>Step 1 — V1 acting alone</b> (open the current source): this is exactly the A7 Thevenin calculation — <code>V<sub>a1</sub> = 16 V</code>.<br>
+<b>Step 2 — 2 A source acting alone</b> (short the 24 V source): now 6 Ω and 12 Ω are both simply tied from node a to ground — they're in <em>parallel</em>, R<sub>eq</sub>=(6×12)/18=4 Ω. All 2 A flows into this 4 Ω: <code>V<sub>a2</sub> = 2×4 = 8 V</code>.<br>
+<b>Total:</b> <code>V<sub>a</sub> = V<sub>a1</sub> + V<sub>a2</sub> = 16 + 8 = 24 V</code>.<br>
+<b>Independent check</b> (direct node analysis with both sources active): <code>(V<sub>a</sub>−24)/6 + V<sub>a</sub>/12 − 2 = 0 ⟹ 3V<sub>a</sub> = 72 ⟹ V<sub>a</sub> = 24 V</code> ✓ — matches exactly.
+</div>
+
+<table>
+<tr><th>Method</th><th>Best suited to…</th><th>What you solve</th></tr>
+<tr><td>Node-Voltage</td><td>circuits with many parallel branches / current sources</td><td>n−1 equations for n nodes</td></tr>
+<tr><td>Mesh-Current</td><td>planar circuits with many series loops / voltage sources</td><td>one equation per independent loop</td></tr>
+<tr><td>Thevenin/Norton</td><td>finding behaviour at <em>one pair</em> of terminals, esp. varying load</td><td>V<sub>th</sub>, R<sub>th</sub> once, reuse for any R<sub>L</sub></td></tr>
+<tr><td>Superposition</td><td>circuits with multiple independent sources, need contribution of each</td><td>one simpler circuit per source</td></tr>
+</table>
+
+<div class="foreshadow">Everything above assumed pure resistors and DC (unchanging) sources. Part B repeats this <em>exact same logic</em> — KVL, KCL, series/parallel, even a "divider" — but the numbers become <b>phasors</b> (complex numbers) because inductors and capacitors react differently to changing current than resistors do.</div>
+
+
+<h4 class="sub">Steps</h4>
+<ol>
+<li>Keep one independent source; kill all the others (short voltage sources, open current sources).</li>
+<li>Solve for the required voltage/current — label it with a subscript for that source.</li>
+<li>Repeat for each source.</li>
+<li>Add the individual responses <b>algebraically</b> (watch signs and reference directions).</li>
+</ol>
+<div class="box mis"><span class="label">Fixing a common misconception</span>
+Superposition applies to <b>voltage and current</b>, not to <b>power</b>. Power is quadratic (I²R), and (I<sub>1</sub> + I<sub>2</sub>)² ≠ I<sub>1</sub>² + I<sub>2</sub>². Find the total current by superposition first, <em>then</em> compute the power.
+<br>Quick proof: with I<sub>1</sub> = 3 A and I<sub>2</sub> = 1 A through 2 Ω, adding the separate powers gives 18 + 2 = 20 W but the real power is (4)²·2 = 32 W.
+</div>
+
+<h2 class="part" id="partb">Part B — AC Circuits <span class="marks">Module 1, continued</span></h2>
+
+<h3 class="topic" id="b1">B1. Generating an AC Waveform</h3>
+<div class="box terms"><span class="label">Key terms — know these words</span>
+<ul>
+<li><b>Waveform</b> — the graph of a quantity against time.</li>
+<li><b>Cycle</b> — one complete set of positive and negative values of the wave.</li>
+<li><b>Alternation</b> — half a cycle (one positive <em>or</em> one negative loop).</li>
+<li><b>Period (T)</b> — time for one cycle; T = 1/f, in seconds.</li>
+<li><b>Frequency (f)</b> — cycles per second; unit hertz (Hz). Indian mains = 50 Hz.</li>
+<li><b>Angular frequency (ω)</b> — ω = 2πf, in rad/s. Mains: 2π × 50 ≈ 314 rad/s.</li>
+<li><b>Instantaneous value</b> — the value at one particular time, e.g. v(t) = V<sub>m</sub> sin ωt.</li>
+<li><b>Peak (maximum) value V<sub>m</sub></b> — the amplitude — the largest instantaneous value.</li>
+<li><b>Peak-to-peak value</b> — 2V<sub>m</sub>, from the positive crest to the negative crest.</li>
+<li><b>Phase angle (φ)</b> — the angular shift of a wave relative to a reference; v = V<sub>m</sub> sin(ωt + φ).</li>
+</ul>
+</div>
+
+
+<div class="box def"><span class="label">Definition</span>
+A coil rotating at constant angular speed ω inside a uniform magnetic field produces a sinusoidal EMF:
+<div class="formula">v(t) = V<sub>m</sub> sin(ωt)</div>
+where V<sub>m</sub> is the peak value and ω = 2πf (f = frequency in Hz).
+</div>
+
+<div class="diagram">
+<svg viewBox="0 0 500 230" width="500" style="max-width:100%;height:auto" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#1b1f24"><line x1="60.0" y1="100.0" x2="435.0" y2="100.0" stroke="#1b1f24" stroke-width="2" stroke-linecap="round"/><line x1="60.0" y1="18.0" x2="60.0" y2="182.0" stroke="#1b1f24" stroke-width="2" stroke-linecap="round"/><line x1="150.0" y1="26.0" x2="150.0" y2="174.0" stroke="#d5d9e0" stroke-width="1" stroke-dasharray="3,3" stroke-linecap="round"/><text x="150.0" y="196.0" text-anchor="middle" fill="#8a93a3" font-size="12">90°</text><line x1="240.0" y1="26.0" x2="240.0" y2="174.0" stroke="#d5d9e0" stroke-width="1" stroke-dasharray="3,3" stroke-linecap="round"/><text x="240.0" y="196.0" text-anchor="middle" fill="#8a93a3" font-size="12">180°</text><line x1="330.0" y1="26.0" x2="330.0" y2="174.0" stroke="#d5d9e0" stroke-width="1" stroke-dasharray="3,3" stroke-linecap="round"/><text x="330.0" y="196.0" text-anchor="middle" fill="#8a93a3" font-size="12">270°</text><line x1="420.0" y1="26.0" x2="420.0" y2="174.0" stroke="#d5d9e0" stroke-width="1" stroke-dasharray="3,3" stroke-linecap="round"/><text x="420.0" y="196.0" text-anchor="middle" fill="#8a93a3" font-size="12">360°</text><text x="60.0" y="196.0" text-anchor="middle" fill="#8a93a3" font-size="12">0°</text><polyline points="60.0,100.0 61.5,98.4 63.0,96.8 64.5,95.1 66.0,93.5 67.5,91.9 69.0,90.3 70.5,88.7 72.0,87.1 73.5,85.5 75.0,84.0 76.5,82.4 78.0,80.8 79.5,79.3 81.0,77.8 82.5,76.3 84.0,74.8 85.5,73.3 87.0,71.9 88.5,70.4 90.0,69.0 91.5,67.6 93.0,66.2 94.5,64.9 96.0,63.6 97.5,62.3 99.0,61.0 100.5,59.7 102.0,58.5 103.5,57.3 105.0,56.2 106.5,55.0 108.0,53.9 109.5,52.9 111.0,51.8 112.5,50.8 114.0,49.8 115.5,48.9 117.0,48.0 118.5,47.1 120.0,46.3 121.5,45.5 123.0,44.8 124.5,44.0 126.0,43.4 127.5,42.7 129.0,42.1 130.5,41.6 132.0,41.0 133.5,40.6 135.0,40.1 136.5,39.7 138.0,39.4 139.5,39.0 141.0,38.8 142.5,38.5 144.0,38.3 145.5,38.2 147.0,38.1 148.5,38.0 150.0,38.0 151.5,38.0 153.0,38.1 154.5,38.2 156.0,38.3 157.5,38.5 159.0,38.8 160.5,39.0 162.0,39.4 163.5,39.7 165.0,40.1 166.5,40.6 168.0,41.0 169.5,41.6 171.0,42.1 172.5,42.7 174.0,43.4 175.5,44.0 177.0,44.8 178.5,45.5 180.0,46.3 181.5,47.1 183.0,48.0 184.5,48.9 186.0,49.8 187.5,50.8 189.0,51.8 190.5,52.9 192.0,53.9 193.5,55.0 195.0,56.2 196.5,57.3 198.0,58.5 199.5,59.7 201.0,61.0 202.5,62.3 204.0,63.6 205.5,64.9 207.0,66.2 208.5,67.6 210.0,69.0 211.5,70.4 213.0,71.9 214.5,73.3 216.0,74.8 217.5,76.3 219.0,77.8 220.5,79.3 222.0,80.8 223.5,82.4 225.0,84.0 226.5,85.5 228.0,87.1 229.5,88.7 231.0,90.3 232.5,91.9 234.0,93.5 235.5,95.1 237.0,96.8 238.5,98.4 240.0,100.0 241.5,101.6 243.0,103.2 244.5,104.9 246.0,106.5 247.5,108.1 249.0,109.7 250.5,111.3 252.0,112.9 253.5,114.5 255.0,116.0 256.5,117.6 258.0,119.2 259.5,120.7 261.0,122.2 262.5,123.7 264.0,125.2 265.5,126.7 267.0,128.1 268.5,129.6 270.0,131.0 271.5,132.4 273.0,133.8 274.5,135.1 276.0,136.4 277.5,137.7 279.0,139.0 280.5,140.3 282.0,141.5 283.5,142.7 285.0,143.8 286.5,145.0 288.0,146.1 289.5,147.1 291.0,148.2 292.5,149.2 294.0,150.2 295.5,151.1 297.0,152.0 298.5,152.9 300.0,153.7 301.5,154.5 303.0,155.2 304.5,156.0 306.0,156.6 307.5,157.3 309.0,157.9 310.5,158.4 312.0,159.0 313.5,159.4 315.0,159.9 316.5,160.3 318.0,160.6 319.5,161.0 321.0,161.2 322.5,161.5 324.0,161.7 325.5,161.8 327.0,161.9 328.5,162.0 330.0,162.0 331.5,162.0 333.0,161.9 334.5,161.8 336.0,161.7 337.5,161.5 339.0,161.2 340.5,161.0 342.0,160.6 343.5,160.3 345.0,159.9 346.5,159.4 348.0,159.0 349.5,158.4 351.0,157.9 352.5,157.3 354.0,156.6 355.5,156.0 357.0,155.2 358.5,154.5 360.0,153.7 361.5,152.9 363.0,152.0 364.5,151.1 366.0,150.2 367.5,149.2 369.0,148.2 370.5,147.1 372.0,146.1 373.5,145.0 375.0,143.8 376.5,142.7 378.0,141.5 379.5,140.3 381.0,139.0 382.5,137.7 384.0,136.4 385.5,135.1 387.0,133.8 388.5,132.4 390.0,131.0 391.5,129.6 393.0,128.1 394.5,126.7 396.0,125.2 397.5,123.7 399.0,122.2 400.5,120.7 402.0,119.2 403.5,117.6 405.0,116.0 406.5,114.5 408.0,112.9 409.5,111.3 411.0,109.7 412.5,108.1 414.0,106.5 415.5,104.9 417.0,103.2 418.5,101.6 420.0,100.0" fill="none" stroke="#7c3aed" stroke-width="2.8" stroke-linejoin="round"/><circle cx="150.0" cy="38.0" r="4.5" fill="#c0392b"/><text x="158.0" y="32.0" text-anchor="start" fill="#c0392b" font-size="13" font-weight="bold">+V<tspan baseline-shift="sub" font-size="75%">m</tspan></text><circle cx="330.0" cy="162.0" r="4.5" fill="#c0392b"/><text x="338.0" y="178.0" text-anchor="start" fill="#c0392b" font-size="13" font-weight="bold">−V<tspan baseline-shift="sub" font-size="75%">m</tspan></text><text x="435.0" y="92.0" text-anchor="end" fill="#1b1f24" font-size="13" font-style="italic">ωt</text><text x="52.0" y="30.0" text-anchor="end" fill="#1b1f24" font-size="13" font-style="italic">v</text></svg>
+<p class="caption">One full rotation of the coil (360°) traces one full sine cycle: positive peak at 90°, zero at 180°, negative peak at 270°.</p>
+</div>
+
+<div class="foreshadow">This same coil-in-a-field picture is exactly the DC generator principle used later (Module 2) — the only difference is a commutator "rectifies" this AC waveform into a one-directional (DC) output.</div>
+
+
+<div class="box def"><span class="label">General form with phase</span>
+<div class="formula">v(t) = V<sub>m</sub> sin(ωt + φ) &nbsp; ; &nbsp; T = 1/f &nbsp; ; &nbsp; ω = 2πf</div>
+φ &gt; 0 means the wave starts <em>ahead</em> (leads the reference sin ωt); φ &lt; 0 means it lags.
+</div>
+<div class="box ex"><span class="label">Worked example — reading a waveform equation</span>
+For v = 325 sin(314t + 30°): peak V<sub>m</sub> = <code>325 V</code>; ω = 314 rad/s ⟹ f = 314/2π = <code>50 Hz</code>; T = 1/50 = <code>20 ms</code>; phase = <code>+30°</code> (leads sin 314t by 30°); V<sub>rms</sub> = 325/√2 ≈ <code>230 V</code>; and at t = 0 the instantaneous value is 325 sin 30° = <code>162.5 V</code>.
+</div>
+<h4 class="sub">Lead and lag in one line</h4>
+<p>Two waves of the same frequency are compared by the <em>angle between their zero-crossings or peaks</em>. The one that reaches its peak earlier <b>leads</b>. Phase difference is only meaningful when frequencies are equal.</p>
+
+<h3 class="topic" id="b2">B2. RMS, Average, Form Factor &amp; Peak Factor</h3>
+<div class="box terms"><span class="label">Key terms — know these words</span>
+<ul>
+<li><b>RMS (root mean square)</b> — square it, average it over a period, take the root. Also called the <b>effective value</b> — the DC value that would heat a resistor equally.</li>
+<li><b>Average (mean) value</b> — for a symmetrical AC wave the full-cycle mean is 0, so 'average' means the mean of the rectified half-cycle.</li>
+<li><b>Form factor</b> — V<sub>rms</sub> / V<sub>avg</sub>. Sine wave: 1.11.</li>
+<li><b>Peak factor (crest factor)</b> — V<sub>m</sub> / V<sub>rms</sub>. Sine wave: 1.414.</li>
+<li><b>Rectified wave</b> — a wave with the negative half flipped (full-wave) or removed (half-wave).</li>
+<li><b>Effective value</b> — another name for RMS — it produces the same heating as the equal DC.</li>
+</ul>
+</div>
+
+
+<div class="box mis"><span class="label">Fixing a common misconception</span>
+"Average value of a sine wave is Vm/2" — <b>false</b>. Averaged over a <em>full</em> cycle, a sine wave's true average is exactly zero (equal area above and below the axis cancels). "Average value" in this topic always means the average of the <em>rectified</em> waveform, i.e. averaged over one half-cycle only.
+</div>
+
+<div class="box why"><span class="label">Why V<sub>rms</sub> = V<sub>m</sub>/√2 (derivation)</span>
+RMS = "root of the mean of the square." Square the waveform, average it over one period, then take the square root.
+<div class="formula">V<sub>rms</sub>² = (1/T)∫<sub>0</sub><sup>T</sup> V<sub>m</sub>² sin²(ωt) dt</div>
+Use the identity sin²θ = (1−cos2θ)/2:
+<div class="formula">V<sub>rms</sub>² = (V<sub>m</sub>²/T)∫<sub>0</sub><sup>T</sup> (1−cos2ωt)/2 dt = (V<sub>m</sub>²/2T)[T − 0] = V<sub>m</sub>²/2</div>
+(the cos2ωt term integrates to exactly zero over a whole number of its own periods). Taking the square root: <code>V<sub>rms</sub> = V<sub>m</sub>/√2 ≈ 0.707 V<sub>m</sub></code>.
+</div>
+
+<div class="box why"><span class="label">Why V<sub>avg</sub> = 2V<sub>m</sub>/π (derivation)</span>
+Average the waveform over one half-cycle (θ from 0 to π), where sinθ ≥ 0 throughout:
+<div class="formula">V<sub>avg</sub> = (1/π)∫<sub>0</sub><sup>π</sup> V<sub>m</sub> sinθ dθ = (V<sub>m</sub>/π)[−cosθ]<sub>0</sub><sup>π</sup> = (V<sub>m</sub>/π)(1−(−1)) = 2V<sub>m</sub>/π ≈ 0.637 V<sub>m</sub></div>
+</div>
+
+<div class="diagram">
+<svg viewBox="0 0 510 235" width="510" style="max-width:100%;height:auto" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#1b1f24"><line x1="50.0" y1="170.0" x2="320.0" y2="170.0" stroke="#1b1f24" stroke-width="2" stroke-linecap="round"/><line x1="50.0" y1="170.0" x2="50.0" y2="20.0" stroke="#1b1f24" stroke-width="2" stroke-linecap="round"/><polyline points="50.0,170.0 51.0,168.3 52.1,166.6 53.1,164.9 54.2,163.2 55.2,161.5 56.2,159.8 57.3,158.1 58.3,156.4 59.4,154.7 60.4,153.0 61.5,151.3 62.5,149.7 63.5,148.0 64.6,146.3 65.6,144.6 66.7,143.0 67.7,141.3 68.8,139.7 69.8,138.0 70.8,136.4 71.9,134.7 72.9,133.1 74.0,131.4 75.0,129.8 76.0,128.2 77.1,126.6 78.1,125.0 79.2,123.4 80.2,121.8 81.2,120.3 82.3,118.7 83.3,117.1 84.4,115.6 85.4,114.0 86.5,112.5 87.5,111.0 88.5,109.5 89.6,108.0 90.6,106.5 91.7,105.0 92.7,103.5 93.8,102.1 94.8,100.6 95.8,99.2 96.9,97.8 97.9,96.4 99.0,95.0 100.0,93.6 101.0,92.2 102.1,90.9 103.1,89.5 104.2,88.2 105.2,86.9 106.2,85.6 107.3,84.3 108.3,83.0 109.4,81.8 110.4,80.5 111.5,79.3 112.5,78.1 113.5,76.9 114.6,75.7 115.6,74.5 116.7,73.4 117.7,72.3 118.8,71.1 119.8,70.1 120.8,69.0 121.9,67.9 122.9,66.9 124.0,65.8 125.0,64.8 126.0,63.8 127.1,62.9 128.1,61.9 129.2,61.0 130.2,60.1 131.2,59.2 132.3,58.3 133.3,57.4 134.4,56.6 135.4,55.8 136.5,55.0 137.5,54.2 138.5,53.4 139.6,52.7 140.6,51.9 141.7,51.2 142.7,50.6 143.8,49.9 144.8,49.3 145.8,48.6 146.9,48.0 147.9,47.5 149.0,46.9 150.0,46.4 151.0,45.8 152.1,45.4 153.1,44.9 154.2,44.4 155.2,44.0 156.2,43.6 157.3,43.2 158.3,42.8 159.4,42.5 160.4,42.2 161.5,41.9 162.5,41.6 163.5,41.3 164.6,41.1 165.6,40.9 166.7,40.7 167.7,40.5 168.8,40.4 169.8,40.3 170.8,40.2 171.9,40.1 172.9,40.0 174.0,40.0 175.0,40.0 176.0,40.0 177.1,40.0 178.1,40.1 179.2,40.2 180.2,40.3 181.2,40.4 182.3,40.5 183.3,40.7 184.4,40.9 185.4,41.1 186.5,41.3 187.5,41.6 188.5,41.9 189.6,42.2 190.6,42.5 191.7,42.8 192.7,43.2 193.8,43.6 194.8,44.0 195.8,44.4 196.9,44.9 197.9,45.4 199.0,45.8 200.0,46.4 201.0,46.9 202.1,47.5 203.1,48.0 204.2,48.6 205.2,49.3 206.2,49.9 207.3,50.6 208.3,51.2 209.4,51.9 210.4,52.7 211.5,53.4 212.5,54.2 213.5,55.0 214.6,55.8 215.6,56.6 216.7,57.4 217.7,58.3 218.8,59.2 219.8,60.1 220.8,61.0 221.9,61.9 222.9,62.9 224.0,63.8 225.0,64.8 226.0,65.8 227.1,66.9 228.1,67.9 229.2,69.0 230.2,70.1 231.2,71.1 232.3,72.3 233.3,73.4 234.4,74.5 235.4,75.7 236.5,76.9 237.5,78.1 238.5,79.3 239.6,80.5 240.6,81.8 241.7,83.0 242.7,84.3 243.8,85.6 244.8,86.9 245.8,88.2 246.9,89.5 247.9,90.9 249.0,92.2 250.0,93.6 251.0,95.0 252.1,96.4 253.1,97.8 254.2,99.2 255.2,100.6 256.2,102.1 257.3,103.5 258.3,105.0 259.4,106.5 260.4,108.0 261.5,109.5 262.5,111.0 263.5,112.5 264.6,114.0 265.6,115.6 266.7,117.1 267.7,118.7 268.8,120.3 269.8,121.8 270.8,123.4 271.9,125.0 272.9,126.6 274.0,128.2 275.0,129.8 276.0,131.4 277.1,133.1 278.1,134.7 279.2,136.4 280.2,138.0 281.2,139.7 282.3,141.3 283.3,143.0 284.4,144.6 285.4,146.3 286.5,148.0 287.5,149.7 288.5,151.3 289.6,153.0 290.6,154.7 291.7,156.4 292.7,158.1 293.8,159.8 294.8,161.5 295.8,163.2 296.9,164.9 297.9,166.6 299.0,168.3 300.0,170.0" fill="none" stroke="#7c3aed" stroke-width="2.8" stroke-linejoin="round"/><line x1="50.0" y1="40.0" x2="312.0" y2="40.0" stroke="#c0392b" stroke-width="1.6" stroke-dasharray="5,3" stroke-linecap="round"/><line x1="50.0" y1="78.1" x2="312.0" y2="78.1" stroke="#1e468c" stroke-width="1.6" stroke-dasharray="5,3" stroke-linecap="round"/><line x1="50.0" y1="87.2" x2="312.0" y2="87.2" stroke="#166e3c" stroke-width="1.6" stroke-dasharray="5,3" stroke-linecap="round"/><text x="318.0" y="44.0" text-anchor="start" fill="#c0392b" font-size="13" font-weight="bold">V<tspan baseline-shift="sub" font-size="75%">m</tspan> = 100 V (peak)</text><text x="318.0" y="73.1" text-anchor="start" fill="#1e468c" font-size="13" font-weight="bold">V<tspan baseline-shift="sub" font-size="75%">rms</tspan> = 70.7 V</text><text x="318.0" y="103.2" text-anchor="start" fill="#166e3c" font-size="13" font-weight="bold">V<tspan baseline-shift="sub" font-size="75%">avg</tspan> = 63.7 V</text><text x="50.0" y="188.0" text-anchor="middle" fill="#8a93a3" font-size="12">0°</text><text x="300.0" y="188.0" text-anchor="middle" fill="#8a93a3" font-size="12">180°</text><text x="175.0" y="208.0" text-anchor="middle" fill="#8a93a3" font-size="12">one half-cycle</text></svg>
+<p class="caption">Three 'heights' of the same 100 V-peak sine wave (one half-cycle shown). RMS sits above the average because squaring weights the larger values more.</p>
+</div>
+
+<div class="box def"><span class="label">Definitions</span>
+<div class="formula">Form Factor = V<sub>rms</sub>/V<sub>avg</sub> = (V<sub>m</sub>/√2)/(2V<sub>m</sub>/π) = π/(2√2) ≈ 1.11</div>
+<div class="formula">Peak Factor (crest factor) = V<sub>m</sub>/V<sub>rms</sub> = √2 ≈ 1.414</div>
+</div>
+
+<div class="box ex"><span class="label">Worked example</span>
+A sinusoidal supply has V<sub>m</sub> = 100 V. Find V<sub>rms</sub>, V<sub>avg</sub>, form factor, peak factor.<br>
+<code>V<sub>rms</sub> = 100/√2 = 70.7 V</code> &nbsp; <code>V<sub>avg</sub> = 2(100)/π = 63.7 V</code><br>
+<code>FF = 70.7/63.7 = 1.11</code> &nbsp; <code>PF = 100/70.7 = 1.414</code><br>
+<b>Note:</b> every household "230 V AC" or "120 V AC" rating is the RMS value — the actual peak in a 230 V mains supply is 230×√2 ≈ 325 V.
+</div>
+
+
+<div class="box why"><span class="label">Why RMS is called the 'effective' value</span>
+Heat in a resistor is P = i²R, so the <em>average</em> heating of an AC current is R × mean(i²). A DC current I<sub>dc</sub> gives I<sub>dc</sub>²R. Setting them equal: I<sub>dc</sub> = √mean(i²) = I<sub>rms</sub>. So a 5 A rms AC current heats a heater exactly like 5 A DC — that is why all AC ratings quote RMS.
+</div>
+<h4 class="sub">Same recipe, other waveforms (peak = V<sub>m</sub>)</h4>
+<table>
+<tr><th>Waveform</th><th>V<sub>avg</sub></th><th>V<sub>rms</sub></th><th>Form factor</th><th>Peak factor</th></tr>
+<tr><td>Sine (full-cycle rectified average)</td><td>0.637 V<sub>m</sub></td><td>0.707 V<sub>m</sub></td><td>1.11</td><td>1.414</td></tr>
+<tr><td>Full-wave rectified sine</td><td>0.637 V<sub>m</sub></td><td>0.707 V<sub>m</sub></td><td>1.11</td><td>1.414</td></tr>
+<tr><td>Half-wave rectified sine</td><td>0.318 V<sub>m</sub></td><td>0.5 V<sub>m</sub></td><td>1.57</td><td>2</td></tr>
+<tr><td>Square wave (±V<sub>m</sub>)</td><td>V<sub>m</sub></td><td>V<sub>m</sub></td><td>1</td><td>1</td></tr>
+</table>
+<p>The half-wave numbers (0.318 and 0.5) are the same ones that appear in the rectifier formulas I<sub>dc</sub> = I<sub>m</sub>/π and I<sub>rms</sub> = I<sub>m</sub>/2 later in the course.</p>
+<div class="box ex"><span class="label">Worked example — reading an instrument</span>
+A moving-coil (average-responding) meter calibrated in RMS assumes form factor 1.11. If it reads 10 V on a sine wave, V<sub>avg</sub> = 10/1.11 = 9.0 V. If the same meter is used on a square wave whose V<sub>avg</sub> is actually 9.0 V, the true RMS is 9.0 × 1 = 9.0 V — but the meter still shows 10 V, an 11% error. Lesson: form factor depends on waveform shape.
+</div>
+
+<h3 class="topic" id="b3">B3. Phasors &amp; Impedance</h3>
+<div class="box terms"><span class="label">Key terms — know these words</span>
+<ul>
+<li><b>Phasor</b> — a complex number (magnitude + angle) representing a sinusoid at a known frequency.</li>
+<li><b>Polar / rectangular form</b> — V∠θ  ↔  a + jb, where j = √−1 and a = V cos θ, b = V sin θ.</li>
+<li><b>Impedance (Z)</b> — V/I for AC circuits; Z = R + jX, unit ohm (Ω).</li>
+<li><b>Reactance (X)</b> — the imaginary part of impedance: X<sub>L</sub> = ωL (inductive, +), X<sub>C</sub> = 1/(ωC) (capacitive, −).</li>
+<li><b>Inductor (L) / Capacitor (C)</b> — energy-storage elements: L stores energy in a magnetic field (henry, H); C in an electric field (farad, F).</li>
+<li><b>Leading / lagging</b> — 'current lags voltage' means the current wave peaks <em>later</em> than the voltage wave.</li>
+<li><b>Admittance (Y)</b> — Y = 1/Z = G + jB, unit siemens (S); B is <b>susceptance</b>, G is <b>conductance</b>.</li>
+</ul>
+</div>
+
+
+<div class="box def"><span class="label">Definition</span>
+A <b>phasor</b> is a complex number that represents a sinusoid's magnitude and phase, freezing the rotating picture of B1 at t=0. <b>Impedance</b> Z is the AC generalisation of resistance — the ratio of voltage phasor to current phasor:
+<div class="formula">Z = V/I = R + jX &nbsp;(Ω), &nbsp; |Z| = √(R²+X²), &nbsp; φ = arctan(X/R)</div>
+Resistor: Z<sub>R</sub>=R (in phase). Inductor: Z<sub>L</sub>=jωL=jX<sub>L</sub> (voltage leads current by 90°). Capacitor: Z<sub>C</sub>=1/(jωC)=−jX<sub>C</sub> (voltage lags current by 90°).
+</div>
+
+<div class="box why"><span class="label">Why phasors are allowed to replace calculus</span>
+For a linear circuit driven by a single-frequency sinusoid, every voltage and current in steady state is a sinusoid at that <em>same</em> frequency — only magnitude and phase differ. Since d/dt(A sin(ωt+θ)) is again a sinusoid at frequency ω (just scaled by ω and shifted 90°), differentiation becomes multiplication by jω in the phasor domain. This turns differential equations for L and C into plain algebra — exactly the same KVL/KCL algebra as Part A, just with complex numbers standing in for the resistor-only calculation.
+</div>
+
+<div class="diagram">
+<svg viewBox="0 0 560 240" width="560" style="max-width:100%;height:auto" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#1b1f24"><line x1="60.0" y1="200.0" x2="420.0" y2="200.0" stroke="#1b1f24" stroke-width="1.5" stroke-linecap="round"/><line x1="60.0" y1="200.0" x2="60.0" y2="30.0" stroke="#1b1f24" stroke-width="1.5" stroke-linecap="round"/><text x="426.0" y="205.0" text-anchor="start" fill="#8a93a3" font-size="13">Re</text><text x="54.0" y="26.0" text-anchor="end" fill="#8a93a3" font-size="13">Im</text><line x1="60.0" y1="200.0" x2="330.4" y2="200.0" stroke="#c0392b" stroke-width="3" stroke-linecap="round"/><polygon points="340.0,200.0 328.0,205.0 328.0,195.0" fill="#c0392b"/><text x="345.0" y="222.0" text-anchor="end" fill="#c0392b" font-size="13" font-weight="bold">I (reference, 0°)</text><line x1="60.0" y1="200.0" x2="282.5" y2="13.3" stroke="#1e468c" stroke-width="3" stroke-linecap="round"/><polygon points="289.8,7.2 283.9,18.7 277.4,11.0" fill="#1e468c"/><text x="297.8" y="11.2" text-anchor="start" fill="#1e468c" font-size="13" font-weight="bold">V (leads I by φ)</text><path d="M130,200 A70,70 0 0 0 113.6,155.0" fill="none" stroke="#7c3aed" stroke-width="2"/><text x="152.0" y="178.0" text-anchor="middle" fill="#7c3aed" font-size="16" font-weight="bold">φ</text></svg>
+<p class="caption">Phasor diagram of an inductive (RL) circuit: current is the reference; the voltage phasor sits ahead of it by the impedance angle φ.</p>
+</div>
+
+<div class="foreshadow">Every diagram, formula and worked example from Part A carries over unchanged if you mentally replace every "R" with "Z" and every real number with a phasor — that's the entire content of the next section.</div>
+
+
+<h4 class="sub">The three elements in the AC world</h4>
+<table>
+<tr><th></th><th>Resistor</th><th>Inductor</th><th>Capacitor</th></tr>
+<tr><td>Impedance</td><td>R</td><td>jωL = jX<sub>L</sub></td><td>1/(jωC) = −jX<sub>C</sub></td></tr>
+<tr><td>Reactance vs f</td><td>constant</td><td>rises with f</td><td>falls with f</td></tr>
+<tr><td>Phase</td><td>V, I in phase</td><td>I lags V by 90°</td><td>I leads V by 90°</td></tr>
+<tr><td>At DC (f = 0)</td><td>R</td><td>acts as a short</td><td>acts as an open circuit</td></tr>
+<tr><td>At very high f</td><td>R</td><td>acts like an open circuit</td><td>acts like a short</td></tr>
+</table>
+<p><b>Memory aid:</b> <em>ELI the ICE man</em> — in an inductor (L), voltage E leads current I; in a capacitor (C), current I leads voltage E.</p>
+<h4 class="sub">Converting between forms</h4>
+<div class="formula">a + jb → magnitude √(a² + b²), angle tan⁻¹(b/a) &nbsp;&nbsp;|&nbsp;&nbsp; V∠θ → V cos θ + j V sin θ</div>
+<div class="box ex"><span class="label">Worked example — one impedance, both forms</span>
+Z = 3 + j4 Ω = 5∠53.13° Ω. A current of 2∠0° A gives V = Z·I = 10∠53.13° V, i.e. the voltage leads the current by 53.13°. Divide back: V/I = 5∠53.13° ✓. For a 50 Hz supply, X<sub>L</sub> = 4 Ω means L = X<sub>L</sub>/ω = 4/314 = 12.7 mH.
+</div>
+<div class="box mis"><span class="label">Fixing a common misconception</span>
+Reactance is <em>not</em> resistance: a pure inductor or capacitor dissipates no real power. Reactance limits current and shifts phase, but the energy is stored and returned each cycle, not turned into heat.
+</div>
+
+<h3 class="topic" id="b4">B4. Series RL, RC, RLC Circuits</h3>
+<div class="box terms"><span class="label">Key terms — know these words</span>
+<ul>
+<li><b>Series RLC circuit</b> — R, L and C carrying the same current; total impedance Z = R + j(X<sub>L</sub> − X<sub>C</sub>).</li>
+<li><b>Inductive circuit</b> — X<sub>L</sub> &gt; X<sub>C</sub>: net reactance positive, current lags.</li>
+<li><b>Capacitive circuit</b> — X<sub>C</sub> &gt; X<sub>L</sub>: net reactance negative, current leads.</li>
+<li><b>Resonance</b> — X<sub>L</sub> = X<sub>C</sub>: reactances cancel, Z = R (minimum), current is maximum and in phase with V.</li>
+<li><b>Resonant frequency (f<sub>0</sub>)</b> — f<sub>0</sub> = 1/(2π√(LC)).</li>
+<li><b>Quality factor (Q)</b> — at resonance Q = X<sub>L</sub>/R; a big Q means a sharp, narrow resonance peak and large L and C voltages.</li>
+<li><b>Voltage triangle</b> — V<sub>R</sub>, V<sub>X</sub> and V form a right triangle — the impedance triangle multiplied by I.</li>
+</ul>
+</div>
+
+
+<div class="box def"><span class="label">Definition</span>
+<table>
+<tr><th>Circuit</th><th>Impedance Z</th><th>Phase angle φ</th><th>Behaviour</th></tr>
+<tr><td>Series RL</td><td>R + jX<sub>L</sub></td><td>tan⁻¹(X<sub>L</sub>/R), positive</td><td>current <b>lags</b> voltage</td></tr>
+<tr><td>Series RC</td><td>R − jX<sub>C</sub></td><td>tan⁻¹(X<sub>C</sub>/R), negative</td><td>current <b>leads</b> voltage</td></tr>
+<tr><td>Series RLC</td><td>R + j(X<sub>L</sub>−X<sub>C</sub>)</td><td>tan⁻¹((X<sub>L</sub>−X<sub>C</sub>)/R)</td><td>lag if X<sub>L</sub>&gt;X<sub>C</sub>, lead if X<sub>C</sub>&gt;X<sub>L</sub>, in phase if equal (<b>resonance</b>)</td></tr>
+</table>
+</div>
+
+<div class="diagram">
+<svg viewBox="0 0 720 215" width="720" style="max-width:100%;height:auto" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#1b1f24"><line x1="60.0" y1="160.0" x2="340.0" y2="160.0" stroke="#1b1f24" stroke-width="2" stroke-linecap="round"/><g transform="translate(60.0,102.5) rotate(-90.0)" fill="none" stroke="#1b1f24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><line x1="-57.5" y1="0" x2="-18" y2="0"/><line x1="18" y1="0" x2="57.5" y2="0"/><circle cx="0" cy="0" r="18"/></g><path d="M50.0,102.5 q5,-10 10,0 t10,0" fill="none" stroke="#1b1f24" stroke-width="2"/><text x="30.0" y="106.5" text-anchor="end" fill="#1b1f24" font-size="13">V = 50 V</text><g transform="translate(130.0,45.0) rotate(0.0)" fill="none" stroke="#1b1f24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><line x1="-70.0" y1="0" x2="-30" y2="0"/><line x1="30" y1="0" x2="70.0" y2="0"/><polyline points="-30.0,0.0 -25.0,-9.0 -15.0,9.0 -5.0,-9.0 5.0,9.0 15.0,-9.0 25.0,9.0 30.0,0.0"/></g><text x="130.0" y="27.0" text-anchor="middle" fill="#1b1f24" font-size="13">R = 3 Ω</text><g transform="translate(270.0,45.0) rotate(0.0)" fill="none" stroke="#1b1f24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><line x1="-70.0" y1="0" x2="-28" y2="0"/><line x1="28" y1="0" x2="70.0" y2="0"/><path d="M-28,0 a7,7 0 0 1 14,0 a7,7 0 0 1 14,0 a7,7 0 0 1 14,0 a7,7 0 0 1 14,0"/></g><text x="270.0" y="23.0" text-anchor="middle" fill="#1b1f24" font-size="13">X<tspan baseline-shift="sub" font-size="75%">L</tspan> = 4 Ω</text><line x1="340.0" y1="45.0" x2="340.0" y2="160.0" stroke="#1b1f24" stroke-width="2" stroke-linecap="round"/><path d="M212.0,84.2 A24,24 0 1 1 186.2,85.3" fill="none" stroke="#c0392b" stroke-width="2"/><polygon points="186.2,85.3 181.6,92.7 177.8,87.2" fill="#c0392b"/><text x="200.0" y="111.0" text-anchor="middle" fill="#c0392b" font-size="14" font-weight="bold">I</text><text x="200.0" y="200.0" text-anchor="middle" fill="#1b1f24" font-size="13" font-weight="bold">Z = 3 + j4 Ω  →  |Z| = 5 Ω,  φ = 53.1°</text><text x="560.0" y="20.0" text-anchor="middle" fill="#1b1f24" font-size="14" font-weight="bold">Impedance triangle</text><line x1="470.0" y1="170.0" x2="578.0" y2="170.0" stroke="#1b1f24" stroke-width="2.5" stroke-linecap="round"/><line x1="578.0" y1="170.0" x2="578.0" y2="26.0" stroke="#1b1f24" stroke-width="2.5" stroke-linecap="round"/><line x1="470.0" y1="170.0" x2="578.0" y2="26.0" stroke="#7c3aed" stroke-width="2.8" stroke-linecap="round"/><rect x="568" y="160" width="10" height="10" fill="none" stroke="#1b1f24" stroke-width="1.4"/><text x="524.0" y="190.0" text-anchor="middle" fill="#1b1f24" font-size="13" font-weight="bold">R = 3 Ω</text><text x="588.0" y="102.0" text-anchor="start" fill="#1b1f24" font-size="13" font-weight="bold">X<tspan baseline-shift="sub" font-size="75%">L</tspan> = 4 Ω</text><text x="516.0" y="92.0" text-anchor="end" fill="#7c3aed" font-size="13" font-weight="bold">Z = 5 Ω</text><path d="M502,170 A32,32 0 0 0 489.2,144.4" fill="none" stroke="#c0392b" stroke-width="2"/><text x="517.0" y="160.0" text-anchor="middle" fill="#c0392b" font-size="14" font-weight="bold">φ</text></svg>
+<p class="caption">Series RL circuit and its impedance triangle — a 3-4-5 right triangle: resistance and reactance are the legs, impedance the hypotenuse.</p>
+</div>
+
+<div class="box ex"><span class="label">Worked example</span>
+A series RL circuit has R = 3 Ω, X<sub>L</sub> = 4 Ω, supplied by V = 50 V (rms). Find |Z|, φ, and I.<br>
+<code>|Z| = √(3²+4²) = √25 = 5 Ω</code> &nbsp; <code>φ = tan⁻¹(4/3) = 53.13°</code> (current lags voltage)<br>
+<code>I = V/|Z| = 50/5 = 10 A</code>
+</div>
+
+<div class="foreshadow">Keep V=50 V, I=10 A, φ=53.13° — Section B5 uses this exact same circuit to compute real, reactive and apparent power.</div>
+
+
+<div class="box ex"><span class="label">Worked example — series RC</span>
+R = 3 Ω, X<sub>C</sub> = 4 Ω, V = 50 V rms. Z = 3 − j4 ⟹ |Z| = 5 Ω, φ = −53.13° (current <b>leads</b> the voltage). I = 50/5 = <code>10 A</code>. V<sub>R</sub> = 30 V, V<sub>C</sub> = 40 V, and these add as a right triangle: √(30² + 40²) = 50 V ✓ — <em>not</em> 30 + 40 = 70 V.
+</div>
+<div class="box ex"><span class="label">Worked example — series RLC</span>
+R = 4 Ω, X<sub>L</sub> = 9 Ω, X<sub>C</sub> = 6 Ω, V = 100 V.<br>
+Net reactance X = 9 − 6 = <code>3 Ω</code> (inductive). Z = 4 + j3 ⟹ |Z| = 5 Ω, φ = tan⁻¹(3/4) = <code>36.87° lagging</code>. I = 100/5 = <code>20 A</code>. cos φ = 0.8.<br>
+Individual voltages: V<sub>R</sub> = 80 V, V<sub>L</sub> = 180 V, V<sub>C</sub> = 120 V. Note V<sub>L</sub> and V<sub>C</sub> can each be <em>larger than the supply</em> — they partially cancel (180 − 120 = 60 V), and √(80² + 60²) = 100 V ✓.
+</div>
+<h4 class="sub">Resonance in detail</h4>
+<div class="box why"><span class="label">Why f<sub>0</sub> = 1/(2π√(LC))</span>
+X<sub>L</sub> = X<sub>C</sub> ⟹ ωL = 1/(ωC) ⟹ ω² = 1/(LC) ⟹ ω<sub>0</sub> = 1/√(LC), so f<sub>0</sub> = ω<sub>0</sub>/2π.
+</div>
+<ul>
+<li>At resonance: Z = R (minimum), I = V/R (maximum), φ = 0, pf = 1.</li>
+<li>V<sub>L</sub> and V<sub>C</sub> are equal and opposite, each = Q × V (can be many times the supply).</li>
+<li>Below f<sub>0</sub> the circuit is capacitive; above f<sub>0</sub> it is inductive.</li>
+</ul>
+<div class="diagram">
+<svg viewBox="0 0 430 215" width="430" style="max-width:100%;height:auto" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#1b1f24"><line x1="50.0" y1="170.0" x2="400.0" y2="170.0" stroke="#1b1f24" stroke-width="2" stroke-linecap="round"/><line x1="50.0" y1="170.0" x2="50.0" y2="20.0" stroke="#1b1f24" stroke-width="2" stroke-linecap="round"/><polyline points="50.0,154.6 52.8,154.1 55.7,153.6 58.5,153.0 61.3,152.4 64.2,151.8 67.0,151.2 69.8,150.6 72.7,150.0 75.5,149.3 78.3,148.6 81.2,147.9 84.0,147.2 86.8,146.4 89.7,145.7 92.5,144.9 95.3,144.0 98.2,143.2 101.0,142.2 103.8,141.3 106.7,140.3 109.5,139.3 112.3,138.3 115.2,137.2 118.0,136.0 120.8,134.8 123.7,133.5 126.5,132.2 129.3,130.8 132.2,129.3 135.0,127.8 137.8,126.2 140.7,124.5 143.5,122.7 146.3,120.8 149.2,118.8 152.0,116.7 154.8,114.4 157.7,112.1 160.5,109.5 163.3,106.9 166.2,104.0 169.0,101.0 171.8,97.9 174.7,94.5 177.5,91.0 180.3,87.2 183.2,83.3 186.0,79.2 188.8,75.0 191.7,70.7 194.5,66.3 197.3,61.9 200.2,57.6 203.0,53.5 205.8,49.7 208.7,46.4 211.5,43.7 214.3,41.7 217.2,40.4 220.0,40.0 222.8,40.4 225.7,41.6 228.5,43.5 231.3,46.0 234.2,48.9 237.0,52.2 239.8,55.7 242.7,59.3 245.5,63.0 248.3,66.7 251.2,70.3 254.0,73.8 256.8,77.2 259.7,80.4 262.5,83.5 265.3,86.4 268.2,89.2 271.0,91.9 273.8,94.4 276.7,96.8 279.5,99.0 282.3,101.1 285.2,103.2 288.0,105.1 290.8,106.9 293.7,108.6 296.5,110.2 299.3,111.7 302.2,113.2 305.0,114.6 307.8,115.9 310.7,117.2 313.5,118.4 316.3,119.6 319.2,120.6 322.0,121.7 324.8,122.7 327.7,123.7 330.5,124.6 333.3,125.5 336.2,126.3 339.0,127.1 341.8,127.9 344.7,128.7 347.5,129.4 350.3,130.1 353.2,130.8 356.0,131.4 358.8,132.0 361.7,132.6 364.5,133.2 367.3,133.8 370.2,134.3 373.0,134.9 375.8,135.4 378.7,135.9 381.5,136.4 384.3,136.8 387.2,137.3 390.0,137.7" fill="none" stroke="#7c3aed" stroke-width="2.8" stroke-linejoin="round"/><line x1="220.0" y1="170.0" x2="220.0" y2="40.0" stroke="#c0392b" stroke-width="1.5" stroke-dasharray="4,3" stroke-linecap="round"/><text x="220.0" y="188.0" text-anchor="middle" fill="#c0392b" font-size="13" font-weight="bold">f₀ = 1/(2π√LC)</text><text x="232.0" y="28.0" text-anchor="start" fill="#c0392b" font-size="13" font-weight="bold">I<tspan baseline-shift="sub" font-size="75%">max</tspan> = V/R  (Z = R)</text><text x="60.0" y="80.0" text-anchor="start" fill="#1e468c" font-size="13" font-weight="bold">capacitive</text><text x="60.0" y="96.0" text-anchor="start" fill="#1e468c" font-size="12">(I leads V)</text><text x="392.0" y="80.0" text-anchor="end" fill="#166e3c" font-size="13" font-weight="bold">inductive</text><text x="392.0" y="96.0" text-anchor="end" fill="#166e3c" font-size="12">(I lags V)</text><text x="225.0" y="208.0" text-anchor="middle" fill="#1b1f24" font-size="13">frequency f →</text><text transform="rotate(-90 16 100)" x="16.0" y="100.0" text-anchor="middle" fill="#1b1f24" font-size="13">current I</text></svg>
+<p class="caption">Current in a series RLC circuit versus frequency: a sharp peak at resonance, where X<sub>L</sub> = X<sub>C</sub>. The higher the Q, the narrower the peak.</p>
+</div>
+
+<h3 class="topic" id="b5">B5. Power &amp; Power Factor in AC Circuits</h3>
+<div class="box terms"><span class="label">Key terms — know these words</span>
+<ul>
+<li><b>Instantaneous power p(t)</b> — p = v·i at each instant; it oscillates at twice the supply frequency.</li>
+<li><b>Real (active) power P</b> — the average power actually converted to heat/work; unit watt (W).</li>
+<li><b>Reactive power Q</b> — power swapped back and forth with L and C; unit volt-ampere-reactive (VAR). Positive for inductive loads.</li>
+<li><b>Apparent power S</b> — S = V<sub>rms</sub>I<sub>rms</sub>; unit volt-ampere (VA). What cables and transformers must be rated for.</li>
+<li><b>Power factor (pf)</b> — cos φ = P/S, from 0 to 1.</li>
+<li><b>Lagging / leading pf</b> — lagging = inductive load (motors); leading = capacitive load.</li>
+<li><b>Unity power factor</b> — pf = 1: purely resistive; all the apparent power is real power.</li>
+<li><b>Complex power</b> — <b>S</b> = P + jQ = V·I* (I* is the complex conjugate of the current phasor).</li>
+<li><b>Power-factor correction</b> — adding capacitance in parallel with an inductive load to cancel Q and raise pf.</li>
+</ul>
+</div>
+
+
+<div class="box def"><span class="label">Definition</span>
+<div class="formula">Apparent power &nbsp;S = VI &nbsp;(VA) &nbsp;&nbsp;|&nbsp;&nbsp; Real power &nbsp;P = VI cosφ &nbsp;(W) &nbsp;&nbsp;|&nbsp;&nbsp; Reactive power &nbsp;Q = VI sinφ &nbsp;(VAR)</div>
+<div class="formula">S² = P² + Q² &nbsp;&nbsp;&nbsp; Power factor = cosφ = P/S</div>
+</div>
+
+<div class="box why"><span class="label">Why real power involves cosφ</span>
+Instantaneous power is p(t)=v(t)i(t). With v=V<sub>m</sub>sin(ωt) and i=I<sub>m</sub>sin(ωt−φ), the product expands (via a standard trig identity) into a constant term plus a term oscillating at 2ω. Averaged over a full cycle, the oscillating term vanishes and only the constant term survives:
+<div class="formula">P<sub>avg</sub> = (V<sub>m</sub>I<sub>m</sub>/2)cosφ = V<sub>rms</sub>I<sub>rms</sub>cosφ</div>
+This is genuinely the only part of VI that does <em>net</em> work over a cycle — the rest sloshes energy back and forth into the inductor/capacitor's field and back, which is exactly what "reactive" power Q means.
+</div>
+
+<div class="diagram">
+<svg viewBox="0 0 430 260" width="430" style="max-width:100%;height:auto" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#1b1f24"><line x1="60.0" y1="210.0" x2="198.0" y2="210.0" stroke="#166e3c" stroke-width="3" stroke-linecap="round"/><line x1="198.0" y1="210.0" x2="198.0" y2="26.0" stroke="#1e468c" stroke-width="3" stroke-linecap="round"/><line x1="60.0" y1="210.0" x2="198.0" y2="26.0" stroke="#7c3aed" stroke-width="3" stroke-linecap="round"/><rect x="187.0" y="199" width="11" height="11" fill="none" stroke="#1b1f24" stroke-width="1.4"/><text x="129.0" y="232.0" text-anchor="middle" fill="#166e3c" font-size="13" font-weight="bold">P = 300 W (real)</text><text x="208.0" y="122.0" text-anchor="start" fill="#1e468c" font-size="13" font-weight="bold">Q = 400 VAR (reactive)</text><text x="119.0" y="114.0" text-anchor="end" fill="#7c3aed" font-size="13" font-weight="bold">S = 500 VA</text><path d="M98,210 A38,38 0 0 0 82.8,179.6" fill="none" stroke="#c0392b" stroke-width="2"/><text x="116.0" y="198.0" text-anchor="middle" fill="#c0392b" font-size="14" font-weight="bold">φ</text><text x="129.0" y="250.0" text-anchor="middle" fill="#c0392b" font-size="12">power factor cos φ = P/S = 0.6</text></svg>
+<p class="caption">The power triangle for the B4 circuit — the same 3-4-5 shape as the impedance triangle, because P, Q and S are I² times R, X and Z.</p>
+</div>
+
+<div class="box ex"><span class="label">Worked example</span>
+Continuing B4's circuit: V=50 V, I=10 A, φ=53.13° (cosφ=0.6, sinφ=0.8).<br>
+<code>S = VI = 500 VA</code> &nbsp; <code>P = 500×0.6 = 300 W</code> &nbsp; <code>Q = 500×0.8 = 400 VAR</code><br>
+<b>Check:</b> <code>P²+Q² = 300²+400² = 90000+160000 = 250000 = 500² = S²</code> ✓
+</div>
+
+<div class="box mis"><span class="label">Fixing a common misconception</span>
+A low power factor is <em>not</em> "wasted power" in the sense of heat — reactive power Q isn't dissipated, it's shuttled back and forth. But a low cosφ still costs money: for the same real power P, a lower cosφ demands a <em>larger</em> current I=P/(Vcosφ), which means thicker cables and bigger transformers just to deliver the same useful watts. That's why factories with inductive loads (motors) install capacitor banks to raise their power factor.
+</div>
+
+<div class="foreshadow">Every motor in Topic 2 (Electrical Machines) — DC or three-phase induction — has winding inductance, so every one of them draws a lagging power factor exactly like this RL example. The induction motor there is, electrically, just a big rotating RL/RLC load.</div>
+
+
+<h4 class="sub">How each element handles power</h4>
+<table>
+<tr><th>Element</th><th>P (real)</th><th>Q (reactive)</th></tr>
+<tr><td>Resistor</td><td>I²R</td><td>0</td></tr>
+<tr><td>Inductor</td><td>0</td><td>+I²X<sub>L</sub> (absorbs VARs)</td></tr>
+<tr><td>Capacitor</td><td>0</td><td>−I²X<sub>C</sub> (supplies VARs)</td></tr>
+</table>
+<p>Complex power gathers everything: <b>S</b> = P + jQ, with |S| = VI. Because inductive and capacitive Q have opposite signs, a capacitor can 'cancel' an inductor's Q — the basis of power-factor correction.</p>
+<div class="box ex"><span class="label">Worked example — power-factor correction</span>
+A motor-like load draws P = 300 W at pf 0.6 lagging (from the B5 example: S = 500 VA, Q = 400 VAR). We want pf 0.8 lagging.<br>
+New angle: cos φ₂ = 0.8 ⟹ tan φ₂ = 0.75 ⟹ Q₂ = P tan φ₂ = 300 × 0.75 = <code>225 VAR</code>.<br>
+Capacitor must supply Q<sub>C</sub> = 400 − 225 = <code>175 VAR</code>.<br>
+Effect on current: before, S = 500 VA ⟹ I = 10 A at 50 V. After, S₂ = P/cos φ₂ = 300/0.8 = 375 VA ⟹ I = 7.5 A. The supply now carries 25% less current for the <em>same</em> 300 W of useful power.
+</div>
+<div class="box mis"><span class="label">Fixing a common misconception</span>
+Power in AC is <b>not</b> simply V × I with rms values — that is only the <em>apparent</em> power. Multiply by the power factor to get the real power that does the work. Also, add P's arithmetically and Q's algebraically; <b>never add S's directly</b> — S is the length of a vector.
+</div>
+
+
+<h2 class="part" id="glossary">Glossary (A–Z) <span class="marks">93 terms</span></h2>
+<p>Every key term from the boxes above in one alphabetical list — skim this the night before the exam.</p>
+<table class="gloss">
+<tr><th>Term</th><th>Meaning</th></tr>
+<tr><td>Active / passive element</td><td>active elements (sources) can deliver energy; passive elements (R, L, C) only absorb, dissipate or store it.</td></tr>
+<tr><td>Admittance (Y)</td><td>Y = 1/Z = G + jB, unit siemens (S); B is <b>susceptance</b>, G is <b>conductance</b>.</td></tr>
+<tr><td>Alternation</td><td>half a cycle (one positive <em>or</em> one negative loop).</td></tr>
+<tr><td>Angular frequency (ω)</td><td>ω = 2πf, in rad/s. Mains: 2π × 50 ≈ 314 rad/s.</td></tr>
+<tr><td>Apparent power S</td><td>S = V<sub>rms</sub>I<sub>rms</sub>; unit volt-ampere (VA). What cables and transformers must be rated for.</td></tr>
+<tr><td>Average (mean) value</td><td>for a symmetrical AC wave the full-cycle mean is 0, so 'average' means the mean of the rectified half-cycle.</td></tr>
+<tr><td>Branch</td><td>a single element (or a series string of elements) connecting two nodes; it carries one current.</td></tr>
+<tr><td>Capacitive circuit</td><td>X<sub>C</sub> &gt; X<sub>L</sub>: net reactance negative, current leads.</td></tr>
+<tr><td>Charge (Q)</td><td>the basic electrical quantity, measured in coulombs (C).</td></tr>
+<tr><td>Clockwise convention</td><td>choosing every mesh current clockwise makes all the shared-resistor terms negative — a built-in error check.</td></tr>
+<tr><td>Complex power</td><td><b>S</b> = P + jQ = V·I* (I* is the complex conjugate of the current phasor).</td></tr>
+<tr><td>Conductance (G)</td><td>reciprocal of resistance, G = 1/R; unit siemens (S). Makes parallel-circuit sums easier.</td></tr>
+<tr><td>Conductance form</td><td>writing branch current as G × (voltage difference) instead of (voltage difference)/R; gives a symmetric equation matrix.</td></tr>
+<tr><td>Current (I)</td><td>rate of flow of charge, I = dQ/dt; unit ampere (A = C/s). Conventional direction = the way positive charge would move (from + to −).</td></tr>
+<tr><td>Current divider</td><td>parallel resistors splitting a supply current in inverse proportion to their resistances.</td></tr>
+<tr><td>Cycle</td><td>one complete set of positive and negative values of the wave.</td></tr>
+<tr><td>Dependent source (caution)</td><td>stays <em>in</em> the circuit during superposition; only independent sources are killed.</td></tr>
+<tr><td>Effective value</td><td>another name for RMS — it produces the same heating as the equal DC.</td></tr>
+<tr><td>Efficiency (η)</td><td>η = power in load ÷ total power supplied = R<sub>L</sub>/(R<sub>th</sub> + R<sub>L</sub>).</td></tr>
+<tr><td>Energy (W)</td><td>power × time; unit joule (J). Electricity bills use the kilowatt-hour (1 kWh = 3.6 MJ).</td></tr>
+<tr><td>Equivalent resistance (R<sub>eq</sub>)</td><td>the single resistor that draws the same current as the whole network at the same voltage.</td></tr>
+<tr><td>Equivalent sources</td><td>two sources with identical open-circuit voltage and short-circuit current at the terminals.</td></tr>
+<tr><td>Essential node (junction)</td><td>a node where <b>three or more</b> branches meet — the only nodes that need a KCL equation.</td></tr>
+<tr><td>Form factor</td><td>V<sub>rms</sub> / V<sub>avg</sub>. Sine wave: 1.11.</td></tr>
+<tr><td>Frequency (f)</td><td>cycles per second; unit hertz (Hz). Indian mains = 50 Hz.</td></tr>
+<tr><td>Ideal current source</td><td>forces a fixed current whatever voltage appears across it (internal resistance = ∞).</td></tr>
+<tr><td>Ideal source</td><td>no internal resistance; the source transformation does <b>not</b> apply to an ideal source on its own.</td></tr>
+<tr><td>Ideal voltage source</td><td>keeps its terminal voltage fixed whatever current it supplies (internal resistance = 0).</td></tr>
+<tr><td>Impedance (Z)</td><td>V/I for AC circuits; Z = R + jX, unit ohm (Ω).</td></tr>
+<tr><td>Independent / dependent source</td><td>independent: value set by itself. Dependent (controlled): value set by a voltage or current elsewhere in the circuit (drawn as a diamond).</td></tr>
+<tr><td>Independent source</td><td>a source whose value does not depend on anything else in the circuit.</td></tr>
+<tr><td>Inductive circuit</td><td>X<sub>L</sub> &gt; X<sub>C</sub>: net reactance positive, current lags.</td></tr>
+<tr><td>Inductor (L) / Capacitor (C)</td><td>energy-storage elements: L stores energy in a magnetic field (henry, H); C in an electric field (farad, F).</td></tr>
+<tr><td>Instantaneous power p(t)</td><td>p = v·i at each instant; it oscillates at twice the supply frequency.</td></tr>
+<tr><td>Instantaneous value</td><td>the value at one particular time, e.g. v(t) = V<sub>m</sub> sin ωt.</td></tr>
+<tr><td>Internal resistance</td><td>the resistance inside a real source that makes its terminal voltage sag under load.</td></tr>
+<tr><td>Killing a source</td><td>voltage source → replace by a short; current source → replace by an open circuit.</td></tr>
+<tr><td>Lagging / leading pf</td><td>lagging = inductive load (motors); leading = capacitive load.</td></tr>
+<tr><td>Leading / lagging</td><td>'current lags voltage' means the current wave peaks <em>later</em> than the voltage wave.</td></tr>
+<tr><td>Linear element</td><td>an element whose V–I graph is a straight line through the origin (double V, double I).</td></tr>
+<tr><td>Linear network</td><td>a network whose elements obey superposition/proportionality; Thevenin's theorem holds only for these.</td></tr>
+<tr><td>Load (R<sub>L</sub>)</td><td>the element receiving power from the source network.</td></tr>
+<tr><td>Loop</td><td>any closed path that visits each node at most once.</td></tr>
+<tr><td>Matched load</td><td>R<sub>L</sub> = R<sub>th</sub>; the condition for maximum power to the load.</td></tr>
+<tr><td>Mesh</td><td>a loop that contains no other loop inside it (a 'window' of the circuit).</td></tr>
+<tr><td>Mesh current</td><td>an imaginary current circulating round one mesh; real branch currents are built from these.</td></tr>
+<tr><td>Node</td><td>a point where two or more circuit elements join.</td></tr>
+<tr><td>Node voltage</td><td>the voltage of a node with respect to the reference node.</td></tr>
+<tr><td>Norton equivalent</td><td>current source I<sub>N</sub> in parallel with R<sub>N</sub> = R<sub>th</sub>.</td></tr>
+<tr><td>Open-circuit voltage (V<sub>oc</sub>)</td><td>voltage across a–b with nothing connected; equals V<sub>th</sub>.</td></tr>
+<tr><td>Parallel connection</td><td>elements joined across the <em>same two nodes</em> so they share the <em>same voltage</em>.</td></tr>
+<tr><td>Passive sign convention</td><td>if current enters the <b>+</b> terminal of an element, then P = VI &gt; 0 means the element <em>absorbs</em> power; P &lt; 0 means it delivers power.</td></tr>
+<tr><td>Peak (maximum) value V<sub>m</sub></td><td>the amplitude — the largest instantaneous value.</td></tr>
+<tr><td>Peak factor (crest factor)</td><td>V<sub>m</sub> / V<sub>rms</sub>. Sine wave: 1.414.</td></tr>
+<tr><td>Peak-to-peak value</td><td>2V<sub>m</sub>, from the positive crest to the negative crest.</td></tr>
+<tr><td>Period (T)</td><td>time for one cycle; T = 1/f, in seconds.</td></tr>
+<tr><td>Phase angle (φ)</td><td>the angular shift of a wave relative to a reference; v = V<sub>m</sub> sin(ωt + φ).</td></tr>
+<tr><td>Phasor</td><td>a complex number (magnitude + angle) representing a sinusoid at a known frequency.</td></tr>
+<tr><td>Planar circuit</td><td>a circuit that can be drawn on paper with no wires crossing — needed for mesh analysis.</td></tr>
+<tr><td>P<sub>max</sub></td><td>V<sub>th</sub>²/(4R<sub>th</sub>) — the peak of the power-vs-R<sub>L</sub> curve.</td></tr>
+<tr><td>Polar / rectangular form</td><td>V∠θ  ↔  a + jb, where j = √−1 and a = V cos θ, b = V sin θ.</td></tr>
+<tr><td>Power (P)</td><td>rate of energy conversion, P = VI = I²R = V²/R; unit watt (W).</td></tr>
+<tr><td>Power factor (pf)</td><td>cos φ = P/S, from 0 to 1.</td></tr>
+<tr><td>Power-factor correction</td><td>adding capacitance in parallel with an inductive load to cancel Q and raise pf.</td></tr>
+<tr><td>Practical source</td><td>an ideal source plus its internal resistance (in series for a voltage source, in parallel for a current source).</td></tr>
+<tr><td>Quality factor (Q)</td><td>at resonance Q = X<sub>L</sub>/R; a big Q means a sharp, narrow resonance peak and large L and C voltages.</td></tr>
+<tr><td>Reactance (X)</td><td>the imaginary part of impedance: X<sub>L</sub> = ωL (inductive, +), X<sub>C</sub> = 1/(ωC) (capacitive, −).</td></tr>
+<tr><td>Reactive power Q</td><td>power swapped back and forth with L and C; unit volt-ampere-reactive (VAR). Positive for inductive loads.</td></tr>
+<tr><td>Real (active) power P</td><td>the average power actually converted to heat/work; unit watt (W).</td></tr>
+<tr><td>Rectified wave</td><td>a wave with the negative half flipped (full-wave) or removed (half-wave).</td></tr>
+<tr><td>Reference node (ground)</td><td>the node chosen as 0 V; every other node voltage is measured relative to it.</td></tr>
+<tr><td>Resistance (R)</td><td>opposition to current flow; unit ohm (Ω). For a wire, R = ρL/A (resistivity × length ÷ area).</td></tr>
+<tr><td>Resonance</td><td>X<sub>L</sub> = X<sub>C</sub>: reactances cancel, Z = R (minimum), current is maximum and in phase with V.</td></tr>
+<tr><td>Resonant frequency (f<sub>0</sub>)</td><td>f<sub>0</sub> = 1/(2π√(LC)).</td></tr>
+<tr><td>Response</td><td>the voltage or current you are solving for.</td></tr>
+<tr><td>RMS (root mean square)</td><td>square it, average it over a period, take the root. Also called the <b>effective value</b> — the DC value that would heat a resistor equally.</td></tr>
+<tr><td>Series connection</td><td>elements strung end-to-end so they carry the <em>same current</em>.</td></tr>
+<tr><td>Series RLC circuit</td><td>R, L and C carrying the same current; total impedance Z = R + j(X<sub>L</sub> − X<sub>C</sub>).</td></tr>
+<tr><td>Series–parallel network</td><td>a mix of both; reduce it step by step, innermost combination first.</td></tr>
+<tr><td>Shared (common) branch</td><td>a branch belonging to two meshes; its real current = difference of the two mesh currents.</td></tr>
+<tr><td>Short circuit / open circuit</td><td>short: R = 0, V = 0, any current. Open: R = ∞, I = 0, any voltage.</td></tr>
+<tr><td>Short-circuit current (I<sub>sc</sub>)</td><td>current when a–b are shorted together; equals I<sub>N</sub>.</td></tr>
+<tr><td>Supermesh</td><td>two meshes sharing a current source; the source's branch is left out and one KVL is written round the combined outer loop.</td></tr>
+<tr><td>Supernode</td><td>two non-reference nodes joined by a voltage source; treated as one node for KCL, plus one extra equation from the source.</td></tr>
+<tr><td>Superposition</td><td>total response = algebraic sum of responses to each independent source acting alone.</td></tr>
+<tr><td>Terminals a–b</td><td>the two points where the load will connect and from which we 'look into' the network.</td></tr>
+<tr><td>Thevenin resistance (R<sub>th</sub>)</td><td>resistance seen at a–b with independent sources killed; also R<sub>th</sub> = V<sub>oc</sub>/I<sub>sc</sub>.</td></tr>
+<tr><td>Unity power factor</td><td>pf = 1: purely resistive; all the apparent power is real power.</td></tr>
+<tr><td>Voltage / potential difference (V)</td><td>energy per unit charge between <em>two points</em>; unit volt (V = J/C).</td></tr>
+<tr><td>Voltage divider</td><td>series resistors splitting a supply voltage in proportion to their resistances.</td></tr>
+<tr><td>Voltage rise / drop</td><td>going through a source from − to + is a rise; going through a resistor <em>along</em> the current is a drop.</td></tr>
+<tr><td>Voltage triangle</td><td>V<sub>R</sub>, V<sub>X</sub> and V form a right triangle — the impedance triangle multiplied by I.</td></tr>
+<tr><td>Waveform</td><td>the graph of a quantity against time.</td></tr>
+</table>
+
+</div>
+<a href="#top" class="backtop">↑</a>
+
+</body>
+</html>

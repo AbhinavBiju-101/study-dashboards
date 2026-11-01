@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EVS Week 4 — Environmental Impact Assessment &amp; Environmental Law</title>
+<style>
+  :root{
+    --paper:#f3f2ee; --paper2:#e7e4d9; --ink:#20232b; --ink-soft:#4d5160; --rule:#d3cebd;
+    --navy:#31394f; --navy-dk:#1f2438; --navy-bg:#e4e6ee;
+    --amber:#a6742d; --amber-bg:#f3e9d4;
+    --green:#2f6b4f; --green-bg:#e3ece3;
+    --rust:#a4432c; --rust-bg:#f4e2dc;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family: ui-sans-serif,"Segoe UI",Helvetica,Arial,sans-serif;line-height:1.6;}
+  h1,h2,h3,h4{font-family:Georgia,"Iowan Old Style","Palatino Linotype",serif;color:var(--navy-dk);line-height:1.25;margin-top:0;}
+  .wrap{max-width:880px;margin:0 auto;padding:0 24px 100px;}
+  header.hero{background:linear-gradient(180deg,#14172a,#31394f 140%);color:#eceef5;padding:56px 24px 44px;margin-bottom:8px;}
+  header.hero .inner{max-width:880px;margin:0 auto;}
+  header.hero .kicker{font-size:.95rem;color:#c3c7db;margin-bottom:10px;}
+  header.hero h1{color:#f8f8fc;font-size:2.25rem;margin-bottom:10px;max-width:18ch;}
+  header.hero p{color:#dadce9;max-width:62ch;font-size:1.05rem;margin:0;}
+  nav.toc{background:var(--paper2);border:1px solid var(--rule);border-radius:4px;padding:20px 26px;margin:32px 0 40px;}
+  nav.toc h2{font-size:1.05rem;margin-bottom:12px;color:var(--ink);}
+  nav.toc ol{margin:0;padding-left:1.2em;columns:2;column-gap:28px;}
+  nav.toc li{margin-bottom:6px;font-size:.95rem;break-inside:avoid;}
+  nav.toc a{color:var(--navy-dk);text-decoration:none;border-bottom:1px solid transparent;}
+  nav.toc a:hover{border-bottom-color:var(--navy-dk);}
+  section{margin:52px 0;}
+  section h2{font-size:1.55rem;border-bottom:2px solid var(--navy);padding-bottom:8px;margin-bottom:18px;}
+  section h2 .num{color:var(--amber);margin-right:.4em;}
+  h3{font-size:1.18rem;margin:28px 0 10px;color:var(--navy-dk);}
+  h4{font-size:1.02rem;margin:18px 0 6px;color:var(--amber);}
+  p{margin:0 0 14px;max-width:74ch;}
+  ul,ol{margin:0 0 14px;padding-left:1.3em;max-width:70ch;}
+  li{margin-bottom:5px;}
+  strong{color:var(--navy-dk);}
+  .box{border-left:4px solid var(--ink-soft);background:#fff;padding:16px 20px;margin:20px 0;border-radius:0 4px 4px 0;}
+  .box .label{font-size:.75rem;font-weight:700;letter-spacing:.06em;display:block;margin-bottom:6px;}
+  .box p:last-child, .box ul:last-child, .box ol:last-child{margin-bottom:0;}
+  .box.def{border-color:var(--green);background:var(--green-bg);} .box.def .label{color:var(--green);}
+  .box.mis{border-color:var(--rust);background:var(--rust-bg);} .box.mis .label{color:var(--rust);}
+  .box.why{border-color:var(--navy);background:var(--navy-bg);} .box.why .label{color:var(--navy-dk);}
+  .box.ex{border-color:var(--amber);background:var(--amber-bg);} .box.ex .label{color:var(--amber);}
+  figure{margin:26px 0;background:#fff;border:1px solid var(--rule);border-radius:6px;padding:18px 18px 14px;}
+  figure svg{width:100%;height:auto;display:block;}
+  figcaption{font-size:.88rem;color:var(--ink-soft);margin-top:10px;padding-top:10px;border-top:1px dashed var(--rule);}
+  figcaption b{color:var(--ink);}
+  table{border-collapse:collapse;width:100%;margin:18px 0;font-size:.92rem;background:#fff;}
+  caption{caption-side:top;text-align:left;font-size:.85rem;color:var(--ink-soft);margin-bottom:6px;font-style:italic;}
+  th,td{border:1px solid var(--rule);padding:8px 10px;text-align:left;vertical-align:top;}
+  th{background:var(--paper2);color:var(--navy-dk);}
+  tr:nth-child(even) td{background:#fbfaf7;}
+  .checklist{list-style:none;padding-left:0;}
+  .checklist li{padding:10px 14px 10px 40px;background:#fff;border:1px solid var(--rule);border-radius:4px;margin-bottom:8px;position:relative;max-width:70ch;}
+  .checklist li::before{content:"";position:absolute;left:14px;top:12px;width:16px;height:16px;border:2px solid var(--navy);border-radius:3px;}
+  .divider{text-align:center;color:var(--amber);letter-spacing:.3em;margin:40px 0;font-size:.9rem;}
+  footer{text-align:center;color:var(--ink-soft);font-size:.85rem;padding:30px 0 10px;border-top:1px solid var(--rule);margin-top:60px;}
+  @media(max-width:640px){nav.toc ol{columns:1;} header.hero h1{font-size:1.7rem;}}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="inner">
+    <div class="kicker">Environmental Studies · Week 4 of 6</div>
+    <h1>Environmental Impact Assessment &amp; Environmental Law</h1>
+    <p>How a project's environmental consequences are assessed <em>before</em> a single brick is laid, and the legal machinery — from the Bhopal-tragedy-driven Environment Protection Act to the Water, Air, Forest and Wildlife Acts — that gives that assessment actual teeth.</p>
+  </div>
+</header>
+
+<div class="wrap">
+
+<nav class="toc">
+  <h2>Contents</h2>
+  <ol>
+    <li><a href="#s1">What is EIA, and why</a></li>
+    <li><a href="#s2">The EIA process, step by step</a></li>
+    <li><a href="#s3">Methodologies for impact assessment</a></li>
+    <li><a href="#s4">EIA across sectors</a></li>
+    <li><a href="#s5">Roots of Indian environmental law</a></li>
+    <li><a href="#s6">The Environment (Protection) Act, 1986</a></li>
+    <li><a href="#s7">The Water Act, 1974</a></li>
+    <li><a href="#s8">The Air Act, 1981</a></li>
+    <li><a href="#s9">Forest &amp; Wildlife Protection Acts</a></li>
+    <li><a href="#test">Self-test checklist</a></li>
+  </ol>
+</nav>
+
+<!-- 1 -->
+<section id="s1">
+  <h2><span class="num">1</span>What Is EIA, and Why</h2>
+  <div class="box def">
+    <span class="label">DEFINITION</span>
+    <strong>Environmental Impact Assessment (EIA)</strong> evaluates a proposed project's likely environmental — and social, cultural, and health — consequences <em>before</em> it begins, so that harm can be avoided or mitigated by design rather than discovered afterward.
+  </div>
+
+  <div class="box why">
+    <span class="label">WHY "BEFORE THE PROJECT BEGINS" IS THE WHOLE POINT</span>
+    Every mitigation option on an EIA's hierarchy — avoid, minimise, restore, offset — gets progressively weaker and more expensive the later it's applied. Avoiding a wetland entirely (chosen at the planning stage) costs nothing extra; restoring a wetland after it's been filled in is enormously expensive and often only partially reversible. EIA's entire value proposition rests on catching problems while "avoid" is still a cheap, available option — which is exactly why it's a pre-construction requirement, not a post-construction audit.
+  </div>
+
+  <h3>Objectives</h3>
+  <ul>
+    <li>Identify potential impacts, positive and negative</li>
+    <li>Predict their magnitude and significance</li>
+    <li>Evaluate alternatives to the proposed project</li>
+    <li>Develop mitigation measures</li>
+    <li>Inform decision-makers and the public</li>
+    <li>Promote environmentally sound, sustainable development</li>
+  </ul>
+
+  <h3>Key principles</h3>
+  <table>
+    <tr><td><strong>Participation</strong></td><td>Stakeholders are involved in the process</td></tr>
+    <tr><td><strong>Transparency</strong></td><td>Information is open and accessible</td></tr>
+    <tr><td><strong>Accountability</strong></td><td>Responsibility for outcomes is clearly assigned</td></tr>
+    <tr><td><strong>Credibility</strong></td><td>Assessment is reliable and objective</td></tr>
+    <tr><td><strong>Integration</strong></td><td>Environmental considerations run through every stage of project planning, not bolted on at the end</td></tr>
+  </table>
+</section>
+
+<!-- 2 -->
+<section id="s2">
+  <h2><span class="num">2</span>The EIA Process, Step by Step</h2>
+
+  <figure>
+    <svg viewBox="0 0 640 180" xmlns="http://www.w3.org/2000/svg" font-family="ui-sans-serif,Arial,sans-serif" font-size="11">
+      <g>
+        <rect x="0" y="60" width="88" height="50" rx="6" fill="#e4e6ee" stroke="#31394f"/><text x="44" y="82" text-anchor="middle">Screening</text><text x="44" y="96" text-anchor="middle" font-size="9">EIA needed?</text>
+        <rect x="98" y="60" width="88" height="50" rx="6" fill="#e4e6ee" stroke="#31394f"/><text x="142" y="82" text-anchor="middle">Scoping</text><text x="142" y="96" text-anchor="middle" font-size="9">key issues?</text>
+        <rect x="196" y="60" width="88" height="50" rx="6" fill="#f3e9d4" stroke="#a6742d"/><text x="240" y="78" text-anchor="middle">Impact ID</text><text x="240" y="92" text-anchor="middle">&amp; prediction</text>
+        <rect x="294" y="60" width="98" height="50" rx="6" fill="#f3e9d4" stroke="#a6742d"/><text x="343" y="78" text-anchor="middle">Assessment</text><text x="343" y="92" text-anchor="middle">&amp; mitigation</text>
+        <rect x="402" y="60" width="80" height="50" rx="6" fill="#e3ece3" stroke="#2f6b4f"/><text x="442" y="82" text-anchor="middle">EIA Report</text>
+        <rect x="492" y="60" width="80" height="50" rx="6" fill="#e3ece3" stroke="#2f6b4f"/><text x="532" y="78" text-anchor="middle">Decision-</text><text x="532" y="92" text-anchor="middle">making</text>
+        <rect x="582" y="60" width="55" height="50" rx="6" fill="#f4e2dc" stroke="#a4432c"/><text x="609" y="78" text-anchor="middle" font-size="9">Monitor</text><text x="609" y="92" text-anchor="middle" font-size="9">&amp; evaluate</text>
+      </g>
+      <g stroke="#a6742d" stroke-width="2" marker-end="url(#e1)">
+        <line x1="88" y1="85" x2="96" y2="85"/>
+        <line x1="186" y1="85" x2="194" y2="85"/>
+        <line x1="284" y1="85" x2="292" y2="85"/>
+        <line x1="392" y1="85" x2="400" y2="85"/>
+        <line x1="482" y1="85" x2="490" y2="85"/>
+        <line x1="572" y1="85" x2="580" y2="85"/>
+      </g>
+      <defs><marker id="e1" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 z" fill="#a6742d"/></marker></defs>
+      <text x="320" y="150" text-anchor="middle" fill="#4b5160" font-size="11">Public consultation runs alongside scoping through decision-making — not a single isolated step</text>
+    </svg>
+    <figcaption><b>Notice:</b> monitoring loops back conceptually into future screening decisions — an EIA doesn't end at approval; ongoing monitoring data feeds "adaptive management," adjusting mitigation measures based on what's actually observed once the project runs.</figcaption>
+  </figure>
+
+  <h3>Screening — deciding if a full EIA is even needed</h3>
+  <p>Projects are checked against two schedules:</p>
+  <table>
+    <tr><th>Schedule</th><th>Rule</th></tr>
+    <tr><td>Schedule 1</td><td>EIA required in <strong>every</strong> case (e.g. integrated iron/steel works; thermal power stations ≥300 MW)</td></tr>
+    <tr><td>Schedule 2</td><td>EIA required <strong>only if</strong> the project's nature, size, or location is likely to cause significant environmental effects — a larger, more varied list than Schedule 1</td></tr>
+  </table>
+
+  <h3>Scoping — deciding what the EIA should actually study</h3>
+  <p>Identifies key issues and concerns early, by asking: who is concerned, what are their concerns, why, and at what threshold does a change become unacceptable? This produces the Terms of Reference (ToR) that bound the rest of the assessment.</p>
+
+  <h3>Impact assessment — classifying what kind of impact each effect is</h3>
+  <table>
+    <tr><th>Axis</th><th>Two poles</th></tr>
+    <tr><td>Valence</td><td>Positive or negative</td></tr>
+    <tr><td>Pathway</td><td>Direct or indirect</td></tr>
+    <tr><td>Duration</td><td>Short-term or long-term</td></tr>
+    <tr><td>Recoverability</td><td>Reversible or irreversible</td></tr>
+  </table>
+
+  <h3>Mitigation hierarchy — in strict priority order</h3>
+  <ol>
+    <li><strong>Avoid</strong> the impact (e.g. relocate the project away from a sensitive site)</li>
+    <li><strong>Minimise</strong> the impact (e.g. control emissions)</li>
+    <li><strong>Rehabilitate / restore</strong> (e.g. replant vegetation)</li>
+    <li><strong>Offset / compensate</strong> (e.g. biodiversity offsets elsewhere)</li>
+  </ol>
+  <div class="box why">
+    <span class="label">WHY THIS ORDER IS NOT ARBITRARY</span>
+    Each step down this list is a fallback for when the step above genuinely can't be achieved — it's a hierarchy of decreasing certainty. "Avoid" guarantees zero impact. "Offset" only guarantees an attempt at equivalence elsewhere, which is inherently harder to verify (is a newly planted forest patch <em>really</em> ecologically equivalent to the old-growth one that was cleared?). Regulators default to the top of the list first for exactly this reason — every step down trades away certainty for feasibility.
+  </div>
+</section>
+
+<!-- 3 -->
+<section id="s3">
+  <h2><span class="num">3</span>Methodologies for Impact Assessment</h2>
+  <table>
+    <caption>From simplest/fastest to most rigorous/slowest</caption>
+    <tr><th>Method</th><th>How it works</th><th>Strength</th><th>Limitation</th></tr>
+    <tr><td>Ad hoc</td><td>Opinion poll, expert opinion, or Delphi (structured questionnaire) method</td><td>Simple, fast, minimal expertise needed</td><td>Guess-based; no cause-effect shown; not suited to large or complex data</td></tr>
+    <tr><td>Checklist</td><td>Structured list of environmental factors (simple / descriptive / scaling / weighted)</td><td>Broad coverage, easy to use</td><td>No interrelationships between impacts shown</td></tr>
+    <tr><td>Matrix (e.g. Leopold Matrix)</td><td>2-D grid — project activities (columns) × environmental factors (rows); each cell scores magnitude &amp; significance</td><td>Visual cause-effect; shows multiple impacts from one activity</td><td>Becomes unwieldy with many parameters; weak on cumulative effects</td></tr>
+    <tr><td>Network analysis</td><td>Maps chains of impact as a flowchart (e.g. road → deforestation → erosion → sedimentation → aquatic harm)</td><td>Reveals indirect &amp; cumulative impacts other methods miss</td><td>Requires more expertise and time; can get very complex</td></tr>
+    <tr><td>Modeling</td><td>Mathematical/computer simulation (air-quality, water-quality, noise, ecological, risk models)</td><td>Quantitative, predictive, supports scenario testing</td><td>Needs accurate baseline data; sensitive to input assumptions; costly</td></tr>
+    <tr><td>Overlay (GIS)</td><td>Transparent map layers showing spatial distribution of impacts</td><td>Displays physical and social dimensions together, before/after</td><td>Requires GIS technical capacity</td></tr>
+  </table>
+
+  <div class="box why">
+    <span class="label">WHY NETWORK ANALYSIS CATCHES WHAT A MATRIX MISSES</span>
+    A matrix only records the <em>direct</em> link between one activity and one environmental factor — "road construction" against "soil quality," scored in isolation. It has no mechanism for showing that the same road construction's effect on soil then <em>causes</em> a separate effect on river sedimentation, which then causes a third effect on aquatic life. Network analysis exists specifically to trace that kind of multi-step chain — which is exactly the "road → deforestation → erosion → sedimentation → aquatic harm" example above.
+  </div>
+</section>
+
+<!-- 4 -->
+<section id="s4">
+  <h2><span class="num">4</span>EIA Across Sectors</h2>
+  <table>
+    <tr><th>Sector</th><th>What EIA focuses on</th><th>Typical mitigation</th></tr>
+    <tr><td>Infrastructure (roads, airports, dams)</td><td>Air/water quality, noise, habitat fragmentation, community displacement</td><td>Noise barriers, wildlife crossings, fish ladders, resettlement plans</td></tr>
+    <tr><td>Energy (power plants, oil/gas, renewables)</td><td>Emissions, greenhouse gases, waste disposal — even wind/solar farms assess bird/bat impact and land use</td><td>Pollution control equipment, closed-loop cooling, siting away from migration paths</td></tr>
+    <tr><td>Mining</td><td>Land use, water resources, air quality, biodiversity, groundwater</td><td>Erosion control, water treatment facilities, mine closure &amp; restoration plans</td></tr>
+    <tr><td>Agriculture</td><td>Water resources, soil salinity, biodiversity, greenhouse gases from livestock</td><td>Water-efficient irrigation, manure management, riparian habitat protection</td></tr>
+    <tr><td>Tourism</td><td>Coastal ecosystems, wildlife disturbance, cumulative infrastructure impact</td><td>Wastewater treatment, visitor limits, community-based management</td></tr>
+    <tr><td>Forestry</td><td>Biodiversity, soil erosion, carbon sequestration</td><td>Selective logging, native-species reforestation, riparian buffers</td></tr>
+  </table>
+  <h3>Persistent challenges</h3>
+  <ul>
+    <li>Weak technical/financial capacity in many developing regions</li>
+    <li>Limited public participation in practice, despite it being a stated principle</li>
+    <li>Weak enforcement of EIA conditions after approval</li>
+    <li>Assessments often examine one project in isolation, missing the <strong>cumulative</strong> impact of several nearby projects together</li>
+  </ul>
+</section>
+
+<!-- 5 -->
+<section id="s5">
+  <h2><span class="num">5</span>Roots of Indian Environmental Law</h2>
+  <p>India's core environmental legislation didn't emerge from abstract policy planning — it traces to two specific historical triggers worth remembering as anchors for the whole legal framework:</p>
+
+  <table>
+    <tr><th>Trigger</th><th>Year</th><th>Consequence</th></tr>
+    <tr><td>UN Conference on the Human Environment, Stockholm</td><td>1972</td><td>India raised environmental concerns internationally; 5 June is now observed as World Environment Day</td></tr>
+    <tr><td>Bhopal gas tragedy — methyl isocyanate (MIC) leak from a Union Carbide plant, 2–3 December 1984</td><td>1984</td><td>Directly triggered the Environment (Protection) Act, passed 19 November 1986</td></tr>
+  </table>
+
+  <div class="box why">
+    <span class="label">WHY BHOPAL SPECIFICALLY PRODUCED AN "UMBRELLA" LAW</span>
+    Before 1986, India already had separate Water (1974) and Air (1981) Acts — but Bhopal exposed a gap neither law covered well: a single catastrophic industrial accident releasing a hazardous substance that was neither purely a "water" nor purely an "air" problem. The Environment (Protection) Act was deliberately designed as umbrella legislation precisely to close that gap — giving the central government broad emergency powers that didn't depend on classifying a disaster into one narrow existing category first.
+  </div>
+</section>
+
+<!-- 6 -->
+<section id="s6">
+  <h2><span class="num">6</span>The Environment (Protection) Act, 1986</h2>
+  <div class="box def">
+    <span class="label">DEFINITION</span>
+    Passed under Article 253 of the Constitution, in force from 19 November 1986. 26 sections across four chapters, giving the Central Government broad powers to prevent, control and abate environmental pollution of every kind.
+  </div>
+
+  <table>
+    <tr><th>Chapter</th><th>Covers</th></tr>
+    <tr><td>I</td><td>Definitions — Environment, Environmental Pollutant, Environmental Pollution, Hazardous Substance</td></tr>
+    <tr><td>II</td><td>Central Government's powers to protect and improve environmental quality</td></tr>
+    <tr><td>III</td><td>Prevention, control and abatement of pollution</td></tr>
+    <tr><td>IV</td><td>Miscellaneous — protects actions taken in good faith</td></tr>
+  </table>
+
+  <h3>Critical definitions</h3>
+  <ul>
+    <li><strong>Environment:</strong> water, air, land, and the interrelationships among them and with living beings.</li>
+    <li><strong>Environmental pollutant:</strong> any solid, liquid, or gaseous substance present in the environment beyond its permissible limit.</li>
+    <li><strong>Environmental pollution:</strong> the process by which such pollution occurs.</li>
+  </ul>
+
+  <h3>What the Act actually empowers</h3>
+  <ul>
+    <li>Sets standards for air, water, and soil quality with maximum permissible pollutant limits</li>
+    <li>Lets the Central Government restrict or ban industries/operations in specified areas</li>
+    <li>Has evolved emission/effluent standards for <strong>61 categories</strong> of industry</li>
+    <li>Requires highly polluting industries to meet standards within one year of notification</li>
+    <li>Requires an annual environmental audit report from industries needing Water/Air Act consent, due by <strong>30 September</strong> each year</li>
+  </ul>
+  <p><strong>Role of pollution control boards:</strong> advise industries on effluent treatment and cleaner technology; promote recycle/reuse/reduce; encourage biogas recovery. Example: standard effluent treatment plants near Ranipet, Vellore — installed specifically to address chromium contamination from tannery clusters (the same case referenced in Week 1's hazardous-waste discussion).</p>
+</section>
+
+<!-- 7 -->
+<section id="s7">
+  <h2><span class="num">7</span>The Water (Prevention and Control of Pollution) Act, 1974</h2>
+  <div class="box def">
+    <span class="label">DEFINITION</span>
+    Enacted to prevent and control water pollution and to maintain or restore the "wholesomeness" of water, applicable across all Indian states.
+  </div>
+
+  <h3>The consent mechanism — how it actually gets enforced</h3>
+  <figure>
+    <svg viewBox="0 0 640 180" xmlns="http://www.w3.org/2000/svg" font-family="ui-sans-serif,Arial,sans-serif" font-size="12">
+      <rect x="10" y="65" width="140" height="50" rx="6" fill="#e4e6ee" stroke="#31394f"/><text x="80" y="86" text-anchor="middle">Investor applies to</text><text x="80" y="100" text-anchor="middle">SPCB for consent</text>
+      <line x1="150" y1="90" x2="190" y2="90" stroke="#a6742d" stroke-width="2" marker-end="url(#w2)"/>
+      <rect x="195" y="65" width="150" height="50" rx="6" fill="#f3e9d4" stroke="#a6742d"/><text x="270" y="86" text-anchor="middle">SPCB grants consent</text><text x="270" y="100" text-anchor="middle">with conditions</text>
+      <line x1="345" y1="90" x2="385" y2="90" stroke="#a6742d" stroke-width="2" marker-end="url(#w2)"/>
+      <rect x="390" y="65" width="130" height="50" rx="6" fill="#e3ece3" stroke="#2f6b4f"/><text x="455" y="86" text-anchor="middle">Random checks</text><text x="455" y="100" text-anchor="middle">during operation</text>
+      <line x1="520" y1="90" x2="560" y2="90" stroke="#a6742d" stroke-width="2" marker-end="url(#w2)"/>
+      <rect x="565" y="65" width="70" height="50" rx="6" fill="#f4e2dc" stroke="#a4432c"/><text x="600" y="86" text-anchor="middle" font-size="10">Non-</text><text x="600" y="100" text-anchor="middle" font-size="10">compliance?</text>
+      <path d="M600 115 Q 600 150 320 150 Q 40 150 40 115" fill="none" stroke="#a4432c" stroke-width="2" marker-end="url(#w2)" stroke-dasharray="4 3"/>
+      <text x="320" y="145" text-anchor="middle" fill="#a4432c" font-size="11">Notice → treatment order → disconnect services → unit closure (escalating)</text>
+      <defs><marker id="w2" markerWidth="7" markerHeight="7" refX="3.5" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 z" fill="#a6742d"/></marker></defs>
+    </svg>
+    <figcaption><b>Notice:</b> the Act's teeth come from a consent-then-verify loop, not just a one-time approval — the State Pollution Control Board (SPCB) retains the right to check compliance at any point during the consent period, and enforcement escalates in stages rather than jumping straight to closure.</figcaption>
+  </figure>
+
+  <h3>Core prohibitions</h3>
+  <ul>
+    <li>No person may knowingly discharge poisonous/noxious/polluting matter into a stream, well, sewer, or land beyond State Board standards.</li>
+    <li>No person may impede a stream's proper water flow in a way that aggravates pollution.</li>
+    <li>No industry may be established, or new/altered sewage outlets used, <strong>without prior SPCB consent</strong>.</li>
+  </ul>
+  <p>Appeals against an SPCB order go to a state-constituted <strong>Appellate Authority</strong> — the same appeal structure applies under the Air Act.</p>
+
+  <h3>Roles: Central vs. State Pollution Control Boards</h3>
+  <table>
+    <tr><th>Central PCB</th><th>State PCB</th></tr>
+    <tr><td>Advises central government on corrective measures; coordinates technical guidance nationally; sets water-quality standards; develops/recognises testing labs</td><td>Advises state government on corrective measures for locally polluted water bodies; samples water directly; can <strong>close down</strong> non-compliant industries; grants/denies consent for new industries in-state</td></tr>
+  </table>
+</section>
+
+<!-- 8 -->
+<section id="s8">
+  <h2><span class="num">8</span>The Air (Prevention and Control of Pollution) Act, 1981</h2>
+  <div class="box def">
+    <span class="label">DEFINITION</span>
+    50 sections, amended in 1987 to also cover <strong>noise pollution</strong>. Prevents and controls pollution from solid, liquid, and gaseous emissions — no industrial plant may operate without SPCB/PCC consent.
+  </div>
+  <p>Regulated pollutants include lead, carbon, carbon monoxide, sulfur dioxide, nitrogen oxides, volatile organic compounds and other toxic substances beyond prescribed limits.</p>
+  <p>The consent process mirrors the Water Act's: an investor applies with prescribed fees; the Board must grant or deny consent within <strong>4 months</strong>; consent conditions specify required pollution-control equipment.</p>
+  <div class="box mis">
+    <span class="label">COMMON MISCONCEPTION</span>
+    "The Air Act only deals with smoke and gases, so noise complaints have nothing to do with it." The 1987 amendment specifically folded noise pollution into the Air Act's scope — which is why firecracker/industrial noise regulation in India is often litigated under the same Act as smokestack emissions, not a separate noise-specific law.
+  </div>
+</section>
+
+<!-- 9 -->
+<section id="s9">
+  <h2><span class="num">9</span>Forest &amp; Wildlife Protection Acts</h2>
+
+  <h3>The Forest (Conservation) Act, 1980</h3>
+  <div class="box why">
+    <span class="label">WHY FOREST PROTECTION IS FRAMED AS A HYDROLOGICAL ISSUE, NOT JUST A HABITAT ONE</span>
+    Forests aren't protected only because they house wildlife — the Act's justification explicitly rests on forests regulating the hydrological cycle (50–80% of atmospheric moisture in forested regions comes from transpiration) and absorbing CO₂ to moderate warming. Losing forest cover therefore doesn't just remove habitat; it directly destabilises regional rainfall patterns and soil retention, which is the same mechanism behind the flood/landslide risk explained in Week 2.
+  </div>
+  <ul>
+    <li><strong>Objectives:</strong> protect and conserve forests; ensure judicious use of forest products.</li>
+    <li><strong>Key rule:</strong> reserve forest land cannot be "de-reserved" without prior Central Government permission — this closes the loophole where states could quietly reclassify protected forest for development.</li>
+    <li>Also targets illegal cutting, encroachment, fire, grazing and shifting agriculture.</li>
+  </ul>
+
+  <h3>The Wildlife (Protection) Act, 1971</h3>
+  <p>(Amended 1982, 1986, 1991, 1993, 2002, 2006.) Provides for national parks and sanctuaries, regulates zoos and trade in wild animals, and establishes a Wild Life Advisory Board with a Chief Wild Life Warden per state.</p>
+  <table>
+    <tr><th>Protected area type</th><th>Count in India (per this Act)</th></tr>
+    <tr><td>National Parks</td><td>104</td></tr>
+    <tr><td>Sanctuaries</td><td>551</td></tr>
+    <tr><td>Conservation Reserves</td><td>86</td></tr>
+    <tr><td>Biosphere Reserves</td><td>11</td></tr>
+  </table>
+  <p>An updated Endangered Wildlife list is maintained annually. A noted limitation from the record: the Act has been criticised as more effective at restricting environment-friendly tribal communities' traditional access than at actually deterring determined poachers and illegal miners — a reminder that a strong law on paper doesn't automatically translate into effective enforcement against the intended target (echoing the "weak enforcement" challenge raised for EIA in Section 4).</p>
+</section>
+
+<div class="divider">⁂</div>
+
+<section id="test">
+  <h2>Self-Test Checklist</h2>
+  <ul class="checklist">
+    <li>Explain why EIA's mitigation hierarchy (avoid → minimise → restore → offset) is ordered by decreasing certainty, not arbitrarily.</li>
+    <li>Distinguish Schedule 1 from Schedule 2 projects in the screening stage.</li>
+    <li>Explain what a network-analysis method can show that a matrix method structurally cannot.</li>
+    <li>Name the two historical triggers (1972 and 1984) behind India's core environmental legislation, and what each one produced.</li>
+    <li>Explain why the Environment (Protection) Act is called "umbrella legislation" and what specific gap it was designed to close.</li>
+    <li>Walk through the Water Act's consent-then-verify enforcement loop from application to closure.</li>
+    <li>Explain why the Forest Conservation Act frames deforestation as a water-cycle issue, not only a habitat-loss issue.</li>
+    <li>State which amendment year folded noise pollution into the Air Act.</li>
+  </ul>
+</section>
+
+</div>
+
+<footer>Week 4 of 6 · Environmental Studies illustrated notes · built from your uploaded lecture notes (EIA — W4_S1, Environmental Protection Acts — W4-S2 to S5)</footer>
+
+</body>
+</html>

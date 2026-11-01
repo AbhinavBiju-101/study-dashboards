@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}Quiz · QM Illustrated Notes{% endblock %}
+{% block bodyclass %}quiz{% endblock %}
+{% block content %}
+<header class="hero quiz"><div class="in"><h1>Quiz</h1><p id="hdr">{{ questions|length }} question(s){% if not allow_back %} · going back is switched off{% endif %}</p></div></header>
+<main class="wrap">
+{% if empty %}
+  <div class="note warn"><b>No questions to show.</b> Nothing matched your selection, or the question bank is empty (no bank file was supplied). <a href="{{ url_for('quiz_setup') }}">Back to setup</a></div>
+{% else %}
+<div id="runner" class="qwrap">
+  <aside class="card quiz">
+    <div>Time <span class="timer" id="timer">00:00</span></div>
+    <div class="bar" style="margin:8px 0"><i id="prog" style="width:0"></i></div>
+    <div class="palette" id="palette"></div>
+    <p class="small muted">Green = answered · yellow = flagged</p>
+    <button class="btn" id="submit">Submit quiz</button>
+  </aside>
+  <section class="card quiz">
+    <div class="muted small" id="qmeta"></div>
+    <h3 id="qtext"></h3>
+    <div id="opts"></div>
+    <p><button class="btn alt" id="prev">← Previous</button> <button class="btn alt" id="flag">⚑ Flag for review</button> <button class="btn" id="next">Next →</button></p>
+  </section>
+</div>
+<div id="results" style="display:none"></div>
+{% endif %}
+</main>
+{% endblock %}
+{% block scripts %}
+{% if not empty %}
+<script src="{{ url_for('static', filename='progress.js') }}"></script>
+<script>
+var Q = {{ questions|tojson }};
+var ALLOW_BACK = {{ 'true' if allow_back else 'false' }};
+var MODS = {{ modules|tojson }};
+</script>
+<script src="{{ url_for('static', filename='quiz.js') }}"></script>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,550 @@
+{% extends "base.html" %}
+{% from "_macros.html" import box, sub, sec, fig, mat, ket, bra %}
+{% from "modnav.html" import modnav with context %}
+{% block title %}Module 3 · Postulates of quantum mechanics{% endblock %}
+{% block bodyclass %}mod3{% endblock %}
+{% block modnav_top %}{{ modnav() }}{% endblock %}
+{% block modnav_bottom %}{{ modnav('bottom') }}{% endblock %}
+{% block content %}
+<header class="hero m3"><div class="in"><h1>Module 3 · Postulates of Quantum Mechanics</h1>
+<p>Observables, expectation values, measurement and the sequential Stern-Gerlach experiment. Section 5 covers the time-dependent and time-independent Schrödinger equations.</p></div></header>
+<div class="notes">
+<div class="toc"><b>Contents</b><ol>
+{% for t in cur.topics %}<li><a href="#{{ t.id }}">{{ t.title }}</a>{% if t.excluded %} <span class="tag-out">not covered</span>{% endif %}</li>{% endfor %}
+<li><a href="#m3-check">Self-test checklist</a></li></ol>
+<p class="small muted">Everything in Module 2 gets its physical meaning here: kets are states, Hermitian operators are observables, eigenvalues are outcomes, projectors give probabilities, and non-commuting operators (Module 2, 7) explain the Stern-Gerlach surprises.</p></div>
+
+{% call sec('m3-1','1','Observables and operators') %}
+
+{% call sub('m3-1-1','1.1','What an observable is') %}
+<div class="intuition"><b>Why it matters.</b> Classically a quantity such as position simply <i>has</i> a value. Quantum mechanics replaces "the value" with an operator, and the value you get in a measurement is then decided by that operator's eigenvalues. Every later section builds on this switch.</div>
+{% call box('def') %}An <b>observable</b> is a physical property that can be measured (position, momentum, energy, angular momentum). In quantum mechanics each observable is represented by a <b>Hermitian operator</b> acting on states in a Hilbert space. Because measured values are real, the operator must have only real eigenvalues, and Hermitian operators guarantee that (Module 2, 4.3). The state of the system, with all the information you can know about it, is a normalised ket (Postulate 1 in the Stern-Gerlach chapter you were given).{% endcall %}
+<table class="t"><tr><th></th><th>Classical mechanics</th><th>Quantum mechanics</th></tr>
+<tr><td>State</td><td>exact values of position and momentum</td><td>normalised ket |ψ⟩ or wavefunction ψ(x)</td></tr>
+<tr><td>Observable</td><td>a number computed from the state</td><td>a Hermitian operator</td></tr>
+<tr><td>Result of a measurement</td><td>the value, determined by the state</td><td>one eigenvalue, with a probability</td></tr></table>
+{% call box('ex') %}
+<div class="step"><b>Problem.</b> Which of Â = [[1, 2],[2, 3]], B̂ = [[0, i],[i, 0]], Ĉ = [[2, 1−i],[1+i, 1]] can represent an observable?</div>
+<div class="step">Â is real and symmetric, so Â† = Â: Hermitian ✓. B̂† = [[0, −i],[−i, 0]] ≠ B̂: not Hermitian ✗. Ĉ: the (1,2) entry 1−i is the conjugate of the (2,1) entry 1+i and the diagonal is real, so Ĉ† = Ĉ ✓.</div>
+<div class="check"><b>Check with eigenvalues.</b> B̂ has det = 0 − i·i = 1 and trace 0, so λ² + 1 = 0, λ = ±i: imaginary, so it cannot be a measurement result, confirming the verdict. Ĉ: trace 3, det 2 − 2 = 0, so λ = 0, 3 (both real ✓).</div>
+{% endcall %}
+{% call box('mis') %}"An operator is an observable if it has a nice physical meaning." The condition is mathematical: Hermitian. Also "the observable is the number": the number is one <i>outcome</i>; the observable is the operator that lists all the possible outcomes.{% endcall %}
+<div class="next">Next: 1.2 lists the operators you will be expected to know.</div>
+{% endcall %}
+
+<hr class="div">
+{% call sub('m3-1-2','1.2','The standard operators') %}
+<div class="intuition"><b>Why it matters.</b> Expectation values (Section 2) and the box problem (Module 4) both need the explicit form of these operators.</div>
+<table class="t"><tr><th>Quantity</th><th>Symbol</th><th>Operator (position representation)</th></tr>
+<tr><td>Position</td><td>x̂</td><td>multiply by x</td></tr>
+<tr><td>Momentum (x-component)</td><td>p̂ₓ</td><td>−iħ ∂/∂x</td></tr>
+<tr><td>Angular momentum (z-component)</td><td>L̂_z</td><td>−iħ ∂/∂φ</td></tr>
+<tr><td>Kinetic energy</td><td>T̂</td><td>−(ħ²/2m) ∂²/∂x²</td></tr>
+<tr><td>Potential energy</td><td>V̂</td><td>V(x) (multiply by V)</td></tr>
+<tr><td>Total energy, time-independent (Hamiltonian)</td><td>Ĥ</td><td>−(ħ²/2m) ∂²/∂x² + V(x)</td></tr>
+<tr><td>Total energy, time-dependent form</td><td>Ĥ</td><td>iħ ∂/∂t (see the note in 1.3)</td></tr></table>
+{% call box('def') %}Since T = p²/2m, the kinetic-energy operator is p̂²/2m = (1/2m)(−iħ ∂/∂x)² = −(ħ²/2m) ∂²/∂x². The Hamiltonian is Ĥ = T̂ + V̂.{% endcall %}
+{% call box('ex') %}
+<div class="step"><b>Problem.</b> Apply p̂ₓ and T̂ to f(x) = e<sup>ikx</sup> and to g(x) = sin(3x).</div>
+<div class="step">p̂ f = −iħ (ik e<sup>ikx</sup>) = ħk e<sup>ikx</sup>. T̂ f = −(ħ²/2m)(ik)² e<sup>ikx</sup> = (ħ²k²/2m) e<sup>ikx</sup>. So f is an eigenfunction of both, with p = ħk and T = ħ²k²/2m.</div>
+<div class="step">p̂ g = −iħ·3cos(3x): not proportional to g, so g is <i>not</i> a momentum eigenfunction. T̂ g = −(ħ²/2m)(−9 sin 3x) = (9ħ²/2m) g: g <i>is</i> an eigenfunction of T̂.</div>
+<div class="check"><b>Check.</b> For f: T = p²/2m = (ħk)²/2m ✓ (consistent with T̂ = p̂²/2m). Note that g = sin 3x is a standing wave, a mix of e<sup>3ix</sup> and e<sup>−3ix</sup>, which have opposite momenta ±3ħ, so momentum is not sharp while kinetic energy is (it depends only on p²). This same idea explains the box in Module 4.</div>
+{% endcall %}
+{% call box('mis') %}"Operators are just multiplication." Only x̂ and V̂ are. p̂ differentiates, and in that case you must apply it to the function on its right. Also, ÂB̂ and B̂Â differ: x̂p̂ f ≠ p̂x̂ f (Module 2, 7.2).{% endcall %}
+<div class="next">Next: 1.3 shows where p̂ and Ê come from.</div>
+{% endcall %}
+
+<hr class="div">
+{% call sub('m3-1-3','1.3','Where the momentum and energy operators come from') %}
+<div class="intuition"><b>Why it matters.</b> The operators are not arbitrary: they are what you get by asking "what do I do to a plane wave to pull out p or E?"</div>
+{% call box('why','Derivation from a free-particle wave') %}Take Ψ = A e<sup>i(px − Et)/ħ</sup>. Differentiating in x gives ∂Ψ/∂x = (i/ħ)pΨ, so <b>pΨ = −iħ ∂Ψ/∂x</b>. Differentiating in t gives ∂Ψ/∂t = −(i/ħ)EΨ, so <b>EΨ = iħ ∂Ψ/∂t</b>. Reading off the operations: p̂ = −iħ ∂/∂x and Ê = iħ ∂/∂t.{% endcall %}
+{% call fig('A plane wave is an eigenfunction of both operators: differentiating in space returns p times the wave, differentiating in time returns E times the wave. <i>Notice</i> that the two derivatives are the same wave scaled by different constants.') %}
+<svg viewBox="0 0 480 150" width="480" role="img" aria-label="Plane wave and the two operators">
+<rect x="150" y="50" width="180" height="50" rx="8" fill="#efe9fb" stroke="#6d28d9"/><text x="240" y="80" font-size="15" text-anchor="middle">Ψ = A e^{i(px−Et)/ħ}</text>
+<line x1="150" y1="65" x2="60" y2="35" stroke="#333" marker-end="url(#a31)"/><text x="10" y="30" font-size="13">−iħ ∂/∂x → pΨ</text>
+<line x1="330" y1="65" x2="420" y2="35" stroke="#333" marker-end="url(#a31)"/><text x="345" y="28" font-size="13">iħ ∂/∂t → EΨ</text>
+<defs><marker id="a31" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#333"/></marker></defs>
+<text x="240" y="130" font-size="12" text-anchor="middle" fill="#555">same wave, two different "read-outs"</text></svg>
+{% endcall %}
+{% call box('ex') %}
+<div class="step"><b>Problem.</b> Find the p and E read off Ψ = A e<sup>i(3x − 5t)</sup> (take ħ = 1).</div>
+<div class="step">−i ∂Ψ/∂x = −i(3i)Ψ = 3Ψ, so p = 3. i ∂Ψ/∂t = i(−5i)Ψ = 5Ψ, so E = 5.</div>
+<div class="check"><b>Check.</b> Compare with e<sup>i(px−Et)/ħ</sup> at ħ = 1: p = 3, E = 5 ✓ read directly from the exponent.</div>
+{% endcall %}
+{% call box('mis') %}"Ê = −iħ ∂/∂t." The derivation above gives <b>+iħ ∂/∂t</b>, and your slide deck also derives +iħ. The operator-table slide in the same deck prints −iħ ∂/∂t for the time-dependent Hamiltonian, which disagrees with its own derivation (a sign slip on the slide). I use +iħ; there is no recap here to overrule this, so tell me if your lecturer wants the table's sign.{% endcall %}
+<div class="next">Next: 1.4 states the rule that ties eigenvalues to measurement results.</div>
+{% endcall %}
+
+<hr class="div">
+{% call sub('m3-1-4','1.4','The eigenvalue postulate and quantised results') %}
+<div class="intuition"><b>Why it matters.</b> This is the origin of quantisation: if only eigenvalues can be observed, and an operator has a discrete list of eigenvalues, then the measured quantity is discrete. The energies of the box in Module 4 are exactly such a list.</div>
+{% call box('def') %}In any measurement of the observable associated with Ĝ, the only values ever observed are the eigenvalues Gₙ of the eigenvalue equation <b>Ĝ ψₙ = Gₙ ψₙ</b>. The state ψₙ is the <b>eigenstate</b> (eigenfunction, eigenvector). It is a state with a <b>definite</b> value Gₙ: measuring gives Gₙ with certainty. The index n (a <i>quantum number</i>) labels the whole family of solutions.{% endcall %}
+<table class="t"><tr><th>Step</th><th>What to do</th></tr>
+<tr><td>1</td><td>Write the operator Ĝ for the observable</td></tr><tr><td>2</td><td>Solve Ĝψ = Gψ for the allowed G (eigenvalues) and ψ (eigenstates)</td></tr>
+<tr><td>3</td><td>Possible measurement outcomes = the eigenvalues; states with a certain outcome = the eigenstates</td></tr></table>
+{% call box('ex') %}
+<div class="step"><b>Problem.</b> Show ψ = sin(3x) is an eigenfunction of Ĝ = d²/dx² and find the eigenvalue. Is ψ = sin(3x) + cos(2x) one?</div>
+<div class="step">d²/dx² sin 3x = −9 sin 3x, so it is an eigenfunction with eigenvalue −9.</div>
+<div class="step">d²/dx² [sin 3x + cos 2x] = −9 sin 3x − 4 cos 2x, which is not a single constant times the original. So the sum is not an eigenfunction.</div>
+<div class="check"><b>Check.</b> Try to force a constant: −9 sin3x − 4cos2x = λ(sin3x + cos2x) needs λ = −9 and λ = −4 simultaneously: impossible ✓. The sum is a <i>superposition</i>; measuring Ĝ on it could give −9 or −4, with probabilities set in Section 3.</div>
+{% endcall %}
+{% call box('mis') %}"A superposition of eigenstates is also an eigenstate." Only if they share the same eigenvalue. Otherwise the state has no single value for that observable until measured.{% endcall %}
+<div class="next">Next: Section 2 handles what you do when the state is <i>not</i> an eigenstate: averages.</div>
+{% endcall %}
+{% endcall %}{# end sec 1 #}
+
+<hr class="div">
+{% call sec('m3-2','2','Expectation values') %}
+
+{% call sub('m3-2-1','2.1','Meaning of an expectation value') %}
+<div class="intuition"><b>Why it matters.</b> Quantum mechanics predicts probabilities, so what an experiment can actually compare with theory is an average over many identical trials.</div>
+{% call box('def') %}The <b>expectation value</b> ⟨A⟩ of an observable in a state is the probability-weighted average of the values you would obtain from many measurements on identically prepared systems. It is not necessarily the most probable value, and may not even be a possible result. Classical version: x̄ = ΣNᵢxᵢ / ΣNᵢ, i.e. Σ xᵢPᵢ with Pᵢ = Nᵢ/N. For a continuous position, Pᵢ → |ψ|²dx, so ⟨x⟩ = ∫x|ψ|²dx with ∫|ψ|²dx = 1.{% endcall %}
+{% call fig('A distribution with mean ⟨x⟩ marked. <i>Notice</i> the mean need not sit where the curve is highest, and for a two-peaked distribution it can sit in a valley where the particle is never found.') %}
+<svg viewBox="0 0 520 150" width="520" role="img" aria-label="Mean of a two-peaked distribution">
+<line x1="20" y1="120" x2="500" y2="120" stroke="#888"/>
+<path d="M40,120 C80,20 120,20 160,120" fill="#efe9fb" stroke="#6d28d9" stroke-width="2"/>
+<path d="M330,120 C370,20 410,20 450,120" fill="#efe9fb" stroke="#6d28d9" stroke-width="2"/>
+<line x1="245" y1="20" x2="245" y2="120" stroke="#c0392b" stroke-dasharray="5 4" stroke-width="2"/>
+<text x="250" y="30" font-size="13" fill="#c0392b">⟨x⟩ (in the gap)</text><text x="60" y="140" font-size="12">peak 1</text><text x="350" y="140" font-size="12">peak 2</text></svg>
+{% endcall %}
+{% call box('ex') %}
+<div class="step"><b>Problem.</b> Ten identical particles are found at positions: three at x = 1, five at x = 2, two at x = 6 (metres). Find the average, then the probabilities Pᵢ and Σ xᵢPᵢ.</div>
+<div class="step">x̄ = (3·1 + 5·2 + 2·6)/10 = (3 + 10 + 12)/10 = 2.5.</div>
+<div class="step">Pᵢ = 0.3, 0.5, 0.2, so ΣxᵢPᵢ = 0.3 + 1.0 + 1.2 = 2.5.</div>
+<div class="check"><b>Check.</b> Both routes give 2.5 ✓, and 2.5 is not one of the measured positions: an average need not be a possible result.</div>
+{% endcall %}
+{% call box('mis') %}"The expectation value is what you will measure." A single measurement gives one eigenvalue. For a spin-½ in a state with ⟨σ_z⟩ = 0, no measurement ever gives 0; it gives +1 or −1.{% endcall %}
+<div class="next">Next: 2.2 gives the calculation recipe.</div>
+{% endcall %}
+
+<hr class="div">
+{% call sub('m3-2-2','2.2','Computing ⟨x⟩, ⟨p⟩ and ⟨E⟩') %}
+<div class="intuition"><b>Why it matters.</b> This is the most common numerical question of the module, and it reuses the operators from 1.2.</div>
+{% call box('def') %}For a normalised ψ: <b>⟨x⟩ = ∫ψ* x ψ dx</b>, <b>⟨p⟩ = ∫ψ* (−iħ ∂/∂x) ψ dx</b>, <b>⟨E⟩ = ∫ψ* Ĥ ψ dx</b> (or iħ∫ψ*∂ψ/∂t dx). General rule: ⟨Â⟩ = ∫ψ* Âψ dx, with the operator sandwiched between ψ* and ψ and acting <i>only on ψ</i>. For a free particle ψ = Ae<sup>ipx/ħ</sup>, ⟨p⟩ = p. <b>Always normalise ψ first.</b> In Dirac notation ⟨Â⟩ = ⟨ψ|Â|ψ⟩.{% endcall %}
+{% call box('ex') %}
+<div class="step"><b>Problem.</b> A particle has ψ(x) = √30 x(1−x) for 0 ≤ x ≤ 1 and 0 elsewhere. Find ⟨x⟩.</div>
+<div class="step">Normalised already (Module 2, 2.2: ∫x²(1−x)²dx = 1/30, so the factor √30 is right).</div>
+<div class="step">⟨x⟩ = 30∫₀¹ x·x²(1−x)² dx = 30∫(x³ − 2x⁴ + x⁵)dx = 30(1/4 − 2/5 + 1/6) = 30·(15 − 24 + 10)/60 = 30·(1/60) = <b>1/2</b>.</div>
+<div class="check"><b>Check.</b> ψ² = 30x²(1−x)² is symmetric about x = ½ (swap x ↔ 1−x), so the average position must be ½ ✓.</div>
+{% endcall %}
+{% call box('mis') %}"Use an unnormalised ψ; the constant cancels." It does not: ∫ψ*xψ scales with |A|². Either normalise first or divide by ∫|ψ|²dx. Also never move the operator to the left of ψ*: ψ* p̂ ψ ≠ p̂ ψ* ψ.{% endcall %}
+<div class="next">Next: 2.3 gives two shortcuts that avoid a lot of algebra.</div>
+{% endcall %}
+
+<hr class="div">
+{% call sub('m3-2-3','2.3','Shortcuts for real wavefunctions and ⟨p²⟩') %}
+<div class="intuition"><b>Why it matters.</b> Box wavefunctions (Module 4) are real, so ⟨p⟩ is zero at once, and ⟨p²⟩ can be found without differentiating twice.</div>
+{% call box('def') %}If ψ is <b>real</b> (and vanishes at the ends or at infinity), then ⟨p⟩ = (ħ/i)∫ψψ′dx = (ħ/2i)[ψ²] = <b>0</b>. For ⟨p²⟩ integrate by parts: <b>⟨p²⟩ = ħ²∫|dψ/dx|² dx</b> (boundary terms vanish). Also, <b>⟨x²⟩ ≠ ⟨x⟩²</b> in general.{% endcall %}
+{% call box('why','Why ⟨p⟩ = 0 for real ψ') %}ψψ′ = ½ d(ψ²)/dx is a total derivative, so ∫ψψ′dx = ½[ψ²] evaluated between the ends, which is 0 when ψ vanishes there. The factor ħ/i does not change zero. (Your slides show this for the box and for the oscillator ground state.){% endcall %}
+{% call box('ex') %}
+<div class="step"><b>Problem.</b> For ψ = √30 x(1−x) find ⟨p⟩ and ⟨p²⟩.</div>
+<div class="step">ψ is real and ψ(0) = ψ(1) = 0, so ⟨p⟩ = 0.</div>
+<div class="step">ψ′ = √30(1 − 2x), so ⟨p²⟩ = ħ²·30∫₀¹(1 − 2x)²dx. ∫(1 − 4x + 4x²)dx = 1 − 2 + 4/3 = 1/3. Hence ⟨p²⟩ = 30ħ²/3 = <b>10ħ²</b>.</div>
+<div class="check"><b>Check.</b> Second route: ψ″ = −2√30, so ⟨p²⟩ = −ħ²∫ψψ″dx = −ħ²·(−2)·30∫x(1−x)dx = 60ħ²(1/2 − 1/3) = 60ħ²/6 = 10ħ² ✓.</div>
+{% endcall %}
+{% call box('mis') %}"⟨p²⟩ = ⟨p⟩² = 0." Wrong: ⟨p⟩ = 0 but ⟨p²⟩ = 10ħ² &gt; 0. This gap between ⟨p²⟩ and ⟨p⟩² is exactly the uncertainty in p (next subsection).{% endcall %}
+<div class="next">Next: 2.4 turns ⟨x²⟩ and ⟨p²⟩ into uncertainties.</div>
+{% endcall %}
+
+<hr class="div">
+{% call sub('m3-2-4','2.4','Uncertainty from expectation values') %}
+<div class="intuition"><b>Why it matters.</b> The spread of results is as physical as their average, and the Heisenberg bound ΔxΔp ≥ ħ/2 is your check that a calculation is sensible. In Module 4 this is why the box has zero-point energy.</div>
+{% call box('def') %}<b>Δx = √(⟨x²⟩ − ⟨x⟩²)</b>, <b>Δp = √(⟨p²⟩ − ⟨p⟩²)</b>. The uncertainty principle: <b>ΔxΔp ≥ ħ/2</b>. (For the harmonic-oscillator ground state, your slides get ΔxΔp = ħ/2 exactly.){% endcall %}
+{% call fig('Narrow in x means broad in p, and vice versa. Both sketches obey ΔxΔp ≥ ħ/2. <i>Notice</i> that squeezing one distribution widens the other.') %}
+<svg viewBox="0 0 520 150" width="520" role="img" aria-label="Position and momentum widths trade off">
+<text x="70" y="15" font-size="13">narrow in x</text><path d="M20,120 C50,120 60,20 80,20 C100,20 110,120 140,120" fill="#efe9fb" stroke="#6d28d9" stroke-width="2"/>
+<text x="210" y="15" font-size="13">broad in p</text><path d="M170,120 C200,110 220,90 240,88 C260,90 280,110 310,120" fill="#fdf1e0" stroke="#b45309" stroke-width="2"/>
+<text x="340" y="15" font-size="13">broad in x / narrow in p</text><path d="M340,120 C370,110 380,90 400,88 C420,90 430,110 460,120" fill="#efe9fb" stroke="#6d28d9" stroke-width="2"/>
+<line x1="20" y1="120" x2="500" y2="120" stroke="#888"/></svg>
+{% endcall %}
+{% call box('ex') %}
+<div class="step"><b>Problem.</b> For ψ = √30 x(1−x) find Δx, Δp and test the principle.</div>
+<div class="step">⟨x²⟩ = 30∫(x⁴ − 2x⁵ + x⁶)dx = 30(1/5 − 1/3 + 1/7) = 30·(21 − 35 + 15)/105 = 30/105 = 2/7. With ⟨x⟩ = 1/2: Δx² = 2/7 − 1/4 = 1/28, so Δx = 1/√28 ≈ 0.189.</div>
+<div class="step">⟨p⟩ = 0 and ⟨p²⟩ = 10ħ², so Δp = √10 ħ ≈ 3.162ħ.</div>
+<div class="step">ΔxΔp = √(10/28) ħ = 0.598ħ.</div>
+<div class="check"><b>Check.</b> 0.598ħ ≥ 0.5ħ ✓, so the result is consistent with the uncertainty principle (values also confirmed by numerical integration).</div>
+{% endcall %}
+{% call box('mis') %}"Δx = ⟨x²⟩ − ⟨x⟩²." That is the <i>variance</i>; take the square root. Getting ΔxΔp &lt; ħ/2 always signals an arithmetic error.{% endcall %}
+<div class="next">Next: Section 3 explains what a single measurement does to the state.</div>
+{% endcall %}
+{% endcall %}{# end sec 2 #}
+
+<hr class="div">
+{% call sec('m3-3','3','Measurement in quantum mechanics') %}
+
+{% call sub('m3-3-1','3.1','Possible outcomes and definite states') %}
+<div class="intuition"><b>Why it matters.</b> Before you can talk about probabilities you need the list of things that can happen. That list comes straight from the eigenvalue problem of Module 2, 5.</div>
+{% call box('def') %}For an observable Â with eigenvalues aₙ and orthonormal eigenvectors |aₙ⟩: the <b>possible results</b> are the aₙ; the state <b>|aₙ⟩ is a definite state</b> (result aₙ with 100 % certainty). Any state can be written |ψ⟩ = Σcₙ|aₙ⟩ (Module 2, 5.2). To find outcomes: find the eigenvalues. To find the state that gives an outcome: find the eigenvector.{% endcall %}
+{% call fig('An observable maps to a list of outcomes (eigenvalues) and a list of definite states (eigenvectors), one pair per outcome. <i>Notice</i> the one-to-one pairing.') %}
+<svg viewBox="0 0 500 140" width="500" role="img" aria-label="Operator to eigenvalues and eigenvectors">
+<rect x="20" y="50" width="110" height="40" rx="8" fill="#efe9fb" stroke="#6d28d9"/><text x="75" y="75" font-size="14" text-anchor="middle">operator Â</text>
+<line x1="130" y1="60" x2="230" y2="30" stroke="#333" marker-end="url(#a33)"/><line x1="130" y1="80" x2="230" y2="110" stroke="#333" marker-end="url(#a33)"/>
+<defs><marker id="a33" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#333"/></marker></defs>
+<rect x="235" y="10" width="240" height="40" rx="8" fill="#e6f4f2" stroke="#0f766e"/><text x="355" y="35" font-size="13" text-anchor="middle">eigenvalues a₁, a₂, … = possible results</text>
+<rect x="235" y="90" width="240" height="40" rx="8" fill="#fdf1e0" stroke="#b45309"/><text x="355" y="115" font-size="13" text-anchor="middle">eigenvectors |a₁⟩, |a₂⟩, … = definite states</text></svg>
+{% endcall %}
+{% call box('ex') %}
+<div class="step"><b>Problem.</b> Find the possible results and definite states for σ_x.</div>
+<div class="step">σ_x = [[0,1],[1,0]]: det(σ_x − λI) = λ² − 1 = 0, so λ = ±1. For +1: −v₁ + v₂ = 0, v = (1,1)/√2. For −1: v₁ + v₂ = 0, v = (1,−1)/√2.</div>
+<div class="check"><b>Check.</b> σ_x(1,1) = (1,1) ✓ and σ_x(1,−1) = (−1,1) = −(1,−1) ✓, and the two are orthogonal (1 − 1 = 0) ✓.</div>
+{% endcall %}
+{% call box('mis') %}"The possible results are the entries of the matrix." They are the <i>eigenvalues</i>. The matrix σ_x has entries 0 and 1, but the results are ±1.{% endcall %}
+<div class="next">Next: 3.2 gives the probability of each outcome.</div>
+{% endcall %}
+
+<hr class="div">
+{% call sub('m3-3-2','3.2','Probabilities from projection operators') %}
+<div class="intuition"><b>Why it matters.</b> This is the rule that makes quantum mechanics predictive. It reuses the projection operator of Module 2, 4.5 and is the tool behind every Stern-Gerlach count in Section 4.</div>
+{% call box('def') %}For a normalised |ψ⟩ and a non-degenerate eigenvector |aₙ⟩ of the measured observable, with projector P̂ₙ = |aₙ⟩⟨aₙ|: <b>Prob(aₙ) = ⟨ψ|P̂ₙ|ψ⟩ = ‖P̂ₙψ‖² = |⟨aₙ|ψ⟩|²</b>. The number ⟨aₙ|ψ⟩ is the <b>probability amplitude</b>. Probabilities add to 1: Σ|cₙ|² = 1. Example from your slides: for |ψ⟩ = a|0⟩ + b|1⟩ and P̂₀ = |0⟩⟨0|, Prob(0) = |a|².{% endcall %}
+{% call fig('The probability of an outcome is the squared length of the shadow of |ψ⟩ on that outcome\'s eigenvector. <i>Notice</i> the two probabilities are cos²θ and sin²θ, which add to 1 (Pythagoras).') %}
+<svg viewBox="0 0 320 190" width="320" role="img" aria-label="Probabilities as squared shadows"><defs><marker id="a34" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#333"/></marker></defs>
+<line x1="30" y1="160" x2="290" y2="160" stroke="#888"/><line x1="30" y1="160" x2="30" y2="20" stroke="#888"/>
+<text x="292" y="164" font-size="13">|a₁⟩</text><text x="36" y="20" font-size="13">|a₂⟩</text>
+<line x1="30" y1="160" x2="230" y2="60" stroke="#333" stroke-width="2.5" marker-end="url(#a34)"/><text x="236" y="58" font-size="14">|ψ⟩</text>
+<line x1="230" y1="60" x2="230" y2="160" stroke="#0f766e" stroke-dasharray="4 3"/><line x1="230" y1="60" x2="30" y2="60" stroke="#b45309" stroke-dasharray="4 3"/>
+<text x="110" y="178" font-size="12" fill="#0f766e">|c₁| = cos θ</text><text x="40" y="52" font-size="12" fill="#b45309">|c₂| = sin θ</text></svg>
+{% endcall %}
+{% call box('ex') %}
+<div class="step"><b>Problem.</b> The state is |ψ⟩ = (1, 2)ᵀ/√5. σ_x is measured. Find the probability of each result and ⟨σ_x⟩.</div>
+<div class="step">Eigenvectors (3.1): |+ₓ⟩ = (1,1)/√2 and |−ₓ⟩ = (1,−1)/√2. Amplitudes: ⟨+ₓ|ψ⟩ = (1 + 2)/(√2√5) = 3/√10, ⟨−ₓ|ψ⟩ = (1 − 2)/√10 = −1/√10.</div>
+<div class="step">Probabilities: 9/10 for +1 and 1/10 for −1. ⟨σ_x⟩ = (9/10)(+1) + (1/10)(−1) = 4/5.</div>
+<div class="check"><b>Check.</b> 9/10 + 1/10 = 1 ✓. Direct: ⟨ψ|σ_x|ψ⟩ = (1/5)(1, 2)·(2, 1) = (1·2 + 2·1)/5 = 4/5 ✓. Projector route: P₊ = ½[[1,1],[1,1]], P₊ψ = (3/2, 3/2)/√5, ‖P₊ψ‖² = (9/4 + 9/4)/5 = 9/10 ✓.</div>
+{% endcall %}
+{% call box('mis') %}"Probability is the amplitude." It is the amplitude's squared <i>modulus</i>. The −1/√10 above is negative, yet the probability is +1/10. Also the formula needs a <i>normalised</i> ψ; otherwise divide by ⟨ψ|ψ⟩.{% endcall %}
+<div class="next">Next: 3.3 asks what state you are left with after the measurement.</div>
+{% endcall %}
+
+<hr class="div">
+{% call sub('m3-3-3','3.3','Collapse and repeated measurement') %}
+<div class="intuition"><b>Why it matters.</b> This explains Stern-Gerlach experiment 1 (repeat the same measurement, get the same answer) and, together with incompatibility, experiment 3.</div>
+{% call box('def') %}When a measurement of Â gives the result aₙ, the state afterwards is the eigenvector |aₙ⟩ (the state is <b>projected</b>, or <b>collapses</b>): |ψ⟩ → P̂ₙ|ψ⟩/‖P̂ₙψ‖. Measuring Â again immediately gives aₙ with probability 1. The first analyser in a Stern-Gerlach chain is therefore a <b>state-preparation device</b>. Measuring a different, non-commuting observable then re-randomises the first one.{% endcall %}
+{% call fig('Measurement as a two-step picture: a superposition goes in, one eigenvector comes out, chosen with the probability from 3.2. <i>Notice</i> that repeating the measurement (bottom) just returns the same eigenvector.') %}
+<svg viewBox="0 0 560 170" width="560" role="img" aria-label="Collapse"><defs><marker id="a35" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#333"/></marker></defs>
+<rect x="10" y="20" width="130" height="36" rx="8" fill="#efe9fb" stroke="#6d28d9"/><text x="75" y="43" font-size="13" text-anchor="middle">Σ cₙ|aₙ⟩</text>
+<line x1="140" y1="38" x2="230" y2="38" stroke="#333" marker-end="url(#a35)"/><text x="185" y="30" font-size="12" text-anchor="middle">measure Â</text>
+<rect x="235" y="20" width="110" height="36" rx="8" fill="#e6f4f2" stroke="#0f766e"/><text x="290" y="43" font-size="13" text-anchor="middle">|aₖ⟩, prob |cₖ|²</text>
+<line x1="345" y1="38" x2="435" y2="38" stroke="#333" marker-end="url(#a35)"/><text x="390" y="30" font-size="12" text-anchor="middle">measure Â again</text>
+<rect x="440" y="20" width="110" height="36" rx="8" fill="#e6f4f2" stroke="#0f766e"/><text x="495" y="43" font-size="13" text-anchor="middle">aₖ, prob 1</text>
+<text x="20" y="110" font-size="13" fill="#555">If instead a non-commuting observable B̂ is measured in between, |aₖ⟩ is a superposition of B̂'s eigenvectors and the</text>
+<text x="20" y="130" font-size="13" fill="#555">certainty about Â is lost (Stern-Gerlach experiment 3).</text></svg>
+{% endcall %}
+{% call box('ex') %}
+<div class="step"><b>Problem.</b> Starting from |ψ⟩ = (1,2)ᵀ/√5, σ_x is measured and gives +1. σ_x is then measured again, and finally σ_z is measured. Give the probabilities.</div>
+<div class="step">After the +1 result, |ψ⟩ → |+ₓ⟩ = (1,1)/√2 (3.2 gave this outcome probability 9/10).</div>
+<div class="step">Second σ_x: probability of +1 is |⟨+ₓ|+ₓ⟩|² = 1; of −1 is 0.</div>
+<div class="step">σ_z on |+ₓ⟩: ⟨0|+ₓ⟩ = 1/√2, ⟨1|+ₓ⟩ = 1/√2, so P(+1) = P(−1) = 1/2.</div>
+<div class="check"><b>Check.</b> Each set of probabilities sums to 1 ✓. The σ_z outcome is 50/50 even though the initial state (1,2)/√5 was not: the earlier σ_x measurement erased the memory of the amplitudes, keeping only the collapsed state.</div>
+{% endcall %}
+{% call box('mis') %}"After the measurement the system goes back to the original state." No. It stays in the eigenvector found. Also "measurement reveals a value that was already there": the SG experiments 2 and 3 in Section 4 show that is not how the theory works.{% endcall %}
+<div class="next">Next: Section 4 puts all of this into a real experiment.</div>
+{% endcall %}
+{% endcall %}{# end sec 3 #}
+
+<hr class="div">
+{% call sec('m3-4','4','Sequential Stern-Gerlach experiment') %}
+<p class="muted small">Counts in the diagrams of this section are illustrative: they are computed from the calculated probabilities for 1000 atoms entering the stage shown, with no statistical scatter. They are not copied from your slides.</p>
+
+{% call sub('m3-4-1','4.1','The Stern-Gerlach apparatus and spin-½') %}
+<div class="intuition"><b>Why it matters.</b> It is the simplest experiment that shows measurement is not classical, and it makes the abstract machinery (kets, eigenvalues, probabilities) concrete with a two-outcome system.</div>
+{% call box('def') %}An oven produces a beam of neutral atoms (silver in the original 1922 experiment) that passes through an <b>inhomogeneous magnetic field</b> and is detected. Classically you expect a smear; instead the beam splits into <b>two</b>, one deflected up and one down along the field gradient. The two outcomes are spin components S_z = +ħ/2 and S_z = −ħ/2 (spin-½), labelled by kets |+⟩ and |−⟩. Rotating the magnet measures S_x (kets |±⟩ₓ) instead. A <b>sequential</b> experiment passes the beam through several analysers, possibly rotated. Two outcomes means a 2-dimensional state space, the one used in Module 2, 6.{% endcall %}
+{% call fig('A Stern-Gerlach analyser (SGz) splits an incoming beam |ψ⟩ into an upper beam |+⟩ (S_z = +ħ/2) and a lower beam |−⟩ (S_z = −ħ/2). <i>Notice</i> only two outputs ever appear.') %}
+<svg viewBox="0 0 560 190" width="560" role="img" aria-label="Stern-Gerlach apparatus"><defs><marker id="a41" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#333"/></marker></defs>
+<rect x="20" y="70" width="70" height="50" rx="6" fill="#eee" stroke="#666"/><text x="55" y="100" font-size="13" text-anchor="middle">oven</text>
+<line x1="90" y1="95" x2="200" y2="95" stroke="#333" marker-end="url(#a41)"/><text x="130" y="85" font-size="13">|ψ⟩</text>
+<rect x="200" y="55" width="130" height="80" rx="6" fill="#efe9fb" stroke="#6d28d9"/><text x="265" y="100" font-size="15" text-anchor="middle">SGz</text>
+<text x="265" y="70" font-size="11" text-anchor="middle" fill="#6d28d9">N</text><text x="265" y="128" font-size="11" text-anchor="middle" fill="#6d28d9">S</text>
+<line x1="330" y1="85" x2="470" y2="45" stroke="#0f766e" stroke-width="2.5" marker-end="url(#a41)"/><text x="475" y="48" font-size="13" fill="#0f766e">|+⟩  S_z = +ħ/2</text>
+<line x1="330" y1="105" x2="470" y2="145" stroke="#b45309" stroke-width="2.5" marker-end="url(#a41)"/><text x="475" y="150" font-size="13" fill="#b45309">|−⟩  S_z = −ħ/2</text></svg>
+{% endcall %}
+<table class="t"><tr><th>Symbol</th><th>Meaning</th></tr>
+<tr><td>|+⟩, |−⟩</td><td>spin up / down along z (S_z = ±ħ/2)</td></tr><tr><td>|+⟩ₓ, |−⟩ₓ</td><td>spin up / down along x (S_x = ±ħ/2)</td></tr>
+<tr><td>SGz, SGx</td><td>analyser with its field along z or x</td></tr></table>
+{% call box('ex') %}
+<div class="step"><b>Problem.</b> An SGz analyser is given atoms whose state is |ψ⟩ = (√3/2)|+⟩ + (1/2)|−⟩. What fraction of 1000 atoms exits each port?</div>
+<div class="step">P(+) = |√3/2|² = 3/4, P(−) = |1/2|² = 1/4.</div>
+<div class="step">So about 750 atoms exit the upper port and 250 the lower.</div>
+<div class="check"><b>Check.</b> 3/4 + 1/4 = 1 ✓, and 750 + 250 = 1000 ✓. The counts are the calculated expectation, in a real run you would see statistical scatter around them.</div>
+{% endcall %}
+{% call box('mis') %}"The beam deflects upward because the atom's spin arrow points up." Classically, a randomly oriented spin would give a continuous smear. The observation of exactly two spots is what needs quantum mechanics. Also, how the beams are drawn (up, down, or straight) is not the physics: the port label is.{% endcall %}
+<div class="next">Next: 4.2 to 4.5 walk through the four experiments your slides give.</div>
+{% endcall %}
+
+<hr class="div">
+{% call sub('m3-4-2','4.2','Experiment 1: z then z') %}
+<div class="intuition"><b>Why it matters.</b> It establishes the baseline: measuring the same quantity twice agrees. That is collapse (3.3) in action.</div>
+{% call box('def') %}<b>Setup:</b> SGz, then the upper beam |+⟩ enters a second SGz. <b>Result:</b> every atom exits the upper port of the second analyser; none exits the lower. The first analyser prepares the state |+⟩ (a state-preparation device) and the second measures it.{% endcall %}
+{% call fig('Experiment 1. Counts are illustrative (1000 atoms enter the second analyser). <i>Notice</i> the empty lower port: S_z = −ħ/2 has zero probability in |+⟩.') %}
+<svg viewBox="0 0 560 170" width="560" role="img" aria-label="Experiment 1"><defs><marker id="a42" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#333"/></marker></defs>
+<rect x="10" y="60" width="60" height="40" rx="6" fill="#eee" stroke="#666"/><text x="40" y="85" font-size="12" text-anchor="middle">oven</text>
+<line x1="70" y1="80" x2="110" y2="80" stroke="#333" marker-end="url(#a42)"/>
+<rect x="110" y="50" width="70" height="60" rx="6" fill="#efe9fb" stroke="#6d28d9"/><text x="145" y="86" font-size="14" text-anchor="middle">SGz</text>
+<line x1="180" y1="70" x2="250" y2="70" stroke="#0f766e" stroke-width="2.5" marker-end="url(#a42)"/><text x="215" y="62" font-size="12" fill="#0f766e">|+⟩</text>
+<line x1="180" y1="90" x2="240" y2="140" stroke="#bbb" stroke-dasharray="4 3"/><text x="245" y="148" font-size="11" fill="#999">beam blocked</text>
+<rect x="250" y="40" width="70" height="60" rx="6" fill="#efe9fb" stroke="#6d28d9"/><text x="285" y="76" font-size="14" text-anchor="middle">SGz</text>
+<line x1="320" y1="55" x2="420" y2="55" stroke="#0f766e" stroke-width="2.5" marker-end="url(#a42)"/><text x="425" y="59" font-size="13" fill="#0f766e">1000 (S_z = +ħ/2)</text>
+<line x1="320" y1="85" x2="420" y2="85" stroke="#bbb" stroke-dasharray="4 3"/><text x="425" y="89" font-size="13" fill="#999">0 (S_z = −ħ/2)</text></svg>
+{% endcall %}
+{% call box('ex') %}
+<div class="step"><b>Problem.</b> Predict the outputs if the lower beam |−⟩ of the first SGz is sent into the second SGz.</div>
+<div class="step">The state is |−⟩; P(+) = |⟨+|−⟩|² = 0, P(−) = |⟨−|−⟩|² = 1.</div>
+<div class="check"><b>Check.</b> Symmetric to the slide's case: all atoms exit the lower port. The probabilities are 0 + 1 = 1 ✓ and the calculation uses orthonormality ⟨+|−⟩ = 0 (Module 2, 2.1).</div>
+{% endcall %}
+{% call box('mis') %}"The second analyser could still find some −ħ/2 atoms, from noise." Ideal quantum mechanics predicts exactly zero. The 100 % result comes from orthogonality of |+⟩ and |−⟩, not from an experimental rounding.{% endcall %}
+<div class="next">Next: 4.3 turns the second analyser through 90°.</div>
+{% endcall %}
+
+<hr class="div">
+{% call sub('m3-4-3','4.3','Experiment 2: z then x') %}
+<div class="intuition"><b>Why it matters.</b> It gives the first genuinely quantum surprise: certainty about S_z means complete uncertainty about S_x.</div>
+{% call box('def') %}<b>Setup:</b> SGz, then the upper beam |+⟩ enters an SGx (rotated by 90°). <b>Result:</b> atoms appear at <b>both</b> ports of the SGx with <b>50 %</b> probability each, and you cannot predict which port any single atom will take. The same happens if the lower port of the first analyser is used. <b>Why:</b> |+⟩ is a superposition of the S_x states, |+⟩ = (|+⟩ₓ + |−⟩ₓ)/√2 (Module 2, 6.2).{% endcall %}
+{% call fig('Experiment 2. Counts are illustrative for 1000 atoms entering SGx. <i>Notice</i> that an exact S_z value gives an even split for S_x.') %}
+<svg viewBox="0 0 560 170" width="560" role="img" aria-label="Experiment 2"><defs><marker id="a43" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#333"/></marker></defs>
+<rect x="10" y="60" width="60" height="40" rx="6" fill="#eee" stroke="#666"/><text x="40" y="85" font-size="12" text-anchor="middle">oven</text>
+<line x1="70" y1="80" x2="110" y2="80" stroke="#333" marker-end="url(#a43)"/>
+<rect x="110" y="50" width="70" height="60" rx="6" fill="#efe9fb" stroke="#6d28d9"/><text x="145" y="86" font-size="14" text-anchor="middle">SGz</text>
+<line x1="180" y1="70" x2="250" y2="70" stroke="#0f766e" stroke-width="2.5" marker-end="url(#a43)"/><text x="215" y="62" font-size="12" fill="#0f766e">|+⟩</text>
+<rect x="250" y="40" width="70" height="60" rx="6" fill="#fdf1e0" stroke="#b45309"/><text x="285" y="76" font-size="14" text-anchor="middle">SGx</text>
+<line x1="320" y1="55" x2="420" y2="55" stroke="#0f766e" stroke-width="2.5" marker-end="url(#a43)"/><text x="425" y="59" font-size="13">500 (S_x = +ħ/2)</text>
+<line x1="320" y1="85" x2="420" y2="85" stroke="#b45309" stroke-width="2.5" marker-end="url(#a43)"/><text x="425" y="89" font-size="13">500 (S_x = −ħ/2)</text></svg>
+{% endcall %}
+{% call box('ex') %}
+<div class="step"><b>Problem.</b> Compute the S_x probabilities for the state |+⟩ = (1,0)ᵀ and for |−⟩ = (0,1)ᵀ.</div>
+<div class="step">S_x eigenvectors: |±⟩ₓ = (1, ±1)/√2. For |+⟩: ₓ⟨+|+⟩ = 1/√2, ₓ⟨−|+⟩ = 1/√2, so P = ½ each.</div>
+<div class="step">For |−⟩ = (0,1): ₓ⟨+|−⟩ = 1/√2, ₓ⟨−|−⟩ = −1/√2, so P = ½ each again.</div>
+<div class="check"><b>Check.</b> Each pair sums to 1 ✓, and both cases give 50/50, matching the slide's remark that using the lower port of the first analyser changes nothing. The minus sign in the second case is a phase that disappears in |·|².</div>
+{% endcall %}
+{% call box('mis') %}"50/50 means the atoms are secretly half up and half down in x." That is a hidden-variable picture. The theory says each atom is in a superposition and the outcome for an individual atom is not predictable.{% endcall %}
+<div class="next">Next: 4.4 adds a third analyser and shows the earlier information is lost.</div>
+{% endcall %}
+
+<hr class="div">
+{% call sub('m3-4-4','4.4','Experiment 3: z, x, then z') %}
+<div class="intuition"><b>Why it matters.</b> This is where classical intuition fails outright, and it is the physical meaning of [σ_z, σ_x] ≠ 0 from Module 2, 7.2.</div>
+{% call box('def') %}<b>Setup:</b> SGz, SGx, then another SGz; the upper output of each stage goes to the next. <b>Classical expectation:</b> the first two analysers show S_z = +ħ/2 and S_x = +ħ/2, so the last should give +ħ/2. <b>Quantum result:</b> the last SGz splits <b>50/50</b>. The SGx measurement <b>disturbed</b> the system so that S_z has no definite value again. S_z and S_x are <b>incompatible observables</b>: the spin vector cannot be said to point in any one direction.{% endcall %}
+{% call fig('Experiment 3, counts illustrative for 1000 atoms entering the middle SGx. <i>Notice</i> the last stage: 250 each, so 500 of the original 1000 S_z = + atoms are lost from the upper port after the S_x measurement.') %}
+<svg viewBox="0 0 640 190" width="640" role="img" aria-label="Experiment 3"><defs><marker id="a44" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#333"/></marker></defs>
+<rect x="5" y="70" width="50" height="34" rx="6" fill="#eee" stroke="#666"/><text x="30" y="92" font-size="11" text-anchor="middle">oven</text>
+<line x1="55" y1="87" x2="85" y2="87" stroke="#333" marker-end="url(#a44)"/>
+<rect x="85" y="60" width="60" height="54" rx="6" fill="#efe9fb" stroke="#6d28d9"/><text x="115" y="92" font-size="13" text-anchor="middle">SGz</text>
+<line x1="145" y1="75" x2="210" y2="75" stroke="#0f766e" stroke-width="2.5" marker-end="url(#a44)"/><text x="178" y="68" font-size="11" fill="#0f766e">|+⟩ 1000</text>
+<rect x="210" y="50" width="60" height="54" rx="6" fill="#fdf1e0" stroke="#b45309"/><text x="240" y="82" font-size="13" text-anchor="middle">SGx</text>
+<line x1="270" y1="65" x2="340" y2="65" stroke="#0f766e" stroke-width="2.5" marker-end="url(#a44)"/><text x="305" y="58" font-size="11">|+⟩ₓ 500</text>
+<line x1="270" y1="90" x2="320" y2="130" stroke="#bbb" stroke-dasharray="4 3"/><text x="322" y="138" font-size="11" fill="#999">|−⟩ₓ 500 blocked</text>
+<rect x="340" y="40" width="60" height="54" rx="6" fill="#efe9fb" stroke="#6d28d9"/><text x="370" y="72" font-size="13" text-anchor="middle">SGz</text>
+<line x1="400" y1="55" x2="470" y2="50" stroke="#0f766e" stroke-width="2.5" marker-end="url(#a44)"/><text x="475" y="54" font-size="12">250 (S_z = +ħ/2)</text>
+<line x1="400" y1="80" x2="470" y2="90" stroke="#b45309" stroke-width="2.5" marker-end="url(#a44)"/><text x="475" y="94" font-size="12">250 (S_z = −ħ/2)</text></svg>
+{% endcall %}
+{% call box('ex') %}
+<div class="step"><b>Problem.</b> For 4000 atoms leaving the first SGz's upper port, find the count at each output of the last SGz in experiment 3.</div>
+<div class="step">Stage 2 (SGx): P(+ₓ) = P(−ₓ) = ½, so 2000 atoms take the upper port (the other 2000 are blocked).</div>
+<div class="step">Stage 3 (SGz) on the state |+⟩ₓ = (|+⟩ + |−⟩)/√2: P(+) = P(−) = ½, so 1000 atoms exit each port.</div>
+<div class="check"><b>Check.</b> The chained probability of S_z = +ħ/2 at the end is ½ × ½ = ¼, i.e. 1000 of 4000 ✓; the total of surviving atoms is 1000 + 1000 = 2000 = the atoms passed by SGx ✓.</div>
+{% endcall %}
+{% call box('mis') %}"The atom remembers its first result and the third analyser must agree." That is the classical prediction, and it is wrong: the middle measurement is incompatible with the first, so the S_z certainty is destroyed, not merely hidden.{% endcall %}
+<div class="next">Next: 4.5 shows that if you do not disturb the beams in the middle, the memory comes back.</div>
+{% endcall %}
+
+<hr class="div">
+{% call sub('m3-4-5','4.5','Experiment 4: recombined beams') %}
+<div class="intuition"><b>Why it matters.</b> It shows the difference between adding <i>probabilities</i> (classical) and adding <i>amplitudes</i> (quantum). It is the same idea as interference of light.</div>
+{% call box('def') %}<b>Setup:</b> as experiment 3, but both output beams of the SGx are recombined (without disturbing them) and fed to the last SGz. <b>Classical prediction:</b> 50 % up, 50 % down. <b>Quantum result:</b> <b>all atoms exit the upper port and none the lower.</b> The atoms seem to "remember" their S_z = +ħ/2 result. All atoms reach the last analyser, yet allowing both paths gives <i>fewer</i> counts in the lower port (zero). Rule: <b>add amplitudes, then square</b>.{% endcall %}
+{% call fig('Experiment 4: the two S_x paths recombine. <i>Notice</i> the amplitudes to reach the lower output through the two paths are +½ and −½, which cancel; for the upper output they are +½ and +½, which add to 1.') %}
+<svg viewBox="0 0 640 200" width="640" role="img" aria-label="Experiment 4 interference"><defs><marker id="a45" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#333"/></marker></defs>
+<rect x="5" y="80" width="50" height="34" rx="6" fill="#eee" stroke="#666"/><text x="30" y="102" font-size="11" text-anchor="middle">oven</text>
+<line x1="55" y1="97" x2="80" y2="97" stroke="#333" marker-end="url(#a45)"/>
+<rect x="80" y="70" width="60" height="54" rx="6" fill="#efe9fb" stroke="#6d28d9"/><text x="110" y="102" font-size="13" text-anchor="middle">SGz</text>
+<line x1="140" y1="85" x2="185" y2="85" stroke="#0f766e" stroke-width="2.5" marker-end="url(#a45)"/><text x="160" y="78" font-size="11">|+⟩</text>
+<rect x="185" y="60" width="60" height="54" rx="6" fill="#fdf1e0" stroke="#b45309"/><text x="215" y="92" font-size="13" text-anchor="middle">SGx</text>
+<path d="M245,70 C290,40 330,40 370,70" fill="none" stroke="#0f766e" stroke-width="2.5" marker-end="url(#a45)"/><text x="300" y="34" font-size="11">|+⟩ₓ amplitude ½ (to up), ½ (to down)</text>
+<path d="M245,104 C290,140 330,140 370,110" fill="none" stroke="#b45309" stroke-width="2.5" marker-end="url(#a45)"/><text x="290" y="158" font-size="11">|−⟩ₓ amplitude ½ (to up), −½ (to down)</text>
+<rect x="370" y="60" width="60" height="54" rx="6" fill="#efe9fb" stroke="#6d28d9"/><text x="400" y="92" font-size="13" text-anchor="middle">SGz</text>
+<line x1="430" y1="75" x2="500" y2="70" stroke="#0f766e" stroke-width="2.5" marker-end="url(#a45)"/><text x="505" y="74" font-size="12">1000 (up)</text>
+<line x1="430" y1="100" x2="500" y2="110" stroke="#bbb" stroke-dasharray="4 3"/><text x="505" y="114" font-size="12" fill="#999">0 (down)</text></svg>
+{% endcall %}
+{% call box('why','Why the lower port empties (amplitude sum)') %}Write |+⟩ = (|+⟩ₓ + |−⟩ₓ)/√2 and |+⟩ₓ = (|+⟩ + |−⟩)/√2, |−⟩ₓ = (|+⟩ − |−⟩)/√2. Amplitude to end in |−⟩ via the two paths: ⟨−|+⟩ₓ ₓ⟨+|+⟩ + ⟨−|−⟩ₓ ₓ⟨−|+⟩ = (1/√2)(1/√2) + (−1/√2)(1/√2) = ½ − ½ = <b>0</b>. Amplitude to end in |+⟩: (1/√2)(1/√2) + (1/√2)(1/√2) = ½ + ½ = <b>1</b>. So P(down) = 0 and P(up) = 1. Adding <i>probabilities</i> instead, ¼ + ¼ = ½ (the classical answer), is what experiment 3 measured when the paths were resolved.{% endcall %}
+{% call box('ex') %}
+<div class="step"><b>Problem.</b> Repeat experiment 4 for an initial state |−⟩ (lower port of the first SGz), and find P(+) and P(−) at the end.</div>
+<div class="step">Paths through |+⟩ₓ and |−⟩ₓ. Amplitude to |+⟩: ⟨+|+⟩ₓ ₓ⟨+|−⟩ + ⟨+|−⟩ₓ ₓ⟨−|−⟩ = (1/√2)(1/√2) + (1/√2)(−1/√2) = 0. Amplitude to |−⟩: (1/√2)(1/√2) + (−1/√2)(−1/√2) = ½ + ½ = 1.</div>
+<div class="check"><b>Check.</b> Result: all atoms end in |−⟩, P = 0 and 1, sum 1 ✓. This is what you expect from identity: with both paths open, the SGx stage does nothing net (|+⟩ₓ⟨+|ₓ + |−⟩ₓ⟨−|ₓ = I by completeness, Module 2, 4.5), so the state returns unchanged.</div>
+{% endcall %}
+{% call box('mis') %}"Recombining the beams is just mixing the atoms back together." Only if the recombination is done <i>without</i> disturbing (measuring) which path each atom took. If you record the path, you get the experiment-3 answer instead.{% endcall %}
+<div class="next">Next: 4.6 collects the four results and shows one matrix calculation that explains them all.</div>
+{% endcall %}
+
+<hr class="div">
+{% call sub('m3-4-6','4.6','Summary and the maths behind all four') %}
+<div class="intuition"><b>Why it matters.</b> A single toolkit from Module 2 (eigenvectors, projections, amplitudes) predicts every experiment above, which is the point of the postulates.</div>
+<table class="t"><tr><th>Exp.</th><th>Chain</th><th>Final result</th><th>Idea it shows</th></tr>
+<tr><td>1</td><td>SGz → SGz</td><td>100 % same port</td><td>repeat measurement agrees (collapse, state preparation)</td></tr>
+<tr><td>2</td><td>SGz → SGx</td><td>50 % / 50 %</td><td>|+⟩ is a superposition of S_x states</td></tr>
+<tr><td>3</td><td>SGz → SGx → SGz</td><td>50 % / 50 %</td><td>S_z and S_x are incompatible; a measurement disturbs</td></tr>
+<tr><td>4</td><td>SGz → SGx (beams recombined) → SGz</td><td>100 % up, 0 % down</td><td>add amplitudes, then square (interference)</td></tr></table>
+{% call box('why','The four results from one calculation') %}Use only: |+⟩ₓ = (|+⟩ + |−⟩)/√2 and |−⟩ₓ = (|+⟩ − |−⟩)/√2. Exp. 1: |⟨+|+⟩|² = 1. Exp. 2: |ₓ⟨±|+⟩|² = ½. Exp. 3: chain ½ (S_x = +) then |⟨±|+⟩ₓ|² = ½. Exp. 4: amplitudes add, ½ + ½ = 1 and ½ − ½ = 0. Only the same three facts (orthonormal bases, the change of basis, the Born rule) are used every time.{% endcall %}
+{% call box('ex') %}
+<div class="step"><b>Problem.</b> An SGz-prepared |+⟩ beam goes through SGz, SGx, SGz (exp. 3) but this time it is the <i>lower</i> port |−⟩ₓ of the SGx that continues. Find the final S_z probabilities.</div>
+<div class="step">State after SGx: |−⟩ₓ = (|+⟩ − |−⟩)/√2, so P(+) = |1/√2|² = ½ and P(−) = |−1/√2|² = ½.</div>
+<div class="check"><b>Check.</b> Again 50/50 (sum 1 ✓). The overall probability of ending in |+⟩ along this path is ½ (SGx) × ½ = ¼, the same as along the upper path.</div>
+{% endcall %}
+{% call box('try','Try it') %}Compute, for a state that starts along +x rather than +z, what a first SGz followed by a second SGx gives. (Hint: |+⟩ₓ = (|+⟩ + |−⟩)/√2; the first SGz collapses it to |+⟩ or |−⟩, each with probability ½; then use exp. 2. Answer: the final SGx is 50/50 regardless of the first result.){% endcall %}
+{% call box('mis') %}"Experiment 4 breaks the rule that measurement disturbs." It confirms it: <i>not looking</i> at which S_x port an atom used means there is no S_x measurement to disturb anything. The slides make the same remark, and suggest photons and polarisers as a classical-optics analogy.{% endcall %}
+<div class="next">Next: Section 5 gives the Schrödinger equations that the box in Module 4 relies on.</div>
+{% endcall %}
+{% endcall %}{# end sec 4 #}
+
+<hr class="div">
+{% call sec('m3-5','5','Time-dependent and time-independent Schrödinger equations') %}
+<p class="muted small">Built from your "Schroedinger Wave equations" deck (Class 2). Module 4 uses the time-independent form in 1.2 and in every box calculation, so this section is the origin of that equation.</p>
+
+{% call sub('m3-5-1','5.1','Why a wave equation, and its assumptions') %}
+<div class="intuition"><b>Why it matters.</b> Classical mechanics assumes position and momentum both have exact values at every instant. The uncertainty principle says that is not true for atoms. So we need a new description, and de Broglie's idea (matter behaves as a wave) gives it: a <i>wave function</i> Ψ that carries all the information about the system.</div>
+{% call box('def') %}<b>Wave function</b> Ψ(x, y, z, t): the amplitude of the matter wave, also called the <b>state of the system</b>. Your slides list the assumptions behind Schrödinger's equation: (i) de Broglie's idea that a particle is both particle and wave, with λ = h/mv; (ii) the potential energy V is a function of position, V(x); (iii) the wave function has the plane-wave form Ψ = Ae<sup>i(kx − ωt)</sup>, and the equation is obtained starting from there. The probability of finding the particle in dx is |Ψ|²dx (Module 3, 2.1).{% endcall %}
+{% call fig('The route used in these notes (and in your slides): start from the wave idea, attach the particle quantities (λ = h/mv, E = V + ½mv²), and arrive at the two Schrödinger equations. <i>Notice</i> both equations come out of the same starting wave; they differ only in whether time is kept.') %}
+<svg viewBox="0 0 660 120" width="660" role="img" aria-label="Route to the Schrödinger equations"><defs><marker id="a51" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#333"/></marker></defs>
+<rect x="5" y="35" width="120" height="50" rx="8" fill="#efe9fb" stroke="#6d28d9"/><text x="65" y="56" font-size="12" text-anchor="middle">classical wave</text><text x="65" y="72" font-size="12" text-anchor="middle">equation (5.2)</text>
+<line x1="125" y1="60" x2="165" y2="60" stroke="#333" marker-end="url(#a51)"/>
+<rect x="165" y="35" width="130" height="50" rx="8" fill="#fdf1e0" stroke="#b45309"/><text x="230" y="56" font-size="12" text-anchor="middle">add λ = h/mv and</text><text x="230" y="72" font-size="12" text-anchor="middle">E = V + ½mv² (5.3)</text>
+<line x1="295" y1="60" x2="335" y2="60" stroke="#333" marker-end="url(#a51)"/>
+<rect x="335" y="10" width="150" height="45" rx="8" fill="#e6f4f2" stroke="#0f766e"/><text x="410" y="30" font-size="12" text-anchor="middle">time-independent</text><text x="410" y="45" font-size="12" text-anchor="middle">Ĥψ = Eψ</text>
+<rect x="335" y="65" width="150" height="45" rx="8" fill="#e6f4f2" stroke="#0f766e"/><text x="410" y="85" font-size="12" text-anchor="middle">time-dependent (5.4)</text><text x="410" y="100" font-size="12" text-anchor="middle">ĤΨ = iħ ∂Ψ/∂t</text>
+<line x1="295" y1="50" x2="335" y2="33" stroke="#333" marker-end="url(#a51)"/><line x1="295" y1="70" x2="335" y2="88" stroke="#333" marker-end="url(#a51)"/>
+<text x="500" y="62" font-size="12" fill="#555">same Ψ, same Ĥ</text></svg>
+{% endcall %}
+<table class="t"><tr><th></th><th>Classical mechanics</th><th>Quantum mechanics (this section)</th></tr>
+<tr><td>Description of the particle</td><td>exact x and p at all times</td><td>wave function Ψ(x, y, z, t)</td></tr>
+<tr><td>What fixes the motion</td><td>Newton's law</td><td>Schrödinger's equation</td></tr>
+<tr><td>What you can predict</td><td>the path</td><td>probabilities and allowed energies</td></tr></table>
+{% call box('ex') %}
+<div class="step"><b>Problem.</b> An electron moves at v = 2.0 × 10⁶ m/s. Find its de Broglie wavelength and wave number, and check that ħk equals its momentum. (h = 6.626 × 10⁻³⁴ J·s, m = 9.109 × 10⁻³¹ kg.)</div>
+<div class="step">λ = h/mv = 6.626 × 10⁻³⁴ / (9.109 × 10⁻³¹ × 2.0 × 10⁶) = <b>3.64 × 10⁻¹⁰ m</b> (0.364 nm, about the spacing of atoms).</div>
+<div class="step">k = 2π/λ = 6.283 / 3.637 × 10⁻¹⁰ = <b>1.73 × 10¹⁰ m⁻¹</b>.</div>
+<div class="check"><b>Check.</b> ħk = (1.0546 × 10⁻³⁴)(1.7275 × 10¹⁰) = 1.82 × 10⁻²⁴ kg·m/s, and mv = 9.109 × 10⁻³¹ × 2.0 × 10⁶ = 1.82 × 10⁻²⁴ ✓. A wavelength comparable to atomic spacing is exactly why wave behaviour matters for atoms but not for a cricket ball.</div>
+{% endcall %}
+{% call box('mis') %}"Ψ is the probability." Ψ is an amplitude and can be complex; the probability density is |Ψ|² = Ψ*Ψ. Also note: your slide lists a fourth "assumption" about a complex conjugate and an equal-and-opposite "ghost" particle. I could not tie that to anything else in your decks and it is not how the conjugate is used (it is what turns the amplitude into a probability), so these notes leave it out. If your lecturer expects it, tell me.{% endcall %}
+<div class="next">Next: 5.2 writes down the classical wave equation we start from.</div>
+{% endcall %}
+
+<hr class="div">
+{% call sub('m3-5-2','5.2','From the classical wave equation to a plane-wave starting point') %}
+<div class="intuition"><b>Why it matters.</b> Every later step is algebra on this one equation. If you can reproduce 5.2 you can reproduce the whole derivation under exam pressure.</div>
+{% call box('def') %}A wave of amplitude Ψ travelling with speed v obeys the <b>classical wave equation</b> ∂²Ψ/∂x² + ∂²Ψ/∂y² + ∂²Ψ/∂z² = (1/v²) ∂²Ψ/∂t². Write the left side as ∇²Ψ, with ∇² = ∂²/∂x² + ∂²/∂y² + ∂²/∂z² the <b>Laplacian operator</b>. A general solution has the time dependence <b>Ψ = Ψ₀e<sup>−iωt</sup></b>, where Ψ₀ depends on position. Differentiating: ∂Ψ/∂t = −iωΨ and ∂²Ψ/∂t² = −ω²Ψ. Substituting, <b>∇²Ψ = −(ω²/v²)Ψ</b>.{% endcall %}
+{% call box('why','Why ω²/v² becomes 4π²/λ²') %}ω = 2πν and v = νλ, so ω/v = 2πν/(νλ) = 2π/λ. Hence ω²/v² = 4π²/λ², and the equation becomes <b>∇²Ψ + (4π²/λ²)Ψ = 0</b>. All we have used is that a wave has a frequency and a wavelength; no quantum idea has entered yet. It enters in 5.3 when λ is replaced by h/mv.{% endcall %}
+<table class="t"><tr><th>Step</th><th>Result</th></tr>
+<tr><td>Start</td><td>∇²Ψ = (1/v²) ∂²Ψ/∂t²</td></tr><tr><td>Insert Ψ = Ψ₀e<sup>−iωt</sup></td><td>∇²Ψ = −(ω²/v²)Ψ</td></tr>
+<tr><td>Use ω/v = 2π/λ</td><td>∇²Ψ + (4π²/λ²)Ψ = 0</td></tr></table>
+{% call box('ex') %}
+<div class="step"><b>Problem.</b> Show that Ψ = e<sup>i(kx − ωt)</sup> solves the one-dimensional wave equation exactly when ω = vk. Evaluate ω for v = 3 m/s and k = 2 rad/m.</div>
+<div class="step">∂²Ψ/∂x² = (ik)²Ψ = −k²Ψ. ∂²Ψ/∂t² = (−iω)²Ψ = −ω²Ψ, so (1/v²) ∂²Ψ/∂t² = −(ω²/v²)Ψ.</div>
+<div class="step">Equating: −k² = −ω²/v², so ω = vk. For the numbers, ω = 3 × 2 = <b>6 rad/s</b>.</div>
+<div class="check"><b>Check.</b> With ω = 6: LHS = −k² = −4 and RHS = −ω²/v² = −36/9 = −4 ✓. Also ω/v = 6/3 = 2 = k = 2π/λ, so λ = π m ✓ (consistent with 5.2's ω/v = 2π/λ).</div>
+{% endcall %}
+{% call box('mis') %}"Ψ₀ is a constant." In the slides it is the amplitude, which in general depends on position (and for a free wave is e<sup>ikx</sup>). Another slip: dropping the minus sign in ∂²/∂t² (−iω)² = −ω², which would turn the oscillating solution into a growing one.{% endcall %}
+<div class="next">Next: 5.3 brings in the particle by replacing λ and E, giving the time-independent equation.</div>
+{% endcall %}
+
+<hr class="div">
+{% call sub('m3-5-3','5.3','The time-independent equation') %}
+<div class="intuition"><b>Why it matters.</b> This is the equation you solve for the box (Module 4) and for any problem where the potential does not change with time. Its solutions are the eigenfunctions, and the E values that work are the allowed energies.</div>
+{% call box('def') %}Replace λ by the de Broglie value h/mv: <b>∇²Ψ + (4π²m²v²/h²)Ψ = 0</b>. The total energy is E = V + ½mv², so ½mv² = E − V and m²v² = 2m(E − V). Therefore <b>∇²Ψ + (8π²m/h²)(E − V)Ψ = 0</b>. Since ħ = h/2π, this is <b>∇²Ψ + (2m/ħ²)(E − V)Ψ = 0</b>, the <b>time-independent Schrödinger equation</b>. Rearranged: <b>[−(ħ²/2m)∇² + V]Ψ = EΨ, i.e. Ĥ Ψ = E Ψ</b>, where <b>Ĥ = −(ħ²/2m)∇² + V</b> is the <b>Hamiltonian operator</b>. For a free particle (V = 0): ∇²Ψ + (2mE/ħ²)Ψ = 0. In one dimension: d²Ψ/dx² + (8π²m/h²)(E − V)Ψ = 0.{% endcall %}
+<table class="t"><tr><th>Form</th><th>Where you will see it</th></tr>
+<tr><td>∇²Ψ + (8π²m/h²)(E − V)Ψ = 0</td><td>the slides' eq. 4 (uses h)</td></tr>
+<tr><td>∇²Ψ + (2m/ħ²)(E − V)Ψ = 0</td><td>identical, written with ħ</td></tr>
+<tr><td>ĤΨ = EΨ</td><td>eigenvalue form: E is an eigenvalue of Ĥ (Module 3, 1.4)</td></tr>
+<tr><td>d²ψ/dx² = −k²ψ, k = √(2mE)/ħ</td><td>V = 0 inside the box (Module 4, 1.2)</td></tr></table>
+{% call fig('Reading the equation as an eigenvalue problem: Ĥ acts on the wave function and returns the same function times a number, the energy. <i>Notice</i> this is the same pattern as Âψ = aψ from Module 2, 5.1.') %}
+<svg viewBox="0 0 440 90" width="440" role="img" aria-label="H psi equals E psi"><rect x="20" y="25" width="90" height="40" rx="8" fill="#efe9fb" stroke="#6d28d9"/><text x="65" y="50" font-size="15" text-anchor="middle">Ĥ</text>
+<text x="125" y="50" font-size="18">ψ</text><text x="155" y="50" font-size="18">=</text>
+<rect x="185" y="25" width="60" height="40" rx="8" fill="#fdf1e0" stroke="#b45309"/><text x="215" y="50" font-size="16" text-anchor="middle">E</text><text x="262" y="50" font-size="18">ψ</text>
+<text x="300" y="38" font-size="12" fill="#555">operator on the function</text><text x="300" y="56" font-size="12" fill="#555">= number (energy) × same function</text></svg>
+{% endcall %}
+{% call box('ex') %}
+<div class="step"><b>Problem.</b> A free electron has de Broglie wavelength 0.50 nm. Find its energy in eV, and verify ψ = e<sup>ikx</sup> solves the free 1D equation.</div>
+<div class="step">k = 2π/λ = 1.257 × 10¹⁰ m⁻¹. E = ħ²k²/2m = (1.0546 × 10⁻³⁴ × 1.257 × 10¹⁰)² / (2 × 9.109 × 10⁻³¹) = 9.64 × 10⁻¹⁹ J = <b>6.02 eV</b>.</div>
+<div class="step">ψ = e<sup>ikx</sup> gives d²ψ/dx² = −k²ψ, so the free equation d²ψ/dx² + (2mE/ħ²)ψ = 0 requires k² = 2mE/ħ², i.e. E = ħ²k²/2m ✓.</div>
+<div class="check"><b>Check.</b> Second route: p = h/λ = 1.325 × 10⁻²⁴ kg·m/s and p²/2m = 9.64 × 10⁻¹⁹ J = 6.02 eV ✓. Also 8π²m/h² = 2m/ħ² numerically (both 2.5 × 10³⁸ in SI units), so the two forms of the equation agree.</div>
+{% endcall %}
+{% call box('mis') %}"E is the kinetic energy." In E − V it is the <i>total</i> energy, so E − V is the kinetic energy. And "h and ħ equations are different": they are the same equation, since ħ = h/2π gives 2m/ħ² = 8π²m/h². The slides' derivation is a plausibility argument built from the wave picture, not a proof from deeper axioms; treat the equation as the starting postulate.{% endcall %}
+<div class="next">Next: 5.4 keeps time in the picture and obtains the second form.</div>
+{% endcall %}
+
+<hr class="div">
+{% call sub('m3-5-4','5.4','The time-dependent equation') %}
+<div class="intuition"><b>Why it matters.</b> The time-independent equation finds the allowed states; the time-dependent one says how a state changes in time. It is also where the energy operator iħ ∂/∂t of Section 1.3 comes from.</div>
+{% call box('def') %}Start again from Ψ = Ψ₀e<sup>−iωt</sup>, so ∂Ψ/∂t = −iωΨ = −i(2πν)Ψ. Use E = hν, i.e. ν = E/h: ∂Ψ/∂t = −i(2πE/h)Ψ = −i(E/ħ)Ψ. Multiplying by iħ: <b>EΨ = iħ ∂Ψ/∂t</b>. Substitute this EΨ into the time-independent equation, ∇²Ψ + (2m/ħ²)(EΨ − VΨ) = 0, to get <b>∇²Ψ = −(2m/ħ²)(iħ ∂Ψ/∂t − VΨ)</b>, which rearranges to the <b>time-dependent Schrödinger equation</b>: <b>[−(ħ²/2m)∇² + V]Ψ = iħ ∂Ψ/∂t</b>, i.e. <b>ĤΨ = iħ ∂Ψ/∂t</b>. Its sign is +iħ, and it holds for any particle.{% endcall %}
+<table class="t"><tr><th></th><th>Time-independent</th><th>Time-dependent</th></tr>
+<tr><td>Equation</td><td>ĤΨ = EΨ</td><td>ĤΨ = iħ ∂Ψ/∂t</td></tr>
+<tr><td>Is t in it?</td><td>no</td><td>yes</td></tr><tr><td>Gives you</td><td>allowed energies E and shapes ψ(x)</td><td>how Ψ(x, t) develops</td></tr>
+<tr><td>Typical use</td><td>box, well, barrier</td><td>evolution of a state</td></tr></table>
+{% call box('ex') %}
+<div class="step"><b>Problem.</b> For a free particle (V = 0) in the state Ψ = e<sup>i(kx − ωt)</sup>, use the time-dependent equation to find ω in terms of k. Evaluate for an electron with k = 5 × 10⁹ m⁻¹.</div>
+<div class="step">Left side: −(ħ²/2m) ∂²Ψ/∂x² = −(ħ²/2m)(−k²)Ψ = (ħ²k²/2m)Ψ. Right side: iħ ∂Ψ/∂t = iħ(−iω)Ψ = ħωΨ.</div>
+<div class="step">Equate: ħω = ħ²k²/2m, so <b>ω = ħk²/2m</b>. Numerically ω = (1.0546 × 10⁻³⁴)(2.5 × 10¹⁹)/(2 × 9.109 × 10⁻³¹) = <b>1.45 × 10¹⁵ rad/s</b>.</div>
+<div class="check"><b>Check.</b> E = ħω = 1.0546 × 10⁻³⁴ × 1.447 × 10¹⁵ = 1.53 × 10⁻¹⁹ J = 0.953 eV, and ħ²k²/2m gives the same 0.953 eV ✓. So E = ħω with E = p²/2m, as it should for a free particle.</div>
+{% endcall %}
+{% call box('mis') %}"Ê = −iħ ∂/∂t." Your deck's operator table prints a minus sign for the time-dependent Hamiltonian, but the derivation on this deck's own slides gives +iħ ∂/∂t, and that is the sign used here (and in Module 3, 1.3). Another trap: writing ∂Ψ/∂t = +iωΨ for the e<sup>−iωt</sup> wave.{% endcall %}
+<div class="next">Next: 5.5 shows how the two equations fit together for a potential that does not depend on time.</div>
+{% endcall %}
+
+<hr class="div">
+{% call sub('m3-5-5','5.5','Hamiltonian, stationary states and how the two forms connect') %}
+<div class="intuition"><b>Why it matters.</b> It explains why you can solve only the time-independent equation for the box and still know the full time dependence: it is just a phase factor.</div>
+{% call box('def') %}The <b>Hamiltonian operator</b> Ĥ = −(ħ²/2m)∇² + V is the kinetic-energy operator plus the potential (Module 3, 1.2); it represents the total energy. When V depends only on position, the time-dependent equation has solutions of the form <b>Ψ(x, t) = ψ(x) e<sup>−iEt/ħ</sup></b>, where ψ solves Ĥψ = Eψ (the slides' Ψ₀e<sup>−iωt</sup> with ω = E/ħ). Such a state is a <b>stationary state</b>: the modulus |Ψ|² = |ψ|² does not change with time because |e<sup>−iEt/ħ</sup>| = 1.{% endcall %}
+{% call fig('The time factor e<sup>−iEt/ħ</sup> is a point moving round the unit circle at angular speed ω = E/ħ. Its length (modulus) stays 1, so the probability density does not change; only the phase turns. <i>Notice</i> larger E means faster rotation.') %}
+<svg viewBox="0 0 300 180" width="300" role="img" aria-label="Phase factor on the unit circle"><defs><marker id="a55" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#333"/></marker></defs>
+<line x1="20" y1="90" x2="280" y2="90" stroke="#bbb"/><line x1="150" y1="10" x2="150" y2="170" stroke="#bbb"/>
+<circle cx="150" cy="90" r="65" fill="none" stroke="#6d28d9" stroke-dasharray="4 3"/>
+<line x1="150" y1="90" x2="205" y2="55" stroke="#b45309" stroke-width="2.5" marker-end="url(#a55)"/><text x="210" y="52" font-size="12">e^(−iEt/ħ), length 1</text>
+<path d="M175,90 A25,25 0 0 0 171,76" fill="none" stroke="#555"/><text x="178" y="82" font-size="11">Et/ħ</text>
+<text x="156" y="170" font-size="11" fill="#555">phase turns, modulus fixed</text></svg>
+{% endcall %}
+<table class="t"><tr><th>Question</th><th>Use</th></tr>
+<tr><td>What energies can this potential have?</td><td>time-independent equation Ĥψ = Eψ</td></tr>
+<tr><td>How does a state change in time?</td><td>time-dependent equation, or the factor e<sup>−iEt/ħ</sup> for an energy eigenstate</td></tr>
+<tr><td>Does |Ψ|² change for an eigenstate?</td><td>no (stationary)</td></tr></table>
+{% call box('ex') %}
+<div class="step"><b>Problem.</b> An electron is in the n = 1 state of a 0.50 nm box. Write Ψ₁(x, t) and find (a) the time for its phase to complete one turn, (b) |Ψ₁|² at x = L/2 at two different times.</div>
+<div class="step">From Module 4: E₁ = h²/8mL² = 2.41 × 10⁻¹⁹ J (1.50 eV), ψ₁ = √(2/L) sin(πx/L). So <b>Ψ₁(x, t) = √(2/L) sin(πx/L) e<sup>−iE₁t/ħ</sup></b>.</div>
+<div class="step">(a) One full turn: E₁T/ħ = 2π, so T = 2πħ/E₁ = h/E₁ = 6.626 × 10⁻³⁴ / 2.41 × 10⁻¹⁹ = <b>2.75 × 10⁻¹⁵ s</b> (2.75 fs).</div>
+<div class="step">(b) |Ψ₁(L/2, t)|² = (2/L)(1)²|e<sup>−iE₁t/ħ</sup>|² = 2/L = 4.0 × 10⁹ m⁻¹ at every t (for example t = 0 and t = 1 fs).</div>
+<div class="check"><b>Check.</b> ω = E₁/ħ = 2.28 × 10¹⁵ rad/s and 2π/ω = 2.75 fs ✓. The density is the same at both times because the exponential has modulus 1 ✓. This is why the box energy levels in Module 4 do not need t.</div>
+{% endcall %}
+{% call box('try') %}For the n = 2 state of the same box, find the phase period. (Hint: E₂ = 4E₁, so T₂ = h/E₂ = T₁/4 = 0.69 fs.){% endcall %}
+{% call box('mis') %}"A stationary state is one that is not moving." The phase does turn; what is constant is the probability density and the energy. Also "every state is stationary": only an eigenstate of Ĥ (one energy) is. A state made of different energies has a changing density, but that case is beyond what your slides cover.{% endcall %}
+<div class="next">Next: Module 4 applies the time-independent equation to the particle in a box. This ends Module 3.</div>
+{% endcall %}
+{% endcall %}{# end sec 5 #}
+
+<hr class="div">
+<section id="m3-check"><h2>Self-test checklist</h2>
+<p class="muted small">Tick only what you can do unaided. Ticks are kept in this browser.</p>
+<ul class="checklist" data-key="m3-check">
+<li><label><input type="checkbox"> State why observables are Hermitian operators and what the eigenvalues and eigenvectors of an observable mean.</label></li>
+<li><label><input type="checkbox"> Write the position, momentum, kinetic-energy and Hamiltonian operators and apply them to e<sup>ikx</sup> and sin(kx).</label></li>
+<li><label><input type="checkbox"> Derive p̂ = −iħ ∂/∂x and Ê = iħ ∂/∂t from a plane wave.</label></li>
+<li><label><input type="checkbox"> Compute ⟨x⟩, ⟨x²⟩ for a normalised wavefunction; use ⟨p⟩ = 0 for real ψ and ⟨p²⟩ = ħ²∫|ψ′|²dx.</label></li>
+<li><label><input type="checkbox"> Compute Δx and Δp and check ΔxΔp ≥ ħ/2.</label></li>
+<li><label><input type="checkbox"> Given an observable and a state, list the possible results and their probabilities using |⟨aₙ|ψ⟩|².</label></li>
+<li><label><input type="checkbox"> Write the post-measurement state and predict a repeated measurement.</label></li>
+<li><label><input type="checkbox"> Describe experiments 1–4 with their results and give the reason for each in one sentence.</label></li>
+<li><label><input type="checkbox"> Explain in amplitudes why experiment 4 gives 100 % up while experiment 3 gives 50 %.</label></li>
+<li><label><input type="checkbox"> Explain how [σ_z, σ_x] ≠ 0 shows up in experiment 3.</label></li>
+<li><label><input type="checkbox"> Start from the classical wave equation and Ψ = Ψ₀e<sup>−iωt</sup> and derive ∇²Ψ + (4π²/λ²)Ψ = 0.</label></li>
+<li><label><input type="checkbox"> Derive the time-independent equation ∇²Ψ + (2m/ħ²)(E − V)Ψ = 0 using λ = h/mv and E = V + ½mv², and write it as ĤΨ = EΨ.</label></li>
+<li><label><input type="checkbox"> Derive the time-dependent equation ĤΨ = iħ ∂Ψ/∂t using E = ħω, and state which equation to use for which job.</label></li>
+<li><label><input type="checkbox"> Write Ψ(x, t) for an energy eigenstate and explain why |Ψ|² is constant (stationary state).</label></li>
+</ul></section>
+</div>{# end notes #}
+{% endblock %}
+{% block scripts %}
+<script>
+(function(){
+  document.querySelectorAll('.checklist').forEach(function(ul){
+    var key='qm_check_'+ul.dataset.key, saved={};
+    try{ saved=JSON.parse(localStorage.getItem(key)||'{}'); }catch(e){}
+    ul.querySelectorAll('input').forEach(function(cb,i){
+      cb.checked=!!saved[i];
+      cb.addEventListener('change',function(){ saved[i]=cb.checked; try{ localStorage.setItem(key,JSON.stringify(saved)); }catch(e){} });
+    });
+  });
+})();
+</script>
+{% endblock %}

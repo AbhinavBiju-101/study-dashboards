@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% block title %}QM Illustrated Notes{% endblock %}</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="{% block bodyclass %}{% endblock %}">
+<nav class="topnav">
+  <span class="brand">QM Illustrated Notes</span>
+  <a href="{{ url_for('dashboard') }}" class="{{ 'on' if page=='dash' }}">Dashboard</a>
+  {% for m in modules %}<a href="{{ url_for('module', n=m.n) }}" class="{{ 'on' if page=='mod' and n==m.n }}">Module {{ m.n }}</a>{% endfor %}
+  <a href="{{ url_for('recap') }}" class="{{ 'on' if page=='recap' }}">Exam recap</a>
+  <a href="{{ url_for('quiz_setup') }}" class="{{ 'on' if page=='quiz' }}">Quiz</a>
+</nav>
+{% block modnav_top %}{% endblock %}
+{% block content %}{% endblock %}
+{% block modnav_bottom %}{% endblock %}
+<footer class="wrap muted small">Study notes written from your course materials (BAPHY105, VIT Chennai). Not an official key or official solutions.</footer>
+{% block scripts %}{% endblock %}
+</body>
+</html>

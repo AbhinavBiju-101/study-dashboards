@@ -1,0 +1,21 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BAENG101 Quiz · Setup</title><link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"></head><body>
+<header class="hero"><div class="inner c"><h1>Build a Quiz</h1><p>Pick whole modules, topics or single subtopics, choose Bloom's levels and how many questions. Options are reshuffled every attempt.</p><a class="back" href="{{ url_for('dashboard') }}">☰ Back to Dashboard</a></div></header>
+<main class="wrap">{% with ms = get_flashed_messages() %}{% for m in ms %}<div class="flash">{{ m }}</div>{% endfor %}{% endwith %}
+<form method="post" action="{{ url_for('quiz_start') }}">
+{% for m in mods %}<section class="week-block" style="--accent:{{ m.accent }};--accent-dk:{{ m.accent_dk }}"><div class="week-head"><input type="checkbox" class="mc" data-m="{{ m.num }}"><div class="w-title"><span class="tag">{{ m.title.split(' · ')[0] }}</span><h2>{{ m.title.split(' · ')[1] if ' · ' in m.title else m.title }}</h2></div><span class="w-count">{{ m.total }} questions</span><button type="button" class="w-toggle" data-t="{{ m.num }}">Expand topics</button></div>
+<div class="topic-grid" id="g{{ m.num }}" style="display:none">{% for t in m.topics %}{% set ti = m.num ~ '-' ~ loop.index %}<div class="tgroup"><label class="tg-head"><input type="checkbox" class="tc" data-m="{{ m.num }}" data-g="{{ ti }}"> {{ t.label }}</label>
+{% for s in t.subtopics %}<div class="topic-row"><input type="checkbox" name="subs" value="{{ s.id }}" id="c{{ s.id }}" class="sc" data-m="{{ m.num }}" data-g="{{ ti }}" data-lv='{{ s.lv|tojson }}' {{ 'checked' if s.id in picks }}><label for="c{{ s.id }}">{{ s.label }}</label><span class="t-n">{{ s.count }} q</span></div>{% endfor %}</div>{% endfor %}</div></section>{% endfor %}
+<div class="panel"><b>Bloom's levels</b><div class="lvls">{% for l in levels %}<label><input type="checkbox" name="levels" value="{{ l }}" class="lc" checked> {{ l }}</label>{% endfor %}</div></div>
+<div class="control-bar"><div class="count-field"><label for="count">Questions</label><input type="number" id="count" name="count" min="1" value="10"></div><label class="backtrack-field"><input type="checkbox" name="backtracking" checked> Allow going back</label><span class="avail" id="av">Select subtopics</span><span class="grow"></span><button class="start-btn" id="go" disabled>Start Quiz →</button></div></form></main>
+<footer>{{ grand_total }} questions across both modules</footer>
+<script>const $$=s=>[...document.querySelectorAll(s)],sc=$$('.sc'),lc=$$('.lc'),cnt=document.getElementById('count');
+function upd(){const L=lc.filter(x=>x.checked).map(x=>x.value);let t=0;sc.forEach(c=>{if(c.checked){const v=JSON.parse(c.dataset.lv);L.forEach(l=>t+=v[l]||0)}});
+$$('.tc').forEach(g=>{const k=sc.filter(c=>c.dataset.g==g.dataset.g);g.checked=k.every(c=>c.checked);g.indeterminate=!g.checked&&k.some(c=>c.checked)});
+$$('.mc').forEach(g=>{const k=sc.filter(c=>c.dataset.m==g.dataset.m);g.checked=k.every(c=>c.checked);g.indeterminate=!g.checked&&k.some(c=>c.checked)});
+document.getElementById('av').textContent=t?t+' questions available':'Select subtopics';cnt.max=t||1;if(+cnt.value>t&&t)cnt.value=t;document.getElementById('go').disabled=!t}
+$$('.tc').forEach(g=>g.onchange=()=>{sc.filter(c=>c.dataset.g==g.dataset.g).forEach(c=>c.checked=g.checked);upd()});
+$$('.mc').forEach(g=>g.onchange=()=>{sc.filter(c=>c.dataset.m==g.dataset.m).forEach(c=>c.checked=g.checked);upd()});
+sc.forEach(c=>c.onchange=upd);lc.forEach(c=>c.onchange=upd);
+$$('[data-t]').forEach(b=>b.onclick=()=>{const g=document.getElementById('g'+b.dataset.t),o=g.style.display=='none';g.style.display=o?'grid':'none';b.textContent=o?'Collapse':'Expand topics'});
+$$('.sc:checked').forEach(c=>{const g=document.getElementById('g'+c.dataset.m);g.style.display='grid'});upd();</script></body></html>

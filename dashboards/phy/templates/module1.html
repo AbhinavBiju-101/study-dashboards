@@ -1,0 +1,363 @@
+{% extends "base.html" %}
+{% from "_macros.html" import box, sub, sec, fig, mat, ket, bra %}
+{% from "modnav.html" import modnav with context %}
+{% block title %}Module 1 · Wave-particle duality{% endblock %}
+{% block bodyclass %}mod1{% endblock %}
+{% block modnav_top %}{{ modnav() }}{% endblock %}
+{% block modnav_bottom %}{{ modnav('bottom') }}{% endblock %}
+{% block content %}
+<header class="hero m1"><div class="in"><h1>Module 1 · Wave-Particle Duality</h1>
+<p>Why classical physics failed (blackbody radiation, the photoelectric effect), how Planck, Einstein and de Broglie fixed it, and the ideas that follow: matter waves, the uncertainty principle and the wavefunction.</p></div></header>
+<div class="notes">
+<div class="toc"><b>Contents</b><ol>
+{% for t in cur.topics %}<li><a href="#{{ t.id }}">{{ t.title }}</a></li>{% endfor %}
+<li><a href="#m1-check">Self-test checklist</a></li></ol>
+<p class="small muted"><b>Source note.</b> The syllabus line for this module is: dual nature of radiation, Young's double slit, blackbody radiation, Planck's hypothesis, de Broglie hypothesis, wavefunction, Stern-Gerlach experiment. Your decks also cover the photoelectric effect (Class 4), the Davisson-Germer experiment and the uncertainty principle (Class 6). They are not in the syllabus line, so they are included but marked <i>extra</i>; skip them if time is short. The decks are scans, so I read them by OCR and by looking at the slide images; every number was recomputed and slips in a slide are flagged where they occur. The Stern-Gerlach experiment is in Module 3 (pointer in Section 8). The Schrödinger-equation deck belongs to Module 3, Section 5.</p></div>
+
+{% call sec('m1-1','1','Dual nature of radiation and the wave background') %}
+
+{% call sub('m1-1-1','1.1','Dual nature of radiation and matter') %}
+<div class="intuition"><b>Why it matters.</b> This is the central idea of the whole course: light behaves like a wave in some experiments and like a stream of particles in others, and (de Broglie) so do electrons and other matter.</div>
+{% call box('def') %}Wave theory of electromagnetic radiation explains <b>interference, diffraction and polarisation</b>. Quantum theory (radiation as quanta) explains the <b>photoelectric effect, the Compton effect, blackbody radiation and X-ray spectra</b>. So radiation has a <b>dual nature</b>: wave and particle. De Broglie suggested that particles such as electrons, protons and neutrons also have a dual nature, on the argument that nature loves symmetry: the universe is made of particles and radiation, and the two should be symmetrical. The two bridges are <b>E = hν</b> (wave frequency gives particle energy) and <b>λ = h/p</b> (particle momentum gives wavelength).{% endcall %}
+<table class="t"><tr><th>Experiment</th><th>Needs the wave picture</th><th>Needs the particle picture</th></tr>
+<tr><td>Young's double slit (1.4)</td><td>yes: fringes</td><td></td></tr><tr><td>Blackbody radiation (2, 3)</td><td></td><td>yes: quantised energy</td></tr>
+<tr><td>Photoelectric effect (4)</td><td></td><td>yes: photons</td></tr><tr><td>Davisson-Germer (5.4)</td><td>yes: electron diffraction</td><td></td></tr></table>
+<div class="next">Next: 1.2 refreshes the wave vocabulary used throughout.</div>
+{% endcall %}
+
+<hr class="div">
+{% call sub('m1-1-2','1.2','Wave characteristics and the wave equation of a travelling wave') %}
+<div class="intuition"><b>Why it matters.</b> De Broglie waves, phase velocity and interference all use the same handful of definitions.</div>
+{% call box('def') %}<b>Amplitude A</b>: maximum displacement. <b>Wavelength λ</b>: distance between successive crests. <b>Wave number k = 2π/λ</b>. <b>Period T</b>: time for one cycle, <b>frequency f = 1/T</b>. <b>Wave speed v = fλ = λ/T</b>. <b>Angular frequency ω = 2πf</b>. A travelling wave: <b>y = A cos(ωt − kx)</b>, with phase velocity v = ω/k. Waves are <b>transverse</b> (displacement perpendicular to travel; light, string waves) or <b>longitudinal</b> (parallel; sound). Electromagnetic waves need no medium; mechanical waves do. Wave behaviour: reflection (bounce back), refraction (bending on entering a new medium because speed changes), diffraction (bending round an obstacle or through a narrow opening), interference (waves combining).{% endcall %}
+{% call box('ex') %}
+<div class="step"><b>Problem.</b> Green light has λ = 500 nm and travels at c = 3.0×10⁸ m/s. Find f, ω and k.</div>
+<div class="step">f = c/λ = 3.0×10⁸/(500×10⁻⁹) = <b>6.0×10¹⁴ Hz</b>. ω = 2πf = <b>3.77×10¹⁵ rad/s</b>. k = 2π/λ = <b>1.26×10⁷ m⁻¹</b>.</div>
+<div class="check"><b>Check.</b> ω/k = 3.77×10¹⁵/1.26×10⁷ = 3.0×10⁸ m/s = c ✓, as v = ω/k requires.</div>
+{% endcall %}
+{% call box('mis') %}"Frequency changes when light enters glass." Frequency is fixed by the source; speed and wavelength change (λ = v/f), which is why light bends.{% endcall %}
+<div class="next">Next: 1.3 adds waves together.</div>
+{% endcall %}
+
+<hr class="div">
+{% call sub('m1-1-3','1.3','Superposition and interference') %}
+<div class="intuition"><b>Why it matters.</b> Interference is the signature of a wave. If electrons or photons show it, they are behaving as waves, however particle-like they seem when detected.</div>
+{% call box('def') %}<b>Principle of superposition:</b> where two or more waves overlap in a medium, the resultant displacement is the sum of the individual displacements, y = y₁ + y₂ + …, and the waves pass through each other undisturbed. It needs waves of the same type in a linear medium. <b>Constructive interference</b>: crest meets crest (phase difference 0, 2π, …); two waves of amplitude A give 2A. <b>Destructive interference</b>: crest meets trough (phase difference π, 3π, …); two equal waves cancel to zero. Coherent waves have the same frequency and a constant phase difference, so give a steady pattern.{% endcall %}
+{% call fig('Two equal waves (solid) and their sum. In phase (left) the sum has double amplitude; in antiphase (right) the sum is zero. <i>Notice</i> the frequency of the sum equals that of the originals.') %}
+<svg viewBox="0 0 440 130" width="440" role="img" aria-label="Constructive and destructive interference">
+<g fill="none" stroke-width="1.6"><path d="M10,40 q15,-28 30,0 t30,0 t30,0 t30,0" stroke="#0f766e"/><path d="M10,40 q15,-28 30,0 t30,0 t30,0 t30,0" stroke="#6d28d9" transform="translate(0,2)" stroke-dasharray="3 3"/><path d="M10,100 q15,-56 30,0 t30,0 t30,0 t30,0" stroke="#c0392b"/>
+<path d="M240,40 q15,-28 30,0 t30,0 t30,0 t30,0" stroke="#0f766e"/><path d="M240,40 q15,28 30,0 t30,0 t30,0 t30,0" stroke="#6d28d9" stroke-dasharray="3 3"/><line x1="240" y1="100" x2="360" y2="100" stroke="#c0392b"/></g>
+<text x="20" y="125" font-size="12">in phase: amplitude 2A</text><text x="250" y="125" font-size="12">antiphase: amplitude 0</text></svg>
+{% endcall %}
+{% call box('mis') %}"Destructive interference destroys energy." The energy is redistributed: where waves cancel, others add; the total is conserved. (This is why Young's fringes have dark and bright bands without energy being lost.){% endcall %}
+<div class="next">Next: 1.4 shows interference of light directly.</div>
+{% endcall %}
+
+<hr class="div">
+{% call sub('m1-1-4','1.4',"Young's double-slit experiment") %}
+<div class="intuition"><b>Why it matters.</b> In 1801 Young showed light interferes, which settled (for a century) that light is a wave against Newton's particle picture. The same set-up later shows electrons interfering.</div>
+{% call box('def') %}Light from a monochromatic source passes a single slit (to make it coherent) and then two close narrow slits S₁, S₂ (separation d), which act as coherent sources. On a screen at distance D, alternating bright and dark <b>fringes</b> form. For a point at height y from the centre, with small angle θ (θ ≈ sin θ ≈ tan θ ≈ y/D, valid when D ≫ d): <b>path difference Δl = d sin θ ≈ d y/D</b>. <b>Bright fringes</b> (constructive): Δl = nλ, so <b>y_n = nλD/d</b>. <b>Dark fringes</b> (destructive): Δl = (n + ½)λ, so <b>y = (2n + 1)λD/(2d)</b>. <b>Fringe width</b> (between successive bright or dark fringes): <b>β = λD/d</b>. In a medium of refractive index μ, λ becomes λ/μ, so β is divided by μ. With white light each colour makes its own pattern: red fringes are wider than violet, and the centre is white.{% endcall %}
+{% call fig('Double slit geometry: slits S₁, S₂ a distance d apart, screen at D. The rays to a point P at height y differ in length by Δl = d sin θ. <i>Notice</i> the diagram is not to scale: in reality D ≫ d, so the two rays are almost parallel.') %}
+<svg viewBox="0 0 440 190" width="440" role="img" aria-label="Young double slit"><defs><marker id="a1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#c0392b"/></marker></defs><line x1="30" y1="95" x2="90" y2="95" stroke="#b45309" stroke-width="2"/><line x1="100" y1="30" x2="100" y2="75" stroke="#333" stroke-width="4"/><line x1="100" y1="85" x2="100" y2="105" stroke="#333" stroke-width="4"/><line x1="100" y1="115" x2="100" y2="160" stroke="#333" stroke-width="4"/>
+<text x="106" y="82" font-size="12">S₁</text><text x="106" y="112" font-size="12">S₂</text><line x1="380" y1="10" x2="380" y2="180" stroke="#333" stroke-width="3"/>
+<line x1="100" y1="80" x2="380" y2="55" stroke="#0f766e"/><line x1="100" y1="110" x2="380" y2="55" stroke="#0f766e"/><circle cx="380" cy="55" r="4" fill="#c0392b"/><text x="386" y="52" font-size="12">P</text><line x1="395" y1="55" x2="395" y2="95" stroke="#c0392b" marker-end="url(#a1)"/><text x="400" y="78" font-size="12" fill="#c0392b">y</text><line x1="100" y1="95" x2="380" y2="95" stroke="#bbb" stroke-dasharray="4 3"/><text x="230" y="110" font-size="12">D</text><text x="68" y="100" font-size="12">d</text><line x1="88" y1="80" x2="88" y2="110" stroke="#333"/><text x="150" y="85" font-size="12" fill="#c0392b">θ</text></svg>
+{% endcall %}
+{% call box('ex') %}
+<div class="step"><b>Problem.</b> Light of wavelength 600 nm falls on slits 0.50 mm apart; the screen is 1.5 m away. Find the fringe width and the position of the 3rd bright fringe. What changes if the apparatus is immersed in water (μ = 1.33)?</div>
+<div class="step">β = λD/d = (600×10⁻⁹ × 1.5)/(0.50×10⁻³) = <b>1.8×10⁻³ m = 1.8 mm</b>.</div>
+<div class="step">y₃ = 3β = <b>5.4 mm</b> from the central bright fringe.</div>
+<div class="step">In water, λ → λ/μ, so β → 1.8/1.33 = <b>1.35 mm</b>: the fringes crowd closer together.</div>
+<div class="check"><b>Check.</b> Small-angle condition: y/D = 5.4×10⁻³/1.5 = 3.6×10⁻³ rad, so sin θ ≈ tan θ ≈ θ is excellent ✓. Check the path difference: d y/D = 0.5×10⁻³ × 3.6×10⁻³ = 1.8×10⁻⁶ m = 3 × 600 nm ✓ (n = 3).</div>
+{% endcall %}
+{% call box('mis') %}"Dark fringes use Δl = nλ." That is the bright condition. Dark needs a <i>half</i>-integer number of wavelengths: Δl = (n + ½)λ.{% endcall %}
+<div class="next">Next: Section 2 turns to heat radiation, where classical waves fail.</div>
+{% endcall %}
+{% endcall %}{# end sec 1 #}
+
+<hr class="div">
+{% call sec('m1-2','2','Blackbody radiation') %}
+
+{% call sub('m1-2-1','2.1','Thermal radiation, the blackbody and Kirchhoff\'s law') %}
+<div class="intuition"><b>Why it matters.</b> Hot objects glow, and the colour depends on the temperature, not the material. An ideal absorber is the cleanest object to study, and explaining its spectrum is what started quantum theory.</div>
+{% call box('def') %}<b>Thermal radiation</b> is the radiation emitted by a body because of its temperature. A <b>blackbody</b> is an ideal body that absorbs all radiation falling on it, at every wavelength and angle, independent of the material. <b>Kirchhoff's law:</b> a body in thermal equilibrium emits power in proportion to the power it absorbs, so a good absorber is a good emitter; at constant temperature it absorbs at the same rate as it emits. The <b>spectral radiance</b> is the distribution of blackbody radiation over wavelength. Hotter objects glow red, then yellow, then white-blue; at room temperature most emission is infrared and invisible.{% endcall %}
+{% call box('mis') %}"A blackbody looks black." Only when cold. A blackbody at 6000 K is white-hot; "black" refers to perfect absorption.{% endcall %}
+<div class="next">Next: 2.2 gives the measured shape of the spectrum and the two laws it obeys.</div>
+{% endcall %}
+
+<hr class="div">
+{% call sub('m1-2-2','2.2',"Features of the spectrum: Stefan's and Wien's laws") %}
+<div class="intuition"><b>Why it matters.</b> Two of the most examined formulas in the module: how total power and the peak wavelength depend on temperature.</div>
+{% call box('def') %}Observations (slide 12): a higher temperature gives more emission and a shorter peak wavelength; there is little power at very short wavelength; the power rises rapidly to a maximum at λ_max and then falls slowly to zero at long wavelengths; and the total radiated power grows with temperature. <b>Stefan's law:</b> the total power radiated per unit area is <b>R = σT⁴</b>, with <b>σ = 5.67×10⁻⁸ W m⁻² K⁻⁴</b> (= 2π⁵k⁴/15h³c²). <b>Wien's displacement law:</b> <b>λ_max T = 2.898×10⁻³ m·K</b>, so hotter bodies peak at shorter wavelengths.{% endcall %}
+<table class="t"><tr><th>Source</th><th>T</th><th>λ_max = 2.898×10⁻³/T</th><th>Region</th></tr>
+<tr><td>Human body</td><td>310 K</td><td>9.35 μm</td><td>infrared</td></tr><tr><td>Sun's surface</td><td>5800 K</td><td>500 nm</td><td>visible</td></tr><tr><td>Hot star (slide 15 curve)</td><td>6000 K</td><td>483 nm</td><td>visible</td></tr></table>
+{% call box('ex') %}
+<div class="step"><b>Problem.</b> By what factor does the total radiated power of a blackbody change if its temperature doubles? Find the peak wavelength of a body at 3000 K.</div>
+<div class="step">R ∝ T⁴, so doubling T multiplies R by 2⁴ = <b>16</b>.</div>
+<div class="step">λ_max = 2.898×10⁻³/3000 = 9.66×10⁻⁷ m = <b>966 nm</b> (infrared, as in your slide-15 graph for 3000 K).</div>
+<div class="check"><b>Check.</b> The 966 nm for 3000 K matches the figure on slide 15 ✓. Product check: 966×10⁻⁹ × 3000 = 2.898×10⁻³ ✓.</div>
+{% endcall %}
+{% call box('mis') %}Your slide 13 states Stefan's law as "the intensity of emitted radiation for a given wavelength is proportional to T⁴". That is not right: R = σT⁴ is the <i>total</i> power per unit area summed over <i>all</i> wavelengths (the area under the curve). At a fixed wavelength the dependence on T is not T⁴. The formula and σ on that slide are correct.{% endcall %}
+<div class="next">Next: 2.3 shows how classical physics failed to explain the shape.</div>
+{% endcall %}
+
+<hr class="div">
+{% call sub('m1-2-3','2.3','Rayleigh-Jeans law and the ultraviolet catastrophe') %}
+<div class="intuition"><b>Why it matters.</b> The classical prediction blows up at short wavelengths. The failure is so dramatic that it forced a new idea.</div>
+{% call box('def') %}Rayleigh and Jeans treated the cavity as a set of standing waves (counting modes: the number per unit volume between ν and ν + dν is 8πν²dν/c³) and gave each mode the classical equipartition energy <b>ε = kT</b>. The result: <b>u(ν)dν = (8πν²/c³) kT dν</b>, or in wavelength <b>u(λ) = 8πkT/λ⁴</b>. It fits experiment at long wavelengths but grows without limit as λ → 0 (ν → ∞): the <b>ultraviolet catastrophe</b>. The total energy density, found by integrating over all frequencies, would be infinite, which is absurd.{% endcall %}
+{% call fig('Computed from the formulas: Planck spectra for 3000, 4000 and 5000 K (solid) and the classical Rayleigh-Jeans curve for 5000 K (dashed). The shaded band is visible light (400 to 700 nm). <i>Notice</i> the dashed curve shoots off to infinity at short wavelength while the real spectrum turns over and falls to zero, and that the two agree at long wavelength.') %}
+{{ planck_plot()|safe }}
+{% endcall %}
+{% call box('mis') %}"The ultraviolet catastrophe is a catastrophe in the lab." It is a failure of the <i>theory</i>: real hot bodies do not emit infinite energy.{% endcall %}
+<div class="next">Next: Section 3 gives the fix.</div>
+{% endcall %}
+{% endcall %}{# end sec 2 #}
+
+<hr class="div">
+{% call sec('m1-3','3',"Planck's hypothesis") %}
+
+{% call sub('m1-3-1','3.1','Quantisation of oscillator energy') %}
+<div class="intuition"><b>Why it matters.</b> Planck found that the data fit only if the walls of the cavity could exchange energy in lumps proportional to the frequency. Classical physics has no link between an oscillator's energy and its frequency; this is that link.</div>
+{% call box('def') %}<b>Planck's hypotheses</b> (slide 25): (1) The cavity contains simple harmonic oscillators (resonators of molecular size) that exchange energy with the radiation. (2) They can vibrate at all frequencies. (3) An oscillator of frequency ν can have only the discrete energies <b>Eₙ = nhν, n = 0, 1, 2, 3, …</b>. (4) Emission is a decrease and absorption an increase of oscillator energy, in steps of hν. (5) The energies are weighted by the <b>Boltzmann distribution</b> (probability ∝ e<sup>−E/kT</sup>), not by classical equipartition. Here <b>h = 6.626×10⁻³⁴ J·s</b> is Planck's constant. Energy is emitted or absorbed in quanta, each <b>E = hν = hc/λ</b>, so longer wavelength means smaller energy per quantum.{% endcall %}
+<table class="t"><tr><th></th><th>Classical theory</th><th>Planck's quantum theory</th></tr>
+<tr><td>Energy of radiation</td><td>continuous</td><td>discrete quanta</td></tr><tr><td>Depends on frequency?</td><td>no (depends on intensity)</td><td>yes: E = hν</td></tr>
+<tr><td>Oscillator energies</td><td>any value</td><td>nhν</td></tr></table>
+{% call box('ex') %}
+<div class="step"><b>Problem.</b> Find the energy of one quantum of green light (λ = 500 nm) in joules and eV.</div>
+<div class="step">E = hc/λ = (6.626×10⁻³⁴ × 3.0×10⁸)/(500×10⁻⁹) = <b>3.98×10⁻¹⁹ J</b> = 3.98×10⁻¹⁹/1.602×10⁻¹⁹ = <b>2.48 eV</b>.</div>
+<div class="check"><b>Check.</b> Shortcut hc ≈ 1240 eV·nm: 1240/500 = 2.48 eV ✓.</div>
+{% endcall %}
+{% call box('mis') %}"Planck believed light is made of particles." Planck quantised the <i>oscillators in the walls</i>; it was Einstein (Section 4) who proposed that light itself comes in quanta.{% endcall %}
+<div class="next">Next: 3.2 gives the resulting law and shows it contains both limits.</div>
+{% endcall %}
+
+<hr class="div">
+{% call sub('m1-3-2',"3.2","Planck's radiation law and its limits") %}
+<div class="intuition"><b>Why it matters.</b> One formula reproduces the whole measured curve, and in two limits it reduces to the two older laws. Showing those limits is a standard derivation question.</div>
+{% call box('def') %}With Eₙ = nhν and Boltzmann weights, the average energy of a mode is <b>⟨ε⟩ = hν/(e<sup>hν/kT</sup> − 1)</b>. Multiplying by the mode density 8πν²/c³: <b>u(ν)dν = (8πhν³/c³) dν/(e<sup>hν/kT</sup> − 1)</b> (Planck's radiation formula). <b>Low frequency (hν ≪ kT):</b> e<sup>hν/kT</sup> ≈ 1 + hν/kT, so e<sup>hν/kT</sup> − 1 ≈ hν/kT and <b>⟨ε⟩ → kT</b>, giving u(ν)dν = (8πν²kT/c³)dν, the <b>Rayleigh-Jeans law</b>. <b>High frequency (hν ≫ kT):</b> e<sup>hν/kT</sup> → ∞, so u(ν) → 0 (the Wien form), and the ultraviolet catastrophe disappears.{% endcall %}
+<table class="t"><tr><th>hν/kT</th><th>⟨ε⟩/kT = x/(eˣ − 1)</th><th>Meaning</th></tr>
+<tr><td>0.1</td><td>0.951</td><td>almost classical (kT)</td></tr><tr><td>1</td><td>0.582</td><td>transition</td></tr><tr><td>5</td><td>0.0339</td><td>strongly suppressed</td></tr><tr><td>10</td><td>0.000454</td><td>essentially frozen out</td></tr></table>
+<p class="small muted">Values computed by me from x/(eˣ − 1).</p>
+{% call box('ex') %}
+<div class="step"><b>Problem.</b> Calculate the average energy of an oscillator of frequency 5.6×10¹² Hz at T = 330 K, treating it (a) classically and (b) as a Planck oscillator (your problem 1 from the Class 8 deck).</div>
+<div class="step">(a) ε = kT = 1.38×10⁻²³ × 330 = <b>4.55×10⁻²¹ J</b>.</div>
+<div class="step">(b) hν = 6.626×10⁻³⁴ × 5.6×10¹² = 3.71×10⁻²¹ J; hν/kT = 3.71/4.55 = 0.815; e<sup>0.815</sup> = 2.26. ⟨ε⟩ = 3.71×10⁻²¹/(2.26 − 1) = <b>2.9×10⁻²¹ J</b>.</div>
+<div class="check"><b>Check.</b> hν/kT = 0.815 is neither ≪ 1 nor ≫ 1, so the Planck value (2.9) should be smaller than but of the order of kT (4.55): ratio 0.65 ✓. Your deck gives 2.94×10⁻²¹ J (rounding differences only) ✓.</div>
+{% endcall %}
+{% call box('mis') %}"Planck's law and Rayleigh-Jeans disagree everywhere." They agree at long wavelength, where hν ≪ kT. The classical law only fails where quanta are large compared with kT.{% endcall %}
+<div class="next">Next: Section 4 applies quanta to light itself.</div>
+{% endcall %}
+{% endcall %}{# end sec 3 #}
+
+<hr class="div">
+{% call sec('m1-4','4','The photoelectric effect') %}
+
+{% call sub('m1-4-1','4.1','Observations and the laws of photoelectric emission') %}
+<div class="intuition"><b>Why it matters.</b> Classical wave theory predicts the wrong answer for three of the observations below. This is the clearest proof that light comes in photons.</div>
+{% call box('def') %}<b>Photoelectric effect:</b> electrons (photoelectrons) are emitted from a metal surface exposed to light of suitable frequency; the current they carry is the photoelectric current. Experimental facts: (1) For a fixed frequency the photocurrent is proportional to the intensity. (2) The current saturates when all emitted electrons reach the anode (saturation current), and falls to zero at a negative <b>stopping potential V_s</b>, which does <i>not</i> depend on intensity. (3) V_s increases with frequency. (4) Below a <b>threshold frequency ν₀</b>, which depends on the metal, there is no emission however intense the light. (5) The emission is practically instantaneous (delay about 10⁻⁹ s). (6) One photon ejects one electron.{% endcall %}
+<table class="t"><tr><th>Observation</th><th>Classical wave prediction</th><th>Photon picture</th></tr>
+<tr><td>Threshold frequency</td><td>none: enough intensity should always work</td><td>photon energy hν must exceed the work function</td></tr>
+<tr><td>Max KE independent of intensity</td><td>KE should grow with intensity</td><td>more photons, not more energy per photon</td></tr>
+<tr><td>Instantaneous emission</td><td>a delay while energy accumulates</td><td>one photon, one electron, at once</td></tr></table>
+<div class="next">Next: 4.2 gives Einstein's equation.</div>
+{% endcall %}
+
+<hr class="div">
+{% call sub('m1-4-2',"4.2","Einstein's photoelectric equation") %}
+<div class="intuition"><b>Why it matters.</b> A one-line energy balance explains every observation and lets you calculate the work function, threshold, stopping potential and electron speed.</div>
+{% call box('def') %}Einstein: an electron is ejected by a collision with a <b>single photon</b>, which transfers all its energy hf. Part of it (the <b>work function W₀</b>, a few eV for most metals) frees the electron; the rest is kinetic energy: <b>hf = W₀ + KE_max</b>, where <b>KE_max = ½mv²_max = eV_s</b>. The <b>threshold frequency</b> f₀ = W₀/h and <b>threshold wavelength</b> λ₀ = hc/W₀. If hf &lt; W₀ no electron is ejected. A graph of V_s against f is a straight line of slope h/e that cuts the frequency axis at f₀ (this is how h can be measured).{% endcall %}
+{% call fig('Stopping potential against frequency: a straight line with slope h/e, intercept on the f axis at the threshold f₀. <i>Notice</i> the line does not pass through the origin; nothing is emitted below f₀.') %}
+<svg viewBox="0 0 400 220" width="400" role="img" aria-label="Stopping potential versus frequency"><line x1="50" y1="190" x2="380" y2="190" stroke="#555"/><line x1="50" y1="190" x2="50" y2="15" stroke="#555"/><text x="360" y="208" font-size="12">f</text><text x="12" y="25" font-size="12">V_s</text>
+<line x1="150" y1="190" x2="340" y2="50" stroke="#0f766e" stroke-width="2.5"/><line x1="90" y1="190" x2="150" y2="190" stroke="#0f766e" stroke-width="2.5" stroke-dasharray="5 4" opacity=".4"/><circle cx="150" cy="190" r="4" fill="#c0392b"/><text x="136" y="208" font-size="12" fill="#c0392b">f₀</text><text x="250" y="110" font-size="12">slope = h/e</text></svg>
+{% endcall %}
+{% call box('ex') %}
+<div class="step"><b>Problem.</b> Light of wavelength 400 nm falls on a metal with work function 2.0 eV. Find the maximum kinetic energy, the stopping potential, the maximum speed and the threshold wavelength.</div>
+<div class="step">Photon energy: hc/λ = 1240/400 = <b>3.10 eV</b>. KE_max = 3.10 − 2.0 = <b>1.10 eV</b> (= 1.76×10⁻¹⁹ J).</div>
+<div class="step">V_s = KE_max/e = <b>1.10 V</b>. v_max = √(2KE/m) = √(2 × 1.76×10⁻¹⁹/9.11×10⁻³¹) = <b>6.2×10⁵ m/s</b>.</div>
+<div class="step">λ₀ = hc/W₀ = 1240/2.0 = <b>620 nm</b>.</div>
+<div class="check"><b>Check.</b> 400 nm &lt; 620 nm (shorter wavelength than the threshold) so emission occurs ✓. v ≪ c (6×10⁵ vs 3×10⁸), so the non-relativistic KE formula is fine ✓.</div>
+{% endcall %}
+{% call box('mis') %}"Brighter light gives faster electrons." Brighter light gives <i>more</i> electrons (larger current); faster electrons need higher <i>frequency</i>. Also, if f &lt; f₀, no amount of intensity helps.{% endcall %}
+<div class="next">Next: Section 5 applies the same duality to matter.</div>
+{% endcall %}
+{% endcall %}{# end sec 4 #}
+
+<hr class="div">
+{% call sec('m1-5','5','The de Broglie hypothesis and matter waves') %}
+
+{% call sub('m1-5-1','5.1','De Broglie wavelength') %}
+<div class="intuition"><b>Why it matters.</b> This is the formula you will use most in numerical questions: a particle of momentum p behaves like a wave of wavelength h/p.</div>
+{% call box('def') %}For a photon, E = hc/λ and E = mc² (with p = mc) give p = h/λ. De Broglie proposed the same relation for any particle: <b>λ = h/p = h/(mv)</b>. In terms of kinetic energy E_k: <b>λ = h/√(2mE_k)</b>. For a charge q accelerated through a potential V (E_k = qV): <b>λ = h/√(2mqV)</b>. For a particle in thermal equilibrium at temperature T, with E = (3/2)kT: <b>λ = h/√(3mkT)</b>. For an electron accelerated through V volts: <b>λ = 12.26/√V Å</b>. Your deck also gives alpha particle 0.1012/√V Å, proton 0.286/√V Å, deuteron 0.202/√V Å.{% endcall %}
+<table class="t"><tr><th>Particle</th><th>λ (Å) for accelerating voltage V</th></tr>
+<tr><td>electron</td><td>12.26/√V</td></tr><tr><td>proton</td><td>0.286/√V</td></tr><tr><td>deuteron</td><td>0.202/√V</td></tr><tr><td>alpha particle</td><td>0.1012/√V</td></tr></table>
+<p class="small muted">1 Å = 10⁻¹⁰ m. The electron coefficient comes from h/√(2me·1 V) = 12.265 Å, which I recomputed.</p>
+{% call box('ex') %}
+<div class="step"><b>Problem.</b> Find the de Broglie wavelength of (a) an electron accelerated through 400 V, (b) a 50 g golf ball moving at 20 m/s, (c) a proton moving at 2200 m/s.</div>
+<div class="step">(a) λ = 12.26/√400 = <b>0.613 Å</b>.</div>
+<div class="step">(b) λ = h/(mv) = 6.62×10⁻³⁴/(0.05 × 20) = <b>6.6×10⁻³⁴ m</b>: far too small to detect, so a golf ball shows no wave behaviour.</div>
+<div class="step">(c) λ = 6.62×10⁻³⁴/(1.67×10⁻²⁷ × 2200) = 6.62×10⁻³⁴/3.67×10⁻²⁴ = <b>1.80×10⁻¹⁰ m = 1.80 Å</b>.</div>
+<div class="check"><b>Check.</b> (a) and (b) agree with your deck. For (c) your slide 6 gives 1.91 Å, but dividing out the numbers shown on the slide gives 1.80 Å, so the slide's 1.91 Å looks like an arithmetic slip; I have used 1.80 Å. Also your slide-7 answer of 0.166 MeV for the electron of wavelength 3×10⁻¹² m is correct: E = h²/2mλ² = 2.67×10⁻¹⁴ J = 1.67×10⁵ eV ✓ (the intermediate line "0.26 eV × 10⁻¹³ J" on that slide is garbled but the final answer stands).</div>
+{% endcall %}
+{% call box('ex') %}
+<div class="step"><b>Problem.</b> Find the de Broglie wavelength of thermal neutrons at 300 K (m = 1.67×10⁻²⁷ kg) using E = (3/2)kT, and the wavelength of a 12.8 MeV neutron (your problems 6, 8, 9).</div>
+<div class="step">λ = h/√(3mkT) = 6.62×10⁻³⁴/√(3 × 1.67×10⁻²⁷ × 1.38×10⁻²³ × 300) = <b>1.46×10⁻¹⁰ m</b> (matches your slide). With E = kT instead (problem 6): λ = h/√(2mkT) = <b>1.78 Å</b>.</div>
+<div class="step">12.8 MeV: E = 2.05×10⁻¹² J, v = √(2E/m) = 4.95×10⁷ m/s, λ = h/mv = <b>8.0×10⁻¹⁵ m</b>.</div>
+<div class="check"><b>Check.</b> The two thermal-neutron values differ because the problems use different energy conventions (kT versus 3kT/2); say which you used. v/c = 0.165 for the 12.8 MeV neutron, so the non-relativistic formula is acceptable but a little rough ✓.</div>
+{% endcall %}
+{% call box('mis') %}"Everything has a significant wavelength." λ = h/p is only observable when p is small enough that λ is comparable to the size of the obstacles. Macroscopic bodies have λ ~ 10⁻³⁴ m.{% endcall %}
+<div class="next">Next: 5.2 lists the properties of matter waves.</div>
+{% endcall %}
+
+<hr class="div">
+{% call sub('m1-5-2','5.2','Properties of matter waves') %}
+<div class="intuition"><b>Why it matters.</b> A standard short-answer question: list properties of matter waves, and say how they differ from electromagnetic waves.</div>
+{% call box('def') %}(i) λ is inversely proportional to velocity (faster means shorter); for a particle at rest λ is infinite. (ii) λ is inversely proportional to mass (heavier particles have shorter wavelength). (iii) λ is <b>independent of the charge</b> of the particle. (iv) Matter waves travel in vacuum, so they are not mechanical waves. (v) They are <b>not electromagnetic</b>, since they are not produced by accelerated charges. (vi) They are <b>probability waves</b>: the square of the amplitude gives the probability of finding the particle. (vii) Particles have wave-like properties and waves have particle-like properties, and these descriptions are linked but separate (slide 7: the wave representation is symbolic).{% endcall %}
+<div class="next">Next: 5.3 builds a localised "particle" out of waves.</div>
+{% endcall %}
+
+<hr class="div">
+{% call sub('m1-5-3','5.3','Wave packets, phase velocity and group velocity') %}
+<div class="intuition"><b>Why it matters.</b> A single sine wave fills all space and cannot represent a particle located somewhere. Adding many waves of slightly different wavelengths gives a localised packet, which moves at the group velocity.</div>
+{% call box('def') %}A <b>wave packet</b> is a superposition of many waves that interfere constructively near the particle and destructively elsewhere; it has an envelope that travels at the <b>group velocity v_g</b>, while the ripples inside travel at the <b>phase velocity v_p</b>. For y = A cos(ωt − kx): <b>v_p = ω/k = fλ</b> and <b>v_g = dω/dk</b>. For de Broglie waves: <b>v_p = c²/v</b> (greater than c, which is allowed because it carries no energy or signal) and <b>v_g = v</b> (the particle's speed). Hence <b>v_g v_p = c²</b>. In general <b>v_g = v_p − λ dv_p/dλ</b>: in a dispersive medium v_g ≠ v_p (de Broglie waves); in a non-dispersive medium v_g = v_p (light in vacuum).{% endcall %}
+{% call fig('A wave packet made by adding 15 cosines with wave numbers spread around a central value (computed). <i>Notice</i> the packet is localised: large in the middle where the components are in phase, vanishing at the edges where they cancel. Adding more spread in k would make it narrower.') %}
+{{ wavepacket()|safe }}
+{% endcall %}
+{% call box('ex') %}
+<div class="step"><b>Problem.</b> A particle moves at v = 0.6c. Find the phase and group velocities of its de Broglie wave.</div>
+<div class="step">v_g = v = <b>0.6c</b>. v_p = c²/v = c/0.6 = <b>1.67c</b>.</div>
+<div class="check"><b>Check.</b> v_g × v_p = 0.6c × 1.67c = c² ✓.</div>
+{% endcall %}
+{% call box('mis') %}"The de Broglie wave moves faster than light, so relativity is violated." The phase velocity carries no signal; the particle (and the packet envelope) moves at v_g = v &lt; c.{% endcall %}
+<div class="next">Next: 5.4 is the experimental proof.</div>
+{% endcall %}
+
+<hr class="div">
+{% call sub('m1-5-4',"5.4","The Davisson-Germer experiment") %}
+<div class="intuition"><b>Why it matters.</b> De Broglie's idea was a hypothesis until electrons were seen to diffract like X-rays.</div>
+{% call box('def') %}In 1927 C. J. Davisson and L. H. Germer used a <b>crystal to diffract a beam of electrons</b>, demonstrating the wave property of particles. A crystal provides planes of atoms at regular spacing; waves scattered from successive planes interfere constructively or destructively, exactly as for X-rays. The strong scattered peak at a particular angle agreed with the de Broglie wavelength. (Your deck gives this description; it does not give the numerical details, which are in the textbook you list, Beiser. As a standard result I add Bragg's condition 2d sin θ = nλ for constructive reflection.){% endcall %}
+{% call box('ex') %}
+<div class="step"><b>Problem.</b> Find the de Broglie wavelength of electrons accelerated through 54 V, and compare with typical atomic-plane spacings.</div>
+<div class="step">λ = 12.26/√54 = <b>1.67 Å</b>.</div>
+<div class="check"><b>Check.</b> This is comparable to the spacing between atoms in a crystal (a few Å), which is exactly why a crystal can diffract them ✓. (54 V is the textbook accelerating voltage for the experiment; it is not given in your deck.)</div>
+{% endcall %}
+<div class="next">Next: Section 6 shows a limit that follows from the wave nature.</div>
+{% endcall %}
+{% endcall %}{# end sec 5 #}
+
+<hr class="div">
+{% call sec('m1-6','6','The Heisenberg uncertainty principle') %}
+
+{% call sub('m1-6-1','6.1','Statement of the principle') %}
+<div class="intuition"><b>Why it matters.</b> A wave packet that is narrow in position needs many wavelengths; so a particle cannot have both a sharp position and a sharp momentum. This is a property of nature, not of the instruments.</div>
+{% call box('def') %}<b>Heisenberg uncertainty principle (1927):</b> it is impossible to determine both the position and the momentum of a particle simultaneously and exactly. The product of the uncertainties can never be smaller than h/4π: <b>Δx Δp ≥ h/4π = ħ/2</b>. The limitation exists in nature itself. The companion relation for energy and time: <b>ΔE Δt ≥ h/4π</b>. Order-of-magnitude versions Δx Δp ≈ h (or ≈ ħ) are used for estimates.{% endcall %}
+{% call box('mis') %}Your slides (6-8) state the principle in three forms: Δx Δp ≈ h (a rough estimate from the microscope argument), "Δx Δp ≥ h" (the "final minimum uncertainties") and Δx Δp ≥ h/4π (the "final accurate" form). The accurate bound is h/4π = ħ/2. Use the form the question asks for; if it asks for the "minimum uncertainty" or says "≥ h/4π", use that, and if the lecturer's problem sets say "Δp = h/Δx" (as in your Class 8 problem 7) use the order-of-magnitude form and say so.{% endcall %}
+<div class="next">Next: 6.2 gives the physical argument.</div>
+{% endcall %}
+
+<hr class="div">
+{% call sub('m1-6-2','6.2','The microscope thought experiment') %}
+<div class="intuition"><b>Why it matters.</b> It shows why you cannot get around the principle by a cleverer instrument.</div>
+{% call box('def') %}To <b>see</b> an electron, at least one photon must bounce off it. To locate it accurately you need a photon of short wavelength (the position uncertainty is about the wavelength: Δx ≈ λ). But a short-wavelength photon has large momentum h/λ and gives the electron a large, uncertain kick: Δp ≈ h/λ. To disturb the electron less you need long wavelength, which blurs the position. So Δx Δp ≈ λ × h/λ = h, whatever λ you choose.{% endcall %}
+{% call box('ex') %}
+<div class="step"><b>Problem.</b> A photon microscope locates an electron to within 0.1 Å. Find the minimum uncertainty in its momentum and velocity (a) with your deck's estimate Δx Δp ≈ h, and (b) with Δx Δp ≥ h/4π.</div>
+<div class="step">(a) Δp = h/Δx = 6.63×10⁻³⁴/(0.1×10⁻¹⁰) = <b>6.6×10⁻²³ kg·m/s</b>; Δv = Δp/m = 6.63×10⁻²³/9.1×10⁻³¹ = <b>7.3×10⁷ m/s</b> (your problem 7).</div>
+<div class="step">(b) Δp = ħ/(2Δx) = 1.055×10⁻³⁴/(2 × 10⁻¹¹) = <b>5.3×10⁻²⁴ kg·m/s</b>, so Δv = <b>5.8×10⁶ m/s</b>.</div>
+<div class="check"><b>Check.</b> The two answers differ by a factor 4π = 12.6 (6.6×10⁻²³/5.3×10⁻²⁴ = 12.5 ✓). Both give a velocity uncertainty far larger than the speed an electron in an atom has (~10⁶ m/s), showing an electron cannot be pinned to 0.1 Å without huge momentum uncertainty.</div>
+{% endcall %}
+<div class="next">Next: 6.3 collects the consequences.</div>
+{% endcall %}
+
+<hr class="div">
+{% call sub('m1-6-3','6.3','Energy-time uncertainty and applications') %}
+<div class="intuition"><b>Why it matters.</b> Your deck lists applications of the principle; each is a one-line argument.</div>
+{% call box('def') %}<b>Energy-time form:</b> ΔE Δt ≥ h/4π (derived on slide 8 using Δx = vΔt and ΔE ≈ pΔp/m... = vΔp). <b>Applications</b> (slide 9): non-existence of the electron inside the nucleus; zero-point energy of a harmonic oscillator; ground-state energy and radius of the hydrogen atom; finite width of spectral lines (a state of short lifetime Δt has an energy uncertainty ΔE, so the line is broadened); binding energy of an electron in an atom. The same idea gives the zero-point energy of the particle in a box (Module 4, 2.2).{% endcall %}
+{% call box('ex') %}
+<div class="step"><b>Problem.</b> An excited atomic state has a lifetime of 10⁻⁸ s. Estimate the minimum uncertainty in its energy.</div>
+<div class="step">ΔE ≥ ħ/(2Δt) = 1.055×10⁻³⁴/(2 × 10⁻⁸) = <b>5.3×10⁻²⁷ J</b> = 3.3×10⁻⁸ eV.</div>
+<div class="check"><b>Check.</b> Tiny compared with a typical transition energy of a few eV, so the line is very sharp but not infinitely so ✓ (the natural line width).</div>
+{% endcall %}
+<div class="next">Next: Section 7 introduces the quantity that carries all this information, the wavefunction.</div>
+{% endcall %}
+{% endcall %}{# end sec 6 #}
+
+<hr class="div">
+{% call sec('m1-7','7','The wavefunction') %}
+
+{% call sub('m1-7-1','7.1','Meaning of the wavefunction and probability density') %}
+<div class="intuition"><b>Why it matters.</b> In quantum mechanics a particle is described by a state, not a trajectory; the wavefunction is that state.</div>
+{% call box('def') %}In 1926 Schrödinger proposed a wave equation for matter waves. The state of a particle is described by a complex <b>wavefunction Ψ(r, t)</b>, a <b>probability amplitude</b> that depends on position and time. Ψ itself has no direct physical meaning; the physical quantity is <b>|Ψ|² = Ψ*Ψ</b>, the <b>probability density</b>. The probability of finding the particle in the volume dx dy dz at time t is |Ψ|² dx dy dz; in one dimension, the probability between a and b is <b>P = ∫ₐᵇ |Ψ|² dx</b>. The sign of Ψ has no physical significance (positive and negative regions give the same |Ψ|²). Schrödinger's equation is iħ ∂Ψ/∂t = ĤΨ (Module 3, Section 5).{% endcall %}
+{% call box('mis') %}"Ψ is the probability." |Ψ|² is the probability density; Ψ can be complex or negative, so cannot itself be a probability.{% endcall %}
+<div class="next">Next: 7.2 lists what makes a wavefunction acceptable.</div>
+{% endcall %}
+
+<hr class="div">
+{% call sub('m1-7-2','7.2','Acceptable wavefunctions and normalisation') %}
+<div class="intuition"><b>Why it matters.</b> Not every function can be a wavefunction. These conditions are used to throw out solutions and to fix constants.</div>
+{% call box('def') %}A wavefunction must be: (i) <b>single-valued</b>; (ii) <b>finite</b> everywhere; (iii) <b>continuous</b> (except where the potential is infinite); (iv) have a <b>continuous first derivative</b> (slope); (v) <b>square-integrable</b> and normalisable. It usually vanishes at the boundaries of a confined region. <b>Normalisation:</b> the particle must be somewhere, so <b>∫|Ψ|² dV = 1</b> over all space. Two wavefunctions are <b>orthogonal</b> if ∫ ψₘ* ψₙ dx = 0.{% endcall %}
+{% call box('ex') %}
+<div class="step"><b>Problem.</b> Normalise ψ(x) = A x(1 − x) on 0 ≤ x ≤ 1 (zero elsewhere), then find the probability of finding the particle in 0 ≤ x ≤ ½.</div>
+<div class="step">∫₀¹ A²x²(1 − x)² dx = A² ∫₀¹ (x² − 2x³ + x⁴) dx = A²(1/3 − 1/2 + 1/5) = A²/30 = 1, so <b>A = √30 ≈ 5.48</b>.</div>
+<div class="step">The density 30 x²(1 − x)² is symmetric about x = ½, so each half holds exactly <b>1/2</b>.</div>
+<div class="check"><b>Check.</b> 1/3 − 1/2 + 1/5 = (10 − 15 + 6)/30 = 1/30 ✓. ψ vanishes at both ends (x = 0, 1), as a confined state should ✓. Direct check of the half: 30∫₀<sup>1/2</sup>(x² − 2x³ + x⁴)dx = 30(1/24 − 1/32 + 1/160) = 30(0.04167 − 0.03125 + 0.00625) = 30 × 0.016667 = 0.5 ✓.</div>
+{% endcall %}
+{% call box('mis') %}"ψ = tan x is a fine wavefunction." It becomes infinite at x = π/2, so it is not finite and not square-integrable; sin and cos are acceptable. Similarly a function with a kink or a jump (discontinuous slope or value) is rejected.{% endcall %}
+<div class="next">Next: 7.3 introduces operators.</div>
+{% endcall %}
+
+<hr class="div">
+{% call sub('m1-7-3','7.3','Operators, eigenfunctions and eigenvalues') %}
+<div class="intuition"><b>Why it matters.</b> Every measurable quantity corresponds to an operator; the only values you can ever measure are its eigenvalues. This section is the bridge to Modules 2 and 3.</div>
+{% call box('def') %}An <b>operator</b> tells you what to do to the function that follows. For a free particle Ψ = A e<sup>i(px − Et)/ħ</sup>: differentiating gives <b>p̂Ψ = −iħ ∂Ψ/∂x</b> (momentum operator) and <b>ÊΨ = iħ ∂Ψ/∂t</b> (energy operator). <b>Eigenvalue equation:</b> <b>ĜΨₙ = GₙΨₙ</b>; the only values ever observed for the quantity G are the eigenvalues Gₙ (this is the postulate that dynamical variables are quantised). Position: multiply by x. Kinetic energy: −(ħ²/2m)∂²/∂x². Total energy (Hamiltonian): Ĥ = −(ħ²/2m)∂²/∂x² + V(x).{% endcall %}
+<table class="t"><tr><th>Observable</th><th>Classical</th><th>Operator</th></tr>
+<tr><td>position</td><td>x</td><td>multiply by x</td></tr><tr><td>momentum</td><td>pₓ</td><td>−iħ ∂/∂x</td></tr>
+<tr><td>kinetic energy</td><td>p²/2m</td><td>−(ħ²/2m) ∂²/∂x²</td></tr><tr><td>potential energy</td><td>V(x)</td><td>multiply by V(x)</td></tr>
+<tr><td>total energy</td><td>T + V</td><td>Ĥ = −(ħ²/2m) ∂²/∂x² + V</td></tr><tr><td>z angular momentum</td><td>x p_y − y p_x</td><td>−iħ (x ∂/∂y − y ∂/∂x)</td></tr></table>
+{% call box('ex') %}
+<div class="step"><b>Problem.</b> Show that e<sup>2x</sup> is an eigenfunction of d²/dx² (your slide 19) and that e<sup>ikx</sup> is an eigenfunction of p̂ = −iħ d/dx.</div>
+<div class="step">d²/dx² e<sup>2x</sup> = 4e<sup>2x</sup>: eigenvalue <b>4</b>.</div>
+<div class="step">p̂ e<sup>ikx</sup> = −iħ (ik) e<sup>ikx</sup> = <b>ħk</b> e<sup>ikx</sup>: eigenvalue ħk = p, the de Broglie momentum (p = h/λ with k = 2π/λ).</div>
+<div class="check"><b>Check.</b> ħk = (h/2π)(2π/λ) = h/λ ✓, so a plane wave has the sharp momentum h/λ, consistent with 5.1.</div>
+{% endcall %}
+{% call box('mis') %}Operators do not commute in general: p̂x̂ ≠ x̂p̂. This is why x and p cannot both be sharp (6.1). Module 2, 7 covers commutation relations and Module 3 uses them for measurement.{% endcall %}
+<div class="next">Next: Section 8 says where the Stern-Gerlach experiment is covered.</div>
+{% endcall %}
+{% endcall %}{# end sec 7 #}
+
+<hr class="div">
+{% call sec('m1-8','8','The Stern-Gerlach experiment') %}
+{% call sub('m1-8-1','8.1','Where the Stern-Gerlach experiment is covered') %}
+<div class="intuition"><b>Why it matters.</b> The contents slide of your Module 1 decks lists the Stern-Gerlach experiment, but none of the decks you sent for Module 1 contains it.</div>
+{% call box('def') %}The experiment (a beam of silver atoms split into two by an inhomogeneous magnetic field, showing spin is quantised) and its sequential versions are written up in full in <a href="{{ url_for('module', n=3) }}#m3-4">Module 3, Section 4</a>, from your Module 3 materials. Start at <a href="{{ url_for('module', n=3) }}#m3-4-1">Module 3, 4.1</a>. If your lecturer has Module 1 slides on it that you have not uploaded, send them and I will add them here.{% endcall %}
+{% endcall %}
+{% endcall %}{# end sec 8 #}
+
+<hr class="div">
+<section id="m1-check"><h2>Self-test checklist</h2>
+<p class="muted small">Tick only what you can do unaided. Ticks are kept in this browser.</p>
+<ul class="checklist" data-key="m1-check">
+<li><label><input type="checkbox"> State the dual nature of radiation and give one experiment that needs each picture.</label></li>
+<li><label><input type="checkbox"> Derive the bright and dark fringe positions and β = λD/d for the double slit.</label></li>
+<li><label><input type="checkbox"> Explain blackbody radiation and state Stefan's law and Wien's law with their constants.</label></li>
+<li><label><input type="checkbox"> Explain the ultraviolet catastrophe and why Rayleigh-Jeans fails.</label></li>
+<li><label><input type="checkbox"> State Planck's hypothesis and show Planck's law reduces to Rayleigh-Jeans at low frequency and vanishes at high frequency.</label></li>
+<li><label><input type="checkbox"> List the observations of the photoelectric effect and why wave theory cannot explain them.</label></li>
+<li><label><input type="checkbox"> Use hf = W₀ + eV_s to find work function, threshold, stopping potential and speed.</label></li>
+<li><label><input type="checkbox"> Compute de Broglie wavelengths for electrons, neutrons and other particles in each form.</label></li>
+<li><label><input type="checkbox"> State properties of matter waves and the relation v_g v_p = c².</label></li>
+<li><label><input type="checkbox"> Describe the Davisson-Germer experiment.</label></li>
+<li><label><input type="checkbox"> State the uncertainty principle (position-momentum and energy-time) and use it numerically.</label></li>
+<li><label><input type="checkbox"> List the conditions for an acceptable wavefunction and normalise one.</label></li>
+<li><label><input type="checkbox"> Write the momentum, energy and position operators and test whether a function is an eigenfunction.</label></li>
+</ul></section>
+</div>
+<script>
+(function(){
+  document.querySelectorAll('.checklist').forEach(function(ul){
+    var key='qm_check_'+ul.dataset.key, saved={};
+    try{ saved=JSON.parse(localStorage.getItem(key)||'{}'); }catch(e){}
+    ul.querySelectorAll('input').forEach(function(cb,i){
+      cb.checked=!!saved[i];
+      cb.addEventListener('change',function(){ saved[i]=cb.checked; try{ localStorage.setItem(key,JSON.stringify(saved)); }catch(e){} });
+    });
+  });
+})();
+</script>
+{% endblock %}

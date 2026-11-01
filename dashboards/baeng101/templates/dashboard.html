@@ -1,0 +1,17 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BAENG101 · Modules 3 & 4</title><link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"></head>
+<body><header class="hero"><div class="inner c"><div class="kicker">Technical English Communication · BAENG101</div><h1>Modules 3 & 4: Illustrated Notes</h1>
+<p>Reading and Writing, illustrated for understanding. Expand a module, open any subtopic to jump to its notes, then test yourself on {{ total_q }} Bloom's-level questions.</p>
+<a class="pill" href="{{ url_for('quiz_setup') }}">📝 Take a Quiz</a><div class="stat" id="stat"></div></div></header>
+<main class="wrap"><p class="syllabus-note"><strong>How to use this:</strong> open a module to read it start to finish, or expand its topics and click a subtopic to land on that section. Each subtopic also has a <b>Quiz</b> link that pre-selects it.</p>
+{% for m in mods %}<article class="card" style="--accent:{{ m.accent }};--accent-dk:{{ m.accent_dk }}"><div class="row"><div><span class="tag">{{ m.title.split(' · ')[0] }}</span><h2>{% if m.page %}<a href="{{ url_for('module', num=m.page) }}">{{ m.title.split(' · ')[1] }}</a>{% else %}{{ m.title.split(' · ')[0] if ' · ' not in m.title else m.title }}{% endif %}</h2><p class="desc">{{ m.desc }}</p></div>
+{% if m.page %}<a class="open-btn" href="{{ url_for('module', num=m.page) }}">Open notes →</a>{% endif %}</div>
+<details class="topics"><summary>{{ m.topics|length }} topics · {{ m.topics|sum(attribute='subtopics', start=[])|length }} subtopics: expand to scope</summary><div class="topic-tree">
+{% for t in m.topics %}<details class="topic-item"><summary><span class="t-label">{{ t.label }}</span><span class="t-count">{{ t.subtopics|length }} subtopics</span></summary><div class="topic-body"><p class="t-summary">{{ t.summary }}</p>
+<a class="t-jump" href="{{ url_for('quiz_setup') }}?{% for s in t.subtopics %}pick={{ s.id }}{{ '&' if not loop.last }}{% endfor %}">Quiz this topic →</a>
+<ul class="subtopics">{% for s in t.subtopics %}<li><a href="{{ url_for('module', num=s.page) }}#{{ s.anchor }}"><span class="st-label">{{ s.label }} <span class="chip" data-sid="{{ s.id }}"></span></span><span class="st-summary">{{ s.summary }}</span></a><a class="q-link" href="{{ url_for('quiz_setup') }}?pick={{ s.id }}">Quiz · {{ s.count }} Qs</a></li>{% endfor %}</ul></div></details>{% endfor %}
+</div></details></article>{% endfor %}</main>
+<footer>Served locally by Flask · quiz progress is stored in this browser</footer>
+<script>try{const P=JSON.parse(localStorage.getItem('b101')||'{}'),S=P.s||{};let n=0,c=0;
+document.querySelectorAll('[data-sid]').forEach(e=>{const x=S[e.dataset.sid];if(x&&x.n)e.textContent=Math.round(100*x.c/x.n)+'% · '+x.n+' tried'});
+Object.values(S).forEach(x=>{n+=x.n;c+=x.c});if(n)document.getElementById('stat').textContent='Your accuracy so far: '+Math.round(100*c/n)+'% over '+n+' answers · '+(P.runs||[]).length+' quizzes'}catch(e){}</script></body></html>

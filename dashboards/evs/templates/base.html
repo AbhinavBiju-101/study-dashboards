@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% block title %}EVS Illustrated Notes{% endblock %}</title>
+<style>
+  :root{ --nav-bg:#1b1f1a; --nav-ink:#f2efe4; --nav-accent:{{ accent|default('#2f6b4f') }}; }
+  html{scroll-behavior:smooth;}
+  .site-nav{
+    position:sticky; top:0; z-index:50;
+    background:var(--nav-bg);
+    color:var(--nav-ink);
+    display:flex; align-items:center; gap:10px;
+    padding:10px 18px;
+    font-family: ui-sans-serif, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-size:.92rem;
+    flex-wrap:wrap;
+  }
+  .site-nav.bottom{ position:static; }
+  .site-nav a{
+    color:var(--nav-ink);
+    text-decoration:none;
+    padding:6px 12px;
+    border-radius:5px;
+    border:1px solid rgba(242,239,228,.25);
+    white-space:nowrap;
+  }
+  .site-nav a:hover{ background:rgba(242,239,228,.12); }
+  .site-nav a.disabled{
+    opacity:.35;
+    pointer-events:none;
+  }
+  .site-nav .grow{ flex:1; }
+  .site-nav .current{
+    font-weight:700;
+    color:var(--nav-accent);
+    padding:6px 4px;
+  }
+  .site-nav .dashboard-link{
+    border-color:var(--nav-accent);
+    color:var(--nav-accent);
+  }
+  @media(max-width:640px){
+    .site-nav{ font-size:.82rem; padding:8px 10px; gap:6px; }
+    .site-nav .current{ order:10; width:100%; text-align:center; }
+  }
+</style>
+{% block extra_style %}{% endblock %}
+</head>
+<body>
+
+<nav class="site-nav top">
+  <a class="dashboard-link" href="{{ url_for('dashboard') }}">☰ Dashboard</a>
+  <a href="{{ url_for('quiz_setup') }}">📝 Quiz</a>
+  {% if prev_num %}
+    <a href="{{ url_for('week', num=prev_num) }}">← Week {{ prev_num }}</a>
+  {% else %}
+    <a class="disabled">← Week</a>
+  {% endif %}
+  <span class="grow"></span>
+  <span class="current">Week {{ current }} of {{ total }}</span>
+  <span class="grow"></span>
+  {% if next_num %}
+    <a href="{{ url_for('week', num=next_num) }}">Week {{ next_num }} →</a>
+  {% else %}
+    <a class="disabled">Week →</a>
+  {% endif %}
+</nav>
+
+{% block content %}{% endblock %}
+
+<nav class="site-nav bottom">
+  <a class="dashboard-link" href="{{ url_for('dashboard') }}">☰ Back to Dashboard</a>
+  <a href="{{ url_for('quiz_setup') }}">📝 Quiz</a>
+  {% if prev_num %}
+    <a href="{{ url_for('week', num=prev_num) }}">← Week {{ prev_num }}</a>
+  {% else %}
+    <a class="disabled">← Week</a>
+  {% endif %}
+  <span class="grow"></span>
+  <span class="current">Week {{ current }} of {{ total }}</span>
+  <span class="grow"></span>
+  {% if next_num %}
+    <a href="{{ url_for('week', num=next_num) }}">Week {{ next_num }} →</a>
+  {% else %}
+    <a class="disabled">Week →</a>
+  {% endif %}
+</nav>
+
+</body>
+</html>

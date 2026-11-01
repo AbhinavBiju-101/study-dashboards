@@ -1,0 +1,29 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BAENG101 Quiz</title><link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"></head><body>
+<div class="topbar"><a href="{{ url_for('quiz_setup') }}">← New setup</a><a href="{{ url_for('dashboard') }}">☰ Dashboard</a><span class="grow"></span>{% if not backtracking %}<span class="qtag warn">🔒 No backtracking</span>{% endif %}<span id="prog"></span><span class="timer" id="tm">0:00</span></div>
+<main class="wrap">{% if requested > pool_size %}<div class="panel warnp">You asked for {{ requested }} questions but only {{ pool_size }} were available; this quiz uses all of them.</div>{% endif %}<div id="app"></div></main>
+<script>
+const Q={{ questions|tojson }},BACK={{ 'true' if backtracking else 'false' }},LV=['Remember','Understand','Apply','Analyze','Evaluate','Create'];
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])),fmt=s=>Math.floor(s/60)+':'+String(Math.floor(s%60)).padStart(2,'0'),pc=(c,n)=>n?Math.round(100*c/n):0;
+Q.forEach(q=>{q.ans=null;q.fl=false;q.t=0});let i=0,t0=Date.now(),ts=t0,done=false;
+setInterval(()=>{if(!done)document.getElementById('tm').textContent=fmt((Date.now()-t0)/1000)},500);
+function jump(n){Q[i].t+=(Date.now()-ts)/1000;ts=Date.now();i=n;show()}
+function show(){const q=Q[i],n=Q.length;document.getElementById('prog').textContent='Question '+(i+1)+' of '+n;
+document.getElementById('app').innerHTML=`<div class="palette">${Q.map((x,k)=>`<button class="${x.ans!==null?'answered':''} ${k==i?'current':''} ${x.fl?'flagged':''}" ${!BACK&&k<i?'disabled':''} onclick="jump(${k})">${k+1}</button>`).join('')}</div>
+<div class="qcard"><div class="meta"><span class="qtag">${esc(q.sub.split(' ')[0])} · ${esc(q.topic.split(':')[0])}</span><span class="qtag lv">${q.level}</span><button class="flag-btn ${q.fl?'on':''}" onclick="Q[i].fl=!Q[i].fl;show()">🚩 ${q.fl?'Flagged':'Flag for review'}</button></div><p class="stem">${esc(q.q)}</p>
+<div class="options">${q.options.map((o,k)=>`<button class="opt ${q.ans===k?'selected':''}" onclick="Q[i].ans=${k};show()"><span class="letter">${'ABCD'[k]}</span>${esc(o)}</button>`).join('')}</div></div>
+<div class="nav-row"><button ${!BACK||!i?'disabled':''} onclick="jump(i-1)">← Previous</button><button class="primary" ${i==n-1?'disabled':''} onclick="jump(i+1)">Next →</button><button class="submit" onclick="fin()">Submit Quiz</button></div>`}
+const agg=k=>{const m={};Q.forEach(q=>{const a=k(q);m[a]=m[a]||[0,0];m[a][1]++;if(q.ans===q.answer)m[a][0]++});return Object.entries(m)};
+const bars=a=>a.map(([l,[c,n]])=>`<div class="bar-row"><div class="bar-label"><span>${esc(l)}</span><span>${pc(c,n)}% (${c}/${n})</span></div><div class="bar-track"><div class="bar-fill ${pc(c,n)<40?'bad':pc(c,n)<70?'warn':''}" style="width:${pc(c,n)}%"></div></div></div>`).join('');
+function fin(){const un=Q.filter(q=>q.ans===null).length;if(un&&!confirm(un+' unanswered. Submit anyway?'))return;Q[i].t+=(Date.now()-ts)/1000;done=true;
+try{const P=JSON.parse(localStorage.getItem('b101')||'{}');P.s=P.s||{};P.runs=P.runs||[];Q.forEach(q=>{const x=P.s[q.sid]=P.s[q.sid]||{n:0,c:0};if(q.ans!==null){x.n++;if(q.ans===q.answer)x.c++}});P.runs.push({d:Date.now(),c:Q.filter(q=>q.ans===q.answer).length,n:Q.length});localStorage.setItem('b101',JSON.stringify(P))}catch(e){}
+res('all',false)}
+function res(f,fl){const n=Q.length,c=Q.filter(q=>q.ans===q.answer).length,sk=Q.filter(q=>q.ans===null).length,T=Q.reduce((a,q)=>a+q.t,0),st=q=>q.ans===null?'skipped':q.ans===q.answer?'correct':'wrong';
+const list=Q.map((q,k)=>[q,k]).filter(([q])=>(f=='all'||st(q)==f)&&(!fl||q.fl));
+document.getElementById('app').innerHTML=`<div class="score-hero"><div class="big">${c} / ${n}</div><div class="sub">${pc(c,n)}% correct</div><div class="score-stats"><div><strong>${c}</strong>Correct</div><div><strong>${n-c-sk}</strong>Incorrect</div><div><strong>${sk}</strong>Skipped</div><div><strong>${fmt(T)}</strong>Total time</div></div></div>
+<div class="panel"><h2>Accuracy by module</h2>${bars(agg(q=>q.module))}</div><div class="panel"><h2>Accuracy by topic</h2>${bars(agg(q=>q.topic))}</div><div class="panel"><h2>Accuracy by Bloom's level</h2>${bars(agg(q=>q.level).sort((a,b)=>LV.indexOf(a[0])-LV.indexOf(b[0])))}</div>
+<div class="panel"><h2>Review</h2><div class="filter-bar">${['all','correct','wrong','skipped'].map(x=>`<button class="filter-btn ${f==x?'active':''}" onclick="res('${x}',${fl})">${x}</button>`).join('')}<label class="filter-flag"><input type="checkbox" ${fl?'checked':''} onchange="res('${f}',this.checked)"> 🚩 flagged only</label></div>
+${list.map(([q,k])=>`<div class="review-item"><div class="r-meta">Q${k+1} · ${q.level} · ${esc(q.sub)} · ${fmt(q.t)}${q.fl?' · 🚩':''}</div><p class="r-q">${esc(q.q)}</p>${q.options.map((o,j)=>`<div class="r-opt ${j==q.answer?'correct':j==q.ans?'wrong-pick':''}">${'ABCD'[j]}. ${esc(o)}${j==q.answer?' ✔':j==q.ans?' ✘ your answer':''}</div>`).join('')}${q.ans===null?'<div class="r-opt skipped-note">Skipped</div>':''}</div>`).join('')||'<p class="m">Nothing matches this filter.</p>'}</div>
+<div class="result-actions"><a class="primary" href="{{ url_for('quiz_setup') }}">New quiz</a><a href="{{ url_for('dashboard') }}">Dashboard</a></div>`;scrollTo(0,0)}
+show();
+</script></body></html>

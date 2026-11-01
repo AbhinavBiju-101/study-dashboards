@@ -1,0 +1,3117 @@
+{
+ "status": "ok",
+ "note": "",
+ "questions": [
+  {
+   "module": 2,
+   "topic": "m2-1",
+   "subtopic": "m2-1-1",
+   "bloom": "Remember",
+   "question": "What does the closure condition require of a vector space?",
+   "options": [
+    "Every vector in the space must have unit norm",
+    "The scalar product of any two vectors must be zero",
+    "Adding any two vectors, or multiplying any vector by a scalar, gives another vector in the same space",
+    "The space must contain no null element"
+   ],
+   "answer": 2,
+   "explanation": "",
+   "source": "bank 2.1 Q1",
+   "id": "q0001"
+  },
+  {
+   "module": 2,
+   "topic": "m2-1",
+   "subtopic": "m2-1-4",
+   "bloom": "Understand",
+   "question": "In the two-dimensional example, the same vector is written (2, 2) in the Cartesian basis and (2.4, 0.8) in a second basis. What does this show?",
+   "options": [
+    "The vector's magnitude changes when the basis changes",
+    "The two bases describe two different vectors",
+    "Only the Cartesian basis can describe a vector in a plane",
+    "The components of a vector depend on the chosen basis, while the vector itself is unchanged"
+   ],
+   "answer": 3,
+   "explanation": "",
+   "source": "bank 2.1 Q2",
+   "id": "q0002"
+  },
+  {
+   "module": 2,
+   "topic": "m2-1",
+   "subtopic": "m2-1-1",
+   "bloom": "Apply",
+   "question": "For r₁ = 2i + 4j − 5k and r₂ = i + 2j + 3k, what is the unit vector parallel to r₁ + r₂?",
+   "options": [
+    "(3/7, 6/7, 2/7)",
+    "(3/7, 6/7, −2/7)",
+    "(3/√41, 6/√41, −2/√41)",
+    "(2/7, 4/7, −5/7)"
+   ],
+   "answer": 1,
+   "explanation": "",
+   "source": "bank 2.1 Q3",
+   "id": "q0003"
+  },
+  {
+   "module": 2,
+   "topic": "m2-1",
+   "subtopic": "m2-1-1",
+   "bloom": "Analyze",
+   "question": "Which of the following is NOT a vector space according to the notes?",
+   "options": [
+    "The set of polynomials of degree n (exactly n)",
+    "The space M_mn of all m × n matrices",
+    "The space P_n of polynomials of degree at most n",
+    "The space of all continuous functions"
+   ],
+   "answer": 0,
+   "explanation": "",
+   "source": "bank 2.1 Q4",
+   "id": "q0004"
+  },
+  {
+   "module": 2,
+   "topic": "m2-1",
+   "subtopic": "m2-1-1",
+   "bloom": "Evaluate",
+   "question": "A student says the cross product a × b can be used to multiply vectors in any vector space. Is this correct?",
+   "options": [
+    "No; the cross product can only be defined in three-dimensional vector spaces",
+    "Yes; it is defined in every finite-dimensional space",
+    "Yes; but only if the vectors are complex",
+    "No; it is defined only in two-dimensional spaces"
+   ],
+   "answer": 0,
+   "explanation": "",
+   "source": "bank 2.1 Q5",
+   "id": "q0005"
+  },
+  {
+   "module": 2,
+   "topic": "m2-1",
+   "subtopic": "m2-1-1",
+   "bloom": "Understand",
+   "question": "Why is the scalar product a · b called basis-independent?",
+   "options": [
+    "It is always equal to zero in every basis",
+    "It is always a vector along the first basis vector",
+    "It is defined only for the Cartesian basis",
+    "It is a single number whose value does not depend on the basis used to express the vectors"
+   ],
+   "answer": 3,
+   "explanation": "",
+   "source": "bank 2.1 Q6",
+   "id": "q0006"
+  },
+  {
+   "module": 2,
+   "topic": "m2-1",
+   "subtopic": "m2-1-4",
+   "bloom": "Remember",
+   "question": "How is a basis of Rᵐ defined?",
+   "options": [
+    "Any complete set of vectors, whether or not they are independent",
+    "A set of vectors that add up to the null vector",
+    "A set of linearly independent vectors that also form a complete set (span the space)",
+    "Any two non-parallel vectors, in any space"
+   ],
+   "answer": 2,
+   "explanation": "",
+   "source": "bank 2.2 Q1",
+   "id": "q0007"
+  },
+  {
+   "module": 2,
+   "topic": "m2-1",
+   "subtopic": "m2-1-3",
+   "bloom": "Understand",
+   "question": "For a matrix B, which statement is equivalent to 'the columns of B are linearly independent'?",
+   "options": [
+    "The reduced row echelon form of B has a pivot in every row",
+    "The system Bx = 0 has only the trivial solution x = 0",
+    "The columns of B are mutually orthogonal",
+    "The null space of B has dimension m"
+   ],
+   "answer": 1,
+   "explanation": "",
+   "source": "bank 2.2 Q2",
+   "id": "q0008"
+  },
+  {
+   "module": 2,
+   "topic": "m2-1",
+   "subtopic": "m2-1-2",
+   "bloom": "Apply",
+   "question": "For v₁ = (1,1,2), v₂ = (1,2,4), v₃ = (3,1,2) and v = (3,2,4), the solutions of Bx = v are x₁ = 4 − 5x₃ and x₂ = −1 + 2x₃. Which coefficients (x₁, x₂, x₃) result from choosing x₃ = 1?",
+   "options": [
+    "(−1, 1, 1)",
+    "(4, −1, 1)",
+    "(−1, 3, 1)",
+    "(9, −3, 1)"
+   ],
+   "answer": 0,
+   "explanation": "",
+   "source": "bank 2.2 Q3",
+   "id": "q0009"
+  },
+  {
+   "module": 2,
+   "topic": "m2-1",
+   "subtopic": "m2-1-3",
+   "bloom": "Analyze",
+   "question": "For v₁ = (1,1,2), v₂ = (1,2,3), v₃ = (4,5,9), v₄ = (3,1,2), the row-reduced matrix has no pivot in the third column. What can be concluded?",
+   "options": [
+    "v₄ is a linear combination of v₁, v₂, v₃",
+    "v₃ is a linear combination of the others, and v₁, v₂, v₄ are linearly independent",
+    "All four vectors are independent because three columns have pivots",
+    "Only v₁ and v₂ are independent"
+   ],
+   "answer": 1,
+   "explanation": "",
+   "source": "bank 2.2 Q4",
+   "id": "q0010"
+  },
+  {
+   "module": 2,
+   "topic": "m2-1",
+   "subtopic": "m2-1-3",
+   "bloom": "Evaluate",
+   "question": "A student claims f₁ = x² − x, f₂ = x² − 1, f₃ = x + 1 must be linearly dependent because they are three polynomials in P₂. Evaluate this claim.",
+   "options": [
+    "Correct; any three vectors in P₂ must be dependent because P₂ has dimension 2",
+    "Correct; f₃ equals f₁ minus f₂",
+    "Incorrect; comparing coefficients gives c₁ = c₂ = c₃ = 0, so they are linearly independent",
+    "It cannot be decided without knowing the dimension of P₂"
+   ],
+   "answer": 2,
+   "explanation": "",
+   "source": "bank 2.2 Q5",
+   "id": "q0011"
+  },
+  {
+   "module": 2,
+   "topic": "m2-1",
+   "subtopic": "m2-1-2",
+   "bloom": "Apply",
+   "question": "Express f = 2x² + 4x − 5 as a combination of f₁ = x² − 1, f₂ = x − 1, f₃ = x.",
+   "options": [
+    "f = 2f₁ + 4f₂ − f₃",
+    "f = 3f₁ + 2f₂ + f₃",
+    "f = f₁ + 3f₂ + 2f₃",
+    "f = 2f₁ + 3f₂ + f₃"
+   ],
+   "answer": 3,
+   "explanation": "",
+   "source": "bank 2.2 Q6",
+   "id": "q0012"
+  },
+  {
+   "module": 2,
+   "topic": "m2-2",
+   "subtopic": "m2-2-1",
+   "bloom": "Remember",
+   "question": "What makes two vectors 'orthonormal'?",
+   "options": [
+    "They are parallel and each is a unit vector",
+    "They are perpendicular but may have any length",
+    "Their cross product is a unit vector",
+    "They are perpendicular (orthogonal) and each is a unit vector"
+   ],
+   "answer": 3,
+   "explanation": "",
+   "source": "bank 2.3 Q1",
+   "id": "q0013"
+  },
+  {
+   "module": 2,
+   "topic": "m2-2",
+   "subtopic": "m2-2-1",
+   "bloom": "Understand",
+   "question": "What does the condition ⟨ψᵢ|ψⱼ⟩ = δᵢⱼ express for a basis set?",
+   "options": [
+    "All vectors in the set are identical",
+    "All inner products are equal to 1",
+    "Each vector is normalised (i = j gives 1) and different vectors are orthogonal (i ≠ j gives 0)",
+    "The vectors are linearly dependent"
+   ],
+   "answer": 2,
+   "explanation": "",
+   "source": "bank 2.3 Q2",
+   "id": "q0014"
+  },
+  {
+   "module": 2,
+   "topic": "m2-2",
+   "subtopic": "m2-2-1",
+   "bloom": "Apply",
+   "question": "|Ψ⟩ = (1/√2, 1/√2) and |Φ⟩ = (1/√2, −1/√2). What is true of them?",
+   "options": [
+    "They are orthogonal, since ⟨Φ|Ψ⟩ = 1/2 − 1/2 = 0, and |Ψ⟩ is normalised",
+    "They are orthogonal but |Ψ⟩ has norm 2",
+    "They are not orthogonal because ⟨Φ|Ψ⟩ = 1",
+    "They are parallel because their components have equal magnitude"
+   ],
+   "answer": 0,
+   "explanation": "",
+   "source": "bank 2.3 Q3",
+   "id": "q0015"
+  },
+  {
+   "module": 2,
+   "topic": "m2-2",
+   "subtopic": "m2-2-1",
+   "bloom": "Apply",
+   "question": "For |u⟩ = (x, 3x, −2x) with x real, which value of x makes |u⟩ normalised?",
+   "options": [
+    "x = ±1/√6",
+    "x = ±1/√14",
+    "x = ±1/14",
+    "x = ±1/√10"
+   ],
+   "answer": 1,
+   "explanation": "",
+   "source": "bank 2.3 Q4",
+   "id": "q0016"
+  },
+  {
+   "module": 2,
+   "topic": "m2-2",
+   "subtopic": "m2-2-1",
+   "bloom": "Analyze",
+   "question": "Which 2D Hilbert-space vector is a physically valid state without further modification?",
+   "options": [
+    "(3, −2i)",
+    "(i, −4)",
+    "(1/√2)(1, −i)",
+    "(2, 5)"
+   ],
+   "answer": 2,
+   "explanation": "",
+   "source": "bank 2.3 Q5",
+   "id": "q0017"
+  },
+  {
+   "module": 2,
+   "topic": "m2-2",
+   "subtopic": "m2-2-1",
+   "bloom": "Evaluate",
+   "question": "A student reports |⟨ψ|φ⟩|² = 1.4 for two normalised states. Evaluate this result.",
+   "options": [
+    "It is fine; probabilities may exceed 1 for complex vectors",
+    "It is fine if the states are orthogonal",
+    "It is impossible only if ⟨ψ|φ⟩ is real",
+    "It is impossible, because 0 ≤ |⟨ψ|φ⟩|² ≤ 1 for normalised states"
+   ],
+   "answer": 3,
+   "explanation": "",
+   "source": "bank 2.3 Q6",
+   "id": "q0018"
+  },
+  {
+   "module": 2,
+   "topic": "m2-2",
+   "subtopic": "m2-2-2",
+   "bloom": "Remember",
+   "question": "What is a Hilbert space in quantum mechanics?",
+   "options": [
+    "A real vector space with no inner product",
+    "A complete complex vector space equipped with an inner product, in which quantum states reside",
+    "The set of all real-valued functions of position",
+    "A space that contains only orthogonal vectors"
+   ],
+   "answer": 1,
+   "explanation": "",
+   "source": "bank 2.4 Q1",
+   "id": "q0019"
+  },
+  {
+   "module": 2,
+   "topic": "m2-3",
+   "subtopic": "m2-3-1",
+   "bloom": "Remember",
+   "question": "What is the bra corresponding to |Ψ⟩ = c₁|ψ₁⟩ + c₂|ψ₂⟩?",
+   "options": [
+    "⟨Ψ| = c₁*⟨ψ₁| + c₂*⟨ψ₂|",
+    "⟨Ψ| = c₁⟨ψ₁| + c₂⟨ψ₂|",
+    "⟨Ψ| = c₁*|ψ₁⟩ + c₂*|ψ₂⟩",
+    "⟨Ψ| = c₂*⟨ψ₁| + c₁*⟨ψ₂|"
+   ],
+   "answer": 0,
+   "explanation": "",
+   "source": "bank 2.4 Q2",
+   "id": "q0020"
+  },
+  {
+   "module": 2,
+   "topic": "m2-2",
+   "subtopic": "m2-2-2",
+   "bloom": "Understand",
+   "question": "Why can c|Ψ⟩ (c a non-zero complex number) represent the same physical state as |Ψ⟩?",
+   "options": [
+    "Multiplying by c changes the state but not the energy",
+    "Only real values of c are allowed",
+    "The overall normalisation of a state vector does not change its information content",
+    "Because |Ψ⟩ must always equal zero"
+   ],
+   "answer": 2,
+   "explanation": "",
+   "source": "bank 2.4 Q3",
+   "id": "q0021"
+  },
+  {
+   "module": 2,
+   "topic": "m2-3",
+   "subtopic": "m2-3-1",
+   "bloom": "Apply",
+   "question": "For the spin state |Ψ⟩ = (3, −2i) in the {|+⟩, |−⟩} basis, what is the bra ⟨Ψ|?",
+   "options": [
+    "(3, −2i)",
+    "(3, 2i)",
+    "(−3, 2i)",
+    "(−2i, 3)"
+   ],
+   "answer": 1,
+   "explanation": "",
+   "source": "bank 2.4 Q4",
+   "id": "q0022"
+  },
+  {
+   "module": 2,
+   "topic": "m2-2",
+   "subtopic": "m2-2-2",
+   "bloom": "Analyze",
+   "question": "A particle in an infinite well has kets |1⟩, |2⟩, |3⟩, … forming a complete orthonormal set. What is the dimension of its state space?",
+   "options": [
+    "Infinite, because there is a ket |n⟩ for every n = 1, 2, 3, …",
+    "1",
+    "2",
+    "3, corresponding to |1⟩, |2⟩, |3⟩ only"
+   ],
+   "answer": 0,
+   "explanation": "",
+   "source": "bank 2.4 Q5",
+   "id": "q0023"
+  },
+  {
+   "module": 2,
+   "topic": "m2-2",
+   "subtopic": "m2-2-2",
+   "bloom": "Evaluate",
+   "question": "A student says c₁|ψ₁⟩ + c₂|ψ₂⟩ is not a valid state if c₁ and c₂ are complex. Evaluate this.",
+   "options": [
+    "Correct; coefficients must be real for a valid state",
+    "Correct; only |ψ₁⟩ or |ψ₂⟩ alone can be states",
+    "Incorrect, but only if c₁ = c₂",
+    "Incorrect; any linear combination with complex coefficients is also an allowed state (superposition)"
+   ],
+   "answer": 3,
+   "explanation": "",
+   "source": "bank 2.4 Q6",
+   "id": "q0024"
+  },
+  {
+   "module": 2,
+   "topic": "m2-3",
+   "subtopic": "m2-3-2",
+   "bloom": "Remember",
+   "question": "How is the inner product ⟨ψ|φ⟩ interpreted in quantum mechanics?",
+   "options": [
+    "As a probability itself, always between 0 and 1",
+    "As the energy of the state |φ⟩",
+    "As the commutator of |ψ⟩ and |φ⟩",
+    "As a probability amplitude; its modulus squared gives a probability"
+   ],
+   "answer": 3,
+   "explanation": "",
+   "source": "bank 2.5 Q1",
+   "id": "q0025"
+  },
+  {
+   "module": 2,
+   "topic": "m2-3",
+   "subtopic": "m2-3-2",
+   "bloom": "Understand",
+   "question": "Why must a physically valid state be normalised so that ⟨ψ|ψ⟩ = 1?",
+   "options": [
+    "So that the state is orthogonal to itself",
+    "So that the probabilistic interpretation of the state vector works",
+    "So that its energy equals zero",
+    "So that its components are all real"
+   ],
+   "answer": 1,
+   "explanation": "",
+   "source": "bank 2.5 Q2",
+   "id": "q0026"
+  },
+  {
+   "module": 2,
+   "topic": "m2-3",
+   "subtopic": "m2-3-2",
+   "bloom": "Apply",
+   "question": "For |A⟩ = (2, −7i, 1) and |B⟩ = (1+3i, 4, 8), what is ⟨A|B⟩?",
+   "options": [
+    "10 + 34i",
+    "10 − 22i",
+    "10 − 34i",
+    "12 + 34i"
+   ],
+   "answer": 0,
+   "explanation": "",
+   "source": "bank 2.5 Q3",
+   "id": "q0027"
+  },
+  {
+   "module": 2,
+   "topic": "m2-3",
+   "subtopic": "m2-3-2",
+   "bloom": "Apply",
+   "question": "For |ψ⟩ = (1/√2)(1, −i) and |φ⟩ = (0, 1), what is the probability of finding |φ⟩ in the state |ψ⟩?",
+   "options": [
+    "25%",
+    "100%",
+    "50%",
+    "0%"
+   ],
+   "answer": 2,
+   "explanation": "",
+   "source": "bank 2.5 Q4",
+   "id": "q0028"
+  },
+  {
+   "module": 2,
+   "topic": "m2-3",
+   "subtopic": "m2-3-2",
+   "bloom": "Analyze",
+   "question": "For |Ψ⟩ = 2i|a⟩ − 3|b⟩ + i|c⟩ and |Φ⟩ = 3|a⟩ − 2|b⟩ + 4|c⟩ in an orthonormal basis, what is ⟨Φ|Ψ⟩?",
+   "options": [
+    "6 + 10i",
+    "6 − 10i",
+    "−6 + 10i",
+    "6 + 2i"
+   ],
+   "answer": 0,
+   "explanation": "",
+   "source": "bank 2.5 Q5",
+   "id": "q0029"
+  },
+  {
+   "module": 2,
+   "topic": "m2-3",
+   "subtopic": "m2-3-2",
+   "bloom": "Evaluate",
+   "question": "Given ⟨Φ|Ψ⟩ = 6 + 10i, a student says ⟨Ψ|Φ⟩ must also equal 6 + 10i. Evaluate this.",
+   "options": [
+    "Correct; the inner product is symmetric",
+    "Incorrect; it equals −6 − 10i",
+    "Correct, because both states are normalised",
+    "Incorrect; ⟨Ψ|Φ⟩ = ⟨Φ|Ψ⟩*, so it equals 6 − 10i"
+   ],
+   "answer": 3,
+   "explanation": "",
+   "source": "bank 2.5 Q6",
+   "id": "q0030"
+  },
+  {
+   "module": 2,
+   "topic": "m2-3",
+   "subtopic": "m2-3-2",
+   "bloom": "Apply",
+   "question": "What is the squared norm ⟨A|A⟩ of |A⟩ = (2, −7i, 1)?",
+   "options": [
+    "4",
+    "54",
+    "50",
+    "√54"
+   ],
+   "answer": 1,
+   "explanation": "",
+   "source": "bank 2.5 Q7",
+   "id": "q0031"
+  },
+  {
+   "module": 2,
+   "topic": "m2-3",
+   "subtopic": "m2-3-3",
+   "bloom": "Remember",
+   "question": "What is the (i, j) element of the outer product |ψ⟩⟨φ|?",
+   "options": [
+    "ψᵢ* φⱼ",
+    "ψᵢ φⱼ",
+    "ψᵢ φⱼ*",
+    "ψⱼ φᵢ*"
+   ],
+   "answer": 2,
+   "explanation": "",
+   "source": "bank 2.6 Q1",
+   "id": "q0032"
+  },
+  {
+   "module": 2,
+   "topic": "m2-3",
+   "subtopic": "m2-3-3",
+   "bloom": "Apply",
+   "question": "For |ψ⟩ = (2, 3) and |φ⟩ = (1, i), what is |ψ⟩⟨φ|?",
+   "options": [
+    "[[2, 2i], [3, 3i]]",
+    "[[2, −2i], [3, −3i]]",
+    "[[2, 3], [−2i, −3i]]",
+    "[[2, −2i], [3, 3i]]"
+   ],
+   "answer": 1,
+   "explanation": "",
+   "source": "bank 2.6 Q2",
+   "id": "q0033"
+  },
+  {
+   "module": 2,
+   "topic": "m2-3",
+   "subtopic": "m2-3-3",
+   "bloom": "Understand",
+   "question": "What is special about |ψ⟩⟨ψ| for a normalised |ψ⟩?",
+   "options": [
+    "It is a Hermitian projection operator satisfying P² = P",
+    "It is a scalar equal to 1",
+    "It is an anti-Hermitian operator",
+    "It has rank equal to the dimension of the space"
+   ],
+   "answer": 0,
+   "explanation": "",
+   "source": "bank 2.6 Q3",
+   "id": "q0034"
+  },
+  {
+   "module": 2,
+   "topic": "m2-3",
+   "subtopic": "m2-3-3",
+   "bloom": "Analyze",
+   "question": "Which expression writes a Hermitian operator A in terms of its eigenstates |aᵢ⟩ and eigenvalues aᵢ (spectral decomposition)?",
+   "options": [
+    "A = Σ aᵢ ⟨aᵢ|aᵢ⟩",
+    "A = Σ |aᵢ⟩⟨aᵢ|",
+    "A = Σ aᵢ |aᵢ⟩⟨aᵢ|",
+    "A = Σ aᵢ |aᵢ⟩|aᵢ⟩"
+   ],
+   "answer": 2,
+   "explanation": "",
+   "source": "bank 2.6 Q4",
+   "id": "q0035"
+  },
+  {
+   "module": 2,
+   "topic": "m2-3",
+   "subtopic": "m2-3-3",
+   "bloom": "Evaluate",
+   "question": "Which is the correct density matrix for the Bell state |Φ⁺⟩ = (|00⟩ + |11⟩)/√2?",
+   "options": [
+    "ρ = ½(|00⟩ + |11⟩)(|00⟩ + |11⟩)",
+    "ρ = (⟨00| + ⟨11|)/√2",
+    "ρ = ½|00⟩⟨11|",
+    "ρ = ½(|00⟩ + |11⟩)(⟨00| + ⟨11|)"
+   ],
+   "answer": 3,
+   "explanation": "",
+   "source": "bank 2.6 Q5",
+   "id": "q0036"
+  },
+  {
+   "module": 2,
+   "topic": "m2-3",
+   "subtopic": "m2-3-3",
+   "bloom": "Remember",
+   "question": "What is the rank of the matrix produced by an outer product |ψ⟩⟨φ| of non-zero vectors?",
+   "options": [
+    "0",
+    "2",
+    "Equal to the dimension of the space",
+    "1"
+   ],
+   "answer": 3,
+   "explanation": "",
+   "source": "bank 2.6 Q6",
+   "id": "q0037"
+  },
+  {
+   "module": 2,
+   "topic": "m2-3",
+   "subtopic": "m2-3-4",
+   "bloom": "Remember",
+   "question": "If dim V = m and dim W = n, what is dim(V ⊗ W)?",
+   "options": [
+    "m + n",
+    "mn",
+    "mⁿ",
+    "m − n"
+   ],
+   "answer": 1,
+   "explanation": "",
+   "source": "bank 2.7 Q1",
+   "id": "q0038"
+  },
+  {
+   "module": 2,
+   "topic": "m2-3",
+   "subtopic": "m2-3-4",
+   "bloom": "Understand",
+   "question": "Which set is the standard basis of the two-qubit space C² ⊗ C²?",
+   "options": [
+    "|00⟩, |01⟩, |10⟩, |11⟩",
+    "|0⟩, |1⟩",
+    "|00⟩, |11⟩",
+    "|00⟩, |01⟩, |10⟩"
+   ],
+   "answer": 0,
+   "explanation": "",
+   "source": "bank 2.7 Q2",
+   "id": "q0039"
+  },
+  {
+   "module": 2,
+   "topic": "m2-3",
+   "subtopic": "m2-3-4",
+   "bloom": "Apply",
+   "question": "Using the Kronecker product, what is u ⊗ v for u = (2, 1) and v = (1, 3)?",
+   "options": [
+    "(2, 1, 6, 3)",
+    "(3, 4)",
+    "(2, 6, 1, 3)",
+    "(2, 3, 1, 6)"
+   ],
+   "answer": 2,
+   "explanation": "",
+   "source": "bank 2.7 Q3",
+   "id": "q0040"
+  },
+  {
+   "module": 2,
+   "topic": "m2-3",
+   "subtopic": "m2-3-4",
+   "bloom": "Apply",
+   "question": "Given I ⊗ X (X the Pauli-X matrix), what is (I ⊗ X)|00⟩?",
+   "options": [
+    "|10⟩",
+    "|00⟩",
+    "|11⟩",
+    "|01⟩"
+   ],
+   "answer": 3,
+   "explanation": "",
+   "source": "bank 2.7 Q4",
+   "id": "q0041"
+  },
+  {
+   "module": 2,
+   "topic": "m2-3",
+   "subtopic": "m2-3-4",
+   "bloom": "Analyze",
+   "question": "Which state cannot be written as a tensor product |v⟩ ⊗ |w⟩ (is entangled)?",
+   "options": [
+    "(|00⟩ + |11⟩)/√2",
+    "|0⟩ ⊗ |1⟩",
+    "|1⟩ ⊗ |1⟩",
+    "((|0⟩ + |1⟩)/√2) ⊗ |0⟩"
+   ],
+   "answer": 0,
+   "explanation": "",
+   "source": "bank 2.7 Q5",
+   "id": "q0042"
+  },
+  {
+   "module": 2,
+   "topic": "m2-3",
+   "subtopic": "m2-3-4",
+   "bloom": "Evaluate",
+   "question": "A student says a 2-level system combined with a 3-level system has a 5-dimensional state space. Evaluate this.",
+   "options": [
+    "Correct; dimensions add for composite systems",
+    "Incorrect; the dimension is the product 2 × 3 = 6",
+    "Incorrect; the dimension is 2³ = 8",
+    "Incorrect; the dimension is 3"
+   ],
+   "answer": 1,
+   "explanation": "",
+   "source": "bank 2.7 Q6",
+   "id": "q0043"
+  },
+  {
+   "module": 2,
+   "topic": "m2-4",
+   "subtopic": "m2-4-1",
+   "bloom": "Remember",
+   "question": "Which property defines a linear operator Â?",
+   "options": [
+    "Â|ψ⟩ = |ψ⟩ for all states",
+    "Â|ψ⟩ = 0 for all states",
+    "Â[c₁|ψ₁⟩ + c₂|ψ₂⟩] = c₁Â|ψ₁⟩ + c₂Â|ψ₂⟩",
+    "ÂB̂ = B̂Â for all operators B̂"
+   ],
+   "answer": 2,
+   "explanation": "",
+   "source": "bank 2.8 Q1",
+   "id": "q0044"
+  },
+  {
+   "module": 2,
+   "topic": "m2-4",
+   "subtopic": "m2-4-1",
+   "bloom": "Understand",
+   "question": "Why is the order of operators important in quantum mechanics?",
+   "options": [
+    "Operators can only act on one state at a time",
+    "Operators always commute but only in a fixed basis",
+    "Operator products are undefined",
+    "Operator multiplication is in general non-commutative, so ÂB̂ and B̂Â can differ"
+   ],
+   "answer": 3,
+   "explanation": "",
+   "source": "bank 2.8 Q2",
+   "id": "q0045"
+  },
+  {
+   "module": 2,
+   "topic": "m2-4",
+   "subtopic": "m2-4-2",
+   "bloom": "Apply",
+   "question": "In an orthonormal basis {|a⟩, |b⟩, |c⟩}, Â|a⟩ = 2|a⟩, Â|b⟩ = 3|a⟩ − i|c⟩, Â|c⟩ = −|b⟩. What is Â as a matrix?",
+   "options": [
+    "[[2, 0, 0], [3, 0, −i], [0, −1, 0]]",
+    "[[2, 3, 0], [0, 0, −1], [0, −i, 0]]",
+    "[[2, 3, 0], [0, 0, −1], [0, i, 0]]",
+    "[[2, 0, 0], [0, 0, −1], [3, −i, 0]]"
+   ],
+   "answer": 1,
+   "explanation": "",
+   "source": "bank 2.8 Q3",
+   "id": "q0046"
+  },
+  {
+   "module": 2,
+   "topic": "m2-4",
+   "subtopic": "m2-4-2",
+   "bloom": "Apply",
+   "question": "For |Ψ⟩ = 2i|a⟩ − |b⟩ + 4i|c⟩ and Â = |a⟩⟨a| − 2i|b⟩⟨b| + |c⟩⟨c| (orthonormal basis), what is ⟨Â⟩ = ⟨Ψ|Â|Ψ⟩?",
+   "options": [
+    "20 − 2i",
+    "20 + 2i",
+    "4 − 2i",
+    "16 − 2i"
+   ],
+   "answer": 0,
+   "explanation": "",
+   "source": "bank 2.8 Q4",
+   "id": "q0047"
+  },
+  {
+   "module": 2,
+   "topic": "m2-4",
+   "subtopic": "m2-4-1",
+   "bloom": "Evaluate",
+   "question": "Â|ψ⟩ = B̂|ψ⟩ holds for one particular state |ψ⟩. A student concludes Â = B̂. Evaluate this.",
+   "options": [
+    "Correct; one state is enough to prove equality",
+    "Correct, provided |ψ⟩ is normalised",
+    "Incorrect; operators are identical only if they act identically on all state vectors of the space",
+    "Incorrect; operators can never be equal"
+   ],
+   "answer": 2,
+   "explanation": "",
+   "source": "bank 2.8 Q5",
+   "id": "q0048"
+  },
+  {
+   "module": 2,
+   "topic": "m2-4",
+   "subtopic": "m2-4-2",
+   "bloom": "Understand",
+   "question": "What is notable about the unit (identity) operator's matrix form?",
+   "options": [
+    "It is the identity matrix in every basis (Iᵢⱼ = δᵢⱼ)",
+    "It changes form whenever the basis changes",
+    "It has only off-diagonal elements",
+    "It has all matrix elements equal to zero"
+   ],
+   "answer": 0,
+   "explanation": "",
+   "source": "bank 2.8 Q6",
+   "id": "q0049"
+  },
+  {
+   "module": 2,
+   "topic": "m2-4",
+   "subtopic": "m2-4-2",
+   "bloom": "Remember",
+   "question": "When is the matrix product AB defined, and what is (AB)ᵢⱼ?",
+   "options": [
+    "Only when A and B have identical entries; (AB)ᵢⱼ = AᵢⱼBᵢⱼ",
+    "Always; (AB)ᵢⱼ = Σₖ Aₖᵢ Bⱼₖ",
+    "When the rows of A equal the columns of B; (AB)ᵢⱼ = Aᵢⱼ + Bᵢⱼ",
+    "When the number of columns of A equals the number of rows of B; (AB)ᵢⱼ = Σₖ Aᵢₖ Bₖⱼ"
+   ],
+   "answer": 3,
+   "explanation": "",
+   "source": "bank 2.9 Q1",
+   "id": "q0050"
+  },
+  {
+   "module": 2,
+   "topic": "m2-4",
+   "subtopic": "m2-4-2",
+   "bloom": "Apply",
+   "question": "What is the adjoint (Hermitian conjugate) of A = [[1, i], [2, 3]]?",
+   "options": [
+    "[[1, 2], [i, 3]]",
+    "[[1, 2], [−i, 3]]",
+    "[[1, −i], [2, 3]]",
+    "[[1, i], [2, 3]]"
+   ],
+   "answer": 1,
+   "explanation": "",
+   "source": "bank 2.9 Q2",
+   "id": "q0051"
+  },
+  {
+   "module": 2,
+   "topic": "m2-4",
+   "subtopic": "m2-4-2",
+   "bloom": "Apply",
+   "question": "For A = [[1, 2], [3, −4]], what are Tr A and det A?",
+   "options": [
+    "Tr A = −3 and det A = 10",
+    "Tr A = 5 and det A = −10",
+    "Tr A = −3 and det A = −10",
+    "Tr A = 3 and det A = 2"
+   ],
+   "answer": 2,
+   "explanation": "",
+   "source": "bank 2.9 Q3",
+   "id": "q0052"
+  },
+  {
+   "module": 2,
+   "topic": "m2-4",
+   "subtopic": "m2-4-2",
+   "bloom": "Understand",
+   "question": "What does det(A) = 0 tell us about a matrix?",
+   "options": [
+    "A is invertible",
+    "A is Hermitian",
+    "A is the identity matrix",
+    "A is singular, i.e. not invertible"
+   ],
+   "answer": 3,
+   "explanation": "",
+   "source": "bank 2.9 Q4",
+   "id": "q0053"
+  },
+  {
+   "module": 2,
+   "topic": "m2-4",
+   "subtopic": "m2-4-2",
+   "bloom": "Analyze",
+   "question": "In φⱼ = Σᵢ Aⱼᵢψᵢ with Aⱼᵢ ≡ ⟨ϕⱼ|Â|ϕᵢ⟩, what happens if the basis is changed?",
+   "options": [
+    "Both the equation and the matrix elements stay the same",
+    "The operator changes into a different operator",
+    "The operator equation is unchanged but the numerical matrix elements Aⱼᵢ change",
+    "The state vectors become orthogonal"
+   ],
+   "answer": 2,
+   "explanation": "",
+   "source": "bank 2.9 Q5",
+   "id": "q0054"
+  },
+  {
+   "module": 2,
+   "topic": "m2-4",
+   "subtopic": "m2-4-2",
+   "bloom": "Evaluate",
+   "question": "A = [[1, 0, −3i], [3, 5, 0], [3i, 0, −2]] has real diagonal entries. A student calls it Hermitian. Evaluate this.",
+   "options": [
+    "Correct; real diagonal entries are sufficient",
+    "Incorrect; A₂₁ = 3 but A₁₂* = 0, so Aᵢⱼ ≠ Aⱼᵢ* and A is not Hermitian",
+    "Correct; A₁₃ = −3i and A₃₁ = 3i are conjugates, so all entries match",
+    "Incorrect; a Hermitian matrix must be symmetric with real entries"
+   ],
+   "answer": 1,
+   "explanation": "",
+   "source": "bank 2.9 Q6",
+   "id": "q0055"
+  },
+  {
+   "module": 2,
+   "topic": "m2-4",
+   "subtopic": "m2-4-3",
+   "bloom": "Remember",
+   "question": "What condition defines a Hermitian operator, and what is its matrix form?",
+   "options": [
+    "Â = Â†, i.e. Aᵢⱼ = Aⱼᵢ*",
+    "Â† = Â⁻¹, i.e. Aᵢⱼ = 1/Aⱼᵢ",
+    "Â² = Â, i.e. Aᵢⱼ = Aᵢⱼ²",
+    "ÂB̂ = B̂Â for every B̂"
+   ],
+   "answer": 0,
+   "explanation": "",
+   "source": "bank 2.10 Q1",
+   "id": "q0056"
+  },
+  {
+   "module": 2,
+   "topic": "m2-4",
+   "subtopic": "m2-4-3",
+   "bloom": "Understand",
+   "question": "Why are observables represented by Hermitian operators?",
+   "options": [
+    "Their eigenvalues are always integers",
+    "They are always equal to the identity",
+    "They have no eigenvectors",
+    "Their eigenvalues are real, matching the real results of measurements"
+   ],
+   "answer": 3,
+   "explanation": "",
+   "source": "bank 2.10 Q2",
+   "id": "q0057"
+  },
+  {
+   "module": 2,
+   "topic": "m2-4",
+   "subtopic": "m2-4-3",
+   "bloom": "Remember",
+   "question": "Which is NOT a property of Hermitian operators?",
+   "options": [
+    "Their eigenvalues are real",
+    "Eigenfunctions of distinct eigenvalues are orthogonal",
+    "Their eigenvalues are always purely imaginary",
+    "Their eigenfunctions form a complete set"
+   ],
+   "answer": 2,
+   "explanation": "",
+   "source": "bank 2.10 Q3",
+   "id": "q0058"
+  },
+  {
+   "module": 2,
+   "topic": "m2-4",
+   "subtopic": "m2-4-3",
+   "bloom": "Apply",
+   "question": "The 1D harmonic oscillator Hamiltonian is Ĥ = p̂²/2m + ½mω²x̂². Why is Ĥ Hermitian?",
+   "options": [
+    "Because it contains a factor of ½",
+    "Because x̂ and p̂ are Hermitian",
+    "Because it commutes with x̂",
+    "Because its eigenvalues are complex"
+   ],
+   "answer": 1,
+   "explanation": "",
+   "source": "bank 2.10 Q4",
+   "id": "q0059"
+  },
+  {
+   "module": 2,
+   "topic": "m2-4",
+   "subtopic": "m2-4-3",
+   "bloom": "Analyze",
+   "question": "How is the Hadamard gate H = (1/√2)[[1, 1], [1, −1]] best classified?",
+   "options": [
+    "Both Hermitian (H† = H) and unitary (H†H = I)",
+    "Hermitian but not unitary",
+    "Unitary but not Hermitian",
+    "Neither Hermitian nor unitary"
+   ],
+   "answer": 0,
+   "explanation": "",
+   "source": "bank 2.10 Q5",
+   "id": "q0060"
+  },
+  {
+   "module": 2,
+   "topic": "m2-4",
+   "subtopic": "m2-4-3",
+   "bloom": "Evaluate",
+   "question": "A student claims eigenfunctions of a Hermitian operator with different eigenvalues need not be orthogonal. Evaluate this.",
+   "options": [
+    "Incorrect; such eigenfunctions are orthogonal",
+    "Correct; orthogonality holds only for degenerate eigenvalues",
+    "Correct; orthogonality holds only for real operators",
+    "Incorrect; they are always identical"
+   ],
+   "answer": 0,
+   "explanation": "",
+   "source": "bank 2.10 Q6",
+   "id": "q0061"
+  },
+  {
+   "module": 2,
+   "topic": "m2-4",
+   "subtopic": "m2-4-4",
+   "bloom": "Remember",
+   "question": "What is the defining condition of a unitary operator?",
+   "options": [
+    "Û = Û†",
+    "Û†Û = I, so the adjoint equals the inverse (Û† = Û⁻¹)",
+    "Û² = Û",
+    "Û|ψ⟩ = 0 for all |ψ⟩"
+   ],
+   "answer": 1,
+   "explanation": "",
+   "source": "bank 2.11 Q1",
+   "id": "q0062"
+  },
+  {
+   "module": 2,
+   "topic": "m2-4",
+   "subtopic": "m2-4-4",
+   "bloom": "Understand",
+   "question": "What does unitary evolution do to the total probability of a state, and where do its eigenvalues lie?",
+   "options": [
+    "It halves the probability; eigenvalues are real",
+    "It preserves probability; eigenvalues are real and positive",
+    "It preserves total probability; eigenvalues have the form e^{iθ}, lying on the unit circle",
+    "It changes the probability; eigenvalues are zero"
+   ],
+   "answer": 2,
+   "explanation": "",
+   "source": "bank 2.11 Q2",
+   "id": "q0063"
+  },
+  {
+   "module": 2,
+   "topic": "m2-4",
+   "subtopic": "m2-4-5",
+   "bloom": "Remember",
+   "question": "Which two conditions define a projection operator P?",
+   "options": [
+    "P = −P† and P² = I",
+    "P† = P⁻¹ and P² = P",
+    "P = 0 and P² = P",
+    "P = P† (Hermitian) and P² = P (idempotent)"
+   ],
+   "answer": 3,
+   "explanation": "",
+   "source": "bank 2.11 Q3",
+   "id": "q0064"
+  },
+  {
+   "module": 2,
+   "topic": "m2-4",
+   "subtopic": "m2-4-5",
+   "bloom": "Apply",
+   "question": "With P₊ = |z+⟩⟨z+| = [[1, 0], [0, 0]], what is P₋ = 1 − P₊?",
+   "options": [
+    "[[0, 0], [0, 1]]",
+    "[[0, 1], [1, 0]]",
+    "[[1, 0], [0, 1]]",
+    "[[0, 0], [1, 0]]"
+   ],
+   "answer": 0,
+   "explanation": "",
+   "source": "bank 2.11 Q4",
+   "id": "q0065"
+  },
+  {
+   "module": 2,
+   "topic": "m2-4",
+   "subtopic": "m2-4-5",
+   "bloom": "Analyze",
+   "question": "For projectors Pᵢ = |i⟩⟨i| onto an orthonormal basis, which relations hold?",
+   "options": [
+    "PᵢPⱼ = Pᵢ for i ≠ j, and ΣPᵢ = 0",
+    "PᵢPⱼ = 0 for i ≠ j, and ΣPᵢ = I (closure)",
+    "PᵢPⱼ = I for i ≠ j, and ΣPᵢ = I",
+    "PᵢPⱼ = 0 for all i, j, and ΣPᵢ = 0"
+   ],
+   "answer": 1,
+   "explanation": "",
+   "source": "bank 2.11 Q5",
+   "id": "q0066"
+  },
+  {
+   "module": 2,
+   "topic": "m2-4",
+   "subtopic": "m2-4-4",
+   "bloom": "Evaluate",
+   "question": "A student says measurement, like every quantum gate, is represented by a unitary matrix. Evaluate this.",
+   "options": [
+    "Correct; measurement is the most important unitary operation",
+    "Correct; measurement is unitary because it preserves probability",
+    "Incorrect; all qubit operations except measurement are unitary",
+    "Incorrect; gates are non-unitary and measurement is unitary"
+   ],
+   "answer": 2,
+   "explanation": "",
+   "source": "bank 2.11 Q6",
+   "id": "q0067"
+  },
+  {
+   "module": 2,
+   "topic": "m2-5",
+   "subtopic": "m2-5-1",
+   "bloom": "Remember",
+   "question": "How are the eigenvalues of a matrix A obtained?",
+   "options": [
+    "By solving det(A + λI) = 1",
+    "By taking the trace of A",
+    "By transposing A",
+    "By solving the characteristic equation det(A − λI) = 0"
+   ],
+   "answer": 3,
+   "explanation": "",
+   "source": "bank 2.12 Q1",
+   "id": "q0068"
+  },
+  {
+   "module": 2,
+   "topic": "m2-5",
+   "subtopic": "m2-5-1",
+   "bloom": "Apply",
+   "question": "For A = [[1, 2], [3, −4]], the characteristic equation is λ² + 3λ − 10 = 0. What are the eigenvalues?",
+   "options": [
+    "λ = 5 and λ = −2",
+    "λ = −5 and λ = 2",
+    "λ = 1 and λ = −4",
+    "λ = −5 and λ = −2"
+   ],
+   "answer": 1,
+   "explanation": "",
+   "source": "bank 2.12 Q2",
+   "id": "q0069"
+  },
+  {
+   "module": 2,
+   "topic": "m2-5",
+   "subtopic": "m2-5-1",
+   "bloom": "Apply",
+   "question": "For A = [[2, 2], [1, 3]] the eigenvalues are 4 and 1. Which is an eigenvector for λ = 1?",
+   "options": [
+    "(1, 1)",
+    "(2, 1)",
+    "(1, −2)",
+    "(−2, 1)"
+   ],
+   "answer": 3,
+   "explanation": "",
+   "source": "bank 2.12 Q3",
+   "id": "q0070"
+  },
+  {
+   "module": 2,
+   "topic": "m2-5",
+   "subtopic": "m2-5-1",
+   "bloom": "Apply",
+   "question": "For A = [[1, 2], [−1, 4]] (eigenvalues 3 and 2), which eigenvector corresponds to λ = 2?",
+   "options": [
+    "(1, 1)",
+    "(1, 2)",
+    "(2, 1)",
+    "(1, −1)"
+   ],
+   "answer": 2,
+   "explanation": "",
+   "source": "bank 2.12 Q4",
+   "id": "q0071"
+  },
+  {
+   "module": 2,
+   "topic": "m2-5",
+   "subtopic": "m2-5-1",
+   "bloom": "Analyze",
+   "question": "For A = [[2, −3, 0], [2, −5, 0], [0, 0, 3]], which is the set of eigenvalues?",
+   "options": [
+    "1, −4 and 3",
+    "2, −5 and 3",
+    "1, 4 and 3",
+    "−1, 4 and 3"
+   ],
+   "answer": 0,
+   "explanation": "",
+   "source": "bank 2.12 Q5",
+   "id": "q0072"
+  },
+  {
+   "module": 2,
+   "topic": "m2-5",
+   "subtopic": "m2-5-1",
+   "bloom": "Evaluate",
+   "question": "For [[2, 0, 0], [0, 3, 4], [0, 4, 9]], a student reads off eigenvalues 2, 3, 9 (the diagonal). Evaluate this.",
+   "options": [
+    "Correct; the eigenvalues are always the diagonal entries",
+    "Incorrect; the eigenvalues are 1, 3 and 9",
+    "Incorrect; the eigenvalues are 2, 4 and 9",
+    "Incorrect; the matrix is not diagonal, and its eigenvalues are 1, 2 and 11"
+   ],
+   "answer": 3,
+   "explanation": "",
+   "source": "bank 2.12 Q6",
+   "id": "q0073"
+  },
+  {
+   "module": 2,
+   "topic": "m2-6",
+   "subtopic": "m2-6-1",
+   "bloom": "Remember",
+   "question": "Which matrix is σ_y?",
+   "options": [
+    "[[0, 1], [1, 0]]",
+    "[[1, 0], [0, −1]]",
+    "[[0, −i], [i, 0]]",
+    "[[0, i], [−i, 0]]"
+   ],
+   "answer": 2,
+   "explanation": "",
+   "source": "bank 2.13 Q1",
+   "id": "q0074"
+  },
+  {
+   "module": 2,
+   "topic": "m2-6",
+   "subtopic": "m2-6-1",
+   "bloom": "Understand",
+   "question": "Which set lists the key properties of the Pauli matrices?",
+   "options": [
+    "Hermitian, unitary, traceless, and each squares to the identity",
+    "Anti-Hermitian, non-unitary, trace 1, squares to zero",
+    "Hermitian, non-unitary, trace 2, squares to −I",
+    "Unitary only, with non-zero trace"
+   ],
+   "answer": 0,
+   "explanation": "",
+   "source": "bank 2.13 Q2",
+   "id": "q0075"
+  },
+  {
+   "module": 2,
+   "topic": "m2-6",
+   "subtopic": "m2-6-2",
+   "bloom": "Apply",
+   "question": "Using the Pauli product relations, what is σ_zσ_x?",
+   "options": [
+    "−iσ_y",
+    "iσ_y",
+    "iσ_x",
+    "σ_y"
+   ],
+   "answer": 1,
+   "explanation": "",
+   "source": "bank 2.13 Q3",
+   "id": "q0076"
+  },
+  {
+   "module": 2,
+   "topic": "m2-7",
+   "subtopic": "m2-7-2",
+   "bloom": "Analyze",
+   "question": "What follows from [σ_x, σ_y] = 2iσ_z ≠ 0?",
+   "options": [
+    "Spin components can always be measured together",
+    "σ_x and σ_y have identical eigenvalues",
+    "Spin components along different axes cannot be measured simultaneously with arbitrary precision",
+    "σ_z must equal zero"
+   ],
+   "answer": 2,
+   "explanation": "",
+   "source": "bank 2.13 Q4",
+   "id": "q0077"
+  },
+  {
+   "module": 2,
+   "topic": "m2-6",
+   "subtopic": "m2-6-2",
+   "bloom": "Analyze",
+   "question": "Given {σᵢ, σⱼ} = 2δᵢⱼ I, what is {σ_x, σ_y}?",
+   "options": [
+    "0",
+    "2I",
+    "2iσ_z",
+    "I"
+   ],
+   "answer": 0,
+   "explanation": "",
+   "source": "bank 2.13 Q5",
+   "id": "q0078"
+  },
+  {
+   "module": 2,
+   "topic": "m2-6",
+   "subtopic": "m2-6-1",
+   "bloom": "Evaluate",
+   "question": "A student says σ_y cannot be Hermitian because it has imaginary entries. Evaluate this.",
+   "options": [
+    "Correct; Hermitian matrices must be real",
+    "Incorrect; σ_y† = σ_y, since the conjugate transpose restores the original matrix",
+    "Correct; σ_y is anti-Hermitian",
+    "Incorrect; σ_y is Hermitian only in the z-basis"
+   ],
+   "answer": 1,
+   "explanation": "",
+   "source": "bank 2.13 Q6",
+   "id": "q0079"
+  },
+  {
+   "module": 2,
+   "topic": "m2-7",
+   "subtopic": "m2-7-1",
+   "bloom": "Remember",
+   "question": "How is the commutator of Â and B̂ defined?",
+   "options": [
+    "[Â, B̂] = ÂB̂ + B̂Â",
+    "[Â, B̂] = ÂB̂ / B̂Â",
+    "[Â, B̂] = Â + B̂",
+    "[Â, B̂] = ÂB̂ − B̂Â"
+   ],
+   "answer": 3,
+   "explanation": "",
+   "source": "bank 2.14 Q1",
+   "id": "q0080"
+  },
+  {
+   "module": 2,
+   "topic": "m2-7",
+   "subtopic": "m2-7-2",
+   "bloom": "Remember",
+   "question": "What is the canonical commutation relation between x̂ and p̂ₓ?",
+   "options": [
+    "[x̂, p̂ₓ] = 0",
+    "[x̂, p̂ₓ] = iħ",
+    "[x̂, p̂ₓ] = ħ",
+    "[x̂, p̂ₓ] = −ħ²"
+   ],
+   "answer": 1,
+   "explanation": "",
+   "source": "bank 2.14 Q2",
+   "id": "q0081"
+  },
+  {
+   "module": 2,
+   "topic": "m2-7",
+   "subtopic": "m2-7-1",
+   "bloom": "Apply",
+   "question": "Which product-rule identity holds for commutators?",
+   "options": [
+    "[Â, B̂Ĉ] = [Â, B̂][Â, Ĉ]",
+    "[Â, B̂Ĉ] = B̂Ĉ[Â, 1]",
+    "[Â, B̂Ĉ] = [Â, B̂]Ĉ + B̂[Â, Ĉ]",
+    "[Â, B̂Ĉ] = [Â, B̂] − [Â, Ĉ]"
+   ],
+   "answer": 2,
+   "explanation": "",
+   "source": "bank 2.14 Q3",
+   "id": "q0082"
+  },
+  {
+   "module": 2,
+   "topic": "m2-7",
+   "subtopic": "m2-7-2",
+   "bloom": "Apply",
+   "question": "For H = p²/2μ + ½μω²x², what is xH − Hx = [x, H]?",
+   "options": [
+    "iħp/μ",
+    "−iħp/μ",
+    "iħμω²x",
+    "0"
+   ],
+   "answer": 0,
+   "explanation": "",
+   "source": "bank 2.14 Q4",
+   "id": "q0083"
+  },
+  {
+   "module": 2,
+   "topic": "m2-7",
+   "subtopic": "m2-7-2",
+   "bloom": "Analyze",
+   "question": "From [x̂ᵢ, p̂ⱼ] = iħδᵢⱼ, which commutator vanishes?",
+   "options": [
+    "[x̂, p̂ₓ]",
+    "[ŷ, p̂_y]",
+    "[ẑ, p̂_z]",
+    "[x̂, p̂_y]"
+   ],
+   "answer": 3,
+   "explanation": "",
+   "source": "bank 2.14 Q5",
+   "id": "q0084"
+  },
+  {
+   "module": 2,
+   "topic": "m2-7",
+   "subtopic": "m2-7-2",
+   "bloom": "Evaluate",
+   "question": "A student says two observables whose operators have a non-zero commutator can be measured simultaneously with arbitrary precision. Evaluate this.",
+   "options": [
+    "Incorrect; non-commuting observables are subject to the Heisenberg uncertainty principle",
+    "Correct; only commuting operators are limited by uncertainty",
+    "Correct; commutators only affect the energy",
+    "Incorrect; non-commuting observables can never be measured at all"
+   ],
+   "answer": 0,
+   "explanation": "",
+   "source": "bank 2.14 Q6",
+   "id": "q0085"
+  },
+  {
+   "module": 3,
+   "topic": "m3-1",
+   "subtopic": "m3-1-1",
+   "bloom": "Remember",
+   "question": "In quantum mechanics, physical observables are represented by which mathematical objects?",
+   "options": [
+    "Real-valued functions of position only",
+    "Hermitian operators acting on states in a Hilbert space",
+    "Unitary matrices that preserve probability",
+    "Fixed numbers fixed by the exact classical state"
+   ],
+   "answer": 1,
+   "explanation": "",
+   "source": "bank 3.1 Q1",
+   "id": "q0086"
+  },
+  {
+   "module": 3,
+   "topic": "m3-1",
+   "subtopic": "m3-1-2",
+   "bloom": "Remember",
+   "question": "Which set lists physical properties treated as observables in the notes?",
+   "options": [
+    "Wavefunction, probability, phase and amplitude",
+    "Mass, charge, gravity and time",
+    "Position, momentum, energy and angular momentum",
+    "Bra, ket, operator and eigenvalue"
+   ],
+   "answer": 2,
+   "explanation": "",
+   "source": "bank 3.1 Q2",
+   "id": "q0087"
+  },
+  {
+   "module": 3,
+   "topic": "m3-1",
+   "subtopic": "m3-1-1",
+   "bloom": "Understand",
+   "question": "How does the quantum description of an observable differ from the classical one?",
+   "options": [
+    "The observable always has one exact value fixed before measurement",
+    "The observable has no possible values at all",
+    "The observable is replaced by the wavefunction's phase",
+    "An operator acts on the state, and a measurement returns one of a set of allowed values with probabilities"
+   ],
+   "answer": 3,
+   "explanation": "",
+   "source": "bank 3.1 Q3",
+   "id": "q0088"
+  },
+  {
+   "module": 3,
+   "topic": "m3-1",
+   "subtopic": "m3-1-2",
+   "bloom": "Apply",
+   "question": "Which observable–operator pairing appears in the notes' correspondence table?",
+   "options": [
+    "Total energy ↔ Ĥ; position ↔ x̂; momentum ↔ P̂",
+    "Total energy ↔ P̂; momentum ↔ Ĥ; position ↔ x̂",
+    "Total energy ↔ x̂; position ↔ Ĥ; momentum ↔ P̂",
+    "Total energy ↔ P̂; position ↔ P̂; momentum ↔ Ĥ"
+   ],
+   "answer": 0,
+   "explanation": "",
+   "source": "bank 3.1 Q4",
+   "id": "q0089"
+  },
+  {
+   "module": 3,
+   "topic": "m3-1",
+   "subtopic": "m3-1-1",
+   "bloom": "Evaluate",
+   "question": "A student argues observables could be represented by any operator. Why is that unsatisfactory?",
+   "options": [
+    "Only Hermitian operators have no eigenvalues",
+    "Measured values must be real, so the operator must have real eigenvalues, which Hermitian operators guarantee",
+    "Non-Hermitian operators cannot act on wavefunctions",
+    "Observables must always have imaginary values"
+   ],
+   "answer": 1,
+   "explanation": "",
+   "source": "bank 3.1 Q5",
+   "id": "q0090"
+  },
+  {
+   "module": 3,
+   "topic": "m3-1",
+   "subtopic": "m3-1-2",
+   "bloom": "Remember",
+   "question": "What is the position-space form of the momentum operator p̂?",
+   "options": [
+    "p̂ = +ħ d/dx",
+    "p̂ = −ħ² d²/dx²",
+    "p̂ = x",
+    "p̂ = −iħ d/dx"
+   ],
+   "answer": 3,
+   "explanation": "",
+   "source": "bank 3.2 Q1",
+   "id": "q0091"
+  },
+  {
+   "module": 3,
+   "topic": "m3-1",
+   "subtopic": "m3-1-4",
+   "bloom": "Understand",
+   "question": "What does the eigenvalue form P̂ψ(x) = p ψ(x) tell us about p?",
+   "options": [
+    "p is the operator itself",
+    "p is always the expectation of x",
+    "p is the numerical momentum value measured in the lab if the system is in the state ψ(x)",
+    "p is the normalisation constant of ψ"
+   ],
+   "answer": 2,
+   "explanation": "",
+   "source": "bank 3.2 Q2",
+   "id": "q0092"
+  },
+  {
+   "module": 3,
+   "topic": "m3-1",
+   "subtopic": "m3-1-2",
+   "bloom": "Apply",
+   "question": "What is the one-dimensional kinetic-energy operator T̂?",
+   "options": [
+    "T̂ = −(ħ²/2m) d²/dx²",
+    "T̂ = +(ħ²/2m) d²/dx²",
+    "T̂ = −iħ d/dx",
+    "T̂ = x²/2m"
+   ],
+   "answer": 0,
+   "explanation": "",
+   "source": "bank 3.2 Q3",
+   "id": "q0093"
+  },
+  {
+   "module": 3,
+   "topic": "m3-1",
+   "subtopic": "m3-1-2",
+   "bloom": "Apply",
+   "question": "What is the time-independent Hamiltonian operator in one dimension?",
+   "options": [
+    "Ĥ = −iħ d/dx + V(x)",
+    "Ĥ = −(ħ²/2m) d²/dx² + V(x)",
+    "Ĥ = −(ħ²/2m) d/dx + V(x)",
+    "Ĥ = V(x) only"
+   ],
+   "answer": 1,
+   "explanation": "",
+   "source": "bank 3.2 Q4",
+   "id": "q0094"
+  },
+  {
+   "module": 3,
+   "topic": "m3-1",
+   "subtopic": "m3-1-2",
+   "bloom": "Analyze",
+   "question": "Which observable–operator pairing is given in the notes' table?",
+   "options": [
+    "z-component of angular momentum ↔ −iħ ∂/∂x",
+    "Kinetic energy ↔ −iħ ∂/∂x",
+    "Position ↔ −ħ² ∂²/∂x²",
+    "z-component of angular momentum ↔ −iħ ∂/∂φ"
+   ],
+   "answer": 3,
+   "explanation": "",
+   "source": "bank 3.2 Q5",
+   "id": "q0095"
+  },
+  {
+   "module": 3,
+   "topic": "m3-1",
+   "subtopic": "m3-1-2",
+   "bloom": "Understand",
+   "question": "In three dimensions, how does the kinetic-energy operator generalise?",
+   "options": [
+    "T̂ = −iħ(∂/∂x + ∂/∂y + ∂/∂z)",
+    "T̂ = −(ħ²/2m) ∂²/∂x² only",
+    "T̂ = −(ħ²/2m)(∂²/∂x² + ∂²/∂y² + ∂²/∂z²)",
+    "T̂ = (ħ²/2m)(x² + y² + z²)"
+   ],
+   "answer": 2,
+   "explanation": "",
+   "source": "bank 3.2 Q6",
+   "id": "q0096"
+  },
+  {
+   "module": 3,
+   "topic": "m3-1",
+   "subtopic": "m3-1-4",
+   "bloom": "Remember",
+   "question": "What does the eigenvalue equation Ĝψₙ = Gₙψₙ state?",
+   "options": [
+    "The operator is the inverse of ψₙ",
+    "ψₙ is always a constant",
+    "Acting with the operator on ψₙ returns the same function times a constant Gₙ",
+    "Gₙ is always zero"
+   ],
+   "answer": 2,
+   "explanation": "",
+   "source": "bank 3.3 Q1",
+   "id": "q0097"
+  },
+  {
+   "module": 3,
+   "topic": "m3-1",
+   "subtopic": "m3-1-4",
+   "bloom": "Apply",
+   "question": "For ψ = e^{2x} and Ĝ = d²/dx², what is the eigenvalue?",
+   "options": [
+    "4",
+    "2",
+    "8",
+    "1/4"
+   ],
+   "answer": 0,
+   "explanation": "",
+   "source": "bank 3.3 Q2",
+   "id": "q0098"
+  },
+  {
+   "module": 3,
+   "topic": "m3-1",
+   "subtopic": "m3-1-4",
+   "bloom": "Understand",
+   "question": "What does the postulate that only eigenvalues Gₙ are ever observed imply?",
+   "options": [
+    "Every observable can take any real value",
+    "Values of dynamical variables are quantised",
+    "Measurement never disturbs the system",
+    "All observables have the same eigenvalue"
+   ],
+   "answer": 1,
+   "explanation": "",
+   "source": "bank 3.3 Q3",
+   "id": "q0099"
+  },
+  {
+   "module": 3,
+   "topic": "m3-3",
+   "subtopic": "m3-3-1",
+   "bloom": "Understand",
+   "question": "What is a 'definite state' of an observable?",
+   "options": [
+    "A superposition of all eigenstates with equal weights",
+    "A state with zero energy",
+    "A state whose wavefunction is not normalised",
+    "An eigenstate in which the observable has a 100% certain value"
+   ],
+   "answer": 3,
+   "explanation": "",
+   "source": "bank 3.3 Q4",
+   "id": "q0100"
+  },
+  {
+   "module": 3,
+   "topic": "m3-3",
+   "subtopic": "m3-3-1",
+   "bloom": "Analyze",
+   "question": "According to the notes' framework, how do you find the possible measured values of an observable and the state for each value?",
+   "options": [
+    "Find the eigenvectors for the values, and the trace for the states",
+    "Take the expectation value for both",
+    "Differentiate the wavefunction twice",
+    "Find the eigenvalues for the values, and the eigenvectors for the corresponding states"
+   ],
+   "answer": 3,
+   "explanation": "",
+   "source": "bank 3.3 Q5",
+   "id": "q0101"
+  },
+  {
+   "module": 3,
+   "topic": "m3-1",
+   "subtopic": "m3-1-4",
+   "bloom": "Evaluate",
+   "question": "A student says the eigenvalue of d²/dx² acting on e^{2x} is 2. Evaluate this.",
+   "options": [
+    "Incorrect; d²/dx² e^{2x} = 4e^{2x}, so the eigenvalue is 4",
+    "Correct; the eigenvalue is the exponent",
+    "Incorrect; the eigenvalue is 8",
+    "Correct; second derivatives halve the exponent"
+   ],
+   "answer": 0,
+   "explanation": "",
+   "source": "bank 3.3 Q6",
+   "id": "q0102"
+  },
+  {
+   "module": 3,
+   "topic": "m3-2",
+   "subtopic": "m3-2-2",
+   "bloom": "Remember",
+   "question": "For a normalised wavefunction Ψ, how is ⟨x⟩ defined?",
+   "options": [
+    "⟨x⟩ = ∫ Ψ dx",
+    "⟨x⟩ = ∫ x |Ψ|² dx over all space",
+    "⟨x⟩ = ∫ |Ψ|² dx",
+    "⟨x⟩ = x |Ψ|"
+   ],
+   "answer": 1,
+   "explanation": "",
+   "source": "bank 3.4 Q1",
+   "id": "q0103"
+  },
+  {
+   "module": 3,
+   "topic": "m3-2",
+   "subtopic": "m3-2-1",
+   "bloom": "Understand",
+   "question": "What does an expectation value represent experimentally?",
+   "options": [
+    "The single value obtained in every measurement",
+    "The maximum possible result",
+    "The average of the results of many identical measurements",
+    "The value of the quantity at a single point"
+   ],
+   "answer": 2,
+   "explanation": "",
+   "source": "bank 3.4 Q2",
+   "id": "q0104"
+  },
+  {
+   "module": 3,
+   "topic": "m3-2",
+   "subtopic": "m3-2-2",
+   "bloom": "Apply",
+   "question": "For a free particle ψ(x) = Ae^{ipx/ħ}, what is ⟨p⟩?",
+   "options": [
+    "⟨p⟩ = 0",
+    "⟨p⟩ = ħ²k²",
+    "⟨p⟩ = p = ħk = h/λ",
+    "⟨p⟩ = h/(λ²)"
+   ],
+   "answer": 2,
+   "explanation": "",
+   "source": "bank 3.4 Q3",
+   "id": "q0105"
+  },
+  {
+   "module": 3,
+   "topic": "m3-2",
+   "subtopic": "m3-2-2",
+   "bloom": "Apply",
+   "question": "For ψ(x) = √(2/L) sin(πx/L) in 0 < x < L, what is ⟨p⟩?",
+   "options": [
+    "ħπ/L",
+    "0",
+    "ħ/2L",
+    "iħ/L"
+   ],
+   "answer": 1,
+   "explanation": "",
+   "source": "bank 3.4 Q4",
+   "id": "q0106"
+  },
+  {
+   "module": 3,
+   "topic": "m3-2",
+   "subtopic": "m3-2-3",
+   "bloom": "Analyze",
+   "question": "Why is ⟨p⟩ = 0 for any real wavefunction?",
+   "options": [
+    "Because real functions have no derivative",
+    "Because ħ = 0 for real functions",
+    "Because ψ² is always a constant",
+    "The integral reduces to (ħ/2i)ψ² evaluated at ±∞, which vanishes"
+   ],
+   "answer": 3,
+   "explanation": "",
+   "source": "bank 3.4 Q5",
+   "id": "q0107"
+  },
+  {
+   "module": 3,
+   "topic": "m3-2",
+   "subtopic": "m3-2-4",
+   "bloom": "Apply",
+   "question": "For the harmonic oscillator ground state, ⟨x²⟩ = 1/2A and ⟨p²⟩ = ħ²A/2 with ⟨x⟩ = ⟨p⟩ = 0. What is ΔxΔp?",
+   "options": [
+    "ħ/2",
+    "ħ",
+    "ħ/4",
+    "2ħ"
+   ],
+   "answer": 0,
+   "explanation": "",
+   "source": "bank 3.4 Q6",
+   "id": "q0108"
+  },
+  {
+   "module": 3,
+   "topic": "m3-2",
+   "subtopic": "m3-2-2",
+   "bloom": "Evaluate",
+   "question": "Using ψ = ax on 0 ≤ x ≤ 1, a student finds ⟨x⟩ = a²/4 without normalising. Evaluate this.",
+   "options": [
+    "It is correct for any value of a",
+    "Normalisation requires a = 1, so ⟨x⟩ = 1/4",
+    "It is only valid after normalising; requiring a²/3 = 1 gives a² = 3, so ⟨x⟩ = 3/4",
+    "Normalisation is unnecessary for position"
+   ],
+   "answer": 2,
+   "explanation": "",
+   "source": "bank 3.4 Q7",
+   "id": "q0109"
+  },
+  {
+   "module": 3,
+   "topic": "m3-2",
+   "subtopic": "m3-2-3",
+   "bloom": "Analyze",
+   "question": "Integration by parts gives which form for ⟨p²⟩?",
+   "options": [
+    "⟨p²⟩ = ħ² ∫ |dψ/dx|² dx",
+    "⟨p²⟩ = ħ² ∫ ψ² dx",
+    "⟨p²⟩ = −ħ² ∫ dψ/dx dx",
+    "⟨p²⟩ = ħ ∫ |dψ/dx| dx"
+   ],
+   "answer": 0,
+   "explanation": "",
+   "source": "bank 3.4 Q8",
+   "id": "q0110"
+  },
+  {
+   "module": 3,
+   "topic": "m3-4",
+   "subtopic": "m3-4-1",
+   "bloom": "Remember",
+   "question": "What did Stern and Gerlach observe in 1922 when a silver-atom beam passed through an inhomogeneous magnetic field?",
+   "options": [
+    "A single undeflected beam",
+    "The beam split into two distinct beams",
+    "A continuous smear of deflections",
+    "Three equally spaced beams"
+   ],
+   "answer": 1,
+   "explanation": "",
+   "source": "bank 3.5 Q1",
+   "id": "q0111"
+  },
+  {
+   "module": 3,
+   "topic": "m3-4",
+   "subtopic": "m3-4-1",
+   "bloom": "Understand",
+   "question": "Why does the two-beam result contradict the classical expectation?",
+   "options": [
+    "Classically the atoms would not be deflected at all",
+    "Classically exactly two values are expected",
+    "Classically the spin has no component along z",
+    "Classically the spin component would range continuously from −|S| to +|S|, giving a continuous spread"
+   ],
+   "answer": 3,
+   "explanation": "",
+   "source": "bank 3.5 Q2",
+   "id": "q0112"
+  },
+  {
+   "module": 3,
+   "topic": "m3-4",
+   "subtopic": "m3-4-1",
+   "bloom": "Remember",
+   "question": "What gives a silver atom its net magnetic moment in this analysis?",
+   "options": [
+    "The lone 5s electron outside closed shells (47 electrons in total)",
+    "The 47 protons alone",
+    "All 60 or 62 neutrons",
+    "The filled 4d shell"
+   ],
+   "answer": 0,
+   "explanation": "",
+   "source": "bank 3.5 Q3",
+   "id": "q0113"
+  },
+  {
+   "module": 3,
+   "topic": "m3-4",
+   "subtopic": "m3-4-1",
+   "bloom": "Apply",
+   "question": "What values of S_z did the deflections correspond to, and what is ħ?",
+   "options": [
+    "S_z = ±ħ, with ħ = 6.63 × 10⁻³⁴ J·s",
+    "S_z = ±ħ/2, with ħ = 1.0546 × 10⁻³⁴ J·s",
+    "S_z = 0 only",
+    "S_z = ±ħ/2, with ħ = 1.0546 × 10⁻¹⁹ J·s"
+   ],
+   "answer": 1,
+   "explanation": "",
+   "source": "bank 3.5 Q4",
+   "id": "q0114"
+  },
+  {
+   "module": 3,
+   "topic": "m3-4",
+   "subtopic": "m3-4-1",
+   "bloom": "Analyze",
+   "question": "The deflecting force is F_z ∝ S_z ∂B_z/∂z. What does the deflection therefore measure?",
+   "options": [
+    "The total spin magnitude only",
+    "The spin component perpendicular to the gradient",
+    "The mass of the atom",
+    "The component of the spin along the z-axis, the direction of the field gradient"
+   ],
+   "answer": 3,
+   "explanation": "",
+   "source": "bank 3.5 Q5",
+   "id": "q0115"
+  },
+  {
+   "module": 3,
+   "topic": "m3-4",
+   "subtopic": "m3-4-1",
+   "bloom": "Understand",
+   "question": "What do the kets |+⟩ and |−⟩ represent for a z-oriented analyzer?",
+   "options": [
+    "Two different atomic masses",
+    "The magnetic field direction",
+    "States of atoms leaving the upper port (S_z = +ħ/2) and lower port (S_z = −ħ/2)",
+    "Unnormalised probability counts"
+   ],
+   "answer": 2,
+   "explanation": "",
+   "source": "bank 3.5 Q6",
+   "id": "q0116"
+  },
+  {
+   "module": 3,
+   "topic": "m3-4",
+   "subtopic": "m3-4-1",
+   "bloom": "Evaluate",
+   "question": "Is the z-axis special for the experiment's results?",
+   "options": [
+    "No; nothing is special about the z-axis, and any axis gives the same behaviour",
+    "Yes; only the z-axis gives two beams",
+    "Yes; other axes give continuous beams",
+    "No; any axis gives three beams"
+   ],
+   "answer": 0,
+   "explanation": "",
+   "source": "bank 3.5 Q7",
+   "id": "q0117"
+  },
+  {
+   "module": 3,
+   "topic": "m3-4",
+   "subtopic": "m3-4-2",
+   "bloom": "Remember",
+   "question": "In Experiment 1, two analyzers measure S_z in succession. What is seen at the second analyzer?",
+   "options": [
+    "Half the atoms exit each port",
+    "No atoms ever exit its lower port; all atoms from the first analyzer's upper port exit its upper port",
+    "All atoms exit the lower port",
+    "The atoms are randomly distributed among three ports"
+   ],
+   "answer": 1,
+   "explanation": "",
+   "source": "bank 3.6 Q1",
+   "id": "q0118"
+  },
+  {
+   "module": 3,
+   "topic": "m3-4",
+   "subtopic": "m3-4-2",
+   "bloom": "Understand",
+   "question": "What role does the first analyzer play in Experiment 1?",
+   "options": [
+    "It absorbs the atoms",
+    "It changes the magnitude of the spin",
+    "It prepares the state (a state-preparation device) for the second analyzer",
+    "It converts atoms into photons"
+   ],
+   "answer": 2,
+   "explanation": "",
+   "source": "bank 3.6 Q2",
+   "id": "q0119"
+  },
+  {
+   "module": 3,
+   "topic": "m3-4",
+   "subtopic": "m3-4-3",
+   "bloom": "Apply",
+   "question": "In Experiment 2 (z then x), 50 atoms enter the x-analyzer. How many exit each port on average?",
+   "options": [
+    "50 from the upper port and 0 from the lower",
+    "0 from the upper port and 50 from the lower",
+    "10 and 40",
+    "25 from each port"
+   ],
+   "answer": 3,
+   "explanation": "",
+   "source": "bank 3.6 Q3",
+   "id": "q0120"
+  },
+  {
+   "module": 3,
+   "topic": "m3-4",
+   "subtopic": "m3-4-3",
+   "bloom": "Analyze",
+   "question": "Would Experiment 2's results change if the lower port of the first analyzer were used instead?",
+   "options": [
+    "Yes; all atoms would exit the upper port",
+    "No; the results would be unchanged, with 50% in each port",
+    "Yes; no atoms would exit",
+    "Yes; the ratio would become 25:75"
+   ],
+   "answer": 1,
+   "explanation": "",
+   "source": "bank 3.6 Q4",
+   "id": "q0121"
+  },
+  {
+   "module": 3,
+   "topic": "m3-4",
+   "subtopic": "m3-4-3",
+   "bloom": "Understand",
+   "question": "What can be said about which port a given atom exits in Experiment 2?",
+   "options": [
+    "Only probabilities can be given: a 50% chance for each port, with random arrival sequences",
+    "The exit port can be predicted exactly",
+    "The exit port depends on the atom's mass",
+    "Every atom exits the lower port"
+   ],
+   "answer": 0,
+   "explanation": "",
+   "source": "bank 3.6 Q5",
+   "id": "q0122"
+  },
+  {
+   "module": 3,
+   "topic": "m3-4",
+   "subtopic": "m3-4-3",
+   "bloom": "Evaluate",
+   "question": "A hidden-variable proposal says each atom carries a pre-determined set of instructions to explain the randomness. What does the text report?",
+   "options": [
+    "Bell proved local hidden-variable theories are fully correct",
+    "Stern and Gerlach proved hidden variables in 1922",
+    "John Bell proved that local hidden-variable theories are not consistent with quantum mechanics",
+    "Hidden variables were shown to explain all experiments without probability"
+   ],
+   "answer": 2,
+   "explanation": "",
+   "source": "bank 3.6 Q6",
+   "id": "q0123"
+  },
+  {
+   "module": 3,
+   "topic": "m3-4",
+   "subtopic": "m3-4-4",
+   "bloom": "Remember",
+   "question": "In Experiment 3, what is the sequence of analyzers?",
+   "options": [
+    "Z, then Z, then X",
+    "X, then X, then X",
+    "Z, then Z, then Z",
+    "Z, then X, then Z"
+   ],
+   "answer": 3,
+   "explanation": "",
+   "source": "bank 3.7 Q1",
+   "id": "q0124"
+  },
+  {
+   "module": 3,
+   "topic": "m3-4",
+   "subtopic": "m3-4-4",
+   "bloom": "Apply",
+   "question": "With 500 atoms entering, 250 pass the X analyzer's selected port. How many exit the upper port of the final Z analyzer?",
+   "options": [
+    "125",
+    "250",
+    "0",
+    "62"
+   ],
+   "answer": 0,
+   "explanation": "",
+   "source": "bank 3.7 Q2",
+   "id": "q0125"
+  },
+  {
+   "module": 3,
+   "topic": "m3-4",
+   "subtopic": "m3-4-4",
+   "bloom": "Understand",
+   "question": "What would classical reasoning predict for the third measurement, and what is found?",
+   "options": [
+    "Classically 50/50; quantum gives all up",
+    "Both predict all up",
+    "Both predict all down",
+    "Classically S_z = +ħ/2 (all up); quantum mechanics gives 50% in each port"
+   ],
+   "answer": 3,
+   "explanation": "",
+   "source": "bank 3.7 Q3",
+   "id": "q0126"
+  },
+  {
+   "module": 3,
+   "topic": "m3-4",
+   "subtopic": "m3-4-4",
+   "bloom": "Analyze",
+   "question": "What does Experiment 3 show about S_x and S_z?",
+   "options": [
+    "They are always measured together exactly",
+    "They are incompatible observables, so their values cannot be known simultaneously",
+    "They are identical observables",
+    "S_x always equals S_z"
+   ],
+   "answer": 1,
+   "explanation": "",
+   "source": "bank 3.7 Q4",
+   "id": "q0127"
+  },
+  {
+   "module": 3,
+   "topic": "m3-4",
+   "subtopic": "m3-4-4",
+   "bloom": "Evaluate",
+   "question": "What key feature of quantum mechanics is demonstrated by the 'forgotten' first result?",
+   "options": [
+    "Measurement never changes the system",
+    "Atoms permanently remember all measurements",
+    "A measurement disturbs the system",
+    "The analyzers are faulty"
+   ],
+   "answer": 2,
+   "explanation": "",
+   "source": "bank 3.7 Q5",
+   "id": "q0128"
+  },
+  {
+   "module": 3,
+   "topic": "m3-4",
+   "subtopic": "m3-4-4",
+   "bloom": "Apply",
+   "question": "What fraction of the original 500 atoms exit the final analyzer's upper port?",
+   "options": [
+    "50%",
+    "12.5%",
+    "5%",
+    "25%"
+   ],
+   "answer": 3,
+   "explanation": "",
+   "source": "bank 3.7 Q6",
+   "id": "q0129"
+  },
+  {
+   "module": 3,
+   "topic": "m3-4",
+   "subtopic": "m3-4-5",
+   "bloom": "Remember",
+   "question": "How does Experiment 4b differ from 4a?",
+   "options": [
+    "Both beams are blocked",
+    "The lower beam is blocked and the third analyzer is removed",
+    "The upper beam of the second analyzer is blocked and only the lower beam goes to the third",
+    "The analyzers are rotated to the y-axis"
+   ],
+   "answer": 2,
+   "explanation": "",
+   "source": "bank 3.8 Q1",
+   "id": "q0130"
+  },
+  {
+   "module": 3,
+   "topic": "m3-4",
+   "subtopic": "m3-4-5",
+   "bloom": "Apply",
+   "question": "In Experiment 4a, 100 atoms enter. How many exit each port of the third analyzer?",
+   "options": [
+    "50 and 0",
+    "25 from the upper port and 25 from the lower port",
+    "100 and 0",
+    "0 and 100"
+   ],
+   "answer": 1,
+   "explanation": "",
+   "source": "bank 3.8 Q2",
+   "id": "q0131"
+  },
+  {
+   "module": 3,
+   "topic": "m3-4",
+   "subtopic": "m3-4-5",
+   "bloom": "Understand",
+   "question": "In Experiment 4c, what does classical probability predict at the third analyzer, and what does quantum mechanics give?",
+   "options": [
+    "Classical: 50% per port; quantum: all atoms exit the upper port and none the lower",
+    "Classical: all in the upper port; quantum: 50% each",
+    "Both predict 25% per port",
+    "Both predict none exit"
+   ],
+   "answer": 0,
+   "explanation": "",
+   "source": "bank 3.8 Q3",
+   "id": "q0132"
+  },
+  {
+   "module": 3,
+   "topic": "m3-4",
+   "subtopic": "m3-4-5",
+   "bloom": "Analyze",
+   "question": "What is odd about the lower port of the third analyzer in 4c compared with 4a/4b?",
+   "options": [
+    "More atoms emerge there than in 4a",
+    "The same 25% emerge",
+    "No atoms emerge there, although 25% did when only one path was open",
+    "It becomes the only open port"
+   ],
+   "answer": 2,
+   "explanation": "",
+   "source": "bank 3.8 Q4",
+   "id": "q0133"
+  },
+  {
+   "module": 3,
+   "topic": "m3-4",
+   "subtopic": "m3-4-5",
+   "bloom": "Evaluate",
+   "question": "Which explanation does the text give via the double-slit analogy?",
+   "options": [
+    "Probabilities are added directly",
+    "Amplitudes are added first and then squared, allowing interference",
+    "The atoms are absorbed by the second analyzer",
+    "The third analyzer is defective"
+   ],
+   "answer": 1,
+   "explanation": "",
+   "source": "bank 3.8 Q5",
+   "id": "q0134"
+  },
+  {
+   "module": 3,
+   "topic": "m3-4",
+   "subtopic": "m3-4-5",
+   "bloom": "Create",
+   "question": "To make every atom exit the upper port of the third analyzer, which modification of Experiment 3 would work?",
+   "options": [
+    "Recombine both beams from the second analyzer properly (Experiment 4c)",
+    "Block the upper beam of the second analyzer",
+    "Rotate the third analyzer to the x-axis",
+    "Add a fourth analyzer along the y-axis"
+   ],
+   "answer": 0,
+   "explanation": "",
+   "source": "bank 3.8 Q6",
+   "id": "q0135"
+  },
+  {
+   "module": 3,
+   "topic": "m3-4",
+   "subtopic": "m3-4-6",
+   "bloom": "Remember",
+   "question": "What name is given to pairs like S_x and S_z whose values cannot be known simultaneously?",
+   "options": [
+    "Commuting observables",
+    "Identical observables",
+    "Conserved observables",
+    "Incompatible observables"
+   ],
+   "answer": 3,
+   "explanation": "",
+   "source": "bank 3.9 Q1",
+   "id": "q0136"
+  },
+  {
+   "module": 3,
+   "topic": "m3-4",
+   "subtopic": "m3-4-6",
+   "bloom": "Understand",
+   "question": "What happens in the Erwin's-socks analogy after sorting by colour, then by length, then by colour again?",
+   "options": [
+    "The colour stays the same",
+    "All socks become black",
+    "The colour measured first has become random, as if the socks forgot the first measurement",
+    "The socks change in length"
+   ],
+   "answer": 2,
+   "explanation": "",
+   "source": "bank 3.9 Q2",
+   "id": "q0137"
+  },
+  {
+   "module": 3,
+   "topic": "m3-4",
+   "subtopic": "m3-4-6",
+   "bloom": "Analyze",
+   "question": "Are all pairs of quantum-mechanical observables incompatible?",
+   "options": [
+    "Yes; all pairs are incompatible",
+    "No; some experiments can be done without disturbing certain other observables",
+    "Yes, but only for spin",
+    "No; none are incompatible"
+   ],
+   "answer": 1,
+   "explanation": "",
+   "source": "bank 3.9 Q3",
+   "id": "q0138"
+  },
+  {
+   "module": 3,
+   "topic": "m3-4",
+   "subtopic": "m3-4-5",
+   "bloom": "Understand",
+   "question": "Why must the recombination of the two beams in Experiment 4c be done 'properly'?",
+   "options": [
+    "To avoid disturbing the beams",
+    "To make the beams brighter",
+    "To convert spin-up atoms into spin-down atoms",
+    "To block the lower beam"
+   ],
+   "answer": 0,
+   "explanation": "",
+   "source": "bank 3.9 Q4",
+   "id": "q0139"
+  },
+  {
+   "module": 3,
+   "topic": "m3-4",
+   "subtopic": "m3-4-6",
+   "bloom": "Evaluate",
+   "question": "Can a cleverer experiment avoid disturbing the system when measuring S_x after S_z?",
+   "options": [
+    "Yes; a better analyzer removes it",
+    "Yes; a colder beam removes it",
+    "Yes; shorter magnets remove it",
+    "No; the incompatibility between S_x and S_z is fundamental"
+   ],
+   "answer": 3,
+   "explanation": "",
+   "source": "bank 3.9 Q5",
+   "id": "q0140"
+  },
+  {
+   "module": 4,
+   "topic": "m4-1",
+   "subtopic": "m4-1-1",
+   "bloom": "Remember",
+   "question": "What is the potential energy V(x) for a particle in a 1D box of width L?",
+   "options": [
+    "V = ∞ inside and 0 outside",
+    "V = 0 everywhere",
+    "V = 0 for 0 < x < L and V = ∞ outside the box",
+    "V = −∞ at the walls only"
+   ],
+   "answer": 2,
+   "explanation": "",
+   "source": "bank 4.1 Q1",
+   "id": "q0141"
+  },
+  {
+   "module": 4,
+   "topic": "m4-1",
+   "subtopic": "m4-1-1",
+   "bloom": "Understand",
+   "question": "How does the quantum picture differ from the classical picture of a particle in a box?",
+   "options": [
+    "Classically the particle can be anywhere; quantum mechanically it is described by a wavefunction with some regions more probable than others",
+    "Quantum: the particle sits at rest at one point",
+    "Classical: the wavefunction has nodes",
+    "There is no difference"
+   ],
+   "answer": 0,
+   "explanation": "",
+   "source": "bank 4.1 Q2",
+   "id": "q0142"
+  },
+  {
+   "module": 4,
+   "topic": "m4-1",
+   "subtopic": "m4-1-1",
+   "bloom": "Apply",
+   "question": "What is the particle's potential energy inside the box?",
+   "options": [
+    "Infinite",
+    "Zero",
+    "Equal to E₁",
+    "Negative and equal to −E_n"
+   ],
+   "answer": 1,
+   "explanation": "",
+   "source": "bank 4.1 Q3",
+   "id": "q0143"
+  },
+  {
+   "module": 4,
+   "topic": "m4-1",
+   "subtopic": "m4-1-1",
+   "bloom": "Understand",
+   "question": "Why is V = 0 a convenient choice inside the box?",
+   "options": [
+    "Because the walls exert a force inside",
+    "Because energy must be negative",
+    "Because the particle has no mass",
+    "No force acts inside (F = −dV/dx = 0), so the potential is constant and can be set to zero"
+   ],
+   "answer": 3,
+   "explanation": "",
+   "source": "bank 4.1 Q4",
+   "id": "q0144"
+  },
+  {
+   "module": 4,
+   "topic": "m4-1",
+   "subtopic": "m4-1-1",
+   "bloom": "Evaluate",
+   "question": "A student says the 1D box is an exact model of a real atom's potential. Evaluate this.",
+   "options": [
+    "Incorrect; it is an idealised model that approximates some situations such as an electron confined in a wire or metal piece",
+    "Correct; real atoms have flat infinite walls",
+    "Correct; it is exact for hydrogen",
+    "Incorrect; it cannot approximate anything"
+   ],
+   "answer": 0,
+   "explanation": "",
+   "source": "bank 4.1 Q5",
+   "id": "q0145"
+  },
+  {
+   "module": 4,
+   "topic": "m4-1",
+   "subtopic": "m4-1-2",
+   "bloom": "Remember",
+   "question": "What general solution applies inside the box?",
+   "options": [
+    "ψ(x) = A e^{−x}",
+    "ψ(x) = A x + B",
+    "ψ(x) = A/x",
+    "ψ(x) = A sin kx + B cos kx, with k² = 2mE/ħ²"
+   ],
+   "answer": 3,
+   "explanation": "",
+   "source": "bank 4.2 Q1",
+   "id": "q0146"
+  },
+  {
+   "module": 4,
+   "topic": "m4-1",
+   "subtopic": "m4-1-3",
+   "bloom": "Understand",
+   "question": "Why must ψ vanish at the walls?",
+   "options": [
+    "The wave equation cannot be solved there",
+    "The energy is zero at the walls",
+    "The potential is infinite outside, so the particle cannot be found there and ψ must be zero at x = 0 and x = L",
+    "The wavefunction is always 1 at the walls"
+   ],
+   "answer": 2,
+   "explanation": "",
+   "source": "bank 4.2 Q2",
+   "id": "q0147"
+  },
+  {
+   "module": 4,
+   "topic": "m4-1",
+   "subtopic": "m4-1-3",
+   "bloom": "Apply",
+   "question": "What does ψ(0) = 0 imply for the constants?",
+   "options": [
+    "A = 0",
+    "B = 0, leaving ψ = A sin kx",
+    "A = B",
+    "k = 0"
+   ],
+   "answer": 1,
+   "explanation": "",
+   "source": "bank 4.2 Q3",
+   "id": "q0148"
+  },
+  {
+   "module": 4,
+   "topic": "m4-1",
+   "subtopic": "m4-1-3",
+   "bloom": "Apply",
+   "question": "What does ψ(L) = 0 imply?",
+   "options": [
+    "cos kL = 0",
+    "kL = 0 only",
+    "sin kL = 0, so kL = nπ",
+    "k = nπL"
+   ],
+   "answer": 2,
+   "explanation": "",
+   "source": "bank 4.2 Q4",
+   "id": "q0149"
+  },
+  {
+   "module": 4,
+   "topic": "m4-1",
+   "subtopic": "m4-1-3",
+   "bloom": "Analyze",
+   "question": "Why is n = 0 excluded as an allowed quantum number?",
+   "options": [
+    "It gives k = 0 and ψ = 0 everywhere, meaning no particle in the box",
+    "It gives infinite energy",
+    "It gives a wavefunction with a node at every point",
+    "It violates the condition kL = nπ"
+   ],
+   "answer": 0,
+   "explanation": "",
+   "source": "bank 4.2 Q5",
+   "id": "q0150"
+  },
+  {
+   "module": 4,
+   "topic": "m4-1",
+   "subtopic": "m4-1-4",
+   "bloom": "Remember",
+   "question": "What are the allowed energies of a particle in a 1D box of width L?",
+   "options": [
+    "Eₙ = nh²/(8mL²)",
+    "Eₙ = n²h/(8mL)",
+    "Eₙ = h²/(8mnL²)",
+    "Eₙ = n²h²/(8mL²), n = 1, 2, 3, …"
+   ],
+   "answer": 3,
+   "explanation": "",
+   "source": "bank 4.3 Q1",
+   "id": "q0151"
+  },
+  {
+   "module": 4,
+   "topic": "m4-2",
+   "subtopic": "m4-2-1",
+   "bloom": "Understand",
+   "question": "How does Eₙ scale with n, and what does this say about the spacing of levels?",
+   "options": [
+    "Eₙ ∝ n, so levels are equally spaced",
+    "Eₙ ∝ n², so levels are not equally spaced",
+    "Eₙ ∝ 1/n², so levels bunch up",
+    "Eₙ is independent of n"
+   ],
+   "answer": 1,
+   "explanation": "",
+   "source": "bank 4.3 Q2",
+   "id": "q0152"
+  },
+  {
+   "module": 4,
+   "topic": "m4-1",
+   "subtopic": "m4-1-4",
+   "bloom": "Apply",
+   "question": "If the ground-state energy is E₁, what is the energy of the n = 3 state?",
+   "options": [
+    "3E₁",
+    "6E₁",
+    "9E₁",
+    "27E₁"
+   ],
+   "answer": 2,
+   "explanation": "",
+   "source": "bank 4.3 Q3",
+   "id": "q0153"
+  },
+  {
+   "module": 4,
+   "topic": "m4-2",
+   "subtopic": "m4-2-1",
+   "bloom": "Analyze",
+   "question": "What is the energy gap E_{n+1} − Eₙ in terms of E₁?",
+   "options": [
+    "2nE₁",
+    "(2n + 1)E₁",
+    "(n + 1)E₁",
+    "nE₁"
+   ],
+   "answer": 1,
+   "explanation": "",
+   "source": "bank 4.3 Q4",
+   "id": "q0154"
+  },
+  {
+   "module": 4,
+   "topic": "m4-1",
+   "subtopic": "m4-1-4",
+   "bloom": "Evaluate",
+   "question": "A student says the box allows any energy, as in classical mechanics. Evaluate this.",
+   "options": [
+    "Correct; any energy is allowed",
+    "Correct; only the ground state is restricted",
+    "Incorrect; no energy is allowed",
+    "Incorrect; boundary conditions restrict energies to the discrete set Eₙ"
+   ],
+   "answer": 3,
+   "explanation": "",
+   "source": "bank 4.3 Q5",
+   "id": "q0155"
+  },
+  {
+   "module": 4,
+   "topic": "m4-1",
+   "subtopic": "m4-1-5",
+   "bloom": "Remember",
+   "question": "What are the normalised wavefunctions for a box of width L?",
+   "options": [
+    "ψₙ(x) = √(2/L) sin(nπx/L)",
+    "ψₙ(x) = (2/L) sin(nπx/L)",
+    "ψₙ(x) = √(L/2) sin(nπx/L)",
+    "ψₙ(x) = √(2/L) cos(nπx/L)"
+   ],
+   "answer": 0,
+   "explanation": "",
+   "source": "bank 4.4 Q1",
+   "id": "q0156"
+  },
+  {
+   "module": 4,
+   "topic": "m4-1",
+   "subtopic": "m4-1-5",
+   "bloom": "Apply",
+   "question": "Normalising ψ = A sin(πx/L) over 0 to L requires what value of A?",
+   "options": [
+    "A = 2/L",
+    "A = √(2/L)",
+    "A = √(L/2)",
+    "A = 1/L"
+   ],
+   "answer": 1,
+   "explanation": "",
+   "source": "bank 4.4 Q2",
+   "id": "q0157"
+  },
+  {
+   "module": 4,
+   "topic": "m4-1",
+   "subtopic": "m4-1-5",
+   "bloom": "Apply",
+   "question": "What is the ground-state wavefunction for a well extending from x = 0 to x = 2L?",
+   "options": [
+    "ψ = √(2/L) sin(πx/L)",
+    "ψ = √(2/L) sin(πx/2L)",
+    "ψ = √(1/L) sin(2πx/L)",
+    "ψ = √(1/L) sin(πx/2L)"
+   ],
+   "answer": 3,
+   "explanation": "",
+   "source": "bank 4.4 Q3",
+   "id": "q0158"
+  },
+  {
+   "module": 4,
+   "topic": "m4-1",
+   "subtopic": "m4-1-5",
+   "bloom": "Understand",
+   "question": "What is the relationship between Eₙ and ψₙ?",
+   "options": [
+    "Eₙ are eigenfunctions and ψₙ eigenvalues",
+    "They are unrelated",
+    "ψₙ are the eigenfunctions and Eₙ the corresponding eigenvalues of the Hamiltonian",
+    "ψₙ = Eₙ"
+   ],
+   "answer": 2,
+   "explanation": "",
+   "source": "bank 4.4 Q4",
+   "id": "q0159"
+  },
+  {
+   "module": 4,
+   "topic": "m4-1",
+   "subtopic": "m4-1-5",
+   "bloom": "Create",
+   "question": "Construct the normalised ground state for a box of width a = 25 Å.",
+   "options": [
+    "ψ₁(x) = √(2/a) sin(πx/a)",
+    "ψ₁(x) = √(a/2) sin(πx/a)",
+    "ψ₁(x) = (2/a) cos(πx/a)",
+    "ψ₁(x) = √(2/a) sin(2πx/a)"
+   ],
+   "answer": 0,
+   "explanation": "",
+   "source": "bank 4.4 Q5",
+   "id": "q0160"
+  },
+  {
+   "module": 4,
+   "topic": "m4-2",
+   "subtopic": "m4-2-2",
+   "bloom": "Remember",
+   "question": "What is the lowest energy of the particle in the box?",
+   "options": [
+    "Zero",
+    "E₀ = h²/(2mL²)",
+    "Infinite",
+    "E₁ = h²/(8mL²), the zero-point energy"
+   ],
+   "answer": 3,
+   "explanation": "",
+   "source": "bank 4.5 Q1",
+   "id": "q0161"
+  },
+  {
+   "module": 4,
+   "topic": "m4-2",
+   "subtopic": "m4-2-2",
+   "bloom": "Understand",
+   "question": "Why cannot the lowest energy be zero?",
+   "options": [
+    "Zero energy would make Δx zero",
+    "Zero energy is forbidden by Newton's laws",
+    "Zero energy means p = 0, so Δp = 0 and Δx → ∞, which contradicts confinement within L (Heisenberg principle)",
+    "The box has no ground state"
+   ],
+   "answer": 2,
+   "explanation": "",
+   "source": "bank 4.5 Q2",
+   "id": "q0162"
+  },
+  {
+   "module": 4,
+   "topic": "m4-2",
+   "subtopic": "m4-2-1",
+   "bloom": "Apply",
+   "question": "Which state is the first excited state?",
+   "options": [
+    "n = 2",
+    "n = 1",
+    "n = 3",
+    "n = 0"
+   ],
+   "answer": 0,
+   "explanation": "",
+   "source": "bank 4.5 Q3",
+   "id": "q0163"
+  },
+  {
+   "module": 4,
+   "topic": "m4-2",
+   "subtopic": "m4-2-2",
+   "bloom": "Analyze",
+   "question": "What happens to E₁ if the box width L is halved?",
+   "options": [
+    "It becomes half",
+    "It becomes four times larger (E₁ ∝ 1/L²)",
+    "It becomes twice",
+    "It stays the same"
+   ],
+   "answer": 1,
+   "explanation": "",
+   "source": "bank 4.5 Q4",
+   "id": "q0164"
+  },
+  {
+   "module": 4,
+   "topic": "m4-2",
+   "subtopic": "m4-2-2",
+   "bloom": "Evaluate",
+   "question": "A student says confining the particle more tightly should lower its minimum energy. Evaluate this.",
+   "options": [
+    "Incorrect; tighter confinement raises the minimum energy, since E₁ ∝ 1/L²",
+    "Correct; E₁ decreases with L",
+    "Correct; E₁ is independent of L",
+    "Incorrect; E₁ becomes negative"
+   ],
+   "answer": 0,
+   "explanation": "",
+   "source": "bank 4.5 Q5",
+   "id": "q0165"
+  },
+  {
+   "module": 4,
+   "topic": "m4-2",
+   "subtopic": "m4-2-3",
+   "bloom": "Remember",
+   "question": "For n = 1, 2, 3, how many nodes and antinodes does ψₙ have (nodes counted including the walls)?",
+   "options": [
+    "n = 1: 1 node, 2 antinodes; n = 2: 2 nodes, 3 antinodes; n = 3: 3 nodes, 4 antinodes",
+    "n = 1: 2 nodes, 1 antinode; n = 2: 3 nodes, 2 antinodes; n = 3: 4 nodes, 3 antinodes",
+    "All states have 2 nodes and 1 antinode",
+    "n = 1: 0 nodes; n = 2: 1 node; n = 3: 2 nodes"
+   ],
+   "answer": 1,
+   "explanation": "",
+   "source": "bank 4.6 Q1",
+   "id": "q0166"
+  },
+  {
+   "module": 4,
+   "topic": "m4-2",
+   "subtopic": "m4-2-3",
+   "bloom": "Apply",
+   "question": "Following this pattern, how many nodes (including walls) does the n = 5 state have?",
+   "options": [
+    "5",
+    "4",
+    "7",
+    "6"
+   ],
+   "answer": 3,
+   "explanation": "",
+   "source": "bank 4.6 Q2",
+   "id": "q0167"
+  },
+  {
+   "module": 4,
+   "topic": "m4-2",
+   "subtopic": "m4-2-3",
+   "bloom": "Understand",
+   "question": "For n = 2, what is |ψ|² at x = L/2?",
+   "options": [
+    "Maximum",
+    "Equal to 2/L",
+    "Zero, because there is a node at the centre",
+    "Undefined"
+   ],
+   "answer": 2,
+   "explanation": "",
+   "source": "bank 4.6 Q3",
+   "id": "q0168"
+  },
+  {
+   "module": 4,
+   "topic": "m4-2",
+   "subtopic": "m4-2-4",
+   "bloom": "Apply",
+   "question": "For n = 2, what is the probability of finding the particle between x = 0 and x = 0.25L?",
+   "options": [
+    "1/2",
+    "1/8",
+    "1/4",
+    "1/3"
+   ],
+   "answer": 2,
+   "explanation": "",
+   "source": "bank 4.6 Q4",
+   "id": "q0169"
+  },
+  {
+   "module": 4,
+   "topic": "m4-2",
+   "subtopic": "m4-2-4",
+   "bloom": "Apply",
+   "question": "For n = 1 in a box of width 25 Å, the probability of finding the electron in a 5 Å region at the centre is approximately (using |ψ|²Δx)",
+   "options": [
+    "0.2",
+    "0.04",
+    "0.8",
+    "0.4"
+   ],
+   "answer": 3,
+   "explanation": "",
+   "source": "bank 4.6 Q5",
+   "id": "q0170"
+  },
+  {
+   "module": 4,
+   "topic": "m4-2",
+   "subtopic": "m4-2-3",
+   "bloom": "Analyze",
+   "question": "What does the probability density show that differs from the classical picture?",
+   "options": [
+    "Some positions (nodes) are never occupied and the most probable positions depend on the level",
+    "The particle is equally likely anywhere in every state",
+    "The particle is always at the centre",
+    "The particle never reaches the walls' interior"
+   ],
+   "answer": 0,
+   "explanation": "",
+   "source": "bank 4.6 Q6",
+   "id": "q0171"
+  },
+  {
+   "module": 4,
+   "topic": "m4-2",
+   "subtopic": "m4-2-1",
+   "bloom": "Remember",
+   "question": "Which quantity gives the spacing between adjacent levels?",
+   "options": [
+    "E_{n+1} − Eₙ = nh²/(8mL²)",
+    "E_{n+1} − Eₙ = (2n + 1)h²/(8mL²)",
+    "E_{n+1} − Eₙ = h²/(8mL²) for all n",
+    "E_{n+1} − Eₙ = 0"
+   ],
+   "answer": 1,
+   "explanation": "",
+   "source": "bank 4.7 Q1",
+   "id": "q0172"
+  },
+  {
+   "module": 4,
+   "topic": "m4-2",
+   "subtopic": "m4-2-1",
+   "bloom": "Apply",
+   "question": "In units of E₁, what is the gap between n = 3 and n = 4?",
+   "options": [
+    "5E₁",
+    "7E₁",
+    "9E₁",
+    "16E₁"
+   ],
+   "answer": 1,
+   "explanation": "",
+   "source": "bank 4.7 Q2",
+   "id": "q0173"
+  },
+  {
+   "module": 4,
+   "topic": "m4-2",
+   "subtopic": "m4-2-4",
+   "bloom": "Understand",
+   "question": "What happens to the spectrum for very large n?",
+   "options": [
+    "The relative spacing shrinks, approaching a continuous (classical) behaviour",
+    "The levels become more widely spaced relatively",
+    "The levels become equal",
+    "The levels vanish"
+   ],
+   "answer": 0,
+   "explanation": "",
+   "source": "bank 4.7 Q3",
+   "id": "q0174"
+  },
+  {
+   "module": 4,
+   "topic": "m4-2",
+   "subtopic": "m4-2-1",
+   "bloom": "Analyze",
+   "question": "Which adjacent pair has three times the gap between n = 3 and n = 4?",
+   "options": [
+    "E₇ and E₈",
+    "E₂₁ and E₂₂",
+    "E₁₀ and E₁₁",
+    "E₃ and E₄"
+   ],
+   "answer": 2,
+   "explanation": "",
+   "source": "bank 4.7 Q4",
+   "id": "q0175"
+  },
+  {
+   "module": 4,
+   "topic": "m4-2",
+   "subtopic": "m4-2-1",
+   "bloom": "Evaluate",
+   "question": "Is there an adjacent pair with twice the gap between n = 3 and n = 4?",
+   "options": [
+    "Yes; n = 6",
+    "Yes; n = 7",
+    "Yes; n = 13",
+    "No; (2n + 1) = 14 gives no integer n"
+   ],
+   "answer": 3,
+   "explanation": "",
+   "source": "bank 4.7 Q5",
+   "id": "q0176"
+  },
+  {
+   "module": 4,
+   "topic": "m4-1",
+   "subtopic": "m4-1-4",
+   "bloom": "Apply",
+   "question": "An electron in an infinite well of width 2.5 × 10⁻¹⁰ m. What are the lowest three energies?",
+   "options": [
+    "About 3 eV, 12 eV and 27 eV",
+    "About 6 eV, 12 eV and 18 eV",
+    "About 6 eV, 24 eV and 54 eV",
+    "About 12 eV, 48 eV and 108 eV"
+   ],
+   "answer": 2,
+   "explanation": "",
+   "source": "bank 4.8 Q1",
+   "id": "q0177"
+  },
+  {
+   "module": 4,
+   "topic": "m4-2",
+   "subtopic": "m4-2-5",
+   "bloom": "Apply",
+   "question": "For an electron in a 1 nm well, what are the de Broglie wavelengths of the n = 1, 2, 3 states (λ = 2L/n)?",
+   "options": [
+    "20 Å, 10 Å and 6.67 Å",
+    "10 Å, 5 Å and 3.33 Å",
+    "20 Å, 40 Å and 60 Å",
+    "2 Å, 1 Å and 0.67 Å"
+   ],
+   "answer": 0,
+   "explanation": "",
+   "source": "bank 4.8 Q2",
+   "id": "q0178"
+  },
+  {
+   "module": 4,
+   "topic": "m4-1",
+   "subtopic": "m4-1-4",
+   "bloom": "Apply",
+   "question": "For the 1 nm well, which energies do n = 1, 2, 3 have?",
+   "options": [
+    "About 0.38 eV, 0.76 eV and 1.14 eV",
+    "About 3.8 eV, 15 eV and 34 eV",
+    "About 38 eV, 150 eV and 340 eV",
+    "About 0.38 eV, 1.5 eV and 3.4 eV"
+   ],
+   "answer": 3,
+   "explanation": "",
+   "source": "bank 4.8 Q3",
+   "id": "q0179"
+  },
+  {
+   "module": 4,
+   "topic": "m4-2",
+   "subtopic": "m4-2-1",
+   "bloom": "Analyze",
+   "question": "In a 0.2 nm well the n = 5 energy is 230 eV, giving E₁ = 9.2 eV. Why is 1 keV not an allowed level?",
+   "options": [
+    "Because 1 keV is larger than E₁",
+    "n² = 1000/9.2 ≈ 108.7, which gives n ≈ 10.4, not an integer",
+    "Because n must be even",
+    "Because energies must be below 500 eV"
+   ],
+   "answer": 1,
+   "explanation": "",
+   "source": "bank 4.8 Q4",
+   "id": "q0180"
+  },
+  {
+   "module": 4,
+   "topic": "m4-1",
+   "subtopic": "m4-1-4",
+   "bloom": "Apply",
+   "question": "An electron in a 250 pm well is excited from its first to its third excited state (Eₙ ≈ 6.03 eV × n²). What energy is required?",
+   "options": [
+    "About 36.2 eV",
+    "About 48.2 eV",
+    "About 96.5 eV",
+    "About 72.4 eV"
+   ],
+   "answer": 3,
+   "explanation": "",
+   "source": "bank 4.8 Q5",
+   "id": "q0181"
+  },
+  {
+   "module": 4,
+   "topic": "m4-1",
+   "subtopic": "m4-1-4",
+   "bloom": "Apply",
+   "question": "It then de-excites from n = 4 directly to n = 1. What wavelength is emitted?",
+   "options": [
+    "About 29.4 nm",
+    "About 13.7 nm",
+    "About 68.5 nm",
+    "About 1.37 nm"
+   ],
+   "answer": 1,
+   "explanation": "",
+   "source": "bank 4.8 Q6",
+   "id": "q0182"
+  },
+  {
+   "module": 4,
+   "topic": "m4-1",
+   "subtopic": "m4-1-4",
+   "bloom": "Create",
+   "question": "You want an electron-in-a-box model with lowest energy about 6 eV. Which width works, using Eₙ = n²h²/8ma²?",
+   "options": [
+    "About 2.5 × 10⁻¹⁰ m",
+    "About 1 × 10⁻¹⁰ m",
+    "About 1 × 10⁻⁹ m",
+    "About 5 × 10⁻¹⁰ m"
+   ],
+   "answer": 0,
+   "explanation": "",
+   "source": "bank 4.8 Q7",
+   "id": "q0183"
+  }
+ ]
+}
