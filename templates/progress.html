@@ -1,0 +1,173 @@
+{% extends "base.html" %}
+{% block title %}Progress · Study Dashboards{% endblock %}
+{% block content %}
+<div class="wrap">
+  <div class="page-head">
+    <p class="eyebrow">Progress</p>
+    <h1>How you're doing.</h1>
+    <p class="lede">Every quiz you finish, in any subject or in the mixed quiz, is recorded here. Stored in this browser only.</p>
+  </div>
+
+  <div id="empty" class="empty" hidden>
+    Nothing to show yet. Finish a quiz in any subject (or a <a href="/quiz">mixed quiz</a>) and this page fills in.
+  </div>
+
+  <div id="content" hidden>
+    <dl class="grid cols-4" style="margin:0">
+      <div class="card tile"><dt>Day streak</dt><dd id="s-streak">0</dd><small id="s-days"></small></div>
+      <div class="card tile"><dt>Quizzes taken</dt><dd id="s-quizzes">0</dd><small id="s-time"></small></div>
+      <div class="card tile"><dt>Questions answered</dt><dd id="s-answered">0</dd><small id="s-correct"></small></div>
+      <div class="card tile"><dt>Overall accuracy</dt><dd id="s-acc">0%</dd><small id="s-trend"></small></div>
+    </dl>
+
+    <div class="grid cols-2 section">
+      <div class="card"><h2>Accuracy by subject</h2><div id="by-subject"></div></div>
+      <div class="card"><h2>Accuracy by Bloom's level</h2><div id="by-level"></div></div>
+    </div>
+
+    <div class="grid cols-2 section">
+      <div class="card">
+        <div class="section-head" style="margin-bottom:6px"><h2>Needs work</h2><a class="btn sm primary" href="/quiz?preset=weak" id="weak-btn">Practise these</a></div>
+        <p class="muted small">Topics where you're under 70% after at least 3 answers.</p>
+        <div id="weak"></div>
+      </div>
+      <div class="card">
+        <h2>Recent scores</h2>
+        <p class="muted small" id="spark-note"></p>
+        <svg id="spark" class="spark" viewBox="0 0 400 120" preserveAspectRatio="none" role="img" aria-label="Accuracy of recent quizzes"></svg>
+      </div>
+    </div>
+
+    <div class="card section">
+      <h2>Study activity</h2>
+      <p class="muted small" style="margin-bottom:12px">Questions answered per day over the last 16 weeks.</p>
+      <div class="heat" id="heat" role="img" aria-label="Activity heatmap"></div>
+      <div class="heat-legend"><span>Less</span><i style="background:#ebe6d6"></i><i style="background:#bfdcca"></i><i style="background:#7fb995"></i><i style="background:#3f8a5f"></i><i style="background:#245640"></i><span>More</span></div>
+    </div>
+
+    <div class="card section">
+      <h2>History</h2>
+      <div class="table-scroll"><table class="t" id="hist"><thead><tr><th>When</th><th>Subject</th><th>Score</th><th>Accuracy</th><th>Time</th></tr></thead><tbody></tbody></table></div>
+      <p class="muted small" id="hist-more" style="margin-top:10px"></p>
+    </div>
+  </div>
+
+  <div class="card section" id="data">
+    <h2>Your data</h2>
+    <p class="muted" style="margin:6px 0 14px">Kept in this browser's local storage. Clearing site data or switching browser or device loses it, so export a backup now and then. Results taken inside a dashboard are included automatically.</p>
+    <div class="preset-row">
+      <button class="btn" id="export">Export backup</button>
+      <label class="btn" for="import">Import backup</label><input type="file" id="import" accept="application/json,.json" class="sr">
+      <button class="btn danger" id="clear">Clear all history</button>
+    </div>
+    <p class="small" id="data-msg" role="status" style="margin-top:12px"></p>
+  </div>
+</div>
+{% endblock %}
+{% block scripts %}
+<script>
+(function () {
+  var H = Hub, $ = function (id) { return document.getElementById(id); };
+
+  function render() {
+    var d = HubStore.read(), A = d.attempts, S = HubStore.summarize(A);
+    $('empty').hidden = A.length > 0; $('content').hidden = A.length === 0;
+    if (!A.length) return;
+
+    $('s-streak').textContent = S.streak;
+    $('s-days').textContent = Object.keys(S.byDay).length + ' active day' + (Object.keys(S.byDay).length > 1 ? 's' : '') + ' in total';
+    $('s-quizzes').textContent = S.attempts;
+    $('s-time').textContent = H.fmtTime(A.reduce(function (t, a) { return t + (a.secs || 0); }, 0)) + ' of quizzing';
+    $('s-answered').textContent = S.answered.toLocaleString();
+    $('s-correct').textContent = S.correct.toLocaleString() + ' correct';
+    var acc = H.pct(S.correct, S.answered);
+    $('s-acc').textContent = acc + '%';
+    var last = A.slice(-5), prev = A.slice(-10, -5);
+    function ac(l) { var c = 0, n = 0; l.forEach(function (a) { c += a.correct; n += a.answered; }); return n ? 100 * c / n : null; }
+    var a1 = ac(last), a0 = ac(prev);
+    $('s-trend').textContent = a1 !== null && a0 !== null ? (a1 - a0 >= 2 ? '▲ up ' + Math.round(a1 - a0) + ' pts recently' : a0 - a1 >= 2 ? '▼ down ' + Math.round(a0 - a1) + ' pts recently' : 'Steady recently') : 'Last 5 quizzes: ' + (a1 === null ? '–' : Math.round(a1) + '%');
+
+    $('by-subject').innerHTML = Object.keys(H.subjects).map(function (k) {
+      var ps = S.perSubject[k];
+      if (!ps) return H.bar(H.esc(H.subjects[k].title), 'not started', 0, '');
+      var p = H.pct(ps.correct, ps.answered);
+      return H.bar(H.esc(H.subjects[k].title), p + '% · ' + ps.correct + '/' + ps.answered, p,
+        '<a class="small" style="color:var(--brand);font-weight:600;text-decoration:none" href="/quiz?subjects=' + k + '">Practise →</a>');
+    }).join('');
+
+    var LV = ['Remember', 'Understand', 'Apply', 'Analyze', 'Evaluate', 'Create'];
+    var levels = Object.keys(S.perLevel).sort(function (a, b) { return (LV.indexOf(a) + 99) % 99 - (LV.indexOf(b) + 99) % 99 || (a < b ? -1 : 1); });
+    $('by-level').innerHTML = levels.map(function (l) {
+      var pl = S.perLevel[l], p = H.pct(pl.correct, pl.answered);
+      return H.bar(H.esc(l), p + '% · ' + pl.correct + '/' + pl.answered, p);
+    }).join('') || '<p class="muted">No data yet.</p>';
+
+    var weak = HubStore.weakSections(S).slice(0, 8);
+    $('weak-btn').hidden = !weak.length;
+    $('weak').innerHTML = weak.length ? weak.map(function (w) {
+      var p = H.pct(w.correct, w.answered);
+      return '<div class="weak-row"><span class="tag" style="--accent:' + H.accent(w.subject) + '">' + H.esc((H.subjects[w.subject] || {}).code || w.subject) + '</span>' +
+        '<div class="info"><div>' + H.esc(w.section) + '</div><div class="bar-track" style="margin-top:5px"><div class="bar-fill ' + H.cls(p) + '" style="width:' + p + '%"></div></div></div>' +
+        '<span class="small muted" style="white-space:nowrap">' + p + '% · ' + w.correct + '/' + w.answered + '</span>' +
+        '<a class="btn sm" href="/quiz?sec=' + encodeURIComponent(w.subject + '::' + w.section) + '">Practise</a></div>';
+    }).join('') : '<p class="muted" style="margin-top:12px">Nothing under 70% yet. Keep going and weak spots will show up here.</p>';
+
+    // sparkline of last 20 quiz accuracies
+    var pts = A.slice(-20).map(function (a) { return H.pct(a.correct, a.answered); });
+    $('spark-note').textContent = pts.length < 2 ? 'Take a few more quizzes to see a trend.' : 'Last ' + pts.length + ' quizzes · best ' + Math.max.apply(null, pts) + '% · latest ' + pts[pts.length - 1] + '%';
+    var svg = '<line x1="0" y1="60" x2="400" y2="60" stroke="#e6e1d3" stroke-dasharray="3 4"/><line x1="0" y1="119" x2="400" y2="119" stroke="#e6e1d3"/>';
+    if (pts.length > 1) {
+      var xy = pts.map(function (p, i) { return [10 + i * (380 / (pts.length - 1)), 112 - p * 1.04]; });
+      svg += '<polyline fill="none" stroke="#2f6b4f" stroke-width="2.5" vector-effect="non-scaling-stroke" stroke-linejoin="round" points="' + xy.map(function (p) { return p[0].toFixed(1) + ',' + p[1].toFixed(1); }).join(' ') + '"/>';
+    }
+    $('spark').innerHTML = svg;
+
+    // heatmap: 16 weeks, columns = weeks starting Monday
+    var heat = $('heat'), today = new Date(); today.setHours(12, 0, 0, 0);
+    var dow = (today.getDay() + 6) % 7, start = new Date(today); start.setDate(start.getDate() - dow - 15 * 7);
+    var cells = '';
+    for (var i = 0; i < 16 * 7; i++) {
+      var day = new Date(start); day.setDate(start.getDate() + i);
+      if (day > today) { cells += '<i style="visibility:hidden"></i>'; continue; }
+      var k = HubStore.dayKey(day), v = S.byDay[k] ? S.byDay[k].answered : 0;
+      var lvl = v === 0 ? '' : v < 10 ? 'l1' : v < 25 ? 'l2' : v < 50 ? 'l3' : 'l4';
+      cells += '<i class="' + lvl + '" title="' + k + ': ' + v + ' answered"></i>';
+    }
+    heat.innerHTML = cells;
+    heat.scrollLeft = heat.scrollWidth;
+
+    var rows = A.slice().reverse(), shown = rows.slice(0, 30);
+    $('hist').tBodies[0].innerHTML = shown.map(function (a) {
+      var p = H.pct(a.correct, a.answered);
+      return '<tr><td>' + new Date(a.ts).toLocaleString(undefined, { day: 'numeric', month: 'short', hour: 'numeric', minute: '2-digit' }) + '</td>' +
+        '<td><span class="tag" style="--accent:' + H.accent(a.subject) + '">' + H.esc(a.subject === 'mixed' ? 'Mixed' : ((H.subjects[a.subject] || {}).code || a.subject)) + '</span></td>' +
+        '<td><strong>' + a.correct + '/' + a.answered + '</strong>' + (a.total > a.answered ? ' <span class="muted small">(' + (a.total - a.answered) + ' skipped)</span>' : '') + '</td>' +
+        '<td style="min-width:130px"><div class="bar-track"><div class="bar-fill ' + H.cls(p) + '" style="width:' + p + '%"></div></div><span class="small muted">' + p + '%</span></td>' +
+        '<td class="muted">' + H.fmtTime(a.secs) + '</td></tr>';
+    }).join('');
+    $('hist-more').textContent = rows.length > shown.length ? 'Showing the latest ' + shown.length + ' of ' + rows.length + ' quizzes.' : '';
+  }
+
+  var msg = $('data-msg');
+  $('export').onclick = function () {
+    var blob = new Blob([HubStore.exportJSON()], { type: 'application/json' }), a = document.createElement('a');
+    a.href = URL.createObjectURL(blob); a.download = 'study-dashboards-backup-' + HubStore.dayKey(Date.now()) + '.json';
+    document.body.appendChild(a); a.click(); a.remove(); setTimeout(function () { URL.revokeObjectURL(a.href); }, 1000);
+    msg.textContent = 'Backup downloaded.';
+  };
+  $('import').onchange = function (e) {
+    var f = e.target.files[0]; if (!f) return;
+    var r = new FileReader();
+    r.onload = function () {
+      try { var n = HubStore.importJSON(r.result); msg.textContent = n ? 'Imported ' + n + ' quiz' + (n > 1 ? 'zes' : '') + '.' : 'Nothing new to import (those quizzes are already here).'; render(); }
+      catch (err) { msg.textContent = 'Import failed: ' + err.message; }
+    };
+    r.readAsText(f); e.target.value = '';
+  };
+  $('clear').onclick = function () {
+    if (confirm('Delete all quiz history in this browser? Export a backup first if you might want it back.')) { HubStore.clear(); msg.textContent = 'History cleared.'; render(); }
+  };
+  render();
+})();
+</script>
+{% endblock %}

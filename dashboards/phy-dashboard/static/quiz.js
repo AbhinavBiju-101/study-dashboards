@@ -41,6 +41,7 @@
       if(!sk){ bump(byMod,q.module,ok); bump(byTop,q.topic,ok); bump(byBloom,q.bloom,ok); }
       rows.push({i:i,q:q,ok:ok,skipped:sk,flag:flags[i]}); });
     var saved = QMProgress.record(rows.filter(function(r){return !r.skipped;}).map(function(r){return {subtopic:r.q.subtopic, correct:r.ok};}));
+    if(window.hubRecord)try{hubRecord({secs:secs,rows:rows.map(function(r){return [label[r.q.subtopic]||label[r.q.topic]||r.q.subtopic, r.q.bloom, r.skipped?-1:(r.ok?1:0)];})});}catch(e){}
     $('runner').style.display='none'; var R=$('results'); R.style.display='block';
     function table(map){ return '<table class="t"><tr><th></th><th>Correct</th><th>Accuracy</th></tr>'+Object.keys(map).map(function(k){var s=map[k];
       return '<tr><td>'+(label[k]||k)+'</td><td>'+s.r+' / '+s.t+'</td><td>'+Math.round(100*s.r/s.t)+'%</td></tr>';}).join('')+'</table>'; }

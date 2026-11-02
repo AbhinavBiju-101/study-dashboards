@@ -17,6 +17,7 @@ const agg=k=>{const m={};Q.forEach(q=>{const a=k(q);m[a]=m[a]||[0,0];m[a][1]++;i
 const bars=a=>a.map(([l,[c,n]])=>`<div class="bar-row"><div class="bar-label"><span>${esc(l)}</span><span>${pc(c,n)}% (${c}/${n})</span></div><div class="bar-track"><div class="bar-fill ${pc(c,n)<40?'bad':pc(c,n)<70?'warn':''}" style="width:${pc(c,n)}%"></div></div></div>`).join('');
 function fin(){const un=Q.filter(q=>q.ans===null).length;if(un&&!confirm(un+' unanswered. Submit anyway?'))return;Q[i].t+=(Date.now()-ts)/1000;done=true;
 try{const P=JSON.parse(localStorage.getItem('b101')||'{}');P.s=P.s||{};P.runs=P.runs||[];Q.forEach(q=>{const x=P.s[q.sid]=P.s[q.sid]||{n:0,c:0};if(q.ans!==null){x.n++;if(q.ans===q.answer)x.c++}});P.runs.push({d:Date.now(),c:Q.filter(q=>q.ans===q.answer).length,n:Q.length});localStorage.setItem('b101',JSON.stringify(P))}catch(e){}
+if(window.hubRecord)try{hubRecord({secs:Q.reduce((a,q)=>a+q.t,0),rows:Q.map(q=>[q.sub,q.level,q.ans===null?-1:(q.ans===q.answer?1:0)])})}catch(e){}
 res('all',false)}
 function res(f,fl){const n=Q.length,c=Q.filter(q=>q.ans===q.answer).length,sk=Q.filter(q=>q.ans===null).length,T=Q.reduce((a,q)=>a+q.t,0),st=q=>q.ans===null?'skipped':q.ans===q.answer?'correct':'wrong';
 const list=Q.map((q,k)=>[q,k]).filter(([q])=>(f=='all'||st(q)==f)&&(!fl||q.fl));

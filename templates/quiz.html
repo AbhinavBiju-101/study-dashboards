@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block title %}Mixed quiz · Study Dashboards{% endblock %}
+{% block content %}
+<div class="wrap" id="app" aria-live="polite">
+  <div class="page-head"><p class="eyebrow">Mixed quiz</p><h1>Loading questions…</h1></div>
+</div>
+{% endblock %}
+{% block scripts %}<script src="{{ url_for('static', filename='quiz-mixed.js') }}"></script>{% endblock %}

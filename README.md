@@ -12,12 +12,27 @@ can't be hosted side by side).
 | BAPHY105 (QM) | 4005 | `/phy/` |
 
 ```
-app.py            hub + mounts each dashboard (DispatcherMiddleware)
-subjects.py       the registry: one entry per subject (card text, colour)
-templates/ static/  landing page
+app.py            hub routes + APIs, mounts each dashboard (DispatcherMiddleware)
+subjects.py       the registry: one entry per subject (card text, colour, notes-page pattern)
+banks.py          normalises the 4 quiz banks for the mixed quiz
+search.py         full-text index over every dashboard's notes
+templates/ static/  hub pages (light theme), favicon, client JS
 dashboards/<slug>-dashboard/  your Flask projects, unchanged (evs-dashboard, be-dashboard, ...)
 render.yaml       Render blueprint
 ```
+
+## Hub pages
+| Page | What it does |
+|---|---|
+| `/` Home | Streak, quizzes, accuracy, quick-start actions, per-subject progress, recent activity |
+| `/subjects` | Subject cards with jump-links to every week/topic/module |
+| `/quiz` Mixed quiz | Pick any subjects/topics/Bloom levels, balanced sampling, retry missed, presets (`?preset=quick`, `?preset=weak`) |
+| `/progress` | Accuracy by subject and Bloom level, weak areas, trend, 16-week heatmap, history, export/import/clear |
+| `/search` | Full-text search across all notes; each hit deep-links to its section |
+
+Progress comes from the mixed quiz **and** from each dashboard's own quiz: a one-line guarded
+`hubRecord(...)` call in each dashboard's quiz-result code reports to the hub (a no-op when a dashboard runs standalone).
+Section labels match between the two, so results merge on the Progress page.
 
 ## Run locally
 With Docker: `docker build -t study-dashboards . && docker run -p 3000:10000 -e SECRET_KEY=dev study-dashboards` then open http://127.0.0.1:3000.
@@ -46,6 +61,7 @@ add one entry to `subjects.py`. It is mounted and gets a card automatically.
 - The old nested copy `evs-dashboard/evs-dashboard/` from the zip was older and was left out.
 
 ## Supabase later (quiz outcomes)
-Today quiz results live only in the browser. When ready, add a `POST /api/results` endpoint in `app.py`
-(Supabase client + `SUPABASE_URL` / `SUPABASE_KEY` as Render env vars) and have each dashboard's results screen
-post `{subject, subtopic, level, correct, time}` to it. A hub-level progress view can then read it back.
+All reads and writes go through `static/hub-store.js` (`read`, `record`, `clear`, import/export), so moving to Supabase
+means changing that one file: `record()` posts the attempt (`subject, mode, secs, rows`) to a `/api/results` endpoint
+backed by Supabase (`SUPABASE_URL` / `SUPABASE_KEY` as Render env vars) and `read()` loads it back. Nothing else changes.
+Until then, history lives in each browser, so use Progress -> Export backup to move it between devices.

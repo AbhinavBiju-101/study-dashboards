@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="wrap">
+  <section class="hero">
+    <p class="eyebrow" id="today">Study Dashboards</p>
+    <h1 id="greeting">Welcome back.</h1>
+    <p class="lede">{{ subjects|length }} subjects, {{ "{:,}".format(total_q) }} practice questions. Pick up where you left off, or search everything you've written.</p>
+    <form class="hero-search" action="/search" role="search">
+      <label class="sr" for="page-q">Search all notes</label>
+      <input id="page-q" name="q" type="search" placeholder="Search all notes, e.g. “Thevenin”, “greenhouse”, “Hadamard”…" autocomplete="off">
+      <button class="btn primary" type="submit">Search</button>
+    </form>
+  </section>
+
+  <section class="section" aria-label="Your numbers">
+    <dl class="grid cols-4" id="tiles" style="margin:0">
+      <div class="card tile"><dt>Day streak</dt><dd id="t-streak">0</dd><small id="t-streak-s">Take a quiz today to start one</small></div>
+      <div class="card tile"><dt>Quizzes taken</dt><dd id="t-quizzes">0</dd><small id="t-quizzes-s">&nbsp;</small></div>
+      <div class="card tile"><dt>Questions answered</dt><dd id="t-answered">0</dd><small id="t-answered-s">&nbsp;</small></div>
+      <div class="card tile"><dt>Overall accuracy</dt><dd id="t-acc">&ndash;</dd><small id="t-acc-s">&nbsp;</small></div>
+    </dl>
+  </section>
+
+  <section class="section">
+    <div class="section-head"><h2>Quick start</h2></div>
+    <div class="grid cols-3">
+      <a class="card action-card" id="a-resume" href="/quiz?preset=quick"><span class="ico">⚡</span><div><strong>Quick 10</strong><span>Ten random questions across every subject.</span></div></a>
+      <a class="card action-card" id="a-weak" href="/quiz?preset=weak"><span class="ico">🎯</span><div><strong>Practise weak areas</strong><span id="a-weak-s">Finds the topics you miss most. Needs a few quizzes first.</span></div></a>
+      <a class="card action-card" href="/quiz"><span class="ico">🧩</span><div><strong>Build a mixed quiz</strong><span>Choose subjects, topics, difficulty and length.</span></div></a>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-head"><h2>Your subjects</h2><a class="more" href="/subjects">All subjects →</a></div>
+    <div class="grid cols-4">
+      {% for s in subjects %}
+      <a class="card mini" href="/{{ s.slug }}/" style="--accent: {{ s.accent }};border-top:4px solid {{ s.accent }}" data-subject="{{ s.slug }}">
+        <div class="top"><span class="tag" style="--accent: {{ s.accent }}">{{ s.code }}</span><span class="small muted" data-last>Not started</span></div>
+        <strong>{{ s.title }}</strong>
+        <div class="bar-track"><div class="bar-fill" data-fill style="width:0;background:{{ s.accent }}"></div></div>
+        <span class="small muted" data-acc>{{ s.questions }} questions available</span>
+      </a>
+      {% endfor %}
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-head"><h2>Recent activity</h2><a class="more" href="/progress">Full progress →</a></div>
+    <div id="recent"></div>
+  </section>
+</div>
+{% endblock %}
+{% block scripts %}
+<script>
+(function () {
+  var H = Hub, S = HubStore.summarize(), $ = function (id) { return document.getElementById(id); };
+  var now = new Date(), hr = now.getHours();
+  $('greeting').textContent = (hr < 5 ? 'Up late?' : hr < 12 ? 'Good morning.' : hr < 18 ? 'Good afternoon.' : 'Good evening.');
+  $('today').textContent = now.toLocaleDateString(undefined, { weekday: 'long', day: 'numeric', month: 'long' });
+
+  $('t-streak').textContent = S.streak;
+  $('t-streak-s').textContent = S.streak ? (S.byDay[HubStore.dayKey(Date.now())] ? 'Studied today. Nice.' : 'Take a quiz today to keep it going') : 'Take a quiz today to start one';
+  $('t-quizzes').textContent = S.attempts;
+  $('t-quizzes-s').textContent = S.attempts ? 'Last ' + H.ago(S.last.ts) : 'None yet';
+  $('t-answered').textContent = S.answered.toLocaleString();
+  $('t-answered-s').textContent = S.answered ? S.correct.toLocaleString() + ' correct' : 'None yet';
+  if (S.answered) {
+    var p = H.pct(S.correct, S.answered);
+    $('t-acc').textContent = p + '%';
+    $('t-acc-s').textContent = p >= 75 ? 'Strong' : p >= 50 ? 'Getting there' : 'Keep practising';
+  }
+
+  document.querySelectorAll('[data-subject]').forEach(function (el) {
+    var ps = S.perSubject[el.dataset.subject];
+    if (!ps) return;
+    var p = H.pct(ps.correct, ps.answered);
+    el.querySelector('[data-fill]').style.width = p + '%';
+    el.querySelector('[data-acc]').textContent = p + '% accuracy · ' + ps.answered + ' answered';
+    el.querySelector('[data-last]').textContent = H.ago(ps.last);
+  });
+
+  var weak = HubStore.weakSections(S);
+  if (weak.length) $('a-weak-s').textContent = weak.length + ' topic' + (weak.length > 1 ? 's' : '') + ' under 70%. Start with ' + weak[0].section.slice(0, 40) + '.';
+
+  var rec = $('recent'), list = HubStore.read().attempts.slice(-5).reverse();
+  if (!list.length) {
+    rec.innerHTML = '<div class="empty">No quizzes yet. Take one in any subject, or start a <a href="/quiz">mixed quiz</a>, and your history shows up here.</div>';
+  } else {
+    rec.innerHTML = '<div class="card"><ul class="activity">' + list.map(function (a) {
+      var p = H.pct(a.correct, a.answered);
+      return '<li><span class="tag" style="--accent:' + H.accent(a.subject) + '">' + H.esc(a.subject === 'mixed' ? 'MIXED' : (H.subjects[a.subject] ? H.subjects[a.subject].code : a.subject)) + '</span>' +
+        '<span><strong>' + a.correct + '/' + a.answered + '</strong> <span class="muted">· ' + p + '%</span></span><span class="when">' + H.ago(a.ts) + '</span></li>';
+    }).join('') + '</ul></div>';
+  }
+})();
+</script>
+{% endblock %}

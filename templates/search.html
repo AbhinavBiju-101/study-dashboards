@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block title %}Search · Study Dashboards{% endblock %}
+{% block content %}
+<div class="wrap">
+  <div class="page-head">
+    <p class="eyebrow">Search</p>
+    <h1>Search every note.</h1>
+    <p class="lede">Full text across all subjects. Each result jumps to the exact section.</p>
+    <form class="search-box" id="form" action="/search" role="search" style="margin-top:20px">
+      <label class="sr" for="page-q">Search query</label>
+      <input id="page-q" name="q" type="search" value="{{ q }}" placeholder="e.g. Thevenin, greenhouse effect, Hadamard gate…" autocomplete="off" autofocus>
+      <button class="btn primary" type="submit">Search</button>
+    </form>
+    <div class="filters" id="filters" role="group" aria-label="Filter by subject"></div>
+  </div>
+  <p class="muted small" id="status" aria-live="polite"></p>
+  <div id="results"></div>
+</div>
+{% endblock %}
+{% block scripts %}
+<script>
+(function () {
+  var H = Hub, input = document.getElementById('page-q'), box = document.getElementById('results'), status = document.getElementById('status'),
+      filters = document.getElementById('filters'), subject = {{ subject|tojson }}, timer, seq = 0;
+  if (!H.subjects[subject]) subject = '';
+
+  function drawFilters() {
+    var items = [['', 'All subjects']].concat(Object.keys(H.subjects).map(function (k) { return [k, H.subjects[k].title]; }));
+    filters.innerHTML = items.map(function (it) {
+      return '<button type="button" class="chip" data-s="' + it[0] + '" aria-pressed="' + (it[0] === subject) + '">' + H.esc(it[1]) + '</button>';
+    }).join('');
+  }
+  filters.addEventListener('click', function (e) {
+    var b = e.target.closest('[data-s]'); if (!b) return;
+    subject = b.dataset.s; drawFilters(); run(true);
+  });
+
+  function url() {
+    var p = new URLSearchParams(); if (input.value.trim()) p.set('q', input.value.trim()); if (subject) p.set('subject', subject);
+    return '/search' + (p.toString() ? '?' + p : '');
+  }
+  function run(push) {
+    var q = input.value.trim();
+    if (push) history.replaceState(null, '', url());
+    if (q.length < 2) { box.innerHTML = '<div class="empty">Type at least two letters to search.</div>'; status.textContent = ''; return; }
+    var my = ++seq; status.textContent = 'Searching…';
+    fetch('/api/search?q=' + encodeURIComponent(q) + (subject ? '&subject=' + subject : ''))
+      .then(function (r) { return r.json(); })
+      .then(function (d) {
+        if (my !== seq) return;
+        status.textContent = d.total ? (d.total > d.results.length ? 'Showing the top ' + d.results.length + ' of ' + d.total + ' matching sections' : d.total + ' matching section' + (d.total > 1 ? 's' : '')) : '';
+        box.innerHTML = d.results.length ? d.results.map(function (r) {
+          return '<a class="result" style="--accent:' + r.accent + '" href="' + H.esc(r.url) + '">' +
+            '<div class="r-top"><span class="tag" style="--accent:' + r.accent + '">' + H.esc(r.code) + '</span><span>' + H.esc(r.page) + '</span></div>' +
+            '<h3>' + r.heading_html + '</h3><p>' + r.snippet + '</p></a>';
+        }).join('') : '<div class="empty">Nothing found for “' + H.esc(q) + '”. Try fewer or different words.</div>';
+      })
+      .catch(function () { if (my === seq) { status.textContent = ''; box.innerHTML = '<div class="empty">Search failed. Please try again.</div>'; } });
+  }
+  input.addEventListener('input', function () { clearTimeout(timer); timer = setTimeout(function () { run(true); }, 220); });
+  document.getElementById('form').addEventListener('submit', function (e) { e.preventDefault(); run(true); });
+  drawFilters(); run(false);
+})();
+</script>
+{% endblock %}

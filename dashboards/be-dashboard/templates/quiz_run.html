@@ -401,6 +401,8 @@ function finishQuiz(){
   document.getElementById('r-wrong').textContent = wrong;
   document.getElementById('r-skipped').textContent = skipped;
   const totalTime = timeSpent.reduce((s,t) => s + (t||0), 0);
+  // Study Dashboards hub: save this attempt to the shared progress history (no-op when run standalone).
+  if (window.hubRecord) { try { hubRecord({secs: totalTime, rows: QUESTIONS.map((q, i) => [`T${q.week} · ${q.topic_label}`, q.level, answers[i] === null ? -1 : (answers[i] === q.answer ? 1 : 0)])}); } catch (e) {} }
   document.getElementById('r-time').textContent = fmtTime(totalTime).replace(' ','');
 
   // accuracy by week — the "weak weeks" view

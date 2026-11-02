@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Study Dashboards">
+  <rect width="64" height="64" rx="14" fill="#fbf8ef"/>
+  <rect x="1.5" y="1.5" width="61" height="61" rx="12.5" fill="none" stroke="#e1dac5" stroke-width="3"/>
+  <rect x="12" y="10" width="40" height="8" rx="4" fill="#2f6b4f"/>
+  <rect x="12" y="22" width="30" height="8" rx="4" fill="#3949ab"/>
+  <rect x="12" y="34" width="36" height="8" rx="4" fill="#c0522f"/>
+  <rect x="12" y="46" width="22" height="8" rx="4" fill="#6d28d9"/>
+</svg>

@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#faf8f3">
+<title>{% block title %}Study Dashboards{% endblock %}</title>
+<meta name="description" content="All my study dashboards in one place: notes, quizzes, progress and search.">
+<link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='favicon.svg') }}">
+<link rel="alternate icon" href="/favicon.ico">
+<link rel="apple-touch-icon" href="{{ url_for('static', filename='apple-touch-icon.png') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='hub.css') }}">
+</head>
+<body>
+<a class="sr" href="#main">Skip to content</a>
+<header class="topbar">
+  <div class="wrap">
+    <a class="brand" href="/"><img src="{{ url_for('static', filename='favicon.svg') }}" alt="" width="30" height="30">Study Dashboards</a>
+    <nav class="nav" aria-label="Main">
+      {% for key, href, label in nav %}<a href="{{ href }}"{% if key == active %} aria-current="page"{% endif %}>{{ label }}</a>{% endfor %}
+    </nav>
+    <form class="nav-search" action="/search" role="search">
+      <label class="sr" for="nav-q">Search notes</label>
+      <input id="nav-q" name="q" type="search" placeholder="Search all notes…" autocomplete="off">
+      <kbd aria-hidden="true">/</kbd>
+    </form>
+  </div>
+</header>
+<main id="main">{% block content %}{% endblock %}</main>
+<footer class="wrap foot">
+  <span>Progress is saved in this browser only. <a href="/progress#data">Back it up or move it</a>.</span>
+  <span>Each subject is its own dashboard under <code>/&lt;subject&gt;</code>.</span>
+</footer>
+<script>window.HUB={subjects:{{ subjects_json|safe }}};</script>
+<script src="{{ url_for('static', filename='hub-store.js') }}"></script>
+<script src="{{ url_for('static', filename='hub.js') }}"></script>
+{% block scripts %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block title %}Subjects · Study Dashboards{% endblock %}
+{% block content %}
+<div class="wrap">
+  <div class="page-head">
+    <p class="eyebrow">Subjects</p>
+    <h1>Pick a subject.</h1>
+    <p class="lede">Each subject is its own dashboard with illustrated notes, a syllabus tree and a quiz. Jump straight to a chapter below.</p>
+    <div class="filters" style="margin-top:18px">
+      <label class="sr" for="f">Filter subjects</label>
+      <input id="f" type="search" placeholder="Filter subjects…" autocomplete="off" style="padding:10px 14px;border:1px solid var(--line-2);border-radius:9px;font:inherit;min-width:260px;background:#fff;color:var(--ink)">
+    </div>
+  </div>
+
+  <ul class="grid cols-2" id="grid" style="list-style:none;padding:0;margin:0">
+  {% for s in subjects %}
+    <li class="card subject" style="--accent: {{ s.accent }}" data-text="{{ (s.code ~ ' ' ~ s.title ~ ' ' ~ s.blurb)|lower }}" data-subject="{{ s.slug }}">
+      <a class="stretch" href="/{{ s.slug }}/" aria-label="Open {{ s.title }}"></a>
+      <span class="code">{{ s.code }}</span>
+      <h3>{{ s.title }}</h3>
+      <p>{{ s.blurb }}</p>
+      <div class="stats">
+        <div><b>{{ s.units }}</b><span>{{ s.unit }}</span></div>
+        <div><b>{{ s.questions }}</b><span>Questions</span></div>
+        <div><b data-acc>&ndash;</b><span>Your accuracy</span></div>
+      </div>
+      {% if s.pages %}
+      <details class="jump"><summary>Jump to a {{ s.unit[:-1] }}</summary>
+        <ul>{% for p in s.pages %}<li><a href="{{ p.url }}">{{ p.title }}</a></li>{% endfor %}</ul>
+      </details>
+      {% endif %}
+      <div class="actions">
+        <a class="btn primary" href="/{{ s.slug }}/">Open notes</a>
+        <a class="btn" href="/{{ s.slug }}/quiz">Take this quiz</a>
+        <a class="btn" href="/search?subject={{ s.slug }}">Search</a>
+      </div>
+    </li>
+  {% endfor %}
+  </ul>
+  <p class="empty" id="empty" hidden style="margin-top:16px">No subject matches that filter.</p>
+</div>
+{% endblock %}
+{% block scripts %}
+<script>
+(function () {
+  var q = document.getElementById('f'), cards = [].slice.call(document.querySelectorAll('.card.subject')), empty = document.getElementById('empty');
+  q.addEventListener('input', function () {
+    var t = q.value.trim().toLowerCase(), shown = 0;
+    cards.forEach(function (c) { var ok = !t || c.dataset.text.indexOf(t) > -1; c.hidden = !ok; if (ok) shown++; });
+    empty.hidden = shown > 0;
+  });
+  var S = HubStore.summarize();
+  cards.forEach(function (c) {
+    var ps = S.perSubject[c.dataset.subject];
+    if (ps) c.querySelector('[data-acc]').textContent = Hub.pct(ps.correct, ps.answered) + '%';
+  });
+})();
+</script>
+{% endblock %}
