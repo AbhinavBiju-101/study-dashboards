@@ -17,7 +17,7 @@ python app.py                                        # open http://127.0.0.1:500
 ## Data (built by scripts, not retyped)
 - `python scripts/build_syllabus.py` builds `data/syllabus.json` from `scripts/syllabus_spec.py`.
 - Quiz bank pipeline: `python scripts/parse_md_bank.py` parses `data/source/Physics_MCQ_Bank_Modules_2-4.md` (183 questions) into
-  `data/source/mcq_bank.json`, then `python scripts/build_quiz_bank.py` merges every `*.json`/`*.csv` in `data/source/`, drops exact
+  `data/source/mcq_bank.json`, The new-topics bank (337 questions, Modules 1, 3 s5, 4 s3.3-5, 5) is `data/source/Physics_MCQ_Bank_New_Topics_Set1.md`, with its JSON in `data/source/mcq_bank_new_topics.json`. `python scripts/build_quiz_bank.py` merges every `*.json`/`*.csv` in `data/source/`, drops exact
   duplicates and writes `data/quiz_bank.json`. Bloom's level, option text and the keyed answer are copied exactly as in the bank.
 - The bank's 31 sections are mapped to the notes' subtopics in `SECTION_MAP` (top of `parse_md_bank.py`; a few sections are split
   per question). Edit the map and re-run the two scripts if you want a different assignment.
