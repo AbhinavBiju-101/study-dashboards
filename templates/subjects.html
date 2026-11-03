@@ -21,7 +21,7 @@
       <p>{{ s.blurb }}</p>
       <div class="stats">
         <div><b>{{ s.units }}</b><span>{{ s.unit }}</span></div>
-        <div><b>{{ s.questions }}</b><span>Questions</span></div>
+        <div><b>{{ s.questions }}</b><span>{{ s.qlabel|capitalize }}</span></div>
         <div><b data-acc>&ndash;</b><span>Your accuracy</span></div>
       </div>
       {% if s.pages %}

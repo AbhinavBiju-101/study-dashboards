@@ -1,0 +1,215 @@
+### TOPIC F | 1 | Functions of Two Variables and Partial Derivatives
+#### F1 | Remember | 4 | 19
+Q:
+Define \(\partial f/\partial x\) for a function \(f(x,y)\) as a limit, and state the condition under which the mixed partials satisfy \(f_{xy}=f_{yx}\).
+A:
+\[ \frac{\partial f}{\partial x}=\lim_{h\to 0}\frac{f(x+h,y)-f(x,y)}{h}, \]
+with \(y\) held fixed. The mixed partials are equal whenever both are continuous near the point (Clairaut–Schwarz theorem).
+#### F2 | Apply | 4 | 19
+Q:
+Find \(f_x\), \(f_y\) and \(f_{xy}\) for \(f(x,y)=x^3y^2+\sin(xy)\), and check that \(f_{yx}\) gives the same result.
+A:
+\(f_x=3x^2y^2+y\cos(xy)\), \(f_y=2x^3y+x\cos(xy)\), and \(f_{xy}=f_{yx}=6x^2y+\cos(xy)-xy\sin(xy)\).
+#### F3 | Apply | 4 | 19
+Q:
+Show that \(u=\ln(x^2+y^2)\) satisfies Laplace's equation \(u_{xx}+u_{yy}=0\) for \((x,y)\neq(0,0)\).
+A:
+\(u_x=\dfrac{2x}{x^2+y^2}\), so \(u_{xx}=\dfrac{2(y^2-x^2)}{(x^2+y^2)^2}\). By symmetry \(u_{yy}=\dfrac{2(x^2-y^2)}{(x^2+y^2)^2}\), and the two cancel: \(u_{xx}+u_{yy}=0\).
+#### F4 | Apply | 4 | 19
+Q:
+If \(z=x^2y\) with \(x=t^2\) and \(y=t^3\), find \(dz/dt\) using the chain rule \(\dfrac{dz}{dt}=z_x\dfrac{dx}{dt}+z_y\dfrac{dy}{dt}\), and confirm by substituting first.
+A:
+\(z_x=2xy=2t^5\), \(dx/dt=2t\), \(z_y=x^2=t^4\), \(dy/dt=3t^2\), so \(dz/dt=4t^6+3t^6=7t^6\). Check: \(z=t^7\), so \(dz/dt=7t^6\). ✓
+#### F5 | Analyze | 4 | 19
+Q:
+Let \(f(x,y)=\dfrac{xy}{x^2+y^2}\) for \((x,y)\neq(0,0)\) and \(f(0,0)=0\). Show that \(f_x(0,0)\) and \(f_y(0,0)\) both exist, yet \(f\) is not continuous at the origin.
+A:
+On both axes \(f=0\), so \(f_x(0,0)=\lim_{h\to0}\frac{f(h,0)-0}{h}=0\) and likewise \(f_y(0,0)=0\). But along the line \(y=x\), \(f=\tfrac12\) for every \(x\neq0\), so the limit at the origin along that line is \(\tfrac12\neq f(0,0)\): \(f\) is discontinuous. Partial derivatives only probe the two axis directions, so their existence does not guarantee continuity.
+#### F6 | Evaluate | 4 | 19
+Q:
+A student asserts that \(\dfrac{\partial^2 f}{\partial x\,\partial y}=\dfrac{\partial^2 f}{\partial y\,\partial x}\) for every function. Evaluate this claim.
+A:
+False in general: equality needs the mixed partials to be continuous. Counterexample: \(f=\dfrac{xy(x^2-y^2)}{x^2+y^2}\), \(f(0,0)=0\). Here \(f_x(0,y)=-y\) and \(f_y(x,0)=x\), so (writing \(f_{xy}=\partial_y(f_x)\)) \(f_{xy}(0,0)=-1\) while \(f_{yx}(0,0)=+1\).
+#### F7 | Create | 4 | 19
+Q:
+Construct a non-constant function \(u(x,y)\) satisfying Laplace's equation \(u_{xx}+u_{yy}=0\), and verify it.
+A:
+E.g. \(u=x^2-y^2\): \(u_{xx}=2\), \(u_{yy}=-2\), sum \(0\). Other valid choices: \(xy\), \(e^x\cos y\), \(\ln(x^2+y^2)\).
+### TOPIC TD | 1 | Total Differential
+#### TD1 | Remember | 4 | 19
+Q:
+State the total differential \(dz\) of \(z=f(x,y)\) and say what it approximates.
+A:
+\(dz=f_x\,dx+f_y\,dy\). It approximates the actual change \(\Delta z=f(x+dx,\,y+dy)-f(x,y)\) for small \(dx,dy\) — it is the change measured along the tangent plane.
+#### TD2 | Apply | 4 | 19
+Q:
+For \(z=x^2y-3xy^2\) find \(dz\). Evaluate it at \((1,2)\) with \(dx=0.02,\ dy=-0.01\) and compare with the exact change \(\Delta z\).
+A:
+\(dz=(2xy-3y^2)\,dx+(x^2-6xy)\,dy\). At \((1,2)\): \(z_x=-8\), \(z_y=-11\), so \(dz=-0.16+0.11=-0.05\). Exact: \(\Delta z=-10.0475-(-10)=-0.0475\).
+#### TD3 | Apply | 4 | 19
+Q:
+Use differentials to approximate \(\sqrt{(4.02)^2+(2.97)^2}\).
+A:
+Take \(f=\sqrt{x^2+y^2}\) at \((4,3)\): \(f=5\), \(f_x=4/5\), \(f_y=3/5\), with \(dx=0.02\), \(dy=-0.03\). Then \(df=0.016-0.018=-0.002\), so the value is \(\approx 4.998\) (exact: \(4.99813\)).
+#### TD4 | Apply | 4 | 19
+Q:
+A cylinder's radius and height are measured as \(r=5\) cm and \(h=12\) cm with possible errors of \(0.1\) cm and \(0.2\) cm. Estimate the maximum error in its volume \(V=\pi r^2h\), and the relative error.
+A:
+\(dV=2\pi rh\,dr+\pi r^2\,dh=2\pi(5)(12)(0.1)+\pi(25)(0.2)=12\pi+5\pi=17\pi\approx53.4\ \text{cm}^3\). Relative error \(=\dfrac{17\pi}{300\pi}=\dfrac{17}{300}\approx5.7\%\).
+#### TD5 | Analyze | 4 | 19
+Q:
+For \(z=x^2+y^2\) at \((1,1)\) with \(dx=dy=h\), compute \(\Delta z\) and \(dz\). Show that \(\Delta z-dz\) is of second order in \(h\), and explain why this matters.
+A:
+\(\Delta z=(1+h)^2+(1+h)^2-2=4h+2h^2\) and \(dz=2h+2h=4h\), so \(\Delta z-dz=2h^2\). The discrepancy shrinks like \(h^2\), much faster than \(h\) itself, which is why \(dz\) is a good linear approximation for small steps.
+#### TD6 | Evaluate | 4 | 20
+Q:
+A student estimates the change in \(f=x^2+y^2\) from \((1,1)\) to \((3,3)\) using \(dz\) and reports \(dz=8\), calling it "exact since the differential is the exact change". Evaluate.
+A:
+Incorrect. \(dz=2(1)(2)+2(1)(2)=8\), but the true change is \(\Delta z=18-2=16\) — a 50% error. The differential is only a linear approximation, reliable for small \(dx,dy\); a step of 2 is far too large.
+#### TD7 | Create | 4 | 20
+Q:
+Construct a function \(z=f(x,y)\) for which \(dz=\Delta z\) exactly for all \(dx,dy\), and explain why it works.
+A:
+Any affine function, e.g. \(z=3x-2y+5\): \(\Delta z=3\,dx-2\,dy=dz\). It works because \(f_x,f_y\) are constants and there are no second-order terms to create a discrepancy.
+### TOPIC J | 1 | Jacobian and Its Properties
+#### J1 | Remember | 4 | 20
+Q:
+Define the Jacobian \(\dfrac{\partial(u,v)}{\partial(x,y)}\), and state its reciprocal property and chain property.
+A:
+\[ \frac{\partial(u,v)}{\partial(x,y)}=\begin{vmatrix}u_x&u_y\\v_x&v_y\end{vmatrix}=u_xv_y-u_yv_x. \]
+Reciprocal: \(\dfrac{\partial(u,v)}{\partial(x,y)}\cdot\dfrac{\partial(x,y)}{\partial(u,v)}=1\). Chain: \(\dfrac{\partial(u,v)}{\partial(r,s)}=\dfrac{\partial(u,v)}{\partial(x,y)}\cdot\dfrac{\partial(x,y)}{\partial(r,s)}\).
+#### J2 | Apply | 5 | 20
+Q:
+Find \(\dfrac{\partial(x,y)}{\partial(r,\theta)}\) for \(x=r\cos\theta,\ y=r\sin\theta\).
+A:
+\[ \begin{vmatrix}\cos\theta&-r\sin\theta\\ \sin\theta&r\cos\theta\end{vmatrix}=r\cos^2\theta+r\sin^2\theta=r. \]
+#### J3 | Apply | 5 | 20
+Q:
+If \(u=x^2-y^2\) and \(v=2xy\), find \(\dfrac{\partial(u,v)}{\partial(x,y)}\) and hence \(\dfrac{\partial(x,y)}{\partial(u,v)}\).
+A:
+\[ \begin{vmatrix}2x&-2y\\2y&2x\end{vmatrix}=4x^2+4y^2, \quad\text{so}\quad \frac{\partial(x,y)}{\partial(u,v)}=\frac{1}{4(x^2+y^2)}. \]
+#### J4 | Apply | 5 | 20
+Q:
+Compute the Jacobian \(\dfrac{\partial(x,y,z)}{\partial(\rho,\varphi,\theta)}\) for spherical coordinates \(x=\rho\sin\varphi\cos\theta,\ y=\rho\sin\varphi\sin\theta,\ z=\rho\cos\varphi\).
+A:
+\(\rho^2\sin\varphi\) — exactly the factor in \(dV=\rho^2\sin\varphi\,d\rho\,d\varphi\,d\theta\) (Module 2).
+#### J5 | Analyze | 5 | 20
+Q:
+Show that \(u=x+y\) and \(v=x^2+2xy+y^2\) are functionally dependent, and find the relation between them.
+A:
+\[ \frac{\partial(u,v)}{\partial(x,y)}=\begin{vmatrix}1&1\\2x+2y&2x+2y\end{vmatrix}=0 \]
+identically, so they are dependent. Indeed \(v=(x+y)^2=u^2\).
+#### J6 | Evaluate | 5 | 20
+Q:
+A student argues: "for \(u=x^3,\ v=y\) the Jacobian is \(3x^2\), which is 0 at \(x=0\), so \(u\) and \(v\) are functionally dependent." Evaluate.
+A:
+Incorrect. Functional dependence needs \(J\equiv0\) on a whole region. Here \(J=0\) only on the line \(x=0\); \(u\) and \(v\) are independent. What fails at \(x=0\) is local invertibility (\(x=u^{1/3}\) is not differentiable at \(0\)).
+#### J7 | Create | 5 | 20
+Q:
+Construct a transformation \(x=x(u,v),\ y=y(u,v)\) with constant Jacobian \(\dfrac{\partial(x,y)}{\partial(u,v)}=6\), and use it to find the area of the image of the unit square \(0\le u,v\le1\).
+A:
+E.g. \(x=2u,\ y=3v\): \(J=\begin{vmatrix}2&0\\0&3\end{vmatrix}=6\). The image is a \(2\times3\) rectangle of area \(|J|\cdot1=6\).
+### TOPIC TE | 1 | Taylor's Expansion for Two Variables
+#### TE1 | Remember | 5 | 20
+Q:
+Write Taylor's expansion of \(f(x,y)\) about \((a,b)\) up to terms of the third degree.
+A:
+With \(h=x-a,\ k=y-b\) and all derivatives evaluated at \((a,b)\):
+\[ f(a+h,b+k)=f+hf_x+kf_y+\frac{1}{2!}\left(h^2f_{xx}+2hk\,f_{xy}+k^2f_{yy}\right)+\frac{1}{3!}\left(h^3f_{xxx}+3h^2k\,f_{xxy}+3hk^2f_{xyy}+k^3f_{yyy}\right)+\cdots \]
+#### TE2 | Apply | 5 | 20
+Q:
+Expand \(f(x,y)=e^x\cos y\) about \((0,0)\) up to second-degree terms.
+A:
+At \((0,0)\): \(f=1\), \(f_x=1\), \(f_y=0\), \(f_{xx}=1\), \(f_{xy}=0\), \(f_{yy}=-1\). So \(f\approx1+x+\tfrac12(x^2-y^2)\).
+#### TE3 | Apply | 5 | 20
+Q:
+Expand \(f(x,y)=x^2y+3y-2\) in powers of \((x-1)\) and \((y+2)\).
+A:
+With \(h=x-1,\ k=y+2\) (the expansion terminates, so it is exact): \(f=-10-4h+4k-2h^2+2hk+h^2k\).
+#### TE4 | Apply | 5 | 20
+Q:
+Use a second-degree Taylor expansion of \(f(x,y)=x^y\) about \((1,1)\) to approximate \((1.1)^{1.02}\).
+A:
+At \((1,1)\): \(f=1\), \(f_x=1\), \(f_y=0\), \(f_{xx}=0\), \(f_{xy}=1\), \(f_{yy}=0\). So \(f\approx1+h+hk\) with \(h=0.1,\ k=0.02\): \(1+0.1+0.002=1.102\) (exact: \(1.10210\)).
+#### TE5 | Analyze | 5 | 20
+Q:
+Find the second-degree Taylor polynomial of \(f(x,y)=\ln(1+x+y)\) about \((0,0)\) in two ways: (i) from partial derivatives, (ii) by substituting \(t=x+y\) into the series for \(\ln(1+t)\). Compare the two routes.
+A:
+(i) \(f(0,0)=0\), \(f_x=f_y=1\), \(f_{xx}=f_{xy}=f_{yy}=-1\), giving \((x+y)-\tfrac12(x^2+2xy+y^2)\). (ii) \(t-\dfrac{t^2}{2}\) with \(t=x+y\) gives the same. Substitution is much faster whenever \(f\) depends on a single combination of \(x\) and \(y\).
+#### TE6 | Evaluate | 5 | 21
+Q:
+A student uses the linear (first-degree) Taylor polynomial of \(f=x^2+y^2\) about \((0,0)\) to estimate \(f(0.1,0.1)\), gets 0, and concludes Taylor's method is useless. Evaluate.
+A:
+At the origin \(f_x=f_y=0\), so the linear polynomial is \(0\) — the true value is \(0.02\). The method is not at fault; the first nonzero terms are of second degree. Including them: \(\tfrac12(2h^2+2k^2)=h^2+k^2=0.02\), which is exact.
+#### TE7 | Create | 5 | 21
+Q:
+Construct a function \(f(x,y)\) whose second-degree Taylor polynomial about \((0,0)\) is \(1+2x-y+x^2+3xy\).
+A:
+The polynomial itself works, as does any function with \(f(0,0)=1\), \(f_x=2\), \(f_y=-1\), \(f_{xx}=2\), \(f_{xy}=3\), \(f_{yy}=0\) at the origin, e.g. \(f=1+2x-y+x^2+3xy+x^3\).
+### TOPIC MM | 1 | Maxima and Minima of Functions of Two Variables
+#### MM1 | Remember | 5 | 21
+Q:
+State the second-derivative test for a critical point of \(f(x,y)\), using \(r=f_{xx},\ s=f_{xy},\ t=f_{yy}\).
+A:
+At a point where \(f_x=f_y=0\): if \(rt-s^2>0\) and \(r<0\), local maximum; if \(rt-s^2>0\) and \(r>0\), local minimum; if \(rt-s^2<0\), saddle point; if \(rt-s^2=0\), the test is inconclusive.
+#### MM2 | Apply | 5 | 21
+Q:
+Find and classify the critical points of \(f(x,y)=x^3+y^3-3xy\).
+A:
+\(f_x=3x^2-3y=0\), \(f_y=3y^2-3x=0\) give \((0,0)\) and \((1,1)\). With \(r=6x,\ s=-3,\ t=6y\): at \((0,0)\), \(rt-s^2=-9<0\), a saddle; at \((1,1)\), \(rt-s^2=27>0\) and \(r=6>0\), a local minimum with \(f=-1\).
+#### MM3 | Apply | 5 | 21
+Q:
+An open-topped rectangular box must hold \(32\ \text{m}^3\). Find the dimensions that minimise the surface area.
+A:
+Let base \(x\times y\), height \(z=32/(xy)\). \(S=xy+2z(x+y)=xy+\dfrac{64}{y}+\dfrac{64}{x}\). Setting \(S_x=y-\dfrac{64}{x^2}=0\) and \(S_y=x-\dfrac{64}{y^2}=0\) gives \(x=y=4,\ z=2\), and \(S_{\min}=48\ \text{m}^2\).
+#### MM4 | Analyze | 5 | 21
+Q:
+For \(f=x^4+y^4-2x^2+4xy-2y^2\), find all critical points and classify them. The test is inconclusive at one of them — decide its nature by another method.
+A:
+Critical points: \((0,0)\), \((\sqrt2,-\sqrt2)\), \((-\sqrt2,\sqrt2)\). At the latter two, \(r=t=20,\ s=4\), so \(rt-s^2=384>0\) with \(r>0\): local minima, \(f=-8\). At \((0,0)\): \(r=t=-4,\ s=4\), so \(rt-s^2=0\) (inconclusive). Along \(y=x\): \(f=2x^4\ge0\); along \(y=-x\): \(f=2x^4-8x^2<0\) for small \(x\neq0\). \(f\) takes both signs near the origin, so \((0,0)\) is a saddle.
+#### MM5 | Evaluate | 6 | 21
+Q:
+A student claims \(f=x^2-y^2\) has a minimum at the origin "because along the \(x\)-axis \(f=x^2\ge0\)". Evaluate.
+A:
+Incorrect. Checking one direction is not enough: along the \(y\)-axis \(f=-y^2\le0\). Formally \(r=2,\ s=0,\ t=-2\) gives \(rt-s^2=-4<0\), so the origin is a saddle point.
+#### MM6 | Create | 6 | 21
+Q:
+Construct a function with exactly one critical point, which is a local minimum at \((2,-1)\).
+A:
+\(f=(x-2)^2+(y+1)^2\): \(f_x=f_y=0\) only at \((2,-1)\), where \(r=t=2,\ s=0\), so \(rt-s^2=4>0\) and \(r>0\).
+### TOPIC LM | 1 | Constrained Maxima and Minima: Lagrange's Multiplier Method
+#### LM1 | Remember | 6 | 21
+Q:
+State Lagrange's condition for extremising \(f(x,y,z)\) subject to the constraint \(g(x,y,z)=0\).
+A:
+Solve \(\nabla f=\lambda\nabla g\) together with \(g=0\) (equivalently, find stationary points of \(f-\lambda g\)). The scalar \(\lambda\) is the Lagrange multiplier; geometrically the gradients of \(f\) and \(g\) are parallel at the extremum.
+#### LM2 | Apply | 6 | 21
+Q:
+Find the point on the plane \(x+2y+3z=14\) closest to the origin, and the minimum distance.
+A:
+Minimise \(x^2+y^2+z^2\): \(2x=\lambda,\ 2y=2\lambda,\ 2z=3\lambda\), so \(x=\lambda/2,\ y=\lambda,\ z=3\lambda/2\). The constraint gives \(7\lambda=14,\ \lambda=2\): point \((1,2,3)\), distance \(\sqrt{14}\).
+#### LM3 | Apply | 6 | 21
+Q:
+Find the maximum and minimum of \(f=x+2y\) on the circle \(x^2+y^2=5\).
+A:
+\((1,2)=\lambda(2x,2y)\) gives \(y=2x\); then \(5x^2=5,\ x=\pm1\). Maximum \(f=5\) at \((1,2)\); minimum \(f=-5\) at \((-1,-2)\).
+#### LM4 | Apply | 6 | 21
+Q:
+Find the dimensions of the rectangular box of greatest volume, with faces parallel to the coordinate planes, inscribed in the sphere \(x^2+y^2+z^2=12\).
+A:
+Maximise \(V=8xyz\) (\(x,y,z>0\) the half-edges). \(yz=2\lambda x,\ xz=2\lambda y,\ xy=2\lambda z\) force \(x^2=y^2=z^2\), so \(x=y=z=2\). The box is a cube of edge \(4\), \(V_{\max}=64\).
+#### LM5 | Analyze | 6 | 21
+Q:
+Explain geometrically why \(\nabla f\) must be parallel to \(\nabla g\) at a constrained extremum. Illustrate with the circle-and-line example \(f=x+2y\) on \(x^2+y^2=5\).
+A:
+The constraint curve \(g=0\) is a path along which we may move. If the level curve of \(f\) crossed the constraint curve (not tangent), we could slide along the constraint to a higher or lower \(f\)-value, so we would not be at an extremum. At an extremum the level curve of \(f\) just touches the constraint curve, so their normals \(\nabla f,\nabla g\) are parallel. In the example, the lines \(x+2y=c\) touch the circle exactly at \((1,2)\) (\(c=5\)) and \((-1,-2)\) (\(c=-5\)).
+#### LM6 | Evaluate | 6 | 22
+Q:
+To extremise \(f=x^2+y^2\) subject to \(xy=1\), a student finds the points \((1,1)\) and \((-1,-1)\) with \(f=2\) and declares it the maximum, since it is the only candidate. Evaluate.
+A:
+Incorrect. Lagrange's method only gives candidates; their nature must be checked. Here \(f\to\infty\) along the hyperbola (e.g. \(x=t,\ y=1/t\) gives \(f=t^2+t^{-2}\to\infty\)), so \(f=2\) is the minimum; there is no maximum.
+#### LM7 | Create | 6 | 22
+Q:
+Construct a Lagrange problem — an objective \(f\) and a linear constraint — whose constrained maximum is at \((2,3)\).
+A:
+E.g. maximise \(f=xy\) subject to \(3x+2y=12\). Then \((y,x)=\lambda(3,2)\) gives \(y=3x/2\), hence \(x=2,\ y=3,\ f_{\max}=6\) (check: on the line \(f=x(12-3x)/2\), maximised at \(x=2\)).

@@ -1,0 +1,355 @@
+{
+ "course": "BAMAT101",
+ "title": "Multivariable Calculus and Differential Equations",
+ "reference": "Thomas' Calculus, 13th ed.",
+ "modules": [
+  {
+   "num": 1,
+   "key": "m1",
+   "title": "Functions of Several Variables",
+   "desc": "Partial derivatives, total differential, Jacobian, Taylor expansion, maxima/minima, Lagrange multipliers.",
+   "accent": "#b7791f",
+   "accent_dk": "#8a5a14",
+   "pages": [
+    3,
+    12
+   ],
+   "files": [
+    "m1"
+   ],
+   "topics": [
+    {
+     "id": "s15",
+     "label": "Functions of Two Variables and Partial Derivatives",
+     "page": 3,
+     "summary": "",
+     "subtopics": []
+    },
+    {
+     "id": "s16",
+     "label": "The Total Differential",
+     "page": 4,
+     "summary": "",
+     "subtopics": []
+    },
+    {
+     "id": "s17",
+     "label": "The Jacobian",
+     "page": 6,
+     "summary": "",
+     "subtopics": []
+    },
+    {
+     "id": "s18",
+     "label": "Taylor's Expansion for Two Variables",
+     "page": 7,
+     "summary": "",
+     "subtopics": []
+    },
+    {
+     "id": "s19",
+     "label": "Maxima and Minima",
+     "page": 9,
+     "summary": "",
+     "subtopics": []
+    },
+    {
+     "id": "s20",
+     "label": "Constrained Extrema: Lagrange's Method",
+     "page": 11,
+     "summary": "",
+     "subtopics": []
+    }
+   ]
+  },
+  {
+   "num": 2,
+   "key": "m2",
+   "title": "Multiple Integrals",
+   "desc": "Double integrals, change of order, polar coordinates; triple integrals in cylindrical and spherical coordinates.",
+   "accent": "#2b5f7a",
+   "accent_dk": "#1d4459",
+   "pages": [
+    13,
+    16
+   ],
+   "files": [
+    "m2"
+   ],
+   "topics": [
+    {
+     "id": "s13",
+     "label": "Double Integrals, Polar, Triple (Cylindrical and Spherical)",
+     "page": 13,
+     "summary": "",
+     "subtopics": []
+    }
+   ]
+  },
+  {
+   "num": 3,
+   "key": "m3",
+   "title": "Vector Differentiation and Integration",
+   "desc": "Gradient, directional derivative, divergence, curl, potentials, line and surface integrals; Green, Stokes and Gauss theorems.",
+   "accent": "#6d28d9",
+   "accent_dk": "#4c1d95",
+   "pages": [
+    17,
+    31
+   ],
+   "files": [
+    "m3a",
+    "m3b"
+   ],
+   "topics": [
+    {
+     "id": "s0",
+     "label": "Foundations: Vectors, Dot and Cross Products",
+     "page": 17,
+     "summary": "",
+     "subtopics": []
+    },
+    {
+     "id": "s1",
+     "label": "Scalar Fields, Vector Fields, the Del Operator",
+     "page": 18,
+     "summary": "",
+     "subtopics": []
+    },
+    {
+     "id": "s2",
+     "label": "Gradient",
+     "page": 18,
+     "summary": "",
+     "subtopics": []
+    },
+    {
+     "id": "s3",
+     "label": "Directional Derivative",
+     "page": 21,
+     "summary": "",
+     "subtopics": []
+    },
+    {
+     "id": "s4",
+     "label": "Divergence",
+     "page": 22,
+     "summary": "",
+     "subtopics": []
+    },
+    {
+     "id": "s5",
+     "label": "Curl",
+     "page": 23,
+     "summary": "",
+     "subtopics": []
+    },
+    {
+     "id": "s6",
+     "label": "Scalar and Vector Potential",
+     "page": 25,
+     "summary": "",
+     "subtopics": []
+    },
+    {
+     "id": "s7",
+     "label": "Line Integrals",
+     "page": 26,
+     "summary": "",
+     "subtopics": []
+    },
+    {
+     "id": "s8",
+     "label": "Green's Theorem",
+     "page": 27,
+     "summary": "",
+     "subtopics": []
+    },
+    {
+     "id": "s9",
+     "label": "Surfaces and Surface Integrals",
+     "page": 28,
+     "summary": "",
+     "subtopics": []
+    },
+    {
+     "id": "s10",
+     "label": "Stokes' Theorem",
+     "page": 29,
+     "summary": "",
+     "subtopics": []
+    },
+    {
+     "id": "s11-12",
+     "label": "Volume Integrals; Gauss Divergence Theorem",
+     "page": 30,
+     "summary": "",
+     "subtopics": []
+    },
+    {
+     "id": "m3-summary",
+     "label": "Module 3 Master Summary",
+     "page": 31,
+     "summary": "",
+     "subtopics": []
+    }
+   ]
+  },
+  {
+   "num": 4,
+   "key": "m4",
+   "title": "Ordinary Differential Equations",
+   "desc": "Constant coefficients, undetermined coefficients, variation of parameters, Cauchy–Euler, Cauchy–Legendre, applications.",
+   "accent": "#2f6b4f",
+   "accent_dk": "#204a37",
+   "pages": [
+    32,
+    41
+   ],
+   "files": [
+    "m4"
+   ],
+   "topics": [
+    {
+     "id": "s14",
+     "label": "Constant-Coefficient ODEs: CF, Undetermined Coefficients, Resonance",
+     "page": 32,
+     "summary": "",
+     "subtopics": []
+    },
+    {
+     "id": "s21",
+     "label": "Variation of Parameters",
+     "page": 36,
+     "summary": "",
+     "subtopics": []
+    },
+    {
+     "id": "s22",
+     "label": "Cauchy–Euler Equation",
+     "page": 37,
+     "summary": "",
+     "subtopics": []
+    },
+    {
+     "id": "s23",
+     "label": "Cauchy–Legendre Equation",
+     "page": 39,
+     "summary": "",
+     "subtopics": []
+    },
+    {
+     "id": "s24",
+     "label": "Applications: Springs, Circuits, Resonance",
+     "page": 40,
+     "summary": "",
+     "subtopics": []
+    }
+   ]
+  },
+  {
+   "num": 5,
+   "key": "m5",
+   "title": "Partial Differential Equations",
+   "desc": "Formation, F(p,q), F(z,p,q), separable, Clairaut, Lagrange, separation of variables.",
+   "accent": "#a4432c",
+   "accent_dk": "#7d3220",
+   "pages": [
+    42,
+    51
+   ],
+   "files": [
+    "m5"
+   ],
+   "topics": [
+    {
+     "id": "s25",
+     "label": "Formation of PDEs",
+     "page": 42,
+     "summary": "",
+     "subtopics": []
+    },
+    {
+     "id": "s26",
+     "label": "F(p, q) = 0",
+     "page": 43,
+     "summary": "",
+     "subtopics": []
+    },
+    {
+     "id": "s27",
+     "label": "F(z, p, q) = 0",
+     "page": 44,
+     "summary": "",
+     "subtopics": []
+    },
+    {
+     "id": "s28",
+     "label": "F(x, p) = G(y, q)",
+     "page": 46,
+     "summary": "",
+     "subtopics": []
+    },
+    {
+     "id": "s29",
+     "label": "Clairaut's Form, Singular Solution",
+     "page": 47,
+     "summary": "",
+     "subtopics": []
+    },
+    {
+     "id": "s30",
+     "label": "Lagrange's Linear Equation",
+     "page": 49,
+     "summary": "",
+     "subtopics": []
+    },
+    {
+     "id": "s31",
+     "label": "Separation of Variables",
+     "page": 51,
+     "summary": "",
+     "subtopics": []
+    }
+   ]
+  },
+  {
+   "num": 6,
+   "key": "summary",
+   "title": "Summary and Exam Checklists",
+   "desc": "Quick-reference tables and exam checklists for all five modules.",
+   "accent": "#475569",
+   "accent_dk": "#334155",
+   "pages": [
+    52,
+    54
+   ],
+   "files": [
+    "summary"
+   ],
+   "topics": [
+    {
+     "id": "chk1",
+     "label": "Checklist: Modules 2, 3, 4 (first half)",
+     "page": 52,
+     "summary": "",
+     "subtopics": []
+    },
+    {
+     "id": "qref",
+     "label": "Quick-Reference Summary: Modules 1, 4, 5",
+     "page": 53,
+     "summary": "",
+     "subtopics": []
+    },
+    {
+     "id": "chk2",
+     "label": "Checklist: Modules 1, 4 (second half), 5",
+     "page": 54,
+     "summary": "",
+     "subtopics": []
+    }
+   ]
+  }
+ ]
+}

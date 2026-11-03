@@ -1,0 +1,171 @@
+<section class="sec" id="s0">
+  <h2>Part 0 — Foundations You Need Before Module 3</h2>
+  <div class="pagemark"><a href="@pdf/notes/17">&#8599; original PDF, page 17</a></div>
+  <h3 id="s0-1">Vectors, and what “bundling numbers together” means</h3>
+  <p>A vector like \(\mathbf{A} = a_1\mathbf{i} + a_2\mathbf{j} + a_3\mathbf{k}\) is just three numbers \((a_1, a_2, a_3)\) glued to three fixed, mutually perpendicular directions \(\mathbf{i}, \mathbf{j}, \mathbf{k}\). This point matters more than it looks: <b>a vector is nothing but a triple of scalars, each one paired with a direction.</b> Keep this in your head — it is the exact mechanism that resolves the confusion about the gradient in Section 1.2.</p>
+  <h3 id="s0-2">Dot product and cross product</h3>
+  <div class="box def"><div class="box-title">Definition</div>
+    <p>\(\mathbf{A}\cdot\mathbf{B} = a_1b_1 + a_2b_2 + a_3b_3\) (a <em>scalar</em>). Geometrically \(\mathbf{A}\cdot\mathbf{B} = |\mathbf{A}||\mathbf{B}|\cos\theta\).</p>
+    <p>\(\mathbf{A}\times\mathbf{B}\) (a <em>vector</em>, perpendicular to both \(\mathbf{A}\) and \(\mathbf{B}\)), computed as the determinant</p>
+    \[ \mathbf{A}\times\mathbf{B} = \begin{vmatrix} \mathbf{i} &amp; \mathbf{j} &amp; \mathbf{k} \\ a_1 &amp; a_2 &amp; a_3 \\ b_1 &amp; b_2 &amp; b_3 \end{vmatrix} \]
+  </div>
+  <figure class="fig"><img src="@static/figures/p17_1.png" alt="Vectors A and B from the origin O with A cross B perpendicular to their plane" loading="lazy">
+    <figcaption><b>Figure 1:</b> \(\mathbf{A}\times\mathbf{B}\) is perpendicular to the plane containing \(\mathbf{A}\) and \(\mathbf{B}\) — direction fixed by the right-hand rule (curl fingers from \(\mathbf{A}\) to \(\mathbf{B}\), thumb gives the result).</figcaption></figure>
+  <p><b>Example.</b> \(\mathbf{A} = (1,2,0)\), \(\mathbf{B} = (0,1,3)\).</p>
+  \[ \mathbf{A}\times\mathbf{B} = \mathbf{i}(2\cdot 3 - 0\cdot 1) - \mathbf{j}(1\cdot 3 - 0\cdot 0) + \mathbf{k}(1\cdot 1 - 2\cdot 0) = 6\mathbf{i} - 3\mathbf{j} + \mathbf{k}. \]
+  <p>The \(\mathbf{j}\)-term always picks up a minus sign in this expansion — the single most common sign mistake in curl calculations later.</p>
+</section>
+<section class="sec" id="s1">
+  <h2>1 Scalar Fields, Vector Fields, and the Del Operator</h2>
+  <div class="pagemark"><a href="@pdf/notes/18">&#8599; original PDF, page 18</a></div>
+  <div class="box def"><div class="box-title">Definition</div>
+    <p>A <b>scalar field</b> \(f(x,y,z)\) assigns one <em>number</em> to every point in space (e.g. temperature). A <b>vector field</b> \(\mathbf{F}(x,y,z) = F_1\mathbf{i}+F_2\mathbf{j}+F_3\mathbf{k}\) assigns one <em>vector</em> to every point (e.g. wind velocity).</p>
+  </div>
+  \[ \nabla = \frac{\partial}{\partial x}\mathbf{i} + \frac{\partial}{\partial y}\mathbf{j} + \frac{\partial}{\partial z}\mathbf{k} \]
+  <p>\(\nabla\) by itself is not a number and not a vector — it is an <em>instruction</em>: “take a partial derivative in each of the three directions.” What you get out depends entirely on what you apply it to:</p>
+  <table class="tbl"><thead><tr><th>Notation</th><th>Operation</th><th>Input</th><th>Output</th></tr></thead><tbody>
+    <tr><td>\(\nabla f\)</td><td>gradient</td><td>scalar field</td><td><b>vector</b> field</td></tr>
+    <tr><td>\(\nabla\cdot\mathbf{F}\)</td><td>divergence</td><td>vector field</td><td>scalar field</td></tr>
+    <tr><td>\(\nabla\times\mathbf{F}\)</td><td>curl</td><td>vector field</td><td>vector field</td></tr>
+  </tbody></table>
+</section>
+<section class="sec" id="s2">
+  <h2>2 Gradient — \(\nabla f\)</h2>
+  <div class="box mis"><div class="box-title">Fixing a Common Misconception</div>
+    <p><b>“\(f\) is a scalar, so how can \(\nabla f\) possibly be a vector?”</b></p>
+    <p>Here is the resolution, and it is exactly the point made in Part 0: \(\nabla f\) is <em>not</em> \(f\) turned into a vector by some mysterious process. \(\nabla f\) is <em>three separate scalar numbers — \(\partial f/\partial x\), \(\partial f/\partial y\), \(\partial f/\partial z\) — each one individually just an ordinary number (or scalar function), bundled together as coefficients of the three perpendicular unit vectors</em> \(\mathbf{i},\mathbf{j},\mathbf{k}\):</p>
+    \[ \nabla f = \underbrace{\frac{\partial f}{\partial x}}_{\text{scalar}}\,\mathbf{i} + \underbrace{\frac{\partial f}{\partial y}}_{\text{scalar}}\,\mathbf{j} + \underbrace{\frac{\partial f}{\partial z}}_{\text{scalar}}\,\mathbf{k}. \]
+    <p>Compare this to how \((3,4,0)\) is a perfectly ordinary vector even though 3, 4, and 0 are each just plain numbers. Nothing about a number is “upgraded” into a vector; three numbers are simply reported as components <em>along three fixed directions at once</em>, and reporting three numbers-along-three-directions <em>is the definition of a vector.</em> \(f\) itself stays a scalar field the whole time — it is \(\nabla f\), a genuinely different object built <em>from</em> \(f\)’s derivatives, that is a vector.</p>
+  </div>
+  <div class="box def"><div class="box-title">Definition</div>
+    \[ \nabla f = \frac{\partial f}{\partial x}\mathbf{i} + \frac{\partial f}{\partial y}\mathbf{j} + \frac{\partial f}{\partial z}\mathbf{k} \]
+  </div>
+  <div class="box ex"><div class="box-title">Worked Example</div>
+    <p>\(f(x,y,z) = x^2y + yz^3\). Then \(\partial f/\partial x = 2xy,\ \ \partial f/\partial y = x^2+z^3,\ \ \partial f/\partial z = 3yz^2.\)</p>
+    \[ \nabla f = 2xy\,\mathbf{i} + (x^2+z^3)\,\mathbf{j} + 3yz^2\,\mathbf{k}. \]
+    <p>At \((1,2,1)\): \(\nabla f = 4\mathbf{i}+2\mathbf{j}+6\mathbf{k}\) — three plain numbers, reported along three directions.</p>
+  </div>
+  <div class="pagemark"><a href="@pdf/notes/19">&#8599; original PDF, page 19</a></div>
+  <h3 id="s2-1">Now the deeper question: WHY is \(\nabla f\) perpendicular to the level surface?</h3>
+  <p>This is the fact that makes the gradient useful for tangent planes and directional derivatives, so let’s build it from scratch rather than accept it.</p>
+  <p>A <b>level surface</b> of \(f\) is the set of points where \(f\) equals a fixed constant \(c\): \(f(x,y,z)=c\). Picture peeling off one single “layer” of the scalar field, like one contour on a topographic map.</p>
+  <figure class="fig"><img src="@static/figures/p19_1.png" alt="Concentric circular level curves with gradient arrows pointing outward, perpendicular to each circle" loading="lazy">
+    <figcaption><b>Figure 2:</b> Level curves of \(f(x,y)=x^2+y^2\) (circles) with \(\nabla f\) drawn at several points. Every arrow is perpendicular to the circle it sits on, and points toward increasing \(f\) (outward, since \(f\) grows as you move away from the origin).</figcaption></figure>
+  <div class="box why"><div class="box-title">WHY this is true</div>
+    <p><b>Claim:</b> at any point \(P\) on the level surface \(f(x,y,z)=c\), the vector \(\nabla f\) is perpendicular to <em>every</em> curve that lies on that surface and passes through \(P\).</p>
+    <p><b>Proof.</b> Let \(\mathbf{r}(t) = \big(x(t),y(t),z(t)\big)\) be <em>any</em> curve that lies entirely on the surface \(f=c\) (i.e. \(f(x(t),y(t),z(t)) = c\) for all \(t\)), and suppose it passes through \(P\) at \(t=t_0\).</p>
+    <p>Since the left side is constant in \(t\), its derivative is zero:</p>
+    \[ \frac{d}{dt}\Big[f\big(x(t),y(t),z(t)\big)\Big] = 0. \]
+    <p>But by the multivariable chain rule, the left side expands to</p>
+    \[ \frac{\partial f}{\partial x}\frac{dx}{dt} + \frac{\partial f}{\partial y}\frac{dy}{dt} + \frac{\partial f}{\partial z}\frac{dz}{dt} \;=\; \nabla f\cdot\mathbf{r}'(t). \]
+    <p>So \(\nabla f\cdot\mathbf{r}'(t) = 0\) at every point of the curve, in particular at \(P\). Since \(\mathbf{r}'(t_0)\) is a <em>tangent vector to the surface at \(P\)</em> (it points along a curve lying in the surface), and this argument works for <em>any</em> such curve through \(P\), the vector \(\nabla f\) is perpendicular to every possible tangent direction at \(P\) — which is exactly what it means to be normal (perpendicular) to the surface at \(P\). &#9632;</p>
+    <p>This is the whole engine behind tangent planes, directional derivatives, and the “steepest ascent” fact below — it all comes from this one chain-rule argument.</p>
+  </div>
+  <div class="pagemark"><a href="@pdf/notes/20">&#8599; original PDF, page 20</a></div>
+  <div class="box ex"><div class="box-title">Worked Example</div>
+    <p><b>Numeric check.</b> \(f(x,y)=x^2+y^2\), level curve \(f=4\) (circle of radius 2). Take the curve on this circle: \(\mathbf{r}(t) = (2\cos t,\,2\sin t)\), which indeed satisfies \(f(\mathbf{r}(t)) = 4\cos^2 t+4\sin^2 t = 4\) for all \(t\).</p>
+    <p>\(\nabla f = 2x\,\mathbf{i}+2y\,\mathbf{j}\). At \(t=0\) (point \((2,0)\)): \(\nabla f = 4\mathbf{i}\).</p>
+    <p>Tangent vector: \(\mathbf{r}'(t) = (-2\sin t,\,2\cos t)\), at \(t=0\): \(\mathbf{r}'(0)=(0,2)\), i.e. \(2\mathbf{j}\).</p>
+    <p>Check: \(\nabla f\cdot\mathbf{r}'(0) = (4)(0)+(0)(2) = 0\). Perpendicular, confirmed directly by computation — not just by the abstract argument.</p>
+  </div>
+  <h3 id="s2-2">Application: tangent plane and normal line</h3>
+  <p>If \(P_0=(x_0,y_0,z_0)\) lies on the surface \(f(x,y,z)=c\), then since \(\nabla f(P_0)\) is normal to the surface there:</p>
+  <p>Tangent plane: \(f_x(P_0)(x-x_0)+f_y(P_0)(y-y_0)+f_z(P_0)(z-z_0)=0.\)</p>
+  <div class="box ex"><div class="box-title">Worked Example</div>
+    <p>Find the tangent plane to \(x^2+y^2+z^2=9\) at \((2,2,1)\).</p>
+    <p>\(f=x^2+y^2+z^2\), \(\nabla f = 2x\mathbf{i}+2y\mathbf{j}+2z\mathbf{k}\); at \((2,2,1)\): \(\nabla f = 4\mathbf{i}+4\mathbf{j}+2\mathbf{k}\).</p>
+    <p>Tangent plane: \(4(x-2)+4(y-2)+2(z-1)=0 \Rightarrow 2x+2y+z=9.\)</p>
+  </div>
+  <h3 id="s2-3">The other big consequence: steepest ascent</h3>
+  <div class="box why"><div class="box-title">WHY this is true</div>
+    <p>Since \(\nabla f\) is perpendicular to the level surface, it points in the direction where \(f\) changes <em>fastest</em> — moving <em>along</em> a level surface changes \(f\) not at all (that’s what “level” means), so the direction of fastest change must be the direction most different from every tangent direction, i.e. the normal direction. Section 1.3 makes this precise with a formula.</p>
+  </div>
+</section>
+<section class="sec" id="s3">
+  <h2>3 Directional Derivative</h2>
+  <div class="pagemark"><a href="@pdf/notes/21">&#8599; original PDF, page 21</a></div>
+  <div class="box def"><div class="box-title">Definition</div>
+    <p>The rate of change of \(f\) at a point, in the direction of a <em>unit</em> vector \(\hat{\mathbf{a}}\), is</p>
+    \[ D_{\hat{\mathbf{a}}}f = \nabla f\cdot\hat{\mathbf{a}}. \]
+  </div>
+  <div class="box why"><div class="box-title">WHY this is true</div>
+    <p>Why must \(\hat{\mathbf{a}}\) be a unit vector? \(D_{\hat{\mathbf{a}}}f\) is meant to answer “how fast does \(f\) change <em>per unit distance</em> traveled in this direction?” If \(\hat{\mathbf{a}}\) had length 5, dotting with it would silently multiply the answer by 5 for no geometric reason — you’d be measuring change per 5 units of some arbitrary vector, not a comparable, standardized rate. Normalizing first is what makes \(D_{\hat{\mathbf{a}}}f\) meaningful and comparable across different directions.</p>
+    <p>Why does the dot product even capture “rate of change in a direction”? Because \(\nabla f\cdot\hat{\mathbf{a}} = |\nabla f|\cos\theta\), where \(\theta\) is the angle between the gradient and your chosen direction (Part 0). \(\cos\theta\) is largest (\(=1\)) when you walk exactly along \(\nabla f\), and this is precisely the same chain-rule idea from Section 2: \(D_{\hat{\mathbf{a}}}f\) is really just \(\frac{d}{dt}f(\mathbf{r}(t))\) for a straight path in direction \(\hat{\mathbf{a}}\), evaluated at \(t=0\).</p>
+  </div>
+  <figure class="fig"><img src="@static/figures/p21_1.png" alt="Unit vector a-hat and gradient with angle theta between them; D f = |grad f| cos theta" loading="lazy">
+    <figcaption><b>Figure 3:</b> The directional derivative is the projection of \(\nabla f\) onto the chosen direction \(\hat{\mathbf{a}}\) — maximal when \(\hat{\mathbf{a}}\) aligns with \(\nabla f\) itself (\(\theta=0\)).</figcaption></figure>
+  <div class="box ex"><div class="box-title">Worked Example</div>
+    <p>\(f(x,y,z)=xy+yz+zx\). Directional derivative at \((1,-1,2)\) in the direction of \((1,2,2)\).</p>
+    <p>\(\nabla f = (y+z)\mathbf{i}+(x+z)\mathbf{j}+(y+x)\mathbf{k}\); at \((1,-1,2)\): \(\nabla f = \mathbf{i}+3\mathbf{j}+0\mathbf{k}\).</p>
+    <p>\(|(1,2,2)|=3\), so \(\hat{\mathbf{a}} = (1/3,\,2/3,\,2/3)\).</p>
+    <p>\(D_{\hat{\mathbf{a}}}f = (1)(1/3)+(3)(2/3)+(0)(2/3) = 1/3+2 = 7/3.\)</p>
+  </div>
+  <div class="box why"><div class="box-title">WHY this is true</div>
+    <p><b>Maximum and minimum rate of change.</b> Since \(D_{\hat{\mathbf{a}}}f = |\nabla f|\cos\theta\) and \(|\hat{\mathbf{a}}|=1\) is fixed, this expression is controlled entirely by \(\cos\theta\), which ranges from \(-1\) to \(1\). So:</p>
+    <ul>
+      <li>Maximum value \(|\nabla f|\) occurs at \(\theta=0\), i.e. walking along \(\nabla f\) itself.</li>
+      <li>Minimum value \(-|\nabla f|\) occurs at \(\theta=180^\circ\), i.e. walking along \(-\nabla f\).</li>
+    </ul>
+    <p>This is the rigorous version of the “steepest ascent” claim from the end of Section 2.</p>
+  </div>
+  <div class="box ex"><div class="box-title">Worked Example</div>
+    <p>\(f=x^2y\) at \((2,1)\). \(\nabla f = 2xy\,\mathbf{i}+x^2\,\mathbf{j} = 4\mathbf{i}+4\mathbf{j}\). \(|\nabla f| = \sqrt{32} = 4\sqrt{2}\).</p>
+    <p>Maximum rate of increase at \((2,1)\) is \(4\sqrt{2}\), in the direction \((1,1)/\sqrt{2}\).</p>
+  </div>
+</section>
+<section class="sec" id="s4">
+  <h2>4 Divergence — \(\nabla\cdot\mathbf{F}\)</h2>
+  <div class="pagemark"><a href="@pdf/notes/22">&#8599; original PDF, page 22</a></div>
+  <div class="box def"><div class="box-title">Definition</div>
+    <p>For \(\mathbf{F}=F_1\mathbf{i}+F_2\mathbf{j}+F_3\mathbf{k}\):</p>
+    \[ \operatorname{div}\mathbf{F} = \nabla\cdot\mathbf{F} = \frac{\partial F_1}{\partial x}+\frac{\partial F_2}{\partial y}+\frac{\partial F_3}{\partial z}\qquad\text{(a }\textit{scalar}\text{).} \]
+  </div>
+  <div class="box why"><div class="box-title">WHY this is true</div>
+    <p><b>Why this particular combination measures “spreading out.”</b> Picture \(\mathbf{F}\) as the velocity of a fluid, and imagine a tiny box of dimensions \(\Delta x\times\Delta y\times\Delta z\) centered at a point. Fluid crosses the box’s right face \((x+\Delta x/2)\) roughly at rate \(F_1(x+\Delta x/2)\Delta y\Delta z\), and enters the left face at rate \(F_1(x-\Delta x/2)\Delta y\Delta z\). The <em>net outflow</em> through this pair of faces is approximately</p>
+    \[ \big[F_1(x+\Delta x/2)-F_1(x-\Delta x/2)\big]\Delta y\Delta z \approx \frac{\partial F_1}{\partial x}\Delta x\Delta y\Delta z \]
+    <p>by the definition of the derivative as a rate of change over a small step. Add the analogous net outflow through the other two pairs of faces (\(\partial F_2/\partial y\) and \(\partial F_3/\partial z\) terms) and divide by the box’s volume \(\Delta x\Delta y\Delta z\) to get outflow <em>per unit volume</em> — and that sum is exactly \(\nabla\cdot\mathbf{F}\). So divergence is, by construction, the net outward flow rate per unit volume at a point: positive means the point acts as a source, negative means a sink.</p>
+  </div>
+  <figure class="fig"><img src="@static/figures/p22_1.png" alt="Left: arrows flowing outward (positive divergence, source). Right: arrows flowing inward (negative divergence, sink)" loading="lazy">
+    <figcaption><b>Figure 4:</b> Left: \(\mathbf{F}=x\mathbf{i}+y\mathbf{j}\) (arrows flow outward everywhere \(\Rightarrow\operatorname{div}\mathbf{F}\gt 0\), a source). Right: \(\mathbf{F}=-x\mathbf{i}-y\mathbf{j}\) (arrows flow inward \(\Rightarrow\operatorname{div}\mathbf{F}\lt 0\), a sink).</figcaption></figure>
+  <div class="box ex"><div class="box-title">Worked Example</div>
+    <p>\(\mathbf{F}=x^2\mathbf{i}+2yz\mathbf{j}+xz^2\mathbf{k}\). \(\operatorname{div}\mathbf{F}=2x+2z+2xz.\)</p>
+  </div>
+  <div class="box def"><div class="box-title">Definition</div>
+    <p>\(\mathbf{F}\) is <b>solenoidal</b> if \(\operatorname{div}\mathbf{F}=0\) everywhere — flow that circulates but never accumulates (no sources or sinks anywhere).</p>
+  </div>
+  <div class="box ex"><div class="box-title">Worked Example</div>
+    <p>Find \(a\) so that \(\mathbf{F}=(x+3y)\mathbf{i}+(y-2z)\mathbf{j}+(x+az)\mathbf{k}\) is solenoidal.</p>
+    <p>\(\operatorname{div}\mathbf{F}=1+1+a=2+a\). Set \(2+a=0\Rightarrow a=-2\).</p>
+  </div>
+</section>
+<section class="sec" id="s5">
+  <h2>5 Curl — \(\nabla\times\mathbf{F}\)</h2>
+  <div class="pagemark"><a href="@pdf/notes/23">&#8599; original PDF, page 23</a></div>
+  <div class="box def"><div class="box-title">Definition</div>
+    \[ \operatorname{curl}\mathbf{F} = \nabla\times\mathbf{F} = \begin{vmatrix} \mathbf{i} &amp; \mathbf{j} &amp; \mathbf{k} \\ \partial/\partial x &amp; \partial/\partial y &amp; \partial/\partial z \\ F_1 &amp; F_2 &amp; F_3 \end{vmatrix} = \left(\frac{\partial F_3}{\partial y}-\frac{\partial F_2}{\partial z}\right)\mathbf{i} - \left(\frac{\partial F_3}{\partial x}-\frac{\partial F_1}{\partial z}\right)\mathbf{j} + \left(\frac{\partial F_2}{\partial x}-\frac{\partial F_1}{\partial y}\right)\mathbf{k} \]
+  </div>
+  <p>The \(\mathbf{j}\)-component always carries a minus sign, exactly as in the plain cross product (Part 0).</p>
+  <div class="box why"><div class="box-title">WHY this is true</div>
+    <p><b>Why this combination measures “rotation.”</b> Consider the \(\mathbf{k}\)-component, \(\partial F_2/\partial x-\partial F_1/\partial y\), and imagine a tiny square of side \(\Delta x,\Delta y\) in the \(xy\)-plane, and compute the circulation (line integral, Section 8) of \(\mathbf{F}\) counterclockwise around its four edges. The bottom edge contributes \(\approx F_1(y)\Delta x\), the top edge (traversed right-to-left) contributes \(\approx -F_1(y+\Delta y)\Delta x\); together these give \(-[\partial F_1/\partial y]\,\Delta x\Delta y\). The right and left edges similarly contribute \(+[\partial F_2/\partial x]\,\Delta x\Delta y\). Adding all four and dividing by the enclosed area \(\Delta x\Delta y\) gives circulation <em>per unit area</em> \(=\partial F_2/\partial x-\partial F_1/\partial y\) — exactly the \(\mathbf{k}\)-component of curl. So curl at a point measures the tendency of the field to circulate around that point, and its direction (by the right-hand rule) is the axis a tiny paddle wheel dropped there would spin about.</p>
+  </div>
+  <figure class="fig"><img src="@static/figures/p23_1.png" alt="Left: rotational field circulating around a paddle wheel. Right: uniform upward flow, paddle wheel does not spin" loading="lazy">
+    <figcaption><b>Figure 5:</b> Left: \(\mathbf{F}=-y\mathbf{i}+x\mathbf{j}\) circulates around the origin — a paddle wheel dropped in would spin, so \(\operatorname{curl}\mathbf{F}\neq 0\). Right: a straight, uniform flow like \(\mathbf{F}=\mathbf{j}\) has no local swirl anywhere, so \(\operatorname{curl}\mathbf{F}=0\) even though the fluid is clearly moving.</figcaption></figure>
+  <div class="box ex"><div class="box-title">Worked Example</div>
+    <p>\(\mathbf{F}=xy\mathbf{i}-2yz\mathbf{j}+3zx\mathbf{k}\). Find \(\operatorname{curl}\mathbf{F}\) at \((1,1,1)\).</p>
+    <p>\(\mathbf{i}\)-comp: \(\partial(3zx)/\partial y-\partial(-2yz)/\partial z = 0-(-2y)=2y.\)</p>
+    <p>\(\mathbf{j}\)-comp: \(-\big[\partial(3zx)/\partial x-\partial(xy)/\partial z\big] = -[3z-0] = -3z.\)</p>
+    <p>\(\mathbf{k}\)-comp: \(\partial(-2yz)/\partial x-\partial(xy)/\partial y = 0-x=-x.\)</p>
+    <p>\(\operatorname{curl}\mathbf{F}=2y\mathbf{i}-3z\mathbf{j}-x\mathbf{k}\). At \((1,1,1)\): \(2\mathbf{i}-3\mathbf{j}-\mathbf{k}\).</p>
+  </div>
+  <div class="box def"><div class="box-title">Definition</div>
+    <p>\(\mathbf{F}\) is <b>irrotational</b> if \(\operatorname{curl}\mathbf{F}=\mathbf{0}\) everywhere — no local swirl anywhere in the field.</p>
+  </div>
+  <div class="pagemark"><a href="@pdf/notes/24">&#8599; original PDF, page 24</a></div>
+  <div class="box ex"><div class="box-title">Worked Example</div>
+    <p>Show \(\mathbf{F}=(y^2+2xz^2)\mathbf{i}+2xy\,\mathbf{j}+2x^2z\,\mathbf{k}\) is irrotational.</p>
+    <p>\(\mathbf{i}\): \(\partial(2x^2z)/\partial y-\partial(2xy)/\partial z=0-0=0.\)</p>
+    <p>\(\mathbf{j}\): \(-[\partial(2x^2z)/\partial x-\partial(y^2+2xz^2)/\partial z] = -[4xz-4xz]=0.\)</p>
+    <p>\(\mathbf{k}\): \(\partial(2xy)/\partial x-\partial(y^2+2xz^2)/\partial y = 2y-2y=0.\)</p>
+    <p>\(\operatorname{curl}\mathbf{F}=\mathbf{0}\). Confirmed irrotational.</p>
+  </div>
+</section>

@@ -1,0 +1,156 @@
+<section class="sec" id="s6">
+  <h2>6 Scalar and Vector Potential</h2>
+  <div class="pagemark"><a href="@pdf/notes/25">&#8599; original PDF, page 25</a></div>
+  <div class="box why"><div class="box-title">WHY this is true</div>
+    <p>This is where irrotational/solenoidal fields become useful, not just classified. If \(\operatorname{curl}\mathbf{F}=\mathbf{0}\), then a scalar function \(\varphi\) exists with \(\mathbf{F}=\nabla\varphi\) (this is provable in general using Stokes’ Theorem, Section 10: it forces every line integral of \(\mathbf{F}\) between two fixed points to be path-independent, which is exactly the condition under which a potential exists). In practice, you don’t need the general existence proof — you just need to know <em>when</em> to look for \(\varphi\) (curl is zero) and <em>how</em> to find it, shown below.</p>
+  </div>
+  <div class="box def"><div class="box-title">Definition</div>
+    <p>If \(\operatorname{curl}\mathbf{F}=\mathbf{0}\), then \(\mathbf{F}=\nabla\varphi\) for some scalar \(\varphi\), called the <b>scalar potential</b>.<br>
+    If \(\operatorname{div}\mathbf{F}=0\), then \(\mathbf{F}=\operatorname{curl}\mathbf{A}\) for some vector \(\mathbf{A}\), called the <b>vector potential</b>.</p>
+  </div>
+  <p><b>Finding \(\varphi\):</b> integrate \(F_1\) w.r.t. \(x\) (adding an unknown function of \(y,z\) instead of a bare constant); differentiate the result w.r.t. \(y\) and match against \(F_2\) to pin down that unknown function; repeat against \(F_3\) for \(z\).</p>
+  <div class="box ex"><div class="box-title">Worked Example</div>
+    <p>Find \(\varphi\) for \(\mathbf{F}=(y^2+2xz^2)\mathbf{i}+2xy\mathbf{j}+2x^2z\mathbf{k}\) (confirmed irrotational above).<br>
+    <b>Step 1.</b> \(\varphi=\int(y^2+2xz^2)\,dx=xy^2+x^2z^2+g(y,z)\).<br>
+    <b>Step 2.</b> \(\partial\varphi/\partial y=2xy+\partial g/\partial y\). Match to \(F_2=2xy\): forces \(\partial g/\partial y=0\), so \(g=h(z)\).<br>
+    <b>Step 3.</b> \(\varphi=xy^2+x^2z^2+h(z)\); \(\partial\varphi/\partial z=2x^2z+h'(z)\). Match to \(F_3=2x^2z\): forces \(h'(z)=0\), so \(h=\text{const}\).</p>
+    \[ \varphi=xy^2+x^2z^2+C. \]
+    <p><b>Check:</b> \(\nabla\varphi=(y^2+2xz^2)\mathbf{i}+2xy\mathbf{j}+2x^2z\mathbf{k}=\mathbf{F}\). &#10003;</p>
+  </div>
+</section>
+
+<section class="sec" id="s7">
+  <h2>7 Line Integrals</h2>
+  <div class="pagemark"><a href="@pdf/notes/26">&#8599; original PDF, page 26</a></div>
+  <div class="box def"><div class="box-title">Definition</div>
+    <p>For a vector field \(\mathbf{F}\) and a curve \(C\) from \(A\) to \(B\), parametrized as \(\mathbf{r}(t)\):</p>
+    \[ \int_C \mathbf{F}\cdot d\mathbf{r}=\int_a^b \mathbf{F}(\mathbf{r}(t))\cdot\mathbf{r}'(t)\,dt \]
+    <p>represents the total <b>work</b> done by \(\mathbf{F}\) moving a particle along \(C\).</p>
+  </div>
+  <div class="box why"><div class="box-title">WHY this is true</div>
+    <p>Why this integral means “work.” Break \(C\) into many tiny steps \(\Delta\mathbf{r}_i\). Over each tiny step, the work contributed is approximately (force)·(displacement) \(=\mathbf{F}(P_i)\cdot\Delta\mathbf{r}_i\) — the same dot-product idea as ordinary physics work, just over an infinitesimal straight step where \(\mathbf{F}\) is roughly constant. Summing over all the little steps gives a Riemann sum \(\sum\mathbf{F}(P_i)\cdot\Delta\mathbf{r}_i\), and letting the steps shrink to zero turns that sum into the integral \(\int_C\mathbf{F}\cdot d\mathbf{r}\). Parametrizing by \(t\) is simply the bookkeeping device that turns the curved, multi-dimensional path into a single ordinary 1-D integral over \(t\) — this is the entire reason parametrization is the “whole game” here: it’s what makes an otherwise geometric object computable with single-variable calculus.</p>
+  </div>
+  <figure class="fig"><img src="@static/figures/p26_1.png" alt="Curve C from A to B divided into small steps with field vectors F_i" loading="lazy">
+    <figcaption><b>Figure 6:</b> The curve \(C\) is chopped into small steps; at each sample point \(\mathbf{F}\) is evaluated and dotted with the small displacement \(\Delta\mathbf{r}_i\) along the curve. Summing (then taking the limit) gives \(\int_C\mathbf{F}\cdot d\mathbf{r}\).</figcaption></figure>
+  <div class="box ex"><div class="box-title">Worked Example</div>
+    <p>\(\mathbf{F}=x\mathbf{i}+y\mathbf{j}\). Evaluate \(\int_C\mathbf{F}\cdot d\mathbf{r}\) along the <em>straight line</em> from \((0,0)\) to \((1,1)\), and separately along the <em>parabola</em> \(y=x^2\) between the same two points.<br>
+    <b>Straight line:</b> \(x=t,y=t,\ t:0\to1\). \(\mathbf{F}\cdot d\mathbf{r}=x\,dx+y\,dy=t\,dt+t\,dt=2t\,dt\).</p>
+    \[ \int_0^1 2t\,dt=1. \]
+    <p><b>Parabola:</b> \(x=t,y=t^2,\ t:0\to1\), so \(dy=2t\,dt\). \(\mathbf{F}\cdot d\mathbf{r}=t\,dt+t^2(2t\,dt)=(t+2t^3)dt\).</p>
+    \[ \int_0^1 (t+2t^3)\,dt=\left[\frac{t^2}{2}+\frac{t^4}{2}\right]_0^1=\frac12+\frac12=1. \]
+    <p>Both paths give 1 — not a coincidence. It happens because this particular \(\mathbf{F}\) is conservative (curl-free, with potential \(\varphi=\tfrac12(x^2+y^2)\), Section 6), and Section 10’s discussion of Stokes’ Theorem explains <em>why</em> curl-free forces path-independence.</p>
+  </div>
+</section>
+
+<section class="sec" id="s8">
+  <h2>8 Green’s Theorem in the Plane</h2>
+  <div class="pagemark"><a href="@pdf/notes/27">&#8599; original PDF, page 27</a></div>
+  <div class="box def"><div class="box-title">Definition</div>
+    <p>For a closed curve \(C\) (counterclockwise) bounding a plane region \(R\), and \(\mathbf{F}=M(x,y)\mathbf{i}+N(x,y)\mathbf{j}\):</p>
+    \[ \oint_C (M\,dx+N\,dy)=\iint_R\left(\frac{\partial N}{\partial x}-\frac{\partial M}{\partial y}\right)dA \]
+  </div>
+  <div class="box why"><div class="box-title">WHY this is true</div>
+    <p><b>Why this is true — the cancellation argument.</b> Chop \(R\) into a fine grid of tiny rectangles. For each small rectangle, the “local circulation” (line integral around its own tiny boundary, counterclockwise) can be computed directly and, by exactly the same face-by-face argument used for curl in Section 5, works out to \(\left(\partial N/\partial x-\partial M/\partial y\right)dA\).<br>
+    Now add up the circulation around <em>every</em> tiny rectangle in the grid. Look at any edge shared by two neighboring rectangles: it gets traversed once by each rectangle, but in <em>opposite</em> directions (since both rectangles go counterclockwise) — so its two contributions exactly cancel. This happens for <em>every internal edge</em>. The only edges that don’t get cancelled are the ones on the outer boundary of \(R\), which together trace out \(C\) exactly once, counterclockwise.<br>
+    So: (sum of all tiny local circulations) = (circulation around the outer boundary \(C\)), and simultaneously (sum of all tiny local circulations) \(=\iint_R(\partial N/\partial x-\partial M/\partial y)\,dA\) by definition of the double integral as a limit of a Riemann sum. Equate the two and you have Green’s Theorem.</p>
+  </div>
+  <figure class="fig"><img src="@static/figures/p27_1.png" alt="Grid of cells; two neighbouring cells circulate in opposite directions along their shared edge" loading="lazy">
+    <figcaption><b>Figure 7:</b> Two neighboring cells circulate in opposite directions along their shared edge, so that contribution cancels exactly. Doing this for every internal edge in the grid leaves only the outer boundary \(C\) contributing — the heart of Green’s, Stokes’, and Gauss’s theorems alike.</figcaption></figure>
+  <div class="box ex"><div class="box-title">Worked Example</div>
+    <p>Evaluate \(\oint_C(xy\,dx+x^2\,dy)\), \(C=\) boundary of the unit square \([0,1]\times[0,1]\), counterclockwise. \(M=xy,\ N=x^2\). \(\partial N/\partial x=2x,\ \partial M/\partial y=x\). So integrand becomes \(2x-x=x\).</p>
+    \[ \oint_C=\iint_R x\,dA=\int_0^1\!\!\int_0^1 x\,dy\,dx=\int_0^1 x\,dx=\tfrac12. \]
+    <p>This reused the exact double-integral machinery from Module 2 — confirming that Green’s Theorem is precisely where Modules 2 and 3 meet.</p>
+  </div>
+</section>
+
+<section class="sec" id="s9">
+  <h2>9 Surfaces and Surface Integrals</h2>
+  <div class="pagemark"><a href="@pdf/notes/28">&#8599; original PDF, page 28</a></div>
+  <div class="box def"><div class="box-title">Definition</div>
+    <p>For a surface \(S\) with unit normal \(\hat{\mathbf{n}}\) at each point, and vector field \(\mathbf{F}\), the <b>flux integral</b></p>
+    \[ \iint_S \mathbf{F}\cdot\hat{\mathbf{n}}\,dS \]
+    <p>measures the net rate \(\mathbf{F}\) “flows through” \(S\).</p>
+  </div>
+  <div class="box why"><div class="box-title">WHY this is true</div>
+    <p><b>Why you need \(\hat{\mathbf{n}}\) at all.</b> Only the component of \(\mathbf{F}\) <em>perpendicular</em> to the surface actually crosses — a component of \(\mathbf{F}\) lying flat within the surface slides along it without ever passing through. Dotting with \(\hat{\mathbf{n}}\) extracts exactly that perpendicular component, which is why flux uses a dot product with the normal (rather than, say, the raw magnitude of \(\mathbf{F}\)).<br>
+    <b>Why \(dS\neq dA\) for a tilted surface.</b> If a surface is tilted relative to the \(xy\)-plane, a small patch of surface area \(dS\) projects down onto a <em>smaller</em> patch \(dA\) in the \(xy\)-plane — the more tilted the surface, the more the projected area shrinks relative to the true surface area. For \(z=g(x,y)\), this stretching factor works out to</p>
+    \[ dS=\sqrt{1+\left(\frac{\partial g}{\partial x}\right)^2+\left(\frac{\partial g}{\partial y}\right)^2}\;dA, \]
+    <p>which you can derive by noting that a small rectangle in \(x,y\) maps to a small parallelogram on the surface spanned by the tangent vectors \((1,0,g_x)\) and \((0,1,g_y)\), and the parallelogram’s area is the magnitude of their cross product — which simplifies to exactly this square root.</p>
+  </div>
+  <figure class="fig"><img src="@static/figures/p28_1.png" alt="Surface patch dS with unit normal n and field vector F" loading="lazy">
+    <figcaption><b>Figure 8:</b> At a surface patch \(dS\), only the component of \(\mathbf{F}\) along the normal \(\hat{\mathbf{n}}\) contributes to flux — the rest of \(\mathbf{F}\) (tangential to the surface) never actually crosses it.</figcaption></figure>
+  <div class="box ex"><div class="box-title">Worked Example</div>
+    <p>Flux of \(\mathbf{F}=z\mathbf{k}\) upward through \(z=4-x-y\) over the square \(0\le x\le1,\ 0\le y\le1\).<br>
+    \(g=4-x-y,\ g_x=-1,g_y=-1\). Upward normal \(\propto(1,1,1)\), so \(\hat{\mathbf{n}}=(1,1,1)/\sqrt3\), and \(dS=\sqrt3\,dA\).<br>
+    \(\mathbf{F}\cdot\hat{\mathbf{n}}\,dS=z\cdot\frac{1}{\sqrt3}\cdot\sqrt3\,dA=z\,dA=(4-x-y)\,dA\).</p>
+    \[ \iint_S=\int_0^1\!\!\int_0^1(4-x-y)\,dy\,dx=\int_0^1(3.5-x)\,dx=3.5-0.5=3. \]
+  </div>
+</section>
+
+<section class="sec" id="s10">
+  <h2>10 Stokes’ Theorem</h2>
+  <div class="pagemark"><a href="@pdf/notes/29">&#8599; original PDF, page 29</a></div>
+  <div class="box def"><div class="box-title">Definition</div>
+    <p>For a surface \(S\) bounded by a closed curve \(C\) (right-hand-rule orientation: curl fingers along \(C\), thumb along \(\hat{\mathbf{n}}\)):</p>
+    \[ \oint_C \mathbf{F}\cdot d\mathbf{r}=\iint_S(\operatorname{curl}\mathbf{F})\cdot\hat{\mathbf{n}}\,dS \]
+  </div>
+  <div class="box why"><div class="box-title">WHY this is true</div>
+    <p>Stokes’ Theorem is Green’s Theorem lifted into 3-D. If \(S\) happens to be flat and sits in the \(xy\)-plane, then \(\hat{\mathbf{n}}=\mathbf{k}\), and \((\operatorname{curl}\mathbf{F})\cdot\mathbf{k}\) works out (Section 5) to exactly \(\partial N/\partial x-\partial M/\partial y\) — so Stokes’ Theorem literally <em>becomes</em> Green’s Theorem in that special case. The general proof uses the same tiny-cell cancellation idea from Section 9, just applied to a curved mesh of tiny patches covering \(S\) instead of a flat grid: the local circulation around each tiny patch equals \((\operatorname{curl}\mathbf{F})\cdot\hat{\mathbf{n}}\,dS\) for that patch (by the same argument as Section 5, run in the tangent plane of the patch), internal shared edges cancel between neighboring patches, and only the outer rim \(C\) survives.<br>
+    <b>The practical payoff:</b> since <em>any</em> surface bounded by \(C\) gives the same answer, you are always free to pick the flattest, simplest surface stretched across \(C\) (usually a flat disk) rather than whatever oddly-shaped surface the question describes.</p>
+  </div>
+  <figure class="fig"><img src="@static/figures/p29_1.png" alt="Cap surface S stretched across closed boundary curve C with normal n" loading="lazy">
+    <figcaption><b>Figure 9:</b> A curved “cap” surface \(S\) stretched across the closed curve \(C\). Stokes’ Theorem lets you swap the line integral around \(C\) for a surface integral of curl over \(S\) — and \(S\) can be <em>any</em> surface bounded by \(C\), so pick the easiest one.</figcaption></figure>
+  <div class="box ex"><div class="box-title">Worked Example</div>
+    <p>\(\mathbf{F}=y\mathbf{i}+z\mathbf{j}+x\mathbf{k}\); \(C=\) circle \(x^2+y^2=1,\ z=0\), counterclockwise viewed from \(+z\).<br>
+    Pick \(S=\) the flat disk \(x^2+y^2\le1\) in \(z=0\), so \(\hat{\mathbf{n}}=\mathbf{k}\).<br>
+    \(\operatorname{curl}\mathbf{F}\): \(\mathbf{i}\)-comp \(=\partial x/\partial y-\partial z/\partial z=0-1=-1\); \(\mathbf{j}\)-comp\(=-[\partial x/\partial x-\partial y/\partial z]=-[1-0]=-1\);<br>
+    \(\mathbf{k}\)-comp\(=\partial z/\partial x-\partial y/\partial y=0-1=-1\).<br>
+    \(\operatorname{curl}\mathbf{F}=-\mathbf{i}-\mathbf{j}-\mathbf{k}\), so \((\operatorname{curl}\mathbf{F})\cdot\mathbf{k}=-1\).</p>
+    \[ \oint_C\mathbf{F}\cdot d\mathbf{r}=\iint_S(-1)\,dA=-(\text{area of unit disk})=-\pi. \]
+  </div>
+</section>
+
+<section class="sec" id="s11-12">
+  <h2>11-12 Volume Integrals; The Gauss Divergence Theorem</h2>
+  <div class="pagemark"><a href="@pdf/notes/30">&#8599; original PDF, page 30</a></div>
+  <h3 id="s11-12-1">11 Volume Integrals</h3>
+  <p>A volume integral \(\iiint_V f\,dV\) (scalar) or \(\iiint_V\mathbf{F}\,dV\) (vector, done componentwise) is mechanically identical to the triple integrals of Module 2 — no new technique. Its role here is purely as the right-hand side of the Divergence Theorem below.</p>
+  <h3 id="s11-12-2">12 The Gauss Divergence Theorem</h3>
+  <div class="box def"><div class="box-title">Definition</div>
+    <p>For a closed surface \(S\) enclosing a solid region \(V\), with outward unit normal \(\hat{\mathbf{n}}\):</p>
+    \[ \iint_S\mathbf{F}\cdot\hat{\mathbf{n}}\,dS=\iiint_V(\operatorname{div}\mathbf{F})\,dV \]
+  </div>
+  <div class="box why"><div class="box-title">WHY this is true</div>
+    <p>This is the same cancellation idea as Green’s Theorem (Section 9), one dimension further up. Chop \(V\) into a fine 3-D grid of tiny cubes. The flux out of a single tiny cube, computed directly, equals \((\operatorname{div}\mathbf{F})\,dV\) for that cube — this is exactly the box argument used to <em>define</em> divergence in Section 4, just packaged as a flux statement rather than a limit. Now sum the outward flux over <em>every</em> tiny cube in the grid. Any face shared between two neighboring cubes gets counted twice: once as “outflow” from one cube, once as “inflow” into its neighbor through the very same face — and these two contributions are equal and opposite, so they cancel. This happens at <em>every internal face</em>. Only the faces on the outer boundary \(S\) survive uncancelled. So: (sum of all tiny local outflows) = (total flux through \(S\)), and also (sum of all tiny local outflows) \(=\iiint_V\operatorname{div}\mathbf{F}\,dV\) by definition of the triple integral as a limit of a Riemann sum. Equate the two.</p>
+  </div>
+  <figure class="fig"><img src="@static/figures/p30_1.png" alt="Closed surface S with outward flux arrows" loading="lazy">
+    <figcaption><b>Figure 10:</b> Flux out through a closed surface \(S\) (arrows) equals the sum of divergence produced at every point enclosed — the Gauss Divergence Theorem, obtained from the same cell-cancellation idea as Green’s Theorem, extended to three dimensions.</figcaption></figure>
+  <div class="pagemark"><a href="@pdf/notes/31">&#8599; original PDF, page 31</a></div>
+  <div class="box ex"><div class="box-title">Worked Example</div>
+    <p>Verify the Divergence Theorem for \(\mathbf{F}=x\mathbf{i}+y\mathbf{j}+z\mathbf{k}\) over the unit cube \([0,1]^3\).<br>
+    <b>Volume side:</b> \(\operatorname{div}\mathbf{F}=1+1+1=3\). \(\iiint_V 3\,dV=3\times1=3\).<br>
+    <b>Surface side (face by face):</b> on \(x=1\) (\(\hat{\mathbf{n}}=\mathbf{i}\)): \(\mathbf{F}\cdot\hat{\mathbf{n}}=x=1\), area 1, contributes 1. On \(x=0\) (\(\hat{\mathbf{n}}=-\mathbf{i}\)): \(\mathbf{F}\cdot\hat{\mathbf{n}}=-x=0\), contributes 0. By the same pattern, the \(y=1/y=0\) pair contributes \(1+0\), and the \(z=1/z=0\) pair contributes \(1+0\).<br>
+    Total flux \(=1+0+1+0+1+0=3\).<br>
+    Both sides equal 3. &#10003; This cube/sphere/cylinder verification style is the most frequently asked question type for this theorem — practice it until it’s automatic.</p>
+  </div>
+</section>
+
+<section class="sec" id="m3-summary">
+  <h2>Module 3 — Master Summary</h2>
+  <table class="tbl">
+    <thead><tr><th>Operator</th><th>Input</th><th>Output</th><th>Zero-condition</th></tr></thead>
+    <tbody>
+      <tr><td>\(\nabla f\) (gradient)</td><td>scalar field</td><td>vector field</td><td>—</td></tr>
+      <tr><td>\(\nabla\cdot\mathbf{F}\) (divergence)</td><td>vector field</td><td>scalar</td><td>solenoidal</td></tr>
+      <tr><td>\(\nabla\times\mathbf{F}\) (curl)</td><td>vector field</td><td>vector field</td><td>irrotational</td></tr>
+    </tbody>
+  </table>
+  <table class="tbl">
+    <thead><tr><th>Theorem</th><th>Converts</th><th>Requires</th></tr></thead>
+    <tbody>
+      <tr><td>Green’s</td><td>line integral (closed, plane) \(\leftrightarrow\) double integral</td><td>2-D, closed curve</td></tr>
+      <tr><td>Stokes’</td><td>line integral (closed, space) \(\leftrightarrow\) surface integral</td><td>3-D, uses curl</td></tr>
+      <tr><td>Gauss Divergence</td><td>surface integral (closed) \(\leftrightarrow\) volume integral</td><td>3-D, uses divergence</td></tr>
+    </tbody>
+  </table>
+</section>

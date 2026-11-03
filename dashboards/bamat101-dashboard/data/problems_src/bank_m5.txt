@@ -1,0 +1,262 @@
+### TOPIC FP | 5 | Formation of Partial Differential Equations
+#### FP1 | Remember | 16 | 29
+Q:
+State the two methods of forming a PDE (eliminating constants and eliminating arbitrary functions), and the order of the PDE each tends to produce. Notation: \(p=z_x,\ q=z_y\).
+A:
+Eliminating two arbitrary constants \(a,b\) from \(z=F(x,y,a,b)\) (using \(p,q\)) gives a first-order PDE. Eliminating an arbitrary function from \(\phi(u,v)=0\) gives a first-order linear (Lagrange) PDE \(Pp+Qq=R\). Eliminating two arbitrary functions typically gives a second-order PDE.
+#### FP2 | Apply | 16 | 29
+Q:
+Form the PDE by eliminating \(a,b\) from \(z=(x+a)(y+b)\).
+A:
+\(p=y+b,\ q=x+a\), so \(z=pq\).
+#### FP3 | Apply | 16 | 29
+Q:
+Form the PDE by eliminating \(a,b\) from \(z=ax+by+a^2+b^2\).
+A:
+\(p=a,\ q=b\), so \(z=px+qy+p^2+q^2\).
+#### FP4 | Apply | 16 | 29
+Q:
+Form the PDE by eliminating the arbitrary function \(f\) from \(z=f(x^2+y^2)\).
+A:
+\(p=2xf',\ q=2yf'\), so \(p/q=x/y\): \(yp-xq=0\).
+#### FP5 | Apply | 16 | 30
+Q:
+Form the PDE by eliminating \(\phi\) from \(\phi(x+y+z,\ x^2+y^2+z^2)=0\).
+A:
+Differentiating w.r.t. \(x\) and \(y\) and eliminating \(\phi_u,\phi_v\): \((1+p)(y+zq)-(1+q)(x+zp)=0\), i.e. \((y-z)p+(z-x)q=x-y\).
+#### FP6 | Analyze | 16 | 30
+Q:
+Show that eliminating the arbitrary functions \(f,g\) from \(z=f(x+y)+g(x-y)\) gives \(\dfrac{\partial^2z}{\partial x^2}=\dfrac{\partial^2z}{\partial y^2}\), and explain why the order is two here.
+A:
+\(z_{xx}=f''+g''\) and \(z_{yy}=f''+g''\), so \(r=t\). Two arbitrary functions must be removed, and each needs one more differentiation than a single arbitrary function does, so the PDE is second order.
+#### FP7 | Evaluate | 16 | 30
+Q:
+Eliminating \(a,b\) from \(z=ax+by+ab\) gives \(z=px+qy+pq\). A student claims every solution of this PDE has the form \(z=ax+by+ab\). Evaluate.
+A:
+False. \(z=-xy\) also satisfies the PDE (\(p=-y,\ q=-x\): \(px+qy+pq=-xy-xy+xy=-xy\)) but is not of the two-parameter form for any constants \(a,b\). It is the singular solution (the envelope of the family).
+#### FP8 | Create | 16 | 30
+Q:
+Construct a first-order PDE satisfied by every function \(z=f(y/x)\).
+A:
+\(p=-\dfrac{y}{x^2}f',\ q=\dfrac1xf'\), hence \(xp+yq=0\).
+### TOPIC PQ | 5 | Solutions of the Type F(p, q) = 0
+#### PQ1 | Remember | 16 | 30
+Q:
+Describe the method of solving \(F(p,q)=0\).
+A:
+Assume \(z=ax+by+c\), so \(p=a,\ q=b\). Then \(F(a,b)=0\) lets you solve \(b=\phi(a)\), giving the complete integral \(z=ax+\phi(a)y+c\). The general integral comes from setting \(c=\psi(a)\) and eliminating \(a\) via \(\partial/\partial a=0\).
+#### PQ2 | Apply | 16 | 30
+Q:
+Find the complete integral of \(p+q=pq\).
+A:
+\(a+b=ab\Rightarrow b=\dfrac{a}{a-1}\). \(z=ax+\dfrac{a}{a-1}y+c\).
+#### PQ3 | Apply | 16 | 30
+Q:
+Find the complete integral of \(\sqrt{p}+\sqrt{q}=1\).
+A:
+\(\sqrt b=1-\sqrt a\Rightarrow b=(1-\sqrt a)^2\) (valid for \(0\le a\le1\)). \(z=ax+(1-\sqrt a)^2y+c\).
+#### PQ4 | Apply | 16 | 30
+Q:
+Find the complete integral of \(q=p^2\).
+A:
+\(b=a^2\): \(z=ax+a^2y+c\).
+#### PQ5 | Analyze | 16 | 30
+Q:
+The assumed solution \(z=ax+by+c\) has three constants, yet a complete integral should have two. Explain.
+A:
+The constants are tied by \(F(a,b)=0\), which fixes \(b\) in terms of \(a\); this leaves two free constants \((a,c)\), matching the two independent variables.
+#### PQ6 | Evaluate | 16 | 30
+Q:
+A student claims the only solutions of \(p^2+q^2=1\) are the planes \(z=x\cos\alpha+y\sin\alpha+c\). Evaluate.
+A:
+False. The cone \(z=\sqrt{x^2+y^2}\) gives \(p=x/r,\ q=y/r\), so \(p^2+q^2=1\). It arises from the general integral (the envelope of the planes with \(c=0\)), not from any single plane.
+#### PQ7 | Create | 16 | 30
+Q:
+Construct a PDE \(F(p,q)=0\) whose complete integral is \(z=ax+\dfrac1ay+c\).
+A:
+\(p=a,\ q=1/a\), so \(pq=1\).
+### TOPIC ZP | 5 | Solutions of the Type F(z, p, q) = 0
+#### ZP1 | Remember | 16 | 30
+Q:
+Describe the method for \(F(z,p,q)=0\) (no explicit \(x,y\)).
+A:
+Put \(u=x+ay\) and \(z=f(u)\). Then \(p=\dfrac{dz}{du}\) and \(q=a\dfrac{dz}{du}\), reducing the PDE to an ODE in \(z\) and \(u\). Solve it and replace \(u\) by \(x+ay\).
+#### ZP2 | Apply | 16 | 30
+Q:
+Solve \(p(1+q)=qz\).
+A:
+\(z'(1+az')=az'z\Rightarrow1+az'=az\), so \(\dfrac{dz}{az-1}=\dfrac{du}{a}\). Result: \(az-1=Ce^{x+ay}\), i.e. \(z=\dfrac{1+Ce^{x+ay}}{a}\).
+#### ZP3 | Apply | 16 | 30
+Q:
+Solve \(z^2(p^2+q^2+1)=1\).
+A:
+\(z^2\left[(1+a^2)z'^2+1\right]=1\Rightarrow\dfrac{z\,dz}{\sqrt{1-z^2}}=\dfrac{du}{\sqrt{1+a^2}}\). Result: \((x+ay+b)^2=(1+a^2)(1-z^2)\).
+#### ZP4 | Apply | 17 | 30
+Q:
+Solve \(pq=z\).
+A:
+\(az'^2=z\Rightarrow\dfrac{dz}{\sqrt z}=\dfrac{du}{\sqrt a}\), so \(2\sqrt z=\dfrac{u+b}{\sqrt a}\). Result: \(4az=(x+ay+b)^2\).
+#### ZP5 | Analyze | 17 | 30
+Q:
+Why does the substitution \(z=f(x+ay)\) work for \(F(z,p,q)=0\), and why does it need the absence of explicit \(x,y\)?
+A:
+With no explicit \(x,y\), the equation is unchanged by translations in the \((x,y)\)-plane, so solutions can be sought that depend on \(x,y\) only through one travelling combination \(x+ay\). An explicit \(x\) or \(y\) would spoil this invariance.
+#### ZP6 | Evaluate | 17 | 31
+Q:
+A student applies \(u=x+ay\) to \(pq=xz\). Evaluate.
+A:
+Invalid: the equation contains \(x\) explicitly, so it is not of type \(F(z,p,q)=0\) and the substitution does not reduce it to an ODE in \(u\) alone.
+#### ZP7 | Create | 17 | 31
+Q:
+Construct a PDE \(F(z,p,q)=0\) and solve it by \(u=x+ay\) to get an exponential complete integral.
+A:
+E.g. \(p^2+q^2=z^2\): \((1+a^2)z'^2=z^2\), so \(z=C\exp\!\left(\dfrac{x+ay}{\sqrt{1+a^2}}\right)\).
+### TOPIC XP | 5 | Solutions of the Type F(x, p) = G(y, q)
+#### XP1 | Remember | 17 | 31
+Q:
+Describe the method for \(F(x,p)=G(y,q)\).
+A:
+Set both sides equal to a constant \(a\): \(F(x,p)=a=G(y,q)\). Solve \(p=f(x,a)\) and \(q=g(y,a)\), then integrate \(dz=p\,dx+q\,dy\) to get \(z=\int f\,dx+\int g\,dy+b\).
+#### XP2 | Apply | 17 | 31
+Q:
+Solve \(p^2+q^2=x+y\).
+A:
+\(p^2-x=y-q^2=a\): \(p=\sqrt{x+a},\ q=\sqrt{y-a}\). \(z=\tfrac23(x+a)^{3/2}+\tfrac23(y-a)^{3/2}+b\).
+#### XP3 | Apply | 17 | 31
+Q:
+Solve \(p^2y(1+x^2)=qx^2\).
+A:
+\(\dfrac{p^2(1+x^2)}{x^2}=\dfrac qy=a\): \(p=\dfrac{\sqrt a\,x}{\sqrt{1+x^2}},\ q=ay\). \(z=\sqrt a\sqrt{1+x^2}+\dfrac{ay^2}{2}+b\).
+#### XP4 | Apply | 17 | 31
+Q:
+Solve \(pe^y=qe^x\).
+A:
+\(pe^{-x}=qe^{-y}=a\): \(p=ae^x,\ q=ae^y\). \(z=a(e^x+e^y)+b\).
+#### XP5 | Analyze | 17 | 31
+Q:
+Why can both sides of \(F(x,p)=G(y,q)\) be set equal to the same constant?
+A:
+The left side involves \(x\) (and \(p\)), the right only \(y\) (and \(q\)). Seeking solutions where \(p\) depends on \(x\) alone and \(q\) on \(y\) alone, a function of \(x\) equal to a function of \(y\) for all \(x,y\) must be constant.
+#### XP6 | Evaluate | 17 | 31
+Q:
+A student says \(p+q=x+y\) cannot be solved by this method "because \(x\) and \(y\) are mixed". Evaluate.
+A:
+Wrong: rearrange to \(p-x=y-q\), which is of the form \(F(x,p)=G(y,q)\). Then \(p=x+a,\ q=y-a\) and \(z=\dfrac{x^2}{2}+ax+\dfrac{y^2}{2}-ay+b\).
+#### XP7 | Create | 17 | 31
+Q:
+Construct a PDE of this type whose complete integral is \(z=(x+a)^2+(y-a)^2+b\).
+A:
+\(p=2(x+a),\ q=2(y-a)\), so \(p-2x=2a=2y-q\), i.e. \(p+q=2(x+y)\).
+### TOPIC CK | 5 | Clairaut's Form and the Singular Solution
+#### CK1 | Remember | 17 | 31
+Q:
+State Clairaut's form of a first-order PDE and its complete integral.
+A:
+\(z=px+qy+f(p,q)\). Complete integral: replace \(p,q\) by constants: \(z=ax+by+f(a,b)\). The singular solution is found by differentiating w.r.t. \(a\) and \(b\) and eliminating \(a,b\).
+#### CK2 | Apply | 17 | 31
+Q:
+Find the complete and singular solutions of \(z=px+qy+p^2+q^2\).
+A:
+Complete: \(z=ax+by+a^2+b^2\). Differentiate: \(x+2a=0,\ y+2b=0\), so \(a=-x/2,\ b=-y/2\) and \(z=-\dfrac{x^2+y^2}{4}\), i.e. \(4z=-(x^2+y^2)\).
+#### CK3 | Apply | 17 | 31
+Q:
+Find the complete and singular solutions of \(z=px+qy+\sqrt{1+p^2+q^2}\).
+A:
+Complete: \(z=ax+by+\sqrt{1+a^2+b^2}\). With \(s=\sqrt{1+a^2+b^2}\): \(x=-a/s,\ y=-b/s,\ z=1/s\), so \(x^2+y^2+z^2=1\) (the unit sphere).
+#### CK4 | Apply | 17 | 31
+Q:
+Reduce \((p+q)(z-xp-yq)=1\) to Clairaut's form and write its complete integral.
+A:
+\(z=px+qy+\dfrac{1}{p+q}\). Complete integral: \(z=ax+by+\dfrac{1}{a+b}\).
+#### CK5 | Analyze | 17 | 31
+Q:
+The complete integral of \(z=px+qy+p^2+q^2\) is a two-parameter family of planes. What does the singular solution \(4z=-(x^2+y^2)\) represent geometrically?
+A:
+It is the envelope of the family: a paraboloid that is tangent to each plane of the family. It is not obtainable from the complete integral by choosing constants.
+#### CK6 | Evaluate | 17 | 31
+Q:
+A student says \(z=-xy\) solves \(z=px+qy+pq\) "by taking \(a=-y,\ b=-x\) in the complete integral". Evaluate.
+A:
+Invalid: \(a,b\) must be constants, not functions of \(y,x\). \(z=-xy\) is the singular solution (envelope), a genuinely different solution that is not in the family.
+#### CK7 | Create | 17 | 31
+Q:
+Construct a Clairaut equation whose singular solution is the paraboloid \(z=x^2+y^2\).
+A:
+Tangent planes: \(z=ax+by-\dfrac{a^2+b^2}{4}\) (with \(a=2x_0,\ b=2y_0\)). The PDE is \(z=px+qy-\dfrac{p^2+q^2}{4}\).
+### TOPIC LG | 5 | Lagrange's Linear Equation Pp + Qq = R
+#### LG1 | Remember | 17 | 32
+Q:
+State Lagrange's equation, its auxiliary (subsidiary) equations, and the form of the general solution.
+A:
+\(Pp+Qq=R\). Auxiliary equations: \(\dfrac{dx}{P}=\dfrac{dy}{Q}=\dfrac{dz}{R}\). If \(u(x,y,z)=c_1\) and \(v(x,y,z)=c_2\) are two independent solutions, the general solution is \(\phi(u,v)=0\) (or \(v=f(u)\)).
+#### LG2 | Apply | 17 | 32
+Q:
+Solve \(xp+yq=z\).
+A:
+\(\dfrac{dx}{x}=\dfrac{dy}{y}=\dfrac{dz}{z}\) gives \(\dfrac yx=c_1,\ \dfrac zx=c_2\). General solution: \(\phi\!\left(\dfrac yx,\dfrac zx\right)=0\), i.e. \(z=x\,f(y/x)\).
+#### LG3 | Apply | 18 | 32
+Q:
+Solve \(yz\,p+zx\,q=xy\).
+A:
+\(\dfrac{dx}{yz}=\dfrac{dy}{zx}=\dfrac{dz}{xy}\Rightarrow x\,dx=y\,dy=z\,dz\). So \(x^2-y^2=c_1,\ y^2-z^2=c_2\): \(\phi(x^2-y^2,\ y^2-z^2)=0\).
+#### LG4 | Apply | 18 | 32
+Q:
+Solve \((y-z)p+(z-x)q=x-y\).
+A:
+Multipliers \(1,1,1\): \(d(x+y+z)=0\), so \(x+y+z=c_1\). Multipliers \(x,y,z\): \(x\,dx+y\,dy+z\,dz=0\), so \(x^2+y^2+z^2=c_2\). Solution: \(\phi(x+y+z,\ x^2+y^2+z^2)=0\) (the same PDE as the formation question).
+#### LG5 | Apply | 18 | 32
+Q:
+Solve \((y+z)p+(z+x)q=x+y\).
+A:
+From \(\dfrac{d(x-y)}{-(x-y)}=\dfrac{d(y-z)}{-(y-z)}\): \(\dfrac{x-y}{y-z}=c_1\). Using \(\dfrac{d(x+y+z)}{2(x+y+z)}=-\dfrac{d(x-y)}{x-y}\): \((x-y)^2(x+y+z)=c_2\). Solution: \(\phi\!\left(\dfrac{x-y}{y-z},\ (x-y)^2(x+y+z)\right)=0\).
+#### LG6 | Analyze | 18 | 32
+Q:
+Interpret \(\dfrac{dx}{P}=\dfrac{dy}{Q}=\dfrac{dz}{R}\) geometrically and explain why \(\phi(u,v)=0\) represents a solution surface.
+A:
+A surface \(z=z(x,y)\) has normal \((p,q,-1)\), and \(Pp+Qq=R\) says \((P,Q,R)\perp(p,q,-1)\), i.e. the vector \((P,Q,R)\) is tangent to the surface. The auxiliary equations describe curves (characteristics) tangent to \((P,Q,R)\); \(u=c_1,\ v=c_2\) is such a curve. A surface built from a one-parameter family of these curves, \(\phi(u,v)=0\), is therefore an integral surface.
+#### LG7 | Evaluate | 18 | 32
+Q:
+Having found \(u=y/x,\ v=z/x\) for \(xp+yq=z\), a student writes the general solution as \(u+v=c\). Evaluate.
+A:
+Incorrect. The general solution is \(\phi(u,v)=0\) with \(\phi\) an arbitrary function; \(u+v=c\) is just one particular member, giving only a one-parameter family of solutions.
+#### LG8 | Create | 18 | 32
+Q:
+Construct a Lagrange equation whose general solution is \(z=f(x^2+y^2)\).
+A:
+\(yp-xq=0\) (\(P=y,\ Q=-x,\ R=0\)): \(dz=0\Rightarrow z=c_1\), and \(x\,dx+y\,dy=0\Rightarrow x^2+y^2=c_2\).
+### TOPIC SV | 5 | Linear First-Order PDEs by Separation of Variables
+#### SV1 | Remember | 18 | 32
+Q:
+Describe the method of separation of variables for a first-order linear PDE.
+A:
+Assume \(u=X(x)Y(y)\) (or \(X(x)T(t)\)), substitute, and rearrange so each side depends on one variable only; set both equal to a separation constant \(k\). Solve the two ODEs, form \(u=XY\), and fix constants from the given condition.
+#### SV2 | Apply | 18 | 32
+Q:
+Solve \(\dfrac{\partial u}{\partial x}=2\dfrac{\partial u}{\partial t}+u\), given \(u(x,0)=6e^{-3x}\).
+A:
+\(\dfrac{X'}{X}=2\dfrac{T'}{T}+1=k\): \(X=e^{kx},\ T=e^{(k-1)t/2}\). \(u(x,0)=Ce^{kx}=6e^{-3x}\Rightarrow C=6,\ k=-3\). So \(u=6e^{-3x-2t}\).
+#### SV3 | Apply | 18 | 32
+Q:
+Solve \(3\dfrac{\partial u}{\partial x}+2\dfrac{\partial u}{\partial y}=0\), given \(u(x,0)=4e^{-x}\).
+A:
+\(\dfrac{X'}{X}=-\dfrac23\dfrac{Y'}{Y}=k\): \(u=Ce^{kx-3ky/2}\). The condition gives \(C=4,\ k=-1\). So \(u=4e^{-x+3y/2}\).
+#### SV4 | Apply | 18 | 32
+Q:
+Solve \(4u_x+u_y=3u\), given \(u(0,y)=e^{-5y}\).
+A:
+\(\dfrac{4X'}{X}=3-\dfrac{Y'}{Y}=k\): \(u=Ce^{kx/4+(3-k)y}\). \(u(0,y)=Ce^{(3-k)y}=e^{-5y}\Rightarrow C=1,\ k=8\). So \(u=e^{2x-5y}\).
+#### SV5 | Analyze | 18 | 32
+Q:
+In the earlier problem \(u_x=2u_t+u\) the condition fixed \(k=-3\). If instead \(u(x,0)=6e^{-3x}+4e^{-5x}\), how does the solution change?
+A:
+The PDE is linear, so solutions superpose. Each term matches its own \(k\): \(k=-3\) gives \(e^{-3x-2t}\), and \(k=-5\) gives \(e^{-5x-3t}\). So \(u=6e^{-3x-2t}+4e^{-5x-3t}\).
+#### SV6 | Evaluate | 18 | 32
+Q:
+From \(\dfrac{X'}{X}=2\dfrac{T'}{T}+1\), a student argues both sides must be 0 "since \(X\) depends only on \(x\) and \(T\) only on \(t\)". Evaluate.
+A:
+Incorrect. A function of \(x\) equal to a function of \(t\) must be a constant \(k\), not necessarily zero. The value of \(k\) is then fixed by the given condition.
+#### SV7 | Create | 18 | 33
+Q:
+Construct a first-order linear PDE and a condition whose separated solution is \(u=5e^{2x+3y}\).
+A:
+E.g. \(3u_x-2u_y=0\) with \(u(x,0)=5e^{2x}\): \(u_x=2u,\ u_y=3u\), so \(6u-6u=0\).

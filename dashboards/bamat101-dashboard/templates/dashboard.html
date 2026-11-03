@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}BAMAT101 Illustrated Notes — Dashboard{% endblock %}
+{% block content %}
+<header class="hero">
+  <h1>BAMAT101 — Multivariable Calculus &amp; Differential Equations</h1>
+  <p>Five modules plus exam checklists, with every figure from the illustrated notes and a self-graded practice bank. Open a module, jump to a section in the PDF reader, or practise.</p>
+  <a class="btn" href="{{ url_for('quiz_setup') }}">📝 Practice problems{% if n_problems %} ({{ n_problems }}){% endif %}</a>
+  <a class="btn" href="{{ url_for('read', which='notes') }}">📄 Read the notes PDF</a>
+  <a class="btn" href="{{ url_for('read', which='bank') }}">📄 Problem bank PDF</a>
+</header>
+<main>
+  <p class="note-box"><strong>How to use this:</strong> click a module title to open it. Expand “sections covered” and each section opens the original page in the PDF reader. Reference text: Thomas’ Calculus, 13th ed.</p>
+  {% for m in mods %}
+  <article class="card" style="--accent:{{ m.accent }};--accent-dk:{{ m.accent_dk }}">
+    <div class="row"><div>
+      <span class="tag">{% if m.num < total %}Module {{ m.num }} of 5{% else %}Summary{% endif %} · PDF pages {{ m.pages[0] }}–{{ m.pages[1] }}</span>
+      <h2><a href="{{ url_for('module', num=m.num) }}">{{ m.title }}</a></h2>
+      <p class="desc">{{ m.desc }}</p></div>
+      <a class="open-btn" href="{{ url_for('module', num=m.num) }}">Open module →</a></div>
+    <details class="topics"><summary>{{ m.topics|length }} section{{ '' if m.topics|length == 1 else 's' }} covered — expand</summary>
+      <ul class="secs">{% for t in m.topics %}
+        <li><a href="{{ url_for('module', num=m.num) }}#{{ t.id }}"><span class="st">{{ t.label }}{% if t.summary %}<span class="sm">{{ t.summary }}</span>{% endif %}</span><span class="pg">p. {{ t.page }}</span></a></li>
+      {% endfor %}</ul></details>
+  </article>
+  {% endfor %}
+</main>
+<footer class="foot">Served locally by Flask</footer>
+{% endblock %}

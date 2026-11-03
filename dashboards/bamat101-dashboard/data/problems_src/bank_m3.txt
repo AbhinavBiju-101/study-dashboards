@@ -1,0 +1,312 @@
+### TOPIC G | 3 | Gradient
+#### G1 | Remember | 9 | 23
+Q:
+State the formula for \( \nabla f \) in Cartesian coordinates, and its geometric relationship to the level surface through a point.
+A:
+\[ \nabla f = \frac{\partial f}{\partial x}\mathbf{i} + \frac{\partial f}{\partial y}\mathbf{j} + \frac{\partial f}{\partial z}\mathbf{k}. \]
+It is perpendicular (normal) to the level surface \( f = c \) at that point.
+#### G2 | Apply | 9 | 23
+Q:
+Find \( \nabla f \) for \( f(x,y,z) = x^3 y - 2yz^2 + xz \) at \( (1,2,-1) \).
+A:
+\( \nabla f = (3x^2 y + z)\mathbf{i} + (x^3 - 2z^2)\mathbf{j} + (-4yz + x)\mathbf{k} = 5\mathbf{i} - \mathbf{j} + 9\mathbf{k}. \)
+#### G3 | Apply | 9 | 23
+Q:
+Find the tangent plane to \( x^2 + 2y^2 + 3z^2 = 12 \) at \( (1,2,-1) \).
+A:
+\( \nabla f = (2x, 4y, 6z) = (2, 8, -6) \), so \( 2(x-1) + 8(y-2) - 6(z+1) = 0 \), i.e. \( x + 4y - 3z = 12 \).
+#### G4 | Analyze | 9 | 23
+Q:
+For \( f(x,y) = x^2 - y^2 \), describe how the level curves change shape as \( c \) passes through 0, and explain what happens to \( \nabla f \) at the origin.
+A:
+Level curves are hyperbolas opening along the \( x \)-axis for \( c \gt 0 \), along the \( y \)-axis for \( c \lt 0 \), and a pair of crossing lines for \( c = 0 \). \( \nabla f = (2x, -2y) = \mathbf{0} \) at the origin, a saddle point.
+#### G5 | Evaluate | 9 | 23
+Q:
+A student claims: “wherever \( \nabla f = \mathbf{0} \), \( f \) has a local maximum or minimum.” Evaluate, giving a counterexample if false.
+A:
+False. Counterexample: \( f = x^2 - y^2 \) at \( (0,0) \) has \( \nabla f = \mathbf{0} \) but is a saddle point.
+#### G6 | Create | 9 | 23
+Q:
+Construct a scalar function \( f(x,y,z) \) whose gradient at \( (1,1,1) \) equals \( (2,3,-1) \).
+A:
+E.g. \( f = x^2 + 3y - z \), since \( \nabla f = (2x, 3, -1) = (2,3,-1) \) at \( (1,1,1) \). Many answers are valid.
+### TOPIC D | 3 | Directional Derivative
+#### D1 | Remember | 9 | 24
+Q:
+Write the formula for the directional derivative of \( f \) along a unit vector \( \hat{\mathbf{a}} \), and explain why \( \hat{\mathbf{a}} \) must be a unit vector.
+A:
+\( D_{\hat{\mathbf{a}}} f = \nabla f \cdot \hat{\mathbf{a}} \). It must have unit length so the result is a rate of change per unit distance, comparable across directions.
+#### D2 | Apply | 9 | 24
+Q:
+Find the directional derivative of \( f = xy^2 + yz \) at \( (2,-1,3) \) in the direction of \( (3,4,0) \).
+A:
+\( \nabla f = (y^2, 2xy + z, y) = (1, -1, -1) \); \( \hat{\mathbf{a}} = (3,4,0)/5 \). So \( D = \frac{3}{5} - \frac{4}{5} = -\frac{1}{5} \).
+#### D3 | Apply | 9 | 24
+Q:
+Find the maximum rate of change of \( f = x^2 y^3 \) at \( (2,1) \) and the direction in which it occurs.
+A:
+\( \nabla f = (2xy^3, 3x^2 y^2) = (4, 12) \). Maximum rate \( = |\nabla f| = 4\sqrt{10} \), in the direction \( (1,3)/\sqrt{10} \).
+#### D4 | Analyze | 9 | 24
+Q:
+At \( (2,1) \) on \( f = x^2 + y^2 \), without fully computing, decide which of the directions \( (1,0) \) and \( (0,1) \) gives the larger directional derivative, using the angle each makes with \( \nabla f \).
+A:
+\( \nabla f = (4,2) \). \( \cos\theta \) with \( (1,0) \) is \( 4/\sqrt{20} \approx 0.894 \); with \( (0,1) \) it is \( 2/\sqrt{20} \approx 0.447 \). \( (1,0) \) is closer in direction to \( \nabla f \), so it gives the larger value.
+#### D5 | Evaluate | 9 | 24
+Q:
+Explain why the directional derivative perpendicular to \( \nabla f \) is always zero, then verify for \( f = x^2 + y^2 \) at \( (1,1) \).
+A:
+\( D_{\hat{\mathbf{a}}} f = \nabla f \cdot \hat{\mathbf{a}} = 0 \) when \( \hat{\mathbf{a}} \perp \nabla f \). At \( (1,1) \), \( \nabla f = (2,2) \); the unit vector \( (1,-1)/\sqrt{2} \) gives \( 2/\sqrt{2} - 2/\sqrt{2} = 0 \).
+#### D6 | Create | 9 | 24
+Q:
+Construct \( f(x,y) \) and a point \( P \) such that the maximum directional derivative at \( P \) is exactly 5.
+A:
+E.g. \( f = 3x + 4y \): \( \nabla f = (3,4) \) has magnitude 5 at every point.
+### TOPIC Dv | 3 | Divergence
+#### Dv1 | Remember | 9 | 24
+Q:
+State the formula for \( \operatorname{div}\mathbf{F} \) and the physical meaning of positive and negative divergence.
+A:
+\( \operatorname{div}\mathbf{F} = \frac{\partial F_1}{\partial x} + \frac{\partial F_2}{\partial y} + \frac{\partial F_3}{\partial z} \). Positive: the point is a source (net outflow). Negative: a sink (net inflow).
+#### Dv2 | Apply | 9 | 24
+Q:
+Compute \( \operatorname{div}\mathbf{F} \) for \( \mathbf{F} = x^2 y\,\mathbf{i} - 2xz\,\mathbf{j} + yz^2\,\mathbf{k} \).
+A:
+\( 2xy + 0 + 2yz = 2xy + 2yz \).
+#### Dv3 | Apply | 9 | 24
+Q:
+Find \( \lambda \) such that \( \mathbf{F} = (2x+3y)\mathbf{i} + (y-z)\mathbf{j} + (\lambda z)\mathbf{k} \) is solenoidal.
+A:
+\( \operatorname{div}\mathbf{F} = 2 + 1 + \lambda = 0 \Rightarrow \lambda = -3 \).
+#### Dv4 | Analyze | 9 | 24
+Q:
+For \( \mathbf{F} = x\mathbf{i} + y\mathbf{j} \), compute \( \operatorname{div}\mathbf{F} \) and explain why it is the same constant at every point, not only near the origin where the arrows seem to “start”.
+A:
+\( \operatorname{div}\mathbf{F} = 2 \) everywhere. Divergence is a local measure at each point; for this linear field the spreading is uniform, not concentrated at the origin.
+#### Dv5 | Evaluate | 9 | 24
+Q:
+A field has \( \operatorname{div}\mathbf{F} = 0 \) everywhere except at the origin, where it is undefined. Can it be called solenoidal away from the origin, and what goes wrong if the Divergence Theorem is applied to a surface enclosing the origin?
+A:
+It is solenoidal on the punctured region. But the Divergence Theorem requires \( \mathbf{F} \) to be defined and differentiable throughout the enclosed volume; the singularity at the origin breaks this, so flux need not be zero despite \( \operatorname{div}\mathbf{F} = 0 \) elsewhere (the classic point-source case).
+#### Dv6 | Create | 10 | 24
+Q:
+Construct a vector field that is a uniform sink with \( \operatorname{div}\mathbf{F} = -6 \) at every point.
+A:
+E.g. \( \mathbf{F} = -2x\mathbf{i} - 2y\mathbf{j} - 2z\mathbf{k} \).
+### TOPIC C | 3 | Curl
+#### C1 | Remember | 10 | 24
+Q:
+State the determinant formula for \( \operatorname{curl}\mathbf{F} \) and the physical meaning of \( \operatorname{curl}\mathbf{F} = \mathbf{0} \).
+A:
+\( \operatorname{curl}\mathbf{F} = \nabla \times \mathbf{F} \), the \( 3\times 3 \) determinant with rows \( (\mathbf{i},\mathbf{j},\mathbf{k}) \), \( (\partial_x, \partial_y, \partial_z) \), \( (F_1, F_2, F_3) \). Zero curl means no local rotation: a paddle wheel dropped anywhere would not spin.
+#### C2 | Apply | 10 | 24
+Q:
+Compute \( \operatorname{curl}\mathbf{F} \) at \( (1,1,1) \) for \( \mathbf{F} = xz\,\mathbf{i} + xyz\,\mathbf{j} - y^2\mathbf{k} \).
+A:
+\( \operatorname{curl}\mathbf{F} = (-2y - xy)\mathbf{i} + x\mathbf{j} + yz\mathbf{k} \); at \( (1,1,1) \): \( -3\mathbf{i} + \mathbf{j} + \mathbf{k} \).
+#### C3 | Apply | 10 | 24
+Q:
+Determine whether \( \mathbf{F} = (2xy + z^2)\mathbf{i} + (x^2 + 2z)\mathbf{j} + (2xz + 2y)\mathbf{k} \) is irrotational.
+A:
+\( \mathbf{i} \): \( 2 - 2 = 0 \); \( \mathbf{j} \): \( -(2z - 2z) = 0 \); \( \mathbf{k} \): \( 2x - 2x = 0 \). So \( \operatorname{curl}\mathbf{F} = \mathbf{0} \): irrotational.
+#### C4 | Analyze | 10 | 24
+Q:
+Explain, using the determinant formula, why \( \mathbf{F} = x\mathbf{i} + y\mathbf{j} + z\mathbf{k} \) has zero curl everywhere.
+A:
+Each component depends only on its own variable, so every cross-partial in the determinant (e.g. \( \partial F_3/\partial y \)) is 0, giving \( \operatorname{curl}\mathbf{F} = \mathbf{0} \).
+#### C5 | Evaluate | 10 | 24
+Q:
+A student computes \( \operatorname{curl}\mathbf{F} = 2\mathbf{k} \) for \( \mathbf{F} = -y\mathbf{i} + x\mathbf{j} \) but argues “the field lines are just circles, so no particle is really spinning”. Evaluate.
+A:
+Flawed. This is rigid-body-like rotation: nearby fluid elements genuinely spin about their own centres as they revolve, which is exactly what curl measures; the computed \( 2\mathbf{k} \) confirms it.
+#### C6 | Create | 10 | 25
+Q:
+Give a vector field that is solenoidal but not irrotational.
+A:
+E.g. \( \mathbf{F} = -y\mathbf{i} + x\mathbf{j} \): \( \operatorname{div}\mathbf{F} = 0 \) but \( \operatorname{curl}\mathbf{F} = 2\mathbf{k} \neq \mathbf{0} \).
+### TOPIC P | 3 | Scalar and Vector Potential
+#### P1 | Remember | 10 | 25
+Q:
+State the condition for a scalar potential \( \varphi \) to exist for \( \mathbf{F} \), and the relationship between them.
+A:
+A scalar potential exists when \( \operatorname{curl}\mathbf{F} = \mathbf{0} \) (irrotational); then \( \mathbf{F} = \nabla\varphi \).
+#### P2 | Apply | 10 | 25
+Q:
+Verify that \( \mathbf{F} = (2xy + z^3)\mathbf{i} + x^2\mathbf{j} + 3xz^2\mathbf{k} \) is irrotational and find its scalar potential.
+A:
+Curl is \( \mathbf{0} \). Integrating: \( \varphi = x^2 y + xz^3 + C \).
+#### P3 | Apply | 10 | 25
+Q:
+Verify that \( \mathbf{F} = (y+z)\mathbf{i} + (x+z)\mathbf{j} + (x+y)\mathbf{k} \) is irrotational and find its scalar potential.
+A:
+Curl is \( \mathbf{0} \). \( \varphi = xy + yz + zx + C \).
+#### P4 | Analyze | 10 | 25
+Q:
+Explain why a scalar potential, when it exists, is unique only up to an additive constant.
+A:
+If \( \nabla\varphi_1 = \nabla\varphi_2 = \mathbf{F} \) then \( \nabla(\varphi_1 - \varphi_2) = \mathbf{0} \), so \( \varphi_1 - \varphi_2 \) is constant.
+#### P5 | Evaluate | 10 | 25
+Q:
+\( \mathbf{F} \) is solenoidal and a student tries to find \( \varphi \) with \( \mathbf{F} = \nabla\varphi \), but gets stuck. Is this expected, and what should be sought instead?
+A:
+Expected: \( \operatorname{div}\mathbf{F} = 0 \) does not imply \( \operatorname{curl}\mathbf{F} = \mathbf{0} \), and a scalar potential needs the latter. For a solenoidal field, seek a vector potential \( \mathbf{A} \) with \( \mathbf{F} = \operatorname{curl}\mathbf{A} \).
+#### P6 | Create | 10 | 25
+Q:
+Construct a nonzero vector field that is both solenoidal and irrotational.
+A:
+E.g. a constant field, or \( \mathbf{F} = 2x\mathbf{i} - y\mathbf{j} - z\mathbf{k} \) (div \( = 2 - 1 - 1 = 0 \); curl is \( \mathbf{0} \) since each component depends only on its own variable).
+### TOPIC L | 3 | Line Integrals
+#### L1 | Remember | 10 | 25
+Q:
+State the definition of \( \int_C \mathbf{F}\cdot d\mathbf{r} \) and what it represents physically.
+A:
+\( \int_C \mathbf{F}\cdot d\mathbf{r} = \int_a^b \mathbf{F}(\mathbf{r}(t))\cdot\mathbf{r}'(t)\,dt \): the work done by \( \mathbf{F} \) moving a particle along \( C \).
+#### L2 | Apply | 10 | 25
+Q:
+Evaluate \( \int_C \mathbf{F}\cdot d\mathbf{r} \) for \( \mathbf{F} = (x+y)\mathbf{i} + (y-x)\mathbf{j} \) along the straight line from \( (0,0) \) to \( (2,2) \).
+A:
+With \( x = y = t \): \( \mathbf{F}\cdot d\mathbf{r} = 2t\,dt \), so \( \int_0^2 2t\,dt = 4 \).
+#### L3 | Apply | 10 | 25
+Q:
+Evaluate \( \int_C \mathbf{F}\cdot d\mathbf{r} \) for \( \mathbf{F} = y\mathbf{i} + x\mathbf{j} \) along \( y = x^3 \) from \( (0,0) \) to \( (1,1) \).
+A:
+With \( x = t,\ y = t^3 \): \( \mathbf{F}\cdot d\mathbf{r} = 4t^3\,dt \), so the integral is 1.
+#### L4 | Analyze | 10 | 25
+Q:
+For \( \mathbf{F} = y\mathbf{i} - x\mathbf{j} \), evaluate \( \int_C \mathbf{F}\cdot d\mathbf{r} \) from \( (1,0) \) to \( (0,1) \) along (a) the straight segment and (b) the quarter circle \( x^2 + y^2 = 1 \). Compare, and explain in terms of curl.
+A:
+(a) \( -1 \); (b) \( -\pi/2 \). They differ because \( \operatorname{curl}\mathbf{F} = -2\mathbf{k} \neq \mathbf{0} \): \( \mathbf{F} \) is not conservative, so the integral is path-dependent.
+#### L5 | Evaluate | 11 | 25
+Q:
+Student A computes \( \oint_C \mathbf{F}\cdot d\mathbf{r} = +8 \) going counterclockwise; Student B gets \( -8 \) going clockwise. Can both be right?
+A:
+Yes. Reversing the direction of traversal flips the sign of \( d\mathbf{r} \) at every point, so the integral changes sign and keeps its magnitude.
+#### L6 | Create | 11 | 25
+Q:
+Construct a vector field and two paths between the same two points along which the line integral differs.
+A:
+Any non-conservative field works, e.g. \( \mathbf{F} = y\mathbf{i} - x\mathbf{j} \) with the two paths from the previous analysis question.
+### TOPIC Gr | 3 | Green’s Theorem
+#### Gr1 | Remember | 11 | 25
+Q:
+State Green’s Theorem and the orientation of \( C \) it requires.
+A:
+\[ \oint_C (M\,dx + N\,dy) = \iint_R \left(\frac{\partial N}{\partial x} - \frac{\partial M}{\partial y}\right) dA, \]
+with \( C \) traversed counterclockwise around \( R \).
+#### Gr2 | Apply | 11 | 25
+Q:
+Use Green’s Theorem to evaluate \( \oint_C (3x^2 y\,dx + x^3\,dy) \) around the boundary of \( 0 \le x \le 1,\ 0 \le y \le 2 \), counterclockwise.
+A:
+\( \partial N/\partial x - \partial M/\partial y = 3x^2 - 3x^2 = 0 \), so the integral is 0 (the field is conservative).
+#### Gr3 | Apply | 11 | 25
+Q:
+Use Green’s Theorem to evaluate \( \oint_C \left(xy^2\,dx + (x^2 y + 2x)\,dy\right) \) around the triangle \( (0,0), (1,0), (1,1) \), counterclockwise.
+A:
+Integrand \( = (2xy + 2) - 2xy = 2 \); area of the triangle \( = \frac{1}{2} \). Answer: 1.
+#### Gr4 | Analyze | 11 | 25
+Q:
+\( \mathbf{F} = \dfrac{-y}{x^2+y^2}\mathbf{i} + \dfrac{x}{x^2+y^2}\mathbf{j} \) is undefined at the origin. Why can’t Green’s Theorem be applied directly to a curve enclosing the origin, and what is the standard fix?
+A:
+\( M, N \) and their partials must be continuous throughout the enclosed region; this fails at the origin. Fix: cut out a small circle around the origin and apply the theorem on the resulting annular region.
+#### Gr5 | Evaluate | 11 | 25
+Q:
+A closed boundary consists of 6 line segments with a moderately complex integrand. Which is likely faster: parametrising each segment, or Green’s Theorem?
+A:
+Green’s Theorem: one double integral instead of six separate parametrised line integrals, especially when \( \partial N/\partial x - \partial M/\partial y \) simplifies.
+#### Gr6 | Create | 11 | 25
+Q:
+Construct \( M, N \) such that \( \oint_C (M\,dx + N\,dy) = \text{Area}(R) \) for every region \( R \).
+A:
+E.g. \( M = 0,\ N = x \) (or \( M = -y/2,\ N = x/2 \)): \( \partial N/\partial x - \partial M/\partial y = 1 \).
+### TOPIC S | 3 | Surfaces and Surface Integrals
+#### S1 | Remember | 11 | 26
+Q:
+Write \( dS \) for a surface \( z = g(x,y) \), and say what the square-root factor accounts for.
+A:
+\( dS = \sqrt{1 + g_x^2 + g_y^2}\,dA \). The root corrects for the surface’s tilt: a tilted patch projects onto a smaller flat area.
+#### S2 | Apply | 11 | 26
+Q:
+Find the flux of \( \mathbf{F} = x\mathbf{i} + y\mathbf{j} + 2z\mathbf{k} \) upward through the part of \( x + y + z = 1 \) in the first octant.
+A:
+With \( \hat{\mathbf{n}}\,dS = (1,1,1)\,dA \): \( \mathbf{F}\cdot\hat{\mathbf{n}}\,dS = (2 - x - y)\,dA \), and \( \int_0^1\int_0^{1-x} (2 - x - y)\,dy\,dx = \frac{2}{3} \).
+#### S3 | Apply | 11 | 26
+Q:
+Find the surface area of the paraboloid \( z = x^2 + y^2 \) below \( z = 4 \).
+A:
+\( \int_0^{2\pi}\int_0^2 r\sqrt{1 + 4r^2}\,dr\,d\theta = \frac{\pi}{6}\left(17\sqrt{17} - 1\right) \approx 36.2 \).
+#### S4 | Analyze | 11 | 26
+Q:
+Explain why reversing the normal flips the sign of a flux integral but not its magnitude, and give a scenario where the sign matters.
+A:
+\( \mathbf{F}\cdot(-\hat{\mathbf{n}}) = -\mathbf{F}\cdot\hat{\mathbf{n}} \), so the value changes sign while \( |\mathbf{F}\cdot\hat{\mathbf{n}}| \) is unchanged. The sign tells you whether net flow is into or out of a region, e.g. a control volume in fluid flow.
+#### S5 | Evaluate | 11 | 26
+Q:
+A full sphere is not the graph of one function \( z = g(x,y) \). Why can’t \( dS = \sqrt{1 + g_x^2 + g_y^2}\,dA \) be used directly, and what is the fix?
+A:
+A sphere has two \( z \)-values for each \( (x,y) \) in its shadow (upper and lower hemispheres). Fix: split into two graphs and treat each separately, or use a parametrisation such as spherical coordinates.
+#### S6 | Create | 11 | 26
+Q:
+Construct a flat surface and a nonzero constant field whose flux through it is exactly zero.
+A:
+E.g. \( S \) in the \( xy \)-plane (\( \hat{\mathbf{n}} = \mathbf{k} \)) and \( \mathbf{F} = \mathbf{i} \): \( \mathbf{F}\cdot\hat{\mathbf{n}} = 0 \) everywhere.
+### TOPIC St | 3 | Stokes’ Theorem
+#### St1 | Remember | 11 | 26
+Q:
+State Stokes’ Theorem and the orientation convention linking \( C \) and \( \hat{\mathbf{n}} \).
+A:
+\( \oint_C \mathbf{F}\cdot d\mathbf{r} = \iint_S (\operatorname{curl}\mathbf{F})\cdot\hat{\mathbf{n}}\,dS \). Right-hand rule: curl the fingers along \( C \), the thumb points along \( \hat{\mathbf{n}} \).
+#### St2 | Apply | 11 | 26
+Q:
+Use Stokes’ Theorem to evaluate \( \oint_C \mathbf{F}\cdot d\mathbf{r} \) for \( \mathbf{F} = z\mathbf{i} + x\mathbf{j} + y\mathbf{k} \), with \( C \) the triangle \( (1,0,0), (0,1,0), (0,0,1) \) oriented outward.
+A:
+\( \operatorname{curl}\mathbf{F} = (1,1,1) \), \( \hat{\mathbf{n}} = (1,1,1)/\sqrt{3} \), so \( (\operatorname{curl}\mathbf{F})\cdot\hat{\mathbf{n}} = \sqrt{3} \). Triangle area \( = \sqrt{3}/2 \). Answer: \( \dfrac{3}{2} \).
+#### St3 | Apply | 12 | 26
+Q:
+Use Stokes’ Theorem for \( \mathbf{F} = y^2\mathbf{i} + xy\mathbf{j} + xz\mathbf{k} \) around the square \( 0 \le x, y \le 2 \) in \( z = 0 \), counterclockwise from \( +z \).
+A:
+\( \operatorname{curl}\mathbf{F} = -z\mathbf{j} - y\mathbf{k} \); with \( \hat{\mathbf{n}} = \mathbf{k} \) the integrand is \( -y \). \( \int_0^2\int_0^2 (-y)\,dy\,dx = -4 \).
+#### St4 | Analyze | 12 | 26
+Q:
+A flat disk and a hemispherical bowl share the same boundary circle \( C \). Why must \( \iint (\operatorname{curl}\mathbf{F})\cdot\hat{\mathbf{n}}\,dS \) be equal over both?
+A:
+By Stokes’ Theorem both equal the same line integral \( \oint_C \mathbf{F}\cdot d\mathbf{r} \) — the theorem does not care which surface bounded by \( C \) is used.
+#### St5 | Evaluate | 12 | 26
+Q:
+\( \mathbf{F} \) is irrotational on a simply connected region. What does that imply about \( \oint_C \mathbf{F}\cdot d\mathbf{r} \) for every closed curve there?
+A:
+It is 0: for any capping surface, \( \iint_S (\operatorname{curl}\mathbf{F})\cdot\hat{\mathbf{n}}\,dS = \iint_S \mathbf{0}\,dS = 0 \), which is exactly the condition for \( \mathbf{F} \) to be conservative.
+#### St6 | Create | 12 | 26
+Q:
+Construct a closed curve and a field for which a flat disk is clearly the easiest capping surface, and explain.
+A:
+E.g. the unit circle in \( z = 0 \) with \( \mathbf{F} = y\mathbf{i} + z\mathbf{j} + x\mathbf{k} \) (as in the lesson notes): a flat disk has constant \( \hat{\mathbf{n}} = \mathbf{k} \), avoiding a position-dependent normal vector.
+### TOPIC Gs | 3 | Gauss Divergence Theorem
+#### Gs1 | Remember | 12 | 26
+Q:
+State the Gauss Divergence Theorem and what kind of surface it requires.
+A:
+\( \iint_S \mathbf{F}\cdot\hat{\mathbf{n}}\,dS = \iiint_V \operatorname{div}\mathbf{F}\,dV \); \( S \) must be a closed surface enclosing the solid region \( V \), with outward normal.
+#### Gs2 | Apply | 12 | 26
+Q:
+Verify the Divergence Theorem for \( \mathbf{F} = 2x\mathbf{i} + y\mathbf{j} + 3z\mathbf{k} \) over the cube \( [0,1]^3 \) by computing both sides.
+A:
+Volume side: \( \operatorname{div}\mathbf{F} = 6 \), so 6. Surface side: faces \( x = 1,\ y = 1,\ z = 1 \) give 2, 1, 3 and the opposite faces give 0: total 6. Equal. ✓
+#### Gs3 | Apply | 12 | 26
+Q:
+Use the Divergence Theorem to evaluate \( \iint_S \mathbf{F}\cdot\hat{\mathbf{n}}\,dS \) for \( \mathbf{F} = x^2\mathbf{i} + y^2\mathbf{j} + z^2\mathbf{k} \) over the sphere \( x^2 + y^2 + z^2 = a^2 \).
+A:
+\( \operatorname{div}\mathbf{F} = 2x + 2y + 2z \), odd in each variable over a region symmetric about the origin, so the integral is 0.
+#### Gs4 | Analyze | 12 | 26
+Q:
+Why is the flux of \( \mathbf{F} = \hat{\mathbf{r}}/r^2 \) through any closed surface enclosing the origin the same constant?
+A:
+\( \operatorname{div}\mathbf{F} = 0 \) except at the origin. Applying the theorem to the region between the given surface and a small sphere about the origin shows the two fluxes are equal (no divergence in between), so every enclosing surface carries the same flux as the small sphere.
+#### Gs5 | Evaluate | 12 | 27
+Q:
+A student applies the Divergence Theorem directly to an open hemispherical surface (curved part only). Is that valid?
+A:
+No: the theorem needs a closed surface. Add the flat circular base, compute the total flux via the theorem, then subtract the flux through the base to isolate the curved part.
+#### Gs6 | Create | 12 | 27
+Q:
+Construct a field whose flux through every closed surface is zero.
+A:
+Any solenoidal field, e.g. a constant vector field \( \mathbf{F} = \mathbf{c} \) (\( \operatorname{div}\mathbf{c} = 0 \)).

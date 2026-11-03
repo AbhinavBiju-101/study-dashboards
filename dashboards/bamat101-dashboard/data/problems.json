@@ -1,0 +1,1914 @@
+[
+ {
+  "prefix": "F",
+  "module": 1,
+  "title": "Functions of Two Variables and Partial Derivatives",
+  "problems": [
+   {
+    "id": "F1",
+    "level": "Remember",
+    "q_page": 4,
+    "a_page": 19,
+    "q": "Define \\(\\partial f/\\partial x\\) for a function \\(f(x,y)\\) as a limit, and state the condition under which the mixed partials satisfy \\(f_{xy}=f_{yx}\\).",
+    "a": "\\[ \\frac{\\partial f}{\\partial x}=\\lim_{h\\to 0}\\frac{f(x+h,y)-f(x,y)}{h}, \\]\nwith \\(y\\) held fixed. The mixed partials are equal whenever both are continuous near the point (Clairaut–Schwarz theorem)."
+   },
+   {
+    "id": "F2",
+    "level": "Apply",
+    "q_page": 4,
+    "a_page": 19,
+    "q": "Find \\(f_x\\), \\(f_y\\) and \\(f_{xy}\\) for \\(f(x,y)=x^3y^2+\\sin(xy)\\), and check that \\(f_{yx}\\) gives the same result.",
+    "a": "\\(f_x=3x^2y^2+y\\cos(xy)\\), \\(f_y=2x^3y+x\\cos(xy)\\), and \\(f_{xy}=f_{yx}=6x^2y+\\cos(xy)-xy\\sin(xy)\\)."
+   },
+   {
+    "id": "F3",
+    "level": "Apply",
+    "q_page": 4,
+    "a_page": 19,
+    "q": "Show that \\(u=\\ln(x^2+y^2)\\) satisfies Laplace's equation \\(u_{xx}+u_{yy}=0\\) for \\((x,y)\\neq(0,0)\\).",
+    "a": "\\(u_x=\\dfrac{2x}{x^2+y^2}\\), so \\(u_{xx}=\\dfrac{2(y^2-x^2)}{(x^2+y^2)^2}\\). By symmetry \\(u_{yy}=\\dfrac{2(x^2-y^2)}{(x^2+y^2)^2}\\), and the two cancel: \\(u_{xx}+u_{yy}=0\\)."
+   },
+   {
+    "id": "F4",
+    "level": "Apply",
+    "q_page": 4,
+    "a_page": 19,
+    "q": "If \\(z=x^2y\\) with \\(x=t^2\\) and \\(y=t^3\\), find \\(dz/dt\\) using the chain rule \\(\\dfrac{dz}{dt}=z_x\\dfrac{dx}{dt}+z_y\\dfrac{dy}{dt}\\), and confirm by substituting first.",
+    "a": "\\(z_x=2xy=2t^5\\), \\(dx/dt=2t\\), \\(z_y=x^2=t^4\\), \\(dy/dt=3t^2\\), so \\(dz/dt=4t^6+3t^6=7t^6\\). Check: \\(z=t^7\\), so \\(dz/dt=7t^6\\). ✓"
+   },
+   {
+    "id": "F5",
+    "level": "Analyze",
+    "q_page": 4,
+    "a_page": 19,
+    "q": "Let \\(f(x,y)=\\dfrac{xy}{x^2+y^2}\\) for \\((x,y)\\neq(0,0)\\) and \\(f(0,0)=0\\). Show that \\(f_x(0,0)\\) and \\(f_y(0,0)\\) both exist, yet \\(f\\) is not continuous at the origin.",
+    "a": "On both axes \\(f=0\\), so \\(f_x(0,0)=\\lim_{h\\to0}\\frac{f(h,0)-0}{h}=0\\) and likewise \\(f_y(0,0)=0\\). But along the line \\(y=x\\), \\(f=\\tfrac12\\) for every \\(x\\neq0\\), so the limit at the origin along that line is \\(\\tfrac12\\neq f(0,0)\\): \\(f\\) is discontinuous. Partial derivatives only probe the two axis directions, so their existence does not guarantee continuity."
+   },
+   {
+    "id": "F6",
+    "level": "Evaluate",
+    "q_page": 4,
+    "a_page": 19,
+    "q": "A student asserts that \\(\\dfrac{\\partial^2 f}{\\partial x\\,\\partial y}=\\dfrac{\\partial^2 f}{\\partial y\\,\\partial x}\\) for every function. Evaluate this claim.",
+    "a": "False in general: equality needs the mixed partials to be continuous. Counterexample: \\(f=\\dfrac{xy(x^2-y^2)}{x^2+y^2}\\), \\(f(0,0)=0\\). Here \\(f_x(0,y)=-y\\) and \\(f_y(x,0)=x\\), so (writing \\(f_{xy}=\\partial_y(f_x)\\)) \\(f_{xy}(0,0)=-1\\) while \\(f_{yx}(0,0)=+1\\)."
+   },
+   {
+    "id": "F7",
+    "level": "Create",
+    "q_page": 4,
+    "a_page": 19,
+    "q": "Construct a non-constant function \\(u(x,y)\\) satisfying Laplace's equation \\(u_{xx}+u_{yy}=0\\), and verify it.",
+    "a": "E.g. \\(u=x^2-y^2\\): \\(u_{xx}=2\\), \\(u_{yy}=-2\\), sum \\(0\\). Other valid choices: \\(xy\\), \\(e^x\\cos y\\), \\(\\ln(x^2+y^2)\\)."
+   }
+  ]
+ },
+ {
+  "prefix": "TD",
+  "module": 1,
+  "title": "Total Differential",
+  "problems": [
+   {
+    "id": "TD1",
+    "level": "Remember",
+    "q_page": 4,
+    "a_page": 19,
+    "q": "State the total differential \\(dz\\) of \\(z=f(x,y)\\) and say what it approximates.",
+    "a": "\\(dz=f_x\\,dx+f_y\\,dy\\). It approximates the actual change \\(\\Delta z=f(x+dx,\\,y+dy)-f(x,y)\\) for small \\(dx,dy\\) — it is the change measured along the tangent plane."
+   },
+   {
+    "id": "TD2",
+    "level": "Apply",
+    "q_page": 4,
+    "a_page": 19,
+    "q": "For \\(z=x^2y-3xy^2\\) find \\(dz\\). Evaluate it at \\((1,2)\\) with \\(dx=0.02,\\ dy=-0.01\\) and compare with the exact change \\(\\Delta z\\).",
+    "a": "\\(dz=(2xy-3y^2)\\,dx+(x^2-6xy)\\,dy\\). At \\((1,2)\\): \\(z_x=-8\\), \\(z_y=-11\\), so \\(dz=-0.16+0.11=-0.05\\). Exact: \\(\\Delta z=-10.0475-(-10)=-0.0475\\)."
+   },
+   {
+    "id": "TD3",
+    "level": "Apply",
+    "q_page": 4,
+    "a_page": 19,
+    "q": "Use differentials to approximate \\(\\sqrt{(4.02)^2+(2.97)^2}\\).",
+    "a": "Take \\(f=\\sqrt{x^2+y^2}\\) at \\((4,3)\\): \\(f=5\\), \\(f_x=4/5\\), \\(f_y=3/5\\), with \\(dx=0.02\\), \\(dy=-0.03\\). Then \\(df=0.016-0.018=-0.002\\), so the value is \\(\\approx 4.998\\) (exact: \\(4.99813\\))."
+   },
+   {
+    "id": "TD4",
+    "level": "Apply",
+    "q_page": 4,
+    "a_page": 19,
+    "q": "A cylinder's radius and height are measured as \\(r=5\\) cm and \\(h=12\\) cm with possible errors of \\(0.1\\) cm and \\(0.2\\) cm. Estimate the maximum error in its volume \\(V=\\pi r^2h\\), and the relative error.",
+    "a": "\\(dV=2\\pi rh\\,dr+\\pi r^2\\,dh=2\\pi(5)(12)(0.1)+\\pi(25)(0.2)=12\\pi+5\\pi=17\\pi\\approx53.4\\ \\text{cm}^3\\). Relative error \\(=\\dfrac{17\\pi}{300\\pi}=\\dfrac{17}{300}\\approx5.7\\%\\)."
+   },
+   {
+    "id": "TD5",
+    "level": "Analyze",
+    "q_page": 4,
+    "a_page": 19,
+    "q": "For \\(z=x^2+y^2\\) at \\((1,1)\\) with \\(dx=dy=h\\), compute \\(\\Delta z\\) and \\(dz\\). Show that \\(\\Delta z-dz\\) is of second order in \\(h\\), and explain why this matters.",
+    "a": "\\(\\Delta z=(1+h)^2+(1+h)^2-2=4h+2h^2\\) and \\(dz=2h+2h=4h\\), so \\(\\Delta z-dz=2h^2\\). The discrepancy shrinks like \\(h^2\\), much faster than \\(h\\) itself, which is why \\(dz\\) is a good linear approximation for small steps."
+   },
+   {
+    "id": "TD6",
+    "level": "Evaluate",
+    "q_page": 4,
+    "a_page": 20,
+    "q": "A student estimates the change in \\(f=x^2+y^2\\) from \\((1,1)\\) to \\((3,3)\\) using \\(dz\\) and reports \\(dz=8\\), calling it \"exact since the differential is the exact change\". Evaluate.",
+    "a": "Incorrect. \\(dz=2(1)(2)+2(1)(2)=8\\), but the true change is \\(\\Delta z=18-2=16\\) — a 50% error. The differential is only a linear approximation, reliable for small \\(dx,dy\\); a step of 2 is far too large."
+   },
+   {
+    "id": "TD7",
+    "level": "Create",
+    "q_page": 4,
+    "a_page": 20,
+    "q": "Construct a function \\(z=f(x,y)\\) for which \\(dz=\\Delta z\\) exactly for all \\(dx,dy\\), and explain why it works.",
+    "a": "Any affine function, e.g. \\(z=3x-2y+5\\): \\(\\Delta z=3\\,dx-2\\,dy=dz\\). It works because \\(f_x,f_y\\) are constants and there are no second-order terms to create a discrepancy."
+   }
+  ]
+ },
+ {
+  "prefix": "J",
+  "module": 1,
+  "title": "Jacobian and Its Properties",
+  "problems": [
+   {
+    "id": "J1",
+    "level": "Remember",
+    "q_page": 4,
+    "a_page": 20,
+    "q": "Define the Jacobian \\(\\dfrac{\\partial(u,v)}{\\partial(x,y)}\\), and state its reciprocal property and chain property.",
+    "a": "\\[ \\frac{\\partial(u,v)}{\\partial(x,y)}=\\begin{vmatrix}u_x&u_y\\\\v_x&v_y\\end{vmatrix}=u_xv_y-u_yv_x. \\]\nReciprocal: \\(\\dfrac{\\partial(u,v)}{\\partial(x,y)}\\cdot\\dfrac{\\partial(x,y)}{\\partial(u,v)}=1\\). Chain: \\(\\dfrac{\\partial(u,v)}{\\partial(r,s)}=\\dfrac{\\partial(u,v)}{\\partial(x,y)}\\cdot\\dfrac{\\partial(x,y)}{\\partial(r,s)}\\)."
+   },
+   {
+    "id": "J2",
+    "level": "Apply",
+    "q_page": 5,
+    "a_page": 20,
+    "q": "Find \\(\\dfrac{\\partial(x,y)}{\\partial(r,\\theta)}\\) for \\(x=r\\cos\\theta,\\ y=r\\sin\\theta\\).",
+    "a": "\\[ \\begin{vmatrix}\\cos\\theta&-r\\sin\\theta\\\\ \\sin\\theta&r\\cos\\theta\\end{vmatrix}=r\\cos^2\\theta+r\\sin^2\\theta=r. \\]"
+   },
+   {
+    "id": "J3",
+    "level": "Apply",
+    "q_page": 5,
+    "a_page": 20,
+    "q": "If \\(u=x^2-y^2\\) and \\(v=2xy\\), find \\(\\dfrac{\\partial(u,v)}{\\partial(x,y)}\\) and hence \\(\\dfrac{\\partial(x,y)}{\\partial(u,v)}\\).",
+    "a": "\\[ \\begin{vmatrix}2x&-2y\\\\2y&2x\\end{vmatrix}=4x^2+4y^2, \\quad\\text{so}\\quad \\frac{\\partial(x,y)}{\\partial(u,v)}=\\frac{1}{4(x^2+y^2)}. \\]"
+   },
+   {
+    "id": "J4",
+    "level": "Apply",
+    "q_page": 5,
+    "a_page": 20,
+    "q": "Compute the Jacobian \\(\\dfrac{\\partial(x,y,z)}{\\partial(\\rho,\\varphi,\\theta)}\\) for spherical coordinates \\(x=\\rho\\sin\\varphi\\cos\\theta,\\ y=\\rho\\sin\\varphi\\sin\\theta,\\ z=\\rho\\cos\\varphi\\).",
+    "a": "\\(\\rho^2\\sin\\varphi\\) — exactly the factor in \\(dV=\\rho^2\\sin\\varphi\\,d\\rho\\,d\\varphi\\,d\\theta\\) (Module 2)."
+   },
+   {
+    "id": "J5",
+    "level": "Analyze",
+    "q_page": 5,
+    "a_page": 20,
+    "q": "Show that \\(u=x+y\\) and \\(v=x^2+2xy+y^2\\) are functionally dependent, and find the relation between them.",
+    "a": "\\[ \\frac{\\partial(u,v)}{\\partial(x,y)}=\\begin{vmatrix}1&1\\\\2x+2y&2x+2y\\end{vmatrix}=0 \\]\nidentically, so they are dependent. Indeed \\(v=(x+y)^2=u^2\\)."
+   },
+   {
+    "id": "J6",
+    "level": "Evaluate",
+    "q_page": 5,
+    "a_page": 20,
+    "q": "A student argues: \"for \\(u=x^3,\\ v=y\\) the Jacobian is \\(3x^2\\), which is 0 at \\(x=0\\), so \\(u\\) and \\(v\\) are functionally dependent.\" Evaluate.",
+    "a": "Incorrect. Functional dependence needs \\(J\\equiv0\\) on a whole region. Here \\(J=0\\) only on the line \\(x=0\\); \\(u\\) and \\(v\\) are independent. What fails at \\(x=0\\) is local invertibility (\\(x=u^{1/3}\\) is not differentiable at \\(0\\))."
+   },
+   {
+    "id": "J7",
+    "level": "Create",
+    "q_page": 5,
+    "a_page": 20,
+    "q": "Construct a transformation \\(x=x(u,v),\\ y=y(u,v)\\) with constant Jacobian \\(\\dfrac{\\partial(x,y)}{\\partial(u,v)}=6\\), and use it to find the area of the image of the unit square \\(0\\le u,v\\le1\\).",
+    "a": "E.g. \\(x=2u,\\ y=3v\\): \\(J=\\begin{vmatrix}2&0\\\\0&3\\end{vmatrix}=6\\). The image is a \\(2\\times3\\) rectangle of area \\(|J|\\cdot1=6\\)."
+   }
+  ]
+ },
+ {
+  "prefix": "TE",
+  "module": 1,
+  "title": "Taylor's Expansion for Two Variables",
+  "problems": [
+   {
+    "id": "TE1",
+    "level": "Remember",
+    "q_page": 5,
+    "a_page": 20,
+    "q": "Write Taylor's expansion of \\(f(x,y)\\) about \\((a,b)\\) up to terms of the third degree.",
+    "a": "With \\(h=x-a,\\ k=y-b\\) and all derivatives evaluated at \\((a,b)\\):\n\\[ f(a+h,b+k)=f+hf_x+kf_y+\\frac{1}{2!}\\left(h^2f_{xx}+2hk\\,f_{xy}+k^2f_{yy}\\right)+\\frac{1}{3!}\\left(h^3f_{xxx}+3h^2k\\,f_{xxy}+3hk^2f_{xyy}+k^3f_{yyy}\\right)+\\cdots \\]"
+   },
+   {
+    "id": "TE2",
+    "level": "Apply",
+    "q_page": 5,
+    "a_page": 20,
+    "q": "Expand \\(f(x,y)=e^x\\cos y\\) about \\((0,0)\\) up to second-degree terms.",
+    "a": "At \\((0,0)\\): \\(f=1\\), \\(f_x=1\\), \\(f_y=0\\), \\(f_{xx}=1\\), \\(f_{xy}=0\\), \\(f_{yy}=-1\\). So \\(f\\approx1+x+\\tfrac12(x^2-y^2)\\)."
+   },
+   {
+    "id": "TE3",
+    "level": "Apply",
+    "q_page": 5,
+    "a_page": 20,
+    "q": "Expand \\(f(x,y)=x^2y+3y-2\\) in powers of \\((x-1)\\) and \\((y+2)\\).",
+    "a": "With \\(h=x-1,\\ k=y+2\\) (the expansion terminates, so it is exact): \\(f=-10-4h+4k-2h^2+2hk+h^2k\\)."
+   },
+   {
+    "id": "TE4",
+    "level": "Apply",
+    "q_page": 5,
+    "a_page": 20,
+    "q": "Use a second-degree Taylor expansion of \\(f(x,y)=x^y\\) about \\((1,1)\\) to approximate \\((1.1)^{1.02}\\).",
+    "a": "At \\((1,1)\\): \\(f=1\\), \\(f_x=1\\), \\(f_y=0\\), \\(f_{xx}=0\\), \\(f_{xy}=1\\), \\(f_{yy}=0\\). So \\(f\\approx1+h+hk\\) with \\(h=0.1,\\ k=0.02\\): \\(1+0.1+0.002=1.102\\) (exact: \\(1.10210\\))."
+   },
+   {
+    "id": "TE5",
+    "level": "Analyze",
+    "q_page": 5,
+    "a_page": 20,
+    "q": "Find the second-degree Taylor polynomial of \\(f(x,y)=\\ln(1+x+y)\\) about \\((0,0)\\) in two ways: (i) from partial derivatives, (ii) by substituting \\(t=x+y\\) into the series for \\(\\ln(1+t)\\). Compare the two routes.",
+    "a": "(i) \\(f(0,0)=0\\), \\(f_x=f_y=1\\), \\(f_{xx}=f_{xy}=f_{yy}=-1\\), giving \\((x+y)-\\tfrac12(x^2+2xy+y^2)\\). (ii) \\(t-\\dfrac{t^2}{2}\\) with \\(t=x+y\\) gives the same. Substitution is much faster whenever \\(f\\) depends on a single combination of \\(x\\) and \\(y\\)."
+   },
+   {
+    "id": "TE6",
+    "level": "Evaluate",
+    "q_page": 5,
+    "a_page": 21,
+    "q": "A student uses the linear (first-degree) Taylor polynomial of \\(f=x^2+y^2\\) about \\((0,0)\\) to estimate \\(f(0.1,0.1)\\), gets 0, and concludes Taylor's method is useless. Evaluate.",
+    "a": "At the origin \\(f_x=f_y=0\\), so the linear polynomial is \\(0\\) — the true value is \\(0.02\\). The method is not at fault; the first nonzero terms are of second degree. Including them: \\(\\tfrac12(2h^2+2k^2)=h^2+k^2=0.02\\), which is exact."
+   },
+   {
+    "id": "TE7",
+    "level": "Create",
+    "q_page": 5,
+    "a_page": 21,
+    "q": "Construct a function \\(f(x,y)\\) whose second-degree Taylor polynomial about \\((0,0)\\) is \\(1+2x-y+x^2+3xy\\).",
+    "a": "The polynomial itself works, as does any function with \\(f(0,0)=1\\), \\(f_x=2\\), \\(f_y=-1\\), \\(f_{xx}=2\\), \\(f_{xy}=3\\), \\(f_{yy}=0\\) at the origin, e.g. \\(f=1+2x-y+x^2+3xy+x^3\\)."
+   }
+  ]
+ },
+ {
+  "prefix": "MM",
+  "module": 1,
+  "title": "Maxima and Minima of Functions of Two Variables",
+  "problems": [
+   {
+    "id": "MM1",
+    "level": "Remember",
+    "q_page": 5,
+    "a_page": 21,
+    "q": "State the second-derivative test for a critical point of \\(f(x,y)\\), using \\(r=f_{xx},\\ s=f_{xy},\\ t=f_{yy}\\).",
+    "a": "At a point where \\(f_x=f_y=0\\): if \\(rt-s^2>0\\) and \\(r<0\\), local maximum; if \\(rt-s^2>0\\) and \\(r>0\\), local minimum; if \\(rt-s^2<0\\), saddle point; if \\(rt-s^2=0\\), the test is inconclusive."
+   },
+   {
+    "id": "MM2",
+    "level": "Apply",
+    "q_page": 5,
+    "a_page": 21,
+    "q": "Find and classify the critical points of \\(f(x,y)=x^3+y^3-3xy\\).",
+    "a": "\\(f_x=3x^2-3y=0\\), \\(f_y=3y^2-3x=0\\) give \\((0,0)\\) and \\((1,1)\\). With \\(r=6x,\\ s=-3,\\ t=6y\\): at \\((0,0)\\), \\(rt-s^2=-9<0\\), a saddle; at \\((1,1)\\), \\(rt-s^2=27>0\\) and \\(r=6>0\\), a local minimum with \\(f=-1\\)."
+   },
+   {
+    "id": "MM3",
+    "level": "Apply",
+    "q_page": 5,
+    "a_page": 21,
+    "q": "An open-topped rectangular box must hold \\(32\\ \\text{m}^3\\). Find the dimensions that minimise the surface area.",
+    "a": "Let base \\(x\\times y\\), height \\(z=32/(xy)\\). \\(S=xy+2z(x+y)=xy+\\dfrac{64}{y}+\\dfrac{64}{x}\\). Setting \\(S_x=y-\\dfrac{64}{x^2}=0\\) and \\(S_y=x-\\dfrac{64}{y^2}=0\\) gives \\(x=y=4,\\ z=2\\), and \\(S_{\\min}=48\\ \\text{m}^2\\)."
+   },
+   {
+    "id": "MM4",
+    "level": "Analyze",
+    "q_page": 5,
+    "a_page": 21,
+    "q": "For \\(f=x^4+y^4-2x^2+4xy-2y^2\\), find all critical points and classify them. The test is inconclusive at one of them — decide its nature by another method.",
+    "a": "Critical points: \\((0,0)\\), \\((\\sqrt2,-\\sqrt2)\\), \\((-\\sqrt2,\\sqrt2)\\). At the latter two, \\(r=t=20,\\ s=4\\), so \\(rt-s^2=384>0\\) with \\(r>0\\): local minima, \\(f=-8\\). At \\((0,0)\\): \\(r=t=-4,\\ s=4\\), so \\(rt-s^2=0\\) (inconclusive). Along \\(y=x\\): \\(f=2x^4\\ge0\\); along \\(y=-x\\): \\(f=2x^4-8x^2<0\\) for small \\(x\\neq0\\). \\(f\\) takes both signs near the origin, so \\((0,0)\\) is a saddle."
+   },
+   {
+    "id": "MM5",
+    "level": "Evaluate",
+    "q_page": 6,
+    "a_page": 21,
+    "q": "A student claims \\(f=x^2-y^2\\) has a minimum at the origin \"because along the \\(x\\)-axis \\(f=x^2\\ge0\\)\". Evaluate.",
+    "a": "Incorrect. Checking one direction is not enough: along the \\(y\\)-axis \\(f=-y^2\\le0\\). Formally \\(r=2,\\ s=0,\\ t=-2\\) gives \\(rt-s^2=-4<0\\), so the origin is a saddle point."
+   },
+   {
+    "id": "MM6",
+    "level": "Create",
+    "q_page": 6,
+    "a_page": 21,
+    "q": "Construct a function with exactly one critical point, which is a local minimum at \\((2,-1)\\).",
+    "a": "\\(f=(x-2)^2+(y+1)^2\\): \\(f_x=f_y=0\\) only at \\((2,-1)\\), where \\(r=t=2,\\ s=0\\), so \\(rt-s^2=4>0\\) and \\(r>0\\)."
+   }
+  ]
+ },
+ {
+  "prefix": "LM",
+  "module": 1,
+  "title": "Constrained Maxima and Minima: Lagrange's Multiplier Method",
+  "problems": [
+   {
+    "id": "LM1",
+    "level": "Remember",
+    "q_page": 6,
+    "a_page": 21,
+    "q": "State Lagrange's condition for extremising \\(f(x,y,z)\\) subject to the constraint \\(g(x,y,z)=0\\).",
+    "a": "Solve \\(\\nabla f=\\lambda\\nabla g\\) together with \\(g=0\\) (equivalently, find stationary points of \\(f-\\lambda g\\)). The scalar \\(\\lambda\\) is the Lagrange multiplier; geometrically the gradients of \\(f\\) and \\(g\\) are parallel at the extremum."
+   },
+   {
+    "id": "LM2",
+    "level": "Apply",
+    "q_page": 6,
+    "a_page": 21,
+    "q": "Find the point on the plane \\(x+2y+3z=14\\) closest to the origin, and the minimum distance.",
+    "a": "Minimise \\(x^2+y^2+z^2\\): \\(2x=\\lambda,\\ 2y=2\\lambda,\\ 2z=3\\lambda\\), so \\(x=\\lambda/2,\\ y=\\lambda,\\ z=3\\lambda/2\\). The constraint gives \\(7\\lambda=14,\\ \\lambda=2\\): point \\((1,2,3)\\), distance \\(\\sqrt{14}\\)."
+   },
+   {
+    "id": "LM3",
+    "level": "Apply",
+    "q_page": 6,
+    "a_page": 21,
+    "q": "Find the maximum and minimum of \\(f=x+2y\\) on the circle \\(x^2+y^2=5\\).",
+    "a": "\\((1,2)=\\lambda(2x,2y)\\) gives \\(y=2x\\); then \\(5x^2=5,\\ x=\\pm1\\). Maximum \\(f=5\\) at \\((1,2)\\); minimum \\(f=-5\\) at \\((-1,-2)\\)."
+   },
+   {
+    "id": "LM4",
+    "level": "Apply",
+    "q_page": 6,
+    "a_page": 21,
+    "q": "Find the dimensions of the rectangular box of greatest volume, with faces parallel to the coordinate planes, inscribed in the sphere \\(x^2+y^2+z^2=12\\).",
+    "a": "Maximise \\(V=8xyz\\) (\\(x,y,z>0\\) the half-edges). \\(yz=2\\lambda x,\\ xz=2\\lambda y,\\ xy=2\\lambda z\\) force \\(x^2=y^2=z^2\\), so \\(x=y=z=2\\). The box is a cube of edge \\(4\\), \\(V_{\\max}=64\\)."
+   },
+   {
+    "id": "LM5",
+    "level": "Analyze",
+    "q_page": 6,
+    "a_page": 21,
+    "q": "Explain geometrically why \\(\\nabla f\\) must be parallel to \\(\\nabla g\\) at a constrained extremum. Illustrate with the circle-and-line example \\(f=x+2y\\) on \\(x^2+y^2=5\\).",
+    "a": "The constraint curve \\(g=0\\) is a path along which we may move. If the level curve of \\(f\\) crossed the constraint curve (not tangent), we could slide along the constraint to a higher or lower \\(f\\)-value, so we would not be at an extremum. At an extremum the level curve of \\(f\\) just touches the constraint curve, so their normals \\(\\nabla f,\\nabla g\\) are parallel. In the example, the lines \\(x+2y=c\\) touch the circle exactly at \\((1,2)\\) (\\(c=5\\)) and \\((-1,-2)\\) (\\(c=-5\\))."
+   },
+   {
+    "id": "LM6",
+    "level": "Evaluate",
+    "q_page": 6,
+    "a_page": 22,
+    "q": "To extremise \\(f=x^2+y^2\\) subject to \\(xy=1\\), a student finds the points \\((1,1)\\) and \\((-1,-1)\\) with \\(f=2\\) and declares it the maximum, since it is the only candidate. Evaluate.",
+    "a": "Incorrect. Lagrange's method only gives candidates; their nature must be checked. Here \\(f\\to\\infty\\) along the hyperbola (e.g. \\(x=t,\\ y=1/t\\) gives \\(f=t^2+t^{-2}\\to\\infty\\)), so \\(f=2\\) is the minimum; there is no maximum."
+   },
+   {
+    "id": "LM7",
+    "level": "Create",
+    "q_page": 6,
+    "a_page": 22,
+    "q": "Construct a Lagrange problem — an objective \\(f\\) and a linear constraint — whose constrained maximum is at \\((2,3)\\).",
+    "a": "E.g. maximise \\(f=xy\\) subject to \\(3x+2y=12\\). Then \\((y,x)=\\lambda(3,2)\\) gives \\(y=3x/2\\), hence \\(x=2,\\ y=3,\\ f_{\\max}=6\\) (check: on the line \\(f=x(12-3x)/2\\), maximised at \\(x=2\\))."
+   }
+  ]
+ },
+ {
+  "prefix": "DI",
+  "module": 2,
+  "title": "Double Integrals: Basic Evaluation and Change of Order",
+  "problems": [
+   {
+    "id": "DI1",
+    "level": "Remember",
+    "q_page": 7,
+    "a_page": 22,
+    "q": "Explain why the order of integration does not affect the value over a rectangular region, but the limits must be adjusted carefully for a non-rectangular one.",
+    "a": "Over a rectangle, both variables have constant limits independent of each other, so the order can be swapped freely. Over a non-rectangular region, the inner limits are boundary curves expressed in terms of the outer variable; swapping the order means re-reading the boundary from a sketch, not merely relabelling."
+   },
+   {
+    "id": "DI2",
+    "level": "Apply",
+    "q_page": 7,
+    "a_page": 22,
+    "q": "Evaluate \\(\\displaystyle\\int_0^1\\!\\!\\int_0^x (x+y)\\,dy\\,dx\\).",
+    "a": "Inner: \\(\\displaystyle\\int_0^x(x+y)\\,dy=x^2+\\frac{x^2}{2}=\\frac{3x^2}{2}\\). Outer: \\(\\displaystyle\\int_0^1\\frac{3x^2}{2}\\,dx=\\frac12\\)."
+   },
+   {
+    "id": "DI3",
+    "level": "Apply",
+    "q_page": 7,
+    "a_page": 22,
+    "q": "Change the order of integration in \\(\\displaystyle\\int_0^1\\!\\!\\int_x^{\\sqrt{x}} f(x,y)\\,dy\\,dx\\) and write the reversed-order integral.",
+    "a": "The region lies between \\(y=x\\) and \\(y=\\sqrt{x}\\) for \\(0\\le x\\le1\\). For fixed \\(y\\in[0,1]\\), \\(x\\) runs from \\(y^2\\) (the curve \\(y=\\sqrt{x}\\)) to \\(y\\) (the line \\(y=x\\)):\n\\[ \\int_0^1\\!\\!\\int_{y^2}^{y} f(x,y)\\,dx\\,dy. \\]"
+   },
+   {
+    "id": "DI4",
+    "level": "Analyze",
+    "q_page": 7,
+    "a_page": 22,
+    "q": "Evaluate \\(\\displaystyle\\int_0^1\\!\\!\\int_x^1 e^{y^2}\\,dy\\,dx\\) by first changing the order of integration (the original order has no elementary antiderivative). Show the sketch-based reasoning for the new limits.",
+    "a": "The region is the triangle \\(0\\le x\\le y\\le1\\). Reversed: \\(y\\) from \\(0\\) to \\(1\\), \\(x\\) from \\(0\\) to \\(y\\). Then\n\\[ \\int_0^1\\!\\!\\int_0^y e^{y^2}\\,dx\\,dy=\\int_0^1 ye^{y^2}\\,dy=\\frac{e-1}{2}. \\]"
+   },
+   {
+    "id": "DI5",
+    "level": "Evaluate",
+    "q_page": 7,
+    "a_page": 22,
+    "q": "A student reverses \\(\\displaystyle\\int_0^1\\!\\!\\int_0^{1-x} f\\,dy\\,dx\\) to \\(\\displaystyle\\int_0^1\\!\\!\\int_0^{1-y} f\\,dx\\,dy\\) without sketching, calling the swap \"automatic\". Evaluate whether this swap is correct, and the general risk of skipping the sketch.",
+    "a": "It happens to be correct: the triangle \\(x,y\\ge0,\\ x+y\\le1\\) is symmetric under \\(x\\leftrightarrow y\\). But that is luck — for most regions (e.g. bounded by a parabola) the swap is not symmetric, and skipping the sketch gives wrong limits."
+   },
+   {
+    "id": "DI6",
+    "level": "Create",
+    "q_page": 7,
+    "a_page": 22,
+    "q": "Construct a region bounded by a parabola and a line of your choice, and set up the double integral of a function \\(f\\) over it in both orders, \\(dy\\,dx\\) and \\(dx\\,dy\\).",
+    "a": "E.g. region between \\(y=x^2\\) and \\(y=x\\):\n\\[ \\int_0^1\\!\\!\\int_{x^2}^{x} f\\,dy\\,dx=\\int_0^1\\!\\!\\int_{y}^{\\sqrt{y}} f\\,dx\\,dy. \\]\n(Any valid pair, confirmed by sketching, is correct.)"
+   }
+  ]
+ },
+ {
+  "prefix": "DP",
+  "module": 2,
+  "title": "Double Integrals in Polar Coordinates",
+  "problems": [
+   {
+    "id": "DP1",
+    "level": "Remember",
+    "q_page": 7,
+    "a_page": 22,
+    "q": "State the polar substitution formulas and explain why \\(dA=r\\,dr\\,d\\theta\\) rather than just \\(dr\\,d\\theta\\).",
+    "a": "\\(x=r\\cos\\theta,\\ y=r\\sin\\theta\\). A polar \"rectangle\" \\(\\Delta r\\times\\Delta\\theta\\) is a wedge whose arc length \\(r\\,\\Delta\\theta\\) grows with \\(r\\), so its area is about \\(r\\,\\Delta r\\,\\Delta\\theta\\): equal steps sweep more area farther from the origin."
+   },
+   {
+    "id": "DP2",
+    "level": "Apply",
+    "q_page": 7,
+    "a_page": 22,
+    "q": "Evaluate \\(\\displaystyle\\iint_{\\mathbb{R}^2} e^{-(x^2+y^2)}\\,dA\\) by converting to polar coordinates.",
+    "a": "\\[ \\int_0^{2\\pi}\\!\\!\\int_0^\\infty e^{-r^2}\\,r\\,dr\\,d\\theta=\\int_0^{2\\pi}\\frac12\\,d\\theta=\\pi. \\]"
+   },
+   {
+    "id": "DP3",
+    "level": "Apply",
+    "q_page": 7,
+    "a_page": 22,
+    "q": "Evaluate \\(\\displaystyle\\iint_R xy\\,dA\\), where \\(R\\) is the quarter disk \\(x^2+y^2\\le4\\) in the first quadrant.",
+    "a": "\\(xy=\\frac{r^2}{2}\\sin2\\theta\\), so\n\\[ \\int_0^{\\pi/2}\\!\\!\\int_0^2\\frac{r^3}{2}\\sin2\\theta\\,dr\\,d\\theta=\\left(\\int_0^2\\frac{r^3}{2}\\,dr\\right)\\left(\\int_0^{\\pi/2}\\sin2\\theta\\,d\\theta\\right)=2\\cdot1=2. \\]"
+   },
+   {
+    "id": "DP4",
+    "level": "Analyze",
+    "q_page": 7,
+    "a_page": 23,
+    "q": "Explain why evaluating \\(\\iint_R\\sqrt{x^2+y^2}\\,dA\\) over a disk directly in Cartesian coordinates is much harder than in polar coordinates.",
+    "a": "In polar, \\(\\sqrt{x^2+y^2}=r\\) and a disk has constant limits \\(0\\le r\\le a,\\ 0\\le\\theta\\le2\\pi\\). In Cartesian, the square root of a sum does not simplify, and the disk's boundary \\(y=\\pm\\sqrt{a^2-x^2}\\) makes both the integrand and the limits awkward."
+   },
+   {
+    "id": "DP5",
+    "level": "Evaluate",
+    "q_page": 7,
+    "a_page": 23,
+    "q": "For the annulus between circles of radius 1 and 2, a student sets the limits \\(r:0\\to2,\\ \\theta:0\\to2\\pi\\). Evaluate the error and give the corrected limits.",
+    "a": "Incorrect: it includes the inner disk \\(r<1\\), which is not in the annulus. Correct: \\(r:1\\to2,\\ \\theta:0\\to2\\pi\\)."
+   },
+   {
+    "id": "DP6",
+    "level": "Create",
+    "q_page": 7,
+    "a_page": 23,
+    "q": "Construct a double integral over the circular sector with \\(30^\\circ\\le\\theta\\le90^\\circ\\) and \\(0\\le r\\le3\\), and write the polar limits.",
+    "a": "\\[ \\int_{\\pi/6}^{\\pi/2}\\!\\!\\int_0^3 f(r\\cos\\theta,r\\sin\\theta)\\,r\\,dr\\,d\\theta. \\]"
+   }
+  ]
+ },
+ {
+  "prefix": "TI",
+  "module": 2,
+  "title": "Triple Integrals: Cylindrical and Spherical Coordinates",
+  "problems": [
+   {
+    "id": "TI1",
+    "level": "Remember",
+    "q_page": 7,
+    "a_page": 23,
+    "q": "State the \\(dV\\) expressions for cylindrical and spherical coordinates, and one geometric clue that suggests each.",
+    "a": "Cylindrical: \\(dV=r\\,dr\\,d\\theta\\,dz\\) (clue: circular symmetry about an axis). Spherical: \\(dV=\\rho^2\\sin\\varphi\\,d\\rho\\,d\\varphi\\,d\\theta\\) (clue: symmetry about a point, e.g. spheres or cones from the origin)."
+   },
+   {
+    "id": "TI2",
+    "level": "Apply",
+    "q_page": 7,
+    "a_page": 23,
+    "q": "Use cylindrical coordinates to find the volume bounded by the cylinder \\(x^2+y^2=4\\) and the planes \\(z=0,\\ z=5\\).",
+    "a": "\\[ \\int_0^{2\\pi}\\!\\!\\int_0^2\\!\\!\\int_0^5 r\\,dz\\,dr\\,d\\theta=20\\pi\\quad(\\text{matches }\\pi r^2h=\\pi\\cdot4\\cdot5). \\]"
+   },
+   {
+    "id": "TI3",
+    "level": "Apply",
+    "q_page": 8,
+    "a_page": 23,
+    "q": "Use spherical coordinates to evaluate \\(\\iiint_V z\\,dV\\), where \\(V\\) is the upper half of the ball \\(x^2+y^2+z^2\\le1\\).",
+    "a": "\\[ \\int_0^{2\\pi}\\!\\!\\int_0^{\\pi/2}\\!\\!\\int_0^1\\rho\\cos\\varphi\\,\\rho^2\\sin\\varphi\\,d\\rho\\,d\\varphi\\,d\\theta=2\\pi\\cdot\\frac12\\cdot\\frac14=\\frac{\\pi}{4}. \\]"
+   },
+   {
+    "id": "TI4",
+    "level": "Analyze",
+    "q_page": 8,
+    "a_page": 23,
+    "q": "A solid lies between the cone \\(z=\\sqrt{x^2+y^2}\\) (below) and the sphere \\(x^2+y^2+z^2=2\\) (above). Find the correct \\(\\varphi\\)-limits in spherical coordinates, explaining how the cone fixes a value of \\(\\varphi\\).",
+    "a": "On the cone \\(z=r\\), i.e. \\(\\rho\\cos\\varphi=\\rho\\sin\\varphi\\), so \\(\\tan\\varphi=1,\\ \\varphi=\\pi/4\\). The solid is inside the cone: \\(0\\le\\varphi\\le\\pi/4\\), with \\(0\\le\\rho\\le\\sqrt2\\) and \\(0\\le\\theta\\le2\\pi\\)."
+   },
+   {
+    "id": "TI5",
+    "level": "Evaluate",
+    "q_page": 8,
+    "a_page": 23,
+    "q": "A student sets up a triple integral over a solid cylinder using spherical coordinates and gets very messy limits. Evaluate this choice and explain why cylindrical coordinates fit better.",
+    "a": "A cylinder has a constant circular cross-section along a straight axis, matching \\((r,\\theta,z)\\) directly (\\(r,\\theta\\) fixed shape, \\(z\\) free). Spherical coordinates tie \\(\\rho\\) and \\(\\varphi\\) together in a way that does not respect the flat top and bottom, so \\(\\varphi\\)-limits depend on \\(\\rho\\) and the integrals become much messier."
+   },
+   {
+    "id": "TI6",
+    "level": "Create",
+    "q_page": 8,
+    "a_page": 23,
+    "q": "Describe (in words) a solid for which spherical coordinates are clearly the best choice, and justify using its symmetry.",
+    "a": "E.g. a solid ball, or the shell between two concentric spheres: both are symmetric about the origin, so the limits are constants in \\(\\rho,\\varphi,\\theta\\)."
+   }
+  ]
+ },
+ {
+  "prefix": "G",
+  "module": 3,
+  "title": "Gradient",
+  "problems": [
+   {
+    "id": "G1",
+    "level": "Remember",
+    "q_page": 9,
+    "a_page": 23,
+    "q": "State the formula for \\( \\nabla f \\) in Cartesian coordinates, and its geometric relationship to the level surface through a point.",
+    "a": "\\[ \\nabla f = \\frac{\\partial f}{\\partial x}\\mathbf{i} + \\frac{\\partial f}{\\partial y}\\mathbf{j} + \\frac{\\partial f}{\\partial z}\\mathbf{k}. \\]\nIt is perpendicular (normal) to the level surface \\( f = c \\) at that point."
+   },
+   {
+    "id": "G2",
+    "level": "Apply",
+    "q_page": 9,
+    "a_page": 23,
+    "q": "Find \\( \\nabla f \\) for \\( f(x,y,z) = x^3 y - 2yz^2 + xz \\) at \\( (1,2,-1) \\).",
+    "a": "\\( \\nabla f = (3x^2 y + z)\\mathbf{i} + (x^3 - 2z^2)\\mathbf{j} + (-4yz + x)\\mathbf{k} = 5\\mathbf{i} - \\mathbf{j} + 9\\mathbf{k}. \\)"
+   },
+   {
+    "id": "G3",
+    "level": "Apply",
+    "q_page": 9,
+    "a_page": 23,
+    "q": "Find the tangent plane to \\( x^2 + 2y^2 + 3z^2 = 12 \\) at \\( (1,2,-1) \\).",
+    "a": "\\( \\nabla f = (2x, 4y, 6z) = (2, 8, -6) \\), so \\( 2(x-1) + 8(y-2) - 6(z+1) = 0 \\), i.e. \\( x + 4y - 3z = 12 \\)."
+   },
+   {
+    "id": "G4",
+    "level": "Analyze",
+    "q_page": 9,
+    "a_page": 23,
+    "q": "For \\( f(x,y) = x^2 - y^2 \\), describe how the level curves change shape as \\( c \\) passes through 0, and explain what happens to \\( \\nabla f \\) at the origin.",
+    "a": "Level curves are hyperbolas opening along the \\( x \\)-axis for \\( c \\gt 0 \\), along the \\( y \\)-axis for \\( c \\lt 0 \\), and a pair of crossing lines for \\( c = 0 \\). \\( \\nabla f = (2x, -2y) = \\mathbf{0} \\) at the origin, a saddle point."
+   },
+   {
+    "id": "G5",
+    "level": "Evaluate",
+    "q_page": 9,
+    "a_page": 23,
+    "q": "A student claims: “wherever \\( \\nabla f = \\mathbf{0} \\), \\( f \\) has a local maximum or minimum.” Evaluate, giving a counterexample if false.",
+    "a": "False. Counterexample: \\( f = x^2 - y^2 \\) at \\( (0,0) \\) has \\( \\nabla f = \\mathbf{0} \\) but is a saddle point."
+   },
+   {
+    "id": "G6",
+    "level": "Create",
+    "q_page": 9,
+    "a_page": 23,
+    "q": "Construct a scalar function \\( f(x,y,z) \\) whose gradient at \\( (1,1,1) \\) equals \\( (2,3,-1) \\).",
+    "a": "E.g. \\( f = x^2 + 3y - z \\), since \\( \\nabla f = (2x, 3, -1) = (2,3,-1) \\) at \\( (1,1,1) \\). Many answers are valid."
+   }
+  ]
+ },
+ {
+  "prefix": "D",
+  "module": 3,
+  "title": "Directional Derivative",
+  "problems": [
+   {
+    "id": "D1",
+    "level": "Remember",
+    "q_page": 9,
+    "a_page": 24,
+    "q": "Write the formula for the directional derivative of \\( f \\) along a unit vector \\( \\hat{\\mathbf{a}} \\), and explain why \\( \\hat{\\mathbf{a}} \\) must be a unit vector.",
+    "a": "\\( D_{\\hat{\\mathbf{a}}} f = \\nabla f \\cdot \\hat{\\mathbf{a}} \\). It must have unit length so the result is a rate of change per unit distance, comparable across directions."
+   },
+   {
+    "id": "D2",
+    "level": "Apply",
+    "q_page": 9,
+    "a_page": 24,
+    "q": "Find the directional derivative of \\( f = xy^2 + yz \\) at \\( (2,-1,3) \\) in the direction of \\( (3,4,0) \\).",
+    "a": "\\( \\nabla f = (y^2, 2xy + z, y) = (1, -1, -1) \\); \\( \\hat{\\mathbf{a}} = (3,4,0)/5 \\). So \\( D = \\frac{3}{5} - \\frac{4}{5} = -\\frac{1}{5} \\)."
+   },
+   {
+    "id": "D3",
+    "level": "Apply",
+    "q_page": 9,
+    "a_page": 24,
+    "q": "Find the maximum rate of change of \\( f = x^2 y^3 \\) at \\( (2,1) \\) and the direction in which it occurs.",
+    "a": "\\( \\nabla f = (2xy^3, 3x^2 y^2) = (4, 12) \\). Maximum rate \\( = |\\nabla f| = 4\\sqrt{10} \\), in the direction \\( (1,3)/\\sqrt{10} \\)."
+   },
+   {
+    "id": "D4",
+    "level": "Analyze",
+    "q_page": 9,
+    "a_page": 24,
+    "q": "At \\( (2,1) \\) on \\( f = x^2 + y^2 \\), without fully computing, decide which of the directions \\( (1,0) \\) and \\( (0,1) \\) gives the larger directional derivative, using the angle each makes with \\( \\nabla f \\).",
+    "a": "\\( \\nabla f = (4,2) \\). \\( \\cos\\theta \\) with \\( (1,0) \\) is \\( 4/\\sqrt{20} \\approx 0.894 \\); with \\( (0,1) \\) it is \\( 2/\\sqrt{20} \\approx 0.447 \\). \\( (1,0) \\) is closer in direction to \\( \\nabla f \\), so it gives the larger value."
+   },
+   {
+    "id": "D5",
+    "level": "Evaluate",
+    "q_page": 9,
+    "a_page": 24,
+    "q": "Explain why the directional derivative perpendicular to \\( \\nabla f \\) is always zero, then verify for \\( f = x^2 + y^2 \\) at \\( (1,1) \\).",
+    "a": "\\( D_{\\hat{\\mathbf{a}}} f = \\nabla f \\cdot \\hat{\\mathbf{a}} = 0 \\) when \\( \\hat{\\mathbf{a}} \\perp \\nabla f \\). At \\( (1,1) \\), \\( \\nabla f = (2,2) \\); the unit vector \\( (1,-1)/\\sqrt{2} \\) gives \\( 2/\\sqrt{2} - 2/\\sqrt{2} = 0 \\)."
+   },
+   {
+    "id": "D6",
+    "level": "Create",
+    "q_page": 9,
+    "a_page": 24,
+    "q": "Construct \\( f(x,y) \\) and a point \\( P \\) such that the maximum directional derivative at \\( P \\) is exactly 5.",
+    "a": "E.g. \\( f = 3x + 4y \\): \\( \\nabla f = (3,4) \\) has magnitude 5 at every point."
+   }
+  ]
+ },
+ {
+  "prefix": "Dv",
+  "module": 3,
+  "title": "Divergence",
+  "problems": [
+   {
+    "id": "Dv1",
+    "level": "Remember",
+    "q_page": 9,
+    "a_page": 24,
+    "q": "State the formula for \\( \\operatorname{div}\\mathbf{F} \\) and the physical meaning of positive and negative divergence.",
+    "a": "\\( \\operatorname{div}\\mathbf{F} = \\frac{\\partial F_1}{\\partial x} + \\frac{\\partial F_2}{\\partial y} + \\frac{\\partial F_3}{\\partial z} \\). Positive: the point is a source (net outflow). Negative: a sink (net inflow)."
+   },
+   {
+    "id": "Dv2",
+    "level": "Apply",
+    "q_page": 9,
+    "a_page": 24,
+    "q": "Compute \\( \\operatorname{div}\\mathbf{F} \\) for \\( \\mathbf{F} = x^2 y\\,\\mathbf{i} - 2xz\\,\\mathbf{j} + yz^2\\,\\mathbf{k} \\).",
+    "a": "\\( 2xy + 0 + 2yz = 2xy + 2yz \\)."
+   },
+   {
+    "id": "Dv3",
+    "level": "Apply",
+    "q_page": 9,
+    "a_page": 24,
+    "q": "Find \\( \\lambda \\) such that \\( \\mathbf{F} = (2x+3y)\\mathbf{i} + (y-z)\\mathbf{j} + (\\lambda z)\\mathbf{k} \\) is solenoidal.",
+    "a": "\\( \\operatorname{div}\\mathbf{F} = 2 + 1 + \\lambda = 0 \\Rightarrow \\lambda = -3 \\)."
+   },
+   {
+    "id": "Dv4",
+    "level": "Analyze",
+    "q_page": 9,
+    "a_page": 24,
+    "q": "For \\( \\mathbf{F} = x\\mathbf{i} + y\\mathbf{j} \\), compute \\( \\operatorname{div}\\mathbf{F} \\) and explain why it is the same constant at every point, not only near the origin where the arrows seem to “start”.",
+    "a": "\\( \\operatorname{div}\\mathbf{F} = 2 \\) everywhere. Divergence is a local measure at each point; for this linear field the spreading is uniform, not concentrated at the origin."
+   },
+   {
+    "id": "Dv5",
+    "level": "Evaluate",
+    "q_page": 9,
+    "a_page": 24,
+    "q": "A field has \\( \\operatorname{div}\\mathbf{F} = 0 \\) everywhere except at the origin, where it is undefined. Can it be called solenoidal away from the origin, and what goes wrong if the Divergence Theorem is applied to a surface enclosing the origin?",
+    "a": "It is solenoidal on the punctured region. But the Divergence Theorem requires \\( \\mathbf{F} \\) to be defined and differentiable throughout the enclosed volume; the singularity at the origin breaks this, so flux need not be zero despite \\( \\operatorname{div}\\mathbf{F} = 0 \\) elsewhere (the classic point-source case)."
+   },
+   {
+    "id": "Dv6",
+    "level": "Create",
+    "q_page": 10,
+    "a_page": 24,
+    "q": "Construct a vector field that is a uniform sink with \\( \\operatorname{div}\\mathbf{F} = -6 \\) at every point.",
+    "a": "E.g. \\( \\mathbf{F} = -2x\\mathbf{i} - 2y\\mathbf{j} - 2z\\mathbf{k} \\)."
+   }
+  ]
+ },
+ {
+  "prefix": "C",
+  "module": 3,
+  "title": "Curl",
+  "problems": [
+   {
+    "id": "C1",
+    "level": "Remember",
+    "q_page": 10,
+    "a_page": 24,
+    "q": "State the determinant formula for \\( \\operatorname{curl}\\mathbf{F} \\) and the physical meaning of \\( \\operatorname{curl}\\mathbf{F} = \\mathbf{0} \\).",
+    "a": "\\( \\operatorname{curl}\\mathbf{F} = \\nabla \\times \\mathbf{F} \\), the \\( 3\\times 3 \\) determinant with rows \\( (\\mathbf{i},\\mathbf{j},\\mathbf{k}) \\), \\( (\\partial_x, \\partial_y, \\partial_z) \\), \\( (F_1, F_2, F_3) \\). Zero curl means no local rotation: a paddle wheel dropped anywhere would not spin."
+   },
+   {
+    "id": "C2",
+    "level": "Apply",
+    "q_page": 10,
+    "a_page": 24,
+    "q": "Compute \\( \\operatorname{curl}\\mathbf{F} \\) at \\( (1,1,1) \\) for \\( \\mathbf{F} = xz\\,\\mathbf{i} + xyz\\,\\mathbf{j} - y^2\\mathbf{k} \\).",
+    "a": "\\( \\operatorname{curl}\\mathbf{F} = (-2y - xy)\\mathbf{i} + x\\mathbf{j} + yz\\mathbf{k} \\); at \\( (1,1,1) \\): \\( -3\\mathbf{i} + \\mathbf{j} + \\mathbf{k} \\)."
+   },
+   {
+    "id": "C3",
+    "level": "Apply",
+    "q_page": 10,
+    "a_page": 24,
+    "q": "Determine whether \\( \\mathbf{F} = (2xy + z^2)\\mathbf{i} + (x^2 + 2z)\\mathbf{j} + (2xz + 2y)\\mathbf{k} \\) is irrotational.",
+    "a": "\\( \\mathbf{i} \\): \\( 2 - 2 = 0 \\); \\( \\mathbf{j} \\): \\( -(2z - 2z) = 0 \\); \\( \\mathbf{k} \\): \\( 2x - 2x = 0 \\). So \\( \\operatorname{curl}\\mathbf{F} = \\mathbf{0} \\): irrotational."
+   },
+   {
+    "id": "C4",
+    "level": "Analyze",
+    "q_page": 10,
+    "a_page": 24,
+    "q": "Explain, using the determinant formula, why \\( \\mathbf{F} = x\\mathbf{i} + y\\mathbf{j} + z\\mathbf{k} \\) has zero curl everywhere.",
+    "a": "Each component depends only on its own variable, so every cross-partial in the determinant (e.g. \\( \\partial F_3/\\partial y \\)) is 0, giving \\( \\operatorname{curl}\\mathbf{F} = \\mathbf{0} \\)."
+   },
+   {
+    "id": "C5",
+    "level": "Evaluate",
+    "q_page": 10,
+    "a_page": 24,
+    "q": "A student computes \\( \\operatorname{curl}\\mathbf{F} = 2\\mathbf{k} \\) for \\( \\mathbf{F} = -y\\mathbf{i} + x\\mathbf{j} \\) but argues “the field lines are just circles, so no particle is really spinning”. Evaluate.",
+    "a": "Flawed. This is rigid-body-like rotation: nearby fluid elements genuinely spin about their own centres as they revolve, which is exactly what curl measures; the computed \\( 2\\mathbf{k} \\) confirms it."
+   },
+   {
+    "id": "C6",
+    "level": "Create",
+    "q_page": 10,
+    "a_page": 25,
+    "q": "Give a vector field that is solenoidal but not irrotational.",
+    "a": "E.g. \\( \\mathbf{F} = -y\\mathbf{i} + x\\mathbf{j} \\): \\( \\operatorname{div}\\mathbf{F} = 0 \\) but \\( \\operatorname{curl}\\mathbf{F} = 2\\mathbf{k} \\neq \\mathbf{0} \\)."
+   }
+  ]
+ },
+ {
+  "prefix": "P",
+  "module": 3,
+  "title": "Scalar and Vector Potential",
+  "problems": [
+   {
+    "id": "P1",
+    "level": "Remember",
+    "q_page": 10,
+    "a_page": 25,
+    "q": "State the condition for a scalar potential \\( \\varphi \\) to exist for \\( \\mathbf{F} \\), and the relationship between them.",
+    "a": "A scalar potential exists when \\( \\operatorname{curl}\\mathbf{F} = \\mathbf{0} \\) (irrotational); then \\( \\mathbf{F} = \\nabla\\varphi \\)."
+   },
+   {
+    "id": "P2",
+    "level": "Apply",
+    "q_page": 10,
+    "a_page": 25,
+    "q": "Verify that \\( \\mathbf{F} = (2xy + z^3)\\mathbf{i} + x^2\\mathbf{j} + 3xz^2\\mathbf{k} \\) is irrotational and find its scalar potential.",
+    "a": "Curl is \\( \\mathbf{0} \\). Integrating: \\( \\varphi = x^2 y + xz^3 + C \\)."
+   },
+   {
+    "id": "P3",
+    "level": "Apply",
+    "q_page": 10,
+    "a_page": 25,
+    "q": "Verify that \\( \\mathbf{F} = (y+z)\\mathbf{i} + (x+z)\\mathbf{j} + (x+y)\\mathbf{k} \\) is irrotational and find its scalar potential.",
+    "a": "Curl is \\( \\mathbf{0} \\). \\( \\varphi = xy + yz + zx + C \\)."
+   },
+   {
+    "id": "P4",
+    "level": "Analyze",
+    "q_page": 10,
+    "a_page": 25,
+    "q": "Explain why a scalar potential, when it exists, is unique only up to an additive constant.",
+    "a": "If \\( \\nabla\\varphi_1 = \\nabla\\varphi_2 = \\mathbf{F} \\) then \\( \\nabla(\\varphi_1 - \\varphi_2) = \\mathbf{0} \\), so \\( \\varphi_1 - \\varphi_2 \\) is constant."
+   },
+   {
+    "id": "P5",
+    "level": "Evaluate",
+    "q_page": 10,
+    "a_page": 25,
+    "q": "\\( \\mathbf{F} \\) is solenoidal and a student tries to find \\( \\varphi \\) with \\( \\mathbf{F} = \\nabla\\varphi \\), but gets stuck. Is this expected, and what should be sought instead?",
+    "a": "Expected: \\( \\operatorname{div}\\mathbf{F} = 0 \\) does not imply \\( \\operatorname{curl}\\mathbf{F} = \\mathbf{0} \\), and a scalar potential needs the latter. For a solenoidal field, seek a vector potential \\( \\mathbf{A} \\) with \\( \\mathbf{F} = \\operatorname{curl}\\mathbf{A} \\)."
+   },
+   {
+    "id": "P6",
+    "level": "Create",
+    "q_page": 10,
+    "a_page": 25,
+    "q": "Construct a nonzero vector field that is both solenoidal and irrotational.",
+    "a": "E.g. a constant field, or \\( \\mathbf{F} = 2x\\mathbf{i} - y\\mathbf{j} - z\\mathbf{k} \\) (div \\( = 2 - 1 - 1 = 0 \\); curl is \\( \\mathbf{0} \\) since each component depends only on its own variable)."
+   }
+  ]
+ },
+ {
+  "prefix": "L",
+  "module": 3,
+  "title": "Line Integrals",
+  "problems": [
+   {
+    "id": "L1",
+    "level": "Remember",
+    "q_page": 10,
+    "a_page": 25,
+    "q": "State the definition of \\( \\int_C \\mathbf{F}\\cdot d\\mathbf{r} \\) and what it represents physically.",
+    "a": "\\( \\int_C \\mathbf{F}\\cdot d\\mathbf{r} = \\int_a^b \\mathbf{F}(\\mathbf{r}(t))\\cdot\\mathbf{r}'(t)\\,dt \\): the work done by \\( \\mathbf{F} \\) moving a particle along \\( C \\)."
+   },
+   {
+    "id": "L2",
+    "level": "Apply",
+    "q_page": 10,
+    "a_page": 25,
+    "q": "Evaluate \\( \\int_C \\mathbf{F}\\cdot d\\mathbf{r} \\) for \\( \\mathbf{F} = (x+y)\\mathbf{i} + (y-x)\\mathbf{j} \\) along the straight line from \\( (0,0) \\) to \\( (2,2) \\).",
+    "a": "With \\( x = y = t \\): \\( \\mathbf{F}\\cdot d\\mathbf{r} = 2t\\,dt \\), so \\( \\int_0^2 2t\\,dt = 4 \\)."
+   },
+   {
+    "id": "L3",
+    "level": "Apply",
+    "q_page": 10,
+    "a_page": 25,
+    "q": "Evaluate \\( \\int_C \\mathbf{F}\\cdot d\\mathbf{r} \\) for \\( \\mathbf{F} = y\\mathbf{i} + x\\mathbf{j} \\) along \\( y = x^3 \\) from \\( (0,0) \\) to \\( (1,1) \\).",
+    "a": "With \\( x = t,\\ y = t^3 \\): \\( \\mathbf{F}\\cdot d\\mathbf{r} = 4t^3\\,dt \\), so the integral is 1."
+   },
+   {
+    "id": "L4",
+    "level": "Analyze",
+    "q_page": 10,
+    "a_page": 25,
+    "q": "For \\( \\mathbf{F} = y\\mathbf{i} - x\\mathbf{j} \\), evaluate \\( \\int_C \\mathbf{F}\\cdot d\\mathbf{r} \\) from \\( (1,0) \\) to \\( (0,1) \\) along (a) the straight segment and (b) the quarter circle \\( x^2 + y^2 = 1 \\). Compare, and explain in terms of curl.",
+    "a": "(a) \\( -1 \\); (b) \\( -\\pi/2 \\). They differ because \\( \\operatorname{curl}\\mathbf{F} = -2\\mathbf{k} \\neq \\mathbf{0} \\): \\( \\mathbf{F} \\) is not conservative, so the integral is path-dependent."
+   },
+   {
+    "id": "L5",
+    "level": "Evaluate",
+    "q_page": 11,
+    "a_page": 25,
+    "q": "Student A computes \\( \\oint_C \\mathbf{F}\\cdot d\\mathbf{r} = +8 \\) going counterclockwise; Student B gets \\( -8 \\) going clockwise. Can both be right?",
+    "a": "Yes. Reversing the direction of traversal flips the sign of \\( d\\mathbf{r} \\) at every point, so the integral changes sign and keeps its magnitude."
+   },
+   {
+    "id": "L6",
+    "level": "Create",
+    "q_page": 11,
+    "a_page": 25,
+    "q": "Construct a vector field and two paths between the same two points along which the line integral differs.",
+    "a": "Any non-conservative field works, e.g. \\( \\mathbf{F} = y\\mathbf{i} - x\\mathbf{j} \\) with the two paths from the previous analysis question."
+   }
+  ]
+ },
+ {
+  "prefix": "Gr",
+  "module": 3,
+  "title": "Green’s Theorem",
+  "problems": [
+   {
+    "id": "Gr1",
+    "level": "Remember",
+    "q_page": 11,
+    "a_page": 25,
+    "q": "State Green’s Theorem and the orientation of \\( C \\) it requires.",
+    "a": "\\[ \\oint_C (M\\,dx + N\\,dy) = \\iint_R \\left(\\frac{\\partial N}{\\partial x} - \\frac{\\partial M}{\\partial y}\\right) dA, \\]\nwith \\( C \\) traversed counterclockwise around \\( R \\)."
+   },
+   {
+    "id": "Gr2",
+    "level": "Apply",
+    "q_page": 11,
+    "a_page": 25,
+    "q": "Use Green’s Theorem to evaluate \\( \\oint_C (3x^2 y\\,dx + x^3\\,dy) \\) around the boundary of \\( 0 \\le x \\le 1,\\ 0 \\le y \\le 2 \\), counterclockwise.",
+    "a": "\\( \\partial N/\\partial x - \\partial M/\\partial y = 3x^2 - 3x^2 = 0 \\), so the integral is 0 (the field is conservative)."
+   },
+   {
+    "id": "Gr3",
+    "level": "Apply",
+    "q_page": 11,
+    "a_page": 25,
+    "q": "Use Green’s Theorem to evaluate \\( \\oint_C \\left(xy^2\\,dx + (x^2 y + 2x)\\,dy\\right) \\) around the triangle \\( (0,0), (1,0), (1,1) \\), counterclockwise.",
+    "a": "Integrand \\( = (2xy + 2) - 2xy = 2 \\); area of the triangle \\( = \\frac{1}{2} \\). Answer: 1."
+   },
+   {
+    "id": "Gr4",
+    "level": "Analyze",
+    "q_page": 11,
+    "a_page": 25,
+    "q": "\\( \\mathbf{F} = \\dfrac{-y}{x^2+y^2}\\mathbf{i} + \\dfrac{x}{x^2+y^2}\\mathbf{j} \\) is undefined at the origin. Why can’t Green’s Theorem be applied directly to a curve enclosing the origin, and what is the standard fix?",
+    "a": "\\( M, N \\) and their partials must be continuous throughout the enclosed region; this fails at the origin. Fix: cut out a small circle around the origin and apply the theorem on the resulting annular region."
+   },
+   {
+    "id": "Gr5",
+    "level": "Evaluate",
+    "q_page": 11,
+    "a_page": 25,
+    "q": "A closed boundary consists of 6 line segments with a moderately complex integrand. Which is likely faster: parametrising each segment, or Green’s Theorem?",
+    "a": "Green’s Theorem: one double integral instead of six separate parametrised line integrals, especially when \\( \\partial N/\\partial x - \\partial M/\\partial y \\) simplifies."
+   },
+   {
+    "id": "Gr6",
+    "level": "Create",
+    "q_page": 11,
+    "a_page": 25,
+    "q": "Construct \\( M, N \\) such that \\( \\oint_C (M\\,dx + N\\,dy) = \\text{Area}(R) \\) for every region \\( R \\).",
+    "a": "E.g. \\( M = 0,\\ N = x \\) (or \\( M = -y/2,\\ N = x/2 \\)): \\( \\partial N/\\partial x - \\partial M/\\partial y = 1 \\)."
+   }
+  ]
+ },
+ {
+  "prefix": "S",
+  "module": 3,
+  "title": "Surfaces and Surface Integrals",
+  "problems": [
+   {
+    "id": "S1",
+    "level": "Remember",
+    "q_page": 11,
+    "a_page": 26,
+    "q": "Write \\( dS \\) for a surface \\( z = g(x,y) \\), and say what the square-root factor accounts for.",
+    "a": "\\( dS = \\sqrt{1 + g_x^2 + g_y^2}\\,dA \\). The root corrects for the surface’s tilt: a tilted patch projects onto a smaller flat area."
+   },
+   {
+    "id": "S2",
+    "level": "Apply",
+    "q_page": 11,
+    "a_page": 26,
+    "q": "Find the flux of \\( \\mathbf{F} = x\\mathbf{i} + y\\mathbf{j} + 2z\\mathbf{k} \\) upward through the part of \\( x + y + z = 1 \\) in the first octant.",
+    "a": "With \\( \\hat{\\mathbf{n}}\\,dS = (1,1,1)\\,dA \\): \\( \\mathbf{F}\\cdot\\hat{\\mathbf{n}}\\,dS = (2 - x - y)\\,dA \\), and \\( \\int_0^1\\int_0^{1-x} (2 - x - y)\\,dy\\,dx = \\frac{2}{3} \\)."
+   },
+   {
+    "id": "S3",
+    "level": "Apply",
+    "q_page": 11,
+    "a_page": 26,
+    "q": "Find the surface area of the paraboloid \\( z = x^2 + y^2 \\) below \\( z = 4 \\).",
+    "a": "\\( \\int_0^{2\\pi}\\int_0^2 r\\sqrt{1 + 4r^2}\\,dr\\,d\\theta = \\frac{\\pi}{6}\\left(17\\sqrt{17} - 1\\right) \\approx 36.2 \\)."
+   },
+   {
+    "id": "S4",
+    "level": "Analyze",
+    "q_page": 11,
+    "a_page": 26,
+    "q": "Explain why reversing the normal flips the sign of a flux integral but not its magnitude, and give a scenario where the sign matters.",
+    "a": "\\( \\mathbf{F}\\cdot(-\\hat{\\mathbf{n}}) = -\\mathbf{F}\\cdot\\hat{\\mathbf{n}} \\), so the value changes sign while \\( |\\mathbf{F}\\cdot\\hat{\\mathbf{n}}| \\) is unchanged. The sign tells you whether net flow is into or out of a region, e.g. a control volume in fluid flow."
+   },
+   {
+    "id": "S5",
+    "level": "Evaluate",
+    "q_page": 11,
+    "a_page": 26,
+    "q": "A full sphere is not the graph of one function \\( z = g(x,y) \\). Why can’t \\( dS = \\sqrt{1 + g_x^2 + g_y^2}\\,dA \\) be used directly, and what is the fix?",
+    "a": "A sphere has two \\( z \\)-values for each \\( (x,y) \\) in its shadow (upper and lower hemispheres). Fix: split into two graphs and treat each separately, or use a parametrisation such as spherical coordinates."
+   },
+   {
+    "id": "S6",
+    "level": "Create",
+    "q_page": 11,
+    "a_page": 26,
+    "q": "Construct a flat surface and a nonzero constant field whose flux through it is exactly zero.",
+    "a": "E.g. \\( S \\) in the \\( xy \\)-plane (\\( \\hat{\\mathbf{n}} = \\mathbf{k} \\)) and \\( \\mathbf{F} = \\mathbf{i} \\): \\( \\mathbf{F}\\cdot\\hat{\\mathbf{n}} = 0 \\) everywhere."
+   }
+  ]
+ },
+ {
+  "prefix": "St",
+  "module": 3,
+  "title": "Stokes’ Theorem",
+  "problems": [
+   {
+    "id": "St1",
+    "level": "Remember",
+    "q_page": 11,
+    "a_page": 26,
+    "q": "State Stokes’ Theorem and the orientation convention linking \\( C \\) and \\( \\hat{\\mathbf{n}} \\).",
+    "a": "\\( \\oint_C \\mathbf{F}\\cdot d\\mathbf{r} = \\iint_S (\\operatorname{curl}\\mathbf{F})\\cdot\\hat{\\mathbf{n}}\\,dS \\). Right-hand rule: curl the fingers along \\( C \\), the thumb points along \\( \\hat{\\mathbf{n}} \\)."
+   },
+   {
+    "id": "St2",
+    "level": "Apply",
+    "q_page": 11,
+    "a_page": 26,
+    "q": "Use Stokes’ Theorem to evaluate \\( \\oint_C \\mathbf{F}\\cdot d\\mathbf{r} \\) for \\( \\mathbf{F} = z\\mathbf{i} + x\\mathbf{j} + y\\mathbf{k} \\), with \\( C \\) the triangle \\( (1,0,0), (0,1,0), (0,0,1) \\) oriented outward.",
+    "a": "\\( \\operatorname{curl}\\mathbf{F} = (1,1,1) \\), \\( \\hat{\\mathbf{n}} = (1,1,1)/\\sqrt{3} \\), so \\( (\\operatorname{curl}\\mathbf{F})\\cdot\\hat{\\mathbf{n}} = \\sqrt{3} \\). Triangle area \\( = \\sqrt{3}/2 \\). Answer: \\( \\dfrac{3}{2} \\)."
+   },
+   {
+    "id": "St3",
+    "level": "Apply",
+    "q_page": 12,
+    "a_page": 26,
+    "q": "Use Stokes’ Theorem for \\( \\mathbf{F} = y^2\\mathbf{i} + xy\\mathbf{j} + xz\\mathbf{k} \\) around the square \\( 0 \\le x, y \\le 2 \\) in \\( z = 0 \\), counterclockwise from \\( +z \\).",
+    "a": "\\( \\operatorname{curl}\\mathbf{F} = -z\\mathbf{j} - y\\mathbf{k} \\); with \\( \\hat{\\mathbf{n}} = \\mathbf{k} \\) the integrand is \\( -y \\). \\( \\int_0^2\\int_0^2 (-y)\\,dy\\,dx = -4 \\)."
+   },
+   {
+    "id": "St4",
+    "level": "Analyze",
+    "q_page": 12,
+    "a_page": 26,
+    "q": "A flat disk and a hemispherical bowl share the same boundary circle \\( C \\). Why must \\( \\iint (\\operatorname{curl}\\mathbf{F})\\cdot\\hat{\\mathbf{n}}\\,dS \\) be equal over both?",
+    "a": "By Stokes’ Theorem both equal the same line integral \\( \\oint_C \\mathbf{F}\\cdot d\\mathbf{r} \\) — the theorem does not care which surface bounded by \\( C \\) is used."
+   },
+   {
+    "id": "St5",
+    "level": "Evaluate",
+    "q_page": 12,
+    "a_page": 26,
+    "q": "\\( \\mathbf{F} \\) is irrotational on a simply connected region. What does that imply about \\( \\oint_C \\mathbf{F}\\cdot d\\mathbf{r} \\) for every closed curve there?",
+    "a": "It is 0: for any capping surface, \\( \\iint_S (\\operatorname{curl}\\mathbf{F})\\cdot\\hat{\\mathbf{n}}\\,dS = \\iint_S \\mathbf{0}\\,dS = 0 \\), which is exactly the condition for \\( \\mathbf{F} \\) to be conservative."
+   },
+   {
+    "id": "St6",
+    "level": "Create",
+    "q_page": 12,
+    "a_page": 26,
+    "q": "Construct a closed curve and a field for which a flat disk is clearly the easiest capping surface, and explain.",
+    "a": "E.g. the unit circle in \\( z = 0 \\) with \\( \\mathbf{F} = y\\mathbf{i} + z\\mathbf{j} + x\\mathbf{k} \\) (as in the lesson notes): a flat disk has constant \\( \\hat{\\mathbf{n}} = \\mathbf{k} \\), avoiding a position-dependent normal vector."
+   }
+  ]
+ },
+ {
+  "prefix": "Gs",
+  "module": 3,
+  "title": "Gauss Divergence Theorem",
+  "problems": [
+   {
+    "id": "Gs1",
+    "level": "Remember",
+    "q_page": 12,
+    "a_page": 26,
+    "q": "State the Gauss Divergence Theorem and what kind of surface it requires.",
+    "a": "\\( \\iint_S \\mathbf{F}\\cdot\\hat{\\mathbf{n}}\\,dS = \\iiint_V \\operatorname{div}\\mathbf{F}\\,dV \\); \\( S \\) must be a closed surface enclosing the solid region \\( V \\), with outward normal."
+   },
+   {
+    "id": "Gs2",
+    "level": "Apply",
+    "q_page": 12,
+    "a_page": 26,
+    "q": "Verify the Divergence Theorem for \\( \\mathbf{F} = 2x\\mathbf{i} + y\\mathbf{j} + 3z\\mathbf{k} \\) over the cube \\( [0,1]^3 \\) by computing both sides.",
+    "a": "Volume side: \\( \\operatorname{div}\\mathbf{F} = 6 \\), so 6. Surface side: faces \\( x = 1,\\ y = 1,\\ z = 1 \\) give 2, 1, 3 and the opposite faces give 0: total 6. Equal. ✓"
+   },
+   {
+    "id": "Gs3",
+    "level": "Apply",
+    "q_page": 12,
+    "a_page": 26,
+    "q": "Use the Divergence Theorem to evaluate \\( \\iint_S \\mathbf{F}\\cdot\\hat{\\mathbf{n}}\\,dS \\) for \\( \\mathbf{F} = x^2\\mathbf{i} + y^2\\mathbf{j} + z^2\\mathbf{k} \\) over the sphere \\( x^2 + y^2 + z^2 = a^2 \\).",
+    "a": "\\( \\operatorname{div}\\mathbf{F} = 2x + 2y + 2z \\), odd in each variable over a region symmetric about the origin, so the integral is 0."
+   },
+   {
+    "id": "Gs4",
+    "level": "Analyze",
+    "q_page": 12,
+    "a_page": 26,
+    "q": "Why is the flux of \\( \\mathbf{F} = \\hat{\\mathbf{r}}/r^2 \\) through any closed surface enclosing the origin the same constant?",
+    "a": "\\( \\operatorname{div}\\mathbf{F} = 0 \\) except at the origin. Applying the theorem to the region between the given surface and a small sphere about the origin shows the two fluxes are equal (no divergence in between), so every enclosing surface carries the same flux as the small sphere."
+   },
+   {
+    "id": "Gs5",
+    "level": "Evaluate",
+    "q_page": 12,
+    "a_page": 27,
+    "q": "A student applies the Divergence Theorem directly to an open hemispherical surface (curved part only). Is that valid?",
+    "a": "No: the theorem needs a closed surface. Add the flat circular base, compute the total flux via the theorem, then subtract the flux through the base to isolate the curved part."
+   },
+   {
+    "id": "Gs6",
+    "level": "Create",
+    "q_page": 12,
+    "a_page": 27,
+    "q": "Construct a field whose flux through every closed surface is zero.",
+    "a": "Any solenoidal field, e.g. a constant vector field \\( \\mathbf{F} = \\mathbf{c} \\) (\\( \\operatorname{div}\\mathbf{c} = 0 \\))."
+   }
+  ]
+ },
+ {
+  "prefix": "O",
+  "module": 4,
+  "title": "Complementary Function (Homogeneous Case)",
+  "problems": [
+   {
+    "id": "O1",
+    "level": "Remember",
+    "q_page": 13,
+    "a_page": 27,
+    "q": "State the three root cases of the auxiliary equation of \\(ay''+by'+cy=0\\) and the form of the complementary function for each.",
+    "a": "Real distinct roots \\(m_1\\neq m_2\\): \\(y=C_1e^{m_1x}+C_2e^{m_2x}\\). Repeated root \\(m\\): \\(y=(C_1+C_2x)e^{mx}\\). Complex roots \\(\\alpha\\pm i\\beta\\): \\(y=e^{\\alpha x}(C_1\\cos\\beta x+C_2\\sin\\beta x)\\)."
+   },
+   {
+    "id": "O2",
+    "level": "Apply",
+    "q_page": 13,
+    "a_page": 27,
+    "q": "Solve \\(y''-7y'+12y=0\\).",
+    "a": "\\(m=3,4\\): \\(y=C_1e^{3x}+C_2e^{4x}\\)."
+   },
+   {
+    "id": "O3",
+    "level": "Apply",
+    "q_page": 13,
+    "a_page": 27,
+    "q": "Solve \\(y''+6y'+9y=0\\).",
+    "a": "\\((m+3)^2=0\\): \\(y=(C_1+C_2x)e^{-3x}\\)."
+   },
+   {
+    "id": "O4",
+    "level": "Apply",
+    "q_page": 13,
+    "a_page": 27,
+    "q": "Solve \\(y''-4y'+13y=0\\).",
+    "a": "\\(m=2\\pm3i\\): \\(y=e^{2x}(C_1\\cos3x+C_2\\sin3x)\\)."
+   },
+   {
+    "id": "O5",
+    "level": "Analyze",
+    "q_page": 13,
+    "a_page": 27,
+    "q": "Using the discriminant, classify each as oscillatory, purely exponential, or repeated-root: (a) \\(m^2+4m+4=0\\), (b) \\(m^2+4=0\\), (c) \\(m^2+5m+6=0\\).",
+    "a": "(a) discriminant \\(0\\): repeated root, \\(x\\)-multiplied term. (b) discriminant \\(<0\\): complex roots, oscillatory. (c) discriminant \\(>0\\): distinct real roots, purely exponential."
+   },
+   {
+    "id": "O6",
+    "level": "Evaluate",
+    "q_page": 13,
+    "a_page": 27,
+    "q": "A student leaves the solution of \\(y''+2y'+5y=0\\) as \\(C_1e^{(-1+2i)x}+C_2e^{(-1-2i)x}\\). Is this acceptable, and why is the real form preferred?",
+    "a": "Mathematically equivalent (with complex constants), but the expected general real solution is \\(e^{-x}(C_1\\cos2x+C_2\\sin2x)\\): it needs only real constants and displays the decay and oscillation directly."
+   }
+  ]
+ },
+ {
+  "prefix": "PI",
+  "module": 4,
+  "title": "Undetermined Coefficients and Resonance",
+  "problems": [
+   {
+    "id": "PI1",
+    "level": "Remember",
+    "q_page": 13,
+    "a_page": 27,
+    "q": "State the trial form for the particular integral when \\(R(x)\\) is (a) an exponential, (b) a degree-\\(n\\) polynomial, (c) a sine or cosine, and when it must be modified.",
+    "a": "(a) \\(e^{kx}\\): \\(Ae^{kx}\\). (b) polynomial: a full degree-\\(n\\) polynomial. (c) \\(\\sin kx,\\cos kx\\): \\(A\\cos kx+B\\sin kx\\). Multiply by \\(x\\) (or \\(x^2\\)) whenever the guess already appears in the CF — resonance."
+   },
+   {
+    "id": "PI2",
+    "level": "Apply",
+    "q_page": 13,
+    "a_page": 27,
+    "q": "Find the particular integral of \\(y''-3y'+2y=e^{3x}\\).",
+    "a": "Try \\(Ae^{3x}\\): \\((9-9+2)A=1\\), so \\(y_{PI}=\\tfrac12e^{3x}\\)."
+   },
+   {
+    "id": "PI3",
+    "level": "Apply",
+    "q_page": 13,
+    "a_page": 27,
+    "q": "Solve \\(y''+4y=8x^2\\) completely.",
+    "a": "\\(y=C_1\\cos2x+C_2\\sin2x+2x^2-1\\)."
+   },
+   {
+    "id": "PI4",
+    "level": "Apply",
+    "q_page": 13,
+    "a_page": 27,
+    "q": "(Resonance) Solve \\(y''-4y'+4y=e^{2x}\\), noting the naive guess collides with a repeated root.",
+    "a": "CF \\(=(C_1+C_2x)e^{2x}\\), so try \\(Ax^2e^{2x}\\): substitution gives \\(2A=1\\). \\(y=(C_1+C_2x)e^{2x}+\\tfrac12x^2e^{2x}\\)."
+   },
+   {
+    "id": "PI5",
+    "level": "Analyze",
+    "q_page": 13,
+    "a_page": 27,
+    "q": "For \\(y''-y'-2y=3e^{2x}+\\sin x\\) (roots \\(2,-1\\)), decide for each term whether resonance occurs and give the trial forms.",
+    "a": "\\(3e^{2x}\\): \\(m=2\\) is a root, so resonance, try \\(Axe^{2x}\\). \\(\\sin x\\): no root matches \\(\\pm i\\), so try \\(A\\cos x+B\\sin x\\). The full PI is the sum."
+   },
+   {
+    "id": "PI6",
+    "level": "Evaluate",
+    "q_page": 13,
+    "a_page": 27,
+    "q": "A student solving \\(y''+y=\\sin x\\) with the guess \\(A\\cos x+B\\sin x\\) gets \\(0=\\sin x\\). What went wrong, and what is the correct guess?",
+    "a": "The roots are \\(\\pm i\\), so \\(\\sin x\\) is already in the CF — resonance. Correct trial: \\(y_{PI}=x(A\\cos x+B\\sin x)\\)."
+   },
+   {
+    "id": "PI7",
+    "level": "Create",
+    "q_page": 13,
+    "a_page": 27,
+    "q": "Construct a second-order ODE with real distinct roots and initial conditions so the solution is a sum of two exponentials with positive coefficients; solve it.",
+    "a": "E.g. \\(y''-3y'+2y=0,\\ y(0)=2,\\ y'(0)=3\\): \\(y=C_1e^x+C_2e^{2x}\\) with \\(C_1=C_2=1\\), so \\(y=e^x+e^{2x}\\)."
+   }
+  ]
+ },
+ {
+  "prefix": "VP",
+  "module": 4,
+  "title": "Method of Variation of Parameters",
+  "problems": [
+   {
+    "id": "VP1",
+    "level": "Remember",
+    "q_page": 13,
+    "a_page": 28,
+    "q": "State the variation-of-parameters formula for \\(y''+Py'+Qy=R\\) and when it is preferred over undetermined coefficients.",
+    "a": "With CF solutions \\(y_1,y_2\\) and Wronskian \\(W=y_1y_2'-y_1'y_2\\):\n\\[ y_p=-y_1\\int\\frac{y_2R}{W}\\,dx+y_2\\int\\frac{y_1R}{W}\\,dx. \\]\nPreferred when \\(R(x)\\) is not of the standard trial form (\\(\\tan x,\\ \\sec x,\\ 1/x,\\ e^x/x,\\dots\\))."
+   },
+   {
+    "id": "VP2",
+    "level": "Apply",
+    "q_page": 13,
+    "a_page": 28,
+    "q": "Solve \\(y''+y=\\sec x\\).",
+    "a": "\\(y_1=\\cos x,\\ y_2=\\sin x,\\ W=1\\). \\(y_p=-\\cos x\\int\\tan x\\,dx+\\sin x\\int dx=\\cos x\\ln|\\cos x|+x\\sin x\\). \\(y=C_1\\cos x+C_2\\sin x+\\cos x\\ln|\\cos x|+x\\sin x\\)."
+   },
+   {
+    "id": "VP3",
+    "level": "Apply",
+    "q_page": 13,
+    "a_page": 28,
+    "q": "Solve \\(y''-2y'+y=\\dfrac{e^x}{x}\\).",
+    "a": "\\(y_1=e^x,\\ y_2=xe^x,\\ W=e^{2x}\\). \\(y_p=-e^x\\int1\\,dx+xe^x\\int\\frac1x\\,dx=-xe^x+xe^x\\ln x\\). The term \\(-xe^x\\) is absorbed into the CF, so \\(y=(C_1+C_2x)e^x+xe^x\\ln x\\)."
+   },
+   {
+    "id": "VP4",
+    "level": "Apply",
+    "q_page": 13,
+    "a_page": 28,
+    "q": "Find a particular integral of \\(y''+4y=\\tan2x\\).",
+    "a": "\\(y_1=\\cos2x,\\ y_2=\\sin2x,\\ W=2\\). After integrating, \\(y_p=-\\tfrac14\\cos2x\\,\\ln|\\sec2x+\\tan2x|\\) (the \\(\\sin2x\\cos2x\\) terms cancel)."
+   },
+   {
+    "id": "VP5",
+    "level": "Analyze",
+    "q_page": 14,
+    "a_page": 28,
+    "q": "Why does undetermined coefficients fail for \\(y''+y=\\tan x\\), while variation of parameters works?",
+    "a": "Repeated differentiation of \\(\\tan x\\) keeps producing new independent functions (\\(\\sec^2x,\\ \\sec^2x\\tan x,\\dots\\)) so no finite trial family exists. Variation of parameters needs only the CF solutions and integrals, whatever \\(R(x)\\) is."
+   },
+   {
+    "id": "VP6",
+    "level": "Evaluate",
+    "q_page": 14,
+    "a_page": 28,
+    "q": "A student finds \\(y_p=-xe^x+xe^x\\ln x\\) for \\(y''-2y'+y=e^x/x\\) and calls it wrong because \\(-xe^x\\) lies in the CF. Evaluate.",
+    "a": "Not wrong. A particular integral is not unique; \\(-xe^x\\) is a CF term and is absorbed into \\(C_2xe^x\\). The general solution is unchanged."
+   },
+   {
+    "id": "VP7",
+    "level": "Create",
+    "q_page": 14,
+    "a_page": 28,
+    "q": "Construct a constant-coefficient ODE that requires variation of parameters, and set up (without solving) the two integrals.",
+    "a": "E.g. \\(y''+9y=\\sec3x\\): \\(y_1=\\cos3x,\\ y_2=\\sin3x,\\ W=3\\), so\n\\[ y_p=-\\cos3x\\int\\frac{\\sin3x\\sec3x}{3}\\,dx+\\sin3x\\int\\frac{\\cos3x\\sec3x}{3}\\,dx. \\]"
+   }
+  ]
+ },
+ {
+  "prefix": "CE",
+  "module": 4,
+  "title": "Cauchy–Euler Equation",
+  "problems": [
+   {
+    "id": "CE1",
+    "level": "Remember",
+    "q_page": 14,
+    "a_page": 28,
+    "q": "State the Cauchy–Euler form, the substitution that solves it, and the resulting auxiliary equation.",
+    "a": "\\(x^2y''+axy'+by=R(x)\\). Put \\(x=e^t\\) (\\(t=\\ln x\\)), \\(D=\\frac{d}{dt}\\): \\(xy'=Dy,\\ x^2y''=D(D-1)y\\). Homogeneous case: try \\(y=x^m\\), giving \\(m(m-1)+am+b=0\\)."
+   },
+   {
+    "id": "CE2",
+    "level": "Apply",
+    "q_page": 14,
+    "a_page": 28,
+    "q": "Solve \\(x^2y''-2xy'-4y=0\\).",
+    "a": "\\(m(m-1)-2m-4=m^2-3m-4=0,\\ m=4,-1\\): \\(y=C_1x^4+C_2x^{-1}\\)."
+   },
+   {
+    "id": "CE3",
+    "level": "Apply",
+    "q_page": 14,
+    "a_page": 28,
+    "q": "Solve \\(x^2y''+3xy'+y=0\\).",
+    "a": "\\(m^2+2m+1=0\\): \\(m=-1\\) repeated, \\(y=(C_1+C_2\\ln x)\\dfrac1x\\)."
+   },
+   {
+    "id": "CE4",
+    "level": "Apply",
+    "q_page": 14,
+    "a_page": 28,
+    "q": "Solve \\(x^2y''+xy'+y=0\\).",
+    "a": "\\(m^2+1=0,\\ m=\\pm i\\): \\(y=C_1\\cos(\\ln x)+C_2\\sin(\\ln x)\\)."
+   },
+   {
+    "id": "CE5",
+    "level": "Apply",
+    "q_page": 14,
+    "a_page": 28,
+    "q": "Solve \\(x^2y''-3xy'+4y=x^2\\).",
+    "a": "With \\(x=e^t\\): \\((D-2)^2y=e^{2t}\\). CF \\(=(C_1+C_2t)e^{2t}\\); resonance gives PI \\(=\\tfrac12t^2e^{2t}\\). So \\(y=x^2(C_1+C_2\\ln x)+\\tfrac12x^2(\\ln x)^2\\)."
+   },
+   {
+    "id": "CE6",
+    "level": "Analyze",
+    "q_page": 14,
+    "a_page": 28,
+    "q": "Show that \\(x=e^t\\) gives \\(xy'=\\dfrac{dy}{dt}\\) and \\(x^2y''=\\dfrac{d^2y}{dt^2}-\\dfrac{dy}{dt}\\), and say why this makes the coefficients constant.",
+    "a": "\\(t=\\ln x\\Rightarrow\\dfrac{dy}{dx}=\\dfrac1x\\dfrac{dy}{dt}\\), so \\(xy'=y_t\\). Differentiating again: \\(y''=-\\dfrac{1}{x^2}y_t+\\dfrac{1}{x^2}y_{tt}\\), so \\(x^2y''=y_{tt}-y_t\\). Each power \\(x^ky^{(k)}\\) becomes a constant-coefficient operator in \\(t\\)."
+   },
+   {
+    "id": "CE7",
+    "level": "Evaluate",
+    "q_page": 14,
+    "a_page": 28,
+    "q": "A student solves \\(x^2y''+xy'-4y=0\\) by assuming \\(y=e^{mx}\\). Evaluate, and give the right approach.",
+    "a": "Wrong: the coefficients are variable, so \\(e^{mx}\\) gives no common factor to cancel. Use \\(y=x^m\\): \\(m^2-4=0\\), so \\(y=C_1x^2+C_2x^{-2}\\)."
+   },
+   {
+    "id": "CE8",
+    "level": "Create",
+    "q_page": 14,
+    "a_page": 28,
+    "q": "Construct a Cauchy–Euler equation whose general solution is \\(y=C_1x^3+C_2x^{-2}\\).",
+    "a": "Need \\(m=3,-2\\): \\(m^2-m-6=0=m(m-1)+am+b\\) with \\(a=0,\\ b=-6\\). So \\(x^2y''-6y=0\\)."
+   }
+  ]
+ },
+ {
+  "prefix": "CL",
+  "module": 4,
+  "title": "Cauchy–Legendre Equation",
+  "problems": [
+   {
+    "id": "CL1",
+    "level": "Remember",
+    "q_page": 14,
+    "a_page": 28,
+    "q": "State the Cauchy–Legendre form and its substitution; how does it relate to Cauchy–Euler?",
+    "a": "\\((ax+b)^2y''+A(ax+b)y'+By=R(x)\\). Put \\(ax+b=e^t\\): \\((ax+b)y'=a\\,Dy\\) and \\((ax+b)^2y''=a^2D(D-1)y\\). Cauchy–Euler is the special case \\(a=1,\\ b=0\\)."
+   },
+   {
+    "id": "CL2",
+    "level": "Apply",
+    "q_page": 14,
+    "a_page": 29,
+    "q": "Solve \\((1+x)^2y''+(1+x)y'+y=0\\).",
+    "a": "Put \\(1+x=e^t\\): \\(D(D-1)+D+1=D^2+1\\), so \\(y=C_1\\cos\\ln(1+x)+C_2\\sin\\ln(1+x)\\)."
+   },
+   {
+    "id": "CL3",
+    "level": "Apply",
+    "q_page": 14,
+    "a_page": 29,
+    "q": "Solve \\((2x+3)^2y''-2(2x+3)y'-12y=6x\\).",
+    "a": "Put \\(2x+3=e^t\\): \\(4(D^2-2D-3)y=3e^t-9\\). CF \\(=C_1e^{3t}+C_2e^{-t}\\); PI \\(=-\\tfrac{3}{16}e^t+\\tfrac34\\). So \\(y=C_1(2x+3)^3+C_2(2x+3)^{-1}-\\tfrac38x+\\tfrac{3}{16}\\)."
+   },
+   {
+    "id": "CL4",
+    "level": "Apply",
+    "q_page": 14,
+    "a_page": 29,
+    "q": "Solve \\((3x+2)^2y''+3(3x+2)y'-36y=0\\).",
+    "a": "Put \\(3x+2=e^t\\): \\(9D(D-1)+9D-36=9(D^2-4)\\), roots \\(\\pm2\\). \\(y=C_1(3x+2)^2+C_2(3x+2)^{-2}\\)."
+   },
+   {
+    "id": "CL5",
+    "level": "Evaluate",
+    "q_page": 14,
+    "a_page": 29,
+    "q": "A student tries \\(y=x^m\\) on \\((x+1)^2y''+(x+1)y'-y=0\\). Evaluate and give the correct trial.",
+    "a": "Wrong shift: the equation is in powers of \\((x+1)\\), so the trial is \\(y=(x+1)^m\\): \\(m^2-1=0\\), giving \\(y=C_1(x+1)+C_2(x+1)^{-1}\\)."
+   },
+   {
+    "id": "CL6",
+    "level": "Create",
+    "q_page": 14,
+    "a_page": 29,
+    "q": "Construct a Cauchy–Legendre equation in \\((2x+1)\\) whose general solution is \\(y=C_1(2x+1)^2+C_2(2x+1)^{-1}\\).",
+    "a": "Need roots \\(2,-1\\), i.e. \\(D^2-D-2\\). With \\(2x+1=e^t\\) (so \\((2x+1)^2y''=4D(D-1)y\\)): \\((2x+1)^2y''-8y=0\\). Check: \\(y=(2x+1)^2\\) has \\(y''=8\\) and \\(8(2x+1)^2-8(2x+1)^2=0\\)."
+   }
+  ]
+ },
+ {
+  "prefix": "AP",
+  "module": 4,
+  "title": "Applications of Linear Second-Order ODEs",
+  "problems": [
+   {
+    "id": "AP1",
+    "level": "Remember",
+    "q_page": 15,
+    "a_page": 29,
+    "q": "State the ODEs for a damped spring–mass system and a series LCR circuit, and the three damping regimes.",
+    "a": "Spring–mass: \\(mx''+cx'+kx=F(t)\\). LCR: \\(Lq''+Rq'+\\dfrac qC=E(t)\\). Regimes by \\(c^2-4mk\\): \\(>0\\) overdamped (two real roots), \\(=0\\) critically damped (repeated root), \\(<0\\) underdamped (oscillatory decay)."
+   },
+   {
+    "id": "AP2",
+    "level": "Apply",
+    "q_page": 15,
+    "a_page": 29,
+    "q": "A \\(0.5\\) kg mass on a spring with \\(k=8\\) N/m is pulled \\(0.3\\) m and released from rest (no damping). Find \\(x(t)\\), the amplitude and the period.",
+    "a": "\\(x''+16x=0,\\ \\omega=4\\): \\(x=0.3\\cos4t\\). Amplitude \\(0.3\\) m, period \\(2\\pi/4=\\pi/2\\) s."
+   },
+   {
+    "id": "AP3",
+    "level": "Apply",
+    "q_page": 15,
+    "a_page": 29,
+    "q": "Solve \\(x''+6x'+9x=0,\\ x(0)=1,\\ x'(0)=0\\) and classify the damping.",
+    "a": "Repeated root \\(-3\\): critically damped. \\(x=(C_1+C_2t)e^{-3t}\\); \\(C_1=1,\\ C_2-3=0\\), so \\(x=(1+3t)e^{-3t}\\)."
+   },
+   {
+    "id": "AP4",
+    "level": "Apply",
+    "q_page": 15,
+    "a_page": 29,
+    "q": "A series LCR circuit has \\(L=1\\) H, \\(R=4\\ \\Omega\\), \\(C=\\tfrac15\\) F, a constant EMF \\(E=10\\) V, and starts with \\(q(0)=0,\\ i(0)=0\\). Find \\(q(t)\\).",
+    "a": "\\(q''+4q'+5q=10\\); roots \\(-2\\pm i\\), \\(q_p=2\\). Initial conditions give \\(q=2-e^{-2t}(2\\cos t+4\\sin t)\\). The charge tends to \\(2\\) C."
+   },
+   {
+    "id": "AP5",
+    "level": "Analyze",
+    "q_page": 15,
+    "a_page": 29,
+    "q": "Solve \\(x''+4x=\\cos2t\\) and describe what happens physically.",
+    "a": "The driving frequency equals the natural frequency \\(\\omega_0=2\\) — resonance. \\(x_p=\\dfrac t4\\sin2t\\), whose amplitude grows without bound (linearly in \\(t\\))."
+   },
+   {
+    "id": "AP6",
+    "level": "Evaluate",
+    "q_page": 15,
+    "a_page": 29,
+    "q": "A student says that because \\(x''+2x'+5x=0\\) has complex roots, the system \"oscillates forever\". Evaluate.",
+    "a": "Roots \\(-1\\pm2i\\) have a negative real part: \\(x=e^{-t}(\\cdots)\\) oscillates with decaying amplitude (underdamped). Oscillation forever occurs only with no damping (\\(c=0\\))."
+   },
+   {
+    "id": "AP7",
+    "level": "Create",
+    "q_page": 15,
+    "a_page": 29,
+    "q": "Choose the damping coefficient \\(c\\) for \\(m=1,\\ k=4\\) so the system is critically damped, and give the general solution.",
+    "a": "Need \\(c^2=4mk=16\\), so \\(c=4\\): \\(x''+4x'+4x=0\\), giving \\(x=(C_1+C_2t)e^{-2t}\\)."
+   }
+  ]
+ },
+ {
+  "prefix": "FP",
+  "module": 5,
+  "title": "Formation of Partial Differential Equations",
+  "problems": [
+   {
+    "id": "FP1",
+    "level": "Remember",
+    "q_page": 16,
+    "a_page": 29,
+    "q": "State the two methods of forming a PDE (eliminating constants and eliminating arbitrary functions), and the order of the PDE each tends to produce. Notation: \\(p=z_x,\\ q=z_y\\).",
+    "a": "Eliminating two arbitrary constants \\(a,b\\) from \\(z=F(x,y,a,b)\\) (using \\(p,q\\)) gives a first-order PDE. Eliminating an arbitrary function from \\(\\phi(u,v)=0\\) gives a first-order linear (Lagrange) PDE \\(Pp+Qq=R\\). Eliminating two arbitrary functions typically gives a second-order PDE."
+   },
+   {
+    "id": "FP2",
+    "level": "Apply",
+    "q_page": 16,
+    "a_page": 29,
+    "q": "Form the PDE by eliminating \\(a,b\\) from \\(z=(x+a)(y+b)\\).",
+    "a": "\\(p=y+b,\\ q=x+a\\), so \\(z=pq\\)."
+   },
+   {
+    "id": "FP3",
+    "level": "Apply",
+    "q_page": 16,
+    "a_page": 29,
+    "q": "Form the PDE by eliminating \\(a,b\\) from \\(z=ax+by+a^2+b^2\\).",
+    "a": "\\(p=a,\\ q=b\\), so \\(z=px+qy+p^2+q^2\\)."
+   },
+   {
+    "id": "FP4",
+    "level": "Apply",
+    "q_page": 16,
+    "a_page": 29,
+    "q": "Form the PDE by eliminating the arbitrary function \\(f\\) from \\(z=f(x^2+y^2)\\).",
+    "a": "\\(p=2xf',\\ q=2yf'\\), so \\(p/q=x/y\\): \\(yp-xq=0\\)."
+   },
+   {
+    "id": "FP5",
+    "level": "Apply",
+    "q_page": 16,
+    "a_page": 30,
+    "q": "Form the PDE by eliminating \\(\\phi\\) from \\(\\phi(x+y+z,\\ x^2+y^2+z^2)=0\\).",
+    "a": "Differentiating w.r.t. \\(x\\) and \\(y\\) and eliminating \\(\\phi_u,\\phi_v\\): \\((1+p)(y+zq)-(1+q)(x+zp)=0\\), i.e. \\((y-z)p+(z-x)q=x-y\\)."
+   },
+   {
+    "id": "FP6",
+    "level": "Analyze",
+    "q_page": 16,
+    "a_page": 30,
+    "q": "Show that eliminating the arbitrary functions \\(f,g\\) from \\(z=f(x+y)+g(x-y)\\) gives \\(\\dfrac{\\partial^2z}{\\partial x^2}=\\dfrac{\\partial^2z}{\\partial y^2}\\), and explain why the order is two here.",
+    "a": "\\(z_{xx}=f''+g''\\) and \\(z_{yy}=f''+g''\\), so \\(r=t\\). Two arbitrary functions must be removed, and each needs one more differentiation than a single arbitrary function does, so the PDE is second order."
+   },
+   {
+    "id": "FP7",
+    "level": "Evaluate",
+    "q_page": 16,
+    "a_page": 30,
+    "q": "Eliminating \\(a,b\\) from \\(z=ax+by+ab\\) gives \\(z=px+qy+pq\\). A student claims every solution of this PDE has the form \\(z=ax+by+ab\\). Evaluate.",
+    "a": "False. \\(z=-xy\\) also satisfies the PDE (\\(p=-y,\\ q=-x\\): \\(px+qy+pq=-xy-xy+xy=-xy\\)) but is not of the two-parameter form for any constants \\(a,b\\). It is the singular solution (the envelope of the family)."
+   },
+   {
+    "id": "FP8",
+    "level": "Create",
+    "q_page": 16,
+    "a_page": 30,
+    "q": "Construct a first-order PDE satisfied by every function \\(z=f(y/x)\\).",
+    "a": "\\(p=-\\dfrac{y}{x^2}f',\\ q=\\dfrac1xf'\\), hence \\(xp+yq=0\\)."
+   }
+  ]
+ },
+ {
+  "prefix": "PQ",
+  "module": 5,
+  "title": "Solutions of the Type F(p, q) = 0",
+  "problems": [
+   {
+    "id": "PQ1",
+    "level": "Remember",
+    "q_page": 16,
+    "a_page": 30,
+    "q": "Describe the method of solving \\(F(p,q)=0\\).",
+    "a": "Assume \\(z=ax+by+c\\), so \\(p=a,\\ q=b\\). Then \\(F(a,b)=0\\) lets you solve \\(b=\\phi(a)\\), giving the complete integral \\(z=ax+\\phi(a)y+c\\). The general integral comes from setting \\(c=\\psi(a)\\) and eliminating \\(a\\) via \\(\\partial/\\partial a=0\\)."
+   },
+   {
+    "id": "PQ2",
+    "level": "Apply",
+    "q_page": 16,
+    "a_page": 30,
+    "q": "Find the complete integral of \\(p+q=pq\\).",
+    "a": "\\(a+b=ab\\Rightarrow b=\\dfrac{a}{a-1}\\). \\(z=ax+\\dfrac{a}{a-1}y+c\\)."
+   },
+   {
+    "id": "PQ3",
+    "level": "Apply",
+    "q_page": 16,
+    "a_page": 30,
+    "q": "Find the complete integral of \\(\\sqrt{p}+\\sqrt{q}=1\\).",
+    "a": "\\(\\sqrt b=1-\\sqrt a\\Rightarrow b=(1-\\sqrt a)^2\\) (valid for \\(0\\le a\\le1\\)). \\(z=ax+(1-\\sqrt a)^2y+c\\)."
+   },
+   {
+    "id": "PQ4",
+    "level": "Apply",
+    "q_page": 16,
+    "a_page": 30,
+    "q": "Find the complete integral of \\(q=p^2\\).",
+    "a": "\\(b=a^2\\): \\(z=ax+a^2y+c\\)."
+   },
+   {
+    "id": "PQ5",
+    "level": "Analyze",
+    "q_page": 16,
+    "a_page": 30,
+    "q": "The assumed solution \\(z=ax+by+c\\) has three constants, yet a complete integral should have two. Explain.",
+    "a": "The constants are tied by \\(F(a,b)=0\\), which fixes \\(b\\) in terms of \\(a\\); this leaves two free constants \\((a,c)\\), matching the two independent variables."
+   },
+   {
+    "id": "PQ6",
+    "level": "Evaluate",
+    "q_page": 16,
+    "a_page": 30,
+    "q": "A student claims the only solutions of \\(p^2+q^2=1\\) are the planes \\(z=x\\cos\\alpha+y\\sin\\alpha+c\\). Evaluate.",
+    "a": "False. The cone \\(z=\\sqrt{x^2+y^2}\\) gives \\(p=x/r,\\ q=y/r\\), so \\(p^2+q^2=1\\). It arises from the general integral (the envelope of the planes with \\(c=0\\)), not from any single plane."
+   },
+   {
+    "id": "PQ7",
+    "level": "Create",
+    "q_page": 16,
+    "a_page": 30,
+    "q": "Construct a PDE \\(F(p,q)=0\\) whose complete integral is \\(z=ax+\\dfrac1ay+c\\).",
+    "a": "\\(p=a,\\ q=1/a\\), so \\(pq=1\\)."
+   }
+  ]
+ },
+ {
+  "prefix": "ZP",
+  "module": 5,
+  "title": "Solutions of the Type F(z, p, q) = 0",
+  "problems": [
+   {
+    "id": "ZP1",
+    "level": "Remember",
+    "q_page": 16,
+    "a_page": 30,
+    "q": "Describe the method for \\(F(z,p,q)=0\\) (no explicit \\(x,y\\)).",
+    "a": "Put \\(u=x+ay\\) and \\(z=f(u)\\). Then \\(p=\\dfrac{dz}{du}\\) and \\(q=a\\dfrac{dz}{du}\\), reducing the PDE to an ODE in \\(z\\) and \\(u\\). Solve it and replace \\(u\\) by \\(x+ay\\)."
+   },
+   {
+    "id": "ZP2",
+    "level": "Apply",
+    "q_page": 16,
+    "a_page": 30,
+    "q": "Solve \\(p(1+q)=qz\\).",
+    "a": "\\(z'(1+az')=az'z\\Rightarrow1+az'=az\\), so \\(\\dfrac{dz}{az-1}=\\dfrac{du}{a}\\). Result: \\(az-1=Ce^{x+ay}\\), i.e. \\(z=\\dfrac{1+Ce^{x+ay}}{a}\\)."
+   },
+   {
+    "id": "ZP3",
+    "level": "Apply",
+    "q_page": 16,
+    "a_page": 30,
+    "q": "Solve \\(z^2(p^2+q^2+1)=1\\).",
+    "a": "\\(z^2\\left[(1+a^2)z'^2+1\\right]=1\\Rightarrow\\dfrac{z\\,dz}{\\sqrt{1-z^2}}=\\dfrac{du}{\\sqrt{1+a^2}}\\). Result: \\((x+ay+b)^2=(1+a^2)(1-z^2)\\)."
+   },
+   {
+    "id": "ZP4",
+    "level": "Apply",
+    "q_page": 17,
+    "a_page": 30,
+    "q": "Solve \\(pq=z\\).",
+    "a": "\\(az'^2=z\\Rightarrow\\dfrac{dz}{\\sqrt z}=\\dfrac{du}{\\sqrt a}\\), so \\(2\\sqrt z=\\dfrac{u+b}{\\sqrt a}\\). Result: \\(4az=(x+ay+b)^2\\)."
+   },
+   {
+    "id": "ZP5",
+    "level": "Analyze",
+    "q_page": 17,
+    "a_page": 30,
+    "q": "Why does the substitution \\(z=f(x+ay)\\) work for \\(F(z,p,q)=0\\), and why does it need the absence of explicit \\(x,y\\)?",
+    "a": "With no explicit \\(x,y\\), the equation is unchanged by translations in the \\((x,y)\\)-plane, so solutions can be sought that depend on \\(x,y\\) only through one travelling combination \\(x+ay\\). An explicit \\(x\\) or \\(y\\) would spoil this invariance."
+   },
+   {
+    "id": "ZP6",
+    "level": "Evaluate",
+    "q_page": 17,
+    "a_page": 31,
+    "q": "A student applies \\(u=x+ay\\) to \\(pq=xz\\). Evaluate.",
+    "a": "Invalid: the equation contains \\(x\\) explicitly, so it is not of type \\(F(z,p,q)=0\\) and the substitution does not reduce it to an ODE in \\(u\\) alone."
+   },
+   {
+    "id": "ZP7",
+    "level": "Create",
+    "q_page": 17,
+    "a_page": 31,
+    "q": "Construct a PDE \\(F(z,p,q)=0\\) and solve it by \\(u=x+ay\\) to get an exponential complete integral.",
+    "a": "E.g. \\(p^2+q^2=z^2\\): \\((1+a^2)z'^2=z^2\\), so \\(z=C\\exp\\!\\left(\\dfrac{x+ay}{\\sqrt{1+a^2}}\\right)\\)."
+   }
+  ]
+ },
+ {
+  "prefix": "XP",
+  "module": 5,
+  "title": "Solutions of the Type F(x, p) = G(y, q)",
+  "problems": [
+   {
+    "id": "XP1",
+    "level": "Remember",
+    "q_page": 17,
+    "a_page": 31,
+    "q": "Describe the method for \\(F(x,p)=G(y,q)\\).",
+    "a": "Set both sides equal to a constant \\(a\\): \\(F(x,p)=a=G(y,q)\\). Solve \\(p=f(x,a)\\) and \\(q=g(y,a)\\), then integrate \\(dz=p\\,dx+q\\,dy\\) to get \\(z=\\int f\\,dx+\\int g\\,dy+b\\)."
+   },
+   {
+    "id": "XP2",
+    "level": "Apply",
+    "q_page": 17,
+    "a_page": 31,
+    "q": "Solve \\(p^2+q^2=x+y\\).",
+    "a": "\\(p^2-x=y-q^2=a\\): \\(p=\\sqrt{x+a},\\ q=\\sqrt{y-a}\\). \\(z=\\tfrac23(x+a)^{3/2}+\\tfrac23(y-a)^{3/2}+b\\)."
+   },
+   {
+    "id": "XP3",
+    "level": "Apply",
+    "q_page": 17,
+    "a_page": 31,
+    "q": "Solve \\(p^2y(1+x^2)=qx^2\\).",
+    "a": "\\(\\dfrac{p^2(1+x^2)}{x^2}=\\dfrac qy=a\\): \\(p=\\dfrac{\\sqrt a\\,x}{\\sqrt{1+x^2}},\\ q=ay\\). \\(z=\\sqrt a\\sqrt{1+x^2}+\\dfrac{ay^2}{2}+b\\)."
+   },
+   {
+    "id": "XP4",
+    "level": "Apply",
+    "q_page": 17,
+    "a_page": 31,
+    "q": "Solve \\(pe^y=qe^x\\).",
+    "a": "\\(pe^{-x}=qe^{-y}=a\\): \\(p=ae^x,\\ q=ae^y\\). \\(z=a(e^x+e^y)+b\\)."
+   },
+   {
+    "id": "XP5",
+    "level": "Analyze",
+    "q_page": 17,
+    "a_page": 31,
+    "q": "Why can both sides of \\(F(x,p)=G(y,q)\\) be set equal to the same constant?",
+    "a": "The left side involves \\(x\\) (and \\(p\\)), the right only \\(y\\) (and \\(q\\)). Seeking solutions where \\(p\\) depends on \\(x\\) alone and \\(q\\) on \\(y\\) alone, a function of \\(x\\) equal to a function of \\(y\\) for all \\(x,y\\) must be constant."
+   },
+   {
+    "id": "XP6",
+    "level": "Evaluate",
+    "q_page": 17,
+    "a_page": 31,
+    "q": "A student says \\(p+q=x+y\\) cannot be solved by this method \"because \\(x\\) and \\(y\\) are mixed\". Evaluate.",
+    "a": "Wrong: rearrange to \\(p-x=y-q\\), which is of the form \\(F(x,p)=G(y,q)\\). Then \\(p=x+a,\\ q=y-a\\) and \\(z=\\dfrac{x^2}{2}+ax+\\dfrac{y^2}{2}-ay+b\\)."
+   },
+   {
+    "id": "XP7",
+    "level": "Create",
+    "q_page": 17,
+    "a_page": 31,
+    "q": "Construct a PDE of this type whose complete integral is \\(z=(x+a)^2+(y-a)^2+b\\).",
+    "a": "\\(p=2(x+a),\\ q=2(y-a)\\), so \\(p-2x=2a=2y-q\\), i.e. \\(p+q=2(x+y)\\)."
+   }
+  ]
+ },
+ {
+  "prefix": "CK",
+  "module": 5,
+  "title": "Clairaut's Form and the Singular Solution",
+  "problems": [
+   {
+    "id": "CK1",
+    "level": "Remember",
+    "q_page": 17,
+    "a_page": 31,
+    "q": "State Clairaut's form of a first-order PDE and its complete integral.",
+    "a": "\\(z=px+qy+f(p,q)\\). Complete integral: replace \\(p,q\\) by constants: \\(z=ax+by+f(a,b)\\). The singular solution is found by differentiating w.r.t. \\(a\\) and \\(b\\) and eliminating \\(a,b\\)."
+   },
+   {
+    "id": "CK2",
+    "level": "Apply",
+    "q_page": 17,
+    "a_page": 31,
+    "q": "Find the complete and singular solutions of \\(z=px+qy+p^2+q^2\\).",
+    "a": "Complete: \\(z=ax+by+a^2+b^2\\). Differentiate: \\(x+2a=0,\\ y+2b=0\\), so \\(a=-x/2,\\ b=-y/2\\) and \\(z=-\\dfrac{x^2+y^2}{4}\\), i.e. \\(4z=-(x^2+y^2)\\)."
+   },
+   {
+    "id": "CK3",
+    "level": "Apply",
+    "q_page": 17,
+    "a_page": 31,
+    "q": "Find the complete and singular solutions of \\(z=px+qy+\\sqrt{1+p^2+q^2}\\).",
+    "a": "Complete: \\(z=ax+by+\\sqrt{1+a^2+b^2}\\). With \\(s=\\sqrt{1+a^2+b^2}\\): \\(x=-a/s,\\ y=-b/s,\\ z=1/s\\), so \\(x^2+y^2+z^2=1\\) (the unit sphere)."
+   },
+   {
+    "id": "CK4",
+    "level": "Apply",
+    "q_page": 17,
+    "a_page": 31,
+    "q": "Reduce \\((p+q)(z-xp-yq)=1\\) to Clairaut's form and write its complete integral.",
+    "a": "\\(z=px+qy+\\dfrac{1}{p+q}\\). Complete integral: \\(z=ax+by+\\dfrac{1}{a+b}\\)."
+   },
+   {
+    "id": "CK5",
+    "level": "Analyze",
+    "q_page": 17,
+    "a_page": 31,
+    "q": "The complete integral of \\(z=px+qy+p^2+q^2\\) is a two-parameter family of planes. What does the singular solution \\(4z=-(x^2+y^2)\\) represent geometrically?",
+    "a": "It is the envelope of the family: a paraboloid that is tangent to each plane of the family. It is not obtainable from the complete integral by choosing constants."
+   },
+   {
+    "id": "CK6",
+    "level": "Evaluate",
+    "q_page": 17,
+    "a_page": 31,
+    "q": "A student says \\(z=-xy\\) solves \\(z=px+qy+pq\\) \"by taking \\(a=-y,\\ b=-x\\) in the complete integral\". Evaluate.",
+    "a": "Invalid: \\(a,b\\) must be constants, not functions of \\(y,x\\). \\(z=-xy\\) is the singular solution (envelope), a genuinely different solution that is not in the family."
+   },
+   {
+    "id": "CK7",
+    "level": "Create",
+    "q_page": 17,
+    "a_page": 31,
+    "q": "Construct a Clairaut equation whose singular solution is the paraboloid \\(z=x^2+y^2\\).",
+    "a": "Tangent planes: \\(z=ax+by-\\dfrac{a^2+b^2}{4}\\) (with \\(a=2x_0,\\ b=2y_0\\)). The PDE is \\(z=px+qy-\\dfrac{p^2+q^2}{4}\\)."
+   }
+  ]
+ },
+ {
+  "prefix": "LG",
+  "module": 5,
+  "title": "Lagrange's Linear Equation Pp + Qq = R",
+  "problems": [
+   {
+    "id": "LG1",
+    "level": "Remember",
+    "q_page": 17,
+    "a_page": 32,
+    "q": "State Lagrange's equation, its auxiliary (subsidiary) equations, and the form of the general solution.",
+    "a": "\\(Pp+Qq=R\\). Auxiliary equations: \\(\\dfrac{dx}{P}=\\dfrac{dy}{Q}=\\dfrac{dz}{R}\\). If \\(u(x,y,z)=c_1\\) and \\(v(x,y,z)=c_2\\) are two independent solutions, the general solution is \\(\\phi(u,v)=0\\) (or \\(v=f(u)\\))."
+   },
+   {
+    "id": "LG2",
+    "level": "Apply",
+    "q_page": 17,
+    "a_page": 32,
+    "q": "Solve \\(xp+yq=z\\).",
+    "a": "\\(\\dfrac{dx}{x}=\\dfrac{dy}{y}=\\dfrac{dz}{z}\\) gives \\(\\dfrac yx=c_1,\\ \\dfrac zx=c_2\\). General solution: \\(\\phi\\!\\left(\\dfrac yx,\\dfrac zx\\right)=0\\), i.e. \\(z=x\\,f(y/x)\\)."
+   },
+   {
+    "id": "LG3",
+    "level": "Apply",
+    "q_page": 18,
+    "a_page": 32,
+    "q": "Solve \\(yz\\,p+zx\\,q=xy\\).",
+    "a": "\\(\\dfrac{dx}{yz}=\\dfrac{dy}{zx}=\\dfrac{dz}{xy}\\Rightarrow x\\,dx=y\\,dy=z\\,dz\\). So \\(x^2-y^2=c_1,\\ y^2-z^2=c_2\\): \\(\\phi(x^2-y^2,\\ y^2-z^2)=0\\)."
+   },
+   {
+    "id": "LG4",
+    "level": "Apply",
+    "q_page": 18,
+    "a_page": 32,
+    "q": "Solve \\((y-z)p+(z-x)q=x-y\\).",
+    "a": "Multipliers \\(1,1,1\\): \\(d(x+y+z)=0\\), so \\(x+y+z=c_1\\). Multipliers \\(x,y,z\\): \\(x\\,dx+y\\,dy+z\\,dz=0\\), so \\(x^2+y^2+z^2=c_2\\). Solution: \\(\\phi(x+y+z,\\ x^2+y^2+z^2)=0\\) (the same PDE as the formation question)."
+   },
+   {
+    "id": "LG5",
+    "level": "Apply",
+    "q_page": 18,
+    "a_page": 32,
+    "q": "Solve \\((y+z)p+(z+x)q=x+y\\).",
+    "a": "From \\(\\dfrac{d(x-y)}{-(x-y)}=\\dfrac{d(y-z)}{-(y-z)}\\): \\(\\dfrac{x-y}{y-z}=c_1\\). Using \\(\\dfrac{d(x+y+z)}{2(x+y+z)}=-\\dfrac{d(x-y)}{x-y}\\): \\((x-y)^2(x+y+z)=c_2\\). Solution: \\(\\phi\\!\\left(\\dfrac{x-y}{y-z},\\ (x-y)^2(x+y+z)\\right)=0\\)."
+   },
+   {
+    "id": "LG6",
+    "level": "Analyze",
+    "q_page": 18,
+    "a_page": 32,
+    "q": "Interpret \\(\\dfrac{dx}{P}=\\dfrac{dy}{Q}=\\dfrac{dz}{R}\\) geometrically and explain why \\(\\phi(u,v)=0\\) represents a solution surface.",
+    "a": "A surface \\(z=z(x,y)\\) has normal \\((p,q,-1)\\), and \\(Pp+Qq=R\\) says \\((P,Q,R)\\perp(p,q,-1)\\), i.e. the vector \\((P,Q,R)\\) is tangent to the surface. The auxiliary equations describe curves (characteristics) tangent to \\((P,Q,R)\\); \\(u=c_1,\\ v=c_2\\) is such a curve. A surface built from a one-parameter family of these curves, \\(\\phi(u,v)=0\\), is therefore an integral surface."
+   },
+   {
+    "id": "LG7",
+    "level": "Evaluate",
+    "q_page": 18,
+    "a_page": 32,
+    "q": "Having found \\(u=y/x,\\ v=z/x\\) for \\(xp+yq=z\\), a student writes the general solution as \\(u+v=c\\). Evaluate.",
+    "a": "Incorrect. The general solution is \\(\\phi(u,v)=0\\) with \\(\\phi\\) an arbitrary function; \\(u+v=c\\) is just one particular member, giving only a one-parameter family of solutions."
+   },
+   {
+    "id": "LG8",
+    "level": "Create",
+    "q_page": 18,
+    "a_page": 32,
+    "q": "Construct a Lagrange equation whose general solution is \\(z=f(x^2+y^2)\\).",
+    "a": "\\(yp-xq=0\\) (\\(P=y,\\ Q=-x,\\ R=0\\)): \\(dz=0\\Rightarrow z=c_1\\), and \\(x\\,dx+y\\,dy=0\\Rightarrow x^2+y^2=c_2\\)."
+   }
+  ]
+ },
+ {
+  "prefix": "SV",
+  "module": 5,
+  "title": "Linear First-Order PDEs by Separation of Variables",
+  "problems": [
+   {
+    "id": "SV1",
+    "level": "Remember",
+    "q_page": 18,
+    "a_page": 32,
+    "q": "Describe the method of separation of variables for a first-order linear PDE.",
+    "a": "Assume \\(u=X(x)Y(y)\\) (or \\(X(x)T(t)\\)), substitute, and rearrange so each side depends on one variable only; set both equal to a separation constant \\(k\\). Solve the two ODEs, form \\(u=XY\\), and fix constants from the given condition."
+   },
+   {
+    "id": "SV2",
+    "level": "Apply",
+    "q_page": 18,
+    "a_page": 32,
+    "q": "Solve \\(\\dfrac{\\partial u}{\\partial x}=2\\dfrac{\\partial u}{\\partial t}+u\\), given \\(u(x,0)=6e^{-3x}\\).",
+    "a": "\\(\\dfrac{X'}{X}=2\\dfrac{T'}{T}+1=k\\): \\(X=e^{kx},\\ T=e^{(k-1)t/2}\\). \\(u(x,0)=Ce^{kx}=6e^{-3x}\\Rightarrow C=6,\\ k=-3\\). So \\(u=6e^{-3x-2t}\\)."
+   },
+   {
+    "id": "SV3",
+    "level": "Apply",
+    "q_page": 18,
+    "a_page": 32,
+    "q": "Solve \\(3\\dfrac{\\partial u}{\\partial x}+2\\dfrac{\\partial u}{\\partial y}=0\\), given \\(u(x,0)=4e^{-x}\\).",
+    "a": "\\(\\dfrac{X'}{X}=-\\dfrac23\\dfrac{Y'}{Y}=k\\): \\(u=Ce^{kx-3ky/2}\\). The condition gives \\(C=4,\\ k=-1\\). So \\(u=4e^{-x+3y/2}\\)."
+   },
+   {
+    "id": "SV4",
+    "level": "Apply",
+    "q_page": 18,
+    "a_page": 32,
+    "q": "Solve \\(4u_x+u_y=3u\\), given \\(u(0,y)=e^{-5y}\\).",
+    "a": "\\(\\dfrac{4X'}{X}=3-\\dfrac{Y'}{Y}=k\\): \\(u=Ce^{kx/4+(3-k)y}\\). \\(u(0,y)=Ce^{(3-k)y}=e^{-5y}\\Rightarrow C=1,\\ k=8\\). So \\(u=e^{2x-5y}\\)."
+   },
+   {
+    "id": "SV5",
+    "level": "Analyze",
+    "q_page": 18,
+    "a_page": 32,
+    "q": "In the earlier problem \\(u_x=2u_t+u\\) the condition fixed \\(k=-3\\). If instead \\(u(x,0)=6e^{-3x}+4e^{-5x}\\), how does the solution change?",
+    "a": "The PDE is linear, so solutions superpose. Each term matches its own \\(k\\): \\(k=-3\\) gives \\(e^{-3x-2t}\\), and \\(k=-5\\) gives \\(e^{-5x-3t}\\). So \\(u=6e^{-3x-2t}+4e^{-5x-3t}\\)."
+   },
+   {
+    "id": "SV6",
+    "level": "Evaluate",
+    "q_page": 18,
+    "a_page": 32,
+    "q": "From \\(\\dfrac{X'}{X}=2\\dfrac{T'}{T}+1\\), a student argues both sides must be 0 \"since \\(X\\) depends only on \\(x\\) and \\(T\\) only on \\(t\\)\". Evaluate.",
+    "a": "Incorrect. A function of \\(x\\) equal to a function of \\(t\\) must be a constant \\(k\\), not necessarily zero. The value of \\(k\\) is then fixed by the given condition."
+   },
+   {
+    "id": "SV7",
+    "level": "Create",
+    "q_page": 18,
+    "a_page": 33,
+    "q": "Construct a first-order linear PDE and a condition whose separated solution is \\(u=5e^{2x+3y}\\).",
+    "a": "E.g. \\(3u_x-2u_y=0\\) with \\(u(x,0)=5e^{2x}\\): \\(u_x=2u,\\ u_y=3u\\), so \\(6u-6u=0\\)."
+   }
+  ]
+ }
+]

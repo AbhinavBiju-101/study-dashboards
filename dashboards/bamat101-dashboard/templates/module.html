@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Module {{ current }} · BAMAT101{% endblock %}
+{% block content %}
+<div class="module-head" style="--accent:{{ m.accent }};--accent-dk:{{ m.accent_dk }}"><div>
+  <h1>{% if m.num < total %}Module {{ m.num }} — {% endif %}{{ m.title }}</h1><p>{{ m.desc }}</p>
+  <div class="pills">{% for t in m.topics %}<a href="#{{ t.id }}">{{ t.label }}</a>{% endfor %}</div>
+</div></div>
+{% if body %}
+<div class="notes">{{ body }}</div>
+{% else %}
+<main style="--accent:{{ m.accent }}">
+  <div class="note-box">Pages {{ m.pages[0] }}–{{ m.pages[1] }} of the illustrated notes. Use the section list to jump to a page in the reader below, or <a href="{{ url_for('download', which='notes') }}">download the PDF</a>.</div>
+  <div class="panel"><h2>Sections</h2>
+    <ul class="secs">{% for t in m.topics %}<li id="{{ t.id }}"><a href="{{ url_for('read', which='notes', page=t.page) }}"><span class="st">{{ t.label }}</span><span class="pg">PDF p. {{ t.page }} ↗</span></a></li>{% endfor %}</ul></div>
+  {% if figs %}<h2>Figures in this module</h2>
+  <div class="figgrid">{% for f in figs %}<figure class="fig"><a href="{{ url_for('read', which='notes', page=f.page) }}"><img src="{{ url_for('static', filename='figures/' ~ f.file) }}" alt="{{ f.caption or 'Figure on page ' ~ f.page }}" loading="lazy"></a>
+    <figcaption>{{ f.caption or ('PDF page ' ~ f.page) }}</figcaption></figure>{% endfor %}</div>{% endif %}
+  <h2>Read in place</h2>
+  <iframe class="pdfframe" title="Notes PDF, module {{ current }}" src="{{ url_for('pdf_inline', which='notes') }}#page={{ m.pages[0] }}&view=FitH"></iframe>
+</main>
+{% endif %}
+{% endblock %}

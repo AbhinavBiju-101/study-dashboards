@@ -38,7 +38,7 @@
         <div class="top"><span class="tag" style="--accent: {{ s.accent }}">{{ s.code }}</span><span class="small muted" data-last>Not started</span></div>
         <strong>{{ s.title }}</strong>
         <div class="bar-track"><div class="bar-fill" data-fill style="width:0;background:{{ s.accent }}"></div></div>
-        <span class="small muted" data-acc>{{ s.questions }} questions available</span>
+        <span class="small muted" data-acc>{{ s.questions }} {{ s.qlabel }} available</span>
       </a>
       {% endfor %}
     </div>

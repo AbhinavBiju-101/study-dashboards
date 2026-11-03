@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block title %}Practice · BAMAT101{% endblock %}
+{% block content %}
+<div class="qpage">
+<div id="run">
+  <div class="run-top"><strong>Practice</strong><span id="prog"></span><span class="grow"></span><span class="timer" id="timer">00:00</span>
+    <button class="pbtn alt sm" id="finish" type="button">Finish</button></div>
+  <div class="palette" id="pal"></div>
+  <div class="panel" id="card"></div>
+  <div class="navrow"><button class="pbtn alt" id="prev" type="button">← Prev</button><button class="pbtn alt" id="flag" type="button">⚑ Flag</button><span class="grow"></span><button class="pbtn" id="next" type="button">Next →</button></div>
+</div>
+<div id="res" hidden></div>
+</div>
+{% endblock %}
+{% block scripts %}
+<script id="pdata" type="application/json">{{ problems|tojson }}</script>
+<script>
+(function(){
+var P=JSON.parse(document.getElementById('pdata').textContent),N=P.length;
+var st=P.map(function(){return {r:0,shown:false,flag:false,note:''}}); // r: 0 none,1 got,2 part,3 miss
+var i=0,t0=Date.now(),done=false;
+var $=function(id){return document.getElementById(id)};
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+var bankUrl="{{ url_for('read', which='bank', page=1)[:-1] }}";
+setInterval(function(){if(done)return;var s=Math.floor((Date.now()-t0)/1000);$('timer').textContent=('0'+Math.floor(s/60)).slice(-2)+':'+('0'+s%60).slice(-2)},1000);
+function pal(){$('pal').innerHTML=P.map(function(p,k){var s=st[k],c=['','got','part','miss'][s.r];return '<button type="button" data-k="'+k+'" class="'+c+(k===i?' cur':'')+(s.flag?' fl':'')+'">'+(k+1)+'</button>'}).join('')}
+function show(){
+ var p=P[i],s=st[i];$('prog').textContent=(i+1)+' / '+N;
+ var h='<div class="qmeta"><span>'+esc(p.id)+'</span><span>'+esc(p.label)+'</span><span>'+esc(p.level)+'</span></div><div class="qtext">'+esc(p.q)+'</div>'
+ +'<textarea class="scratch" id="scr" placeholder="Scratch work (optional, not saved)">'+esc(s.note)+'</textarea>';
+ if(s.shown){h+='<div class="abox"><b>Answer</b><div class="atext">'+esc(p.a)+'</div></div>'
+  +'<div class="rate"><button type="button" data-r="1" class="'+(s.r===1?'on-got':'')+'">✓ Got it</button><button type="button" data-r="2" class="'+(s.r===2?'on-part':'')+'">~ Partly</button><button type="button" data-r="3" class="'+(s.r===3?'on-miss':'')+'">✗ Missed</button></div>';}
+ else h+='<div class="rate"><button type="button" id="reveal">Show answer</button></div>';
+ h+='<p style="font-size:.8rem;margin-top:12px"><a href="'+bankUrl+p.q_page+'">Problem in PDF (p.'+p.q_page+')</a> · <a href="'+bankUrl+p.a_page+'">Answer key (p.'+p.a_page+')</a></p>';
+ $('card').innerHTML=h;window.renderMath&&window.renderMath($('card'));pal();
+ var sc=$('scr');sc.oninput=function(){s.note=sc.value};
+ var rv=$('reveal');if(rv)rv.onclick=function(){s.shown=true;show()};
+}
+$('card').addEventListener('click',function(e){var r=e.target.getAttribute&&e.target.getAttribute('data-r');if(r){st[i].r=+r;show()}});
+$('pal').addEventListener('click',function(e){var k=e.target.getAttribute('data-k');if(k!==null){i=+k;show()}});
+$('prev').onclick=function(){if(i>0){i--;show()}};$('next').onclick=function(){if(i<N-1){i++;show()}else finish()};
+$('flag').onclick=function(){st[i].flag=!st[i].flag;pal()};$('finish').onclick=function(){if(confirm('Finish and see results?'))finish()};
+function finish(){
+ done=true;var secs=Math.floor((Date.now()-t0)/1000);
+ var got=0,part=0,miss=0,un=0,mod={},lev={};
+ P.forEach(function(p,k){var r=st[k].r;if(r===1)got++;else if(r===2)part++;else if(r===3)miss++;else un++;
+  [[mod,p.label],[lev,p.level]].forEach(function(x){var o=x[0][x[1]]=x[0][x[1]]||{n:0,g:0};o.n++;if(r===1)o.g++})});
+ try{if(window.hubRecord)hubRecord({secs:secs,rows:P.map(function(p,k){var r=st[k].r;return [p.label,p.level,r===0?-1:(r===1?1:0)]})})}catch(e){}
+ function bars(o){return Object.keys(o).map(function(k){var v=o[k],pc=Math.round(100*v.g/v.n);return '<div class="bar-row"><div class="bar-label"><span>'+esc(k)+'</span><span>'+v.g+'/'+v.n+'</span></div><div class="bar-track"><div class="bar-fill '+(pc<40?'bad':pc<70?'warn':'')+'" style="width:'+pc+'%"></div></div></div>'}).join('')}
+ var rated=N-un,pct=rated?Math.round(100*(got+part*0.5)/rated):0;
+ var h='<div class="hero-score"><div class="big">'+got+' / '+N+'</div>solved cleanly<div class="stats"><div><b>'+part+'</b>partly</div><div><b>'+miss+'</b>missed</div><div><b>'+un+'</b>unrated</div><div><b>'+Math.floor(secs/60)+'m '+secs%60+'s</b>time</div></div></div>'
+ +'<div class="panel"><h2>By module</h2>'+bars(mod)+'</div><div class="panel"><h2>By level</h2>'+bars(lev)+'</div>'
+ +'<div class="navrow"><a class="pbtn" style="text-decoration:none" href="{{ url_for("quiz_setup") }}">New practice</a><button class="pbtn alt" id="retry" type="button">Retry missed &amp; unrated</button></div>'
+ +'<div class="panel" style="margin-top:16px"><h2>Review</h2><div class="filters" id="flt"><button data-f="all" class="active">All</button><button data-f="3">Missed</button><button data-f="2">Partly</button><button data-f="1">Got it</button><button data-f="0">Unrated</button><button data-f="fl">Flagged</button></div><div id="rv"></div></div>';
+ $('run').hidden=true;$('res').hidden=false;$('res').innerHTML=h;
+ function list(f){$('rv').innerHTML=P.map(function(p,k){var s=st[k];if(f!=='all'&&!(f==='fl'?s.flag:s.r===+f))return'';
+  return '<div class="review-item"><div class="r-meta">'+esc(p.id)+' · '+esc(p.label)+' · '+esc(p.level)+' · <a href="'+bankUrl+p.q_page+'">PDF p.'+p.q_page+'</a></div><div class="qtext">'+esc(p.q)+'</div><div class="abox"><b>Answer</b><div class="atext">'+esc(p.a)+'</div></div></div>'}).join('')||'<div class="empty">Nothing here.</div>';window.renderMath&&window.renderMath($('rv'))}
+ list('all');
+ $('flt').onclick=function(e){var f=e.target.getAttribute('data-f');if(f===null)return;[].forEach.call($('flt').children,function(b){b.classList.toggle('active',b===e.target)});list(f)};
+ $('retry').onclick=function(){var keep=P.filter(function(p,k){return st[k].r!==1});if(!keep.length){alert('Nothing to retry.');return}P=keep;N=P.length;st=P.map(function(){return{r:0,shown:false,flag:false,note:''}});i=0;t0=Date.now();done=false;$('res').hidden=true;$('run').hidden=false;show()};
+ window.scrollTo(0,0);
+}
+show();
+})();
+</script>
+{% endblock %}

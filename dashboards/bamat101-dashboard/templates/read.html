@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}{{ title }} · BAMAT101{% endblock %}
+{% block content %}
+<div class="reader">
+  <div class="readbar"><strong>{{ title }}</strong><span class="grow" style="flex:1"></span>
+    <a href="{{ url_for('read', which='notes', page=1) }}">Notes</a><a href="{{ url_for('read', which='bank', page=1) }}">Problem bank</a>
+    <a href="{{ url_for('download', which=which) }}">⬇ Download</a></div>
+  <iframe class="pdfframe" title="{{ title }}" src="{{ src }}"></iframe>
+  <p class="foot" style="text-align:center;color:#5a6459;font-size:.85rem">Opened at page {{ page }}. If the PDF doesn’t display on your device, use Download.</p>
+</div>
+{% endblock %}

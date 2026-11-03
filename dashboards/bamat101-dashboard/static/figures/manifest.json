@@ -1,0 +1,258 @@
+[
+ {
+  "id": "p3_1",
+  "file": "p3_1.png",
+  "page": 3,
+  "caption": "Figure 1: The surface z = x2 + y2 sliced by the plane y = 1. The red curve is the slice z = x2 + 1; the blue dashed line is its tangent at x = 1. Its slope, fx(1, 1) = 2, is the partial derivative.",
+  "w": 721,
+  "h": 498
+ },
+ {
+  "id": "p5_1",
+  "file": "p5_1.png",
+  "page": 5,
+  "caption": "Figure 2: One-variable analogue. The tangent line\u2019s rise dy is a linear estimate of the curve\u2019s true rise \u2206y; the difference is the error, which shrinks much faster than dx.",
+  "w": 560,
+  "h": 407
+ },
+ {
+  "id": "p6_1",
+  "file": "p6_1.png",
+  "page": 6,
+  "caption": "Figure 3: A small du \u00d7 dv rectangle (left) is mapped to a parallelogram spanned by ru du and rv dv (right). Its area is |J| du dv.",
+  "w": 1377,
+  "h": 315
+ },
+ {
+  "id": "p8_1",
+  "file": "p8_1.png",
+  "page": 8,
+  "caption": "Figure 4: Left: restricting f to the line through (a, b) turns the two-variable problem into a one- variable one. Right: the one-variable Taylor polynomials hug the function more tightly as the degree rises \u2014 this is why the second-degree terms improve on the linear (tangent-plane) estimate.",
+  "w": 941,
+  "h": 386
+ },
+ {
+  "id": "p9_1",
+  "file": "p9_1.png",
+  "page": 9,
+  "caption": "Figure 5: The three possible shapes at a critical point with rt\u2212s2\u0338 = 0. For x2+y2: r = t = 2, s = 0, so rt \u2212s2 = 4 > 0, r > 0. For \u2212x2 \u2212y2: rt \u2212s2 = 4 > 0, r < 0. For x2 \u2212y2: rt \u2212s2 = \u22124 < 0.",
+  "w": 1377,
+  "h": 371
+ },
+ {
+  "id": "p11_1",
+  "file": "p11_1.png",
+  "page": 11,
+  "caption": "",
+  "w": 675,
+  "h": 562
+ },
+ {
+  "id": "p13_1",
+  "file": "p13_1.png",
+  "page": 13,
+  "caption": "Figure 11: The same triangular region, described two ways. Left: for fixed y \u2208[0, 1], x runs from y to 1 (matches",
+  "w": 1007,
+  "h": 297
+ },
+ {
+  "id": "p14_1",
+  "file": "p14_1.png",
+  "page": 14,
+  "caption": "Figure 12: A polar \u201crectangle\u201d of size \u2206r \u00d7 \u2206\u03b8 is really a wedge of area \u2248r \u2206r \u2206\u03b8 \u2014 larger r means more area swept per unit \u2206\u03b8, which is exactly the factor dA = r dr d\u03b8 accounts for.",
+  "w": 629,
+  "h": 472
+ },
+ {
+  "id": "p17_1",
+  "file": "p17_1.png",
+  "page": 17,
+  "caption": "Figure 1: A \u00d7 B is perpendicular to the plane containing A and B \u2014 direction fixed by the right- hand rule (curl fingers from A to B, thumb gives the result).",
+  "w": 369,
+  "h": 257
+ },
+ {
+  "id": "p19_1",
+  "file": "p19_1.png",
+  "page": 19,
+  "caption": "Figure 2: Level curves of f(x, y) = x2 + y2 (circles) with \u2207f drawn at several points. Every arrow is perpendicular to the circle it sits on, and points toward increasing f (outward, since f grows as you move away from the origin).",
+  "w": 955,
+  "h": 476
+ },
+ {
+  "id": "p21_1",
+  "file": "p21_1.png",
+  "page": 21,
+  "caption": "Figure 3: The directional derivative is the projection of \u2207f onto the chosen direction \u02c6a \u2014 maximal when \u02c6a aligns with \u2207f itself (\u03b8 = 0).",
+  "w": 345,
+  "h": 336
+ },
+ {
+  "id": "p22_1",
+  "file": "p22_1.png",
+  "page": 22,
+  "caption": "Figure 4: Left: F = xi + yj (arrows flow outward everywhere \u21d2div F > 0, a source). Right: F = \u2212xi \u2212yj (arrows flow inward \u21d2div F < 0, a sink).",
+  "w": 657,
+  "h": 179
+ },
+ {
+  "id": "p23_1",
+  "file": "p23_1.png",
+  "page": 23,
+  "caption": "Figure 5: Left: F = \u2212yi + xj circulates around the origin \u2014 a paddle wheel dropped in would spin, so curl F\u0338 = 0. Right: a straight, uniform flow like F = j has no local swirl anywhere, so curl F = 0 even though the fluid is clearly moving.",
+  "w": 801,
+  "h": 230
+ },
+ {
+  "id": "p26_1",
+  "file": "p26_1.png",
+  "page": 26,
+  "caption": "Figure 6: The curve C is chopped into small steps; at each sample point F is evaluated and dotted with the small displacement \u2206ri along the curve. Summing (then taking the limit) gives",
+  "w": 289,
+  "h": 232
+ },
+ {
+  "id": "p27_1",
+  "file": "p27_1.png",
+  "page": 27,
+  "caption": "Figure 7: Two neighboring cells circulate in opposite directions along their shared edge, so that contribution cancels exactly. Doing this for every internal edge in the grid leaves only the outer boundary C contributing \u2014 the heart of Green\u2019s, Stokes\u2019, and Gauss\u2019s theorems alike.",
+  "w": 601,
+  "h": 262
+ },
+ {
+  "id": "p28_1",
+  "file": "p28_1.png",
+  "page": 28,
+  "caption": "Figure 8: At a surface patch dS, only the component of F along the normal \u02c6n contributes to flux \u2014 the rest of F (tangential to the surface) never actually crosses it.",
+  "w": 351,
+  "h": 199
+ },
+ {
+  "id": "p29_1",
+  "file": "p29_1.png",
+  "page": 29,
+  "caption": "Figure 9: A curved \u201ccap\u201d surface S stretched across the closed curve C. Stokes\u2019 Theorem lets you swap the line integral around C for a surface integral of curl over S \u2014 and S can be any surface bounded by C, so pick the easiest one.",
+  "w": 461,
+  "h": 239
+ },
+ {
+  "id": "p30_1",
+  "file": "p30_1.png",
+  "page": 30,
+  "caption": "Figure 10: Flux out through a closed surface S (arrows) equals the sum of divergence produced at every point enclosed \u2014 the Gauss Divergence Theorem, obtained from the same cell-cancellation idea as Green\u2019s Theorem, extended to three dimensions.",
+  "w": 499,
+  "h": 340
+ },
+ {
+  "id": "p32_1",
+  "file": "p32_1.png",
+  "page": 32,
+  "caption": "",
+  "w": 1377,
+  "h": 336
+ },
+ {
+  "id": "p36_1",
+  "file": "p36_1.png",
+  "page": 36,
+  "caption": "",
+  "w": 1319,
+  "h": 276
+ },
+ {
+  "id": "p38_1",
+  "file": "p38_1.png",
+  "page": 38,
+  "caption": "Figure 8: Left: Cauchy\u2013Euler solutions against x. Right: the same functions against t = ln x \u2014 they become the familiar e2t, e\u2212t, cos t of a constant-coefficient equation. Note that cos(ln x) oscillates infinitely often as x \u21920+, even though it never repeats on an ordinary axis.",
+  "w": 1076,
+  "h": 438
+ },
+ {
+  "id": "p39_1",
+  "file": "p39_1.png",
+  "page": 39,
+  "caption": "Figure 9: Solutions of (x + 1)2y\u2032\u2032 + (x + 1)y\u2032 \u2212y = 0 are (x + 1)m with m = \u00b11. The dashed line x = \u22121 plays the role that x = 0 plays for Cauchy\u2013Euler.",
+  "w": 631,
+  "h": 374
+ },
+ {
+  "id": "p40_1",
+  "file": "p40_1.png",
+  "page": 40,
+  "caption": "Figure 10: A mass m attached to a wall by a spring (stiffness k) and a damper (coefficient c), driven by an external force F(t).",
+  "w": 616,
+  "h": 287
+ },
+ {
+  "id": "p40_2",
+  "file": "p40_2.png",
+  "page": 40,
+  "caption": "Figure 11: Three damping regimes, all released from x(0) = 1, x\u2032(0) = 0. Overdamped (c2 > 4mk): slow return, no oscillation. Critically damped (c2 = 4mk): fastest return without overshoot. Underdamped (c2 < 4mk): oscillation inside a decaying envelope.",
+  "w": 731,
+  "h": 411
+ },
+ {
+  "id": "p41_1",
+  "file": "p41_1.png",
+  "page": 41,
+  "caption": "Figure 12: Resonance: xp = t",
+  "w": 714,
+  "h": 342
+ },
+ {
+  "id": "p42_1",
+  "file": "p42_1.png",
+  "page": 42,
+  "caption": "Figure 13: For z = f(x2 +y2) the level curves are circles. The combination yp\u2212xq = \u2207z \u00b7(y, \u2212x) is the rate of change of z along the circles, which is 0: the PDE yp \u2212xq = 0 says \u201cz does not change as you go around the origin\u201d.",
+  "w": 703,
+  "h": 439
+ },
+ {
+  "id": "p44_1",
+  "file": "p44_1.png",
+  "page": 44,
+  "caption": "Figure 14: The \u201cslope plane\u201d: every point (a, b) on the curve F(p, q) = 0 gives a solution plane z = ax + by + c. Here F = \u221ap + \u221aq \u22121 and b = (1 \u2212\u221aa)2.",
+  "w": 566,
+  "h": 393
+ },
+ {
+  "id": "p45_1",
+  "file": "p45_1.png",
+  "page": 45,
+  "caption": "Figure 15: For u = x + 2y, z is constant on each line x + 2y = const. The surface is a \u201ctravelling profile\u201d z = f(u) stretched along the lines. This one-variable reduction is what turns the PDE into an ODE.",
+  "w": 1213,
+  "h": 379
+ },
+ {
+  "id": "p46_1",
+  "file": "p46_1.png",
+  "page": 46,
+  "caption": "Figure 16: Both sides of the equation must equal the same separation constant a, which then splits the PDE into two one-variable problems.",
+  "w": 789,
+  "h": 326
+ },
+ {
+  "id": "p47_1",
+  "file": "p47_1.png",
+  "page": 47,
+  "caption": "",
+  "w": 652,
+  "h": 710
+ },
+ {
+  "id": "p49_1",
+  "file": "p49_1.png",
+  "page": 49,
+  "caption": "",
+  "w": 539,
+  "h": 498
+ },
+ {
+  "id": "p51_1",
+  "file": "p51_1.png",
+  "page": 51,
+  "caption": "Figure 19: The solution u = 6e\u22123x\u22122t of ux = 2ut + u with u(x, 0) = 6e\u22123x: the initial profile (blue) decays uniformly in time, since u is multiplied by e\u22122t.",
+  "w": 644,
+  "h": 371
+ }
+]

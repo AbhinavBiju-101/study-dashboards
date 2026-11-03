@@ -1,0 +1,7 @@
+{"topics":[{"id":"s13","label":"Module 2 — Multiple Integrals","page":13,
+ "summary":"Double integrals as iterated integrals, changing the order of integration, polar coordinates, and triple integrals in rectangular, cylindrical and spherical coordinates.",
+ "subtopics":[
+  {"id":"s13-1","label":"Double Integrals: Basic Evaluation","summary":"Evaluating a double integral as an iterated integral."},
+  {"id":"s13-2","label":"Change of Order of Integration","summary":"Sketch the region and re-read its boundary with the roles of x and y swapped."},
+  {"id":"s13-3","label":"Double Integrals in Polar Coordinates","summary":"Why dA = r dr dθ, and when to switch to polar."},
+  {"id":"s13-4","label":"Triple Integrals: Rectangular, Cylindrical, Spherical","summary":"Volume elements and worked volumes in cylindrical and spherical coordinates."}]}]}

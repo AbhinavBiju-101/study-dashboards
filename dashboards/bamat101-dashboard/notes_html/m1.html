@@ -1,0 +1,170 @@
+<section class="sec" id="s15">
+  <h2>15 Functions of Two Variables and Partial Derivatives</h2>
+  <div class="pagemark"><a href="@pdf/notes/3">&#8599; original PDF, page 3</a></div>
+  <div class="box def"><div class="box-title">Definition</div>
+    <p>For \(z=f(x,y)\), the <b>partial derivative</b> with respect to \(x\) is</p>
+    \[ \frac{\partial f}{\partial x}=\lim_{h\to 0}\frac{f(x+h,y)-f(x,y)}{h}, \]
+    <p>the ordinary derivative in which \(y\) is frozen. Likewise \(\partial f/\partial y\) freezes \(x\).</p>
+  </div>
+  <div class="box why"><div class="box-title">WHY this is true</div>
+    <p><b>What a partial derivative really is.</b> The graph of \(z=f(x,y)\) is a surface. Freezing \(y=y_0\) means slicing the surface with the vertical plane \(y=y_0\); the slice is an ordinary curve \(z=f(x,y_0)\) in one variable. The partial derivative \(f_x(x_0,y_0)\) is the <em>slope of that slice</em> at \(x_0\). So “freeze the other variable” is not a trick — it is literally the geometric act of cutting the surface by a plane and measuring the slope of the cut.</p>
+  </div>
+  <figure class="fig"><img src="@static/figures/p3_1.png" alt="Surface z = x^2 + y^2 sliced by the plane y = 1, with the slice curve and its tangent line" loading="lazy">
+    <figcaption><b>Figure 1:</b> The surface \(z=x^2+y^2\) sliced by the plane \(y=1\). The red curve is the slice \(z=x^2+1\); the blue dashed line is its tangent at \(x=1\). Its slope, \(f_x(1,1)=2\), is the partial derivative.</figcaption></figure>
+  <div class="box mis"><div class="box-title">Fixing a Common Misconception</div>
+    <p><b>“If both \(f_x\) and \(f_y\) exist at a point, \(f\) is well-behaved (continuous) there.”</b> This is false. Take \(f(x,y)=\dfrac{xy}{x^2+y^2}\) with \(f(0,0)=0\). On both axes \(f=0\), so \(f_x(0,0)=f_y(0,0)=0\) — both exist. But along the diagonal \(y=x\), \(f=\tfrac12\) for every \(x\neq 0\), so \(f\) jumps to \(\tfrac12\) as you approach the origin that way: \(f\) is not even continuous at \((0,0)\). The reason is exactly the geometric picture above: partial derivatives only inspect the surface along the <em>two axis slices</em>; the surface can misbehave in every other direction. (Section 16 shows what <em>is</em> needed for good behaviour.)</p>
+  </div>
+  <h3 id="s15-1">Chain rule</h3>
+  <p>If \(z=f(x,y)\) and \(x=x(t)\), \(y=y(t)\), then</p>
+  \[ \frac{dz}{dt}=\frac{\partial f}{\partial x}\frac{dx}{dt}+\frac{\partial f}{\partial y}\frac{dy}{dt}. \]
+  <div class="pagemark"><a href="@pdf/notes/4">&#8599; original PDF, page 4</a></div>
+  <div class="box why"><div class="box-title">WHY this is true</div>
+    <p>As \(t\) changes by \(\Delta t\), \(x\) changes by \(\Delta x\approx x'\Delta t\) and \(y\) by \(\Delta y\approx y'\Delta t\). To first order, \(z\) changes by the sum of the two separate effects: \(f_x\Delta x\) (the effect of moving in \(x\)) plus \(f_y\Delta y\) (the effect of moving in \(y\)). Dividing by \(\Delta t\) and letting \(\Delta t\to 0\) gives the formula. This is the same chain rule used in Part I (Section 2) to prove that \(\nabla f\) is perpendicular to level surfaces; the careful justification of “to first order” is the content of Section 16.</p>
+  </div>
+  <div class="box ex"><div class="box-title">Worked Example</div>
+    <p>\(z=x^2y\) with \(x=t^2\), \(y=t^3\). Chain rule: \(z_x=2xy=2t^5\), \(x'=2t\), \(z_y=x^2=t^4\), \(y'=3t^2\), so</p>
+    \[ \frac{dz}{dt}=2t^5\cdot 2t+t^4\cdot 3t^2=7t^6. \]
+    <p><b>Check by substituting first:</b> \(z=t^4\cdot t^3=t^7\), so \(dz/dt=7t^6\). ✓</p>
+  </div>
+  <h3 id="s15-2">Higher and mixed partial derivatives</h3>
+  <p>Differentiating twice gives \(f_{xx}\), \(f_{yy}\) and the <em>mixed</em> partials \(f_{xy}=\partial_y(f_x)\), \(f_{yx}=\partial_x(f_y)\).</p>
+  <div class="box why"><div class="box-title">WHY this is true</div>
+    <p><b>When is \(f_{xy}=f_{yx}\)?</b> Whenever both mixed partials are continuous near the point (Clairaut–Schwarz theorem). Intuition: \(f_{xy}\) measures how the \(x\)-slope changes as you step in \(y\), and \(f_{yx}\) how the \(y\)-slope changes as you step in \(x\); both describe the same “twist” of the surface, computed by going around a tiny rectangle in two orders. Continuity guarantees the two orders agree. Without continuity they can differ: for \(f=\dfrac{xy(x^2-y^2)}{x^2+y^2}\), \(f(0,0)=0\), one finds \(f_{xy}(0,0)=-1\) but \(f_{yx}(0,0)=+1\).</p>
+  </div>
+  <div class="box ex"><div class="box-title">Worked Example</div>
+    <p>\(f=x^3y^2+\sin(xy)\). Then \(f_x=3x^2y^2+y\cos(xy)\), and differentiating in \(y\):</p>
+    \[ f_{xy}=6x^2y+\cos(xy)-xy\sin(xy). \]
+    <p>Computing in the other order, \(f_y=2x^3y+x\cos(xy)\) and \(f_{yx}=6x^2y+\cos(xy)-xy\sin(xy)\) — identical, as the theorem promises.</p>
+    <p><b>Laplace’s equation.</b> \(u=\ln(x^2+y^2)\): \(u_{xx}=\dfrac{2(y^2-x^2)}{(x^2+y^2)^2}\) and \(u_{yy}=\dfrac{2(x^2-y^2)}{(x^2+y^2)^2}\), so \(u_{xx}+u_{yy}=0\). (Functions with this property model steady heat flow and electrostatic potential.)</p>
+  </div>
+</section>
+<section class="sec" id="s16">
+  <h2>16 The Total Differential</h2>
+  <div class="pagemark"><a href="@pdf/notes/4">&#8599; original PDF, page 4</a></div>
+  <div class="box def"><div class="box-title">Definition</div>
+    \[ dz=\frac{\partial f}{\partial x}\,dx+\frac{\partial f}{\partial y}\,dy \]
+    <p>It approximates the true change \(\Delta z=f(x+dx,y+dy)-f(x,y)\) when \(dx,dy\) are small.</p>
+  </div>
+  <div class="pagemark"><a href="@pdf/notes/5">&#8599; original PDF, page 5</a></div>
+  <div class="box why"><div class="box-title">WHY this is true</div>
+    <p><b>Why \(dz\) approximates \(\Delta z\).</b> Move from \((x,y)\) to \((x+dx,y+dy)\) in two legs: first change \(x\) (keeping \(y+dy\)), then change \(y\):</p>
+    \[ \Delta z=\big[f(x+dx,y+dy)-f(x,y+dy)\big]+\big[f(x,y+dy)-f(x,y)\big]. \]
+    <p>By the one-variable mean value theorem, the first bracket equals \(f_x(\xi,y+dy)\,dx\) and the second equals \(f_y(x,\eta)\,dy\) for some intermediate \(\xi,\eta\). If \(f_x,f_y\) are <em>continuous</em>, then as \(dx,dy\to 0\) these evaluate to \(f_x(x,y)\) and \(f_y(x,y)\), giving</p>
+    \[ \Delta z=f_x\,dx+f_y\,dy+(\text{error that shrinks faster than }dx,dy). \]
+    <p>So the requirement for \(dz\) to be a good approximation is continuity of the partial derivatives — this is what the example \(\frac{xy}{x^2+y^2}\) in Section 15 lacked.</p>
+    <p><b>Geometric meaning.</b> \(dz\) is the change measured along the <em>tangent plane</em> instead of along the surface. The one-variable analogue below shows the same thing: \(dy\) is the rise of the tangent line, \(\Delta y\) the rise of the curve, and the gap between them is the error.</p>
+  </div>
+  <figure class="fig"><img src="@static/figures/p5_1.png" alt="Curve with its tangent line showing dx, dy, the true rise and the error" loading="lazy">
+    <figcaption><b>Figure 2:</b> One-variable analogue. The tangent line’s rise \(dy\) is a linear estimate of the curve’s true rise \(\Delta y\); the difference is the error, which shrinks much faster than \(dx\).</figcaption></figure>
+  <div class="box mis"><div class="box-title">Fixing a Common Misconception</div>
+    <p><b>“\(dz\) is the exact change.”</b> It is only the <em>linear estimate</em>. For \(f=x^2+y^2\) moving from \((1,1)\) to \((3,3)\): \(dz=2(1)(2)+2(1)(2)=8\), but the true change is \(18-2=16\). The estimate is trustworthy only for small steps. (Check: \(\Delta z-dz=dx^2+dy^2=8\), the second-order error.)</p>
+  </div>
+  <div class="box ex"><div class="box-title">Worked Example</div>
+    <p><b>Error propagation.</b> A cylinder has \(r=5\) cm, \(h=12\) cm, each measured with possible error \(0.1\) cm and \(0.2\) cm. Estimate the maximum error in \(V=\pi r^2h\).</p>
+    \[ dV=2\pi rh\,dr+\pi r^2\,dh=2\pi(5)(12)(0.1)+\pi(25)(0.2)=12\pi+5\pi=17\pi\approx 53.4\text{ cm}^3. \]
+    <p>Relative error \(=\dfrac{17\pi}{300\pi}\approx 5.7\%\) — noticeably larger than either input’s relative error (2% and 1.7%), because the errors accumulate.</p>
+    <p><b>Numerical estimate.</b> \(\sqrt{(4.02)^2+(2.97)^2}\): take \(f=\sqrt{x^2+y^2}\) at \((4,3)\), \(f=5\), \(f_x=\frac45\), \(f_y=\frac35\), \(dx=0.02\), \(dy=-0.03\): \(df=0.016-0.018=-0.002\), so the value is \(\approx 4.998\) (exact: \(4.99813\)).</p>
+  </div>
+  <div class="pagemark"><a href="@pdf/notes/6">&#8599; original PDF, page 6</a></div>
+  <div class="box conn"><div class="box-title">Connection — where this reappears</div>
+    <p>\(dz=f_x\,dx+f_y\,dy\) can be written \(dz=\nabla f\cdot d\mathbf{r}\). Divide by the distance \(|d\mathbf{r}|\) and you obtain the directional derivative formula \(D_{\hat{\mathbf{a}}}f=\nabla f\cdot\hat{\mathbf{a}}\) of Part I, Section 3. The two ideas are the same statement.</p>
+  </div>
+</section>
+<section class="sec" id="s17">
+  <h2>17 The Jacobian</h2>
+  <div class="pagemark"><a href="@pdf/notes/6">&#8599; original PDF, page 6</a></div>
+  <div class="box def"><div class="box-title">Definition</div>
+    <p>For a change of variables \(x=x(u,v)\), \(y=y(u,v)\) the <b>Jacobian</b> is</p>
+    \[ J=\frac{\partial(x,y)}{\partial(u,v)}=\begin{vmatrix}x_u&amp;x_v\\y_u&amp;y_v\end{vmatrix}=x_uy_v-x_vy_u. \]
+    <p>For three variables it is the corresponding \(3\times 3\) determinant.</p>
+  </div>
+  <div class="box why"><div class="box-title">WHY this is true</div>
+    <p><b>The Jacobian is an area-scaling factor.</b> Consider a tiny rectangle in the \((u,v)\)-plane with sides \(du,dv\). The map sends it to a tiny region in the \((x,y)\)-plane. Moving \(du\) in the \(u\) direction moves the image point by \(\mathbf{r}_u\,du\) where \(\mathbf{r}_u=(x_u,y_u)\); moving \(dv\) moves it by \(\mathbf{r}_v\,dv\) with \(\mathbf{r}_v=(x_v,y_v)\). To first order the image is the <em>parallelogram</em> spanned by these two vectors, whose area is the magnitude of their cross product:</p>
+    \[ \text{area}=|\mathbf{r}_u\times\mathbf{r}_v|\,du\,dv=|x_uy_v-x_vy_u|\,du\,dv=|J|\,du\,dv. \]
+    <p>So \(|J|\) says by what factor the map stretches areas at that point. This is exactly why changing variables in a double integral puts a factor \(|J|\) in: \(\iint f\,dx\,dy=\iint f\,|J|\,du\,dv\).</p>
+  </div>
+  <figure class="fig"><img src="@static/figures/p6_1.png" alt="Small du by dv rectangle in the (u,v)-plane mapped to a parallelogram in the (x,y)-plane" loading="lazy">
+    <figcaption><b>Figure 3:</b> A small \(du\times dv\) rectangle (left) is mapped to a parallelogram spanned by \(\mathbf{r}_u\,du\) and \(\mathbf{r}_v\,dv\) (right). Its area is \(|J|\,du\,dv\).</figcaption></figure>
+  <h3 id="s17-1">Properties — each one derived</h3>
+  <div class="box why"><div class="box-title">WHY this is true</div>
+    <p><b>Reciprocal property.</b> The derivatives of \((u,v)\) with respect to \((x,y)\) form the matrix inverse of the derivatives of \((x,y)\) with respect to \((u,v)\) (that is the chain rule: \(\frac{\partial(u,v)}{\partial(x,y)}\cdot\frac{\partial(x,y)}{\partial(u,v)}=I\)). Determinants multiply, and \(\det I=1\), so</p>
+    \[ \frac{\partial(u,v)}{\partial(x,y)}\cdot\frac{\partial(x,y)}{\partial(u,v)}=1. \]
+    <p><b>Chain property.</b> The same matrix-product argument gives \(\dfrac{\partial(x,y)}{\partial(r,s)}=\dfrac{\partial(x,y)}{\partial(u,v)}\cdot\dfrac{\partial(u,v)}{\partial(r,s)}\) for a composite change of variables.</p>
+    <p><b>Functional dependence.</b> If \(J\equiv 0\) on a region, the parallelogram collapses to a segment everywhere: the image of the map is a <em>curve</em>, not a region, so \(u,v\) are related by an equation. E.g. \(u=x+y\), \(v=(x+y)^2\) has \(J=\begin{vmatrix}1&amp;1\\2(x+y)&amp;2(x+y)\end{vmatrix}=0\) and indeed \(v=u^2\). (A Jacobian that vanishes only at isolated points or along a curve does <em>not</em> imply dependence — it only marks where the map fails to be locally invertible.)</p>
+  </div>
+  <div class="box ex"><div class="box-title">Worked Example</div>
+    <p><b>Polar coordinates.</b> \(x=r\cos\theta\), \(y=r\sin\theta\):</p>
+    \[ J=\begin{vmatrix}\cos\theta&amp;-r\sin\theta\\\sin\theta&amp;r\cos\theta\end{vmatrix}=r\cos^2\theta+r\sin^2\theta=r. \]
+    <p>This reproduces, by pure algebra, the factor \(dA=r\,dr\,d\theta\) that Part I (Section 13) obtained from the wedge-shaped-patch picture — two independent derivations agreeing.</p>
+    <p><b>Spherical coordinates.</b> \(x=\rho\sin\varphi\cos\theta\), \(y=\rho\sin\varphi\sin\theta\), \(z=\rho\cos\varphi\). Expanding the \(3\times 3\) determinant along its third row (\(z_\rho=\cos\varphi\), \(z_\varphi=-\rho\sin\varphi\), \(z_\theta=0\)):</p>
+    \[ J=\cos\varphi\cdot\rho^2\sin\varphi\cos\varphi+\rho\sin\varphi\cdot\rho\sin^2\varphi=\rho^2\sin\varphi\,(\cos^2\varphi+\sin^2\varphi)=\rho^2\sin\varphi. \]
+    <p>So \(dV=\rho^2\sin\varphi\,d\rho\,d\varphi\,d\theta\) — the formula Part I asked you to memorise now has a derivation.</p>
+    <p><b>Area of an ellipse.</b> Substitute \(x=au\), \(y=bv\): \(J=ab\), and the ellipse \(x^2/a^2+y^2/b^2\le 1\) becomes the unit disk, so area \(=ab\iint_{u^2+v^2\le 1}du\,dv=\pi ab\).</p>
+  </div>
+  <div class="box conn"><div class="box-title">Connection — where this reappears</div>
+    <p>The Jacobian is the bridge between Module 1 and Module 2: every “change of variables” formula in multiple integrals is a Jacobian. It returns once more in Module 5, where Lagrange’s linear PDE turns out to have coefficients \(P,Q,R\) that are themselves Jacobians (Section 30).</p>
+  </div>
+</section>
+<section class="sec" id="s18">
+  <h2>18 Taylor’s Expansion for Two Variables</h2>
+  <div class="pagemark"><a href="@pdf/notes/7">&#8599; original PDF, page 7</a></div>
+  <div class="box def"><div class="box-title">Definition</div>
+    <p>About a point \((a,b)\), with \(h=x-a\), \(k=y-b\) and every derivative evaluated at \((a,b)\):</p>
+    \[ f(a+h,b+k)=f+\big(hf_x+kf_y\big)+\frac{1}{2!}\big(h^2f_{xx}+2hk\,f_{xy}+k^2f_{yy}\big)+\frac{1}{3!}\big(h^3f_{xxx}+3h^2k\,f_{xxy}+3hk^2f_{xyy}+k^3f_{yyy}\big)+\cdots \]
+  </div>
+  <div class="box why"><div class="box-title">WHY this is true</div>
+    <p><b>There is no new idea here — it is the one-variable Taylor series applied along a line.</b> Walk from \((a,b)\) towards \((a+h,b+k)\) along the straight line \((a+th,\,b+tk)\) and define \(g(t)=f(a+th,\,b+tk)\), a function of one variable. Then \(f(a+h,b+k)=g(1)\), and the ordinary Maclaurin series gives</p>
+    \[ g(1)=g(0)+g'(0)+\tfrac{1}{2!}g''(0)+\tfrac{1}{3!}g'''(0)+\cdots. \]
+    <p>Now compute the derivatives with the chain rule (Section 15). First, \(g'(t)=h\,f_x+k\,f_y\). Differentiating again, applying the chain rule to \(f_x\) and \(f_y\) themselves:</p>
+    \[ g''(t)=h\big(hf_{xx}+kf_{xy}\big)+k\big(hf_{yx}+kf_{yy}\big)=h^2f_{xx}+2hk\,f_{xy}+k^2f_{yy}, \]
+    <p>using \(f_{xy}=f_{yx}\). Setting \(t=0\) yields exactly the terms in the box. Higher terms follow the pattern of the binomial theorem applied to the operator \((h\partial_x+k\partial_y)^n\).</p>
+  </div>
+  <div class="pagemark"><a href="@pdf/notes/8">&#8599; original PDF, page 8</a></div>
+  <div class="box mis"><div class="box-title">Fixing a Common Misconception</div>
+    <p><b>“The second-degree term is \(h^2f_{xx}+k^2f_{yy}\).”</b> The mixed term is essential. It carries the factor 2 because \(f_{xy}\) and \(f_{yx}\) each contribute one copy (the two cross terms in the product \(h\cdot k\) and \(k\cdot h\) above). Dropping it silently changes the approximation — and, as Section 19 shows, it is the mixed term that creates saddle points.</p>
+  </div>
+  <figure class="fig"><img src="@static/figures/p8_1.png" alt="Left: line from (a,b) to (a+h,b+k) along which f is sliced. Right: Taylor polynomials of degree 1 and 2 for e^t" loading="lazy">
+    <figcaption><b>Figure 4:</b> Left: restricting \(f\) to the line through \((a,b)\) turns the two-variable problem into a one-variable one. Right: the one-variable Taylor polynomials hug the function more tightly as the degree rises — this is why the second-degree terms improve on the linear (tangent-plane) estimate.</figcaption></figure>
+  <div class="box ex"><div class="box-title">Worked Example</div>
+    <p><b>(1) Second-degree expansion of \(e^x\cos y\) about \((0,0)\).</b> At the origin: \(f=1\), \(f_x=1\), \(f_y=0\), \(f_{xx}=1\), \(f_{xy}=0\), \(f_{yy}=-1\). Hence</p>
+    \[ e^x\cos y\approx 1+x+\tfrac12\big(x^2-y^2\big). \]
+    <p><b>(2) A polynomial in powers of \((x-1),(y+2)\).</b> \(f=x^2y+3y-2\), \(h=x-1\), \(k=y+2\). The derivatives at \((1,-2)\) are \(f=-10\), \(f_x=-4\), \(f_y=4\), \(f_{xx}=-4\), \(f_{xy}=2\), \(f_{yy}=0\), \(f_{xxy}=2\) (others 0), so the expansion terminates:</p>
+    \[ f=-10-4h+4k-2h^2+2hk+h^2k. \]
+    <p><b>Check:</b> substitute \(h=0\), \(k=0\) to recover \(f(1,-2)=-10\); substitute \(x=2,y=-2\) (\(h=1,k=0\)): \(-10-4-2=-16\), and \(f(2,-2)=4(-2)-6-2=-16\). ✓</p>
+    <p><b>(3) Numerical approximation of \((1.1)^{1.02}\).</b> Use \(f=x^y\) about \((1,1)\): \(f=1\), \(f_x=1\), \(f_y=0\), \(f_{xx}=0\), \(f_{xy}=1\), \(f_{yy}=0\). So \(f\approx 1+h+hk\) with \(h=0.1\), \(k=0.02\): \(1+0.1+0.002=1.102\) (exact: \(1.10210\)).</p>
+    <p><b>(4) A shortcut.</b> For \(f=\ln(1+x+y)\), instead of computing six derivatives, put \(t=x+y\) in the known series \(\ln(1+t)=t-\frac{t^2}{2}+\cdots\) to get \((x+y)-\frac12(x+y)^2\); the derivative method gives the same result. Whenever \(f\) depends on one combination of \(x\) and \(y\), substitution is far quicker.</p>
+  </div>
+  <div class="box conn"><div class="box-title">Connection — where this reappears</div>
+    <p>The first-degree part, \(f+hf_x+kf_y\), is the tangent-plane approximation — precisely the total differential of Section 16. The second-degree part is what Section 19 uses to decide between maximum, minimum and saddle.</p>
+  </div>
+</section>
+<section class="sec" id="s19">
+  <h2>19 Maxima and Minima</h2>
+  <div class="pagemark"><a href="@pdf/notes/9">&#8599; original PDF, page 9</a></div>
+  <div class="box def"><div class="box-title">Definition</div>
+    <p>A point \((a,b)\) is a <b>critical point</b> of \(f\) if \(f_x=f_y=0\) there. Let \(r=f_{xx}\), \(s=f_{xy}\), \(t=f_{yy}\) at the point. Then</p>
+    <table class="tbl"><tbody>
+      <tr><td>\(rt-s^2\gt 0,\ r\gt 0\)</td><td>local <b>minimum</b></td></tr>
+      <tr><td>\(rt-s^2\gt 0,\ r\lt 0\)</td><td>local <b>maximum</b></td></tr>
+      <tr><td>\(rt-s^2\lt 0\)</td><td><b>saddle point</b></td></tr>
+      <tr><td>\(rt-s^2=0\)</td><td>test inconclusive</td></tr>
+    </tbody></table>
+  </div>
+  <div class="box mis"><div class="box-title">Fixing a Common Misconception</div>
+    <p><b>“\(f_x=f_y=0\) means a maximum or minimum.”</b> It only means the tangent plane is horizontal. For \(f=x^2-y^2\) the origin has \(f_x=f_y=0\), yet \(f\) rises along the \(x\)-axis and falls along the \(y\)-axis: a saddle. Also, checking <em>one</em> direction proves nothing — a point is a minimum only if \(f\) does not decrease in <em>any</em> direction.</p>
+  </div>
+  <div class="box why"><div class="box-title">WHY this is true</div>
+    <p><b>Where the test comes from.</b> At a critical point the first-order terms of the Taylor expansion (Section 18) vanish, so the sign of \(f(a+h,b+k)-f(a,b)\) is governed by the second-degree terms:</p>
+    \[ \Delta f\approx\tfrac12\big(rh^2+2s\,hk+t\,k^2\big). \]
+    <p>Complete the square (for \(r\neq 0\)):</p>
+    \[ rh^2+2s\,hk+tk^2=r\Big(h+\frac{s}{r}k\Big)^2+\frac{rt-s^2}{r}\,k^2. \]
+    <ul>
+      <li>If \(rt-s^2\gt 0\), the two coefficients \(r\) and \(\frac{rt-s^2}{r}\) have the <em>same</em> sign (that of \(r\)), so \(\Delta f\) has one sign in every direction: minimum if \(r\gt 0\), maximum if \(r\lt 0\).</li>
+      <li>If \(rt-s^2\lt 0\), the coefficients have <em>opposite</em> signs, so \(\Delta f\) is positive in some directions and negative in others: a saddle.</li>
+      <li>If \(rt-s^2=0\), one direction has zero second-order change, and the third-degree terms must decide — the test says nothing.</li>
+    </ul>
+  </div>
+  <figure class="fig"><img src="@static/figures/p9_1.png" alt="Surfaces: minimum x^2+y^2, maximum -x^2-y^2, saddle x^2-y^2" loading="lazy">
+    <figcaption><b>Figure 5:</b> The three possible shapes at a critical point with \(rt-s^2\neq 0\). For \(x^2+y^2\): \(r=t=2\), \(s=0\), so \(rt-s^2=4\gt 0\), \(r\gt 0\). For \(-x^2-y^2\): \(rt-s^2=4\gt 0\), \(r\lt 0\). For \(x^2-y^2\): \(rt-s^2=-4\lt 0\).</figcaption></figure>
+  <div class="box ex"><div class="box-title">Worked Example</div>
+    <p><b>(1) Classify \(f=x^3+y^3-3xy\).</b> \(f_x=3x^2-3y=0\), \(f_y=3y^2-3x=0\). From the first, \(y=x^2\); into the second, \(x^4=x\), so \(x=0\) or \(x=1\): critical points \((0,0),(1,1)\). Here

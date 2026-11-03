@@ -1,0 +1,98 @@
+### TOPIC DI | 2 | Double Integrals: Basic Evaluation and Change of Order
+#### DI1 | Remember | 7 | 22
+Q:
+Explain why the order of integration does not affect the value over a rectangular region, but the limits must be adjusted carefully for a non-rectangular one.
+A:
+Over a rectangle, both variables have constant limits independent of each other, so the order can be swapped freely. Over a non-rectangular region, the inner limits are boundary curves expressed in terms of the outer variable; swapping the order means re-reading the boundary from a sketch, not merely relabelling.
+#### DI2 | Apply | 7 | 22
+Q:
+Evaluate \(\displaystyle\int_0^1\!\!\int_0^x (x+y)\,dy\,dx\).
+A:
+Inner: \(\displaystyle\int_0^x(x+y)\,dy=x^2+\frac{x^2}{2}=\frac{3x^2}{2}\). Outer: \(\displaystyle\int_0^1\frac{3x^2}{2}\,dx=\frac12\).
+#### DI3 | Apply | 7 | 22
+Q:
+Change the order of integration in \(\displaystyle\int_0^1\!\!\int_x^{\sqrt{x}} f(x,y)\,dy\,dx\) and write the reversed-order integral.
+A:
+The region lies between \(y=x\) and \(y=\sqrt{x}\) for \(0\le x\le1\). For fixed \(y\in[0,1]\), \(x\) runs from \(y^2\) (the curve \(y=\sqrt{x}\)) to \(y\) (the line \(y=x\)):
+\[ \int_0^1\!\!\int_{y^2}^{y} f(x,y)\,dx\,dy. \]
+#### DI4 | Analyze | 7 | 22
+Q:
+Evaluate \(\displaystyle\int_0^1\!\!\int_x^1 e^{y^2}\,dy\,dx\) by first changing the order of integration (the original order has no elementary antiderivative). Show the sketch-based reasoning for the new limits.
+A:
+The region is the triangle \(0\le x\le y\le1\). Reversed: \(y\) from \(0\) to \(1\), \(x\) from \(0\) to \(y\). Then
+\[ \int_0^1\!\!\int_0^y e^{y^2}\,dx\,dy=\int_0^1 ye^{y^2}\,dy=\frac{e-1}{2}. \]
+#### DI5 | Evaluate | 7 | 22
+Q:
+A student reverses \(\displaystyle\int_0^1\!\!\int_0^{1-x} f\,dy\,dx\) to \(\displaystyle\int_0^1\!\!\int_0^{1-y} f\,dx\,dy\) without sketching, calling the swap "automatic". Evaluate whether this swap is correct, and the general risk of skipping the sketch.
+A:
+It happens to be correct: the triangle \(x,y\ge0,\ x+y\le1\) is symmetric under \(x\leftrightarrow y\). But that is luck — for most regions (e.g. bounded by a parabola) the swap is not symmetric, and skipping the sketch gives wrong limits.
+#### DI6 | Create | 7 | 22
+Q:
+Construct a region bounded by a parabola and a line of your choice, and set up the double integral of a function \(f\) over it in both orders, \(dy\,dx\) and \(dx\,dy\).
+A:
+E.g. region between \(y=x^2\) and \(y=x\):
+\[ \int_0^1\!\!\int_{x^2}^{x} f\,dy\,dx=\int_0^1\!\!\int_{y}^{\sqrt{y}} f\,dx\,dy. \]
+(Any valid pair, confirmed by sketching, is correct.)
+### TOPIC DP | 2 | Double Integrals in Polar Coordinates
+#### DP1 | Remember | 7 | 22
+Q:
+State the polar substitution formulas and explain why \(dA=r\,dr\,d\theta\) rather than just \(dr\,d\theta\).
+A:
+\(x=r\cos\theta,\ y=r\sin\theta\). A polar "rectangle" \(\Delta r\times\Delta\theta\) is a wedge whose arc length \(r\,\Delta\theta\) grows with \(r\), so its area is about \(r\,\Delta r\,\Delta\theta\): equal steps sweep more area farther from the origin.
+#### DP2 | Apply | 7 | 22
+Q:
+Evaluate \(\displaystyle\iint_{\mathbb{R}^2} e^{-(x^2+y^2)}\,dA\) by converting to polar coordinates.
+A:
+\[ \int_0^{2\pi}\!\!\int_0^\infty e^{-r^2}\,r\,dr\,d\theta=\int_0^{2\pi}\frac12\,d\theta=\pi. \]
+#### DP3 | Apply | 7 | 22
+Q:
+Evaluate \(\displaystyle\iint_R xy\,dA\), where \(R\) is the quarter disk \(x^2+y^2\le4\) in the first quadrant.
+A:
+\(xy=\frac{r^2}{2}\sin2\theta\), so
+\[ \int_0^{\pi/2}\!\!\int_0^2\frac{r^3}{2}\sin2\theta\,dr\,d\theta=\left(\int_0^2\frac{r^3}{2}\,dr\right)\left(\int_0^{\pi/2}\sin2\theta\,d\theta\right)=2\cdot1=2. \]
+#### DP4 | Analyze | 7 | 23
+Q:
+Explain why evaluating \(\iint_R\sqrt{x^2+y^2}\,dA\) over a disk directly in Cartesian coordinates is much harder than in polar coordinates.
+A:
+In polar, \(\sqrt{x^2+y^2}=r\) and a disk has constant limits \(0\le r\le a,\ 0\le\theta\le2\pi\). In Cartesian, the square root of a sum does not simplify, and the disk's boundary \(y=\pm\sqrt{a^2-x^2}\) makes both the integrand and the limits awkward.
+#### DP5 | Evaluate | 7 | 23
+Q:
+For the annulus between circles of radius 1 and 2, a student sets the limits \(r:0\to2,\ \theta:0\to2\pi\). Evaluate the error and give the corrected limits.
+A:
+Incorrect: it includes the inner disk \(r<1\), which is not in the annulus. Correct: \(r:1\to2,\ \theta:0\to2\pi\).
+#### DP6 | Create | 7 | 23
+Q:
+Construct a double integral over the circular sector with \(30^\circ\le\theta\le90^\circ\) and \(0\le r\le3\), and write the polar limits.
+A:
+\[ \int_{\pi/6}^{\pi/2}\!\!\int_0^3 f(r\cos\theta,r\sin\theta)\,r\,dr\,d\theta. \]
+### TOPIC TI | 2 | Triple Integrals: Cylindrical and Spherical Coordinates
+#### TI1 | Remember | 7 | 23
+Q:
+State the \(dV\) expressions for cylindrical and spherical coordinates, and one geometric clue that suggests each.
+A:
+Cylindrical: \(dV=r\,dr\,d\theta\,dz\) (clue: circular symmetry about an axis). Spherical: \(dV=\rho^2\sin\varphi\,d\rho\,d\varphi\,d\theta\) (clue: symmetry about a point, e.g. spheres or cones from the origin).
+#### TI2 | Apply | 7 | 23
+Q:
+Use cylindrical coordinates to find the volume bounded by the cylinder \(x^2+y^2=4\) and the planes \(z=0,\ z=5\).
+A:
+\[ \int_0^{2\pi}\!\!\int_0^2\!\!\int_0^5 r\,dz\,dr\,d\theta=20\pi\quad(\text{matches }\pi r^2h=\pi\cdot4\cdot5). \]
+#### TI3 | Apply | 8 | 23
+Q:
+Use spherical coordinates to evaluate \(\iiint_V z\,dV\), where \(V\) is the upper half of the ball \(x^2+y^2+z^2\le1\).
+A:
+\[ \int_0^{2\pi}\!\!\int_0^{\pi/2}\!\!\int_0^1\rho\cos\varphi\,\rho^2\sin\varphi\,d\rho\,d\varphi\,d\theta=2\pi\cdot\frac12\cdot\frac14=\frac{\pi}{4}. \]
+#### TI4 | Analyze | 8 | 23
+Q:
+A solid lies between the cone \(z=\sqrt{x^2+y^2}\) (below) and the sphere \(x^2+y^2+z^2=2\) (above). Find the correct \(\varphi\)-limits in spherical coordinates, explaining how the cone fixes a value of \(\varphi\).
+A:
+On the cone \(z=r\), i.e. \(\rho\cos\varphi=\rho\sin\varphi\), so \(\tan\varphi=1,\ \varphi=\pi/4\). The solid is inside the cone: \(0\le\varphi\le\pi/4\), with \(0\le\rho\le\sqrt2\) and \(0\le\theta\le2\pi\).
+#### TI5 | Evaluate | 8 | 23
+Q:
+A student sets up a triple integral over a solid cylinder using spherical coordinates and gets very messy limits. Evaluate this choice and explain why cylindrical coordinates fit better.
+A:
+A cylinder has a constant circular cross-section along a straight axis, matching \((r,\theta,z)\) directly (\(r,\theta\) fixed shape, \(z\) free). Spherical coordinates tie \(\rho\) and \(\varphi\) together in a way that does not respect the flat top and bottom, so \(\varphi\)-limits depend on \(\rho\) and the integrals become much messier.
+#### TI6 | Create | 8 | 23
+Q:
+Describe (in words) a solid for which spherical coordinates are clearly the best choice, and justify using its symmetry.
+A:
+E.g. a solid ball, or the shell between two concentric spheres: both are symmetric about the origin, so the limits are constants in \(\rho,\varphi,\theta\).

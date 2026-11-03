@@ -69,6 +69,8 @@ def build_bank(subjects):
     }
     out_subjects, out_questions = [], []
     for s in subjects:
+        if s["slug"] not in loaders:  # self-graded problem banks (e.g. bamat101) are not MCQ: kept out of the mixed quiz
+            continue
         secs, qs = loaders[s["slug"]]()
         out_subjects.append({"slug": s["slug"], "code": s["code"], "title": s["title"], "accent": s["accent"], "sections": secs})
         for sec_id, level, q, options, answer in qs:

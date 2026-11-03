@@ -1,0 +1,223 @@
+<section class="sec" id="s14">
+  <h2>14 Module 4 — Second-Order Linear ODEs</h2>
+  <div class="pagemark"><a href="@pdf/notes/32">&#8599; original PDF, page 32</a></div>
+  <h3 id="s14-1">14.1 The Homogeneous Case: Complementary Function</h3>
+  <p>Standard form: \(ay''+by'+cy=0\).</p>
+  <div class="box why"><div class="box-title">WHY this is true</div>
+    <p><b>Why try \(y=e^{mx}\)?</b> An exponential is the only kind of function that reproduces itself (up to a constant multiple) under differentiation — \(\frac{d}{dx}e^{mx}=m\,e^{mx}\). That self-reproducing property is exactly what’s needed to make a <em>linear combination</em> of \(y,y',y''\) collapse to zero for every \(x\), since every term will share the common factor \(e^{mx}\). Substituting \(y=e^{mx}\):</p>
+    \[ am^2e^{mx}+bme^{mx}+ce^{mx}=0\implies e^{mx}(am^2+bm+c)=0. \]
+    <p>Since \(e^{mx}\) is never zero, this forces \(am^2+bm+c=0\) — the <b>auxiliary equation</b>. The entire theory of constant-coefficient linear ODEs reduces to solving this one ordinary quadratic and reading off what kind of solution each type of root produces.</p>
+  </div>
+  <p><b>Case 1 — real, distinct roots \(m_1\neq m_2\):</b></p>
+  \[ y_{CF}=C_1e^{m_1x}+C_2e^{m_2x}. \]
+  <p><b>Case 2 — real, equal roots \(m_1=m_2=m\):</b></p>
+  \[ y_{CF}=(C_1+C_2x)\,e^{mx}. \]
+  <div class="box why"><div class="box-title">WHY this is true</div>
+    <p>Why the extra factor of \(x\)? With a repeated root, \(e^{mx}\) alone gives only <em>one</em> independent solution — a second-order ODE needs two. You can find the second one by treating \(m_2=m_1+\varepsilon\) as a nearby distinct root and taking the limit \(\varepsilon\to0\) of \(\dfrac{e^{(m_1+\varepsilon)x}-e^{m_1x}}{\varepsilon}\), which is precisely the definition of \(\dfrac{\partial}{\partial m}e^{mx}=x\,e^{mx}\) evaluated at \(m=m_1\). So \(xe^{mx}\) emerges naturally as the “other” solution hiding at the repeated root, and direct substitution confirms it indeed solves the ODE.</p>
+  </div>
+  <p><b>Case 3 — complex roots \(m=\alpha\pm i\beta\):</b></p>
+  \[ y_{CF}=e^{\alpha x}(C_1\cos\beta x+C_2\sin\beta x). \]
+  <div class="box why"><div class="box-title">WHY this is true</div>
+    <p>By Euler’s formula, \(e^{(\alpha+i\beta)x}=e^{\alpha x}(\cos\beta x+i\sin\beta x)\). Since the ODE is linear with real coefficients, the real part and imaginary part of this complex solution <em>each independently</em> solve the ODE — giving the two real, independent solutions \(e^{\alpha x}\cos\beta x\) and \(e^{\alpha x}\sin\beta x\) used above.</p>
+  </div>
+  <figure class="fig"><img src="@static/figures/p32_1.png" alt="Three plots: distinct real roots, repeated root x e^{mx} term, complex roots damped oscillation" loading="lazy">
+    <figcaption><b>Figure 14:</b> The shape of the solution is fixed entirely by the type of root. Left: real distinct roots give pure exponential growth/decay curves. Middle: a repeated root’s second solution \(x\,e^{mx}\) rises then falls even though it’s built from a single exponential rate. Right: complex roots give an oscillation (\(\cos/\sin\)) inside an exponential envelope (\(e^{\alpha x}\)) — oscillating while growing or decaying.</figcaption></figure>
+  <div class="pagemark"><a href="@pdf/notes/33">&#8599; original PDF, page 33</a></div>
+  <div class="box ex"><div class="box-title">Worked Example</div>
+    <p>\(y''-5y'+6y=0\): \(m^2-5m+6=0\Rightarrow(m-2)(m-3)=0\Rightarrow m=2,3\). \(y_{CF}=C_1e^{2x}+C_2e^{3x}\).</p>
+    <p>\(y''-4y'+4y=0\): \(m^2-4m+4=0\Rightarrow(m-2)^2=0\Rightarrow m=2\) (repeated). \(y_{CF}=(C_1+C_2x)e^{2x}\).</p>
+    <p>\(y''+2y'+5y=0\): \(m=\dfrac{-2\pm\sqrt{4-20}}{2}=-1\pm2i\). \(y_{CF}=e^{-x}(C_1\cos2x+C_2\sin2x)\).</p>
+  </div>
+  <div class="pagemark"><a href="@pdf/notes/34">&#8599; original PDF, page 34</a></div>
+  <h3 id="s14-2">14.2 Method of Undetermined Coefficients: Particular Integral</h3>
+  <p>For \(ay''+by'+cy=R(x)\), the full solution is \(y=y_{CF}+y_{PI}\), where \(y_{PI}\) is <em>any one</em> solution to the complete equation.</p>
+  <div class="box why"><div class="box-title">WHY this is true</div>
+    <p><b>The core idea.</b> Since differentiation of \(e^{kx}\), \(\sin kx/\cos kx\), and polynomials always produces <em>more terms of the same family</em> (an exponential differentiates to an exponential, a degree-\(n\) polynomial differentiates to degree \(n-1\) but its combination with lower terms still spans the same polynomial family, etc.), a linear combination of \(y,y',y''\) built from a guess in that same family can be made to match \(R(x)\) exactly by choosing the right coefficients. This is why the guess-and-match method works at all — it isn’t accidental, it’s guaranteed by which functions are closed under differentiation.</p>
+  </div>
+  <table class="tbl"><thead><tr><th>\(R(x)\) contains</th><th>Try \(y_{PI}\) of the form</th></tr></thead><tbody>
+    <tr><td>\(e^{kx}\)</td><td>\(A\,e^{kx}\)</td></tr>
+    <tr><td>\(\sin kx\) or \(\cos kx\)</td><td>\(A\cos kx+B\sin kx\)</td></tr>
+    <tr><td>polynomial, degree \(n\)</td><td>\(A_0+A_1x+\cdots+A_nx^n\)</td></tr>
+    <tr><td>\(e^{kx}\cdot\)(poly or trig)</td><td>\(e^{kx}\times\)(matching guess)</td></tr>
+  </tbody></table>
+  <div class="box ex"><div class="box-title">Worked Example</div>
+    <p><b>Exponential RHS.</b> \(y''-5y'+6y=e^{4x}\) (CF as above: \(C_1e^{2x}+C_2e^{3x}\)).</p>
+    <p>Try \(y_{PI}=Ae^{4x}\): \(y_{PI}'=4Ae^{4x}\), \(y_{PI}''=16Ae^{4x}\). Substitute:</p>
+    \[ 16Ae^{4x}-20Ae^{4x}+6Ae^{4x}=e^{4x}\Rightarrow2A=1\Rightarrow A=\tfrac12. \]
+    \[ y=C_1e^{2x}+C_2e^{3x}+\tfrac12e^{4x}. \]
+  </div>
+  <div class="box ex"><div class="box-title">Worked Example</div>
+    <p><b>Trigonometric RHS.</b> \(y''+y=\cos2x\). Auxiliary: \(m^2+1=0\Rightarrow m=\pm i\), so \(y_{CF}=C_1\cos x+C_2\sin x\).</p>
+    <p>Try \(y_{PI}=A\cos2x+B\sin2x\): \(y_{PI}''=-4A\cos2x-4B\sin2x\). Substitute into \(y''+y\):</p>
+    \[ (-4A+A)\cos2x+(-4B+B)\sin2x=\cos2x\Rightarrow-3A=1,\ -3B=0\Rightarrow A=-\tfrac13,\ B=0. \]
+    \[ y=C_1\cos x+C_2\sin x-\tfrac13\cos2x. \]
+  </div>
+  <div class="pagemark"><a href="@pdf/notes/35">&#8599; original PDF, page 35</a></div>
+  <h3 id="s14-3">14.3 The Failure Case (Resonance)</h3>
+  <div class="box why"><div class="box-title">WHY this is true</div>
+    <p>If the guessed \(y_{PI}\)’s functional form <em>already appears</em> in \(y_{CF}\), substituting it produces \(0=R(x)\) — impossible, because that guess is already a solution of the <em>homogeneous</em> equation, so plugging it into the left side automatically gives zero no matter what coefficient you choose. The fix, exactly parallel to the repeated-root case in Section 14.1, is to multiply the guess by \(x\) (or by \(x^2\) if it collides with a repeated root) — this produces a function no longer in the homogeneous solution family, breaking the automatic-zero problem while still respecting the “closed under differentiation” idea from the WHY box above.</p>
+  </div>
+  <div class="box ex"><div class="box-title">Worked Example</div>
+    <p>\(y''-5y'+6y=e^{2x}\) (roots \(m=2,3\), so \(e^{2x}\in y_{CF}\) already).</p>
+    <p>Naive guess \(Ae^{2x}\) fails: substituting gives \((4A-10A+6A)e^{2x}=0\neq e^{2x}\).</p>
+    <p>Try instead \(y_{PI}=Axe^{2x}\): \(y_{PI}'=Ae^{2x}+2Axe^{2x}\), \(y_{PI}''=4Ae^{2x}+4Axe^{2x}\). Substitute into \(y''-5y'+6y\):</p>
+    <p>\(xe^{2x}\) terms: \((4A-10A+6A)=0\) — cancel as expected (confirms compatibility).</p>
+    <p>Plain \(e^{2x}\) terms: \((4A-5A)e^{2x}=-Ae^{2x}\). Set \(-A=1\Rightarrow A=-1\).</p>
+    \[ y_{PI}=-x\,e^{2x},\qquad y=C_1e^{2x}+C_2e^{3x}-xe^{2x}. \]
+    <p><b>If it had collided with a <em>repeated</em> root</b> (say \(m=2\) double, so even \(xe^{2x}\in y_{CF}\)), you would need \(y_{PI}=Ax^2e^{2x}\) instead.</p>
+  </div>
+  <h3 id="s14-4">14.4 Putting It Together: Initial Conditions</h3>
+  <p>The general solution is always \(y=y_{CF}+y_{PI}\). Apply given initial/boundary conditions <em>after</em> combining both parts.</p>
+  <div class="box ex"><div class="box-title">Worked Example</div>
+    <p>Solve \(y''-5y'+6y=e^{4x}\), \(y(0)=0\), \(y'(0)=0\).</p>
+    <p>From before: \(y=C_1e^{2x}+C_2e^{3x}+\tfrac12e^{4x}\), so \(y'=2C_1e^{2x}+3C_2e^{3x}+2e^{4x}\).</p>
+    <p>At \(x=0\): \(C_1+C_2+\tfrac12=0\) and \(2C_1+3C_2+2=0\).</p>
+    <p>From the first: \(C_1=-\tfrac12-C_2\). Substitute into the second: \(2(-\tfrac12-C_2)+3C_2+2=0\Rightarrow C_2=-1\), so \(C_1=\tfrac12\).</p>
+    \[ y=\tfrac12e^{2x}-e^{3x}+\tfrac12e^{4x}. \]
+  </div>
+  <table class="tbl"><thead><tr><th>\(R(x)\) type</th><th>Standard guess</th><th>If it collides with \(y_{CF}\)</th></tr></thead><tbody>
+    <tr><td>\(e^{kx}\)</td><td>\(Ae^{kx}\)</td><td>multiply by \(x\) (or \(x^2\) if repeated root)</td></tr>
+    <tr><td>\(\sin kx,\cos kx\)</td><td>\(A\cos kx+B\sin kx\)</td><td>multiply by \(x\) if same \(k\) in CF</td></tr>
+    <tr><td>polynomial deg \(n\)</td><td>full degree-\(n\) polynomial</td><td>shift degree up, drop redundant term</td></tr>
+    <tr><td>\(e^{kx}\)(trig/poly)</td><td>\(e^{kx}\times\) matching guess</td><td>multiply by \(x\) under same rule</td></tr>
+  </tbody></table>
+</section>
+<section class="sec" id="s21">
+  <h2>21 Method of Variation of Parameters</h2>
+  <div class="pagemark"><a href="@pdf/notes/36">&#8599; original PDF, page 36</a></div>
+  <div class="box def"><div class="box-title">Definition</div>
+    <p>For \(y''+Py'+Qy=R(x)\) with complementary-function solutions \(y_1,y_2\) and Wronskian \(W=y_1y_2'-y_1'y_2\):</p>
+    \[ y_p=-y_1\int\frac{y_2R}{W}\,dx+y_2\int\frac{y_1R}{W}\,dx. \]
+  </div>
+  <div class="box why"><div class="box-title">WHY this is true</div>
+    <p><b>Where the formula comes from.</b> The CF is \(c_1y_1+c_2y_2\) with constant \(c_i\). The idea: let the constants <em>vary</em> — seek \(y_p=u_1(x)y_1+u_2(x)y_2\). Differentiate:</p>
+    \[ y_p'=u_1'y_1+u_2'y_2+u_1y_1'+u_2y_2'. \]
+    <p>We have two unknown functions \(u_1,u_2\) but only one equation to satisfy (the ODE), so we are free to impose one extra condition. Choose the one that keeps things simple:</p>
+    \[ u_1'y_1+u_2'y_2=0.\qquad(*) \]
+    <p>Then \(y_p'=u_1y_1'+u_2y_2'\) and \(y_p''=u_1'y_1'+u_2'y_2'+u_1y_1''+u_2y_2''\). Substitute into the ODE and group by \(u_1\) and \(u_2\):</p>
+    \[ u_1\underbrace{(y_1''+Py_1'+Qy_1)}_{=0}+u_2\underbrace{(y_2''+Py_2'+Qy_2)}_{=0}+u_1'y_1'+u_2'y_2'=R. \]
+    <p>The brackets vanish because \(y_1,y_2\) solve the homogeneous equation. So we are left with a clean pair of equations in \(u_1',u_2'\):</p>
+    \[ u_1'y_1+u_2'y_2=0,\qquad u_1'y_1'+u_2'y_2'=R. \]
+    <p>Solving by Cramer’s rule, with \(W=y_1y_2'-y_1'y_2\neq0\) (independent solutions), gives \(u_1'=-\dfrac{y_2R}{W}\) and \(u_2'=\dfrac{y_1R}{W}\). Integrating gives the formula. The choice \((*)\) is what made the second derivatives of \(u_i\) disappear.</p>
+  </div>
+  <figure class="fig"><img src="@static/figures/p36_1.png" alt="Flowchart: solve the ODE, find the CF, then choose undetermined coefficients if R is of standard form, otherwise variation of parameters" loading="lazy">
+    <figcaption><b>Figure 7:</b> Choosing a method. Undetermined coefficients is shorter when it applies; variation of parameters always works once \(y_1,y_2\) are known.</figcaption></figure>
+  <div class="pagemark"><a href="@pdf/notes/37">&#8599; original PDF, page 37</a></div>
+  <div class="box mis"><div class="box-title">Fixing a Common Misconception</div>
+    <p><b>“My particular integral contains a term that is already in the CF, so it must be wrong.”</b> A particular integral is <em>any</em> one solution of the full equation — it is not unique. A CF term inside it just gets absorbed into the arbitrary constants. (See the second example: \(-xe^x\) appears and is harmless.)</p>
+  </div>
+  <div class="box ex"><div class="box-title">Worked Example</div>
+    <p><b>(1)</b> \(y''+y=\sec x\). \(y_1=\cos x,\ y_2=\sin x,\ W=\cos^2x+\sin^2x=1\). Since \(\sin x\sec x=\tan x\) and \(\cos x\sec x=1\):</p>
+    \[ y_p=-\cos x\int\tan x\,dx+\sin x\int dx=\cos x\ln|\cos x|+x\sin x. \]
+    <p>General solution: \(y=C_1\cos x+C_2\sin x+\cos x\ln|\cos x|+x\sin x\).</p>
+    <p><b>(2)</b> \(y''-2y'+y=\dfrac{e^x}{x}\). \(y_1=e^x,\ y_2=xe^x,\ W=e^{2x}\).</p>
+    \[ y_p=-e^x\int\frac{xe^x\cdot e^x/x}{e^{2x}}\,dx+xe^x\int\frac{e^x\cdot e^x/x}{e^{2x}}\,dx=-e^x\int1\,dx+xe^x\int\frac1x\,dx=-xe^x+xe^x\ln x. \]
+    <p>The term \(-xe^x\) merges into \(C_2xe^x\), so \(y=(C_1+C_2x)e^x+xe^x\ln x\).</p>
+  </div>
+  <div class="box conn"><div class="box-title">Connection — where this reappears</div>
+    <p>In Part I (Section 14) undetermined coefficients rested on the fact that derivatives of \(e^{kx}\), polynomials and \(\sin/\cos\) stay inside a finite family. For \(\tan x\) or \(\sec x\) they do not — derivatives keep producing new functions — and that is exactly the situation this method rescues.</p>
+  </div>
+</section>
+<section class="sec" id="s22">
+  <h2>22 The Cauchy–Euler Equation</h2>
+  <div class="box def"><div class="box-title">Definition</div>
+    \[ x^2y''+a\,xy'+b\,y=R(x)\qquad(x>0). \]
+    <p>Substitute \(x=e^t\) (so \(t=\ln x\)) and write \(D=\dfrac{d}{dt}\). Then \(xy'=Dy\) and \(x^2y''=D(D-1)y\), turning the equation into one with <em>constant</em> coefficients.</p>
+  </div>
+  <div class="box why"><div class="box-title">WHY this is true</div>
+    <p><b>Why \(x=e^t\) works.</b> With \(t=\ln x\), the chain rule gives \(\dfrac{dy}{dx}=\dfrac1x\dfrac{dy}{dt}\), so \(x\,y'=\dfrac{dy}{dt}\). Differentiating \(y'=\frac1xy_t\) once more:</p>
+    \[ y''=-\frac{1}{x^2}y_t+\frac{1}{x^2}y_{tt}\implies x^2y''=y_{tt}-y_t=D(D-1)y. \]
+    <p>Every term \(x^ky^{(k)}\) becomes a constant-coefficient expression in \(D\) because the equation is <em>equidimensional</em>: replacing \(x\) by \(cx\) scales all terms equally. Multiplication in \(x\) is addition in \(t=\ln x\), so “scale-invariant in \(x\)” means “translation-invariant in \(t\)” — and translation-invariant equations are exactly the constant-coefficient ones.</p>
+  </div>
+  <div class="pagemark"><a href="@pdf/notes/38">&#8599; original PDF, page 38</a></div>
+  <div class="box note"><div class="box-title">Shortcut</div>
+    <p><b>Shortcut.</b> Trying \(y=x^m\) directly gives \(x^2y''=m(m-1)x^m\), \(xy'=mx^m\), so the homogeneous equation reduces to the <em>auxiliary equation</em></p>
+    \[ m(m-1)+a\,m+b=0. \]
+  </div>
+  <table class="tbl"><thead><tr><th>Roots of \(m(m-1)+am+b=0\)</th><th>Solution (for \(x>0\))</th></tr></thead><tbody>
+    <tr><td>real, distinct \(m_1\neq m_2\)</td><td>\(C_1x^{m_1}+C_2x^{m_2}\)</td></tr>
+    <tr><td>real, repeated \(m\)</td><td>\((C_1+C_2\ln x)\,x^m\)</td></tr>
+    <tr><td>complex \(\alpha\pm i\beta\)</td><td>\(x^\alpha\left[C_1\cos(\beta\ln x)+C_2\sin(\beta\ln x)\right]\)</td></tr>
+  </tbody></table>
+  <figure class="fig"><img src="@static/figures/p38_1.png" alt="Cauchy-Euler solutions x^2, x^-1 and cos(ln x) plotted against x and against t = ln x" loading="lazy">
+    <figcaption><b>Figure 8:</b> Left: Cauchy–Euler solutions against \(x\). Right: the same functions against \(t=\ln x\) — they become the familiar \(e^{2t}\), \(e^{-t}\), \(\cos t\) of a constant-coefficient equation. Note that \(\cos(\ln x)\) oscillates infinitely often as \(x\to0^+\), even though it never repeats on an ordinary axis.</figcaption></figure>
+  <div class="box mis"><div class="box-title">Fixing a Common Misconception</div>
+    <p><b>“Try \(y=e^{mx}\), as for constant-coefficient equations.”</b> That trial works only because \(e^{mx}\) keeps its shape under differentiation, leaving a common factor to cancel. With variable coefficients \(x^2,\ x\) there is no common factor (\(x^2m^2e^{mx}+xme^{mx}+\cdots\)), so nothing cancels. The natural trial is the function that is <em>scale-invariant</em>: \(x^m\).</p>
+  </div>
+  <div class="box ex"><div class="box-title">Worked Example</div>
+    <p><b>(1)</b> \(x^2y''-2xy'-4y=0\). \(m(m-1)-2m-4=m^2-3m-4=(m-4)(m+1)=0\), so \(y=C_1x^4+C_2x^{-1}\).</p>
+    <p><b>(2)</b> \(x^2y''+3xy'+y=0\). \(m^2+2m+1=0,\ m=-1\) (repeated): \(y=(C_1+C_2\ln x)\dfrac1x\).</p>
+    <p><b>(3)</b> \(x^2y''+xy'+y=0\). \(m^2+1=0,\ m=\pm i\): \(y=C_1\cos(\ln x)+C_2\sin(\ln x)\).</p>
+    <p><b>(4) Non-homogeneous with resonance:</b> \(x^2y''-3xy'+4y=x^2\). With \(x=e^t\): \(\left[D(D-1)-3D+4\right]y=(D-2)^2y=e^{2t}\). CF \(=(C_1+C_2t)e^{2t}\). Since \(e^{2t}\) collides with a <em>repeated</em> root, the resonance rule of Part I (multiply by \(t^2\)) gives \(y_p=\frac12t^2e^{2t}\). Returning to \(x\):</p>
+    \[ y=x^2(C_1+C_2\ln x)+\tfrac12x^2(\ln x)^2. \]
+  </div>
+  <div class="box conn"><div class="box-title">Connection — where this reappears</div>
+    <p>Example (4) reuses the failure-case rule of Part I (Section 14) verbatim — but in the variable \(t\). Once \(x=e^t\) is made, everything you learned about constant-coefficient equations applies unchanged.</p>
+  </div>
+</section>
+<section class="sec" id="s23">
+  <h2>23 The Cauchy–Legendre Equation</h2>
+  <div class="pagemark"><a href="@pdf/notes/39">&#8599; original PDF, page 39</a></div>
+  <div class="box def"><div class="box-title">Definition</div>
+    \[ (ax+b)^2y''+A(ax+b)y'+By=R(x). \]
+    <p>Substitute \(ax+b=e^t\), \(D=\dfrac{d}{dt}\): then \((ax+b)y'=a\,Dy\) and \((ax+b)^2y''=a^2D(D-1)y\). Cauchy–Euler is the special case \(a=1,\ b=0\).</p>
+  </div>
+  <div class="box why"><div class="box-title">WHY this is true</div>
+    <p>Let \(\xi=ax+b=e^t\). Then \(\dfrac{dt}{dx}=\dfrac a\xi\), so \(y'=\dfrac a\xi y_t\) and \(\xi y'=a\,y_t\). Differentiating \(y'=\frac a\xi y_t\) again, using \(\frac{d\xi}{dx}=a\):</p>
+    \[ y''=-\frac{a^2}{\xi^2}y_t+\frac{a^2}{\xi^2}y_{tt}\implies\xi^2y''=a^2(y_{tt}-y_t)=a^2D(D-1)y. \]
+    <p>Geometrically, the equation is a Cauchy–Euler equation <em>in the shifted and scaled variable</em> \(\xi=ax+b\); the “special point” where the coefficient of \(y''\) vanishes has moved from \(x=0\) to \(x=-b/a\).</p>
+  </div>
+  <figure class="fig"><img src="@static/figures/p39_1.png" alt="Solutions (x+1)^2 and (x+1)^-1 with the dashed line x = -1" loading="lazy">
+    <figcaption><b>Figure 9:</b> Solutions of \((x+1)^2y''+(x+1)y'-y=0\) are \((x+1)^m\) with \(m=\pm1\). The dashed line \(x=-1\) plays the role that \(x=0\) plays for Cauchy–Euler.</figcaption></figure>
+  <div class="box ex"><div class="box-title">Worked Example</div>
+    <p><b>(1)</b> \((3x+2)^2y''+3(3x+2)y'-36y=0\). Put \(3x+2=e^t\): \(9D(D-1)+3\cdot3D-36=9D^2-36=9(D^2-4)\), so \(D=\pm2\) and</p>
+    \[ y=C_1(3x+2)^2+C_2(3x+2)^{-2}. \]
+    <p><b>(2)</b> \((2x+3)^2y''-2(2x+3)y'-12y=6x\). Put \(2x+3=e^t\) (so \(x=\frac{e^t-3}{2}\) and \(6x=3e^t-9\)): \(4D(D-1)-2\cdot2D-12=4(D^2-2D-3)\), giving</p>
+    \[ (D^2-2D-3)y=\tfrac14(3e^t-9). \]
+    <p>CF: roots \(3,-1\), so \(C_1e^{3t}+C_2e^{-t}\). PI: for \(e^t\), \(\dfrac{3/4}{1-2-3}e^t=-\frac{3}{16}e^t\); for the constant, \(\dfrac{-9/4}{-3}=\frac34\). Back in \(x\):</p>
+    \[ y=C_1(2x+3)^3+C_2(2x+3)^{-1}-\tfrac38x+\tfrac{3}{16}. \]
+    <p><b>Check the particular part directly:</b> \(y_p=-\frac38x+\frac3{16}\) has \(y_p''=0\), \(y_p'=-\frac38\), so \(-2(2x+3)(-\frac38)-12(-\frac38x+\frac{3}{16})=\frac34(2x+3)+\frac92x-\frac94=6x\). ✓</p>
+  </div>
+</section>
+<section class="sec" id="s24">
+  <h2>24 Applications of Second-Order Linear ODEs</h2>
+  <div class="pagemark"><a href="@pdf/notes/40">&#8599; original PDF, page 40</a></div>
+  <h3 id="s24-1">Spring–mass–damper</h3>
+  <div class="box why"><div class="box-title">WHY this is true</div>
+    <p>Newton’s second law, \(m\,x''=\)(total force). The forces are the spring \(-kx\) (Hooke’s law, restoring), the damper \(-c\,x'\) (opposing velocity) and an external force \(F(t)\). So</p>
+    \[ m\,x''+c\,x'+k\,x=F(t). \]
+    <p>This is exactly a constant-coefficient second-order ODE, and the auxiliary equation \(mr^2+cr+k=0\) has discriminant \(c^2-4mk\), whose sign decides the behaviour.</p>
+  </div>
+  <figure class="fig"><img src="@static/figures/p40_1.png" alt="A mass attached to a wall by a spring k and a damper c, driven by a force F(t)" loading="lazy">
+    <figcaption><b>Figure 10:</b> A mass \(m\) attached to a wall by a spring (stiffness \(k\)) and a damper (coefficient \(c\)), driven by an external force \(F(t)\).</figcaption></figure>
+  <figure class="fig"><img src="@static/figures/p40_2.png" alt="Overdamped, critically damped and underdamped responses released from x(0)=1" loading="lazy">
+    <figcaption><b>Figure 11:</b> Three damping regimes, all released from \(x(0)=1,\ x'(0)=0\). Overdamped (\(c^2\gt 4mk\)): slow return, no oscillation. Critically damped (\(c^2=4mk\)): fastest return without overshoot. Underdamped (\(c^2\lt 4mk\)): oscillation inside a decaying envelope.</figcaption></figure>
+  <table class="tbl"><thead><tr><th>Mechanical</th><th>Electrical (series LCR)</th><th>Role</th></tr></thead><tbody>
+    <tr><td>mass \(m\)</td><td>inductance \(L\)</td><td>inertia</td></tr>
+    <tr><td>damping \(c\)</td><td>resistance \(R\)</td><td>dissipation</td></tr>
+    <tr><td>stiffness \(k\)</td><td>\(1/C\) (elastance)</td><td>restoring</td></tr>
+    <tr><td>displacement \(x\)</td><td>charge \(q\)</td><td>unknown</td></tr>
+    <tr><td>force \(F(t)\)</td><td>EMF \(E(t)\)</td><td>driving term</td></tr>
+  </tbody></table>
+  <p>Kirchhoff’s voltage law (voltages around the loop sum to the EMF) gives \(Lq''+Rq'+\dfrac qC=E(t)\) — the <em>same</em> equation. Every conclusion about springs transfers to circuits, and vice versa.</p>
+  <div class="pagemark"><a href="@pdf/notes/41">&#8599; original PDF, page 41</a></div>
+  <div class="box mis"><div class="box-title">Fixing a Common Misconception</div>
+    <p><b>“Complex roots mean the system oscillates forever.”</b> Only if there is no damping. Roots \(-\alpha\pm i\beta\) with \(\alpha>0\) give \(e^{-\alpha t}(\cdots)\): oscillation with a <em>decaying</em> amplitude. Persistent oscillation needs a purely imaginary pair \(\pm i\beta\), i.e. \(c=0\) (or \(R=0\)).</p>
+  </div>
+  <div class="box ex"><div class="box-title">Worked Example</div>
+    <p><b>(1) Free vibration.</b> A 0.5 kg mass on a spring with \(k=8\) N/m is pulled 0.3 m and released from rest; no damping. \(0.5x''+8x=0\Rightarrow x''+16x=0\), \(\omega=4\), so \(x=0.3\cos4t\): amplitude 0.3 m, period \(2\pi/4=\pi/2\) s.</p>
+    <p><b>(2) Critical damping.</b> \(x''+6x'+9x=0\), \(x(0)=1\), \(x'(0)=0\). Repeated root \(-3\): \(x=(C_1+C_2t)e^{-3t}\), \(C_1=1\), \(x'(0)=C_2-3=0\), so \(x=(1+3t)e^{-3t}\).</p>
+    <p><b>(3) Circuit.</b> \(L=1\) H, \(R=4\ \Omega\), \(C=\frac15\) F, constant EMF \(E=10\) V, \(q(0)=0\), \(i(0)=q'(0)=0\). Then \(q''+4q'+5q=10\) with roots \(-2\pm i\) and \(q_p=2\), so \(q=e^{-2t}(A\cos t+B\sin t)+2\). \(q(0)=0\Rightarrow A=-2\); \(q'(0)=-2A+B=0\Rightarrow B=-4\):</p>
+    \[ q=2-e^{-2t}(2\cos t+4\sin t). \]
+    <p>The charge settles at 2 C — the transient dies away and only the particular solution survives.</p>
+  </div>
+  <h3 id="s24-2">Resonance</h3>
+  <div class="box why"><div class="box-title">WHY this is true</div>
+    <p>Drive an undamped system at its own natural frequency: \(x''+4x=\cos2t\) (natural frequency \(\omega_0=2\)). The right-hand side matches the CF (\(\cos2t,\sin2t\)), so the failure case of Part I applies and \(x_p=\dfrac t4\sin2t\) (check: \(x_p''=\cos2t-t\sin2t\), so \(x_p''+4x_p=\cos2t\) ✓). The amplitude of \(x_p\) grows linearly with \(t\): each push arrives exactly in phase with the motion, so energy is added every cycle and nothing removes it. With damping the growth is capped, which is why real structures survive — but badly tuned ones (the classic bridge-collapse stories) do not.</p>
+  </div>
+  <figure class="fig"><img src="@static/figures/p41_1.png" alt="Resonance: x_p = (t/4) sin 2t oscillating inside a linearly growing envelope" loading="lazy">
+    <figcaption><b>Figure 12:</b> Resonance: \(x_p=\frac t4\sin2t\) oscillates inside the linearly growing envelope \(\pm\frac t4\).</figcaption></figure>
+  <div class="box conn"><div class="box-title">Connection — where this reappears</div>
+    <p>The failure case of Part I, Section 14 was introduced as an algebraic nuisance; here it is revealed as a physical phenomenon. The “multiply by \(x\)” rule is the mathematical signature of resonance.</p>
+  </div>
+</section>

@@ -1,0 +1,71 @@
+{
+ "topics": [
+  {
+   "id": "s14",
+   "label": "Constant-Coefficient ODEs: CF, Undetermined Coefficients, Resonance",
+   "page": 32,
+   "summary": "How the roots of the auxiliary equation fix the complementary function, how undetermined coefficients finds a particular integral, and what to do when the guess collides with the CF.",
+   "subtopics": [
+    {
+     "id": "s14-1",
+     "label": "The Homogeneous Case: Complementary Function",
+     "summary": "Three root cases and why each solution form arises."
+    },
+    {
+     "id": "s14-2",
+     "label": "Method of Undetermined Coefficients: Particular Integral",
+     "summary": "Guess-and-match for exponential, trigonometric and polynomial right-hand sides."
+    },
+    {
+     "id": "s14-3",
+     "label": "The Failure Case (Resonance)",
+     "summary": "Multiply the guess by x (or x²) when it already appears in the CF."
+    },
+    {
+     "id": "s14-4",
+     "label": "Putting It Together: Initial Conditions",
+     "summary": "Combine CF and PI, then apply initial conditions."
+    }
+   ]
+  },
+  {
+   "id": "s21",
+   "label": "Variation of Parameters",
+   "page": 36,
+   "summary": "Derives the variation-of-parameters formula for a particular integral and shows when to prefer it over undetermined coefficients.",
+   "subtopics": []
+  },
+  {
+   "id": "s22",
+   "label": "The Cauchy–Euler Equation",
+   "page": 37,
+   "summary": "Reduces x²y''+axy'+by=R(x) to constant coefficients with x = e^t, with the auxiliary equation m(m−1)+am+b=0.",
+   "subtopics": []
+  },
+  {
+   "id": "s23",
+   "label": "The Cauchy–Legendre Equation",
+   "page": 39,
+   "summary": "Extends Cauchy–Euler to powers of (ax+b) using the substitution ax+b = e^t.",
+   "subtopics": []
+  },
+  {
+   "id": "s24",
+   "label": "Applications of Second-Order Linear ODEs",
+   "page": 40,
+   "summary": "Spring–mass–damper and LCR circuit models, the three damping regimes, and resonance.",
+   "subtopics": [
+    {
+     "id": "s24-1",
+     "label": "Spring–mass–damper",
+     "summary": "Newton's law gives mx''+cx'+kx=F(t); the discriminant sets the damping regime."
+    },
+    {
+     "id": "s24-2",
+     "label": "Resonance",
+     "summary": "Driving at the natural frequency makes the amplitude grow linearly in t."
+    }
+   ]
+  }
+ ]
+}

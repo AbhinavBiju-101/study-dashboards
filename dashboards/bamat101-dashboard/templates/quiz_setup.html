@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}Practice · BAMAT101{% endblock %}
+{% block content %}
+<div class="qpage">
+  <h1>Practice problems</h1>
+  <p style="color:var(--ink-soft)">Problems come from the Practice Problem Bank. They are open-ended, so you work on paper or in the scratch box, reveal the worked answer, then rate yourself.</p>
+  {% with msgs = get_flashed_messages() %}{% for m in msgs %}<div class="flash">{{ m }}</div>{% endfor %}{% endwith %}
+  {% if not grand_total %}
+  <div class="panel empty"><strong>Problems are not loaded yet.</strong><br>The problem bank is still being converted. Meanwhile, <a href="{{ url_for('read', which='bank', page=4) }}">open the Problem Bank PDF</a>.</div>
+  {% else %}
+  <form method="post" action="{{ url_for('quiz_start') }}" id="f">
+    {% for m in mods %}
+    <div class="panel" style="border-top:4px solid {{ m.accent }}">
+      <h2><label><input type="checkbox" class="modall" data-m="{{ m.num }}"> Module {{ m.num }} — {{ m.title }} <span class="n" style="font-weight:400;color:var(--ink-soft)">({{ m.total }})</span></label></h2>
+      <div class="toplist">{% for t in m.topics %}
+        <label><input type="checkbox" name="topics" value="{{ t.prefix }}" data-m="{{ m.num }}" data-n="{{ t.count }}"> {{ t.title }}<span class="n">{{ t.count }}</span></label>{% endfor %}</div>
+    </div>{% endfor %}
+    <div class="panel"><h2>Options</h2>
+      <div class="row2">
+        <div>{% for l in levels %}<label class="chip"><input type="checkbox" name="levels" value="{{ l }}" checked> {{ l }}</label> {% endfor %}</div>
+      </div>
+      <div class="row2" style="margin-top:12px">
+        <label>How many <input type="number" id="count" name="count" min="1" max="200" value="10" style="width:70px"></label>
+        <label>Order <select name="order"><option value="random">Random</option><option value="syllabus">Syllabus</option></select></label>
+        <span id="avail" style="color:var(--ink-soft)"></span>
+      </div>
+    </div>
+    <button class="startbtn" id="start-btn" disabled>Start practice</button>
+  </form>
+  {% endif %}
+</div>
+{% endblock %}
+{% block scripts %}
+<script>
+(function(){var f=document.getElementById('f');if(!f)return;
+var cbs=[].slice.call(f.querySelectorAll('input[name=topics]')),btn=document.getElementById('start-btn'),av=document.getElementById('avail');
+function upd(){var n=0;cbs.forEach(function(c){if(c.checked)n+=+c.dataset.n});av.textContent=n?n+' problems selected':'';btn.disabled=!n}
+f.addEventListener('change',function(e){var t=e.target;if(t.classList.contains('modall')){cbs.forEach(function(c){if(c.dataset.m===t.dataset.m)c.checked=t.checked})}upd()});upd();})();
+</script>
+{% endblock %}

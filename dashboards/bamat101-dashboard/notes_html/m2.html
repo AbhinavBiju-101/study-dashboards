@@ -1,0 +1,59 @@
+<section class="sec" id="s13">
+  <h2>13 Module 2 — Multiple Integrals</h2>
+  <div class="pagemark"><a href="@pdf/notes/13">&#8599; original PDF, page 13</a></div>
+  <h3 id="s13-1">13.1 Double Integrals: Basic Evaluation</h3>
+  <p>\(\iint_R f(x,y)\,dA\) is evaluated as an <b>iterated integral</b>: integrate w.r.t. one variable first (holding the other fixed, exactly the reverse of a partial derivative), then integrate that result w.r.t. the second variable.</p>
+  <div class="box ex"><div class="box-title">Worked Example</div>
+    <p>\(\displaystyle\int_0^1\!\!\int_0^2 xy^2\,dy\,dx\). Inner: \(\displaystyle\int_0^2 xy^2\,dy=x\left[\frac{y^3}{3}\right]_0^2=\frac{8x}{3}\). Outer: \(\displaystyle\int_0^1\frac{8x}{3}\,dx=\frac83\cdot\frac12=\frac43\).</p>
+  </div>
+  <h3 id="s13-2">13.2 Change of Order of Integration</h3>
+  <div class="box why"><div class="box-title">WHY this is true</div>
+    <p>When the inner limits depend on the outer variable, you are integrating over a <em>non-rectangular</em> region — the limits are really just a description of that region’s boundary. Changing order means re-describing the <em>same</em> region with \(x\) and \(y\)’s roles swapped, and the only reliable way to do that is to sketch the region first and read the new boundary curves directly off the picture. Attempting to swap limits by algebra alone, without the sketch, is the single biggest source of errors on this topic.</p>
+  </div>
+  <figure class="fig"><img src="@static/figures/p13_1.png" alt="The same triangular region described with x running from y to 1, and with y running from 0 to x" loading="lazy">
+    <figcaption>Figure 11: The same triangular region, described two ways. Left: for fixed \(y\in[0,1]\), \(x\) runs from \(y\) to 1 (matches \(\int_0^1\int_y^1 dx\,dy\)). Right: for fixed \(x\in[0,1]\), \(y\) runs from 0 to \(x\) (matches \(\int_0^1\int_0^x dy\,dx\)) — the flipped-order version of the exact same region.</figcaption></figure>
+  <div class="box ex"><div class="box-title">Worked Example</div>
+    <p>Change the order in \(\displaystyle\int_0^1\!\!\int_y^1 f(x,y)\,dx\,dy\).</p>
+    <p>Sketch (above): the region is the triangle with vertices \((0,0),(1,0),(1,1)\), bounded by \(x=y\), \(x=1\), \(y=0\).</p>
+    <p>Reversed: \(\displaystyle\int_0^1\!\!\int_0^x f(x,y)\,dy\,dx\).</p>
+  </div>
+  <div class="pagemark"><a href="@pdf/notes/14">&#8599; original PDF, page 14</a></div>
+  <h3 id="s13-3">13.3 Double Integrals in Polar Coordinates</h3>
+  <p><b>Switch to polar when:</b> the region is a circle/sector/annulus, or the integrand involves \(x^2+y^2\).</p>
+  <div class="box why"><div class="box-title">WHY this is true</div>
+    <p>\(x=r\cos\theta,\ y=r\sin\theta\), and crucially \(dA=r\,dr\,d\theta\) — not just \(dr\,d\theta\). Here’s why the extra \(r\) appears: a small “rectangle” in \((r,\theta)\)-space of size \(\Delta r\times\Delta\theta\) maps to a thin wedge-shaped patch in the \(xy\)-plane. That wedge has inner arc length \(r\,\Delta\theta\) and outer arc length \((r+\Delta r)\Delta\theta\), and radial thickness \(\Delta r\); its area is approximately (average arc length)\(\times\Delta r\approx r\,\Delta\theta\,\Delta r\). So equal steps in \((r,\theta)\) sweep out <em>more</em> actual area the farther out you are (larger \(r\)) — the factor \(r\) corrects for that stretching, exactly analogous to the \(\sqrt{1+g_x^2+g_y^2}\) stretching factor for surfaces in Section 9.</p>
+  </div>
+  <figure class="fig"><img src="@static/figures/p14_1.png" alt="A polar wedge between two circles with area element r dA" loading="lazy">
+    <figcaption>Figure 12: A polar “rectangle” of size \(\Delta r\times\Delta\theta\) is really a wedge of area \(\approx r\,\Delta r\,\Delta\theta\) — larger \(r\) means more area swept per unit \(\Delta\theta\), which is exactly the factor \(dA=r\,dr\,d\theta\) accounts for.</figcaption></figure>
+  <div class="box ex"><div class="box-title">Worked Example</div>
+    <p>\(\iint_R(x^2+y^2)\,dA,\ R: x^2+y^2\le4\).</p>
+    <p>Polar: \(x^2+y^2=r^2\); region becomes \(0\le r\le2,\ 0\le\theta\le2\pi\).</p>
+    \[ \int_0^{2\pi}\!\!\int_0^2 r^2\cdot r\,dr\,d\theta=\int_0^{2\pi}\left[\frac{r^4}{4}\right]_0^2 d\theta=\int_0^{2\pi}4\,d\theta=8\pi. \]
+  </div>
+  <div class="pagemark"><a href="@pdf/notes/15">&#8599; original PDF, page 15</a></div>
+  <h3 id="s13-4">13.4 Triple Integrals: Rectangular, Cylindrical, Spherical</h3>
+  <p>Rectangular triple integrals are mechanically identical to double integrals with one more nested integral.</p>
+  <div class="box ex"><div class="box-title">Worked Example</div>
+    <p>\(\iiint_V xyz\,dV\) over the box \([0,1]\times[0,2]\times[0,3]\). Since the box and integrand separate cleanly:</p>
+    \[ \int_0^1 x\,dx\cdot\int_0^2 y\,dy\cdot\int_0^3 z\,dz=\frac12\cdot2\cdot\frac92=\frac92. \]
+  </div>
+  <p><b>Cylindrical</b> (circular symmetry about the \(z\)-axis): \(x=r\cos\theta,\ y=r\sin\theta,\ z=z\), with \(dV=r\,dr\,d\theta\,dz\) — the same \(r\)-factor as polar, since cylindrical coordinates are just polar coordinates in \(x,y\) extended along \(z\).</p>
+  <p><b>Spherical</b> (regions centered at the origin — spheres, cones): \(x=\rho\sin\varphi\cos\theta,\ y=\rho\sin\varphi\sin\theta,\ z=\rho\cos\varphi\), with</p>
+  \[ dV=\rho^2\sin\varphi\,d\rho\,d\varphi\,d\theta. \]
+  <figure class="fig"><img src="@static/figures/p15_1.png" alt="Cylindrical coordinates (r, theta, z) and spherical coordinates (rho, phi, theta)" loading="lazy">
+    <figcaption><b>Figure 13:</b> Cylindrical coordinates (left): \(r\) is radial distance in the \(xy\)-plane, \(\theta\) the usual angle, \(z\) unchanged. Spherical coordinates (right): \(\rho\) is distance from the origin, \(\varphi\) the angle down from \(+z\), \(\theta\) the same angle as before.</figcaption></figure>
+  <div class="box ex"><div class="box-title">Worked Example</div>
+    <p><b>Cylindrical:</b> Volume under \(z=4-x^2-y^2\), above \(z=0\). Paraboloid meets \(z=0\) at \(r=2\) (since \(4-r^2=0\)); for fixed \(r,\theta\), \(z\) runs 0 to \(4-r^2\).</p>
+    \[ V=\int_0^{2\pi}\!\!\int_0^2\!\!\int_0^{4-r^2} r\,dz\,dr\,d\theta=\int_0^{2\pi}\!\!\int_0^2 r(4-r^2)\,dr\,d\theta=\int_0^{2\pi}\left[2r^2-\frac{r^4}{4}\right]_0^2 d\theta=\int_0^{2\pi}4\,d\theta=8\pi. \]
+    <p><b>Spherical:</b> Volume of the sphere \(x^2+y^2+z^2\le a^2\).</p>
+    \[ V=\int_0^{2\pi}\!\!\int_0^\pi\!\!\int_0^a\rho^2\sin\varphi\,d\rho\,d\varphi\,d\theta=\underbrace{\frac{a^3}{3}}_{\rho\text{-integral}}\cdot\underbrace{2}_{\varphi\text{-integral}}\cdot\underbrace{2\pi}_{\theta\text{-integral}}=\frac43\pi a^3, \]
+    <p>matching the familiar sphere-volume formula — confirming the setup is right.</p>
+  </div>
+  <div class="pagemark"><a href="@pdf/notes/16">&#8599; original PDF, page 16</a></div>
+  <table class="tbl"><thead><tr><th>System</th><th>\(dA\) or \(dV\)</th><th>Best for</th></tr></thead><tbody>
+    <tr><td>Rectangular</td><td>\(dx\,dy\,(dz)\)</td><td>boxes, general regions</td></tr>
+    <tr><td>Polar</td><td>\(r\,dr\,d\theta\)</td><td>disks, \(x^2+y^2\) in integrand</td></tr>
+    <tr><td>Cylindrical</td><td>\(r\,dr\,d\theta\,dz\)</td><td>cylinders, paraboloids</td></tr>
+    <tr><td>Spherical</td><td>\(\rho^2\sin\varphi\,d\rho\,d\varphi\,d\theta\)</td><td>spheres, cones from origin</td></tr>
+  </tbody></table>
+</section>

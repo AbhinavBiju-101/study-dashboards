@@ -98,10 +98,18 @@ def subject_cards():
     counts = {s["slug"]: 0 for s in SUBJECTS}
     for q in bank()["questions"]:
         counts[q["s"]] += 1
+    for s in SUBJECTS:
+        if s.get("practice") == "problems":
+            try:
+                pj = json.loads((ROOT / "dashboards" / f"{s['slug']}-dashboard" / "data" / "problems.json").read_text("utf-8"))
+                counts[s["slug"]] = sum(len(t["problems"]) for t in (pj["topics"] if isinstance(pj, dict) else pj))
+            except Exception:
+                counts[s["slug"]] = 0
     cards = []
     for s in SUBJECTS:
         c = dict(s)
         c["questions"] = counts[s["slug"]]
+        c["qlabel"] = "problems" if s.get("practice") == "problems" else "questions"
         c["pages"] = INDEX.pages.get(s["slug"], [])
         c["units"] = len(c["pages"])
         cards.append(c)
@@ -123,7 +131,7 @@ def page(template, active, **ctx):
 @hub.route("/")
 def home():
     cards = subject_cards()
-    return page("home.html", "home", subjects=cards, total_q=sum(c["questions"] for c in cards))
+    return page("home.html", "home", subjects=cards, total_q=sum(c["questions"] for c in cards if c["qlabel"] == "questions"))
 
 
 @hub.route("/subjects")

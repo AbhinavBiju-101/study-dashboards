@@ -49,4 +49,15 @@ SUBJECTS = [
         "accent": "#6d28d9",
         "local_port": 4005,
     },
+    {
+        "slug": "bamat101",
+        "note_pattern": r"/module/\d+",
+        "code": "BAMAT101",
+        "title": "Multivariable Calculus & ODEs",
+        "blurb": "Partial derivatives, multiple integrals, vector calculus, ODEs and PDEs, with every figure and a self-graded problem bank.",
+        "unit": "modules",
+        "accent": "#b7791f",
+        "local_port": 4003,
+        "practice": "problems",
+    },
 ]

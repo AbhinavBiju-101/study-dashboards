@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% block title %}BAMAT101 Notes{% endblock %}</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='katex/katex.min.css') }}">
+{% block head %}{% endblock %}
+<style>:root{--accent:{{ accent|default('#b7791f') }};--accent-dk:{{ accent_dk|default('#8a5a14') }}}</style></head>
+<body>
+{% macro nav(cls) %}
+<nav class="site-nav {{ cls }}">
+  <a class="dashboard-link" href="{{ url_for('dashboard') }}">☰ Dashboard</a>
+  <a href="{{ url_for('quiz_setup') }}">📝 Practice</a>
+  {% if current is defined %}
+    {% if prev_num %}<a href="{{ url_for('module', num=prev_num) }}">← Module {{ prev_num }}</a>{% else %}<a class="disabled">← Module</a>{% endif %}
+    <span class="grow"></span><span class="current">Module {{ current }} of {{ total }}</span><span class="grow"></span>
+    {% if next_num %}<a href="{{ url_for('module', num=next_num) }}">Module {{ next_num }} →</a>{% else %}<a class="disabled">Module →</a>{% endif %}
+  {% endif %}
+</nav>
+{% endmacro %}
+{{ nav('top') }}
+{% block content %}{% endblock %}
+{{ nav('bottom') if current is defined else '' }}
+<script src="{{ url_for('static', filename='katex/katex.min.js') }}"></script>
+<script src="{{ url_for('static', filename='katex/auto-render.min.js') }}"></script>
+<script src="{{ url_for('static', filename='math.js') }}"></script>
+{% block scripts %}{% endblock %}
+</body></html>

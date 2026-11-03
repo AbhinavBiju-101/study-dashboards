@@ -1,0 +1,11 @@
+{"topics":[
+{"id":"s6","label":"Scalar and Vector Potential","page":25,"summary":"If curl F = 0 a scalar potential φ exists with F = ∇φ; if div F = 0 a vector potential A exists with F = curl A. Shows how to find φ by successive integration and matching.","subtopics":[]},
+{"id":"s7","label":"Line Integrals","page":26,"summary":"The line integral of F along a curve C parametrized by r(t) gives the work done by F; derived from a Riemann sum of F·Δr and computed with a single-variable integral over t.","subtopics":[]},
+{"id":"s8","label":"Green’s Theorem in the Plane","page":27,"summary":"Relates the counterclockwise circulation around a closed plane curve to a double integral of ∂N/∂x − ∂M/∂y, justified by internal edges cancelling in a grid of tiny rectangles.","subtopics":[]},
+{"id":"s9","label":"Surfaces and Surface Integrals","page":28,"summary":"The flux integral of F·n over a surface S measures how much F flows through it; explains why the normal is needed and why dS differs from dA for a tilted surface.","subtopics":[]},
+{"id":"s10","label":"Stokes’ Theorem","page":29,"summary":"Circulation of F around a closed curve C equals the flux of curl F through any surface bounded by C; Green’s Theorem lifted to 3-D, so the simplest surface can be chosen.","subtopics":[]},
+{"id":"s11-12","label":"Volume Integrals; The Gauss Divergence Theorem","page":30,"summary":"Volume integrals are ordinary triple integrals; the Divergence Theorem equates outward flux through a closed surface with the volume integral of div F, with a cube-verification example.","subtopics":[
+{"id":"s11-12-1","label":"Volume Integrals","summary":"Scalar and vector volume integrals are mechanically the triple integrals of Module 2, used as the right side of the Divergence Theorem."},
+{"id":"s11-12-2","label":"The Gauss Divergence Theorem","summary":"Closed-surface flux equals the integral of div F over the enclosed solid, shown by cancelling shared faces of tiny cubes; verified on the unit cube."}]},
+{"id":"m3-summary","label":"Module 3 — Master Summary","page":31,"summary":"Tables summarising the gradient, divergence and curl operators (input, output, zero-condition) and what Green’s, Stokes’ and Gauss Divergence theorems convert and require.","subtopics":[]}
+]}
