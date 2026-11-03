@@ -1,0 +1,187 @@
+<section class="sec" id="s25">
+  <h2>25 Formation of Partial Differential Equations</h2>
+  <div class="pagemark"><a href="@pdf/notes/42">&#8599; original PDF, page 42</a></div>
+  <p><b>Module 5 — Partial Differential Equations.</b> Throughout, \(z=z(x,y)\) and we write \(p=\dfrac{\partial z}{\partial x},\ q=\dfrac{\partial z}{\partial y}\). A first-order PDE is a relation \(F(x,y,z,p,q)=0\).</p>
+  <div class="box why"><div class="box-title">WHY this is true</div>
+    <p><b>The one idea behind all of Module 5.</b> A surface \(z=z(x,y)\) has, at each point \((x,y,z)\), a tangent plane determined by the slopes \((p,q)\). A first-order PDE is therefore a <em>condition on tangent planes</em>: “at every point, the tangent plane must have slopes \((p,q)\) satisfying \(F=0\)”. Every method below is a way of building surfaces whose tangent planes obey the condition: planes themselves (Sections 26, 29), surfaces whose shape depends on a single combination of \(x,y\) (Section 27), surfaces swept out by special curves (Section 30), or products of one-variable functions (Section 31).</p>
+  </div>
+  <div class="box def"><div class="box-title">Definition</div>
+    <p>A PDE is <b>formed</b> by eliminating from a given family of surfaces either</p>
+    <ul>
+      <li><em>arbitrary constants</em> \(a,b\) in \(z=F(x,y,a,b)\), using \(p=F_x,\ q=F_y\) (result: first order), or</li>
+      <li>an <em>arbitrary function</em>, e.g. in \(z=f(u(x,y))\) or \(\phi(u,v)=0\) (result: first order).</li>
+    </ul>
+  </div>
+  <div class="box why"><div class="box-title">WHY this is true</div>
+    <p><b>Counting.</b> From \(z=F(x,y,a,b)\) we get three equations: \(z=F,\ p=F_x,\ q=F_y\). They contain two unknown constants \(a,b\); eliminating both leaves <em>one</em> relation among \(x,y,z,p,q\) — a first-order PDE. With more constants than two, first derivatives are not enough and second derivatives enter. With an arbitrary function \(f\), differentiating gives \(p\) and \(q\) in terms of \(f'\); dividing the two removes \(f'\) and leaves a PDE with no constants and no function: it is satisfied by <em>every</em> member of the family, and that is why a PDE has “more solutions than an ODE” — its general solution contains an arbitrary function.</p>
+  </div>
+  <figure class="fig"><img src="@static/figures/p42_1.png" alt="Concentric level circles of z with radial gradient arrows and tangent arrows (y, -x)" loading="lazy">
+    <figcaption><b>Figure 13:</b> For \(z=f(x^2+y^2)\) the level curves are circles. The combination \(yp-xq=\nabla z\cdot(y,-x)\) is the rate of change of \(z\) along the circles, which is 0: the PDE \(yp-xq=0\) says “\(z\) does not change as you go around the origin”.</figcaption></figure>
+  <div class="pagemark"><a href="@pdf/notes/43">&#8599; original PDF, page 43</a></div>
+  <div class="box ex"><div class="box-title">Worked Example</div>
+    <p><b>(1) Constants:</b> \(z=(x+a)(y+b)\). \(p=y+b,\ q=x+a\), so \(z=pq\).</p>
+    <p><b>(2) Constants:</b> \(z=ax+by+a^2+b^2\). \(p=a,\ q=b\), so \(z=px+qy+p^2+q^2\).</p>
+    <p><b>(3) Function:</b> \(z=f(x^2+y^2)\). \(p=2xf',\ q=2yf'\); dividing, \(\dfrac pq=\dfrac xy\), so \(yp-xq=0\). (Figure 13 explains the meaning.)</p>
+    <p><b>(4) Function:</b> \(z=f(y/x)\). \(p=-\dfrac{y}{x^2}f',\ q=\dfrac1xf'\), hence \(xp+yq=0\).</p>
+    <p><b>(5) Two functions:</b> \(z=f(x+y)+g(x-y)\). \(z_{xx}=f''+g''=z_{yy}\), so \(\dfrac{\partial^2z}{\partial x^2}=\dfrac{\partial^2z}{\partial y^2}\) — the wave equation. Removing <em>two</em> arbitrary functions needs second derivatives.</p>
+  </div>
+  <h3 id="s25-1">General case: \(\phi(u,v)=0\), with \(u,v\) functions of \(x,y,z\)</h3>
+  <div class="box why"><div class="box-title">WHY this is true</div>
+    <p>Differentiate \(\phi(u,v)=0\) with respect to \(x\) and \(y\) (remembering \(z\) depends on both):</p>
+    \[ \phi_u(u_x+u_zp)+\phi_v(v_x+v_zp)=0,\qquad\phi_u(u_y+u_zq)+\phi_v(v_y+v_zq)=0. \]
+    <p>These are two linear equations for \((\phi_u,\phi_v)\) which must have a non-zero solution, so the determinant vanishes:</p>
+    \[ (u_x+u_zp)(v_y+v_zq)-(u_y+u_zq)(v_x+v_zp)=0. \]
+    <p>Expanding (the \(pq\) terms cancel) and collecting \(p\) and \(q\) gives</p>
+    \[ P\,p+Q\,q=R,\qquad P=\frac{\partial(u,v)}{\partial(y,z)},\ Q=\frac{\partial(u,v)}{\partial(z,x)},\ R=\frac{\partial(u,v)}{\partial(x,y)}. \]
+    <p>The coefficients of the resulting PDE are <em>Jacobians</em> (Section 17).</p>
+  </div>
+  <div class="box ex"><div class="box-title">Worked Example</div>
+    <p>\(\phi(x+y+z,\ x^2+y^2+z^2)=0\), so \(u=x+y+z,\ v=x^2+y^2+z^2\). Then \(P=u_yv_z-u_zv_y=2z-2y\), \(Q=u_zv_x-u_xv_z=2x-2z\), \(R=u_xv_y-u_yv_x=2y-2x\). Dividing by 2 and changing signs:</p>
+    \[ (y-z)\,p+(z-x)\,q=x-y. \]
+    <p>(This exact equation is solved in reverse in Section 30, giving back \(\phi(x+y+z,\ x^2+y^2+z^2)=0\).)</p>
+  </div>
+</section>
+<section class="sec" id="s26">
+  <h2>26 Equations of the Form \(F(p,q)=0\)</h2>
+  <div class="box def"><div class="box-title">Definition</div>
+    <p><b>Method.</b> Assume \(z=ax+by+c\), so \(p=a,\ q=b\). The PDE forces \(F(a,b)=0\); solve \(b=\varphi(a)\). The <b>complete integral</b> is</p>
+    \[ z=ax+\varphi(a)\,y+c. \]
+  </div>
+  <div class="pagemark"><a href="@pdf/notes/44">&#8599; original PDF, page 44</a></div>
+  <div class="box why"><div class="box-title">WHY this is true</div>
+    <p><b>Why planes work.</b> \(F\) contains only \(p\) and \(q\) — no \(x,y,z\). So it only constrains the <em>slopes</em> of the tangent plane, not where the plane is. A plane \(z=ax+by+c\) has the <em>same</em> tangent plane (itself) everywhere, with constant slopes \((a,b)\); it is a solution exactly when \((a,b)\) satisfies \(F(a,b)=0\). This gives a two-parameter family (free: \(a\) and \(c\)), the complete integral.</p>
+    <p><b>The general integral.</b> Choose \(c=\psi(a)\) with an arbitrary \(\psi\) to get a one-parameter family of planes \(z=ax+\varphi(a)y+\psi(a)\), and form its <em>envelope</em> by setting \(\partial/\partial a=0\): \(0=x+\varphi'(a)y+\psi'(a)\), then eliminate \(a\). The envelope is again a solution because at each of its points it <em>touches</em> one of the planes, sharing that plane’s position and slopes \((p,q)\), and the PDE depends only on position and slopes.</p>
+  </div>
+  <figure class="fig"><img src="@static/figures/p44_1.png" alt="The curve sqrt(p) + sqrt(q) = 1 in the (p, q) plane with the point (1/4, 1/4) marked" loading="lazy">
+    <figcaption><b>Figure 14:</b> The “slope plane”: every point \((a,b)\) on the curve \(F(p,q)=0\) gives a solution plane \(z=ax+by+c\). Here \(F=\sqrt p+\sqrt q-1\) and \(b=(1-\sqrt a)^2\).</figcaption></figure>
+  <div class="box mis"><div class="box-title">Fixing a Common Misconception</div>
+    <p><b>“The only solutions are the planes \(z=ax+by+c\).”</b> Planes give only the <em>complete</em> integral. For \(p^2+q^2=1\) the cone \(z=\sqrt{x^2+y^2}\) also works (\(p=x/r,\ q=y/r\), so \(p^2+q^2=1\)), yet it is not a plane; it is the envelope of the planes \(z=x\cos\alpha+y\sin\alpha\) (take \(c=0\) and eliminate \(\alpha\)), i.e. it comes from the general integral.</p>
+  </div>
+  <div class="box ex"><div class="box-title">Worked Example</div>
+    <p><b>(1)</b> \(p+q=pq\). \(a+b=ab\Rightarrow b=\dfrac{a}{a-1}\). Complete integral: \(z=ax+\dfrac{a}{a-1}y+c\).</p>
+    <p><b>(2)</b> \(\sqrt p+\sqrt q=1\). \(b=(1-\sqrt a)^2\) (for \(0\le a\le1\)): \(z=ax+(1-\sqrt a)^2y+c\).</p>
+    <p><b>(3)</b> \(q=p^2\). \(b=a^2\): \(z=ax+a^2y+c\). <em>General integral with \(c=0\):</em> \(\partial/\partial a\) gives \(x+2ay=0\), so \(a=-\dfrac{x}{2y}\) and \(z=-\dfrac{x^2}{2y}+\dfrac{x^2}{4y}=-\dfrac{x^2}{4y}\). <b>Check:</b> \(p=-\dfrac{x}{2y},\ q=\dfrac{x^2}{4y^2}=p^2\). ✓</p>
+  </div>
+</section>
+<section class="sec" id="s27">
+  <h2>27 Equations of the Form \(F(z,p,q)=0\)</h2>
+  <div class="box def"><div class="box-title">Definition</div>
+    <p><b>Method.</b> Put \(u=x+ay\) and look for \(z=f(u)\). Then \(p=\dfrac{dz}{du},\ q=a\dfrac{dz}{du}\), and the PDE becomes an ODE in \(z\) and \(u\). Solve it and replace \(u\) by \(x+ay\).</p>
+  </div>
+  <div class="box why"><div class="box-title">WHY this is true</div>
+    <p><b>Why this substitution.</b> Because \(F(z,p,q)=0\) contains no explicit \(x\) or \(y\), shifting the whole picture sideways in the \(xy\)-plane maps solutions to solutions (translation invariance). So we can look for solutions that are constant along a whole family of parallel lines \(x+ay=\) const — surfaces that depend on position only through \(u=x+ay\). For such a surface, \(z=f(u)\) gives \(p=f'(u)\cdot1\) and \(q=f'(u)\cdot a\) by the chain rule. The parameter \(a\) (the direction of the lines) is the free constant, and integrating the ODE introduces a second one: a complete integral.</p>
+  </div>
+  <div class="pagemark"><a href="@pdf/notes/45">&#8599; original PDF, page 45</a></div>
+  <figure class="fig"><img src="@static/figures/p45_1.png" alt="Parallel lines x + 2y = const on which z = f(u) is constant" loading="lazy">
+    <figcaption><b>Figure 15:</b> For \(u=x+2y\), \(z\) is constant on each line \(x+2y=\) const. The surface is a “travelling profile” \(z=f(u)\) stretched along the lines. This one-variable reduction is what turns the PDE into an ODE.</figcaption></figure>
+  <div class="box mis"><div class="box-title">Fixing a Common Misconception</div>
+    <p><b>Using \(u=x+ay\) on any PDE.</b> It only works when \(x\) and \(y\) do not appear explicitly. For \(pq=xz\) the explicit \(x\) destroys the translation invariance, and the substitution does not reduce to an ODE in \(u\) alone.</p>
+  </div>
+  <div class="box ex"><div class="box-title">Worked Example</div>
+    <p><b>(1) \(p(1+q)=qz\).</b> With \(p=z',\ q=az'\): \(z'(1+az')=az'z\Rightarrow1+az'=az\). So \(\dfrac{dz}{az-1}=\dfrac{du}{a}\), giving \(\ln(az-1)=u+\) const:</p>
+    \[ az-1=Ce^{x+ay}\iff z=\frac{1+Ce^{x+ay}}{a}. \]
+    <p><b>(2) \(pq=z\).</b> \(az'^2=z\Rightarrow\dfrac{dz}{\sqrt z}=\dfrac{du}{\sqrt a}\Rightarrow2\sqrt z=\dfrac{u+b}{\sqrt a}\), i.e. \(4az=(x+ay+b)^2\).</p>
+    <p><b>(3) \(z^2(p^2+q^2+1)=1\).</b> \(z^2\left[(1+a^2)z'^2+1\right]=1\Rightarrow\dfrac{z\,dz}{\sqrt{1-z^2}}=\dfrac{du}{\sqrt{1+a^2}}\). Integrating, \(-\sqrt{1-z^2}=\dfrac{u+b}{\sqrt{1+a^2}}\), so</p>
+    \[ (x+ay+b)^2=(1+a^2)(1-z^2), \]
+    <p>a family of ellipsoids/spheres.</p>
+  </div>
+</section>
+<section class="sec" id="s28">
+  <h2>28 Equations of the Form \(F(x,p)=G(y,q)\)</h2>
+  <div class="pagemark"><a href="@pdf/notes/46">&#8599; original PDF, page 46</a></div>
+  <div class="box def"><div class="box-title">Definition</div>
+    <p><b>Method.</b> Set both sides equal to a constant \(a\): \(F(x,p)=a=G(y,q)\). Solve \(p=f(x,a)\) and \(q=g(y,a)\), then integrate \(dz=p\,dx+q\,dy\):</p>
+    \[ z=\int f(x,a)\,dx+\int g(y,a)\,dy+b. \]
+  </div>
+  <div class="box why"><div class="box-title">WHY this is true</div>
+    <p>The left side involves only \(x\) (and \(p\)), the right only \(y\) (and \(q\)). We look for solutions in which \(p\) depends on \(x\) alone and \(q\) on \(y\) alone. Then the equation says “a function of \(x\) equals a function of \(y\) for <em>all</em> \(x\) and \(y\)”. Vary \(x\) while keeping \(y\) fixed: the right side does not move, so the left side cannot either. Hence both are the same constant \(a\). This is separation of variables applied to the <em>slopes</em> \(p,q\) rather than to \(z\).</p>
+  </div>
+  <figure class="fig"><img src="@static/figures/p46_1.png" alt="Diagram: F(x,p) and G(y,q) both equal a, which splits into p = f(x,a) and q = g(y,a), then integrate dz = p dx + q dy" loading="lazy">
+    <figcaption><b>Figure 16:</b> Both sides of the equation must equal the same separation constant \(a\), which then splits the PDE into two one-variable problems.</figcaption></figure>
+  <div class="box mis"><div class="box-title">Fixing a Common Misconception</div>
+    <p><b>“\(p+q=x+y\) can’t be separated because \(x\) and \(y\) are mixed.”</b> Rearrange first: \(p-x=y-q\) has the form \(F(x,p)=G(y,q)\). Then \(p=x+a,\ q=y-a\), and \(z=\frac{x^2}{2}+ax+\frac{y^2}{2}-ay+b\). Always try to move all \(x,p\)-terms to one side and all \(y,q\)-terms to the other.</p>
+  </div>
+  <div class="box ex"><div class="box-title">Worked Example</div>
+    <p><b>(1) \(p^2+q^2=x+y\).</b> \(p^2-x=y-q^2=a\): \(p=\sqrt{x+a},\ q=\sqrt{y-a}\), so \(z=\frac23(x+a)^{3/2}+\frac23(y-a)^{3/2}+b\).</p>
+    <p><b>(2) \(pe^y=qe^x\).</b> \(pe^{-x}=qe^{-y}=a\): \(p=ae^x,\ q=ae^y\), so \(z=a(e^x+e^y)+b\).</p>
+    <p><b>(3) \(p^2y(1+x^2)=qx^2\).</b> Divide both sides by \(x^2y\): \(\dfrac{p^2(1+x^2)}{x^2}=\dfrac qy=a\), so \(p=\dfrac{\sqrt a\,x}{\sqrt{1+x^2}},\ q=ay\) and \(z=\sqrt a\sqrt{1+x^2}+\dfrac{ay^2}{2}+b\). <b>Check:</b> \(p^2y(1+x^2)=\dfrac{ax^2}{1+x^2}y(1+x^2)=ax^2y=qx^2\). ✓</p>
+  </div>
+</section>
+<section class="sec" id="s29">
+  <h2>29 Clairaut’s Form and the Singular Solution</h2>
+  <div class="pagemark"><a href="@pdf/notes/47">&#8599; original PDF, page 47</a></div>
+  <div class="box def"><div class="box-title">Definition</div>
+    \[ z=px+qy+f(p,q). \]
+    <p><b>Complete integral:</b> replace \(p,q\) by constants: \(z=ax+by+f(a,b)\). <b>Singular solution:</b> differentiate the complete integral with respect to \(a\) and \(b\): \(x+f_a=0,\ y+f_b=0\); eliminate \(a,b\).</p>
+  </div>
+  <div class="box why"><div class="box-title">WHY this is true</div>
+    <p><b>Why the complete integral is this simple.</b> If \(z=ax+by+f(a,b)\) then \(p=a,\ q=b\), and substituting gives \(z=ax+by+f(a,b)\) — an identity. So replacing \(p,q\) by constants <em>is</em> a solution.</p>
+    <p><b>What the singular solution is.</b> The complete integral is a two-parameter family of planes. Their <em>envelope</em> — the surface tangent to every plane of the family — is the singular solution. Its tangent plane at each point is one of the family’s planes, so it satisfies the same PDE, yet it cannot be obtained by fixing \(a,b\). The conditions \(\partial/\partial a=\partial/\partial b=0\) are exactly the envelope conditions. The one-variable picture below shows the same thing: lines \(y=ax+a^2\) (Clairaut’s ODE \(y=xy'+y'^2\)) and their envelope, the parabola \(y=-x^2/4\).</p>
+  </div>
+  <figure class="fig"><img src="@static/figures/p47_1.png" alt="Lines y = ax + a^2 touching the parabola y = -x^2/4, the envelope" loading="lazy">
+    <figcaption><b>Figure 17:</b> One-variable analogue: the lines \(y=ax+a^2\) (blue) all touch the parabola (red). The parabola is not any one of the lines, yet at each point it has the slope of the line touching there, so it solves the same equation: it is the singular solution.</figcaption></figure>
+  <div class="box mis"><div class="box-title">Fixing a Common Misconception</div>
+    <p><b>“\(z=-xy\) solves \(z=px+qy+pq\) by putting \(a=-y,\ b=-x\) in the complete integral.”</b> The constants \(a,b\) must stay constant; substituting functions is not allowed. \(z=-xy\) <em>is</em> a solution (\(p=-y,\ q=-x\): \(px+qy+pq=-xy-xy+xy=-xy\)) but it is the singular solution — the envelope — obtained by \(x+b=0,\ y+a=0\).</p>
+  </div>
+  <div class="pagemark"><a href="@pdf/notes/48">&#8599; original PDF, page 48</a></div>
+  <div class="box ex"><div class="box-title">Worked Example</div>
+    <p><b>(1)</b> \(z=px+qy+p^2+q^2\). Complete: \(z=ax+by+a^2+b^2\). Differentiating: \(x+2a=0,\ y+2b=0\), so \(a=-\frac x2,\ b=-\frac y2\), and \(z=-\dfrac{x^2+y^2}{2}+\dfrac{x^2+y^2}{4}=-\dfrac{x^2+y^2}{4}\), i.e. \(4z=-(x^2+y^2)\).</p>
+    <p><b>(2)</b> \(z=px+qy+\sqrt{1+p^2+q^2}\). Complete: \(z=ax+by+s\) with \(s=\sqrt{1+a^2+b^2}\). Then \(x=-\dfrac as,\ y=-\dfrac bs,\ z=-\dfrac{a^2+b^2}{s}+s=\dfrac1s\), so \(x^2+y^2+z^2=\dfrac{a^2+b^2+1}{s^2}=1\): the singular solution is the unit sphere (tangent planes of a sphere are exactly this family).</p>
+    <p><b>(3) Reduce to Clairaut first.</b> \((p+q)(z-xp-yq)=1\) rearranges to \(z=px+qy+\dfrac{1}{p+q}\): Clairaut form with \(f=\dfrac{1}{p+q}\). Complete integral: \(z=ax+by+\dfrac{1}{a+b}\).</p>
+  </div>
+</section>
+<section class="sec" id="s30">
+  <h2>30 Lagrange’s Linear Equation \(Pp+Qq=R\)</h2>
+  <div class="pagemark"><a href="@pdf/notes/49">&#8599; original PDF, page 49</a></div>
+  <div class="box def"><div class="box-title">Definition</div>
+    <p>Here \(P,Q,R\) are functions of \(x,y,z\). The <b>auxiliary (subsidiary) equations</b> are</p>
+    \[ \frac{dx}{P}=\frac{dy}{Q}=\frac{dz}{R}. \]
+    <p>If \(u(x,y,z)=c_1\) and \(v(x,y,z)=c_2\) are two independent solutions, the <b>general solution</b> is \(\phi(u,v)=0\) (\(\phi\) arbitrary), or equivalently \(v=f(u)\).</p>
+  </div>
+  <div class="box why"><div class="box-title">WHY this is true</div>
+    <p><b>Step 1: what the PDE says geometrically.</b> A surface \(z=z(x,y)\) has normal \((p,q,-1)\). The equation \(Pp+Qq=R\) says \((P,Q,R)\cdot(p,q,-1)=0\): the vector \((P,Q,R)\) is <em>perpendicular to the normal</em>, so it is <em>tangent</em> to the surface at every point. An integral surface is therefore a surface to which the vector field \((P,Q,R)\) is everywhere tangent.</p>
+    <p><b>Step 2: such surfaces are woven from characteristic curves.</b> Follow a curve with \(\dfrac{dx}{dt}=P,\ \dfrac{dy}{dt}=Q\) starting on the surface. By the chain rule along the surface, \(\dfrac{dz}{dt}=p\dfrac{dx}{dt}+q\dfrac{dy}{dt}=pP+qQ=R\). So the curve has tangent \((P,Q,R)\) and stays on the surface: eliminating \(t\) gives the auxiliary equations. The surface is a union of such curves.</p>
+    <p><b>Step 3: the general solution.</b> The curves are \(u=c_1,\ v=c_2\) (two independent first integrals). A surface made of a one-parameter family of them is obtained by linking the parameters through any relation \(\phi(c_1,c_2)=0\) — hence \(\phi(u,v)=0\), with \(\phi\) arbitrary. This also matches Section 25, where eliminating an arbitrary \(\phi\) from \(\phi(u,v)=0\) produced exactly this PDE.</p>
+  </div>
+  <figure class="fig"><img src="@static/figures/p49_1.png" alt="The cone z = sqrt(x^2+y^2) built from straight lines through the origin, with the vector (P,Q,R) tangent and the normal (p,q,-1)" loading="lazy">
+    <figcaption><b>Figure 18:</b> An integral surface of \(xp+yq=z\): the cone \(z=\sqrt{x^2+y^2}\), built from straight lines through the origin. At each point \((P,Q,R)=(x,y,z)\) points <em>along</em> the ray (tangent, green) and is perpendicular to the surface normal \((p,q,-1)\) (red).</figcaption></figure>
+  <h3 id="s30-1">Solving the auxiliary equations</h3>
+  <div class="box why"><div class="box-title">WHY this is true</div>
+    <p>Two techniques. (i) <b>Grouping:</b> if two ratios involve only two variables, integrate directly, e.g. \(\frac{dx}{P}=\frac{dy}{Q}\). (ii) <b>Multipliers:</b> for any functions \(l,m,n\), equal ratios satisfy</p>
+    \[ \frac{dx}{P}=\frac{dy}{Q}=\frac{dz}{R}=\frac{l\,dx+m\,dy+n\,dz}{lP+mQ+nR}. \]
+    <p>(If every ratio equals \(\kappa\), then \(dx=\kappa P\), etc., so the numerator is \(\kappa(lP+mQ+nR)\).) Choose \(l,m,n\) so that \(lP+mQ+nR=0\); then \(l\,dx+m\,dy+n\,dz=0\), and if that is an exact differential you have a first integral.</p>
+  </div>
+  <div class="pagemark"><a href="@pdf/notes/50">&#8599; original PDF, page 50</a></div>
+  <div class="box ex"><div class="box-title">Worked Example</div>
+    <p><b>(1) \(xp+yq=z\).</b> \(\frac{dx}{x}=\frac{dy}{y}=\frac{dz}{z}\) gives \(\frac yx=c_1,\ \frac zx=c_2\). Solution: \(\phi\left(\frac yx,\frac zx\right)=0\), i.e. \(z=x\,f(y/x)\) — cones, as in the figure.</p>
+    <p><b>(2) \(yz\,p+zx\,q=xy\).</b> \(\frac{dx}{yz}=\frac{dy}{zx}=\frac{dz}{xy}\). From the first two, \(x\,dx=y\,dy\); from the last two, \(y\,dy=z\,dz\). So \(x^2-y^2=c_1,\ y^2-z^2=c_2\): \(\phi(x^2-y^2,\ y^2-z^2)=0\).</p>
+    <p><b>(3) \((y-z)p+(z-x)q=x-y\) (multipliers).</b> With \((l,m,n)=(1,1,1)\): \(lP+mQ+nR=(y-z)+(z-x)+(x-y)=0\), so \(d(x+y+z)=0\), giving \(x+y+z=c_1\). With \((l,m,n)=(x,y,z)\): \(x(y-z)+y(z-x)+z(x-y)=0\), so \(x\,dx+y\,dy+z\,dz=0\), giving \(x^2+y^2+z^2=c_2\). Solution:</p>
+    \[ \phi(x+y+z,\ x^2+y^2+z^2)=0. \]
+    <p>This is exactly the surface family from which Section 25 formed this PDE.</p>
+    <p><b>(4) \((y+z)p+(z+x)q=x+y\).</b> Taking differences: \(\dfrac{d(x-y)}{-(x-y)}=\dfrac{d(y-z)}{-(y-z)}\), so \(\dfrac{x-y}{y-z}=c_1\). Using \((1,1,1)\) (numerator \(d(x+y+z)\), denominator \(2(x+y+z)\)) against \(\dfrac{d(x-y)}{-(x-y)}\): \(\dfrac{d(x+y+z)}{2(x+y+z)}=-\dfrac{d(x-y)}{x-y}\), so \((x-y)^2(x+y+z)=c_2\). Solution: \(\phi\left(\dfrac{x-y}{y-z},\ (x-y)^2(x+y+z)\right)=0\).</p>
+  </div>
+  <div class="box mis"><div class="box-title">Fixing a Common Misconception</div>
+    <p><b>“The general solution is \(u+v=c\).”</b> The general solution is \(\phi(u,v)=0\) with \(\phi\) <em>arbitrary</em>. Writing \(u+v=c\) picks one specific \(\phi\) and gives only a one-parameter family — far fewer solutions than the PDE has.</p>
+  </div>
+</section>
+<section class="sec" id="s31">
+  <h2>31 Linear First-Order PDEs by Separation of Variables</h2>
+  <div class="pagemark"><a href="@pdf/notes/51">&#8599; original PDF, page 51</a></div>
+  <div class="box def"><div class="box-title">Definition</div>
+    <p><b>Method.</b> Assume \(u=X(x)Y(y)\) (or \(X(x)T(t)\)). Substitute and rearrange so that each side depends on one variable only; set both equal to a separation constant \(k\). Solve the two ODEs, form the product, and use the given condition to fix \(k\) and the multiplicative constant.</p>
+  </div>
+  <div class="box why"><div class="box-title">WHY this is true</div>
+    <p>Why a constant? After substitution one side is a function of \(x\) only and the other a function of \(y\) (or \(t\)) only, and they are equal for all values of both variables — so each equals the same constant \(k\) (as in Section 28). Why does the product form lose nothing? For a linear PDE, sums of solutions are solutions (<em>superposition</em>), so if the given condition is a sum of exponentials, we solve each term separately and add.</p>
+  </div>
+  <figure class="fig"><img src="@static/figures/p51_1.png" alt="Profiles of u against x at t = 0, 0.5 and 1, decaying in time" loading="lazy">
+    <figcaption><b>Figure 19:</b> The solution \(u=6e^{-3x-2t}\) of \(u_x=2u_t+u\) with \(u(x,0)=6e^{-3x}\): the initial profile (blue) decays uniformly in time, since \(u\) is multiplied by \(e^{-2t}\).</figcaption></figure>
+  <div class="box ex"><div class="box-title">Worked Example</div>
+    <p><b>(1) \(u_x=2u_t+u\), \(u(x,0)=6e^{-3x}\).</b> \(u=XT\): \(X'T=2XT'+XT\Rightarrow\dfrac{X'}{X}=2\dfrac{T'}{T}+1=k\). So \(X=e^{kx},\ T=e^{(k-1)t/2},\ u=Ce^{kx+(k-1)t/2}\). At \(t=0\): \(Ce^{kx}=6e^{-3x}\), so \(C=6,\ k=-3\):</p>
+    \[ u=6e^{-3x-2t}. \]
+    <p><b>(2) \(3u_x+2u_y=0\), \(u(x,0)=4e^{-x}\).</b> \(\dfrac{X'}{X}=-\dfrac23\dfrac{Y'}{Y}=k\): \(u=Ce^{kx-3ky/2}\). Condition: \(C=4,\ k=-1\), so \(u=4e^{-x+3y/2}\).</p>
+    <p><b>(3) Superposition.</b> If instead \(u(x,0)=6e^{-3x}+4e^{-5x}\) in (1), each term has its own \(k\) (\(-3\) and \(-5\)): \(u=6e^{-3x-2t}+4e^{-5x-3t}\).</p>
+  </div>
+  <div class="box conn"><div class="box-title">Connection — where this reappears</div>
+    <p>Example (2) is also a Lagrange equation (\(P=3,\ Q=2,\ R=0\)): the auxiliary equations give \(2x-3y=c_1,\ u=c_2\), so \(u=f(2x-3y)\). The separated answer \(4e^{-x+3y/2}=4e^{-(2x-3y)/2}\) is exactly of this form with \(f(s)=4e^{-s/2}\). Two different methods, one answer — and Lagrange’s method shows that <em>every</em> solution (not just exponential ones) is a function of \(2x-3y\).</p>
+  </div>
+</section>

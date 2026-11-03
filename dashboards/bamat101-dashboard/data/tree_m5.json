@@ -1,0 +1,65 @@
+{
+ "topics": [
+  {
+   "id": "s25",
+   "label": "Formation of PDEs",
+   "page": 42,
+   "summary": "Forming a PDE by eliminating arbitrary constants or arbitrary functions, why a PDE has an arbitrary function in its general solution, and the Jacobian form Pp+Qq=R.",
+   "subtopics": [
+    {
+     "id": "s25-1",
+     "label": "General case: φ(u,v)=0",
+     "summary": "Eliminating φ gives a Lagrange equation whose coefficients are Jacobians."
+    }
+   ]
+  },
+  {
+   "id": "s26",
+   "label": "Equations of the Form F(p, q) = 0",
+   "page": 43,
+   "summary": "Plane solutions z = ax + by + c with F(a,b)=0 give the complete integral; envelopes give the general integral.",
+   "subtopics": []
+  },
+  {
+   "id": "s27",
+   "label": "Equations of the Form F(z, p, q) = 0",
+   "page": 44,
+   "summary": "Substituting u = x + ay reduces the PDE to an ODE in z and u.",
+   "subtopics": []
+  },
+  {
+   "id": "s28",
+   "label": "Equations of the Form F(x, p) = G(y, q)",
+   "page": 46,
+   "summary": "Set both sides equal to a constant a, solve for p and q, then integrate dz = p dx + q dy.",
+   "subtopics": []
+  },
+  {
+   "id": "s29",
+   "label": "Clairaut's Form and the Singular Solution",
+   "page": 47,
+   "summary": "Clairaut's complete integral by replacing p, q with constants, and the singular solution as the envelope of the family of planes.",
+   "subtopics": []
+  },
+  {
+   "id": "s30",
+   "label": "Lagrange's Linear Equation Pp + Qq = R",
+   "page": 49,
+   "summary": "Characteristic curves, the auxiliary equations dx/P = dy/Q = dz/R, and the general solution φ(u,v)=0.",
+   "subtopics": [
+    {
+     "id": "s30-1",
+     "label": "Solving the auxiliary equations",
+     "summary": "Grouping and the method of multipliers."
+    }
+   ]
+  },
+  {
+   "id": "s31",
+   "label": "Linear First-Order PDEs by Separation of Variables",
+   "page": 51,
+   "summary": "Product solutions with a separation constant, fixed by the given condition, and superposition for sums of exponentials.",
+   "subtopics": []
+  }
+ ]
+}

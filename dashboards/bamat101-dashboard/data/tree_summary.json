@@ -1,0 +1,25 @@
+{
+ "topics": [
+  {
+   "id": "chk1",
+   "label": "Checklist: Modules 2, 3, 4 (first half)",
+   "page": 52,
+   "summary": "Self-test questions on vector calculus, multiple integrals and constant-coefficient ODEs.",
+   "subtopics": []
+  },
+  {
+   "id": "qref",
+   "label": "Quick-Reference Summary: Modules 1, 4, 5",
+   "page": 53,
+   "summary": "One-line formulas for Module 1, the second half of Module 4, and the Module 5 PDE methods.",
+   "subtopics": []
+  },
+  {
+   "id": "chk2",
+   "label": "Checklist: Modules 1, 4 (second half), 5",
+   "page": 54,
+   "summary": "Self-test questions on Modules 1, 4 and 5.",
+   "subtopics": []
+  }
+ ]
+}

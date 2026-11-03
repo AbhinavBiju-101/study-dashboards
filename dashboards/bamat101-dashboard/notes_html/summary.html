@@ -1,0 +1,56 @@
+<section class="sec" id="chk1">
+  <h2>Final Exam-Prep Checklist</h2>
+  <div class="pagemark"><a href="@pdf/notes/52">&#8599; original PDF, page 52</a></div>
+  <p>&#9744; Can you explain, out loud, why \(\nabla f\) is a vector even though \(f\) is a scalar — without looking at Section 2?</p>
+  <p>&#9744; Can you compute gradient, divergence, and curl from memory, without hesitating on the \(\mathbf{j}\)-sign in curl?</p>
+  <p>&#9744; Can you find the maximum directional derivative and its direction at a point, from a bare function?</p>
+  <p>&#9744; Can you find a scalar potential \(\varphi\) for a given irrotational \(\mathbf{F}\), showing all three matching steps?</p>
+  <p>&#9744; Can you state, in one sentence each, what Green’s, Stokes’, and Gauss’s theorems convert into what, and reproduce the cancellation argument for at least one of them?</p>
+  <p>&#9744; Can you verify the Divergence Theorem on a cube (both sides, independently) without looking anything up?</p>
+  <p>&#9744; Can you sketch a region and flip the order of a double integral without algebra mistakes?</p>
+  <p>&#9744; Do you know, on sight, which coordinate system a given region calls for, and can you state why the Jacobian factor (\(r\), or \(\rho^2\sin\varphi\)) is what it is?</p>
+  <p>&#9744; Can you solve the auxiliary equation and write CF correctly for all three root cases?</p>
+  <p>&#9744; Can you recognize a resonance (failure) case immediately, and know whether to multiply by \(x\) or \(x^2\)?</p>
+  <p>Work through every worked example in this document a second time, from a blank page, before your exam — reproducing a solution (and a WHY argument) without looking is the real test of understanding, not whether the explanation made sense while reading it.</p>
+</section>
+<section class="sec" id="qref">
+  <h2>Part II — Quick-Reference Summary</h2>
+  <div class="pagemark"><a href="@pdf/notes/53">&#8599; original PDF, page 53</a></div>
+  <table class="tbl"><tbody>
+    <tr><th colspan="2">Module 1</th></tr>
+    <tr><td>Total differential</td><td>\(dz=f_x\,dx+f_y\,dy\) (linear estimate of \(\Delta z\); valid for small steps)</td></tr>
+    <tr><td>Jacobian</td><td>\(\dfrac{\partial(x,y)}{\partial(u,v)}=x_uy_v-x_vy_u\); area factor; \(J\cdot J^{-1}=1\); \(J\equiv0\iff\) dependent</td></tr>
+    <tr><td>Taylor (2 var.)</td><td>\(f+(hf_x+kf_y)+\frac{1}{2!}(h^2f_{xx}+2hkf_{xy}+k^2f_{yy})+\cdots\)</td></tr>
+    <tr><td>Max/min test</td><td>\(f_x=f_y=0\); \(rt-s^2\gt0\): min (\(r\gt0\)) / max (\(r\lt0\)); \(\lt0\): saddle; \(=0\): inconclusive</td></tr>
+    <tr><td>Lagrange</td><td>\(\nabla f=\lambda\nabla g,\ g=0\); compare candidate values</td></tr>
+    <tr><th colspan="2">Module 4 (continued)</th></tr>
+    <tr><td>Variation of parameters</td><td>\(y_p=-y_1\int\frac{y_2R}{W}+y_2\int\frac{y_1R}{W},\ W=y_1y_2'-y_1'y_2\)</td></tr>
+    <tr><td>Cauchy–Euler</td><td>\(x=e^t\); \(m(m-1)+am+b=0\); \(x^{m_1},x^{m_2}\) / \((C_1+C_2\ln x)x^m\) / \(x^\alpha\cos(\beta\ln x)\)</td></tr>
+    <tr><td>Cauchy–Legendre</td><td>\(ax+b=e^t\); \((ax+b)y'=aDy\), \((ax+b)^2y''=a^2D(D-1)y\)</td></tr>
+    <tr><td>Spring/circuit</td><td>\(mx''+cx'+kx=F\); \(Lq''+Rq'+q/C=E\); \(c^2-4mk\): over / critical / under</td></tr>
+    <tr><th colspan="2">Module 5</th></tr>
+    <tr><td>\(F(p,q)=0\)</td><td>\(z=ax+\varphi(a)y+c\) with \(F(a,\varphi(a))=0\)</td></tr>
+    <tr><td>\(F(z,p,q)=0\)</td><td>\(u=x+ay,\ p=z',\ q=az'\), solve ODE</td></tr>
+    <tr><td>\(F(x,p)=G(y,q)\)</td><td>both sides \(=a\); \(dz=p\,dx+q\,dy\)</td></tr>
+    <tr><td>Clairaut</td><td>\(z=px+qy+f(p,q)\Rightarrow z=ax+by+f(a,b)\); singular: \(\partial_a=\partial_b=0\)</td></tr>
+    <tr><td>Lagrange</td><td>\(\frac{dx}{P}=\frac{dy}{Q}=\frac{dz}{R}\); \(\phi(u,v)=0\); use grouping or multipliers</td></tr>
+    <tr><td>Separation of variables</td><td>\(u=XY\); \(X'/X=\cdots=k\); fix \(k\) from the condition; superpose</td></tr>
+  </tbody></table>
+</section>
+<section class="sec" id="chk2">
+  <h2>Part II — Exam-Prep Checklist</h2>
+  <div class="pagemark"><a href="@pdf/notes/54">&#8599; original PDF, page 54</a></div>
+  <p>&#9744; Can you explain, with a picture, what \(f_x\) means, and give an example where \(f_x,f_y\) exist but \(f\) is discontinuous?</p>
+  <p>&#9744; Can you explain why \(dz\) approximates \(\Delta z\), and use it for an error-propagation problem?</p>
+  <p>&#9744; Can you state why \(|J|\) is an area factor, and derive the polar (\(r\)) and spherical (\(\rho^2\sin\varphi\)) Jacobians?</p>
+  <p>&#9744; Can you derive the second-degree Taylor terms by restricting \(f\) to a line?</p>
+  <p>&#9744; Can you derive the \(rt-s^2\) test by completing the square, and handle the inconclusive case?</p>
+  <p>&#9744; Can you argue why \(\nabla f\parallel\nabla g\) at a constrained extremum, and decide max versus min among candidates?</p>
+  <p>&#9744; Can you derive the variation-of-parameters formula, including the extra condition \(u_1'y_1+u_2'y_2=0\)?</p>
+  <p>&#9744; Can you reduce Cauchy–Euler and Cauchy–Legendre equations to constant coefficients, including resonant right-hand sides?</p>
+  <p>&#9744; Can you set up and classify a spring or LCR problem, and recognise resonance?</p>
+  <p>&#9744; Can you form a PDE by eliminating constants and by eliminating functions?</p>
+  <p>&#9744; Given a first-order PDE, can you identify its type (\(F(p,q)\), \(F(z,p,q)\), separable, Clairaut, Lagrange) and apply the right method?</p>
+  <p>&#9744; Can you explain, geometrically, why Lagrange’s auxiliary equations work, and use multipliers?</p>
+  <p>&#9744; Can you find the singular solution of a Clairaut equation and say what it is geometrically?</p>
+</section>

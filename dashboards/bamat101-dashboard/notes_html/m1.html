@@ -167,4 +167,41 @@
   <figure class="fig"><img src="@static/figures/p9_1.png" alt="Surfaces: minimum x^2+y^2, maximum -x^2-y^2, saddle x^2-y^2" loading="lazy">
     <figcaption><b>Figure 5:</b> The three possible shapes at a critical point with \(rt-s^2\neq 0\). For \(x^2+y^2\): \(r=t=2\), \(s=0\), so \(rt-s^2=4\gt 0\), \(r\gt 0\). For \(-x^2-y^2\): \(rt-s^2=4\gt 0\), \(r\lt 0\). For \(x^2-y^2\): \(rt-s^2=-4\lt 0\).</figcaption></figure>
   <div class="box ex"><div class="box-title">Worked Example</div>
-    <p><b>(1) Classify \(f=x^3+y^3-3xy\).</b> \(f_x=3x^2-3y=0\), \(f_y=3y^2-3x=0\). From the first, \(y=x^2\); into the second, \(x^4=x\), so \(x=0\) or \(x=1\): critical points \((0,0),(1,1)\). Here
+    <p><b>(1) Classify \(f=x^3+y^3-3xy\).</b> \(f_x=3x^2-3y=0\), \(f_y=3y^2-3x=0\). From the first, \(y=x^2\); into the second, \(x^4=x\), so \(x=0\) or \(x=1\): critical points \((0,0),(1,1)\).  \(r=6x,\ s=-3,\ t=6y\).</p>
+    <ul>
+      <li>\((0,0)\): \(rt-s^2=0-9\lt0\): <b>saddle</b>.</li>
+      <li>\((1,1)\): \(rt-s^2=36-9=27\gt0,\ r=6\gt0\): <b>minimum</b>, \(f=-1\).</li>
+    </ul>
+    <p><b>(2) An application: open box of volume \(32\ \text{m}^3\) with least surface area.</b> Base \(x\times y\), height \(z=\dfrac{32}{xy}\). Area \(S=xy+2z(x+y)=xy+\dfrac{64}{y}+\dfrac{64}{x}\). Then \(S_x=y-\dfrac{64}{x^2}=0\) and \(S_y=x-\dfrac{64}{y^2}=0\) give \(y=64/x^2\) and hence \(x^3=64\): \(x=y=4,\ z=2,\ S_{\min}=48\ \text{m}^2\). (Second-derivative test: \(S_{xx}=\frac{128}{x^3}=2,\ S_{xy}=1,\ S_{yy}=2\), so \(rt-s^2=3\gt0,\ r\gt0\): a minimum.)</p>
+    <p><b>(3) When the test is inconclusive.</b> \(f=x^4+y^4-2x^2+4xy-2y^2\) has critical points \((0,0),\ (\sqrt2,-\sqrt2),\ (-\sqrt2,\sqrt2)\). At the latter two, \(r=t=20,\ s=4\): \(rt-s^2=384\gt0\), minima with \(f=-8\). At the origin \(r=t=-4,\ s=4\) gives \(rt-s^2=0\) — inconclusive. So test directly: along \(y=x\), \(f=2x^4\ge0\); along \(y=-x\), \(f=2x^4-8x^2\lt0\) for small \(x\neq0\). Since \(f\) takes both signs near the origin, it is a saddle.</p>
+  </div>
+</section>
+<section class="sec" id="s20">
+  <h2>20 Constrained Extrema: Lagrange’s Multiplier Method</h2>
+  <div class="pagemark"><a href="@pdf/notes/11">&#8599; original PDF, page 11</a></div>
+  <div class="box def"><div class="box-title">Definition</div>
+    <p>To extremise \(f(x,y,z)\) subject to \(g(x,y,z)=0\), solve</p>
+    \[ \nabla f=\lambda\,\nabla g\qquad\text{together with}\qquad g=0. \]
+    <p>The unknowns are \(x,y,z\) and the multiplier \(\lambda\). Compare the values of \(f\) at all solutions to decide which is the maximum and which the minimum.</p>
+  </div>
+  <div class="box why"><div class="box-title">WHY this is true</div>
+    <p><b>Why the gradients must be parallel — the same argument as Part I, Section 2.</b> Suppose \(P\) is a constrained extremum and \(\mathbf{r}(t)\) is <em>any</em> curve lying on the constraint surface \(g=0\) and passing through \(P\) at \(t=0\).</p>
+    <ol>
+      <li>Since \(g(\mathbf{r}(t))=0\) for all \(t\), the chain rule gives \(\nabla g\cdot\mathbf{r}'(0)=0\): \(\nabla g\) is perpendicular to every tangent direction of the constraint surface (this is the proof that gradients are normal to level surfaces).</li>
+      <li>Since \(P\) is an extremum of \(f\) <em>among points on the surface</em>, the function \(t\mapsto f(\mathbf{r}(t))\) has an extremum at \(t=0\), so its derivative vanishes: \(\nabla f\cdot\mathbf{r}'(0)=0\).</li>
+    </ol>
+    <p>Thus both \(\nabla f\) and \(\nabla g\) are perpendicular to <em>every</em> tangent vector of the surface at \(P\). The only direction perpendicular to a whole tangent plane is the normal direction, so \(\nabla f\parallel\nabla g\), i.e. \(\nabla f=\lambda\nabla g\).</p>
+    <p><b>Geometric picture.</b> If a level curve of \(f\) <em>crossed</em> the constraint curve at \(P\), you could slide along the constraint to a higher or lower value of \(f\), so \(P\) would not be an extremum. At an extremum the level curve of \(f\) just <em>touches</em> the constraint curve — they are tangent — and tangent curves have parallel normals.</p>
+  </div>
+  <figure class="fig"><img src="@static/figures/p11_1.png" alt="Circle x^2+y^2=5 with level lines x+2y=c; the extreme lines touch the circle at (1,2) and (-1,-2)" loading="lazy">
+    <figcaption><b>Figure 6:</b> Maximise \(f=x+2y\) on the circle \(x^2+y^2=5\). The grey lines are level curves of \(f\). The red lines \(x+2y=\pm5\) are the extreme ones that still touch the circle — they are <em>tangent</em> to it at \((1,2)\) and \((-1,-2)\), and there \(\nabla f\) and \(\nabla g\) point the same way.</figcaption></figure>
+  <div class="box ex"><div class="box-title">Worked Example</div>
+    <p><b>(1) Extremes of \(f=x+2y\) on \(x^2+y^2=5\).</b> \(\nabla f=(1,2)\), \(\nabla g=(2x,2y)\). \((1,2)=\lambda(2x,2y)\) gives \(y=2x\); the constraint becomes \(5x^2=5,\ x=\pm1\). Candidates \((1,2)\) with \(f=5\) and \((-1,-2)\) with \(f=-5\): maximum 5, minimum \(-5\), exactly as the figure shows.</p>
+    <p><b>(2) Closest point of the plane \(x+2y+3z=14\) to the origin.</b> Minimise \(x^2+y^2+z^2\):</p>
+    <p>\((2x,2y,2z)=\lambda(1,2,3)\) gives \(x=\frac\lambda2,\ y=\lambda,\ z=\frac{3\lambda}{2}\). The constraint gives \(7\lambda=14,\ \lambda=2\): point \((1,2,3)\), distance \(\sqrt{14}\). (Sanity check: \((1,2,3)\) lies in the plane and the vector \((1,2,3)\) is the plane’s normal — the shortest path to a plane is along its normal.)</p>
+    <p><b>(3) Largest box in a sphere.</b> Maximise \(V=8xyz\) on \(x^2+y^2+z^2=12\). \((yz,xz,xy)=2\lambda(x,y,z)\); multiplying the three equations by \(x,y,z\) shows \(x^2=y^2=z^2\), so \(x=y=z=2\): a cube of edge 4, \(V_{\max}=64\).</p>
+  </div>
+  <div class="box mis"><div class="box-title">Fixing a Common Misconception</div>
+    <p><b>“Lagrange’s method finds the maximum.”</b> It only finds <em>candidates</em> — points where the gradients are parallel. You must still decide their nature. For \(f=x^2+y^2\) on \(xy=1\) the method gives \((1,1)\) and \((-1,-1)\) with \(f=2\); but along the hyperbola \(f=t^2+t^{-2}\to\infty\), so 2 is the <em>minimum</em> and there is no maximum at all. Always compare values, or argue from the shape of the constraint.</p>
+  </div>
+</section>
