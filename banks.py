@@ -63,7 +63,7 @@ def build_bank(subjects):
     be_titles = {n: t["title"] for n, t in getattr(be, "TOPICS", {}).items()}
     loaders = {
         "evs": lambda: _by_unit_bank("evs", "W", "Week", evs_titles),
-        "be": lambda: _by_unit_bank("be", "T", "Topic", be_titles),
+        "be": lambda: _by_unit_bank("be", "M", "Module", be_titles),
         "baeng101": _baeng,
         "phy": _phy,
     }

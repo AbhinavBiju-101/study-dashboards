@@ -54,17 +54,17 @@
   <a class="dashboard-link" href="{{ url_for('dashboard') }}">☰ Dashboard</a>
   <a href="{{ url_for('quiz_setup') }}">📝 Quiz</a>
   {% if prev_num %}
-    <a href="{{ url_for('topic_page', num=prev_num) }}">← Topic {{ prev_num }}</a>
+    <a href="{{ url_for('topic_page', num=prev_num) }}">← Module {{ prev_num }}</a>
   {% else %}
-    <a class="disabled">← Topic</a>
+    <a class="disabled">← Module</a>
   {% endif %}
   <span class="grow"></span>
-  <span class="current">Topic {{ current }} of {{ total }}</span>
+  <span class="current">Module {{ current }} of {{ total }}</span>
   <span class="grow"></span>
   {% if next_num %}
-    <a href="{{ url_for('topic_page', num=next_num) }}">Topic {{ next_num }} →</a>
+    <a href="{{ url_for('topic_page', num=next_num) }}">Module {{ next_num }} →</a>
   {% else %}
-    <a class="disabled">Topic →</a>
+    <a class="disabled">Module →</a>
   {% endif %}
 </nav>
 
@@ -74,17 +74,17 @@
   <a class="dashboard-link" href="{{ url_for('dashboard') }}">☰ Back to Dashboard</a>
   <a href="{{ url_for('quiz_setup') }}">📝 Quiz</a>
   {% if prev_num %}
-    <a href="{{ url_for('topic_page', num=prev_num) }}">← Topic {{ prev_num }}</a>
+    <a href="{{ url_for('topic_page', num=prev_num) }}">← Module {{ prev_num }}</a>
   {% else %}
-    <a class="disabled">← Topic</a>
+    <a class="disabled">← Module</a>
   {% endif %}
   <span class="grow"></span>
-  <span class="current">Topic {{ current }} of {{ total }}</span>
+  <span class="current">Module {{ current }} of {{ total }}</span>
   <span class="grow"></span>
   {% if next_num %}
-    <a href="{{ url_for('topic_page', num=next_num) }}">Topic {{ next_num }} →</a>
+    <a href="{{ url_for('topic_page', num=next_num) }}">Module {{ next_num }} →</a>
   {% else %}
-    <a class="disabled">Topic →</a>
+    <a class="disabled">Module →</a>
   {% endif %}
 </nav>
 

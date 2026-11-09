@@ -1,0 +1,294 @@
+{% extends "base.html" %}
+{% block title %}Basic Engineering — Module 5{% endblock %}
+{% block extra_style %}
+<style>
+  :root{
+    --ink:#1b1f24; --sub:#4a5568; --bg:#fbfbfa; --card:#ffffff;
+    --def:#4a5568; --def-bg:#f3f4f6;
+    --why:#1e468c; --why-bg:#eef3fb;
+    --mis:#b45a0a; --mis-bg:#fdf3e7;
+    --ex:#166e3c; --ex-bg:#eaf6ee;
+    --line:#e3e6ea; --accent:#7c3aed;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; font-family:"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    background:var(--bg); color:var(--ink); line-height:1.55;
+  }
+  .wrap{max-width:900px;margin:0 auto;padding:0 22px 80px;}
+  header.hero{
+    background:linear-gradient(135deg,#1e2a4a,#3949ab 60%,#7c3aed);
+    color:#fff; padding:48px 22px 60px; text-align:center;
+  }
+  header.hero h1{margin:0 0 8px;font-size:2rem;}
+  header.hero p{margin:4px 0;opacity:.9;font-size:1.05rem;}
+  nav.toc{
+    background:var(--card); border:1px solid var(--line); border-radius:12px;
+    padding:20px 26px; margin:-36px auto 34px; max-width:860px;
+    box-shadow:0 6px 24px rgba(20,20,40,.08);
+  }
+  nav.toc h2{margin-top:0;font-size:1.05rem;color:var(--sub);text-transform:uppercase;letter-spacing:.06em;}
+  nav.toc ol{columns:2;column-gap:30px;padding-left:20px;margin:0;}
+  nav.toc li{margin-bottom:6px;break-inside:avoid;}
+  nav.toc a{color:var(--accent);text-decoration:none;font-size:.95rem;}
+  nav.toc a:hover{text-decoration:underline;}
+  h2.part{
+    font-size:1.6rem;margin-top:64px;padding-bottom:10px;border-bottom:3px solid var(--accent);
+  }
+  h3.topic{
+    font-size:1.25rem;margin-top:42px;color:#1e2a4a;
+    border-left:5px solid var(--accent);padding-left:12px;
+  }
+  h4.sub{margin-top:26px;font-size:1.05rem;color:var(--sub);}
+  p{margin:10px 0;}
+  .box{border-radius:10px;padding:16px 18px;margin:16px 0;border:1px solid transparent;}
+  .box .label{font-weight:700;font-size:.78rem;text-transform:uppercase;letter-spacing:.05em;display:block;margin-bottom:8px;}
+  .def{background:var(--def-bg);border-color:#d4d8de;}
+  .def .label{color:var(--def);}
+  .why{background:var(--why-bg);border-color:#c3d4ef;}
+  .why .label{color:var(--why);}
+  .mis{background:var(--mis-bg);border-color:#f1cf9f;}
+  .mis .label{color:var(--mis);}
+  .ex{background:var(--ex-bg);border-color:#b8e2c6;}
+  .ex .label{color:var(--ex);}
+  .foreshadow{background:#f4effc;border:1px dashed #b39ce8;border-radius:8px;padding:10px 14px;font-size:.93rem;color:#4b3480;margin:14px 0;}
+  .foreshadow::before{content:"↳ ";font-weight:700;}
+  table{border-collapse:collapse;width:100%;margin:14px 0;font-size:.93rem;}
+  th,td{border:1px solid var(--line);padding:7px 10px;text-align:left;}
+  th{background:#eef0f4;}
+  .diagram{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px;margin:18px 0;text-align:center;}
+  .diagram svg{max-width:100%;height:auto;}
+  .caption{font-size:.85rem;color:var(--sub);margin-top:8px;font-style:italic;}
+  code{background:#eef0f4;padding:1px 5px;border-radius:4px;font-size:.92em;}
+  .formula{
+    background:#fff; border:1px solid var(--line); border-left:4px solid var(--accent);
+    padding:10px 16px; margin:12px 0; font-size:1.05rem; overflow-x:auto;
+  }
+  .checklist{list-style:none;padding-left:0;}
+  .checklist li{padding:8px 0 8px 30px;position:relative;border-bottom:1px dashed var(--line);}
+  .checklist li::before{content:"☐";position:absolute;left:0;font-size:1.2rem;color:var(--accent);}
+  .marks{display:inline-block;background:#1e2a4a;color:#fff;font-size:.72rem;padding:2px 8px;border-radius:12px;margin-left:8px;vertical-align:middle;}
+  footer{text-align:center;color:var(--sub);font-size:.85rem;margin-top:60px;padding-top:20px;border-top:1px solid var(--line);}
+  .backtop{position:fixed;bottom:20px;right:20px;background:var(--accent);color:#fff;border-radius:50%;width:42px;height:42px;text-align:center;line-height:42px;text-decoration:none;box-shadow:0 4px 12px rgba(0,0,0,.2);font-size:1.1rem;}
+
+  .terms{background:#fff9e6;border-color:#f0dfa0;}
+  .terms .label{color:#8a6d00;}
+  .terms ul{list-style:none;margin:0;padding:0;}
+  .terms li{padding:5px 0;border-bottom:1px dotted #ecdca2;font-size:.94rem;}
+  .terms li:last-child{border-bottom:none;}
+  .terms li b{color:#5c4700;}
+  ol,ul{padding-left:22px;}
+  .gloss td:first-child{font-weight:600;white-space:nowrap;vertical-align:top;}
+</style>
+<style>
+  .bio .s{stroke:#333;fill:none;stroke-width:1.5}.bio .a{fill:#e8f0fc}.bio .b{fill:#e6f4ec}.bio .c{fill:#fdf0e3}.bio .d{fill:#f3ecfb}
+  .bio svg text{font:12.5px sans-serif;fill:#1d2330}.bio figure{margin:16px 0;text-align:center}.bio figcaption,.bio .note{color:#5b6475;font-size:.92rem}
+  .bio table{display:block;overflow-x:auto}.bio .box .t{font-weight:700}
+  .cover{text-align:center;padding:90px 20px}.cover h1{font-size:2.4rem;margin:0 0 10px}.module{margin-top:30px}
+  @media print{
+    body{background:#fff}.backtop,nav.site-nav{display:none!important}.wrap{max-width:none;padding:0}
+    header.hero{box-shadow:none;border-radius:0!important;margin:0!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    .module{break-before:page}h2.part{break-before:page}h2.part:first-of-type{break-before:auto}
+    .box,.diagram,table,tr,.foreshadow,h3.topic,h4.sub{break-inside:avoid}h3.topic{break-after:avoid}
+    *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    nav.toc{box-shadow:none;margin:12px 0}
+  }
+</style>
+{% endblock %}
+{% block content %}
+<div class="wrap">
+{% raw %}<header class="hero" style="border-radius:12px;margin-top:24px;"><h1>Module 5 — Bio-Inspired Design in Engineering</h1><p>Biomimicry and its core ideas, case studies (Velcro, self-healing, termite-mound ventilation, insect-inspired drones and soft robots, neural networks).</p></header><nav class="toc"><h2>Subtopics in this module</h2><ol><li><a href="#i1">I1. Introduction to bio-inspired design (Dr Shankar)</a></li><li><a href="#i2">I2. Biomimicry case studies across the animal and plant kingdoms</a></li><li><a href="#i3">I3. Termite-mound ventilation in green buildings</a></li><li><a href="#i4">I4. Insect-inspired drones, part 1: design of a robotic insect</a></li><li><a href="#i5">I5. Insect drones part 2: intelligence, swarms and soft robots</a></li><li><a href="#i6">I6. Neural networks based on the human brain</a></li><li><a href="#i7">I7. Summary tables</a></li><li><a href="#selftest">Self-test checklist</a></li></ol></nav>
+<div class="box mis"><span class="label">Status</span>These notes are the ones you prepared from the Module 5 videos, restyled to match the rest of the site. When you send the full transcripts I will expand each section.</div>
+
+<p>One move repeats in every lecture: <b>observe a natural solution &rarr; ask <i>how</i> (mechanism) and <i>why</i> (purpose) &rarr; re-implement in engineering terms.</b> &sect;1 names the vocabulary. &sect;2 and &sect;3 apply it to materials and buildings. &sect;4 and &sect;5 apply it to flying and crawling machines. &sect;6 applies it to computation. Look for the recurring threads: <i>hexagons</i> (&sect;1, &sect;2), <i>passive stack airflow</i> (&sect;1, &sect;3), <i>hooks</i> (&sect;1, &sect;2), <i>store-and-release energy</i> (&sect;4), and <i>sum &rarr; threshold &rarr; fire</i> (&sect;1 Schmitt trigger, &sect;6 neuron).</p>
+
+
+<h3 class="topic" id="i1">I1. Introduction to bio-inspired design (Dr Shankar)</h3><div class="bio">
+<div class="box def"><span class="label">Definition [lecture]</span>Bio-inspired design develops concepts, approaches and technologies that build and control "the way nature does": biological process &rarr; concept &rarr; proof of concept &rarr; technological design. It targets engineering <i>and</i> societal problems.</div>
+<div class="box mis"><span class="label">What does <u>not</u> count [lecture]</span>(1) Purely aesthetic or decorative designs with no function. (2) Purely human technologies (microprocessors, Bluetooth, Wi-Fi). (3) Conventional mathematical optimisation, such as thermodynamic-cycle optimisation. The test: is a <b>biological process</b> the source of the idea, and does it do a <b>function</b>?</div>
+
+<h4 class="sub">Rawling's classification: three terms, one spectrum</h4>
+<figure><svg viewBox="0 0 720 150" role="img" aria-label="Bionics, biomimetics, biomimicry spectrum">
+<rect class="s c" x="10" y="35" width="200" height="75" rx="8"/><text x="110" y="58" text-anchor="middle" font-weight="bold">BIONICS</text><text x="110" y="76" text-anchor="middle">replicate / augment /</text><text x="110" y="92" text-anchor="middle">replace a biological function</text>
+<rect class="s a" x="260" y="35" width="200" height="75" rx="8"/><text x="360" y="58" text-anchor="middle" font-weight="bold">BIOMIMETICS</text><text x="360" y="76" text-anchor="middle">micro level, technology:</text><text x="360" y="92" text-anchor="middle">HOW does it work? (bridge)</text>
+<rect class="s b" x="510" y="35" width="200" height="75" rx="8"/><text x="610" y="58" text-anchor="middle" font-weight="bold">BIOMIMICRY</text><text x="610" y="76" text-anchor="middle">macro level, philosophy:</text><text x="610" y="92" text-anchor="middle">WHY? resilience, sustainability</text>
+<path class="s" d="M210 72H258M460 72H508"/><text x="110" y="130" text-anchor="middle">robotics, prosthetics</text><text x="610" y="130" text-anchor="middle">ecological design, circular economy</text></svg>
+<figcaption>All three sit under "bio-inspiration". Examples from the lecture: shark-skin swimsuits and lotus-effect paints (biomimetics); termite-mound urban planning and circular economy (biomimicry); prosthetic arms and cochlear implants (bionics).</figcaption></figure>
+<div class="box why"><span class="label">Why the distinction matters</span>The termite example shows it. Asking <i>how</i> the mound holds temperature, then copying the airflow, is biomimetics. Asking <i>why</i> nature solves it passively and adopting passive, low-energy planning for cities is biomimicry. The lecturer notes termites are interesting not for eating wood but for "how they maintain internal temperature", which is the principle, not the animal.</div>
+
+<h4 class="sub">Evolution over the decades [lecture]</h4>
+<table><tr><th>Era</th><th>Example</th><th>Idea carried over</th></tr>
+<tr><td>Early (before the term existed)</td><td>Tortoise/armadillo shells &rarr; composite armour; birds &rarr; flying machines</td><td>Hard outer layer + soft inner layer linked by fibres; lift, drag, wing flapping</td></tr>
+<tr><td>1950s</td><td>Otto Schmitt: Schmitt trigger from nerve behaviour; George de Mestral: Velcro from burrs</td><td>Fire only when input crosses a threshold; many hooks + loops</td></tr>
+<tr><td>1990s–2000s</td><td>Termite-mound buildings; lotus effect (super-hydrophobic self-cleaning)</td><td>Passive ventilation; micro-texture sheds water and dust</td></tr>
+<tr><td>21st century</td><td>Kingfisher-beak Shinkansen nose; gecko-seta adhesives</td><td>Smooth pressure change at a medium boundary; billions of hair-like spatulae raise contact area</td></tr></table>
+<div class="box ex"><span class="label">Worked example: why a Schmitt trigger is "neuron-like"</span>Inputs pass through a resistor divider; the output flips ON only when the input crosses a threshold, and flips back at a (different) lower one. A neuron likewise sums incoming signals and fires only above threshold. <b>Foreshadowing:</b> &sect;6 builds the artificial neuron from exactly this behaviour, adding weights and a bias.</div>
+
+<h4 class="sub">Four primitive design forms [lecture]</h4>
+<figure><svg viewBox="0 0 720 130" role="img" aria-label="Four primitive bio design forms">
+<g class="s"><polygon class="a" points="50,30 80,30 95,56 80,82 50,82 35,56"/><polygon class="a" points="95,56 125,56 140,82 125,108 95,108 80,82"/><polygon class="a" points="95,4 125,4 140,30 125,56 95,56 80,30"/></g><text x="90" y="125" text-anchor="middle">hexagonal cells</text>
+<g class="s"><path class="b" d="M215 30h90v60h-90z"/><path d="M225 40h70M225 55h70M225 70h70M225 85h70" stroke-dasharray="4 2"/></g><text x="260" y="125" text-anchor="middle">anisotropy (grain)</text>
+<path class="s" d="M420 20c40 0 40 25 0 25s-40 25 0 25 40 25 0 25" /><text x="420" y="125" text-anchor="middle">helix / spiral</text>
+<g class="s"><polygon class="d" points="560,20 620,15 640,60 590,75 555,55"/><polygon class="d" points="640,60 620,15 690,25 695,70"/><polygon class="d" points="590,75 640,60 695,70 680,110 600,105"/></g><text x="625" y="125" text-anchor="middle">Voronoi cells</text></svg>
+<figcaption>Hexagons: efficient packing and high strength-to-weight (honeycomb aerospace panels). Anisotropy: strength depends on direction (wood along vs across the grain: longitudinal, tangential, radial). Helix/spiral: compact storage and growth (DNA, snail shell, springs, turbines). Voronoi: irregular cells around seed points, partitioning space with minimal material (giraffe coat, dragonfly wing, crash-resistant car frames).</figcaption></figure>
+<div class="box mis"><span class="label">Fixing a misconception</span>"Bio-inspired means copying the animal." The lecture's own examples are <i>properties</i> (cell geometry, direction-dependent strength, spiral growth), not animal outlines. &sect;2 shows each of these properties being transferred to a product.</div>
+<p class="note">Resources named in the lecture: AskNature (biological strategies by function: species, function, working principle, how to mimic), Biomimicry Institute, Biomimicry 3.8, Georgia Tech CBID, ASU Global Futures Lab, Think Biomimicry, BISL, Knackle's BioCanvas/E2B thesaurus, NSF 2022–23 workshop report, TeachEngineering.</p>
+
+</div>
+<h3 class="topic" id="i2">I2. Biomimicry case studies across the animal and plant kingdoms</h3><div class="bio">
+<p>This lecture walks one case per group: vertebrates (fish, amphibian, reptile, mammal, bird), invertebrate, plant, then human skin. The pattern is <b>problem &rarr; organism &rarr; property &rarr; product</b>.</p>
+<table><tr><th>Source</th><th>Problem</th><th>Property observed</th><th>Product</th></tr>
+<tr><td>Kingfisher (bird)</td><td>Bullet train makes a loud boom leaving tunnels</td><td>Beak dives into water with almost no splash</td><td>Long beak-like train nose</td></tr>
+<tr><td>Yellow boxfish</td><td>Car fuel use and emissions</td><td>Very low drag coefficient</td><td>Mercedes-Benz "Bionic" concept car</td></tr>
+<tr><td>Tadpole (amphibian)</td><td>Tyres skid on wet roads</td><td>Hexagonal foot cells channel water away, giving wet adhesion</td><td>Anti-skid tyre tread</td></tr>
+<tr><td>Garter snakes (reptile)</td><td>Cool, humid wine storage without chillers</td><td>Snakes shelter in caves (cave effect) and pile together (brumation)</td><td>Subterranean wine cellar</td></tr>
+<tr><td>Mammal skull</td><td>Hearing without stressing the eardrum</td><td>Three jaw bones moved to the middle ear and amplify vibration</td><td>Bone-conduction headphones (zygomatic arch to ossicles)</td></tr>
+<tr><td>Beehive (invertebrate)</td><td>Strong, light cargo floor</td><td>Hexagonal wax cells hold ~30&times; their weight of honey [lecture]</td><td>Paper-and-glue hexagonal core between sheets (Ford EcoSport floor)</td></tr>
+<tr><td>Burdock (plant)</td><td>Reusable fastener</td><td>Stiff hooked involucre catches soft fur or fleece</td><td>Velcro: stiff nylon hooks + soft loops</td></tr>
+<tr><td>Human skin</td><td>Prosthetics, robots, wearables</td><td>Elastic, sensing, self-healing</td><td>E-skin</td></tr></table>
+<div class="box why"><span class="label">Why the hexagon keeps winning [connects &sect;1]</span>Hexagons tile a plane with no gaps and the least wall length per cell, so they hold the most volume per unit of material. The same shape explains the honeycomb panel (&sect;1), the tadpole foot channels, and the car floorboard. The sandwich adds stiffness because the faces carry bending while the light core only spaces them apart.</div>
+<div class="box mis"><span class="label">Fixing a misconception</span>"The cave effect means caves are cold." No: it moderates. Hot outside &rarr; slightly cooler inside; cold outside &rarr; slightly warmer inside. That damping is exactly what the wine cellar uses.</div>
+
+<h4 class="sub">Skin self-healing &rarr; self-healing e-skin</h4>
+<figure><svg viewBox="0 0 720 110" role="img" aria-label="Four stages of wound healing">
+<defs><marker id="m" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0L8,4L0,8z" fill="#333"/></marker></defs>
+<rect class="s c" x="5" y="25" width="150" height="60" rx="8"/><text x="80" y="48" text-anchor="middle" font-weight="bold">1 Haemostasis</text><text x="80" y="66" text-anchor="middle">vasoconstriction,</text><text x="80" y="80" text-anchor="middle">fibrin clot seals</text>
+<rect class="s a" x="190" y="25" width="150" height="60" rx="8"/><text x="265" y="48" text-anchor="middle" font-weight="bold">2 Inflammation</text><text x="265" y="66" text-anchor="middle">vasodilation, macrophages</text><text x="265" y="80" text-anchor="middle">kill pathogens (~24 h)</text>
+<rect class="s b" x="375" y="25" width="150" height="60" rx="8"/><text x="450" y="48" text-anchor="middle" font-weight="bold">3 Proliferation</text><text x="450" y="66" text-anchor="middle">angiogenesis, new</text><text x="450" y="80" text-anchor="middle">collagen cells</text>
+<rect class="s d" x="560" y="25" width="150" height="60" rx="8"/><text x="635" y="48" text-anchor="middle" font-weight="bold">4 Remodelling</text><text x="635" y="66" text-anchor="middle">collagen III &rarr; I,</text><text x="635" y="80" text-anchor="middle">scar forms</text>
+<path class="s" d="M155 55H188M340 55H373M525 55H558" marker-end="url(#m)"/></svg>
+<figcaption>A "wound" here means a cut that reaches the dermis. Stage 3 is what the engineers copy.</figcaption></figure>
+<div class="box ex"><span class="label">The engineering copy [lecture]</span>Microcapsules of monomer (dicyclopentadiene) and a ruthenium Grubbs catalyst are embedded in the elastic e-skin. A crack breaks the capsules; monomer meets catalyst and <b>polymerises</b>, filling the crack, the analogue of collagen proliferation. Conductive fillers with <b>reversible bonds</b> (graphene, carbon nanotubes, silver) re-form so electrical paths heal too. Skin's two properties, mechanical (collagen + elastin &rarr; silicones, polymers) and sensory (tactile sensors, plus power and a communication module), plus healing, make three design requirements.</div>
+<div class="foreshadow">Self-healing returns in &sect;5 (soft robots are made of the same elastomer family), and sensing &rarr; processing &rarr; actuation in the e-skin pipeline is the same loop as the nervous system in &sect;6.</div>
+
+</div>
+<h3 class="topic" id="i3">I3. Termite-mound ventilation in green buildings</h3><div class="bio">
+<div class="box def"><span class="label">Claim [lecture]</span>Mounds keep internal temperature (the lecture quotes about 13–31 °C) and humidity stable despite outside swings, by <b>passive</b> design: tunnels and chambers, a central flue/chimney, thick walls. HVAC use is the problem: energy-hungry and CO<sub>2</sub>-heavy.</div>
+<figure><svg viewBox="0 0 700 270" role="img" aria-label="Stack effect in a mound">
+<defs><marker id="r" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0L8,4L0,8z" fill="#c0392b"/></marker><marker id="u" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0L8,4L0,8z" fill="#2471a3"/></marker></defs>
+<path class="s c" d="M200 250 L235 90 L305 35 L395 35 L465 90 L500 250z"/><rect class="s a" x="310" y="50" width="80" height="185" rx="6"/><text x="350" y="145" text-anchor="middle">flue</text>
+<path d="M350 200V20" stroke="#c0392b" stroke-width="2.5" fill="none" marker-end="url(#r)"/><text x="350" y="14" text-anchor="middle">warm, light air exits</text>
+<path d="M60 230H198" stroke="#2471a3" stroke-width="2.5" marker-end="url(#u)"/><text x="40" y="220">cool, dense air in (night)</text>
+<text x="515" y="130">thick walls = thermal mass</text><text x="515" y="146">(day heat stored, released late)</text><text x="515" y="240">chimney height h drives &Delta;p</text></svg>
+<figcaption>Core principle named in the lecture: the <b>stack effect</b>. Daytime solar heat drives air up; at night cool air is drawn in and recharges the thermal mass.</figcaption></figure>
+<div class="box why"><span class="label">Derivation of the stack effect</span>Ideal gas: &rho; = p/(RT), so warm air is lighter. Two air columns of height <i>h</i> (outside cool, inside warm) differ in weight, giving <code>&Delta;p = g h (&rho;<sub>out</sub> &minus; &rho;<sub>in</sub>)</code>. This unbalanced pressure pushes cool air in low and warm air out high, with no fan.</div>
+<div class="box ex"><span class="label">Worked example</span>h = 10 m, outside 293 K, inside 303 K, &rho; &asymp; 353/T. &rho;<sub>out</sub> = 1.205, &rho;<sub>in</sub> = 1.165, difference 0.040 kg/m&sup3;. &Delta;p = 9.81 &times; 10 &times; 0.040 &asymp; <b>3.9 Pa</b>. Doubling h doubles &Delta;p, which is why mounds and solar chimneys are tall.<br><b>Thermal mass check:</b> delay across a wall scales as &tau; &sim; L&sup2;/&alpha;. For &alpha; &asymp; 5&times;10<sup>&minus;7</sup> m&sup2;/s, L = 0.2 m gives &asymp; 22 h, so a midday heat peak arrives about a day later, the night-time "recharge" the lecture describes (order-of-magnitude estimate).</div>
+<h4 class="sub">Buildings, results, limits [lecture]</h4>
+<table><tr><th>Building</th><th>Feature</th><th>Claim</th></tr>
+<tr><td>Eastgate Centre, Harare, Zimbabwe</td><td>Roof chimneys, floor air channels, thermal mass</td><td>~90% energy saving; ~10% still needed (fans in some conditions)</td></tr>
+<tr><td>New York Times building</td><td>Ceramic-rod shading, double-skin façade</td><td>Lower cooling load, glare control</td></tr>
+<tr><td>Cambridge (central atrium)</td><td>Air flow through the building</td><td>~40% energy cut</td></tr>
+<tr><td>Council House, Melbourne</td><td>Precast concrete thermal mass, stacks</td><td>6-star Green Star office</td></tr></table>
+<div class="box mis"><span class="label">Myths vs facts [lecture]</span>Myth: mounds simply use wind to cool the nest. Fact: some ventilation involves heating and mound structure; it is not 100% passive. Myth: Eastgate is a perfect copy. Fact: it follows the principle but sometimes uses powered fans. Myth: mounds are static. Fact: termites keep modifying them (rain damage, heat, humidity).</div>
+<p><b>Triple bottom line:</b> environmental (lower energy, CO<sub>2</sub>), economic (lower operating cost), social (better indoor air, health). <b>Limits:</b> less effective in very humid or stagnant-air climates (so add dehumidification, evaporative pre-cooling, solar chimneys), design complexity, higher initial cost, regular maintenance and monitoring. <b>Future:</b> CFD modelling, advanced materials, sensors that adjust openings, hybrid solar/wind.</p>
+<div class="foreshadow">"Sensors that open and close vents" is a control loop; &sect;4 gives insect drones the same idea (sensing, actuation, coordination).</div>
+
+</div>
+<h3 class="topic" id="i4">I4. Insect-inspired drones, part 1: design of a robotic insect</h3><div class="bio">
+<p>Learning outcomes: how insects and birds fly, how insect intelligence guides autonomous flying robots, and how to map flight mechanisms onto drones. These drones are <b>research devices</b> (about 2 cm scale), not today's commercial drones.</p>
+<table><tr><th>Insect part</th><th>Natural function</th><th>Drone counterpart</th></tr>
+<tr><td>Head: compound eyes</td><td>Many photoreceptors: high resolution, panoramic, adjustable view, UV colours</td><td>FPV (first-person view) camera + video transmitter; compound lenses; thermal cameras</td></tr>
+<tr><td>Head: antenna</td><td>Smell: food, prey, pollination</td><td>Silkworm-moth antenna read by electroantennography (EAG): sniffs chemicals and hazardous gases</td></tr>
+<tr><td>Thorax: muscles + wings</td><td>Flapping: linear + rotary motion, 3 degrees of freedom</td><td>Spring (bending beam) + rotary ball bearing; shape-memory-alloy "smart wings"</td></tr>
+<tr><td>Abdomen</td><td>Organs</td><td>Battery, GPS, electronics</td></tr></table>
+<div class="box why"><span class="label">Why store-and-release energy matters [lecture]</span>Insect wings behave like a spring: contracting stores elastic energy; spreading releases it, so each stroke reuses energy from the last. Even the best drones fly under ~30 min [lecture], so extracting more from each wing beat is the research goal. Rigid wings cannot bend or twist; flexible wings (shape-memory alloy) store and return energy, with ~40% performance gain reported [lecture].</div>
+<figure><svg viewBox="0 0 700 170" role="img" aria-label="Wing stroke energy exchange">
+<path class="s" d="M40 120 Q110 20 180 120 T320 120 T460 120 T600 120" stroke="#1e468c"/><text x="40" y="150">stroke 1</text><text x="190" y="150">stroke 2</text><text x="330" y="150">stroke 3</text>
+<text x="100" y="25">spring compresses: <tspan fill="#1e468c">store</tspan></text><text x="245" y="95">release &rarr; helps next stroke</text>
+<text x="40" y="12" font-size="11">rotation axis set by spring height (above or below leading edge)</text></svg>
+<figcaption>Two mechanisms in the research drone: springs for linear flapping, ball-bearing rotation for pitching. Spring height moves the rotation axis relative to the leading edge, tuning pitch. Fabrication path: photograph the beetle wing &rarr; micro-CT &rarr; CAD of veins and membrane &rarr; 3D-print veins &rarr; mount membrane.</figcaption></figure>
+<div class="box why"><span class="label">Scale and Reynolds number</span><code>Re = &rho;vL/&mu;</code> compares inertial to viscous force. Lecture: insect scale has low wing inertia, passive shape deformation and fast response (wing-to-body mass ~1–5%), while bird scale has higher wing inertia and more distributed sensing (~10–20%). Smaller insects must flap faster.<br><b>Derivation:</b> lift = weight gives <code>v &prop; &radic;(m/S) &prop; &radic;L</code> when all lengths scale by L. Small flyers need less speed but live at low Re.</div>
+<div class="box ex"><span class="label">Worked example</span>Fly: v = 1 m/s, L = 3 mm: Re = 1.2&times;1&times;0.003/1.8&times;10<sup>&minus;5</sup> = <b>200</b>. Airliner: v = 250 m/s, L = 5 m: Re &asymp; 8&times;10<sup>7</sup>. Shrink a design 100&times; (k = 0.01): required speed falls to &radic;0.01 = 0.1 of the original, so a 60 m/s craft needs ~6 m/s.</div>
+<p><b>Measuring performance [lecture]:</b> force transducer (lift/weight change), high-speed camera (flapping frequency, slow-motion comparison with the real insect), electrical power (current &times; voltage). <b>Advantages:</b> tiny, can enter confined spaces, work in swarms, minimalist design. <b>Challenges:</b> complex small-scale design (MEMS), full autonomy (collision avoidance, navigation, self-recharge), computing power (GPU/FPGA/neuromorphic) within tiny size and power budgets, specially designed motors and propellers.</p>
+
+</div>
+<h3 class="topic" id="i5">I5. Insect drones part 2: intelligence, swarms and soft robots</h3><div class="bio">
+<div class="box def"><span class="label">Parsimony [lecture]</span>Insects achieve robust behaviour in complex, hostile environments with <b>limited resources</b>. Three pillars: <b>embodiment</b> (body, physiology and environment together shape behaviour), <b>sensory-motor coordination</b> (the insect's sensors-and-actuators loop), <b>swarming</b> (a colony outperforms an individual).</div>
+<div class="box mis"><span class="label">Fixing a misconception</span>"Intelligence lives in the brain." Embodied cognition says it also depends on the body and how it senses and interacts with the world. This is why soft bodies (below) can "compute" through their shape.</div>
+<p>The controller has three parts: biomechanics (choice of sensors and actuation), locomotion control (when, how fast), high-level cognitive control (direction, forward vs rotational movement).</p>
+<table><tr><th>Robot</th><th>Inspiration</th><th>Capability / use</th></tr>
+<tr><td>AntBot</td><td>Desert ant: hexapod with UV sensor for sky polarisation</td><td>Navigation, agriculture, solar sensing</td></tr>
+<tr><td>Smellicopter</td><td>Live moth antenna</td><td>Detects chemicals, explosives; decides by odour</td></tr>
+<tr><td>RoboBee</td><td>Honeybee size</td><td>Flies, hovers, swims, perches; pollination, search and rescue, in swarms</td></tr>
+<tr><td>Optical-flow drones</td><td>Insect vision</td><td>Estimate distance from how fast objects move in the field of view</td></tr>
+<tr><td>Artificial compound eye</td><td>Insect eye</td><td>Stays parallel to ground, flags slopes</td></tr>
+<tr><td>Gradient-bug swarm</td><td>Small insects</td><td>Enter narrow spaces for search and rescue</td></tr>
+<tr><td>Kilobots</td><td>Ants following pheromone trails</td><td>Foraging in swarms</td></tr></table>
+
+<h4 class="sub">Insect-inspired soft robots</h4>
+<p>Soft robots copy worms, larvae and snails. Gaits in the lecture: horizontal tumbling, vertical tumbling (jumping for height), gastropod-style crawling, wriggling, and inchworm crawling (e.g. approaching and grasping a tablet).</p>
+<figure><svg viewBox="0 0 720 120" role="img" aria-label="Magnetic soft robot fabrication">
+<defs><marker id="q" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0L8,4L0,8z" fill="#333"/></marker></defs>
+<rect class="s a" x="5" y="30" width="120" height="55" rx="8"/><text x="65" y="53" text-anchor="middle">Ecoflex 1+2 +</text><text x="65" y="70" text-anchor="middle">iron-oxide powder</text>
+<rect class="s b" x="155" y="30" width="110" height="55" rx="8"/><text x="210" y="53" text-anchor="middle">pour into 3D-</text><text x="210" y="70" text-anchor="middle">printed mould</text>
+<rect class="s c" x="295" y="30" width="125" height="55" rx="8"/><text x="357" y="53" text-anchor="middle">cure in parallel</text><text x="357" y="70" text-anchor="middle">magnetic field</text>
+<rect class="s d" x="450" y="30" width="110" height="55" rx="8"/><text x="505" y="53" text-anchor="middle">demould, re-</text><text x="505" y="70" text-anchor="middle">immerse, cure</text>
+<rect class="s a" x="590" y="30" width="120" height="55" rx="8"/><text x="650" y="53" text-anchor="middle">bilateral legs;</text><text x="650" y="70" text-anchor="middle">driven by field H</text>
+<path class="s" d="M125 57H153M265 57H293M420 57H448M560 57H588" marker-end="url(#q)"/></svg>
+<figcaption>Curing in a magnetic field aligns the magnetic particles so the robot's response to later fields is directional. Direction and strength of the field set the gait.</figcaption></figure>
+<div class="box why"><span class="label">Larva-inspired rolling robot [lecture]</span>Larvae have circular muscles (around the body) and axial muscles (along top and bottom). Contracting the axial side bends the body into a C-shape; sequenced actuation turns crawling into rolling. A pneumatic version has <b>four internal chambers</b>: pressurise one (it lengthens) while depressurising another, following a pressure-vs-time schedule per chamber, and the body rolls.</div>
+<h4 class="sub">Blood-swimming micro-robots</h4>
+<p>Purpose: <b>targeted drug delivery</b>, e.g. to a tumour rather than the whole body. They copy the helical propulsion of <i>E. coli</i> flagella (artificial bacterial flagella, ABFs): a magnetic head and a rigid helical, planar-flexible or cilia-like tail. Control is from outside:</p>
+<table><tr><th>Field type</th><th>Suits</th><th>Motion</th></tr><tr><td>Rotating</td><td>Helical robots, nanorods (free swimmers)</td><td>Torque-driven rotation / corkscrew</td></tr><tr><td>Oscillating or on-off</td><td>Head-and-tail planar designs, surface walkers</td><td>Planar tail beating; tumbling</td></tr><tr><td>Gradient</td><td>Free swimmers, groups</td><td>Force-driven linear or planar motion</td></tr></table>
+<p>Fabrication routes: self-scrolling (nickel head; etching curls the tail into a helix), GLAD (glancing-angle deposition), helical liposomes (palladium seed, cobalt-alloy tail), and 3D lithography (photoresist polymerisation, development, magnetic coating).</p>
+<div class="box ex"><span class="label">Why torque vs force matters</span>A uniform field only twists a magnet (torque, rotation). Only a field <i>gradient</i> pulls it (net force). So rotating fields drive corkscrew swimmers, and gradients drive linear motion, which is the lecture's "torque-driven → rotary; force-driven → planar".</div>
+
+</div>
+<h3 class="topic" id="i6">I6. Neural networks based on the human brain</h3><div class="bio">
+<div class="box def"><span class="label">The biological neuron [lecture]</span>The neuron is the basic unit of the nervous system. <b>Dendrites</b> receive signals (inputs). The <b>soma</b> sums them and applies a threshold (processing, like a CPU). The <b>axon</b> carries the fired signal to terminals, which meet the next neuron's dendrites across a <b>synapse</b>. System loop: sensing organ &rarr; central nervous system &rarr; effector (actuator), with feedback.</div>
+<figure><svg viewBox="0 0 720 200" role="img" aria-label="Biological and artificial neuron">
+<defs><marker id="n" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0L8,4L0,8z" fill="#333"/></marker></defs>
+<text x="95" y="18" text-anchor="middle" font-weight="bold">Biological</text><circle class="s b" cx="110" cy="100" r="28"/><text x="110" y="104" text-anchor="middle">soma</text>
+<path class="s" d="M20 55L85 88M20 100H82M20 150L85 112"/><text x="10" y="45">dendrites</text><path class="s" d="M138 100H250" marker-end="url(#n)"/><text x="175" y="90">axon</text><text x="255" y="120">synapse &rarr;</text>
+<text x="500" y="18" text-anchor="middle" font-weight="bold">Artificial</text>
+<text x="340" y="60">x₁</text><text x="340" y="105">x₂</text><text x="340" y="155">x₃</text><path class="s" d="M360 56L470 95M360 101L468 100M360 151L470 105"/>
+<text x="400" y="68">w₁</text><text x="400" y="93">w₂</text><text x="400" y="140">w₃</text>
+<circle class="s a" cx="505" cy="100" r="34"/><text x="505" y="96" text-anchor="middle">Σ + b</text><text x="505" y="112" text-anchor="middle">f(z)</text><path class="s" d="M540 100H640" marker-end="url(#n)"/><text x="650" y="104">output</text></svg>
+<figcaption>Dendrites &#8594; input layer; soma &#8594; hidden layer(s); axon terminal &#8594; output layer. The artificial version has three jobs: sum, add bias, apply activation.</figcaption></figure>
+<div class="box why"><span class="label">Chemical vs electrical synapses [lecture]</span>Over 95% of transmission is chemical: neurotransmitters cross the synaptic gap, delay &gt; ~5 ms, supports complex tasks and lasting learning. Electrical: ion exchange, delay &lt; 0.1 ms, bidirectional, used for fast reflexes (more common in snakes). <b>Trade-off:</b> speed vs ability to carry out learning.</div>
+<div class="box mis"><span class="label">Fixing a misconception</span>The lecture itself notes the brain's higher-order dendrites split repeatedly (primary, secondary, tertiary). An artificial neuron does <b>not</b> split inputs; instead you feed extra "features" such as x₁², x₁x₂, sin x₁. So the network is brain-<i>inspired</i>, not a copy (this is &sect;1's how-vs-why distinction again).</div>
+<div class="box ex"><span class="label">Worked example (lecture numbers, completed)</span>Inputs 0.1, 0.2, 0.6 with weights 1, 2, 1 (the third is implied by the lecturer's sum of 1.1). Products: 0.1, 0.4, 0.6. Sum = 1.1. Add bias 0.5: z = <b>1.6</b>. Then apply f(z): sigmoid(1.6) &asymp; 0.83; tanh(1.6) &asymp; 0.92; ReLU(1.6) = 1.6; linear = 1.6. <b>Training</b> means adjusting the weights each iteration (epoch) so predictions approach the true output.</div>
+<h4 class="sub">Activation functions, network shapes and tasks</h4>
+<table><tr><th>Function</th><th>Output range</th><th>Note [lecture]</th></tr><tr><td>tanh</td><td>&minus;1 to 1</td><td>Widely used today</td></tr><tr><td>Sigmoid</td><td>0 to 1</td><td>Good for yes/no</td></tr><tr><td>ReLU</td><td>0 to &infin; (f = x for x &gt; 0)</td><td>Widely used today</td></tr><tr><td>Linear</td><td>&minus;&infin; to &infin;</td><td>f(x) = x</td></tr></table>
+<table><tr><th>Type</th><th>Structure</th><th>Good for</th></tr><tr><td>Narrow</td><td>1 hidden layer, ~10 neurons</td><td>Simple tasks</td></tr><tr><td>Wide</td><td>2–4 hidden layers, many neurons each (e.g. 289, 296)</td><td>Parallel multitasking; moderately complex prediction (battery health, temperature)</td></tr><tr><td>Deep</td><td>Many hidden layers, few neurons each (~10–15)</td><td>Vision, language: layer-by-layer processing</td></tr></table>
+<p><b>Classification</b> gives a category (spam or not). <b>Regression</b> gives a continuous value (price, battery state of charge, steering for a self-driving car).</p>
+<div class="box ex"><span class="label">Playground experiment [lecture], one hidden layer of 4 neurons</span>
+<table><tr><th>Activation</th><th>Test loss</th><th>Reading</th></tr><tr><td>Linear (epoch ~248)</td><td>0.495</td><td>about half misclassified: a line cannot separate the data</td></tr><tr><td>Sigmoid (673 epochs)</td><td>0.054</td><td>big improvement: curved boundary</td></tr><tr><td>tanh</td><td>0.04</td><td>all dots in the right zone</td></tr><tr><td>ReLU</td><td>0.07</td><td>close to tanh</td></tr></table>
+Regression: 2 hidden layers (6, 4 neurons) left true points uncovered; 5 layers (6, 4, 3, 2, 2) reached a test loss of ~0.000 in 314 epochs. <b>Why:</b> linear units can only draw a straight boundary; nonlinear activations bend it, and more layers compose more bends.</div>
+<h4 class="sub">Evaluating and tuning</h4>
+<p>Error metrics: <code>MAE = (1/n)&Sigma;|y&minus;&#375;|</code>; <code>MSE = (1/n)&Sigma;(y&minus;&#375;)&sup2;</code>; <code>RMSE = &radic;MSE</code>; <code>R&sup2; = 1 &minus; &Sigma;(y&minus;&#375;)&sup2;/&Sigma;(y&minus;&#563;)&sup2;</code>. A perfect model has R&sup2; = 1 and RMSE = 0. Squaring penalises big errors more (error &minus;5 gives 5 under MAE but 25 under MSE). When several models give R&sup2; &asymp; 1, RMSE separates them. <b>Hyperparameters</b> (neurons per layer, number of layers, learning rate, activation, features) are set <i>before</i> training; weights are learned <i>during</i> it. Tuning (e.g. with the Adam optimiser) hunts for low-RMSE regions: too few neurons in L1/L2 gives a high-RMSE peak, and a third layer was dispensable in the lecturer's study.</p>
+<div class="box ex"><span class="label">Case study [lecture]: battery state of charge and life</span>A cascade predicts SOC from voltage and current, then power density, energy density, then life cycle, each stage feeding the next. Before the network: <b>feature selection</b> (keep inputs that matter, drop the rest; in the water-heating analogy keep flame and water amount, drop air pressure) and <b>PCA</b> (compress repetitive data). Wide NN beat narrow NN, SVM and decision tree in residual plots and RMSE; the cited paper reports R&sup2; = 1 for a tri-layer wide network (hidden layers of 289 and 12 neurons, tanh).</div>
+
+</div>
+<h3 class="topic" id="i7">I7. Summary tables</h3><div class="bio">
+<table><tr><th>Concept</th><th>Source</th><th>Principle</th><th>Application</th><th>Key formula / fact</th></tr>
+<tr><td>Biomimetics / biomimicry / bionics</td><td>&sect;1</td><td>How / why / replace</td><td>Swimsuit, circular economy, prosthetics</td><td>Micro vs macro vs replace</td></tr>
+<tr><td>Hexagon, anisotropy, helix, Voronoi</td><td>&sect;1–2</td><td>Material-efficient geometry</td><td>Honeycomb floor, tyres, springs, car frames</td><td>—</td></tr>
+<tr><td>Velcro</td><td>&sect;2</td><td>Hooks + loops</td><td>Fastening</td><td>Reusable, no glue</td></tr>
+<tr><td>Self-healing e-skin</td><td>&sect;2</td><td>Capsule monomer + catalyst</td><td>Prosthetics, wearables</td><td>Polymerisation fills crack</td></tr>
+<tr><td>Termite mound</td><td>&sect;3</td><td>Stack effect + thermal mass</td><td>Eastgate Centre</td><td>&Delta;p = gh(&rho;<sub>out</sub>&minus;&rho;<sub>in</sub>); &tau; ~ L&sup2;/&alpha;</td></tr>
+<tr><td>Insect wing</td><td>&sect;4</td><td>Elastic store and release</td><td>Smart wings, spring + rotary drive</td><td>Re = &rho;vL/&mu;</td></tr>
+<tr><td>Swarms, soft robots</td><td>&sect;5</td><td>Parsimony; compliant magnetic bodies</td><td>Search and rescue, drug delivery</td><td>Rotating field = torque; gradient = force</td></tr>
+<tr><td>Neural network</td><td>&sect;6</td><td>Sum + bias + activation</td><td>Battery prediction</td><td>y = f(&Sigma;wx + b); RMSE, R&sup2;</td></tr></table>
+
+</div>
+<h2 class="part" id="selftest">Self-Test Checklist</h2>
+<p>Can you do each of these <em>right now</em>, without looking back? If not, that is the section to re-read.</p>
+<ul class="checklist">
+  <li>Define biomimetics, biomimicry and bionics, and give one example of each without notes.</li>
+  <li>Name three things that are <i>not</i> bio-inspired design and say why.</li>
+  <li>Match eight animals or plants to their products (kingfisher, boxfish, tadpole, snake, ear bones, beehive, burdock, skin).</li>
+  <li>Recite the four stages of wound healing and say which one the e-skin copies.</li>
+  <li>Derive Δp = gh(ρ<sub>out</sub>−ρ<sub>in</sub>) and compute it for h = 20 m, 5 K difference (about 4 Pa).</li>
+  <li>Explain how thermal mass delays a day's heat to night, and give two limits of termite-style ventilation.</li>
+  <li>Map head, antenna, wings, abdomen of an insect to drone parts.</li>
+  <li>Compute Re for a 2 mm insect at 0.5 m/s (about 67) and explain why it flaps rather than glides.</li>
+  <li>Explain why a gradient field gives force but a rotating field gives rotation in magnetic micro-robots.</li>
+  <li>Compute a neuron output by hand with bias (the 1.6 example) and apply sigmoid.</li>
+  <li>Say when to choose a wide, deep or narrow network, and classification or regression.</li>
+  <li>Compute MAE and RMSE for errors (−5, 3, 1) and explain which punishes the −5 more (MAE 3, RMSE ≈ 3.4).</li>
+</ul>
+{% endraw %}
+</div>
+<a href="#top" class="backtop">↑</a>
+{% endblock %}

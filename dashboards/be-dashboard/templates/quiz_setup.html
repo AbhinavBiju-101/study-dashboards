@@ -110,7 +110,7 @@
 
 <header class="hero">
   <h1>Build a Quiz</h1>
-  <p>Pick whole topics, or drill into specific subtopics. Choose how many questions you want — every question's options are freshly shuffled each time you take it.</p>
+  <p>Pick whole modules, or drill into specific subtopics. Choose how many questions you want — every question's options are freshly shuffled each time you take it.</p>
   <a class="back" href="{{ url_for('dashboard') }}">☰ Back to Dashboard</a>
 </header>
 
@@ -127,7 +127,7 @@
       <div class="week-head">
         <input type="checkbox" class="week-check" data-week="{{ w.num }}">
         <div class="w-title">
-          <span class="tag">Topic {{ w.num }}</span>
+          <span class="tag">Module {{ w.num }}</span>
           <h2>{{ w.title }}</h2>
         </div>
         <span class="w-count">{{ w.total_available }} questions available</span>
@@ -163,7 +163,7 @@
   </form>
 </main>
 
-<footer>{{ grand_total }} questions total across both topics</footer>
+<footer>{{ grand_total }} questions total across all modules with questions</footer>
 
 <script>
   const topicChecks = Array.from(document.querySelectorAll('.topic-check'));

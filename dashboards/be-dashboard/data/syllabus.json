@@ -1,0 +1,510 @@
+{
+ "modules": [
+  {
+   "num": 1,
+   "title": "Principles of Electrical Engineering: Circuits & Power Conversion",
+   "desc": "DC and AC circuits, network theorems, AC power, electrical machines (DC, induction, BLDC, stepper, transformer, alternator), power electronics, drives, and electrical safety & earthing.",
+   "accent": "#3949ab",
+   "accent_dk": "#1e2a4a",
+   "download_file": "topic1.html",
+   "topics": [
+    {
+     "id": "a1",
+     "label": "Ohm's Law & Circuit Elements",
+     "summary": "V=IR links voltage, current and resistance for a single resistor — the atomic building block every other law in this topic is built from.",
+     "subtopics": []
+    },
+    {
+     "id": "a2",
+     "label": "Kirchhoff's Laws (KCL, KVL)",
+     "summary": "KCL: current into a node equals current out (conservation of charge). KVL: voltage rises equal drops around any closed loop (conservation of energy).",
+     "subtopics": []
+    },
+    {
+     "id": "a3",
+     "label": "Series, Parallel & Dividers",
+     "summary": "Series resistors share one current and simply add; parallel resistors share one voltage and add as reciprocals. The voltage- and current-divider shortcuts follow directly.",
+     "subtopics": []
+    },
+    {
+     "id": "a4",
+     "label": "Node-Voltage Analysis",
+     "summary": "Pick a reference node, assign unknown voltages to the rest, write one KCL equation per unknown node, and solve — best for circuits rich in parallel branches.",
+     "subtopics": []
+    },
+    {
+     "id": "a5",
+     "label": "Mesh-Current Analysis",
+     "summary": "Assign a circulating current to each loop and write one KVL equation per loop; a shared branch carries the difference of its two mesh currents.",
+     "subtopics": []
+    },
+    {
+     "id": "a6",
+     "label": "Source Transformation",
+     "summary": "A voltage source with series R is externally indistinguishable from a current source I=V/R with the same R in parallel — a useful circuit-simplifying swap.",
+     "subtopics": []
+    },
+    {
+     "id": "a7",
+     "label": "Thevenin's & Norton's Theorem",
+     "summary": "Any linear network, seen from two terminals, collapses to one source (V_th or I_N) plus one resistance (R_th) — found from the open-circuit voltage and the source-killed resistance.",
+     "subtopics": []
+    },
+    {
+     "id": "a8",
+     "label": "Maximum Power Transfer Theorem",
+     "summary": "A Thevenin source delivers maximum power to a load when R_L=R_th — derived by differentiating load power with respect to R_L and setting it to zero.",
+     "subtopics": []
+    },
+    {
+     "id": "a9",
+     "label": "Superposition Theorem",
+     "summary": "In a linear circuit with several independent sources, the total response is the sum of each source's individual contribution, with all other sources killed in turn.",
+     "subtopics": []
+    },
+    {
+     "id": "b1",
+     "label": "Generating an AC Waveform",
+     "summary": "A coil rotating at constant speed in a uniform field produces v(t)=V_m sin(ωt) — the rotating-coil picture behind every AC quantity that follows.",
+     "subtopics": []
+    },
+    {
+     "id": "b2",
+     "label": "RMS, Average, Form Factor & Peak Factor",
+     "summary": "RMS (V_m/√2) and half-cycle average (2V_m/π) are both derived by integration; their ratio gives the form factor, and V_m/V_rms gives the peak factor.",
+     "subtopics": []
+    },
+    {
+     "id": "b3",
+     "label": "Phasors & Impedance",
+     "summary": "A phasor freezes a sinusoid's magnitude and phase as a complex number; impedance Z=R+jX generalises resistance so KVL/KCL algebra keeps working unchanged for AC.",
+     "subtopics": []
+    },
+    {
+     "id": "b4",
+     "label": "Series RL, RC, RLC Circuits",
+     "summary": "Impedance triangles for RL (lagging), RC (leading) and RLC (either, or resonant when X_L=X_C) circuits, with |Z|, phase angle and current computed directly.",
+     "subtopics": []
+    },
+    {
+     "id": "b5",
+     "label": "Power & Power Factor in AC Circuits",
+     "summary": "Real power P=VIcosφ, reactive power Q=VIsinφ and apparent power S=VI form a right triangle (S²=P²+Q²); power factor cosφ=P/S governs how much current is needed for a given useful watt.",
+     "subtopics": []
+    },
+    {
+     "id": "b6",
+     "label": "Energy & Electricity-Bill Calculations",
+     "summary": "Energy = power × time, the kWh 'unit', and working out a household bill from appliance ratings.",
+     "subtopics": []
+    },
+    {
+     "id": "c1",
+     "label": "DC Motor: Construction",
+     "summary": "Every part explained — yoke, poles and pole shoes, armature core/winding (lap vs wave), commutator, brushes — with material, purpose and why the iron is laminated.",
+     "subtopics": []
+    },
+    {
+     "id": "c2",
+     "label": "DC Motor: Working Principle & Back EMF",
+     "summary": "Fleming's Left-Hand Rule gives force direction (F=BIL); the moving conductor also generates a back-EMF (V=E_b+I_aR_a), which is why a starter is needed. Includes the DC generator principle (8 loop positions, commutation).",
+     "subtopics": []
+    },
+    {
+     "id": "c3",
+     "label": "Types of DC Motors",
+     "summary": "Separately excited, shunt, series and short/long-shunt compound — circuit equations, characteristics and applications — plus DC generator types and their uses.",
+     "subtopics": []
+    },
+    {
+     "id": "c4",
+     "label": "Transformer: Construction",
+     "summary": "Working principle (mutual induction), laminated core, core-type vs shell-type windings, ideal-transformer ratios, losses and applications.",
+     "subtopics": []
+    },
+    {
+     "id": "c5",
+     "label": "Transformer: EMF Equation",
+     "summary": "Faraday's law on a sinusoidal flux gives E=4.44fΦ_mN — the same √2 conversion from B2's RMS derivation reappears here as the constant 4.44.",
+     "subtopics": []
+    },
+    {
+     "id": "c6",
+     "label": "Three-Phase Induction Motor",
+     "summary": "Stator construction, why three phases make a rotating field (N_s=120f/P), slip, squirrel-cage vs wound rotor (full comparison table) and applications.",
+     "subtopics": []
+    },
+    {
+     "id": "c7",
+     "label": "Single-Phase Induction Motor",
+     "summary": "Why a single-phase induction motor cannot start by itself, and the five starting methods (split-phase, capacitor-start, CSCR, PSC, shaded-pole).",
+     "subtopics": []
+    },
+    {
+     "id": "c8",
+     "label": "BLDC Motor (Brushless DC)",
+     "summary": "Permanent-magnet rotor, stator coils switched electronically in a six-step sequence; no brushes or commutator.",
+     "subtopics": []
+    },
+    {
+     "id": "c9",
+     "label": "Stepper Motor",
+     "summary": "A motor that turns in fixed steps for each pulse — precise position control without feedback.",
+     "subtopics": []
+    },
+    {
+     "id": "c10",
+     "label": "Alternator (Synchronous Generator)",
+     "summary": "Stationary armature + rotating field: how an AC generator makes three-phase power at a fixed frequency.",
+     "subtopics": []
+    },
+    {
+     "id": "d1",
+     "label": "Concepts of Power Electronics",
+     "summary": "Switching devices that convert and control electrical power: rectifier, inverter, chopper; PWM and efficiency.",
+     "subtopics": []
+    },
+    {
+     "id": "d2",
+     "label": "Industrial Applications of Electrical Drives",
+     "summary": "An electric drive = source + power converter + motor + load with sensing and control; VFDs for speed control of pumps, fans, robots, EVs.",
+     "subtopics": []
+    },
+    {
+     "id": "e1",
+     "label": "Earthing",
+     "summary": "Earthing gives fault current a low-resistance path to the ground; plate, rod and pipe earthing; earthing vs grounding.",
+     "subtopics": []
+    },
+    {
+     "id": "e2",
+     "label": "Electrical Hazards & Safety",
+     "summary": "Shock, burns, arc, explosion, fire; effect of current levels; the five ways accidents are prevented.",
+     "subtopics": []
+    }
+   ]
+  },
+  {
+   "num": 2,
+   "title": "Foundations of Electronics & Communication Systems",
+   "desc": "PN, Zener, BJT and MOSFET; rectifiers and voltage regulators; op-amps; the EM spectrum; communication systems, cellular, satellite and radar.",
+   "accent": "#0f766e",
+   "accent_dk": "#134e4a",
+   "download_file": "topic2.html",
+   "topics": [
+    {
+     "id": "p1",
+     "label": "PN Junction Diode",
+     "summary": "P and N regions, the depletion layer and barrier potential, forward/reverse bias, the diode equation and silicon vs germanium.",
+     "subtopics": []
+    },
+    {
+     "id": "p2",
+     "label": "Zener Diode",
+     "summary": "A heavily doped diode designed to operate in reverse breakdown as a voltage reference.",
+     "subtopics": []
+    },
+    {
+     "id": "p3",
+     "label": "Voltage Regulator (Zener shunt regulator)",
+     "summary": "Series resistor + Zener across the load to hold a constant DC output despite supply or load changes.",
+     "subtopics": []
+    },
+    {
+     "id": "p4",
+     "label": "Bipolar Junction Transistor (BJT)",
+     "summary": "Three-layer NPN/PNP device; α, β, the CB/CE/CC configurations and characteristics.",
+     "subtopics": []
+    },
+    {
+     "id": "p5",
+     "label": "MOSFET",
+     "summary": "Voltage-controlled transistor with an insulated gate; enhancement vs depletion, regions of operation, BJT vs MOSFET.",
+     "subtopics": []
+    },
+    {
+     "id": "p6",
+     "label": "Rectifiers",
+     "summary": "Half-wave, centre-tap full-wave and bridge rectifiers; I<sub>dc</sub>, I<sub>rms</sub>, efficiency, ripple and PIV.",
+     "subtopics": []
+    },
+    {
+     "id": "p7",
+     "label": "Operational Amplifiers",
+     "summary": "Ideal op-amp properties, virtual earth, inverting, non-inverting and summing amplifiers.",
+     "subtopics": []
+    },
+    {
+     "id": "p8",
+     "label": "Electromagnetic Spectrum",
+     "summary": "The full range of EM radiation from radio to gamma; c = fλ and E = hf.",
+     "subtopics": []
+    },
+    {
+     "id": "p9",
+     "label": "Elements of a Communication System",
+     "summary": "Source, transducers, transmitter, channel, noise, receiver, destination; why modulation is needed.",
+     "subtopics": []
+    },
+    {
+     "id": "p10",
+     "label": "Overview of Cellular Communication",
+     "summary": "Cells, base stations, frequency reuse, handoff and the generations of mobile networks.",
+     "subtopics": []
+    },
+    {
+     "id": "p11",
+     "label": "Fundamentals of Satellite Communication",
+     "summary": "Uplink/downlink, transponder, orbits (LEO, MEO, GEO) and delay.",
+     "subtopics": []
+    },
+    {
+     "id": "p12",
+     "label": "Fundamentals of Radar",
+     "summary": "Radio detection and ranging: range from echo time, Doppler for speed.",
+     "subtopics": []
+    }
+   ]
+  },
+  {
+   "num": 3,
+   "title": "Engineering Graphics & CAD",
+   "desc": "BIS standards, orthographic projection (first/third angle), projection of solids, isometric and perspective, freehand sketching, building drawing, CAD — plus the CAT-1 question patterns.",
+   "accent": "#b45309",
+   "accent_dk": "#78350f",
+   "download_file": "topic3.html",
+   "topics": [
+    {
+     "id": "g1",
+     "label": "Engineering Drawing: Importance & Scope",
+     "summary": "Drawing as the language of engineers, what it is used for, and the move from drawing boards to CAD.",
+     "subtopics": []
+    },
+    {
+     "id": "g2",
+     "label": "Drawing Sheets, Scales & Title Block",
+     "summary": "A-series sheet sizes (A0–A4), the title block and what it records.",
+     "subtopics": []
+    },
+    {
+     "id": "g3",
+     "label": "Types of Lines",
+     "summary": "BIS line types A–K and what each is used for in orthographic drawing; pencil grades.",
+     "subtopics": []
+    },
+    {
+     "id": "g4",
+     "label": "Lettering & Dimensioning",
+     "summary": "Single-stroke capital lettering; elements and systems of dimensioning; chain vs parallel.",
+     "subtopics": []
+    },
+    {
+     "id": "g5",
+     "label": "Dimensioning Rules & Checking Errors",
+     "summary": "Rules for placing dimensions correctly, with the CAT-1 'identify the dimensioning errors' question.",
+     "subtopics": []
+    },
+    {
+     "id": "g6",
+     "label": "Orthographic Projection: Principles, First & Third Angle",
+     "summary": "Planes of projection, the four quadrants, first- vs third-angle layout and symbols.",
+     "subtopics": []
+    },
+    {
+     "id": "g7",
+     "label": "Drawing Orthographic Views: Method & Worked Examples",
+     "summary": "Steps for converting a pictorial view to FV, TV and LSV, with the CAT-1 style question.",
+     "subtopics": []
+    },
+    {
+     "id": "g8",
+     "label": "Projection of Solids",
+     "summary": "Front and top views of prisms, pyramids, cylinders and cones in simple positions; CAT-1 pyramid.",
+     "subtopics": []
+    },
+    {
+     "id": "g9",
+     "label": "Isometric Projection",
+     "summary": "Isometric axes, isometric scale (0.816), isometric drawing vs projection, circles and the CAT-1 cylinder.",
+     "subtopics": []
+    },
+    {
+     "id": "g10",
+     "label": "Freehand Sketching",
+     "summary": "Why and how to sketch lines, circles and orthographic views by hand.",
+     "subtopics": []
+    },
+    {
+     "id": "g11",
+     "label": "Perspective Projection",
+     "summary": "How a picture plane image of an object looks to an observer: terms, types, visual-ray method.",
+     "subtopics": []
+    },
+    {
+     "id": "g12",
+     "label": "Introduction to Building Drawing (Floor Plan)",
+     "summary": "Plan, elevation and section; BIS conventions; a simple residential floor plan.",
+     "subtopics": []
+    },
+    {
+     "id": "g13",
+     "label": "Introduction to CAD",
+     "summary": "What CAD is, 2-D sketching vs 3-D solid modelling, common features, file types and the CAD→CAM link.",
+     "subtopics": []
+    },
+    {
+     "id": "g14",
+     "label": "CAT-1 Pattern — What the Paper Asked",
+     "summary": "The CAT-1 question types (Module 3 and casting) and where to revise each.",
+     "subtopics": []
+    }
+   ]
+  },
+  {
+   "num": 4,
+   "title": "Manufacturing, Energy Conversion & Mechanical Automation",
+   "desc": "Casting, forming, joining, machining, CNC and 3-D printing; IC engines, power plants, refrigeration, fuel cells; mechanisms, mechanical components, robotics and pneumatic/hydraulic actuators.",
+   "accent": "#be123c",
+   "accent_dk": "#881337",
+   "download_file": "topic4.html",
+   "topics": [
+    {
+     "id": "h1",
+     "label": "Metal Casting",
+     "summary": "Pouring molten metal into a mould: sand casting steps, pattern allowances (CAT-1 Q5), types and defects.",
+     "subtopics": []
+    },
+    {
+     "id": "h2",
+     "label": "Forming Processes",
+     "summary": "Shaping by plastic deformation: forging, rolling, extrusion, drawing and sheet-metal operations.",
+     "subtopics": []
+    },
+    {
+     "id": "h3",
+     "label": "Joining Processes",
+     "summary": "Welding (arc, gas, resistance), soldering, brazing, riveting, adhesives.",
+     "subtopics": []
+    },
+    {
+     "id": "h4",
+     "label": "Cutting (Machining) Processes",
+     "summary": "Material removal on lathe, drill, mill, shaper and grinder; cutting speed and material-removal rate.",
+     "subtopics": []
+    },
+    {
+     "id": "h5",
+     "label": "CNC Machining",
+     "summary": "Computer-controlled machine tools: components, axes, G/M codes, closed-loop control.",
+     "subtopics": []
+    },
+    {
+     "id": "h6",
+     "label": "Additive Manufacturing (3-D Printing)",
+     "summary": "Building parts layer by layer from a CAD model: process chain, technologies, applications.",
+     "subtopics": []
+    },
+    {
+     "id": "h7",
+     "label": "Thermal Engineering & the IC Engine",
+     "summary": "Heat engines, four-stroke and two-stroke engines, SI vs CI, compression ratio, Otto efficiency, brake power.",
+     "subtopics": []
+    },
+    {
+     "id": "h8",
+     "label": "Power Plants",
+     "summary": "Steam (thermal), hydro, nuclear and gas-turbine plants and how each converts energy.",
+     "subtopics": []
+    },
+    {
+     "id": "h9",
+     "label": "Refrigeration & Air Conditioning",
+     "summary": "Vapour-compression cycle, COP, tonnage and what an air conditioner does.",
+     "subtopics": []
+    },
+    {
+     "id": "h10",
+     "label": "Fuel Cells & Sustainable Energy",
+     "summary": "Hydrogen fuel cell operation; solar, wind and other renewable technologies.",
+     "subtopics": []
+    },
+    {
+     "id": "h11",
+     "label": "Mechanisms: Four-Bar & Hexapod",
+     "summary": "Links, pairs, degrees of freedom, Grashof's law and the inversions of the four-bar chain; the hexapod.",
+     "subtopics": []
+    },
+    {
+     "id": "h12",
+     "label": "Mechanical Components & Motion Control",
+     "summary": "Gears, belts, chains, cams, bearings, couplings, clutches, brakes and rotary-to-linear conversion.",
+     "subtopics": []
+    },
+    {
+     "id": "h13",
+     "label": "Introduction to Robotics & Automation",
+     "summary": "Robot anatomy, DOF, configurations, sensors and actuators, simple kinematics, levels of automation.",
+     "subtopics": []
+    },
+    {
+     "id": "h14",
+     "label": "Pneumatic & Hydraulic Actuators",
+     "summary": "Pascal's law, cylinders and force, and how pneumatic and hydraulic systems compare.",
+     "subtopics": []
+    }
+   ]
+  },
+  {
+   "num": 5,
+   "title": "Bio-Inspired Design in Engineering",
+   "desc": "Biomimicry and its core ideas, case studies (Velcro, self-healing, termite-mound ventilation, insect-inspired drones and soft robots, neural networks).",
+   "accent": "#15803d",
+   "accent_dk": "#14532d",
+   "download_file": "topic5.html",
+   "topics": [
+    {
+     "id": "i1",
+     "label": "Introduction to bio-inspired design (Dr Shankar)",
+     "summary": "Definition, what does and does not count, Rawling's spectrum (biomimetics–biomimicry–bionics), history and the four primitive design forms.",
+     "subtopics": []
+    },
+    {
+     "id": "i2",
+     "label": "Biomimicry case studies across the animal and plant kingdoms",
+     "summary": "Animal and plant examples: kingfisher beak, boxfish, tadpole, snake, ear bones, beehive, burdock (Velcro) and skin (self-healing).",
+     "subtopics": []
+    },
+    {
+     "id": "i3",
+     "label": "Termite-mound ventilation in green buildings",
+     "summary": "How termite mounds ventilate, the stack-effect pressure Δp = gh(ρout − ρin), and how green buildings copy it.",
+     "subtopics": []
+    },
+    {
+     "id": "i4",
+     "label": "Insect-inspired drones, part 1: design of a robotic insect",
+     "summary": "Reading an insect as a design: head, antenna, wings, abdomen; flapping-wing physics and the Reynolds number.",
+     "subtopics": []
+    },
+    {
+     "id": "i5",
+     "label": "Insect drones part 2: intelligence, swarms and soft robots",
+     "summary": "Insect intelligence, swarms, soft robots and micro-robots.",
+     "subtopics": []
+    },
+    {
+     "id": "i6",
+     "label": "Neural networks based on the human brain",
+     "summary": "Biological neuron to artificial neuron; activation functions, network shapes and training.",
+     "subtopics": []
+    },
+    {
+     "id": "i7",
+     "label": "Summary tables",
+     "summary": "Summary tables for revision.",
+     "subtopics": []
+    }
+   ]
+  }
+ ]
+}

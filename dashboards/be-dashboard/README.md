@@ -1,4 +1,4 @@
-# Basic Engineering Notes Dashboard + Quiz
+# Basic Engineering (BAEEE101) — Illustrated Notes Dashboard + Quiz
 
 A small multi-page Flask site, built the same way as the EVS dashboard: two
 illustrated notebooks (Circuits, and Machines), a syllabus dashboard with an
@@ -112,3 +112,13 @@ automatically — nothing else needs to change.
 ## Notebook depth
 
 Every subtopic opens with a **Key terms** box (vocabulary you might be asked to define), followed by the definition, derivation, worked examples and extra material drawn from the lecture slides. Each topic page ends with an **A–Z Glossary** of all its terms. To add more terms or content, edit `expand_data1.py` / `expand_data2.py` and run `python build_expand.py`.
+
+
+## Five modules (current layout)
+
+`/module/1` … `/module/5` — Module 1 Circuits & Power Conversion (DC/AC circuits, machines incl. single-phase IM, BLDC, stepper, alternator; power electronics, drives; earthing & safety),
+Module 2 Electronics & Communication, Module 3 Engineering Graphics & CAD (from your lecture slides + CAT-1), Module 4 Manufacturing, Energy & Automation (syllabus-based — no slides yet),
+Module 5 Bio-Inspired Design (your own notes, restyled; to be expanded with transcripts).
+
+Rebuild everything after editing content: `python build_modules.py` (add `--pdf` to regenerate `Basic_Engineering_Illustrated_Notes.pdf`).
+Content lives in `content_m1x.py`, `content_m2.py` … `content_m5.py`; diagrams in `diagrams*.py`. The quiz bank currently covers Module 1 only (100 questions) — add more under data/quiz_bank.json for other modules.

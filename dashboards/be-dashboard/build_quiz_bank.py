@@ -311,6 +311,8 @@ BANK = {
     },
 }
 
+BANK["1"].update(BANK.pop("2"))   # machines now live in Module 1
+
 if __name__ == "__main__":
     out_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data")
     os.makedirs(out_dir, exist_ok=True)

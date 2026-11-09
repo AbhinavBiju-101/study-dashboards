@@ -1,10 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Basic Engineering — Topic 1: DC &amp; AC Circuits</title>
-<style>
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Basic Engineering — Module 1</title><style>
   :root{
     --ink:#1b1f24; --sub:#4a5568; --bg:#fbfbfa; --card:#ffffff;
     --def:#4a5568; --def-bg:#f3f4f6;
@@ -83,35 +77,21 @@
   ol,ul{padding-left:22px;}
   .gloss td:first-child{font-weight:600;white-space:nowrap;vertical-align:top;}
 </style>
-</head>
-<body>
-
-<div class="wrap">
-<header class="hero" style="border-radius:12px; margin-top:24px;">
-  <h1>Topic 1 — DC &amp; AC Circuits</h1>
-  <p>Ohm's Law through Superposition, then the same logic redone with phasors for AC.</p>
-</header>
-<nav class="toc">
-<h2>Subtopics in this page</h2>
-<ol>
-  <li><a href="#a1">1. Ohm's Law &amp; Circuit Elements</a></li>
-  <li><a href="#a2">2. Kirchhoff's Laws (KCL, KVL)</a></li>
-  <li><a href="#a3">3. Series, Parallel &amp; Dividers</a></li>
-  <li><a href="#a4">4. Node-Voltage Analysis</a></li>
-  <li><a href="#a5">5. Mesh-Current Analysis</a></li>
-  <li><a href="#a6">6. Source Transformation</a></li>
-  <li><a href="#a7">7. Thevenin's &amp; Norton's Theorem</a></li>
-  <li><a href="#a8">8. Maximum Power Transfer</a></li>
-  <li><a href="#a9">9. Superposition Theorem</a></li>
-  <li><a href="#b1">10. Generating an AC Waveform</a></li>
-  <li><a href="#b2">11. RMS, Average, Form &amp; Peak Factor</a></li>
-  <li><a href="#b3">12. Phasors &amp; Impedance</a></li>
-  <li><a href="#b4">13. Series RL, RC, RLC Circuits</a></li>
-  <li><a href="#b5">14. Power &amp; Power Factor in AC</a></li>
-  <li><a href="#glossary">Glossary (A–Z)</a></li>
-</ol>
-</nav>
-<h2 class="part" id="parta">Part A — DC Circuits <span class="marks">core of Module 1</span></h2>
+<style>
+  .bio .s{stroke:#333;fill:none;stroke-width:1.5}.bio .a{fill:#e8f0fc}.bio .b{fill:#e6f4ec}.bio .c{fill:#fdf0e3}.bio .d{fill:#f3ecfb}
+  .bio svg text{font:12.5px sans-serif;fill:#1d2330}.bio figure{margin:16px 0;text-align:center}.bio figcaption,.bio .note{color:#5b6475;font-size:.92rem}
+  .bio table{display:block;overflow-x:auto}.bio .box .t{font-weight:700}
+  .cover{text-align:center;padding:90px 20px}.cover h1{font-size:2.4rem;margin:0 0 10px}.module{margin-top:30px}
+  @media print{
+    body{background:#fff}.backtop,nav.site-nav{display:none!important}.wrap{max-width:none;padding:0}
+    header.hero{box-shadow:none;border-radius:0!important;margin:0!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    .module{break-before:page}h2.part{break-before:page}h2.part:first-of-type{break-before:auto}
+    .box,.diagram,table,tr,.foreshadow,h3.topic,h4.sub{break-inside:avoid}h3.topic{break-after:avoid}
+    *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    nav.toc{box-shadow:none;margin:12px 0}
+  }
+</style>
+</head><body><div class="wrap"><header class="hero" style="border-radius:12px;margin-top:24px;"><h1>Module 1 — Principles of Electrical Engineering: Circuits &amp; Power Conversion</h1><p>DC and AC circuits, network theorems, AC power, electrical machines (DC, induction, BLDC, stepper, transformer, alternator), power electronics, drives, and electrical safety & earthing.</p></header><nav class="toc"><h2>Subtopics in this module</h2><ol><li><a href="#a1">A1. Ohm's Law & Circuit Elements</a></li><li><a href="#a2">A2. Kirchhoff's Laws (KCL, KVL)</a></li><li><a href="#a3">A3. Series, Parallel & Dividers</a></li><li><a href="#a4">A4. Node-Voltage Analysis</a></li><li><a href="#a5">A5. Mesh-Current Analysis</a></li><li><a href="#a6">A6. Source Transformation</a></li><li><a href="#a7">A7. Thevenin's & Norton's Theorem</a></li><li><a href="#a8">A8. Maximum Power Transfer Theorem</a></li><li><a href="#a9">A9. Superposition Theorem</a></li><li><a href="#b1">B1. Generating an AC Waveform</a></li><li><a href="#b2">B2. RMS, Average, Form Factor & Peak Factor</a></li><li><a href="#b3">B3. Phasors & Impedance</a></li><li><a href="#b4">B4. Series RL, RC, RLC Circuits</a></li><li><a href="#b5">B5. Power & Power Factor in AC Circuits</a></li><li><a href="#b6">B6. Energy &amp; Electricity-Bill Calculations</a></li><li><a href="#c1">C1. DC Motor: Construction</a></li><li><a href="#c2">C2. DC Motor: Working Principle & Back EMF</a></li><li><a href="#c3">C3. Types of DC Motors</a></li><li><a href="#c4">C4. Transformer: Construction</a></li><li><a href="#c5">C5. Transformer: EMF Equation</a></li><li><a href="#c6">C6. Three-Phase Induction Motor</a></li><li><a href="#c7">C7. Single-Phase Induction Motor</a></li><li><a href="#c8">C8. BLDC Motor (Brushless DC)</a></li><li><a href="#c9">C9. Stepper Motor</a></li><li><a href="#c10">C10. Alternator (Synchronous Generator)</a></li><li><a href="#d1">D1. Concepts of Power Electronics</a></li><li><a href="#d2">D2. Industrial Applications of Electrical Drives</a></li><li><a href="#e1">E1. Earthing</a></li><li><a href="#e2">E2. Electrical Hazards &amp; Safety</a></li><li><a href="#glossary">Glossary (A–Z)</a></li><li><a href="#selftest">Self-test checklist</a></li></ol></nav><h2 class="part" id="parta">Part A — DC Circuits <span class="marks">Circuits</span></h2>
 <p>Every AC circuit technique you'll meet in Part B is <em>the same algebra</em> applied to phasors instead of plain numbers. Master this part cold and Part B becomes "DC with complex numbers," not a new subject.</p>
 
 <h3 class="topic" id="a1">A1. Ohm's Law &amp; Circuit Elements</h3>
@@ -579,7 +559,7 @@ Superposition applies to <b>voltage and current</b>, not to <b>power</b>. Power 
 <br>Quick proof: with I<sub>1</sub> = 3 A and I<sub>2</sub> = 1 A through 2 Ω, adding the separate powers gives 18 + 2 = 20 W but the real power is (4)²·2 = 32 W.
 </div>
 
-<h2 class="part" id="partb">Part B — AC Circuits <span class="marks">Module 1, continued</span></h2>
+<h2 class="part" id="partb">Part B — AC Circuits <span class="marks">Circuits</span></h2>
 
 <h3 class="topic" id="b1">B1. Generating an AC Waveform</h3>
 <div class="box terms"><span class="label">Key terms — know these words</span>
@@ -838,7 +818,7 @@ Continuing B4's circuit: V=50 V, I=10 A, φ=53.13° (cosφ=0.6, sinφ=0.8).<br>
 A low power factor is <em>not</em> "wasted power" in the sense of heat — reactive power Q isn't dissipated, it's shuttled back and forth. But a low cosφ still costs money: for the same real power P, a lower cosφ demands a <em>larger</em> current I=P/(Vcosφ), which means thicker cables and bigger transformers just to deliver the same useful watts. That's why factories with inductive loads (motors) install capacitor banks to raise their power factor.
 </div>
 
-<div class="foreshadow">Every motor in Topic 2 (Electrical Machines) — DC or three-phase induction — has winding inductance, so every one of them draws a lagging power factor exactly like this RL example. The induction motor there is, electrically, just a big rotating RL/RLC load.</div>
+<div class="foreshadow">Every motor in Part C (Electrical Machines) — DC or three-phase induction — has winding inductance, so every one of them draws a lagging power factor exactly like this RL example. The induction motor there is, electrically, just a big rotating RL/RLC load.</div>
 
 
 <h4 class="sub">How each element handles power</h4>
@@ -860,107 +840,996 @@ Power in AC is <b>not</b> simply V × I with rms values — that is only the <em
 </div>
 
 
-<h2 class="part" id="glossary">Glossary (A–Z) <span class="marks">93 terms</span></h2>
+
+<h3 class="topic" id="b6">B6. Energy &amp; Electricity-Bill Calculations</h3>
+<div class="box terms"><span class="label">Key terms — know these words</span>
+<ul>
+<li><b>Energy</b> — power × time; joules (J) or watt-hours. 1 kWh = 3.6 × 10⁶ J.</li>
+<li><b>Unit (kWh)</b> — the billing unit: 1 kW used for 1 hour.</li>
+<li><b>Rating</b> — the power (W) an appliance draws at rated voltage.</li>
+<li><b>Load profile</b> — how long, and at what duty, each appliance runs.</li>
+<li><b>Tariff</b> — the price per unit (₹/kWh); may be slab-based.</li>
+<li><b>Energy meter</b> — an instrument that integrates P over time and shows kWh.</li>
+</ul>
+</div>
+
+<div class="box def"><span class="label">Definition</span><div class='formula'>E (kWh) = P (kW) × t (h) &nbsp;; &nbsp; for AC: E = V I cos φ × t</div>Only <em>real</em> power P = VI cos φ is billed to households; large industrial users are also charged for kVA demand / poor power factor (B5).</div>
+
+<div class="box ex"><span class="label">Worked example</span>Appliances: 4 LED bulbs of 10 W for 5 h; a 75 W fan for 10 h; a 1.5 kW AC for 6 h; a 150 W fridge that runs half the day (12 h).<br>Energy/day = 4×10×5 + 75×10 + 1500×6 + 150×12 = 200 + 750 + 9000 + 1800 = <code>11 750 Wh = 11.75 kWh</code>.<br>30 days: 352.5 kWh. At an assumed ₹6/unit the bill is <code>≈ ₹2115</code>. The AC alone is 77% of it — the heaviest load decides the bill.</div>
+
+<div class="box mis"><span class="label">Fixing a common misconception</span>kW and kWh are different things: kW is a <em>rate</em> (power), kWh is an <em>amount</em> (energy). A 2 kW heater costs 2 units in one hour, but only 0.2 unit in 6 minutes.</div>
+<h2 class="part" id="partc">Part C — Electrical Machines <span class="marks">Machines</span></h2>
+<p>Machines convert energy between electrical and mechanical forms. Every derivation below leans on two things you already have: <b>Fleming's left/right hand rules</b> for force/EMF direction, and the <b>RMS/phasor</b> machinery from Part B for the transformer's alternating flux.</p>
+
+<h3 class="topic" id="c1">C1. DC Motor: Construction</h3>
+<div class="box terms"><span class="label">Key terms — know these words</span>
+<ul>
+<li><b>Yoke</b> — the outer frame (cast/rolled steel): supports the poles, protects the machine and carries the magnetic flux between poles.</li>
+<li><b>Field system</b> — the stationary part that produces the main flux: an even number of pole cores bolted to the yoke, with field winding on each.</li>
+<li><b>Salient pole</b> — a pole that projects inward towards the armature.</li>
+<li><b>Pole core / pole shoe</b> — the core carries the field coil; the curved shoe spreads the flux over the armature, supports the coil and lowers reluctance.</li>
+<li><b>Field winding</b> — the coils on the poles that, when energised, create alternate N and S poles.</li>
+<li><b>Armature</b> — the rotating part: core + winding; it carries the current that interacts with the field to make torque.</li>
+<li><b>Armature core</b> — slotted cylinder of insulated soft-steel laminations mounted on the shaft.</li>
+<li><b>Armature winding</b> — insulated conductors placed in the slots and suitably interconnected — lap winding or wave winding.</li>
+<li><b>Commutator</b> — a mechanical rectifier/inverter of wedge-shaped copper segments insulated by mica; connects the rotating armature to the fixed supply.</li>
+<li><b>Brushes / brush holder</b> — carbon blocks pressed on the commutator by springs; they carry current between the supply and the armature.</li>
+<li><b>Air gap</b> — the small gap between pole shoe and armature across which the flux passes.</li>
+<li><b>Lamination</b> — thin insulated steel sheet; stacking them breaks up the paths for eddy currents.</li>
+<li><b>Eddy current</b> — circulating currents induced inside the iron by changing flux; they only waste heat, so they are minimised.</li>
+<li><b>Spider</b> — a spoked frame on which laminations are mounted in large machines instead of being keyed directly to the shaft.</li>
+</ul>
+</div>
+
+
+<div class="box def"><span class="label">Definition</span>
+A DC motor has four essential parts: the <b>yoke</b> (outer magnetic frame), the <b>field system</b> (poles + field winding, produces the magnetic flux), the <b>armature</b> (rotating core + winding, carries current and experiences force), and the <b>commutator + brushes</b> (mechanically reverse the current in each armature coil every half-turn).
+</div>
+
+<div class="diagram">
+<svg viewBox="0 0 640 385" width="640" style="max-width:100%;height:auto" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#1b1f24"><circle cx="300" cy="190" r="150" fill="none" stroke="#9aa3b2" stroke-width="16"/><rect x="276" y="48" width="48" height="56" fill="#d7dce5" stroke="#1b1f24" stroke-width="1.6"/><rect x="262" y="56" width="14" height="42" fill="#f1c9a5" stroke="#b46b2d" stroke-width="1.4"/><rect x="324" y="56" width="14" height="42" fill="#f1c9a5" stroke="#b46b2d" stroke-width="1.4"/><polygon points="245.8,120.7 250.5,117.2 255.5,114.1 260.6,111.3 265.9,108.9 271.4,106.8 276.9,105.1 282.6,103.7 288.4,102.8 294.2,102.2 300.0,102.0 305.8,102.2 311.6,102.8 317.4,103.7 323.1,105.1 328.6,106.8 334.1,108.9 339.4,111.3 344.5,114.1 349.5,117.2 354.2,120.7 344.3,133.3 340.5,130.5 336.4,127.9 332.2,125.6 327.9,123.6 323.4,121.9 318.9,120.5 314.2,119.4 309.5,118.6 304.8,118.2 300.0,118.0 295.2,118.2 290.5,118.6 285.8,119.4 281.1,120.5 276.6,121.9 272.1,123.6 267.8,125.6 263.6,127.9 259.5,130.5 255.7,133.3" fill="#c3cad6" stroke="#1b1f24" stroke-width="1.6"/><text x="300.0" y="84.0" text-anchor="middle" fill="#c0392b" font-size="22" font-weight="bold">N</text><rect x="276" y="276" width="48" height="56" fill="#d7dce5" stroke="#1b1f24" stroke-width="1.6"/><rect x="262" y="284" width="14" height="42" fill="#f1c9a5" stroke="#b46b2d" stroke-width="1.4"/><rect x="324" y="284" width="14" height="42" fill="#f1c9a5" stroke="#b46b2d" stroke-width="1.4"/><polygon points="354.2,259.3 349.5,262.8 344.5,265.9 339.4,268.7 334.1,271.1 328.6,273.2 323.1,274.9 317.4,276.3 311.6,277.2 305.8,277.8 300.0,278.0 294.2,277.8 288.4,277.2 282.6,276.3 276.9,274.9 271.4,273.2 265.9,271.1 260.6,268.7 255.5,265.9 250.5,262.8 245.8,259.3 255.7,246.7 259.5,249.5 263.6,252.1 267.8,254.4 272.1,256.4 276.6,258.1 281.1,259.5 285.8,260.6 290.5,261.4 295.2,261.8 300.0,262.0 304.8,261.8 309.5,261.4 314.2,260.6 318.9,259.5 323.4,258.1 327.9,256.4 332.2,254.4 336.4,252.1 340.5,249.5 344.3,246.7" fill="#c3cad6" stroke="#1b1f24" stroke-width="1.6"/><text x="300.0" y="302.0" text-anchor="middle" fill="#1e468c" font-size="22" font-weight="bold">S</text><circle cx="300" cy="190" r="64" fill="#eef0f4" stroke="#1b1f24" stroke-width="2"/><circle cx="350.2" cy="203.5" r="6" fill="#fff" stroke="#1b1f24" stroke-width="1.5"/><circle cx="350.2" cy="203.5" r="2" fill="#1b1f24"/><circle cx="336.8" cy="226.8" r="6" fill="#fff" stroke="#1b1f24" stroke-width="1.5"/><circle cx="336.8" cy="226.8" r="2" fill="#1b1f24"/><circle cx="313.5" cy="240.2" r="6" fill="#fff" stroke="#1b1f24" stroke-width="1.5"/><circle cx="313.5" cy="240.2" r="2" fill="#1b1f24"/><circle cx="286.5" cy="240.2" r="6" fill="#fff" stroke="#1b1f24" stroke-width="1.5"/><circle cx="286.5" cy="240.2" r="2" fill="#1b1f24"/><circle cx="263.2" cy="226.8" r="6" fill="#fff" stroke="#1b1f24" stroke-width="1.5"/><circle cx="263.2" cy="226.8" r="2" fill="#1b1f24"/><circle cx="249.8" cy="203.5" r="6" fill="#fff" stroke="#1b1f24" stroke-width="1.5"/><circle cx="249.8" cy="203.5" r="2" fill="#1b1f24"/><circle cx="249.8" cy="176.5" r="6" fill="#fff" stroke="#1b1f24" stroke-width="1.5"/><line x1="246.3" y1="173.0" x2="253.3" y2="180.0" stroke="#1b1f24" stroke-width="1.5" stroke-linecap="round"/><line x1="246.3" y1="180.0" x2="253.3" y2="173.0" stroke="#1b1f24" stroke-width="1.5" stroke-linecap="round"/><circle cx="263.2" cy="153.2" r="6" fill="#fff" stroke="#1b1f24" stroke-width="1.5"/><line x1="259.7" y1="149.7" x2="266.7" y2="156.7" stroke="#1b1f24" stroke-width="1.5" stroke-linecap="round"/><line x1="259.7" y1="156.7" x2="266.7" y2="149.7" stroke="#1b1f24" stroke-width="1.5" stroke-linecap="round"/><circle cx="286.5" cy="139.8" r="6" fill="#fff" stroke="#1b1f24" stroke-width="1.5"/><line x1="283.0" y1="136.3" x2="290.0" y2="143.3" stroke="#1b1f24" stroke-width="1.5" stroke-linecap="round"/><line x1="283.0" y1="143.3" x2="290.0" y2="136.3" stroke="#1b1f24" stroke-width="1.5" stroke-linecap="round"/><circle cx="313.5" cy="139.8" r="6" fill="#fff" stroke="#1b1f24" stroke-width="1.5"/><line x1="310.0" y1="136.3" x2="317.0" y2="143.3" stroke="#1b1f24" stroke-width="1.5" stroke-linecap="round"/><line x1="310.0" y1="143.3" x2="317.0" y2="136.3" stroke="#1b1f24" stroke-width="1.5" stroke-linecap="round"/><circle cx="336.8" cy="153.2" r="6" fill="#fff" stroke="#1b1f24" stroke-width="1.5"/><line x1="333.3" y1="149.7" x2="340.3" y2="156.7" stroke="#1b1f24" stroke-width="1.5" stroke-linecap="round"/><line x1="333.3" y1="156.7" x2="340.3" y2="149.7" stroke="#1b1f24" stroke-width="1.5" stroke-linecap="round"/><circle cx="350.2" cy="176.5" r="6" fill="#fff" stroke="#1b1f24" stroke-width="1.5"/><line x1="346.7" y1="173.0" x2="353.7" y2="180.0" stroke="#1b1f24" stroke-width="1.5" stroke-linecap="round"/><line x1="346.7" y1="180.0" x2="353.7" y2="173.0" stroke="#1b1f24" stroke-width="1.5" stroke-linecap="round"/><circle cx="300" cy="190" r="12" fill="#fff" stroke="#7c3aed" stroke-width="2.4"/><line x1="120.0" y1="80.0" x2="159.0" y2="138.7" stroke="#8a93a3" stroke-width="1.2" stroke-linecap="round"/><circle cx="159.0" cy="138.7" r="2.5" fill="#8a93a3"/><text x="114.0" y="84.0" text-anchor="end" fill="#1b1f24" font-size="13" font-weight="bold">Yoke</text><line x1="120.0" y1="130.0" x2="276.0" y2="74.0" stroke="#8a93a3" stroke-width="1.2" stroke-linecap="round"/><circle cx="276.0" cy="74.0" r="2.5" fill="#8a93a3"/><text x="114.0" y="134.0" text-anchor="end" fill="#1b1f24" font-size="13" font-weight="bold">Pole core</text><line x1="120.0" y1="180.0" x2="243.4" y2="133.4" stroke="#8a93a3" stroke-width="1.2" stroke-linecap="round"/><circle cx="243.4" cy="133.4" r="2.5" fill="#8a93a3"/><text x="114.0" y="184.0" text-anchor="end" fill="#1b1f24" font-size="13" font-weight="bold">Pole shoe</text><line x1="480.0" y1="330.0" x2="331.0" y2="302.0" stroke="#8a93a3" stroke-width="1.2" stroke-linecap="round"/><circle cx="331.0" cy="302.0" r="2.5" fill="#8a93a3"/><text x="486.0" y="334.0" text-anchor="start" fill="#1b1f24" font-size="13" font-weight="bold">Field winding</text><line x1="480.0" y1="90.0" x2="334.0" y2="131.1" stroke="#8a93a3" stroke-width="1.2" stroke-linecap="round"/><circle cx="334.0" cy="131.1" r="2.5" fill="#8a93a3"/><text x="486.0" y="94.0" text-anchor="start" fill="#1b1f24" font-size="13" font-weight="bold">Air gap</text><line x1="480.0" y1="150.0" x2="356.4" y2="210.5" stroke="#8a93a3" stroke-width="1.2" stroke-linecap="round"/><circle cx="356.4" cy="210.5" r="2.5" fill="#8a93a3"/><text x="486.0" y="154.0" text-anchor="start" fill="#1b1f24" font-size="13" font-weight="bold">Armature core</text><line x1="480.0" y1="210.0" x2="313.5" y2="240.2" stroke="#8a93a3" stroke-width="1.2" stroke-linecap="round"/><circle cx="313.5" cy="240.2" r="2.5" fill="#8a93a3"/><text x="486.0" y="214.0" text-anchor="start" fill="#1b1f24" font-size="13" font-weight="bold">Armature conductors</text><line x1="480.0" y1="270.0" x2="308.0" y2="198.0" stroke="#8a93a3" stroke-width="1.2" stroke-linecap="round"/><circle cx="308.0" cy="198.0" r="2.5" fill="#8a93a3"/><text x="486.0" y="274.0" text-anchor="start" fill="#1b1f24" font-size="13" font-weight="bold">Shaft</text><text x="300.0" y="372.0" text-anchor="middle" fill="#8a93a3" font-size="12">× current into page (under N)     • current out of page (under S)</text></svg>
+<p class="caption">Cross-section of a two-pole DC machine: the yoke carries flux between the N and S poles; conductors in the armature slots carry current straight along the shaft, in opposite directions under the two poles.</p>
+</div>
+
+<div class="foreshadow">The commutator here is doing the reverse job of the diode bridge you'd see in a rectifier — both take an alternating quantity and make it one-directional. The DC generator (same machine, opposite energy flow) uses exactly this commutator to turn the AC EMF from B1's rotating-coil picture into DC.</div>
+
+
+<h4 class="sub">Part-by-part: what it is, what it's made of, why</h4>
+<table>
+<tr><th>Part</th><th>Construction</th><th>Purpose</th></tr>
+<tr><td><b>Yoke</b></td><td>hollow cylinder of cast or rolled steel</td><td>(1) supports the pole cores and protects the machine; (2) provides a path for the flux produced by the field winding</td></tr>
+<tr><td><b>Field system</b></td><td>even number of salient pole cores bolted to the yoke, field coils wound on each; pole shoe with curved face; laminated cores</td><td>produces the main magnetic flux; coils are connected so that adjacent poles alternate N, S, N, S</td></tr>
+<tr><td><b>Pole shoe</b></td><td>widened curved end of each pole core</td><td>(1) supports the field coil; (2) increases the flux cross-section, lowering reluctance</td></tr>
+<tr><td><b>Armature core</b></td><td>slotted cylinder of soft-steel laminations, insulated and clamped; keyed to shaft (small machines) or on a spider (large)</td><td>carries the armature winding and provides a low-reluctance flux path; laminations reduce eddy-current loss</td></tr>
+<tr><td><b>Armature winding</b></td><td>insulated conductors in the slots, suitably interconnected (lap or wave)</td><td>carries the current that develops torque (motor) or the induced EMF (generator)</td></tr>
+<tr><td><b>Commutator</b></td><td>wedge-shaped hard-drawn copper segments, insulated from each other and the shaft by mica; each segment joined to the ends of armature coils</td><td>reverses coil current at the right instant (a mechanical rectifier/inverter)</td></tr>
+<tr><td><b>Brushes</b></td><td>carbon blocks in metal brush holders; spring pressure held constant</td><td>carry current between the external DC supply and the rotating commutator</td></tr>
+</table>
+<div class="box why"><span class="label">Why laminate the iron?</span>
+Iron is a conductor. In the rotating armature core (and in AC-fed cores like transformers), changing flux induces circulating <b>eddy currents</b> inside the solid iron, wasting energy as heat. Slicing the core into thin, mutually insulated sheets breaks the circulating loops into tiny ones, so the currents (and the loss) fall drastically. The sheets are cut along the direction of flux so magnetic performance is unaffected.
+</div>
+<h4 class="sub">Lap vs wave winding</h4>
+<table>
+<tr><th></th><th>Lap winding</th><th>Wave winding</th></tr>
+<tr><td>Parallel paths (A)</td><td>A = P (number of poles)</td><td>A = 2, whatever the number of poles</td></tr>
+<tr><td>Best for</td><td>high current, low voltage</td><td>low current, high voltage</td></tr>
+</table>
+<div class="box mis"><span class="label">Fixing a common misconception</span>
+The commutator does <b>not</b> make DC current alternate 'because it's broken' — it is deliberate. Inside the armature the current <em>must</em> alternate (so each conductor keeps pushing the same way), while the supply is DC. The commutator is the bridge that lets a DC supply feed an alternating-current armature. That is why the slides call it a 'mechanical rectifier' — in a generator it does the opposite job: it turns the armature's AC into DC for the load.
+</div>
+
+<h3 class="topic" id="c2">C2. DC Motor: Working Principle &amp; Back EMF</h3>
+<div class="box terms"><span class="label">Key terms — know these words</span>
+<ul>
+<li><b>Torque (T)</b> — the turning effort of the shaft; T ∝ Φ·I<sub>a</sub>.</li>
+<li><b>Fleming's left-hand rule</b> — for MOTORS: thuMb = Motion (force), First finger = Field, seCond finger = Current.</li>
+<li><b>Fleming's right-hand rule</b> — for GENERATORS: thuMb = Motion, First finger = Field, seCond finger = induced EMF/current.</li>
+<li><b>Back EMF (counter EMF), E<sub>b</sub></b> — the EMF induced in the armature of a running motor; it opposes the supply voltage.</li>
+<li><b>Armature current (I<sub>a</sub>) and resistance (R<sub>a</sub>)</b> — the current in, and resistance of, the armature winding.</li>
+<li><b>Commutation</b> — the reversal of current in an armature coil as it passes from under one pole to the next.</li>
+<li><b>Motoring action</b> — electrical input → mechanical output (supply pushes current against E<sub>b</sub>).</li>
+<li><b>Generating action</b> — mechanical input → electrical output (E drives current out to the load).</li>
+<li><b>Starter</b> — a series resistor (or electronic controller) that limits the very large starting current.</li>
+<li><b>Speed equation</b> — N ∝ E<sub>b</sub>/Φ — speed rises with back-EMF and falls with flux.</li>
+</ul>
+</div>
+
+
+<div class="box def"><span class="label">Definition — force on a current-carrying conductor</span>
+<div class="formula">F = BIL sinθ &nbsp;(N)</div>
+where B is flux density (T), I is conductor current (A), L is conductor length in the field (m), θ the angle between conductor and field (usually 90°, so F=BIL). Direction: <b>Fleming's Left-Hand Rule.</b>
+</div>
+
+<div class="diagram">
+<svg viewBox="0 0 640 275" width="640" style="max-width:100%;height:auto" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#1b1f24"><line x1="300.0" y1="150.0" x2="300.0" y2="60.4" stroke="#166e3c" stroke-width="3.5" stroke-linecap="round"/><polygon points="300.0,50.0 305.5,63.0 294.5,63.0" fill="#166e3c"/><text x="300.0" y="34.0" text-anchor="middle" fill="#166e3c" font-size="14" font-weight="bold">Force / Motion (thuMb)</text><line x1="300.0" y1="150.0" x2="459.6" y2="150.0" stroke="#1e468c" stroke-width="3.5" stroke-linecap="round"/><polygon points="470.0,150.0 457.0,155.5 457.0,144.5" fill="#1e468c"/><text x="476.0" y="155.0" text-anchor="start" fill="#1e468c" font-size="14" font-weight="bold">Field, N → S</text><text x="476.0" y="172.0" text-anchor="start" fill="#1e468c" font-size="12">(First finger)</text><line x1="300.0" y1="150.0" x2="210.2" y2="212.9" stroke="#c0392b" stroke-width="3.5" stroke-linecap="round"/><polygon points="201.7,218.8 209.2,206.9 215.5,215.8" fill="#c0392b"/><text x="195.7" y="236.8" text-anchor="end" fill="#c0392b" font-size="14" font-weight="bold">Current (seCond finger)</text><circle cx="300.0" cy="150.0" r="4" fill="#1b1f24"/><rect x="300" y="136" width="14" height="14" fill="none" stroke="#8a93a3" stroke-width="1.3"/><text x="340.0" y="262.0" text-anchor="middle" fill="#8a93a3" font-size="12" font-style="italic">three mutually perpendicular directions (current drawn coming toward you)</text></svg>
+<p class="caption">Fleming's Left-Hand Rule (motors): thu<b>M</b>b = <b>M</b>otion/force, <b>F</b>irst finger = <b>F</b>ield, se<b>C</b>ond finger = <b>C</b>urrent.</p>
+</div>
+
+<div class="box why"><span class="label">Why the motor also generates a back EMF</span>
+The instant the armature conductor starts moving (because of the force above), it is itself a conductor moving through a magnetic field — which is precisely the generator condition of B1/C1. By Lenz's law this induced EMF must oppose the very current that created the motion, so it is called <b>back EMF, E<sub>b</sub></b>, and it grows with speed N and flux Φ (E<sub>b</sub> ∝ ΦN). The armature circuit equation is:
+<div class="formula">V = E<sub>b</sub> + I<sub>a</sub>R<sub>a</sub></div>
+This is nothing but Ohm's law / KVL from Part A applied to the armature loop: supply voltage = back EMF (a voltage source opposing V) + the I<sub>a</sub>R<sub>a</sub> drop across armature resistance.
+</div>
+
+<div class="box mis"><span class="label">Fixing a common misconception</span>
+"Back EMF wastes energy" — no. Back EMF is exactly how the motor converts electrical power into mechanical power: the electrical power associated with it, E<sub>b</sub>I<sub>a</sub>, <em>is</em> the mechanical power developed (minus small losses). Only the I<sub>a</sub>²R<sub>a</sub> term is a genuine (heat) loss.
+</div>
+
+<div class="box ex"><span class="label">Worked example</span>
+A DC motor has V=220 V, R<sub>a</sub>=1 Ω, and draws I<sub>a</sub>=20 A. Find E<sub>b</sub> and the mechanical power developed.<br>
+<code>E<sub>b</sub> = V − I<sub>a</sub>R<sub>a</sub> = 220 − 20(1) = 200 V</code><br>
+<code>Mechanical power = E<sub>b</sub>I<sub>a</sub> = 200×20 = 4000 W = 4 kW</code><br>
+Input power = VI<sub>a</sub> = 220×20 = 4400 W. Armature copper loss = I<sub>a</sub>²R<sub>a</sub> = 400 W. Check: 4000+400=4400 W ✓.
+</div>
+
+
+<h4 class="sub">Working principle, step by step</h4>
+<ol>
+<li>Connect the DC supply: the <b>field winding</b> is energised and creates alternate N and S poles.</li>
+<li>The <b>armature conductors</b> carry current — in one direction under the N pole, in the opposite direction under the S pole.</li>
+<li>Each current-carrying conductor sits in a magnetic field, so a force F = BIL acts on it (Fleming's left-hand rule). For the layout shown in the slides, this tends to move each conductor anticlockwise.</li>
+<li>The forces on all conductors add to give a driving <b>torque</b> that turns the armature.</li>
+<li>As a conductor moves from under one pole to the next, the commutator reverses its current — and the new pole is of opposite polarity, so the force direction stays the same.</li>
+<li>Result: continuous rotation in one direction.</li>
+</ol>
+<h4 class="sub">Torque and speed relations</h4>
+<div class="formula">T ∝ Φ · I<sub>a</sub> &nbsp;&nbsp;|&nbsp;&nbsp; E<sub>b</sub> ∝ Φ · N &nbsp;&nbsp;|&nbsp;&nbsp; N ∝ E<sub>b</sub>/Φ = (V − I<sub>a</sub>R<sub>a</sub>)/Φ</div>
+<p>Weaken the flux → the motor speeds up; raise the supply voltage → the motor speeds up. These two 'knobs' are how DC-motor speed is controlled.</p>
+<div class="box why"><span class="label">Why a DC motor needs a starter</span>
+At the instant of switching on, the armature is at rest, so N = 0 and E<sub>b</sub> = 0. The armature circuit equation V = E<sub>b</sub> + I<sub>a</sub>R<sub>a</sub> then gives I<sub>a</sub> = V/R<sub>a</sub>. Since R<sub>a</sub> is tiny (a fraction of an ohm), that current is enormous. E.g. 220 V and R<sub>a</sub> = 0.5 Ω gives <b>440 A</b> versus a normal 20 A. A starter resistor limits it and is cut out as E<sub>b</sub> builds up.
+</div>
+<div class="box ex"><span class="label">Worked example — speed change with load</span>
+Motor: V = 220 V, R<sub>a</sub> = 0.5 Ω, I<sub>a</sub> = 20 A, N = 1000 rpm, flux constant.<br>
+E<sub>b1</sub> = 220 − 20 × 0.5 = <code>210 V</code>.<br>
+Load is reduced and I<sub>a</sub> falls to 10 A: E<sub>b2</sub> = 220 − 10 × 0.5 = <code>215 V</code>.<br>
+Since N ∝ E<sub>b</sub> (Φ constant): N<sub>2</sub> = 1000 × 215/210 = <code>1024 rpm</code>. Speed rises slightly at light load — this small change is what 'good speed regulation' means.
+</div>
+
+<h4 class="sub">The same machine as a generator (DC generator principle)</h4>
+<p>Run the machine backwards — spin the armature with a prime mover and it produces an EMF. Consider a <b>single-turn loop ABCD</b> rotating clockwise at constant speed in a uniform field. The flux linked with coil sides AB and CD changes continuously, inducing an EMF in each side; the two EMFs add.</p>
+<table>
+<tr><th>Loop position</th><th>How the coil sides cut the flux</th><th>Induced EMF</th></tr>
+<tr><td>1</td><td>moving <em>parallel</em> to the flux</td><td>zero</td></tr>
+<tr><td>2</td><td>cutting at an angle</td><td>small</td></tr>
+<tr><td>3</td><td>moving at <em>right angles</em> to the flux</td><td><b>maximum</b></td></tr>
+<tr><td>4</td><td>cutting at an angle</td><td>reduced</td></tr>
+<tr><td>5</td><td>parallel to the flux again</td><td>zero</td></tr>
+<tr><td>6</td><td>now under the <em>opposite pole</em></td><td>polarity reversed</td></tr>
+<tr><td>7</td><td>right angles to the flux (other pole)</td><td>maximum in the reversed direction</td></tr>
+<tr><td>back to 1</td><td>parallel again</td><td>zero — cycle repeats each revolution</td></tr>
+</table>
+<p>The EMF in the loop is therefore <b>alternating</b>. A commutator (one split ring for one loop) flips the connections to the brushes every half-turn, so the external load always sees the same polarity — pulsating DC. With many coils and many commutator segments, the ripples smooth out to nearly steady DC.</p>
+<div class="diagram">
+<svg viewBox="0 0 470 260" width="470" style="max-width:100%;height:auto" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#1b1f24"><line x1="50.0" y1="110.0" x2="452.0" y2="110.0" stroke="#1b1f24" stroke-width="2" stroke-linecap="round"/><line x1="50.0" y1="28.0" x2="50.0" y2="192.0" stroke="#1b1f24" stroke-width="2" stroke-linecap="round"/><polyline points="50.0,110.0 51.6,106.8 53.2,103.5 54.9,100.3 56.5,97.1 58.1,94.0 59.8,90.8 61.4,87.8 63.0,84.8 64.6,81.9 66.2,79.0 67.9,76.2 69.5,73.6 71.1,71.0 72.8,68.5 74.4,66.2 76.0,63.9 77.6,61.8 79.2,59.8 80.9,58.0 82.5,56.3 84.1,54.8 85.8,53.4 87.4,52.1 89.0,51.0 90.6,50.1 92.2,49.4 93.9,48.8 95.5,48.3 97.1,48.1 98.8,48.0 100.4,48.1 102.0,48.3 103.6,48.8 105.2,49.4 106.9,50.1 108.5,51.0 110.1,52.1 111.8,53.4 113.4,54.8 115.0,56.3 116.6,58.0 118.2,59.8 119.9,61.8 121.5,63.9 123.1,66.2 124.8,68.5 126.4,71.0 128.0,73.6 129.6,76.2 131.2,79.0 132.9,81.9 134.5,84.8 136.1,87.8 137.8,90.8 139.4,94.0 141.0,97.1 142.6,100.3 144.2,103.5 145.9,106.8 147.5,110.0 149.1,113.2 150.8,116.5 152.4,119.7 154.0,122.9 155.6,126.0 157.2,129.2 158.9,132.2 160.5,135.2 162.1,138.1 163.8,141.0 165.4,143.8 167.0,146.4 168.6,149.0 170.2,151.5 171.9,153.8 173.5,156.1 175.1,158.2 176.8,160.2 178.4,162.0 180.0,163.7 181.6,165.2 183.2,166.6 184.9,167.9 186.5,169.0 188.1,169.9 189.8,170.6 191.4,171.2 193.0,171.7 194.6,171.9 196.2,172.0 197.9,171.9 199.5,171.7 201.1,171.2 202.8,170.6 204.4,169.9 206.0,169.0 207.6,167.9 209.2,166.6 210.9,165.2 212.5,163.7 214.1,162.0 215.8,160.2 217.4,158.2 219.0,156.1 220.6,153.8 222.2,151.5 223.9,149.0 225.5,146.4 227.1,143.8 228.8,141.0 230.4,138.1 232.0,135.2 233.6,132.2 235.2,129.2 236.9,126.0 238.5,122.9 240.1,119.7 241.8,116.5 243.4,113.2 245.0,110.0 246.6,106.8 248.2,103.5 249.9,100.3 251.5,97.1 253.1,94.0 254.8,90.8 256.4,87.8 258.0,84.8 259.6,81.9 261.2,79.0 262.9,76.2 264.5,73.6 266.1,71.0 267.8,68.5 269.4,66.2 271.0,63.9 272.6,61.8 274.2,59.8 275.9,58.0 277.5,56.3 279.1,54.8 280.8,53.4 282.4,52.1 284.0,51.0 285.6,50.1 287.2,49.4 288.9,48.8 290.5,48.3 292.1,48.1 293.8,48.0 295.4,48.1 297.0,48.3 298.6,48.8 300.2,49.4 301.9,50.1 303.5,51.0 305.1,52.1 306.8,53.4 308.4,54.8 310.0,56.3 311.6,58.0 313.2,59.8 314.9,61.8 316.5,63.9 318.1,66.2 319.8,68.5 321.4,71.0 323.0,73.6 324.6,76.2 326.2,79.0 327.9,81.9 329.5,84.8 331.1,87.8 332.8,90.8 334.4,94.0 336.0,97.1 337.6,100.3 339.2,103.5 340.9,106.8 342.5,110.0 344.1,113.2 345.8,116.5 347.4,119.7 349.0,122.9 350.6,126.0 352.2,129.2 353.9,132.2 355.5,135.2 357.1,138.1 358.8,141.0 360.4,143.8 362.0,146.4 363.6,149.0 365.2,151.5 366.9,153.8 368.5,156.1 370.1,158.2 371.8,160.2 373.4,162.0 375.0,163.7 376.6,165.2 378.2,166.6 379.9,167.9 381.5,169.0 383.1,169.9 384.8,170.6 386.4,171.2 388.0,171.7 389.6,171.9 391.2,172.0 392.9,171.9 394.5,171.7 396.1,171.2 397.8,170.6 399.4,169.9 401.0,169.0 402.6,167.9 404.2,166.6 405.9,165.2 407.5,163.7 409.1,162.0 410.8,160.2 412.4,158.2 414.0,156.1 415.6,153.8 417.2,151.5 418.9,149.0 420.5,146.4 422.1,143.8 423.8,141.0 425.4,138.1 427.0,135.2 428.6,132.2 430.2,129.2 431.9,126.0 433.5,122.9 435.1,119.7 436.8,116.5 438.4,113.2 440.0,110.0" fill="none" stroke="#8a93a3" stroke-width="2" stroke-linejoin="round" stroke-dasharray="6,4"/><polyline points="50.0,110.0 51.6,106.8 53.2,103.5 54.9,100.3 56.5,97.1 58.1,94.0 59.8,90.8 61.4,87.8 63.0,84.8 64.6,81.9 66.2,79.0 67.9,76.2 69.5,73.6 71.1,71.0 72.8,68.5 74.4,66.2 76.0,63.9 77.6,61.8 79.2,59.8 80.9,58.0 82.5,56.3 84.1,54.8 85.8,53.4 87.4,52.1 89.0,51.0 90.6,50.1 92.2,49.4 93.9,48.8 95.5,48.3 97.1,48.1 98.8,48.0 100.4,48.1 102.0,48.3 103.6,48.8 105.2,49.4 106.9,50.1 108.5,51.0 110.1,52.1 111.8,53.4 113.4,54.8 115.0,56.3 116.6,58.0 118.2,59.8 119.9,61.8 121.5,63.9 123.1,66.2 124.8,68.5 126.4,71.0 128.0,73.6 129.6,76.2 131.2,79.0 132.9,81.9 134.5,84.8 136.1,87.8 137.8,90.8 139.4,94.0 141.0,97.1 142.6,100.3 144.2,103.5 145.9,106.8 147.5,110.0 149.1,106.8 150.8,103.5 152.4,100.3 154.0,97.1 155.6,94.0 157.2,90.8 158.9,87.8 160.5,84.8 162.1,81.9 163.8,79.0 165.4,76.2 167.0,73.6 168.6,71.0 170.2,68.5 171.9,66.2 173.5,63.9 175.1,61.8 176.8,59.8 178.4,58.0 180.0,56.3 181.6,54.8 183.2,53.4 184.9,52.1 186.5,51.0 188.1,50.1 189.8,49.4 191.4,48.8 193.0,48.3 194.6,48.1 196.2,48.0 197.9,48.1 199.5,48.3 201.1,48.8 202.8,49.4 204.4,50.1 206.0,51.0 207.6,52.1 209.2,53.4 210.9,54.8 212.5,56.3 214.1,58.0 215.8,59.8 217.4,61.8 219.0,63.9 220.6,66.2 222.2,68.5 223.9,71.0 225.5,73.6 227.1,76.2 228.8,79.0 230.4,81.9 232.0,84.8 233.6,87.8 235.2,90.8 236.9,94.0 238.5,97.1 240.1,100.3 241.8,103.5 243.4,106.8 245.0,110.0 246.6,106.8 248.2,103.5 249.9,100.3 251.5,97.1 253.1,94.0 254.8,90.8 256.4,87.8 258.0,84.8 259.6,81.9 261.2,79.0 262.9,76.2 264.5,73.6 266.1,71.0 267.8,68.5 269.4,66.2 271.0,63.9 272.6,61.8 274.2,59.8 275.9,58.0 277.5,56.3 279.1,54.8 280.8,53.4 282.4,52.1 284.0,51.0 285.6,50.1 287.2,49.4 288.9,48.8 290.5,48.3 292.1,48.1 293.8,48.0 295.4,48.1 297.0,48.3 298.6,48.8 300.2,49.4 301.9,50.1 303.5,51.0 305.1,52.1 306.8,53.4 308.4,54.8 310.0,56.3 311.6,58.0 313.2,59.8 314.9,61.8 316.5,63.9 318.1,66.2 319.8,68.5 321.4,71.0 323.0,73.6 324.6,76.2 326.2,79.0 327.9,81.9 329.5,84.8 331.1,87.8 332.8,90.8 334.4,94.0 336.0,97.1 337.6,100.3 339.2,103.5 340.9,106.8 342.5,110.0 344.1,106.8 345.8,103.5 347.4,100.3 349.0,97.1 350.6,94.0 352.2,90.8 353.9,87.8 355.5,84.8 357.1,81.9 358.8,79.0 360.4,76.2 362.0,73.6 363.6,71.0 365.2,68.5 366.9,66.2 368.5,63.9 370.1,61.8 371.8,59.8 373.4,58.0 375.0,56.3 376.6,54.8 378.2,53.4 379.9,52.1 381.5,51.0 383.1,50.1 384.8,49.4 386.4,48.8 388.0,48.3 389.6,48.1 391.2,48.0 392.9,48.1 394.5,48.3 396.1,48.8 397.8,49.4 399.4,50.1 401.0,51.0 402.6,52.1 404.2,53.4 405.9,54.8 407.5,56.3 409.1,58.0 410.8,59.8 412.4,61.8 414.0,63.9 415.6,66.2 417.2,68.5 418.9,71.0 420.5,73.6 422.1,76.2 423.8,79.0 425.4,81.9 427.0,84.8 428.6,87.8 430.2,90.8 431.9,94.0 433.5,97.1 435.1,100.3 436.8,103.5 438.4,106.8 440.0,110.0" fill="none" stroke="#7c3aed" stroke-width="2.8" stroke-linejoin="round"/><text x="50.0" y="212.0" text-anchor="middle" fill="#8a93a3" font-size="12">0°</text><text x="147.5" y="212.0" text-anchor="middle" fill="#8a93a3" font-size="12">180°</text><text x="245.0" y="212.0" text-anchor="middle" fill="#8a93a3" font-size="12">360°</text><text x="342.5" y="212.0" text-anchor="middle" fill="#8a93a3" font-size="12">540°</text><text x="440.0" y="212.0" text-anchor="middle" fill="#8a93a3" font-size="12">720°</text><line x1="60.0" y1="16.0" x2="90.0" y2="16.0" stroke="#8a93a3" stroke-width="2" stroke-dasharray="6,4" stroke-linecap="round"/><text x="96.0" y="20.0" text-anchor="start" fill="#8a93a3" font-size="12">EMF induced in the loop (alternating)</text><line x1="60.0" y1="34.0" x2="90.0" y2="34.0" stroke="#7c3aed" stroke-width="2.8" stroke-linecap="round"/><text x="96.0" y="38.0" text-anchor="start" fill="#7c3aed" font-size="12">voltage at the brushes after the commutator (one direction)</text><text x="245.0" y="234.0" text-anchor="middle" fill="#1b1f24" font-size="12">loop rotation (two revolutions)</text></svg>
+<p class="caption">A single-loop generator: the loop's EMF alternates every half-turn; the commutator swaps the brush connections at each zero crossing so the load sees a one-directional, pulsating output.</p>
+</div>
+<table>
+<tr><th></th><th>Motor</th><th>Generator</th></tr>
+<tr><td>Energy conversion</td><td>electrical → mechanical</td><td>mechanical → electrical</td></tr>
+<tr><td>Rule for direction</td><td>Fleming's <b>left</b>-hand</td><td>Fleming's <b>right</b>-hand</td></tr>
+<tr><td>Armature equation</td><td>V = E<sub>b</sub> + I<sub>a</sub>R<sub>a</sub></td><td>V<sub>t</sub> = E − I<sub>a</sub>R<sub>a</sub></td></tr>
+<tr><td>Which is larger?</td><td>supply V &gt; E<sub>b</sub></td><td>generated E &gt; terminal V<sub>t</sub></td></tr>
+<tr><td>I<sub>a</sub> direction</td><td>into the armature</td><td>out of the armature</td></tr>
+</table>
+<div class="foreshadow">A generator's <em>generated EMF</em> and a motor's <em>back EMF</em> are the same physical thing — a conductor cutting flux. Every machine does both at once; what decides whether it is a motor or a generator is which way the energy flows.</div>
+
+<h3 class="topic" id="c3">C3. Types of DC Motors</h3>
+<div class="box terms"><span class="label">Key terms — know these words</span>
+<ul>
+<li><b>Separately excited</b> — field winding fed from an independent DC source.</li>
+<li><b>Self-excited</b> — field winding fed from the machine's own armature supply (shunt, series, compound).</li>
+<li><b>Shunt motor</b> — field winding (high resistance, many turns) in <em>parallel</em> with the armature.</li>
+<li><b>Series motor</b> — field winding (low resistance, few heavy turns) in <em>series</em> with the armature.</li>
+<li><b>Compound motor</b> — both shunt and series field windings.</li>
+<li><b>Short shunt / long shunt</b> — short: shunt field across the armature only, series field in the supply line. Long: shunt field across armature + series field together.</li>
+<li><b>Cumulative / differential compound</b> — cumulative: series field <em>aids</em> the shunt flux. Differential: it <em>opposes</em> it.</li>
+<li><b>Starting torque</b> — the torque at zero speed; high for series motors.</li>
+<li><b>Speed regulation</b> — how little the speed changes from no-load to full-load; excellent for shunt motors.</li>
+<li><b>Over-compounded generator</b> — a cumulative compound generator whose terminal voltage <em>rises</em> with load, compensating line drop.</li>
+</ul>
+</div>
+
+
+<div class="diagram">
+<svg viewBox="0 0 740 228" width="740" style="max-width:100%;height:auto" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#1b1f24"><text x="115.0" y="24.0" text-anchor="middle" fill="#1b1f24" font-size="15" font-weight="bold">Shunt</text><circle cx="30.0" cy="60.0" r="4" fill="#1b1f24"/><circle cx="30.0" cy="170.0" r="4" fill="#1b1f24"/><text x="22.0" y="64.0" text-anchor="end" fill="#1b1f24" font-size="15" font-weight="bold">+</text><text x="22.0" y="174.0" text-anchor="end" fill="#1b1f24" font-size="15" font-weight="bold">−</text><line x1="30.0" y1="60.0" x2="170.0" y2="60.0" stroke="#1b1f24" stroke-width="2" stroke-linecap="round"/><line x1="30.0" y1="170.0" x2="170.0" y2="170.0" stroke="#1b1f24" stroke-width="2" stroke-linecap="round"/><g transform="translate(85.0,115.0) rotate(90.0)" fill="none" stroke="#1b1f24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><line x1="-55.0" y1="0" x2="-28" y2="0"/><line x1="28" y1="0" x2="55.0" y2="0"/><path d="M-28,0 a7,7 0 0 1 14,0 a7,7 0 0 1 14,0 a7,7 0 0 1 14,0 a7,7 0 0 1 14,0"/></g><text x="65.0" y="119.0" text-anchor="end" fill="#1b1f24" font-size="13">field</text><circle cx="85.0" cy="60.0" r="4" fill="#1b1f24"/><circle cx="85.0" cy="170.0" r="4" fill="#1b1f24"/><line x1="170.0" y1="60.0" x2="170.0" y2="88.0" stroke="#1b1f24" stroke-width="2" stroke-linecap="round"/><line x1="170.0" y1="132.0" x2="170.0" y2="170.0" stroke="#1b1f24" stroke-width="2" stroke-linecap="round"/><circle cx="170" cy="110" r="22" fill="#fff" stroke="#1b1f24" stroke-width="2"/><text x="170.0" y="115.0" text-anchor="middle" fill="#1b1f24" font-size="15" font-weight="bold">M</text><text x="115.0" y="208.0" text-anchor="middle" fill="#8a93a3" font-size="12">field ∥ armature</text><text x="355.0" y="24.0" text-anchor="middle" fill="#1b1f24" font-size="15" font-weight="bold">Series</text><circle cx="270.0" cy="60.0" r="4" fill="#1b1f24"/><circle cx="270.0" cy="170.0" r="4" fill="#1b1f24"/><text x="262.0" y="64.0" text-anchor="end" fill="#1b1f24" font-size="15" font-weight="bold">+</text><text x="262.0" y="174.0" text-anchor="end" fill="#1b1f24" font-size="15" font-weight="bold">−</text><g transform="translate(325.0,60.0) rotate(0.0)" fill="none" stroke="#1b1f24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><line x1="-55.0" y1="0" x2="-28" y2="0"/><line x1="28" y1="0" x2="55.0" y2="0"/><path d="M-28,0 a7,7 0 0 1 14,0 a7,7 0 0 1 14,0 a7,7 0 0 1 14,0 a7,7 0 0 1 14,0"/></g><text x="325.0" y="38.0" text-anchor="middle" fill="#1b1f24" font-size="13">series field</text><line x1="380.0" y1="60.0" x2="410.0" y2="60.0" stroke="#1b1f24" stroke-width="2" stroke-linecap="round"/><line x1="270.0" y1="170.0" x2="410.0" y2="170.0" stroke="#1b1f24" stroke-width="2" stroke-linecap="round"/><line x1="410.0" y1="60.0" x2="410.0" y2="88.0" stroke="#1b1f24" stroke-width="2" stroke-linecap="round"/><line x1="410.0" y1="132.0" x2="410.0" y2="170.0" stroke="#1b1f24" stroke-width="2" stroke-linecap="round"/><circle cx="410" cy="110" r="22" fill="#fff" stroke="#1b1f24" stroke-width="2"/><text x="410.0" y="115.0" text-anchor="middle" fill="#1b1f24" font-size="15" font-weight="bold">M</text><text x="355.0" y="208.0" text-anchor="middle" fill="#8a93a3" font-size="12">field in series with armature</text><text x="610.0" y="24.0" text-anchor="middle" fill="#1b1f24" font-size="15" font-weight="bold">Compound (short shunt)</text><circle cx="510.0" cy="60.0" r="4" fill="#1b1f24"/><circle cx="510.0" cy="170.0" r="4" fill="#1b1f24"/><text x="502.0" y="64.0" text-anchor="end" fill="#1b1f24" font-size="15" font-weight="bold">+</text><text x="502.0" y="174.0" text-anchor="end" fill="#1b1f24" font-size="15" font-weight="bold">−</text><g transform="translate(550.0,60.0) rotate(0.0)" fill="none" stroke="#1b1f24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><line x1="-40.0" y1="0" x2="-28" y2="0"/><line x1="28" y1="0" x2="40.0" y2="0"/><path d="M-28,0 a7,7 0 0 1 14,0 a7,7 0 0 1 14,0 a7,7 0 0 1 14,0 a7,7 0 0 1 14,0"/></g><text x="550.0" y="38.0" text-anchor="middle" fill="#1b1f24" font-size="13">series</text><line x1="590.0" y1="60.0" x2="680.0" y2="60.0" stroke="#1b1f24" stroke-width="2" stroke-linecap="round"/><line x1="510.0" y1="170.0" x2="680.0" y2="170.0" stroke="#1b1f24" stroke-width="2" stroke-linecap="round"/><g transform="translate(590.0,115.0) rotate(90.0)" fill="none" stroke="#1b1f24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><line x1="-55.0" y1="0" x2="-28" y2="0"/><line x1="28" y1="0" x2="55.0" y2="0"/><path d="M-28,0 a7,7 0 0 1 14,0 a7,7 0 0 1 14,0 a7,7 0 0 1 14,0 a7,7 0 0 1 14,0"/></g><text x="570.0" y="119.0" text-anchor="end" fill="#1b1f24" font-size="13">shunt</text><circle cx="590.0" cy="60.0" r="4" fill="#1b1f24"/><circle cx="590.0" cy="170.0" r="4" fill="#1b1f24"/><line x1="680.0" y1="60.0" x2="680.0" y2="88.0" stroke="#1b1f24" stroke-width="2" stroke-linecap="round"/><line x1="680.0" y1="132.0" x2="680.0" y2="170.0" stroke="#1b1f24" stroke-width="2" stroke-linecap="round"/><circle cx="680" cy="110" r="22" fill="#fff" stroke="#1b1f24" stroke-width="2"/><text x="680.0" y="115.0" text-anchor="middle" fill="#1b1f24" font-size="15" font-weight="bold">M</text><text x="610.0" y="208.0" text-anchor="middle" fill="#8a93a3" font-size="12">series field in the supply line</text></svg>
+<p class="caption">Three ways to connect the field winding: the coil symbol is the field, the circle marked M is the armature. Each connection gives a different speed/torque personality.</p>
+</div>
+
+<table>
+<tr><th>Type</th><th>Key relation</th><th>Speed vs Load</th><th>Typical application</th></tr>
+<tr><td>Shunt</td><td>I<sub>a</sub>=I−I<sub>sh</sub>, I<sub>sh</sub>=V/R<sub>sh</sub></td><td>nearly constant speed</td><td>fans, blowers, lathes</td></tr>
+<tr><td>Series</td><td>I<sub>a</sub>=I<sub>se</sub>=I, V=E<sub>b</sub>+I<sub>a</sub>(R<sub>a</sub>+R<sub>se</sub>)</td><td>high starting torque, speed falls sharply as load rises</td><td>cranes, traction, hair dryers</td></tr>
+<tr><td>Compound</td><td>combines both windings</td><td>compromise of the two</td><td>presses, rolling mills, elevators</td></tr>
+</table>
+
+<div class="box mis"><span class="label">Fixing a common misconception</span>
+"A series motor is just a shunt motor wired differently, so it behaves similarly" — no: a series motor must <em>never</em> be started with no mechanical load. With Φ nearly zero at no load, E<sub>b</sub>=V−I<sub>a</sub>R<sub>a</sub> stays small, so I<sub>a</sub> (and hence speed, since low flux needs high speed to build back-EMF) can run away dangerously. A shunt motor's flux is fixed by V regardless of load, so it has no such runaway risk.
+</div>
+
+
+<h4 class="sub">Circuit equations for every connection (motors)</h4>
+<table>
+<tr><th>Type</th><th>Currents</th><th>Supply equation</th></tr>
+<tr><td>Separately excited</td><td>I<sub>a</sub> = I<sub>s</sub>; field current I<sub>f</sub> comes from a separate source</td><td>V<sub>s</sub> = E<sub>b</sub> + I<sub>a</sub>R<sub>a</sub></td></tr>
+<tr><td>Shunt</td><td>I<sub>a</sub> = I<sub>s</sub> − I<sub>sh</sub>; I<sub>sh</sub> = V<sub>s</sub>/R<sub>sh</sub></td><td>V<sub>s</sub> = E<sub>b</sub> + I<sub>a</sub>R<sub>a</sub></td></tr>
+<tr><td>Series</td><td>I<sub>a</sub> = I<sub>se</sub> = I<sub>s</sub></td><td>V<sub>s</sub> = E<sub>b</sub> + I<sub>a</sub>(R<sub>a</sub> + R<sub>se</sub>)</td></tr>
+<tr><td>Compound — short shunt</td><td>I<sub>a</sub> = I<sub>s</sub> − I<sub>sh</sub>; series field in the supply line; I<sub>sh</sub> = (V<sub>s</sub> − I<sub>se</sub>R<sub>se</sub>)/R<sub>sh</sub></td><td>V<sub>s</sub> = E<sub>b</sub> + I<sub>a</sub>R<sub>a</sub> + I<sub>se</sub>R<sub>se</sub></td></tr>
+<tr><td>Compound — long shunt</td><td>I<sub>a</sub> = I<sub>s</sub> − I<sub>sh</sub>; I<sub>se</sub> = I<sub>a</sub>; I<sub>sh</sub> = V<sub>s</sub>/R<sub>sh</sub></td><td>V<sub>s</sub> = E<sub>b</sub> + I<sub>a</sub>(R<sub>a</sub> + R<sub>se</sub>)</td></tr>
+</table>
+<div class="box mis"><span class="label">Heads-up on a slide detail</span>
+In the short-shunt drawing the series field sits in the <em>supply line</em>, so physically it carries the line current I<sub>s</sub> (= I<sub>a</sub> + I<sub>sh</sub>). Some slides write I<sub>se</sub> = I<sub>a</sub> for it; that only holds for the <em>long</em> shunt. If your exam uses the slide's version, follow that — but know the physical reason, and check with your lecturer if a question depends on it.
+</div>
+<div class="box ex"><span class="label">Worked example — shunt motor</span>
+V<sub>s</sub> = 220 V, R<sub>sh</sub> = 110 Ω, R<sub>a</sub> = 0.5 Ω, line current I<sub>s</sub> = 22 A.<br>
+I<sub>sh</sub> = 220/110 = <code>2 A</code>; I<sub>a</sub> = 22 − 2 = <code>20 A</code>; E<sub>b</sub> = 220 − 20 × 0.5 = <code>210 V</code>; input power = 220 × 22 = 4840 W; mechanical power developed = E<sub>b</sub>I<sub>a</sub> = 210 × 20 = 4200 W.
+</div>
+<h4 class="sub">Where each motor is used</h4>
+<table>
+<tr><th>Motor</th><th>Characteristic</th><th>Applications</th></tr>
+<tr><td><b>Shunt</b></td><td>almost constant speed from no-load to full-load</td><td>wipers and automatic windscreens, drills, conveyors, fans, blowers, boring mills, shapers, spinning and weighing machines, centrifugal pumps</td></tr>
+<tr><td><b>Series</b></td><td>very high starting torque; speed falls sharply with load; dangerous if unloaded</td><td>cranes, air compressors, lifts and elevators, winches, electric traction, hair dryers, vacuum cleaners, power tools, sewing machines</td></tr>
+<tr><td><b>Cumulative compound</b></td><td>high starting torque with fair speed regulation</td><td>presses, electric shovels, reciprocating machines, conveyors, stamping machines, elevators, compressors, rolling mills, heavy planers</td></tr>
+<tr><td><b>Differential compound</b></td><td>speed <em>rises</em> with load — poor, unstable torque</td><td>not suitable for practical use</td></tr>
+</table>
+
+<h4 class="sub">DC generator types (same connections, different equations)</h4>
+<table>
+<tr><th>Type</th><th>Currents</th><th>Terminal voltage</th></tr>
+<tr><td>Series generator</td><td>I<sub>a</sub> = I<sub>se</sub> = I<sub>L</sub></td><td>V<sub>t</sub> = E − I<sub>a</sub>(R<sub>a</sub> + R<sub>se</sub>)</td></tr>
+<tr><td>Shunt generator</td><td>I<sub>a</sub> = I<sub>L</sub> + I<sub>sh</sub>; I<sub>sh</sub> = V<sub>t</sub>/R<sub>sh</sub></td><td>V<sub>t</sub> = E − I<sub>a</sub>R<sub>a</sub></td></tr>
+<tr><td>Compound — short shunt</td><td>I<sub>a</sub> = I<sub>L</sub> + I<sub>sh</sub>; I<sub>se</sub> = I<sub>L</sub>; I<sub>sh</sub> = (V<sub>t</sub> + I<sub>se</sub>R<sub>se</sub>)/R<sub>sh</sub></td><td>V<sub>t</sub> = E − I<sub>a</sub>R<sub>a</sub> − I<sub>se</sub>R<sub>se</sub></td></tr>
+<tr><td>Compound — long shunt</td><td>I<sub>a</sub> = I<sub>L</sub> + I<sub>sh</sub>; I<sub>se</sub> = I<sub>a</sub>; I<sub>sh</sub> = V<sub>t</sub>/R<sub>sh</sub></td><td>V<sub>t</sub> = E − I<sub>a</sub>(R<sub>a</sub> + R<sub>se</sub>)</td></tr>
+</table>
+<p>Note the sign flip against the motor: for a generator the drops <em>subtract</em> from the generated EMF (V<sub>t</sub> = E − drops); for a motor the drops <em>add</em> to the back-EMF (V = E<sub>b</sub> + drops).</p>
+<table>
+<tr><th>Generator</th><th>Applications</th></tr>
+<tr><td>Separately excited</td><td>independent DC field source, so expensive and rarely used; wide voltage range for laboratory and commercial testing, speed-regulation tests, supplying speed-controlled DC motors</td></tr>
+<tr><td>Series</td><td>limited use: voltage boosting in distribution feeders, constant-current high-voltage DC transmission (several in series), field excitation in DC locomotives for regenerative braking, series arc lighting</td></tr>
+<tr><td>Shunt</td><td>nearly constant terminal voltage over short distances: battery charging, lighting and power supply (with field regulator), exciting alternators</td></tr>
+<tr><td>Compound</td><td>over-compounded: compensates line drop for long transmission lines; cumulative: supplying DC motors, lighting and heavy power services; differential: arc welding (needs large voltage drop and constant current)</td></tr>
+</table>
+
+<h3 class="topic" id="c4">C4. Transformer: Construction</h3>
+<div class="box terms"><span class="label">Key terms — know these words</span>
+<ul>
+<li><b>Primary / secondary winding</b> — the winding connected to the source / the winding connected to the load.</li>
+<li><b>Core</b> — the laminated silicon-steel path that carries the mutual flux.</li>
+<li><b>Limb / yoke (transformer)</b> — limb: the part of the core carrying a winding; yoke: the part that joins the limbs.</li>
+<li><b>Mutual inductance</b> — the property by which a changing current in one coil induces an EMF in a neighbouring coil.</li>
+<li><b>Turns ratio</b> — N<sub>1</sub>/N<sub>2</sub>, the number of primary turns to secondary turns.</li>
+<li><b>Step-up / step-down</b> — step-up: V<sub>2</sub> &gt; V<sub>1</sub> (N<sub>2</sub> &gt; N<sub>1</sub>). Step-down: V<sub>2</sub> &lt; V<sub>1</sub>.</li>
+<li><b>Core-type / shell-type</b> — windings around the limbs of a two-limb core / windings on the centre limb of a three-limb core.</li>
+<li><b>Cylindrical (concentric) winding</b> — LV coil next to the core, HV coil concentric over it — used in core-type.</li>
+<li><b>Sandwich (disc) winding</b> — LV and HV sections stacked alternately — used in shell-type.</li>
+<li><b>Leakage flux</b> — flux that links only one winding; it is minimised by winding layout.</li>
+<li><b>Hysteresis / eddy-current loss</b> — core losses; silicon steel cuts the first, lamination cuts the second.</li>
+<li><b>Excitation (magnetising) current</b> — the small no-load primary current needed to set up the flux.</li>
+</ul>
+</div>
+
+
+<div class="box def"><span class="label">Definition</span>
+A transformer has a laminated silicon-steel core (thin, insulated sheets — reduces eddy-current loss) carrying two windings, primary and secondary, linked by the same magnetic flux but with <em>no electrical connection</em> between them. <b>Core type:</b> windings surround two limbs of a rectangular core. <b>Shell type:</b> both windings sit on the central limb of a three-limb core.
+</div>
+
+<div class="diagram">
+<svg viewBox="0 0 720 235" width="720" style="max-width:100%;height:auto" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#1b1f24"><rect x="150" y="20" width="260" height="180" fill="#cfd5df" stroke="#1b1f24" stroke-width="2"/><rect x="210" y="80" width="140" height="60" fill="#fbfbfa" stroke="#1b1f24" stroke-width="2"/><rect x="140" y="92" width="80" height="4" rx="2" fill="#c0392b" stroke="none"/><rect x="140" y="98" width="80" height="4" rx="2" fill="#c0392b" stroke="none"/><rect x="140" y="104" width="80" height="4" rx="2" fill="#c0392b" stroke="none"/><rect x="140" y="110" width="80" height="4" rx="2" fill="#c0392b" stroke="none"/><rect x="140" y="116" width="80" height="4" rx="2" fill="#c0392b" stroke="none"/><rect x="140" y="122" width="80" height="4" rx="2" fill="#c0392b" stroke="none"/><rect x="140" y="128" width="80" height="4" rx="2" fill="#c0392b" stroke="none"/><rect x="340" y="92" width="80" height="4" rx="2" fill="#1e468c" stroke="none"/><rect x="340" y="98" width="80" height="4" rx="2" fill="#1e468c" stroke="none"/><rect x="340" y="104" width="80" height="4" rx="2" fill="#1e468c" stroke="none"/><rect x="340" y="110" width="80" height="4" rx="2" fill="#1e468c" stroke="none"/><rect x="340" y="116" width="80" height="4" rx="2" fill="#1e468c" stroke="none"/><rect x="340" y="122" width="80" height="4" rx="2" fill="#1e468c" stroke="none"/><rect x="340" y="128" width="80" height="4" rx="2" fill="#1e468c" stroke="none"/><rect x="180" y="50" width="200" height="120" fill="none" stroke="#7c3aed" stroke-width="2.4" stroke-dasharray="7,4"/><polygon points="290.0,50.0 279.0,54.6 279.0,45.4" fill="#7c3aed"/><text x="280.0" y="114.0" text-anchor="middle" fill="#7c3aed" font-size="20" font-weight="bold">Φ</text><text x="130.0" y="100.0" text-anchor="end" fill="#c0392b" font-size="14" font-weight="bold">Primary</text><text x="130.0" y="118.0" text-anchor="end" fill="#c0392b" font-size="13">N₁ turns</text><text x="442.0" y="100.0" text-anchor="start" fill="#1e468c" font-size="14" font-weight="bold">Secondary</text><text x="442.0" y="118.0" text-anchor="start" fill="#1e468c" font-size="13">N₂ turns</text><line x1="50.0" y1="40.0" x2="112.8" y2="40.0" stroke="#1b1f24" stroke-width="2" stroke-linecap="round"/><polygon points="120.0,40.0 111.0,43.8 111.0,36.2" fill="#1b1f24"/><text x="45.0" y="44.0" text-anchor="end" fill="#1b1f24" font-size="13">V₁ in</text><line x1="450.0" y1="160.0" x2="502.8" y2="160.0" stroke="#1b1f24" stroke-width="2" stroke-linecap="round"/><polygon points="510.0,160.0 501.0,163.8 501.0,156.2" fill="#1b1f24"/><text x="516.0" y="164.0" text-anchor="start" fill="#1b1f24" font-size="13">V₂ out</text><text x="280.0" y="216.0" text-anchor="middle" fill="#8a93a3" font-size="12">laminated silicon-steel core</text></svg>
+<p class="caption">Core-type construction: the alternating flux Φ set up by the primary circulates round the core and links the secondary winding on the opposite limb.</p>
+</div>
+
+
+<h4 class="sub">Working principle (mutual induction)</h4>
+<ol>
+<li>An alternating voltage V<sub>1</sub> is applied to the primary; a small alternating current flows and sets up an alternating flux Φ in the core.</li>
+<li>This flux links <em>both</em> windings, so by Faraday's law it induces EMF E<sub>1</sub> in the primary and E<sub>2</sub> in the secondary.</li>
+<li>The EMFs are proportional to the numbers of turns: E<sub>2</sub>/E<sub>1</sub> = N<sub>2</sub>/N<sub>1</sub>.</li>
+<li>Connect a load across the secondary and a current I<sub>2</sub> flows; power passes from the primary circuit to the secondary circuit <b>magnetically</b>, with <b>no electrical connection</b> and <b>no change in frequency</b>.</li>
+</ol>
+<div class="box def"><span class="label">Ideal-transformer relations</span>
+<div class="formula">V<sub>1</sub>/V<sub>2</sub> = N<sub>1</sub>/N<sub>2</sub> = I<sub>2</sub>/I<sub>1</sub> &nbsp;&nbsp;(V<sub>1</sub>I<sub>1</sub> = V<sub>2</sub>I<sub>2</sub>)</div>
+A transformer that steps voltage <em>up</em> steps current <em>down</em> by the same ratio; power in = power out (for an ideal one). If N<sub>1</sub> &gt; N<sub>2</sub> it is <b>step-down</b>; if N<sub>2</sub> &gt; N<sub>1</sub> it is <b>step-up</b>.
+</div>
+<h4 class="sub">Core-type vs shell-type</h4>
+<table>
+<tr><th></th><th>Core type</th><th>Shell type</th></tr>
+<tr><td>Magnetic circuit</td><td>two vertical limbs + two horizontal yokes (a single rectangular path)</td><td>three limbs; the two outer limbs give low-reluctance return paths for the central flux</td></tr>
+<tr><td>Windings</td><td>half of each winding on each limb (reduces leakage flux); LV next to the core, HV over it — <b>cylindrical</b> (concentric) coils</td><td>both windings on the central limb, split into LV and HV sections stacked alternately — <b>sandwich</b> (disc) coils</td></tr>
+</table>
+<div class="box why"><span class="label">Why put LV next to the core?</span>
+The low-voltage winding needs less insulation from the grounded core than the high-voltage one. Putting LV closest to the core and wrapping HV over it means only the LV coil needs to be insulated from the core, and the HV winding is insulated by the LV winding and its own insulation — saving space and cost.
+</div>
+<div class="box ex"><span class="label">Worked example — ideal transformer currents</span>
+A 2200 V / 220 V, 10 kVA transformer. Turns ratio = 2200/220 = <code>10</code> (step-down). Rated primary current = 10 000/2200 = <code>4.55 A</code>; rated secondary current = 10 000/220 = <code>45.5 A</code> — ten times larger, matching I<sub>2</sub>/I<sub>1</sub> = N<sub>1</sub>/N<sub>2</sub> = 10.
+</div>
+<h4 class="sub">Losses and applications</h4>
+<ul>
+<li><b>Core (iron) loss:</b> hysteresis (reduced by silicon steel) + eddy current (reduced by laminations); roughly constant regardless of load.</li>
+<li><b>Copper loss:</b> I²R in the windings; grows with load.</li>
+<li><b>Uses:</b> stepping voltage up/down for power transmission and distribution; supplying suitable voltages to electronic devices (TV etc.) and low-voltage electronic circuits; stepping up voltage in home inverter systems.</li>
+</ul>
+<div class="box mis"><span class="label">Fixing a common misconception</span>
+A transformer does not work on DC. With a steady primary current the flux is constant, dΦ/dt = 0, and no EMF is induced in the secondary. Worse, the winding resistance alone limits DC current, which can burn the primary out. Only <em>changing</em> flux induces voltage.
+</div>
+
+<h3 class="topic" id="c5">C5. Transformer: EMF Equation</h3>
+<div class="box terms"><span class="label">Key terms — know these words</span>
+<ul>
+<li><b>Flux (Φ, Φ<sub>m</sub>)</b> — magnetic flux in webers (Wb); Φ<sub>m</sub> is its peak value.</li>
+<li><b>Faraday's law</b> — induced EMF = rate of change of flux linkage: e = −N dΦ/dt.</li>
+<li><b>RMS EMF (E)</b> — E = 4.44 f Φ<sub>m</sub> N — the effective value of the induced EMF.</li>
+<li><b>Form factor</b> — 1.11 for a sine wave; note 4 × 1.11 = 4.44, the constant in the EMF equation.</li>
+<li><b>Phase of EMF</b> — e lags the flux by 90°.</li>
+<li><b>EMF per turn</b> — E/N = 4.44 f Φ<sub>m</sub> — the same in both windings.</li>
+</ul>
+</div>
+
+
+<div class="box why"><span class="label">Derivation</span>
+Assume a sinusoidal mutual flux Φ = Φ<sub>m</sub> sin(ωt). By Faraday's law, the EMF induced in a winding of N turns is:
+<div class="formula">e = −N dΦ/dt = −NΦ<sub>m</sub>ω cos(ωt)</div>
+The magnitude of this EMF peaks at <code>E<sub>m</sub> = NΦ<sub>m</sub>ω = NΦ<sub>m</sub>(2πf)</code>. Just as in B2, the <b>RMS</b> value of a sinusoid is its peak divided by √2:
+<div class="formula">E = E<sub>m</sub>/√2 = 2πfΦ<sub>m</sub>N/√2 = 4.44 f Φ<sub>m</sub> N</div>
+Applying this to both windings: E<sub>1</sub>=4.44fΦ<sub>m</sub>N<sub>1</sub>, E<sub>2</sub>=4.44fΦ<sub>m</sub>N<sub>2</sub>. Since the <em>same</em> Φ<sub>m</sub> and f appear in both, dividing gives the turns-ratio rule:
+<div class="formula">E<sub>1</sub>/E<sub>2</sub> = N<sub>1</sub>/N<sub>2</sub></div>
+</div>
+
+<div class="foreshadow">The "4.44" is nothing mysterious — it's 2π/√2 (≈4.44), the exact same √2 that converted peak to RMS back in B2. Anywhere you see 4.44 in a machines formula, a sinusoidal-flux EMF derivation like this one is hiding behind it.</div>
+
+<div class="box ex"><span class="label">Worked example</span>
+A transformer has N<sub>1</sub>=1000 turns, N<sub>2</sub>=250 turns, is supplied at 50 Hz, and the core flux is Φ<sub>m</sub>=0.02 Wb. Find E<sub>1</sub>, E<sub>2</sub>, and state whether it's step-up or step-down.<br>
+<code>E<sub>1</sub> = 4.44×50×0.02×1000 = 4440 V</code><br>
+<code>E<sub>2</sub> = 4.44×50×0.02×250 = 1110 V</code><br>
+Check via turns ratio: <code>E<sub>1</sub>/E<sub>2</sub> = 1000/250 = 4</code>, and <code>4440/1110 = 4</code> ✓. Since N<sub>2</sub>&lt;N<sub>1</sub> (E<sub>2</sub>&lt;E<sub>1</sub>), this is a <b>step-down</b> transformer.
+</div>
+
+
+<div class="box why"><span class="label">Where does 4.44 come from — a second way</span>
+For a sinusoidal flux the <em>average</em> EMF over a quarter cycle is 4 f Φ<sub>m</sub> N (flux swings from 0 to Φ<sub>m</sub> in T/4 = 1/(4f)). The RMS value = form factor × average = 1.11 × 4fΦ<sub>m</sub>N = <b>4.44</b> fΦ<sub>m</sub>N. It agrees with the derivation in the box above (2π/√2 = 4.44), and it shows why the form factor from the AC-circuits topic matters here.
+</div>
+<div class="box def"><span class="label">Phase relations</span>
+Because e = −N dΦ/dt and Φ = Φ<sub>m</sub> sin ωt, the EMF is −NΦ<sub>m</sub>ω cos ωt = NΦ<sub>m</sub>ω sin(ωt − 90°). So <b>the induced EMF lags the flux by 90°</b>, and E<sub>1</sub> and E<sub>2</sub> are in phase with each other (the same flux induces both). The primary draws a small magnetising current in phase with the flux.
+</div>
+<div class="box ex"><span class="label">Worked example — find the turns</span>
+A 220 V, 50 Hz primary; peak core flux Φ<sub>m</sub> = 0.01 Wb. Neglect winding drop so E<sub>1</sub> ≈ 220 V.<br>
+N<sub>1</sub> = E<sub>1</sub>/(4.44 f Φ<sub>m</sub>) = 220/(4.44 × 50 × 0.01) = 220/2.22 ≈ <code>99 ≈ 100 turns</code>.<br>
+For a 22 V secondary: N<sub>2</sub> = N<sub>1</sub> × 22/220 = <code>10 turns</code>.
+</div>
+<div class="box why"><span class="label">What happens at a lower frequency?</span>
+For a given voltage, Φ<sub>m</sub> = E/(4.44 f N). If the frequency <em>drops</em> (say a 50 Hz transformer on a 25 Hz supply), Φ<sub>m</sub> would double, pushing the core into saturation and causing very large magnetising current. That is why transformers are rated for a specific frequency, and why a 50 Hz design can't be freely used at lower frequency.
+</div>
+
+<h3 class="topic" id="c6">C6. Three-Phase Induction Motor</h3>
+<div class="box terms"><span class="label">Key terms — know these words</span>
+<ul>
+<li><b>Stator</b> — the stationary part: steel frame + slotted silicon-steel core + three-phase winding.</li>
+<li><b>Rotor</b> — the rotating part, either squirrel-cage or wound.</li>
+<li><b>Rotating magnetic field (RMF)</b> — a field of constant magnitude that rotates in space, produced by a balanced three-phase supply.</li>
+<li><b>Synchronous speed (N<sub>s</sub>)</b> — the speed of the RMF, N<sub>s</sub> = 120f/P rpm.</li>
+<li><b>Slip (s)</b> — s = (N<sub>s</sub> − N<sub>r</sub>)/N<sub>s</sub>; typically 2–5% at full load.</li>
+<li><b>Poles (P)</b> — number of magnetic poles wound into the stator; more poles = slower speed.</li>
+<li><b>Squirrel-cage rotor</b> — rotor bars (copper/aluminium) short-circuited by end rings.</li>
+<li><b>End rings</b> — the rings that short-circuit the rotor bars at both ends.</li>
+<li><b>Slip rings</b> — insulated rings on the shaft of a wound rotor that connect the rotor winding to external resistors through brushes.</li>
+<li><b>Wound (slip-ring) rotor</b> — rotor with a three-phase winding (star-connected) brought out to slip rings.</li>
+<li><b>Induction (asynchronous) motor</b> — a motor whose rotor current is <em>induced</em> by the stator field, and which never quite reaches synchronous speed.</li>
+<li><b>Inrush (starting) current</b> — the very large current drawn when the motor is first switched on, often 5–7× rated.</li>
+</ul>
+</div>
+
+
+<div class="box def"><span class="label">Definition</span>
+The stator carries three windings spaced 120° apart in <em>space</em>, fed by three currents 120° apart in <em>time</em> (a balanced 3-phase supply). Their combined magnetomotive force produces a magnetic field of <em>constant magnitude that rotates</em> at synchronous speed:
+<div class="formula">N<sub>s</sub> = 120f/P &nbsp;(rpm), &nbsp; P = number of poles</div>
+This rotating field cuts the stationary rotor bars, inducing currents in them (transformer action — no electrical connection needed, hence "induction" motor); those currents, in the rotating field, experience a force (Fleming's left-hand rule again) that drags the rotor around.
+</div>
+
+<div class="diagram">
+<svg viewBox="0 0 690 232" width="690" style="max-width:100%;height:auto" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#1b1f24"><circle cx="110" cy="105" r="62" fill="#f7f8fb" stroke="#1b1f24" stroke-width="2.2"/><line x1="110.0" y1="105.0" x2="110.0" y2="43.0" stroke="#c8cdd8" stroke-width="1.2" stroke-dasharray="3,3" stroke-linecap="round"/><text x="110.0" y="33.0" text-anchor="middle" fill="#7c3aed" font-size="15" font-weight="bold">A</text><line x1="110.0" y1="105.0" x2="163.7" y2="136.0" stroke="#c8cdd8" stroke-width="1.2" stroke-dasharray="3,3" stroke-linecap="round"/><text x="176.7" y="148.5" text-anchor="middle" fill="#8a93a3" font-size="13" font-weight="bold">B</text><line x1="110.0" y1="105.0" x2="56.3" y2="136.0" stroke="#c8cdd8" stroke-width="1.2" stroke-dasharray="3,3" stroke-linecap="round"/><text x="43.3" y="148.5" text-anchor="middle" fill="#8a93a3" font-size="13" font-weight="bold">C</text><line x1="110.0" y1="105.0" x2="110.0" y2="58.6" stroke="#7c3aed" stroke-width="3.5" stroke-linecap="round"/><polygon points="110.0,49.0 115.0,61.0 105.0,61.0" fill="#7c3aed"/><text x="110.0" y="200.0" text-anchor="middle" fill="#1b1f24" font-size="13" font-weight="bold">ωt = 90°</text><text x="110.0" y="218.0" text-anchor="middle" fill="#8a93a3" font-size="12">resultant field points along A</text><circle cx="340" cy="105" r="62" fill="#f7f8fb" stroke="#1b1f24" stroke-width="2.2"/><line x1="340.0" y1="105.0" x2="340.0" y2="43.0" stroke="#c8cdd8" stroke-width="1.2" stroke-dasharray="3,3" stroke-linecap="round"/><text x="340.0" y="33.0" text-anchor="middle" fill="#8a93a3" font-size="13" font-weight="bold">A</text><line x1="340.0" y1="105.0" x2="393.7" y2="136.0" stroke="#c8cdd8" stroke-width="1.2" stroke-dasharray="3,3" stroke-linecap="round"/><text x="406.7" y="148.5" text-anchor="middle" fill="#7c3aed" font-size="15" font-weight="bold">B</text><line x1="340.0" y1="105.0" x2="286.3" y2="136.0" stroke="#c8cdd8" stroke-width="1.2" stroke-dasharray="3,3" stroke-linecap="round"/><text x="273.3" y="148.5" text-anchor="middle" fill="#8a93a3" font-size="13" font-weight="bold">C</text><line x1="340.0" y1="105.0" x2="380.2" y2="128.2" stroke="#7c3aed" stroke-width="3.5" stroke-linecap="round"/><polygon points="388.5,133.0 375.6,131.4 380.6,122.6" fill="#7c3aed"/><text x="340.0" y="200.0" text-anchor="middle" fill="#1b1f24" font-size="13" font-weight="bold">ωt = 210°</text><text x="340.0" y="218.0" text-anchor="middle" fill="#8a93a3" font-size="12">resultant field points along B</text><circle cx="570" cy="105" r="62" fill="#f7f8fb" stroke="#1b1f24" stroke-width="2.2"/><line x1="570.0" y1="105.0" x2="570.0" y2="43.0" stroke="#c8cdd8" stroke-width="1.2" stroke-dasharray="3,3" stroke-linecap="round"/><text x="570.0" y="33.0" text-anchor="middle" fill="#8a93a3" font-size="13" font-weight="bold">A</text><line x1="570.0" y1="105.0" x2="623.7" y2="136.0" stroke="#c8cdd8" stroke-width="1.2" stroke-dasharray="3,3" stroke-linecap="round"/><text x="636.7" y="148.5" text-anchor="middle" fill="#8a93a3" font-size="13" font-weight="bold">B</text><line x1="570.0" y1="105.0" x2="516.3" y2="136.0" stroke="#c8cdd8" stroke-width="1.2" stroke-dasharray="3,3" stroke-linecap="round"/><text x="503.3" y="148.5" text-anchor="middle" fill="#7c3aed" font-size="15" font-weight="bold">C</text><line x1="570.0" y1="105.0" x2="529.8" y2="128.2" stroke="#7c3aed" stroke-width="3.5" stroke-linecap="round"/><polygon points="521.5,133.0 529.4,122.6 534.4,131.4" fill="#7c3aed"/><text x="570.0" y="200.0" text-anchor="middle" fill="#1b1f24" font-size="13" font-weight="bold">ωt = 330°</text><text x="570.0" y="218.0" text-anchor="middle" fill="#8a93a3" font-size="12">resultant field points along C</text></svg>
+<p class="caption">Stator cross-section at three instants. Each winding's axis is drawn dashed (A, B, C, 120° apart). As each phase current peaks in turn, the resultant field (arrow) jumps from A to B to C — a rotation.</p>
+</div>
+
+<div class="box def"><span class="label">Slip</span>
+The rotor can never spin at exactly N<sub>s</sub> (if it did, the field would no longer cut the rotor bars, no EMF would be induced, and no torque would be produced). The fractional difference is called <b>slip</b>:
+<div class="formula">s = (N<sub>s</sub>−N<sub>r</sub>)/N<sub>s</sub></div>
+</div>
+
+<table>
+<tr><th>Feature</th><th>Squirrel-cage rotor</th><th>Wound (slip-ring) rotor</th></tr>
+<tr><td>Rotor winding</td><td>bars short-circuited by end rings</td><td>3-phase winding, brought out to slip rings</td></tr>
+<tr><td>External resistance</td><td>not possible</td><td>possible, via brushes — boosts starting torque</td></tr>
+<tr><td>Cost / maintenance</td><td>low</td><td>higher</td></tr>
+<tr><td>Typical use</td><td>fans, pumps, machine tools (~75% of industrial motors)</td><td>cranes, hoists, compressors (high starting torque needed)</td></tr>
+</table>
+
+<div class="box ex"><span class="label">Worked example</span>
+A 4-pole, 3-phase induction motor is supplied at 50 Hz and runs at 1440 rpm. Find the synchronous speed and the slip.<br>
+<code>N<sub>s</sub> = 120f/P = 120×50/4 = 1500 rpm</code><br>
+<code>s = (1500−1440)/1500 = 60/1500 = 0.04 = 4%</code>
+</div>
+
+<div class="foreshadow">This is exactly the same "difference from a reference" idea as R<sub>th</sub> in A7 or φ in B4 — a small deviation from an idealised reference value that governs everything else about the system's behaviour.</div>
+
+<table>
+<tr><th>Machine</th><th>Core relation</th><th>Governing equation</th></tr>
+<tr><td>DC motor</td><td>electrical → mechanical</td><td>V = E<sub>b</sub> + I<sub>a</sub>R<sub>a</sub>, T ∝ ΦI<sub>a</sub></td></tr>
+<tr><td>Transformer</td><td>AC electrical → AC electrical (voltage level change)</td><td>E = 4.44fΦ<sub>m</sub>N, E1/E2 = N1/N2</td></tr>
+<tr><td>3-phase induction motor</td><td>rotating field → mechanical</td><td>N<sub>s</sub>=120f/P, s=(N<sub>s</sub>−N<sub>r</sub>)/N<sub>s</sub></td></tr>
+</table>
+
+
+<h4 class="sub">Stator construction</h4>
+<ul>
+<li>A cylindrical <b>frame</b> of fabricated steel encloses a hollow <b>core</b> of thin silicon-steel laminations (silicon steel and lamination together reduce hysteresis and eddy-current loss).</li>
+<li>Evenly spaced <b>slots</b> on the inner surface hold the stator winding.</li>
+<li>Three windings, connected in star or delta, form a balanced three-phase winding, wound for a definite number of poles.</li>
+<li>More poles means lower speed (N<sub>s</sub> = 120f/P): 2 poles → 3000 rpm, 4 → 1500, 6 → 1000, 8 → 750 (at 50 Hz).</li>
+</ul>
+<h4 class="sub">Why the field rotates</h4>
+<p>The three winding currents are 120° apart in time. Watch what they do at a few instants (I<sub>m</sub> = peak current):</p>
+<table>
+<tr><th>ωt</th><th>i<sub>A</sub></th><th>i<sub>B</sub></th><th>i<sub>C</sub></th><th>Which winding dominates?</th></tr>
+<tr><td>0°</td><td>0</td><td>−0.87 I<sub>m</sub></td><td>+0.87 I<sub>m</sub></td><td>B and C (opposite signs)</td></tr>
+<tr><td>90°</td><td>+I<sub>m</sub></td><td>−0.5 I<sub>m</sub></td><td>−0.5 I<sub>m</sub></td><td>A</td></tr>
+<tr><td>210°</td><td>−0.5 I<sub>m</sub></td><td>+I<sub>m</sub></td><td>−0.5 I<sub>m</sub></td><td>B</td></tr>
+<tr><td>330°</td><td>−0.5 I<sub>m</sub></td><td>−0.5 I<sub>m</sub></td><td>+I<sub>m</sub></td><td>C</td></tr>
+</table>
+<p>The 'strongest' winding hops A → B → C in turn, so the resultant magnetic axis sweeps around the stator. Adding the three fluxes vectorially gives a resultant of constant magnitude <b>1.5 Φ<sub>m</sub></b> that rotates at N<sub>s</sub>.</p>
+<div class="diagram">
+<svg viewBox="0 0 620 230" width="620" style="max-width:100%;height:auto" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#1b1f24"><line x1="50.0" y1="105.0" x2="422.0" y2="105.0" stroke="#1b1f24" stroke-width="2" stroke-linecap="round"/><line x1="50.0" y1="21.0" x2="50.0" y2="189.0" stroke="#1b1f24" stroke-width="2" stroke-linecap="round"/><polyline points="50.0,105.0 51.5,103.4 53.0,101.8 54.5,100.1 56.0,98.5 57.5,96.9 59.0,95.3 60.5,93.7 62.0,92.1 63.5,90.5 65.0,89.0 66.5,87.4 68.0,85.8 69.5,84.3 71.0,82.8 72.5,81.3 74.0,79.8 75.5,78.3 77.0,76.9 78.5,75.4 80.0,74.0 81.5,72.6 83.0,71.2 84.5,69.9 86.0,68.6 87.5,67.3 89.0,66.0 90.5,64.7 92.0,63.5 93.5,62.3 95.0,61.2 96.5,60.0 98.0,58.9 99.5,57.9 101.0,56.8 102.5,55.8 104.0,54.8 105.5,53.9 107.0,53.0 108.5,52.1 110.0,51.3 111.5,50.5 113.0,49.8 114.5,49.0 116.0,48.4 117.5,47.7 119.0,47.1 120.5,46.6 122.0,46.0 123.5,45.6 125.0,45.1 126.5,44.7 128.0,44.4 129.5,44.0 131.0,43.8 132.5,43.5 134.0,43.3 135.5,43.2 137.0,43.1 138.5,43.0 140.0,43.0 141.5,43.0 143.0,43.1 144.5,43.2 146.0,43.3 147.5,43.5 149.0,43.8 150.5,44.0 152.0,44.4 153.5,44.7 155.0,45.1 156.5,45.6 158.0,46.0 159.5,46.6 161.0,47.1 162.5,47.7 164.0,48.4 165.5,49.0 167.0,49.8 168.5,50.5 170.0,51.3 171.5,52.1 173.0,53.0 174.5,53.9 176.0,54.8 177.5,55.8 179.0,56.8 180.5,57.9 182.0,58.9 183.5,60.0 185.0,61.2 186.5,62.3 188.0,63.5 189.5,64.7 191.0,66.0 192.5,67.3 194.0,68.6 195.5,69.9 197.0,71.2 198.5,72.6 200.0,74.0 201.5,75.4 203.0,76.9 204.5,78.3 206.0,79.8 207.5,81.3 209.0,82.8 210.5,84.3 212.0,85.8 213.5,87.4 215.0,89.0 216.5,90.5 218.0,92.1 219.5,93.7 221.0,95.3 222.5,96.9 224.0,98.5 225.5,100.1 227.0,101.8 228.5,103.4 230.0,105.0 231.5,106.6 233.0,108.2 234.5,109.9 236.0,111.5 237.5,113.1 239.0,114.7 240.5,116.3 242.0,117.9 243.5,119.5 245.0,121.0 246.5,122.6 248.0,124.2 249.5,125.7 251.0,127.2 252.5,128.7 254.0,130.2 255.5,131.7 257.0,133.1 258.5,134.6 260.0,136.0 261.5,137.4 263.0,138.8 264.5,140.1 266.0,141.4 267.5,142.7 269.0,144.0 270.5,145.3 272.0,146.5 273.5,147.7 275.0,148.8 276.5,150.0 278.0,151.1 279.5,152.1 281.0,153.2 282.5,154.2 284.0,155.2 285.5,156.1 287.0,157.0 288.5,157.9 290.0,158.7 291.5,159.5 293.0,160.2 294.5,161.0 296.0,161.6 297.5,162.3 299.0,162.9 300.5,163.4 302.0,164.0 303.5,164.4 305.0,164.9 306.5,165.3 308.0,165.6 309.5,166.0 311.0,166.2 312.5,166.5 314.0,166.7 315.5,166.8 317.0,166.9 318.5,167.0 320.0,167.0 321.5,167.0 323.0,166.9 324.5,166.8 326.0,166.7 327.5,166.5 329.0,166.2 330.5,166.0 332.0,165.6 333.5,165.3 335.0,164.9 336.5,164.4 338.0,164.0 339.5,163.4 341.0,162.9 342.5,162.3 344.0,161.6 345.5,161.0 347.0,160.2 348.5,159.5 350.0,158.7 351.5,157.9 353.0,157.0 354.5,156.1 356.0,155.2 357.5,154.2 359.0,153.2 360.5,152.1 362.0,151.1 363.5,150.0 365.0,148.8 366.5,147.7 368.0,146.5 369.5,145.3 371.0,144.0 372.5,142.7 374.0,141.4 375.5,140.1 377.0,138.8 378.5,137.4 380.0,136.0 381.5,134.6 383.0,133.1 384.5,131.7 386.0,130.2 387.5,128.7 389.0,127.2 390.5,125.7 392.0,124.2 393.5,122.6 395.0,121.0 396.5,119.5 398.0,117.9 399.5,116.3 401.0,114.7 402.5,113.1 404.0,111.5 405.5,109.9 407.0,108.2 408.5,106.6 410.0,105.0" fill="none" stroke="#c0392b" stroke-width="2.6" stroke-linejoin="round"/><polyline points="50.0,158.7 51.5,159.5 53.0,160.2 54.5,161.0 56.0,161.6 57.5,162.3 59.0,162.9 60.5,163.4 62.0,164.0 63.5,164.4 65.0,164.9 66.5,165.3 68.0,165.6 69.5,166.0 71.0,166.2 72.5,166.5 74.0,166.7 75.5,166.8 77.0,166.9 78.5,167.0 80.0,167.0 81.5,167.0 83.0,166.9 84.5,166.8 86.0,166.7 87.5,166.5 89.0,166.2 90.5,166.0 92.0,165.6 93.5,165.3 95.0,164.9 96.5,164.4 98.0,164.0 99.5,163.4 101.0,162.9 102.5,162.3 104.0,161.6 105.5,161.0 107.0,160.2 108.5,159.5 110.0,158.7 111.5,157.9 113.0,157.0 114.5,156.1 116.0,155.2 117.5,154.2 119.0,153.2 120.5,152.1 122.0,151.1 123.5,150.0 125.0,148.8 126.5,147.7 128.0,146.5 129.5,145.3 131.0,144.0 132.5,142.7 134.0,141.4 135.5,140.1 137.0,138.8 138.5,137.4 140.0,136.0 141.5,134.6 143.0,133.1 144.5,131.7 146.0,130.2 147.5,128.7 149.0,127.2 150.5,125.7 152.0,124.2 153.5,122.6 155.0,121.0 156.5,119.5 158.0,117.9 159.5,116.3 161.0,114.7 162.5,113.1 164.0,111.5 165.5,109.9 167.0,108.2 168.5,106.6 170.0,105.0 171.5,103.4 173.0,101.8 174.5,100.1 176.0,98.5 177.5,96.9 179.0,95.3 180.5,93.7 182.0,92.1 183.5,90.5 185.0,89.0 186.5,87.4 188.0,85.8 189.5,84.3 191.0,82.8 192.5,81.3 194.0,79.8 195.5,78.3 197.0,76.9 198.5,75.4 200.0,74.0 201.5,72.6 203.0,71.2 204.5,69.9 206.0,68.6 207.5,67.3 209.0,66.0 210.5,64.7 212.0,63.5 213.5,62.3 215.0,61.2 216.5,60.0 218.0,58.9 219.5,57.9 221.0,56.8 222.5,55.8 224.0,54.8 225.5,53.9 227.0,53.0 228.5,52.1 230.0,51.3 231.5,50.5 233.0,49.8 234.5,49.0 236.0,48.4 237.5,47.7 239.0,47.1 240.5,46.6 242.0,46.0 243.5,45.6 245.0,45.1 246.5,44.7 248.0,44.4 249.5,44.0 251.0,43.8 252.5,43.5 254.0,43.3 255.5,43.2 257.0,43.1 258.5,43.0 260.0,43.0 261.5,43.0 263.0,43.1 264.5,43.2 266.0,43.3 267.5,43.5 269.0,43.8 270.5,44.0 272.0,44.4 273.5,44.7 275.0,45.1 276.5,45.6 278.0,46.0 279.5,46.6 281.0,47.1 282.5,47.7 284.0,48.4 285.5,49.0 287.0,49.8 288.5,50.5 290.0,51.3 291.5,52.1 293.0,53.0 294.5,53.9 296.0,54.8 297.5,55.8 299.0,56.8 300.5,57.9 302.0,58.9 303.5,60.0 305.0,61.2 306.5,62.3 308.0,63.5 309.5,64.7 311.0,66.0 312.5,67.3 314.0,68.6 315.5,69.9 317.0,71.2 318.5,72.6 320.0,74.0 321.5,75.4 323.0,76.9 324.5,78.3 326.0,79.8 327.5,81.3 329.0,82.8 330.5,84.3 332.0,85.8 333.5,87.4 335.0,89.0 336.5,90.5 338.0,92.1 339.5,93.7 341.0,95.3 342.5,96.9 344.0,98.5 345.5,100.1 347.0,101.8 348.5,103.4 350.0,105.0 351.5,106.6 353.0,108.2 354.5,109.9 356.0,111.5 357.5,113.1 359.0,114.7 360.5,116.3 362.0,117.9 363.5,119.5 365.0,121.0 366.5,122.6 368.0,124.2 369.5,125.7 371.0,127.2 372.5,128.7 374.0,130.2 375.5,131.7 377.0,133.1 378.5,134.6 380.0,136.0 381.5,137.4 383.0,138.8 384.5,140.1 386.0,141.4 387.5,142.7 389.0,144.0 390.5,145.3 392.0,146.5 393.5,147.7 395.0,148.8 396.5,150.0 398.0,151.1 399.5,152.1 401.0,153.2 402.5,154.2 404.0,155.2 405.5,156.1 407.0,157.0 408.5,157.9 410.0,158.7" fill="none" stroke="#d4a017" stroke-width="2.6" stroke-linejoin="round"/><polyline points="50.0,51.3 51.5,52.1 53.0,53.0 54.5,53.9 56.0,54.8 57.5,55.8 59.0,56.8 60.5,57.9 62.0,58.9 63.5,60.0 65.0,61.2 66.5,62.3 68.0,63.5 69.5,64.7 71.0,66.0 72.5,67.3 74.0,68.6 75.5,69.9 77.0,71.2 78.5,72.6 80.0,74.0 81.5,75.4 83.0,76.9 84.5,78.3 86.0,79.8 87.5,81.3 89.0,82.8 90.5,84.3 92.0,85.8 93.5,87.4 95.0,89.0 96.5,90.5 98.0,92.1 99.5,93.7 101.0,95.3 102.5,96.9 104.0,98.5 105.5,100.1 107.0,101.8 108.5,103.4 110.0,105.0 111.5,106.6 113.0,108.2 114.5,109.9 116.0,111.5 117.5,113.1 119.0,114.7 120.5,116.3 122.0,117.9 123.5,119.5 125.0,121.0 126.5,122.6 128.0,124.2 129.5,125.7 131.0,127.2 132.5,128.7 134.0,130.2 135.5,131.7 137.0,133.1 138.5,134.6 140.0,136.0 141.5,137.4 143.0,138.8 144.5,140.1 146.0,141.4 147.5,142.7 149.0,144.0 150.5,145.3 152.0,146.5 153.5,147.7 155.0,148.8 156.5,150.0 158.0,151.1 159.5,152.1 161.0,153.2 162.5,154.2 164.0,155.2 165.5,156.1 167.0,157.0 168.5,157.9 170.0,158.7 171.5,159.5 173.0,160.2 174.5,161.0 176.0,161.6 177.5,162.3 179.0,162.9 180.5,163.4 182.0,164.0 183.5,164.4 185.0,164.9 186.5,165.3 188.0,165.6 189.5,166.0 191.0,166.2 192.5,166.5 194.0,166.7 195.5,166.8 197.0,166.9 198.5,167.0 200.0,167.0 201.5,167.0 203.0,166.9 204.5,166.8 206.0,166.7 207.5,166.5 209.0,166.2 210.5,166.0 212.0,165.6 213.5,165.3 215.0,164.9 216.5,164.4 218.0,164.0 219.5,163.4 221.0,162.9 222.5,162.3 224.0,161.6 225.5,161.0 227.0,160.2 228.5,159.5 230.0,158.7 231.5,157.9 233.0,157.0 234.5,156.1 236.0,155.2 237.5,154.2 239.0,153.2 240.5,152.1 242.0,151.1 243.5,150.0 245.0,148.8 246.5,147.7 248.0,146.5 249.5,145.3 251.0,144.0 252.5,142.7 254.0,141.4 255.5,140.1 257.0,138.8 258.5,137.4 260.0,136.0 261.5,134.6 263.0,133.1 264.5,131.7 266.0,130.2 267.5,128.7 269.0,127.2 270.5,125.7 272.0,124.2 273.5,122.6 275.0,121.0 276.5,119.5 278.0,117.9 279.5,116.3 281.0,114.7 282.5,113.1 284.0,111.5 285.5,109.9 287.0,108.2 288.5,106.6 290.0,105.0 291.5,103.4 293.0,101.8 294.5,100.1 296.0,98.5 297.5,96.9 299.0,95.3 300.5,93.7 302.0,92.1 303.5,90.5 305.0,89.0 306.5,87.4 308.0,85.8 309.5,84.3 311.0,82.8 312.5,81.3 314.0,79.8 315.5,78.3 317.0,76.9 318.5,75.4 320.0,74.0 321.5,72.6 323.0,71.2 324.5,69.9 326.0,68.6 327.5,67.3 329.0,66.0 330.5,64.7 332.0,63.5 333.5,62.3 335.0,61.2 336.5,60.0 338.0,58.9 339.5,57.9 341.0,56.8 342.5,55.8 344.0,54.8 345.5,53.9 347.0,53.0 348.5,52.1 350.0,51.3 351.5,50.5 353.0,49.8 354.5,49.0 356.0,48.4 357.5,47.7 359.0,47.1 360.5,46.6 362.0,46.0 363.5,45.6 365.0,45.1 366.5,44.7 368.0,44.4 369.5,44.0 371.0,43.8 372.5,43.5 374.0,43.3 375.5,43.2 377.0,43.1 378.5,43.0 380.0,43.0 381.5,43.0 383.0,43.1 384.5,43.2 386.0,43.3 387.5,43.5 389.0,43.8 390.5,44.0 392.0,44.4 393.5,44.7 395.0,45.1 396.5,45.6 398.0,46.0 399.5,46.6 401.0,47.1 402.5,47.7 404.0,48.4 405.5,49.0 407.0,49.8 408.5,50.5 410.0,51.3" fill="none" stroke="#1e468c" stroke-width="2.6" stroke-linejoin="round"/><text x="50.0" y="207.0" text-anchor="middle" fill="#8a93a3" font-size="12">0°</text><text x="140.0" y="207.0" text-anchor="middle" fill="#8a93a3" font-size="12">90°</text><text x="230.0" y="207.0" text-anchor="middle" fill="#8a93a3" font-size="12">180°</text><text x="320.0" y="207.0" text-anchor="middle" fill="#8a93a3" font-size="12">270°</text><text x="410.0" y="207.0" text-anchor="middle" fill="#8a93a3" font-size="12">360°</text><line x1="140.0" y1="29.0" x2="140.0" y2="181.0" stroke="#c0392b" stroke-width="1.2" stroke-dasharray="3,3" stroke-linecap="round"/><text x="140.0" y="23.0" text-anchor="middle" fill="#c0392b" font-size="12" font-weight="bold">A max</text><line x1="260.0" y1="29.0" x2="260.0" y2="181.0" stroke="#d4a017" stroke-width="1.2" stroke-dasharray="3,3" stroke-linecap="round"/><text x="260.0" y="23.0" text-anchor="middle" fill="#d4a017" font-size="12" font-weight="bold">B max</text><line x1="380.0" y1="29.0" x2="380.0" y2="181.0" stroke="#1e468c" stroke-width="1.2" stroke-dasharray="3,3" stroke-linecap="round"/><text x="380.0" y="23.0" text-anchor="middle" fill="#1e468c" font-size="12" font-weight="bold">C max</text><line x1="450.0" y1="60.0" x2="472.0" y2="60.0" stroke="#c0392b" stroke-width="3" stroke-linecap="round"/><text x="480.0" y="64.0" text-anchor="start" fill="#1b1f24" font-size="13">Phase A</text><line x1="450.0" y1="82.0" x2="472.0" y2="82.0" stroke="#d4a017" stroke-width="3" stroke-linecap="round"/><text x="480.0" y="86.0" text-anchor="start" fill="#1b1f24" font-size="13">Phase B (lags 120°)</text><line x1="450.0" y1="104.0" x2="472.0" y2="104.0" stroke="#1e468c" stroke-width="3" stroke-linecap="round"/><text x="480.0" y="108.0" text-anchor="start" fill="#1b1f24" font-size="13">Phase C (lags 240°)</text><text x="230.0" y="231.0" text-anchor="middle" fill="#1b1f24" font-size="13">ωt →</text></svg>
+<p class="caption">Three balanced currents 120° apart. Each phase peaks in turn (A, then B, then C), and at any instant the three sum to zero.</p>
+</div>
+<h4 class="sub">How the rotor is driven</h4>
+<ol>
+<li>The rotating field sweeps past the stationary rotor conductors and induces EMF in them (Faraday's law).</li>
+<li>The rotor circuit is closed (short-circuited bars, or external resistors for a wound rotor), so rotor currents flow.</li>
+<li>These currents lie in the stator's magnetic field, so each experiences a force (F = BIL) — together giving torque in the direction of the field's rotation (Lenz's law: the rotor 'chases' the change).</li>
+<li>The rotor speeds up but can never catch the field: at N<sub>r</sub> = N<sub>s</sub> there would be no relative motion, no induced EMF, no current and no torque. Hence slip.</li>
+</ol>
+<div class="formula">N<sub>r</sub> = N<sub>s</sub>(1 − s) &nbsp;&nbsp;|&nbsp;&nbsp; rotor-current frequency f<sub>r</sub> = s·f</div>
+<div class="box ex"><span class="label">Worked example — 6-pole motor</span>
+50 Hz supply, 6 poles: N<sub>s</sub> = 120 × 50/6 = <code>1000 rpm</code>. At 3% slip, N<sub>r</sub> = 1000 × 0.97 = <code>970 rpm</code>, and the rotor current frequency = 0.03 × 50 = <code>1.5 Hz</code>. At start (s = 1) the rotor frequency equals the supply frequency, 50 Hz.
+</div>
+<div class="box mis"><span class="label">Fixing a common misconception</span>
+'Induction motors run at synchronous speed' — no, that is a <b>synchronous</b> motor. An induction motor is called <em>asynchronous</em> because it always runs a few percent slower. Also, to reverse an induction motor you swap <em>any two</em> of the three supply leads — that reverses the direction the field rotates.
+</div>
+<h4 class="sub">Squirrel-cage vs wound (slip-ring) rotor — full comparison</h4>
+<table>
+<tr><th></th><th>Squirrel cage</th><th>Slip ring (wound rotor)</th></tr>
+<tr><td>Rotor</td><td>laminated core with parallel slots; copper/aluminium bars short-circuited at each end by end rings</td><td>laminated core; insulated three-phase double-layer winding (star), open ends taken to three slip rings on the shaft</td></tr>
+<tr><td>External resistance</td><td>impossible (bars permanently shorted)</td><td>added via brushes and slip rings, then cut out once the motor is up to speed</td></tr>
+<tr><td>Cost</td><td>Low</td><td>High</td></tr>
+<tr><td>Maintenance</td><td>Low (no brushes)</td><td>High (brushes wear)</td></tr>
+<tr><td>Speed control</td><td>Poor</td><td>Good</td></tr>
+<tr><td>Efficiency on start-up</td><td>Poor</td><td>Good</td></tr>
+<tr><td>Efficiency during operation</td><td>Good</td><td>Poor</td></tr>
+<tr><td>Heat regulation</td><td>Good</td><td>Poor</td></tr>
+<tr><td>Inrush current and torque</td><td>High current, low starting torque</td><td>Low current, high starting torque</td></tr>
+<tr><td>Applications</td><td>centrifugal pumps, conveyor drives, large blowers and fans, machine tools, lathes — and about 70–80% of all industrial induction motors</td><td>crushers, plunger pumps, cranes and hoists, elevators, compressors, conveyors — heavy, high-inertia loads that need high starting torque, low starting current or speed control</td></tr>
+</table>
+<div class="box why"><span class="label">Why external resistance helps at start</span>
+Adding resistance to the rotor circuit at start (a) reduces the starting current and (b) improves the rotor power factor, which together raise the <em>starting torque</em> — a rare case where adding resistance gives more torque. Once at speed the resistance is removed (the brushes are short-circuited) so the motor runs efficiently like a squirrel-cage machine.
+</div>
+
+
+
+<h3 class="topic" id="c7">C7. Single-Phase Induction Motor</h3>
+<div class="box terms"><span class="label">Key terms — know these words</span>
+<ul>
+<li><b>Pulsating field</b> — the field of one winding on single-phase AC: fixed axis, magnitude varying sinusoidally.</li>
+<li><b>Forward / backward flux (φf, φb)</b> — the two equal, oppositely rotating halves of a pulsating field.</li>
+<li><b>Main winding</b> — low resistance, high reactance winding that stays in circuit.</li>
+<li><b>Auxiliary (starting) winding</b> — second winding, 90° away in space, used to make a rotating field at start.</li>
+<li><b>Centrifugal switch</b> — disconnects the starting winding at about 70–80% of synchronous speed.</li>
+<li><b>Capacitor-start / CSCR / PSC</b> — ways of making the auxiliary current lead the main current.</li>
+<li><b>Shaded-pole</b> — copper rings on part of each pole delay the flux there, giving a weak rotating effect.</li>
+</ul>
+</div>
+
+<p>Used where only single-phase supply exists: fans, hair-dryers, washing machines, vacuum cleaners, mixers, refrigerators, pumps. Rating is fractional kW. The rotor is a squirrel cage and the stator has a main winding and (except in shaded-pole types) an auxiliary winding in space quadrature; N<sub>s</sub> = 120f/P as before.</p>
+
+<div class="box why"><span class="label">Why it is not self-starting</span>A single winding on AC produces a field that merely pulsates along one axis. That pulsating field equals two fields φ<sub>f</sub> and φ<sub>b</sub> of half amplitude rotating in opposite directions. At standstill they produce equal and opposite torques, so the net starting torque is <b>zero</b> — the motor hums but does not turn. Once pushed in either direction, the rotor sees one component more than the other and keeps accelerating. So a <em>starting aid</em> is required.</div>
+
+<table>
+<tr><th>Type</th><th>How the starting phase shift is made</th><th>Notes / use</th></tr>
+<tr><td>Split-phase (resistance-start)</td><td>auxiliary winding has high R, low X → its current is nearly in phase with V; the main winding lags; ≈30° phase difference</td><td>low starting torque, 1.5–2× rated; fans, blowers, small pumps</td></tr>
+<tr><td>Capacitor-start</td><td>capacitor C<sub>s</sub> in series with the auxiliary winding; currents ≈ 90° apart</td><td>high starting torque; compressors, refrigerators; switch cuts C<sub>s</sub> out</td></tr>
+<tr><td>Capacitor-start capacitor-run (two-value)</td><td>C<sub>s</sub> + C<sub>R</sub> in parallel at start; C<sub>s</sub> removed, small C<sub>R</sub> stays</td><td>high starting torque and good running power factor</td></tr>
+<tr><td>Permanent-split capacitor (PSC)</td><td>one capacitor permanently in series with the auxiliary winding; no switch</td><td>uniform torque, quiet; fans, HVAC, small domestic equipment; low starting torque</td></tr>
+<tr><td>Shaded-pole</td><td>shading ring delays flux in part of the pole</td><td>tiny, cheap, low torque and efficiency; small fans, toys</td></tr>
+</table>
+<div class="diagram">
+<svg viewBox="0 0 640 200" width="640" style="max-width:100%;height:auto" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#1b1f24"><line x1="110.0" y1="40.0" x2="410.0" y2="40.0" stroke="#1b1f24" stroke-width="2" stroke-linecap="round"/><line x1="110.0" y1="170.0" x2="410.0" y2="170.0" stroke="#1b1f24" stroke-width="2" stroke-linecap="round"/><g transform="translate(110.0,105.0) rotate(-90.0)" fill="none" stroke="#1b1f24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><line x1="-65.0" y1="0" x2="-18" y2="0"/><line x1="18" y1="0" x2="65.0" y2="0"/><circle cx="0" cy="0" r="18"/></g><path d="M100.0,105.0 q5,-10 10,0 t10,0" fill="none" stroke="#1b1f24" stroke-width="2"/><text x="80.0" y="109.0" text-anchor="end" fill="#1b1f24" font-size="13">1-φ supply</text><g transform="translate(270.0,105.0) rotate(90.0)" fill="none" stroke="#1b1f24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><line x1="-65.0" y1="0" x2="-28" y2="0"/><line x1="28" y1="0" x2="65.0" y2="0"/><path d="M-28,0 a7,7 0 0 1 14,0 a7,7 0 0 1 14,0 a7,7 0 0 1 14,0 a7,7 0 0 1 14,0"/></g><text x="250.0" y="109.0" text-anchor="end" fill="#1b1f24" font-size="13">Main winding</text><line x1="410.0" y1="40.0" x2="410.0" y2="50.0" stroke="#1b1f24" stroke-width="2" stroke-linecap="round"/><g transform="translate(410.0,66.0) rotate(90.0)" fill="none" stroke="#1b1f24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><line x1="-16.0" y1="0" x2="-5" y2="0"/><line x1="5" y1="0" x2="16.0" y2="0"/><line x1="-5" y1="-13" x2="-5" y2="13" stroke-width="3"/><line x1="5" y1="-13" x2="5" y2="13" stroke-width="3"/></g><text x="430.0" y="70.0" text-anchor="start" fill="#1b1f24" font-size="13">Cₛ (starting capacitor)</text><g transform="translate(410.0,97.0) rotate(90.0)" fill="none" stroke="#1b1f24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><line x1="-15.0" y1="0" x2="-12" y2="0"/><line x1="12" y1="0" x2="15.0" y2="0"/><line x1="-12" y1="0" x2="9" y2="-15"/><circle cx="-12" cy="0" r="2.5" fill="#1b1f24"/><circle cx="12" cy="0" r="2.5" fill="#1b1f24"/></g><text x="430.0" y="101.0" text-anchor="start" fill="#1b1f24" font-size="13">centrifugal switch</text><g transform="translate(410.0,141.0) rotate(90.0)" fill="none" stroke="#1b1f24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><line x1="-29.0" y1="0" x2="-28" y2="0"/><line x1="28" y1="0" x2="29.0" y2="0"/><path d="M-28,0 a7,7 0 0 1 14,0 a7,7 0 0 1 14,0 a7,7 0 0 1 14,0 a7,7 0 0 1 14,0"/></g><text x="422.0" y="150.0" text-anchor="start" fill="#1b1f24" font-size="13">Aux. winding</text><circle cx="340" cy="105" r="26" fill="#f7f8fb" stroke="#1b1f24" stroke-width="2"/><text x="340.0" y="109.0" text-anchor="middle" fill="#1b1f24" font-size="13" font-weight="bold">Rotor</text><circle cx="270.0" cy="40.0" r="4" fill="#1b1f24"/><circle cx="410.0" cy="40.0" r="4" fill="#1b1f24"/><circle cx="270.0" cy="170.0" r="4" fill="#1b1f24"/><circle cx="410.0" cy="170.0" r="4" fill="#1b1f24"/></svg>
+<p class="caption">Capacitor-start motor: the auxiliary winding (90° from the main winding in space) is fed through a capacitor, so its current leads the main winding's and the two together make a rotating field. A centrifugal switch cuts the auxiliary branch out at about 70–80% of synchronous speed.</p>
+</div>
+<div class="box ex"><span class="label">Worked example</span>A 4-pole single-phase motor on a 50 Hz supply: N<sub>s</sub> = 120×50/4 = <code>1500 rpm</code>. At 1440 rpm the slip is (1500−1440)/1500 = <code>4%</code>. The starting winding is cut out near 70–80% of 1500, i.e. around 1050–1200 rpm.</div>
+
+<h3 class="topic" id="c8">C8. BLDC Motor (Brushless DC)</h3>
+<div class="box terms"><span class="label">Key terms — know these words</span>
+<ul>
+<li><b>BLDC</b> — brushless DC motor: DC-supplied, electronically commutated.</li>
+<li><b>Permanent-magnet rotor</b> — rotor carries the magnets; no windings, no brushes.</li>
+<li><b>Stator coils</b> — three coils (U, V, W) fixed on the stator.</li>
+<li><b>Electronic commutation</b> — an inverter/driver switches coil currents using rotor-position information.</li>
+<li><b>Hall sensors</b> — sense rotor position so the controller knows when to switch.</li>
+<li><b>Six-step (120°) drive</b> — two of three coils energised at a time; six states per electrical revolution.</li>
+</ul>
+</div>
+
+<p>In a brushed DC motor the commutator switches the <em>rotor</em> coils. In a BLDC the coils are on the <em>stator</em> and the permanent magnet turns, so the commutation is done by transistors. A 3-coil motor has six leads; usually three are joined, leaving three wires to the controller. Speed is set by the magnitude of the applied voltage (and switching), direction by the order of energising.</p>
+<div class="diagram">
+<svg viewBox="0 0 660 420" width="660" style="max-width:100%;height:auto" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#1b1f24"><circle cx="100" cy="100" r="52" fill="#f7f8fb" stroke="#1b1f24" stroke-width="2"/><rect x="91.0" y="39.0" width="18.0" height="18.0" rx="3" fill="#f5d0cb" stroke="#c0392b" stroke-width="2"/><text x="100.0" y="33.0" text-anchor="middle" fill="#1b1f24" font-size="14" font-weight="bold">U</text><rect x="46.0" y="117.0" width="18.0" height="18.0" rx="3" fill="#fff" stroke="#1b1f24" stroke-width="2"/><text x="37.6" y="141.0" text-anchor="middle" fill="#1b1f24" font-size="14" font-weight="bold">V</text><rect x="136.0" y="117.0" width="18.0" height="18.0" rx="3" fill="#cfe3f7" stroke="#1e468c" stroke-width="2"/><text x="162.4" y="141.0" text-anchor="middle" fill="#1b1f24" font-size="14" font-weight="bold">W</text><line x1="87.0" y1="77.5" x2="114.6" y2="125.3" stroke="#166e3c" stroke-width="3" stroke-linecap="round"/><polygon points="119.0,132.9 109.5,125.7 117.5,121.1" fill="#166e3c"/><circle cx="100" cy="100" r="13" fill="#1e468c" stroke="#1b1f24" stroke-width="1.5"/><circle cx="103.5" cy="106.1" r="6" fill="#c0392b"/><text x="100.0" y="196.0" text-anchor="middle" fill="#1b1f24" font-size="13" font-weight="bold">Mode 1: U → W</text><circle cx="310" cy="100" r="52" fill="#f7f8fb" stroke="#1b1f24" stroke-width="2"/><rect x="301.0" y="39.0" width="18.0" height="18.0" rx="3" fill="#f5d0cb" stroke="#c0392b" stroke-width="2"/><text x="310.0" y="33.0" text-anchor="middle" fill="#1b1f24" font-size="14" font-weight="bold">U</text><rect x="256.0" y="117.0" width="18.0" height="18.0" rx="3" fill="#cfe3f7" stroke="#1e468c" stroke-width="2"/><text x="247.6" y="141.0" text-anchor="middle" fill="#1b1f24" font-size="14" font-weight="bold">V</text><rect x="346.0" y="117.0" width="18.0" height="18.0" rx="3" fill="#fff" stroke="#1b1f24" stroke-width="2"/><text x="372.4" y="141.0" text-anchor="middle" fill="#1b1f24" font-size="14" font-weight="bold">W</text><line x1="323.0" y1="77.5" x2="295.4" y2="125.3" stroke="#166e3c" stroke-width="3" stroke-linecap="round"/><polygon points="291.0,132.9 292.5,121.1 300.5,125.7" fill="#166e3c"/><circle cx="310" cy="100" r="13" fill="#1e468c" stroke="#1b1f24" stroke-width="1.5"/><circle cx="306.5" cy="106.1" r="6" fill="#c0392b"/><text x="310.0" y="196.0" text-anchor="middle" fill="#1b1f24" font-size="13" font-weight="bold">Mode 2: U → V</text><circle cx="520" cy="100" r="52" fill="#f7f8fb" stroke="#1b1f24" stroke-width="2"/><rect x="511.0" y="39.0" width="18.0" height="18.0" rx="3" fill="#fff" stroke="#1b1f24" stroke-width="2"/><text x="520.0" y="33.0" text-anchor="middle" fill="#1b1f24" font-size="14" font-weight="bold">U</text><rect x="466.0" y="117.0" width="18.0" height="18.0" rx="3" fill="#cfe3f7" stroke="#1e468c" stroke-width="2"/><text x="457.6" y="141.0" text-anchor="middle" fill="#1b1f24" font-size="14" font-weight="bold">V</text><rect x="556.0" y="117.0" width="18.0" height="18.0" rx="3" fill="#f5d0cb" stroke="#c0392b" stroke-width="2"/><text x="582.4" y="141.0" text-anchor="middle" fill="#1b1f24" font-size="14" font-weight="bold">W</text><line x1="546.0" y1="100.0" x2="490.8" y2="100.0" stroke="#166e3c" stroke-width="3" stroke-linecap="round"/><polygon points="482.0,100.0 493.0,95.4 493.0,104.6" fill="#166e3c"/><circle cx="520" cy="100" r="13" fill="#1e468c" stroke="#1b1f24" stroke-width="1.5"/><circle cx="513.0" cy="100.0" r="6" fill="#c0392b"/><text x="520.0" y="196.0" text-anchor="middle" fill="#1b1f24" font-size="13" font-weight="bold">Mode 3: W → V</text><circle cx="100" cy="305" r="52" fill="#f7f8fb" stroke="#1b1f24" stroke-width="2"/><rect x="91.0" y="244.0" width="18.0" height="18.0" rx="3" fill="#cfe3f7" stroke="#1e468c" stroke-width="2"/><text x="100.0" y="238.0" text-anchor="middle" fill="#1b1f24" font-size="14" font-weight="bold">U</text><rect x="46.0" y="322.0" width="18.0" height="18.0" rx="3" fill="#fff" stroke="#1b1f24" stroke-width="2"/><text x="37.6" y="346.0" text-anchor="middle" fill="#1b1f24" font-size="14" font-weight="bold">V</text><rect x="136.0" y="322.0" width="18.0" height="18.0" rx="3" fill="#f5d0cb" stroke="#c0392b" stroke-width="2"/><text x="162.4" y="346.0" text-anchor="middle" fill="#1b1f24" font-size="14" font-weight="bold">W</text><line x1="113.0" y1="327.5" x2="85.4" y2="279.7" stroke="#166e3c" stroke-width="3" stroke-linecap="round"/><polygon points="81.0,272.1 90.5,279.3 82.5,283.9" fill="#166e3c"/><circle cx="100" cy="305" r="13" fill="#1e468c" stroke="#1b1f24" stroke-width="1.5"/><circle cx="96.5" cy="298.9" r="6" fill="#c0392b"/><text x="100.0" y="401.0" text-anchor="middle" fill="#1b1f24" font-size="13" font-weight="bold">Mode 4: W → U</text><circle cx="310" cy="305" r="52" fill="#f7f8fb" stroke="#1b1f24" stroke-width="2"/><rect x="301.0" y="244.0" width="18.0" height="18.0" rx="3" fill="#cfe3f7" stroke="#1e468c" stroke-width="2"/><text x="310.0" y="238.0" text-anchor="middle" fill="#1b1f24" font-size="14" font-weight="bold">U</text><rect x="256.0" y="322.0" width="18.0" height="18.0" rx="3" fill="#f5d0cb" stroke="#c0392b" stroke-width="2"/><text x="247.6" y="346.0" text-anchor="middle" fill="#1b1f24" font-size="14" font-weight="bold">V</text><rect x="346.0" y="322.0" width="18.0" height="18.0" rx="3" fill="#fff" stroke="#1b1f24" stroke-width="2"/><text x="372.4" y="346.0" text-anchor="middle" fill="#1b1f24" font-size="14" font-weight="bold">W</text><line x1="297.0" y1="327.5" x2="324.6" y2="279.7" stroke="#166e3c" stroke-width="3" stroke-linecap="round"/><polygon points="329.0,272.1 327.5,283.9 319.5,279.3" fill="#166e3c"/><circle cx="310" cy="305" r="13" fill="#1e468c" stroke="#1b1f24" stroke-width="1.5"/><circle cx="313.5" cy="298.9" r="6" fill="#c0392b"/><text x="310.0" y="401.0" text-anchor="middle" fill="#1b1f24" font-size="13" font-weight="bold">Mode 5: V → U</text><circle cx="520" cy="305" r="52" fill="#f7f8fb" stroke="#1b1f24" stroke-width="2"/><rect x="511.0" y="244.0" width="18.0" height="18.0" rx="3" fill="#fff" stroke="#1b1f24" stroke-width="2"/><text x="520.0" y="238.0" text-anchor="middle" fill="#1b1f24" font-size="14" font-weight="bold">U</text><rect x="466.0" y="322.0" width="18.0" height="18.0" rx="3" fill="#f5d0cb" stroke="#c0392b" stroke-width="2"/><text x="457.6" y="346.0" text-anchor="middle" fill="#1b1f24" font-size="14" font-weight="bold">V</text><rect x="556.0" y="322.0" width="18.0" height="18.0" rx="3" fill="#cfe3f7" stroke="#1e468c" stroke-width="2"/><text x="582.4" y="346.0" text-anchor="middle" fill="#1b1f24" font-size="14" font-weight="bold">W</text><line x1="494.0" y1="305.0" x2="549.2" y2="305.0" stroke="#166e3c" stroke-width="3" stroke-linecap="round"/><polygon points="558.0,305.0 547.0,309.6 547.0,300.4" fill="#166e3c"/><circle cx="520" cy="305" r="13" fill="#1e468c" stroke="#1b1f24" stroke-width="1.5"/><circle cx="527.0" cy="305.0" r="6" fill="#c0392b"/><text x="520.0" y="401.0" text-anchor="middle" fill="#1b1f24" font-size="13" font-weight="bold">Mode 6: V → W</text><text x="330.0" y="12.0" text-anchor="middle" fill="#8a93a3" font-size="11">red coil = current enters, blue coil = current leaves, green arrow = resultant stator flux, red/blue disc = permanent-magnet rotor (red = N)</text></svg>
+<p class="caption">Six-step commutation of a three-coil BLDC motor. Each step energises two coils, the stator flux jumps 60°, and the permanent-magnet rotor follows. Six steps = one electrical revolution.</p>
+</div>
+<table>
+<tr><th>Mode</th><th>Energised</th><th>Resultant flux</th></tr>
+<tr><td>1</td><td>U → W</td><td>↘</td></tr>
+<tr><td>2</td><td>U → V</td><td>↙</td></tr>
+<tr><td>3</td><td>W → V</td><td>←</td></tr>
+<tr><td>4</td><td>W → U</td><td>↖</td></tr>
+<tr><td>5</td><td>V → U</td><td>↗</td></tr>
+<tr><td>6</td><td>V → W</td><td>→</td></tr>
+</table>
+
+<table>
+<tr><th>Advantages</th><th>Limitations</th></tr>
+<tr><td>no brush wear → low maintenance and long life; low electrical and acoustic noise; high efficiency and power-to-size ratio; good thermal behaviour (heat in the stator); higher speed range; fast dynamic response (low rotor inertia)</td><td>costly; needs an electronic controller and complex drive circuitry; needs position sensors (or sensorless algorithms)</td></tr>
+</table>
+
+<p><b>Applications:</b> hard-disk drives, electric vehicles and e-bikes, drones, industrial robots and CNC machines, washing machines, compressors, fans, pumps and blowers.</p>
+
+<h3 class="topic" id="c9">C9. Stepper Motor</h3>
+<div class="box terms"><span class="label">Key terms — know these words</span>
+<ul>
+<li><b>Step angle</b> — the rotation per pulse; typically 0.9°–1.8° (200–400 steps/rev).</li>
+<li><b>Open-loop control</b> — pulses are counted; no position feedback.</li>
+<li><b>PM / VR / hybrid</b> — permanent-magnet, variable-reluctance and hybrid stepper types.</li>
+<li><b>Phase</b> — one stator winding set that is energised as a unit.</li>
+<li><b>Missed step</b> — a step lost because of overload; undetectable in open loop.</li>
+<li><b>Holding torque</b> — torque at standstill with the winding energised.</li>
+</ul>
+</div>
+
+<p>A stator with several windings is energised in a programmed sequence by an electronic driver; the permanent-magnet (or toothed soft-iron) rotor aligns with the energised pole. Each pulse gives one step; rotor angle ∝ number of pulses, speed ∝ pulse frequency.</p>
+<div class="diagram">
+<svg viewBox="0 0 700 235" width="700" style="max-width:100%;height:auto" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#1b1f24"><circle cx="90" cy="100" r="55" fill="#f7f8fb" stroke="#1b1f24" stroke-width="2"/><rect x="80.0" y="35.0" width="20.0" height="20.0" rx="3" fill="#f5d0cb" stroke="#c0392b" stroke-width="2"/><text x="90.0" y="30.0" text-anchor="middle" fill="#1b1f24" font-size="13" font-weight="bold">A</text><rect x="135.0" y="90.0" width="20.0" height="20.0" rx="3" fill="#fff" stroke="#1b1f24" stroke-width="2"/><text x="165.0" y="105.0" text-anchor="middle" fill="#1b1f24" font-size="13" font-weight="bold">B</text><rect x="80.0" y="145.0" width="20.0" height="20.0" rx="3" fill="#fff" stroke="#1b1f24" stroke-width="2"/><text x="90.0" y="180.0" text-anchor="middle" fill="#1b1f24" font-size="13" font-weight="bold">A′</text><rect x="25.0" y="90.0" width="20.0" height="20.0" rx="3" fill="#fff" stroke="#1b1f24" stroke-width="2"/><text x="15.0" y="105.0" text-anchor="middle" fill="#1b1f24" font-size="13" font-weight="bold">B′</text><circle cx="90" cy="100" r="16" fill="#fff" stroke="#1b1f24" stroke-width="2"/><line x1="90.0" y1="104.0" x2="90.0" y2="74.8" stroke="#7c3aed" stroke-width="3" stroke-linecap="round"/><polygon points="90.0,66.0 94.6,77.0 85.4,77.0" fill="#7c3aed"/><text x="90.0" y="200.0" text-anchor="middle" fill="#1b1f24" font-size="13" font-weight="bold">θ = 0°</text><text x="90.0" y="218.0" text-anchor="middle" fill="#8a93a3" font-size="12">phase A  + on</text><circle cx="260" cy="100" r="55" fill="#f7f8fb" stroke="#1b1f24" stroke-width="2"/><rect x="250.0" y="35.0" width="20.0" height="20.0" rx="3" fill="#fff" stroke="#1b1f24" stroke-width="2"/><text x="260.0" y="30.0" text-anchor="middle" fill="#1b1f24" font-size="13" font-weight="bold">A</text><rect x="305.0" y="90.0" width="20.0" height="20.0" rx="3" fill="#f5d0cb" stroke="#c0392b" stroke-width="2"/><text x="335.0" y="105.0" text-anchor="middle" fill="#1b1f24" font-size="13" font-weight="bold">B</text><rect x="250.0" y="145.0" width="20.0" height="20.0" rx="3" fill="#fff" stroke="#1b1f24" stroke-width="2"/><text x="260.0" y="180.0" text-anchor="middle" fill="#1b1f24" font-size="13" font-weight="bold">A′</text><rect x="195.0" y="90.0" width="20.0" height="20.0" rx="3" fill="#fff" stroke="#1b1f24" stroke-width="2"/><text x="185.0" y="105.0" text-anchor="middle" fill="#1b1f24" font-size="13" font-weight="bold">B′</text><circle cx="260" cy="100" r="16" fill="#fff" stroke="#1b1f24" stroke-width="2"/><line x1="256.0" y1="100.0" x2="285.2" y2="100.0" stroke="#7c3aed" stroke-width="3" stroke-linecap="round"/><polygon points="294.0,100.0 283.0,104.6 283.0,95.4" fill="#7c3aed"/><text x="260.0" y="200.0" text-anchor="middle" fill="#1b1f24" font-size="13" font-weight="bold">θ = 90°</text><text x="260.0" y="218.0" text-anchor="middle" fill="#8a93a3" font-size="12">phase B  + on</text><circle cx="430" cy="100" r="55" fill="#f7f8fb" stroke="#1b1f24" stroke-width="2"/><rect x="420.0" y="35.0" width="20.0" height="20.0" rx="3" fill="#fff" stroke="#1b1f24" stroke-width="2"/><text x="430.0" y="30.0" text-anchor="middle" fill="#1b1f24" font-size="13" font-weight="bold">A</text><rect x="475.0" y="90.0" width="20.0" height="20.0" rx="3" fill="#fff" stroke="#1b1f24" stroke-width="2"/><text x="505.0" y="105.0" text-anchor="middle" fill="#1b1f24" font-size="13" font-weight="bold">B</text><rect x="420.0" y="145.0" width="20.0" height="20.0" rx="3" fill="#f5d0cb" stroke="#c0392b" stroke-width="2"/><text x="430.0" y="180.0" text-anchor="middle" fill="#1b1f24" font-size="13" font-weight="bold">A′</text><rect x="365.0" y="90.0" width="20.0" height="20.0" rx="3" fill="#fff" stroke="#1b1f24" stroke-width="2"/><text x="355.0" y="105.0" text-anchor="middle" fill="#1b1f24" font-size="13" font-weight="bold">B′</text><circle cx="430" cy="100" r="16" fill="#fff" stroke="#1b1f24" stroke-width="2"/><line x1="430.0" y1="96.0" x2="430.0" y2="125.2" stroke="#7c3aed" stroke-width="3" stroke-linecap="round"/><polygon points="430.0,134.0 425.4,123.0 434.6,123.0" fill="#7c3aed"/><text x="430.0" y="200.0" text-anchor="middle" fill="#1b1f24" font-size="13" font-weight="bold">θ = 180°</text><text x="430.0" y="218.0" text-anchor="middle" fill="#8a93a3" font-size="12">phase A  − on</text><circle cx="600" cy="100" r="55" fill="#f7f8fb" stroke="#1b1f24" stroke-width="2"/><rect x="590.0" y="35.0" width="20.0" height="20.0" rx="3" fill="#fff" stroke="#1b1f24" stroke-width="2"/><text x="600.0" y="30.0" text-anchor="middle" fill="#1b1f24" font-size="13" font-weight="bold">A</text><rect x="645.0" y="90.0" width="20.0" height="20.0" rx="3" fill="#fff" stroke="#1b1f24" stroke-width="2"/><text x="675.0" y="105.0" text-anchor="middle" fill="#1b1f24" font-size="13" font-weight="bold">B</text><rect x="590.0" y="145.0" width="20.0" height="20.0" rx="3" fill="#fff" stroke="#1b1f24" stroke-width="2"/><text x="600.0" y="180.0" text-anchor="middle" fill="#1b1f24" font-size="13" font-weight="bold">A′</text><rect x="535.0" y="90.0" width="20.0" height="20.0" rx="3" fill="#f5d0cb" stroke="#c0392b" stroke-width="2"/><text x="525.0" y="105.0" text-anchor="middle" fill="#1b1f24" font-size="13" font-weight="bold">B′</text><circle cx="600" cy="100" r="16" fill="#fff" stroke="#1b1f24" stroke-width="2"/><line x1="604.0" y1="100.0" x2="574.8" y2="100.0" stroke="#7c3aed" stroke-width="3" stroke-linecap="round"/><polygon points="566.0,100.0 577.0,95.4 577.0,104.6" fill="#7c3aed"/><text x="600.0" y="200.0" text-anchor="middle" fill="#1b1f24" font-size="13" font-weight="bold">θ = 270°</text><text x="600.0" y="218.0" text-anchor="middle" fill="#8a93a3" font-size="12">phase B  − on</text></svg>
+<p class="caption">A 2-phase, 2-pole permanent-magnet stepper: the rotor (arrow = its north pole) snaps to whichever stator pole is energised. Switching A → B → A′ → B′ turns it 90° per pulse.</p>
+</div>
+<div class="formula">step angle = 360° / (steps per revolution) &nbsp;; &nbsp; N (rpm) = (step angle × pulse rate) × 60 / 360</div>
+
+<div class="box ex"><span class="label">Worked example</span>A motor with 1.8° steps has 360/1.8 = <code>200 steps/rev</code>. At 1000 pulses per second: N = 1000 × 60/200 = <code>300 rpm</code>. The 2-phase, 2-pole PM example in the figure has a step of 360/(2×2) = 90°; energising two phases at once (half-stepping) reduces the step.</div>
+
+<table>
+<tr><th>Advantages</th><th>Disadvantages</th></tr>
+<tr><td>full torque at standstill; good response to start/stop/reverse; no brushes → reliable; angle ∝ input pulses; simple, cheap open-loop control; speed ∝ pulse frequency; 3–5% step accuracy, non-cumulative; safe, cheap compared with servos</td><td>low efficiency; torque falls quickly with speed; no feedback — missed steps go unnoticed; low torque-to-inertia, cannot accelerate loads quickly; noisy</td></tr>
+</table>
+
+<p><b>Applications:</b> 3D printers, CNC machines, robotics, automation, medical devices, camera and security systems, textile machinery, consumer electronics.</p>
+
+<h3 class="topic" id="c10">C10. Alternator (Synchronous Generator)</h3>
+<div class="box terms"><span class="label">Key terms — know these words</span>
+<ul>
+<li><b>Alternator</b> — AC generator: converts mechanical energy to AC electrical energy.</li>
+<li><b>Prime mover</b> — the engine or turbine that turns the rotor.</li>
+<li><b>Salient-pole rotor</b> — projecting poles; low speed (hydro, diesel).</li>
+<li><b>Cylindrical (non-salient) rotor</b> — smooth round rotor; high speed (steam turbines).</li>
+<li><b>Slip rings</b> — bring DC to the rotating field winding.</li>
+<li><b>Synchronous speed</b> — N = 120f/P — the speed that gives frequency f.</li>
+</ul>
+</div>
+
+<p>Unlike a DC generator, whose armature rotates, an alternator has its <b>armature winding on the stator</b> and its <b>field winding on the rotor</b>. The rotor field (DC through slip rings) rotates and cuts the stationary conductors; three windings 120° apart give a balanced three-phase output.</p>
+<div class="diagram">
+<svg viewBox="0 0 680 290" width="680" style="max-width:100%;height:auto" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#1b1f24"><circle cx="230" cy="150" r="120" fill="none" stroke="#9aa3b2" stroke-width="22"/><circle cx="343.0" cy="150.0" r="7" fill="#c0392b" stroke="#1b1f24" stroke-width="1"/><circle cx="327.9" cy="206.5" r="7" fill="#d4a017" stroke="#1b1f24" stroke-width="1"/><circle cx="286.5" cy="247.9" r="7" fill="#1e468c" stroke="#1b1f24" stroke-width="1"/><circle cx="230.0" cy="263.0" r="7" fill="#c0392b" stroke="#1b1f24" stroke-width="1"/><circle cx="173.5" cy="247.9" r="7" fill="#d4a017" stroke="#1b1f24" stroke-width="1"/><circle cx="132.1" cy="206.5" r="7" fill="#1e468c" stroke="#1b1f24" stroke-width="1"/><circle cx="117.0" cy="150.0" r="7" fill="#c0392b" stroke="#1b1f24" stroke-width="1"/><circle cx="132.1" cy="93.5" r="7" fill="#d4a017" stroke="#1b1f24" stroke-width="1"/><circle cx="173.5" cy="52.1" r="7" fill="#1e468c" stroke="#1b1f24" stroke-width="1"/><circle cx="230.0" cy="37.0" r="7" fill="#c0392b" stroke="#1b1f24" stroke-width="1"/><circle cx="286.5" cy="52.1" r="7" fill="#d4a017" stroke="#1b1f24" stroke-width="1"/><circle cx="327.9" cy="93.5" r="7" fill="#1e468c" stroke="#1b1f24" stroke-width="1"/><circle cx="230" cy="150" r="82" fill="#fff" stroke="#1b1f24" stroke-width="1.5" stroke-dasharray="4,3"/><rect x="204.0" y="72.0" width="52.0" height="50.0" rx="0" fill="#d7dce5" stroke="#1b1f24" stroke-width="2"/><text x="230.0" y="104.0" text-anchor="middle" fill="#c0392b" font-size="20" font-weight="bold">N</text><rect x="204.0" y="178.0" width="52.0" height="50.0" rx="0" fill="#d7dce5" stroke="#1b1f24" stroke-width="2"/><text x="230.0" y="212.0" text-anchor="middle" fill="#1e468c" font-size="20" font-weight="bold">S</text><rect x="212.0" y="122.0" width="36.0" height="56.0" rx="0" fill="#f1c9a5" stroke="#b46b2d" stroke-width="1.6"/><text x="230.0" y="154.0" text-anchor="middle" fill="#1b1f24" font-size="12">field</text><path d="M265.2,120.4 A46,46 0 0 1 265.2,179.6" fill="none" stroke="#7c3aed" stroke-width="3"/><polygon points="265.2,179.6 267.8,171.3 273.0,175.6" fill="#7c3aed"/><text x="380.0" y="40.0" text-anchor="start" fill="#1b1f24" font-size="13" font-weight="bold">Stator (stationary):</text><text x="380.0" y="58.0" text-anchor="start" fill="#1b1f24" font-size="13">3-phase armature winding</text><text x="380.0" y="78.0" text-anchor="start" fill="#8a93a3" font-size="12">(A red, B amber, C blue)</text><line x1="375.0" y1="52.0" x2="330.0" y2="90.0" stroke="#8a93a3" stroke-width="1.2" stroke-linecap="round"/><text x="380.0" y="150.0" text-anchor="start" fill="#1b1f24" font-size="13" font-weight="bold">Rotor (rotating):</text><text x="380.0" y="168.0" text-anchor="start" fill="#1b1f24" font-size="13">DC field winding</text><text x="380.0" y="186.0" text-anchor="start" fill="#8a93a3" font-size="12">via slip rings</text><line x1="375.0" y1="160.0" x2="260.0" y2="150.0" stroke="#8a93a3" stroke-width="1.2" stroke-linecap="round"/><text x="380.0" y="250.0" text-anchor="start" fill="#7c3aed" font-size="13" font-weight="bold">Prime mover turns the rotor</text></svg>
+<p class="caption">Alternator (synchronous generator): unlike a DC machine, the armature is stationary and the field rotates, so the output is taken straight from the stator terminals without brushes.</p>
+</div>
+<div class="formula">f = P N / 120 &nbsp;(Hz) &nbsp;&nbsp;|&nbsp;&nbsp; N = 120 f / P</div>
+
+<div class="box ex"><span class="label">Worked example</span>A 4-pole alternator must turn at N = 120×50/4 = <code>1500 rpm</code> to give 50 Hz; a 2-pole turbo-alternator at 3000 rpm; a 24-pole hydro machine at 250 rpm.</div>
+
+<table>
+<tr><th>Advantages over a DC generator</th><th>Drawbacks</th></tr>
+<tr><td>output taken directly from stationary terminals — no brushes/slip rings in the power path, little sparking and maintenance; no brush voltage drop; higher efficiency and voltage; field excited by low DC voltage; lighter, compact, simple, cheaper; smooth high-speed running</td><td>needs efficient cooling for large currents; needs a diode rectifier if DC is wanted (as in a car alternator)</td></tr>
+</table>
+
+<p><b>Applications:</b> power stations, cars and locomotives, aircraft, standby/emergency sets, renewable energy (wind and hydro), marine use.</p>
+
+<h2 class="part" id="partd">Part D — Power Electronics &amp; Electric Drives <span class="marks">concepts</span></h2>
+
+<h3 class="topic" id="d1">D1. Concepts of Power Electronics</h3>
+<div class="box terms"><span class="label">Key terms — know these words</span>
+<ul>
+<li><b>Power electronics</b> — use of semiconductor switches to convert and control electrical power.</li>
+<li><b>Converter</b> — a circuit changing the form of electrical energy (AC/DC, voltage level, frequency).</li>
+<li><b>Rectifier / Inverter / Chopper</b> — AC→DC / DC→AC / DC→DC converters.</li>
+<li><b>SCR (thyristor), MOSFET, IGBT</b> — common switching devices; the BJT and diode are also used.</li>
+<li><b>PWM</b> — pulse-width modulation: varying the ON fraction (duty cycle) to control the average output.</li>
+<li><b>Duty cycle D</b> — ON time ÷ period.</li>
+<li><b>Harmonics</b> — unwanted extra frequencies produced by switching.</li>
+</ul>
+</div>
+
+<p>Power electronics <em>manages and converts electrical energy using semiconductor devices</em>. The key idea is to run the devices as <b>switches</b> (fully ON or fully OFF), because an ideal switch dissipates almost no power: ON, it has ≈ 0 V across it; OFF, it carries ≈ 0 A. This is why converters are efficient.</p>
+<div class="diagram">
+<svg viewBox="0 0 650 275" width="650" style="max-width:100%;height:auto" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#1b1f24"><rect x="10.0" y="30.0" width="150.0" height="64.0" rx="6" fill="#eef0f4" stroke="#1b1f24" stroke-width="1.8"/><text x="85.0" y="58.5" text-anchor="middle" fill="#1b1f24" font-size="13">Electrical energy</text><text x="85.0" y="74.5" text-anchor="middle" fill="#1b1f24" font-size="13">source (AC or DC)</text><rect x="240.0" y="30.0" width="170.0" height="64.0" rx="6" fill="#eef0f4" stroke="#1b1f24" stroke-width="1.8"/><text x="325.0" y="58.5" text-anchor="middle" fill="#1b1f24" font-size="13">Power electronic</text><text x="325.0" y="74.5" text-anchor="middle" fill="#1b1f24" font-size="13">converter circuit</text><rect x="490.0" y="30.0" width="140.0" height="64.0" rx="6" fill="#eef0f4" stroke="#1b1f24" stroke-width="1.8"/><text x="560.0" y="58.5" text-anchor="middle" fill="#1b1f24" font-size="13">Electrical</text><text x="560.0" y="74.5" text-anchor="middle" fill="#1b1f24" font-size="13">load</text><line x1="160.0" y1="62.0" x2="230.8" y2="62.0" stroke="#1b1f24" stroke-width="2" stroke-linecap="round"/><polygon points="238.0,62.0 229.0,65.8 229.0,58.2" fill="#1b1f24"/><line x1="410.0" y1="62.0" x2="480.8" y2="62.0" stroke="#1b1f24" stroke-width="2" stroke-linecap="round"/><polygon points="488.0,62.0 479.0,65.8 479.0,58.2" fill="#1b1f24"/><text x="325.0" y="20.0" text-anchor="middle" fill="#8a93a3" font-size="12" font-style="italic">i, v</text><rect x="490.0" y="150.0" width="140.0" height="54.0" rx="6" fill="#eef0f4" stroke="#1b1f24" stroke-width="1.8"/><text x="560.0" y="173.5" text-anchor="middle" fill="#1b1f24" font-size="13">Sensing unit</text><text x="560.0" y="189.5" text-anchor="middle" fill="#1b1f24" font-size="13">(sensor)</text><line x1="560.0" y1="94.0" x2="560.0" y2="140.8" stroke="#1b1f24" stroke-width="2" stroke-linecap="round"/><polygon points="560.0,148.0 556.2,139.0 563.8,139.0" fill="#1b1f24"/><rect x="240.0" y="150.0" width="170.0" height="54.0" rx="6" fill="#eef0f4" stroke="#1b1f24" stroke-width="1.8"/><text x="325.0" y="181.5" text-anchor="middle" fill="#1b1f24" font-size="13">Control circuit</text><line x1="490.0" y1="177.0" x2="419.2" y2="177.0" stroke="#1b1f24" stroke-width="2" stroke-linecap="round"/><polygon points="412.0,177.0 421.0,173.2 421.0,180.8" fill="#1b1f24"/><line x1="325.0" y1="148.0" x2="325.0" y2="103.2" stroke="#1b1f24" stroke-width="2" stroke-linecap="round"/><polygon points="325.0,96.0 328.8,105.0 321.2,105.0" fill="#1b1f24"/><text x="335.0" y="126.0" text-anchor="start" fill="#8a93a3" font-size="12" font-style="italic">control signals</text><line x1="325.0" y1="245.0" x2="325.0" y2="213.2" stroke="#1b1f24" stroke-width="2" stroke-linecap="round"/><polygon points="325.0,206.0 328.8,215.0 321.2,215.0" fill="#1b1f24"/><text x="325.0" y="262.0" text-anchor="middle" fill="#1b1f24" font-size="13">Reference value</text></svg>
+<p class="caption">A power-electronic system: the converter shapes energy from the source for the load, while sensor and control circuit close a feedback loop around it.</p>
+</div><div class="diagram">
+<svg viewBox="0 0 740 245" width="740" style="max-width:100%;height:auto" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#1b1f24"><rect x="20.0" y="20.0" width="340.0" height="98.0" rx="8" fill="#fbfbfa" stroke="#1b1f24" stroke-width="1.5"/><text x="190.0" y="42.0" text-anchor="middle" fill="#1b1f24" font-size="14" font-weight="bold">Rectifier</text><text x="190.0" y="60.0" text-anchor="middle" fill="#8a93a3" font-size="12">AC → DC</text><line x1="40.0" y1="96.0" x2="96.0" y2="96.0" stroke="#8a93a3" stroke-width="1" stroke-linecap="round"/><polyline points="40.0,96.0 40.9,94.7 41.9,93.5 42.8,92.3 43.7,91.1 44.7,90.0 45.6,88.9 46.5,88.0 47.5,87.1 48.4,86.3 49.3,85.6 50.3,85.0 51.2,84.6 52.1,84.3 53.1,84.1 54.0,84.0 54.9,84.1 55.9,84.3 56.8,84.6 57.7,85.0 58.7,85.6 59.6,86.3 60.5,87.1 61.5,88.0 62.4,88.9 63.3,90.0 64.3,91.1 65.2,92.3 66.1,93.5 67.1,94.7 68.0,96.0 68.9,97.3 69.9,98.5 70.8,99.7 71.7,100.9 72.7,102.0 73.6,103.1 74.5,104.0 75.5,104.9 76.4,105.7 77.3,106.4 78.3,107.0 79.2,107.4 80.1,107.7 81.1,107.9 82.0,108.0 82.9,107.9 83.9,107.7 84.8,107.4 85.7,107.0 86.7,106.4 87.6,105.7 88.5,104.9 89.5,104.0 90.4,103.1 91.3,102.0 92.3,100.9 93.2,99.7 94.1,98.5 95.1,97.3 96.0,96.0" fill="none" stroke="#7c3aed" stroke-width="2" stroke-linejoin="round"/><line x1="110.0" y1="86.0" x2="133.6" y2="86.0" stroke="#1b1f24" stroke-width="2" stroke-linecap="round"/><polygon points="140.0,86.0 132.0,89.4 132.0,82.6" fill="#1b1f24"/><rect x="145.0" y="70.0" width="90.0" height="32.0" rx="6" fill="#f3effc" stroke="#7c3aed" stroke-width="1.8"/><text x="190.0" y="90.5" text-anchor="middle" fill="#1b1f24" font-size="12">converter</text><line x1="238.0" y1="86.0" x2="261.6" y2="86.0" stroke="#1b1f24" stroke-width="2" stroke-linecap="round"/><polygon points="268.0,86.0 260.0,89.4 260.0,82.6" fill="#1b1f24"/><line x1="282.0" y1="96.0" x2="338.0" y2="96.0" stroke="#8a93a3" stroke-width="1" stroke-linecap="round"/><line x1="282.0" y1="84.0" x2="338.0" y2="84.0" stroke="#7c3aed" stroke-width="2.4" stroke-linecap="round"/><rect x="380.0" y="20.0" width="340.0" height="98.0" rx="8" fill="#fbfbfa" stroke="#1b1f24" stroke-width="1.5"/><text x="550.0" y="42.0" text-anchor="middle" fill="#1b1f24" font-size="14" font-weight="bold">Inverter</text><text x="550.0" y="60.0" text-anchor="middle" fill="#8a93a3" font-size="12">DC → AC</text><line x1="400.0" y1="96.0" x2="456.0" y2="96.0" stroke="#8a93a3" stroke-width="1" stroke-linecap="round"/><line x1="400.0" y1="84.0" x2="456.0" y2="84.0" stroke="#7c3aed" stroke-width="2.4" stroke-linecap="round"/><line x1="470.0" y1="86.0" x2="493.6" y2="86.0" stroke="#1b1f24" stroke-width="2" stroke-linecap="round"/><polygon points="500.0,86.0 492.0,89.4 492.0,82.6" fill="#1b1f24"/><rect x="505.0" y="70.0" width="90.0" height="32.0" rx="6" fill="#f3effc" stroke="#7c3aed" stroke-width="1.8"/><text x="550.0" y="90.5" text-anchor="middle" fill="#1b1f24" font-size="12">converter</text><line x1="598.0" y1="86.0" x2="621.6" y2="86.0" stroke="#1b1f24" stroke-width="2" stroke-linecap="round"/><polygon points="628.0,86.0 620.0,89.4 620.0,82.6" fill="#1b1f24"/><line x1="642.0" y1="96.0" x2="698.0" y2="96.0" stroke="#8a93a3" stroke-width="1" stroke-linecap="round"/><polyline points="642.0,96.0 642.9,94.7 643.9,93.5 644.8,92.3 645.7,91.1 646.7,90.0 647.6,88.9 648.5,88.0 649.5,87.1 650.4,86.3 651.3,85.6 652.3,85.0 653.2,84.6 654.1,84.3 655.1,84.1 656.0,84.0 656.9,84.1 657.9,84.3 658.8,84.6 659.7,85.0 660.7,85.6 661.6,86.3 662.5,87.1 663.5,88.0 664.4,88.9 665.3,90.0 666.3,91.1 667.2,92.3 668.1,93.5 669.1,94.7 670.0,96.0 670.9,97.3 671.9,98.5 672.8,99.7 673.7,100.9 674.7,102.0 675.6,103.1 676.5,104.0 677.5,104.9 678.4,105.7 679.3,106.4 680.3,107.0 681.2,107.4 682.1,107.7 683.1,107.9 684.0,108.0 684.9,107.9 685.9,107.7 686.8,107.4 687.7,107.0 688.7,106.4 689.6,105.7 690.5,104.9 691.5,104.0 692.4,103.1 693.3,102.0 694.3,100.9 695.2,99.7 696.1,98.5 697.1,97.3 698.0,96.0" fill="none" stroke="#7c3aed" stroke-width="2" stroke-linejoin="round"/><rect x="20.0" y="130.0" width="340.0" height="98.0" rx="8" fill="#fbfbfa" stroke="#1b1f24" stroke-width="1.5"/><text x="190.0" y="152.0" text-anchor="middle" fill="#1b1f24" font-size="14" font-weight="bold">DC–DC converter (chopper)</text><text x="190.0" y="170.0" text-anchor="middle" fill="#8a93a3" font-size="12">DC → DC (other level)</text><line x1="40.0" y1="206.0" x2="96.0" y2="206.0" stroke="#8a93a3" stroke-width="1" stroke-linecap="round"/><line x1="40.0" y1="194.0" x2="96.0" y2="194.0" stroke="#7c3aed" stroke-width="2.4" stroke-linecap="round"/><line x1="110.0" y1="196.0" x2="133.6" y2="196.0" stroke="#1b1f24" stroke-width="2" stroke-linecap="round"/><polygon points="140.0,196.0 132.0,199.4 132.0,192.6" fill="#1b1f24"/><rect x="145.0" y="180.0" width="90.0" height="32.0" rx="6" fill="#f3effc" stroke="#7c3aed" stroke-width="1.8"/><text x="190.0" y="200.5" text-anchor="middle" fill="#1b1f24" font-size="12">converter</text><line x1="238.0" y1="196.0" x2="261.6" y2="196.0" stroke="#1b1f24" stroke-width="2" stroke-linecap="round"/><polygon points="268.0,196.0 260.0,199.4 260.0,192.6" fill="#1b1f24"/><line x1="282.0" y1="206.0" x2="338.0" y2="206.0" stroke="#8a93a3" stroke-width="1" stroke-linecap="round"/><line x1="282.0" y1="200.0" x2="338.0" y2="200.0" stroke="#7c3aed" stroke-width="2.4" stroke-linecap="round"/><rect x="380.0" y="130.0" width="340.0" height="98.0" rx="8" fill="#fbfbfa" stroke="#1b1f24" stroke-width="1.5"/><text x="550.0" y="152.0" text-anchor="middle" fill="#1b1f24" font-size="14" font-weight="bold">AC regulator / cycloconverter</text><text x="550.0" y="170.0" text-anchor="middle" fill="#8a93a3" font-size="12">AC → AC (other V or f)</text><line x1="400.0" y1="206.0" x2="456.0" y2="206.0" stroke="#8a93a3" stroke-width="1" stroke-linecap="round"/><polyline points="400.0,206.0 400.9,204.7 401.9,203.5 402.8,202.3 403.7,201.1 404.7,200.0 405.6,198.9 406.5,198.0 407.5,197.1 408.4,196.3 409.3,195.6 410.3,195.0 411.2,194.6 412.1,194.3 413.1,194.1 414.0,194.0 414.9,194.1 415.9,194.3 416.8,194.6 417.7,195.0 418.7,195.6 419.6,196.3 420.5,197.1 421.5,198.0 422.4,198.9 423.3,200.0 424.3,201.1 425.2,202.3 426.1,203.5 427.1,204.7 428.0,206.0 428.9,207.3 429.9,208.5 430.8,209.7 431.7,210.9 432.7,212.0 433.6,213.1 434.5,214.0 435.5,214.9 436.4,215.7 437.3,216.4 438.3,217.0 439.2,217.4 440.1,217.7 441.1,217.9 442.0,218.0 442.9,217.9 443.9,217.7 444.8,217.4 445.7,217.0 446.7,216.4 447.6,215.7 448.5,214.9 449.5,214.0 450.4,213.1 451.3,212.0 452.3,210.9 453.2,209.7 454.1,208.5 455.1,207.3 456.0,206.0" fill="none" stroke="#7c3aed" stroke-width="2" stroke-linejoin="round"/><line x1="470.0" y1="196.0" x2="493.6" y2="196.0" stroke="#1b1f24" stroke-width="2" stroke-linecap="round"/><polygon points="500.0,196.0 492.0,199.4 492.0,192.6" fill="#1b1f24"/><rect x="505.0" y="180.0" width="90.0" height="32.0" rx="6" fill="#f3effc" stroke="#7c3aed" stroke-width="1.8"/><text x="550.0" y="200.5" text-anchor="middle" fill="#1b1f24" font-size="12">converter</text><line x1="598.0" y1="196.0" x2="621.6" y2="196.0" stroke="#1b1f24" stroke-width="2" stroke-linecap="round"/><polygon points="628.0,196.0 620.0,199.4 620.0,192.6" fill="#1b1f24"/><line x1="642.0" y1="206.0" x2="698.0" y2="206.0" stroke="#8a93a3" stroke-width="1" stroke-linecap="round"/><polyline points="642.0,206.0 642.9,205.4 643.9,204.8 644.8,204.1 645.7,203.6 646.7,203.0 647.6,202.5 648.5,202.0 649.5,201.5 650.4,201.1 651.3,200.8 652.3,200.5 653.2,200.3 654.1,200.1 655.1,200.0 656.0,200.0 656.9,200.0 657.9,200.1 658.8,200.3 659.7,200.5 660.7,200.8 661.6,201.1 662.5,201.5 663.5,202.0 664.4,202.5 665.3,203.0 666.3,203.6 667.2,204.1 668.1,204.8 669.1,205.4 670.0,206.0 670.9,206.6 671.9,207.2 672.8,207.9 673.7,208.4 674.7,209.0 675.6,209.5 676.5,210.0 677.5,210.5 678.4,210.9 679.3,211.2 680.3,211.5 681.2,211.7 682.1,211.9 683.1,212.0 684.0,212.0 684.9,212.0 685.9,211.9 686.8,211.7 687.7,211.5 688.7,211.2 689.6,210.9 690.5,210.5 691.5,210.0 692.4,209.5 693.3,209.0 694.3,208.4 695.2,207.9 696.1,207.2 697.1,206.6 698.0,206.0" fill="none" stroke="#7c3aed" stroke-width="2" stroke-linejoin="round"/></svg>
+<p class="caption">The four basic converter families of power electronics, named by what goes in and what comes out.</p>
+</div>
+<div class="formula">Chopper (DC–DC step-down): V<sub>out</sub> = D · V<sub>in</sub> &nbsp;&nbsp;, &nbsp; D = t<sub>on</sub> / T</div>
+
+<div class="box ex"><span class="label">Worked example</span>From a 48 V battery a chopper with D = 0.25 gives 0.25 × 48 = <code>12 V</code> average. A linear regulator dropping 48 V to 12 V at 2 A would waste (48−12)×2 = 72 W of the 96 W drawn (η = 25%), whereas a switching converter loses only a few watts (η ≈ 90%+). The 'DC–DC buck converter speed control of a car wiper motor' lab uses exactly this.</div>
+
+<p><b>Control methods:</b> PWM adjusts the width of switching pulses. <b>Side effect:</b> switching creates harmonic distortion in currents and voltages, which filters and good design must manage.</p>
+
+<h3 class="topic" id="d2">D2. Industrial Applications of Electrical Drives</h3>
+<div class="box terms"><span class="label">Key terms — know these words</span>
+<ul>
+<li><b>Electric drive</b> — system that converts electrical energy to controlled mechanical motion.</li>
+<li><b>VFD (variable-frequency drive)</b> — converter that varies the frequency and voltage fed to an AC motor to control its speed.</li>
+<li><b>V/f control</b> — keeping voltage ∝ frequency so the motor flux stays constant.</li>
+<li><b>Regenerative braking</b> — the motor acts as a generator, returning energy to the supply/battery.</li>
+<li><b>Affinity laws</b> — for fans and pumps: flow ∝ N, pressure ∝ N², power ∝ N³.</li>
+<li><b>Feedback loop</b> — sensor → control unit → converter, so the drive follows the reference.</li>
+</ul>
+</div>
+<div class="diagram">
+<svg viewBox="0 0 580 270" width="580" style="max-width:100%;height:auto" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#1b1f24"><rect x="10.0" y="40.0" width="100.0" height="56.0" rx="6" fill="#cfe0f5" stroke="#1b1f24" stroke-width="1.8"/><text x="60.0" y="64.5" text-anchor="middle" fill="#1b1f24" font-size="13">Power</text><text x="60.0" y="80.5" text-anchor="middle" fill="#1b1f24" font-size="13">source</text><rect x="160.0" y="40.0" width="110.0" height="56.0" rx="6" fill="#d4e8d0" stroke="#1b1f24" stroke-width="1.8"/><text x="215.0" y="64.5" text-anchor="middle" fill="#1b1f24" font-size="13">Power</text><text x="215.0" y="80.5" text-anchor="middle" fill="#1b1f24" font-size="13">converter</text><rect x="320.0" y="40.0" width="90.0" height="56.0" rx="6" fill="#2b2f3a" stroke="#1b1f24" stroke-width="1.8"/><text x="365.0" y="72.5" text-anchor="middle" fill="#fff" font-size="13">Motor</text><rect x="460.0" y="40.0" width="90.0" height="56.0" rx="6" fill="#e0c98a" stroke="#1b1f24" stroke-width="1.8"/><text x="505.0" y="72.5" text-anchor="middle" fill="#1b1f24" font-size="13">Load</text><line x1="110.0" y1="68.0" x2="150.8" y2="68.0" stroke="#1b1f24" stroke-width="2" stroke-linecap="round"/><polygon points="158.0,68.0 149.0,71.8 149.0,64.2" fill="#1b1f24"/><line x1="270.0" y1="68.0" x2="310.8" y2="68.0" stroke="#1b1f24" stroke-width="2" stroke-linecap="round"/><polygon points="318.0,68.0 309.0,71.8 309.0,64.2" fill="#1b1f24"/><line x1="410.0" y1="68.0" x2="450.8" y2="68.0" stroke="#1b1f24" stroke-width="2" stroke-linecap="round"/><polygon points="458.0,68.0 449.0,71.8 449.0,64.2" fill="#1b1f24"/><rect x="390.0" y="150.0" width="110.0" height="52.0" rx="6" fill="#d4dff0" stroke="#1b1f24" stroke-width="1.8"/><text x="445.0" y="172.5" text-anchor="middle" fill="#1b1f24" font-size="13">Sensing</text><text x="445.0" y="188.5" text-anchor="middle" fill="#1b1f24" font-size="13">unit</text><circle cx="435.0" cy="68.0" r="4" fill="#1b1f24"/><line x1="435.0" y1="68.0" x2="435.0" y2="140.8" stroke="#1b1f24" stroke-width="2" stroke-linecap="round"/><polygon points="435.0,148.0 431.2,139.0 438.8,139.0" fill="#1b1f24"/><rect x="160.0" y="150.0" width="110.0" height="52.0" rx="6" fill="#e8cdb8" stroke="#1b1f24" stroke-width="1.8"/><text x="215.0" y="172.5" text-anchor="middle" fill="#1b1f24" font-size="13">Control</text><text x="215.0" y="188.5" text-anchor="middle" fill="#1b1f24" font-size="13">unit</text><line x1="388.0" y1="176.0" x2="279.2" y2="176.0" stroke="#1b1f24" stroke-width="2" stroke-linecap="round"/><polygon points="272.0,176.0 281.0,172.2 281.0,179.8" fill="#1b1f24"/><line x1="215.0" y1="150.0" x2="215.0" y2="105.2" stroke="#1b1f24" stroke-width="2" stroke-linecap="round"/><polygon points="215.0,98.0 218.8,107.0 211.2,107.0" fill="#1b1f24"/><line x1="215.0" y1="240.0" x2="215.0" y2="211.2" stroke="#1b1f24" stroke-width="2" stroke-linecap="round"/><polygon points="215.0,204.0 218.8,213.0 211.2,213.0" fill="#1b1f24"/><text x="215.0" y="256.0" text-anchor="middle" fill="#1b1f24" font-size="13">Input command (reference)</text></svg>
+<p class="caption">Block diagram of an electric drive: the control unit compares the command with sensed motor/load quantities and tells the converter what to deliver to the motor.</p>
+</div>
+<p>A <b>VFD</b> rectifies the supply, then inverts it to AC of adjustable frequency and voltage; since N<sub>s</sub> = 120f/P, changing f changes the motor speed smoothly. Keeping V/f constant keeps the flux (and torque capability) constant.</p>
+
+<div class="box ex"><span class="label">Worked example</span>4-pole motor, 400 V at 50 Hz: N<sub>s</sub> = 1500 rpm. At 30 Hz: N<sub>s</sub> = 120×30/4 = <code>900 rpm</code> and V = 400×30/50 = <code>240 V</code> (V/f constant).<br>Energy saving: a 10 kW fan run at 80% speed needs 10 × 0.8³ = <code>5.12 kW</code> — about half the power for 20% less flow, which is why VFDs are used on pumps and fans instead of throttling.</div>
+
+<ul>
+<li><b>Manufacturing and automation:</b> conveyors, pumps, fans — speed matched to the process, saving energy and giving better control.</li>
+<li><b>Robotics:</b> precise, dynamic speed and position control of joints.</li>
+<li><b>Electric vehicles:</b> battery DC → AC for the motor; regenerative braking recovers energy.</li>
+<li><b>Others:</b> lifts, escalators, industrial mixers, cranes.</li>
+</ul>
+
+<h2 class="part" id="parte">Part E — Electrical Safety &amp; Earthing <span class="marks">safety</span></h2>
+
+<h3 class="topic" id="e1">E1. Earthing</h3>
+<div class="box terms"><span class="label">Key terms — know these words</span>
+<ul>
+<li><b>Earthing</b> — connecting exposed metal parts of an installation to the general mass of earth through a low-resistance conductor.</li>
+<li><b>Fault current</b> — abnormal current from a leak or short circuit.</li>
+<li><b>Earth electrode</b> — plate, rod or pipe buried in the ground.</li>
+<li><b>Touch voltage</b> — the voltage a person touching a faulty metal body would experience.</li>
+<li><b>Equipotential</b> — all metal parts held at nearly the same potential, so no dangerous voltage difference.</li>
+<li><b>Protective device</b> — fuse, MCB, ELCB/RCCB that disconnects the supply on a fault.</li>
+</ul>
+</div>
+
+<div class="box def"><span class="label">Definition</span>The <b>principle of earthing</b> is to provide a <em>low-resistance path to earth for fault currents</em>. If a live wire leaks or shorts to a metal case, the current then runs safely into the ground, harming nobody, and the large current operates the protective device.</div>
+<div class="diagram">
+<svg viewBox="0 0 780 255" width="780" style="max-width:100%;height:auto" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#1b1f24"><text x="190.0" y="20.0" text-anchor="middle" fill="#1b1f24" font-size="14" font-weight="bold">Without earthing</text><rect x="10.0" y="214.0" width="360.0" height="14.0" rx="0" fill="#e8dcc8" stroke="#b9a888" stroke-width="1.2"/><text x="360.0" y="242.0" text-anchor="end" fill="#8a93a3" font-size="12">earth</text><g transform="translate(45.0,110.0) rotate(-90.0)" fill="none" stroke="#1b1f24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><line x1="-40.0" y1="0" x2="-18" y2="0"/><line x1="18" y1="0" x2="40.0" y2="0"/><circle cx="0" cy="0" r="18"/></g><path d="M35.0,110.0 q5,-10 10,0 t10,0" fill="none" stroke="#1b1f24" stroke-width="2"/><line x1="45.0" y1="70.0" x2="150.0" y2="70.0" stroke="#c0392b" stroke-width="2.5" stroke-linecap="round"/><line x1="45.0" y1="150.0" x2="150.0" y2="150.0" stroke="#1b1f24" stroke-width="2.5" stroke-linecap="round"/><line x1="45.0" y1="150.0" x2="45.0" y2="214.0" stroke="#1b1f24" stroke-width="2" stroke-linecap="round"/><circle cx="45.0" cy="150.0" r="4" fill="#1b1f24"/><rect x="150.0" y="45.0" width="120.0" height="115.0" rx="0" fill="#f3f4f7" stroke="#1b1f24" stroke-width="2.5"/><text x="210.0" y="38.0" text-anchor="middle" fill="#8a93a3" font-size="12">metal-cased appliance</text><line x1="150.0" y1="70.0" x2="205.0" y2="70.0" stroke="#c0392b" stroke-width="2.5" stroke-linecap="round"/><line x1="205.0" y1="70.0" x2="205.0" y2="84.0" stroke="#c0392b" stroke-width="2.5" stroke-linecap="round"/><line x1="150.0" y1="150.0" x2="205.0" y2="150.0" stroke="#1b1f24" stroke-width="2.5" stroke-linecap="round"/><line x1="205.0" y1="150.0" x2="205.0" y2="138.0" stroke="#1b1f24" stroke-width="2.5" stroke-linecap="round"/><rect x="180.0" y="84.0" width="50.0" height="54.0" rx="0" fill="#fff" stroke="#1b1f24" stroke-width="1.5"/><text x="205.0" y="116.0" text-anchor="middle" fill="#1b1f24" font-size="12">load</text><line x1="170.0" y1="70.0" x2="170.0" y2="45.0" stroke="#c0392b" stroke-width="2.2" stroke-dasharray="4,3" stroke-linecap="round"/><circle cx="170.0" cy="70.0" r="3.5" fill="#c0392b"/><text x="165.0" y="62.0" text-anchor="end" fill="#c0392b" font-size="12" font-weight="bold">fault</text><circle cx="335" cy="140" r="10" fill="none" stroke="#1b1f24" stroke-width="2"/><line x1="335.0" y1="150.0" x2="335.0" y2="184.0" stroke="#1b1f24" stroke-width="2.4" stroke-linecap="round"/><line x1="335.0" y1="184.0" x2="326.0" y2="214.0" stroke="#1b1f24" stroke-width="2.4" stroke-linecap="round"/><line x1="335.0" y1="184.0" x2="344.0" y2="214.0" stroke="#1b1f24" stroke-width="2.4" stroke-linecap="round"/><line x1="335.0" y1="172.0" x2="270.0" y2="118.0" stroke="#1b1f24" stroke-width="2.4" stroke-linecap="round"/><line x1="282.0" y1="128.0" x2="320.2" y2="155.8" stroke="#c0392b" stroke-width="2.5" stroke-linecap="round"/><polygon points="326.0,160.0 316.5,157.8 320.9,151.6" fill="#c0392b"/><line x1="333.0" y1="176.0" x2="333.0" y2="196.8" stroke="#c0392b" stroke-width="2.5" stroke-linecap="round"/><polygon points="333.0,204.0 329.2,195.0 336.8,195.0" fill="#c0392b"/><line x1="329.0" y1="221.0" x2="58.2" y2="221.0" stroke="#c0392b" stroke-width="2.5" stroke-linecap="round"/><polygon points="51.0,221.0 60.0,217.2 60.0,224.8" fill="#c0392b"/><text x="350.0" y="78.0" text-anchor="middle" fill="#c0392b" font-size="12" font-weight="bold">current flows</text><text x="350.0" y="94.0" text-anchor="middle" fill="#c0392b" font-size="12" font-weight="bold">through the person</text><text x="590.0" y="20.0" text-anchor="middle" fill="#1b1f24" font-size="14" font-weight="bold">With earthing</text><rect x="410.0" y="214.0" width="360.0" height="14.0" rx="0" fill="#e8dcc8" stroke="#b9a888" stroke-width="1.2"/><text x="760.0" y="242.0" text-anchor="end" fill="#8a93a3" font-size="12">earth</text><g transform="translate(445.0,110.0) rotate(-90.0)" fill="none" stroke="#1b1f24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><line x1="-40.0" y1="0" x2="-18" y2="0"/><line x1="18" y1="0" x2="40.0" y2="0"/><circle cx="0" cy="0" r="18"/></g><path d="M435.0,110.0 q5,-10 10,0 t10,0" fill="none" stroke="#1b1f24" stroke-width="2"/><line x1="445.0" y1="70.0" x2="550.0" y2="70.0" stroke="#c0392b" stroke-width="2.5" stroke-linecap="round"/><line x1="445.0" y1="150.0" x2="550.0" y2="150.0" stroke="#1b1f24" stroke-width="2.5" stroke-linecap="round"/><line x1="445.0" y1="150.0" x2="445.0" y2="214.0" stroke="#1b1f24" stroke-width="2" stroke-linecap="round"/><circle cx="445.0" cy="150.0" r="4" fill="#1b1f24"/><rect x="550.0" y="45.0" width="120.0" height="115.0" rx="0" fill="#f3f4f7" stroke="#1b1f24" stroke-width="2.5"/><text x="610.0" y="38.0" text-anchor="middle" fill="#8a93a3" font-size="12">metal-cased appliance</text><line x1="550.0" y1="70.0" x2="605.0" y2="70.0" stroke="#c0392b" stroke-width="2.5" stroke-linecap="round"/><line x1="605.0" y1="70.0" x2="605.0" y2="84.0" stroke="#c0392b" stroke-width="2.5" stroke-linecap="round"/><line x1="550.0" y1="150.0" x2="605.0" y2="150.0" stroke="#1b1f24" stroke-width="2.5" stroke-linecap="round"/><line x1="605.0" y1="150.0" x2="605.0" y2="138.0" stroke="#1b1f24" stroke-width="2.5" stroke-linecap="round"/><rect x="580.0" y="84.0" width="50.0" height="54.0" rx="0" fill="#fff" stroke="#1b1f24" stroke-width="1.5"/><text x="605.0" y="116.0" text-anchor="middle" fill="#1b1f24" font-size="12">load</text><line x1="570.0" y1="70.0" x2="570.0" y2="45.0" stroke="#c0392b" stroke-width="2.2" stroke-dasharray="4,3" stroke-linecap="round"/><circle cx="570.0" cy="70.0" r="3.5" fill="#c0392b"/><text x="565.0" y="62.0" text-anchor="end" fill="#c0392b" font-size="12" font-weight="bold">fault</text><circle cx="735" cy="140" r="10" fill="none" stroke="#1b1f24" stroke-width="2"/><line x1="735.0" y1="150.0" x2="735.0" y2="184.0" stroke="#1b1f24" stroke-width="2.4" stroke-linecap="round"/><line x1="735.0" y1="184.0" x2="726.0" y2="214.0" stroke="#1b1f24" stroke-width="2.4" stroke-linecap="round"/><line x1="735.0" y1="184.0" x2="744.0" y2="214.0" stroke="#1b1f24" stroke-width="2.4" stroke-linecap="round"/><line x1="735.0" y1="172.0" x2="670.0" y2="118.0" stroke="#1b1f24" stroke-width="2.4" stroke-linecap="round"/><line x1="635.0" y1="160.0" x2="635.0" y2="214.0" stroke="#166e3c" stroke-width="3" stroke-linecap="round"/><text x="643.0" y="192.0" text-anchor="start" fill="#166e3c" font-size="12" font-weight="bold">earth wire</text><line x1="635.0" y1="168.0" x2="635.0" y2="196.8" stroke="#c0392b" stroke-width="2.5" stroke-linecap="round"/><polygon points="635.0,204.0 631.2,195.0 638.8,195.0" fill="#c0392b"/><line x1="632.0" y1="221.0" x2="458.2" y2="221.0" stroke="#c0392b" stroke-width="2.5" stroke-linecap="round"/><polygon points="451.0,221.0 460.0,217.2 460.0,224.8" fill="#c0392b"/><text x="737.0" y="78.0" text-anchor="middle" fill="#166e3c" font-size="12" font-weight="bold">≈ no current</text><text x="737.0" y="94.0" text-anchor="middle" fill="#166e3c" font-size="12" font-weight="bold">→ safe</text><text x="624.0" y="185.0" text-anchor="end" fill="#c0392b" font-size="12">big fault current:</text><text x="624.0" y="200.0" text-anchor="end" fill="#c0392b" font-size="12">fuse / MCB trips</text></svg>
+<p class="caption">A live wire touches the metal body. Left: the body becomes live and the person offers the only path to earth. Right: a low-resistance earth wire carries the fault current instead, and the protective device disconnects the supply.</p>
+</div>
+<div class="box ex"><span class="label">Worked example</span>Without earthing, a metal body at 230 V stays live until someone touches it; a body of 1 kΩ then carries 230 mA — in the fatal range (E2). With a 1 Ω earth wire in parallel with the person (1000 Ω), the current divider (A3) sends 1000/1001 ≈ <code>99.9%</code> of the fault current through the earth wire; the large fault current blows the fuse / trips the MCB.</div>
+
+<table>
+<tr><th>Type</th><th>Description</th></tr>
+<tr><td>Plate earthing</td><td>copper or galvanised-iron plate buried in the ground, connected to the system by an earthing conductor</td></tr>
+<tr><td>Rod earthing</td><td>most common: a metal rod driven vertically into the ground, joined by an earthing conductor</td></tr>
+<tr><td>Pipe earthing</td><td>galvanised-steel or copper pipe driven deeper than other electrodes, for lower resistance</td></tr>
+</table>
+
+<table>
+<tr><th>Earthing</th><th>Grounding (as given in the slides)</th></tr>
+<tr><td>protects people and equipment by giving fault currents an equipotential path to earth</td><td>stabilises the electrical system, preventing voltage fluctuations and giving proper current flow to devices</td></tr>
+<tr><td>connects the system/equipment directly to the Earth (soil)</td><td>connects a system to a reference point, usually Earth, to stabilise potentials</td></tr>
+<tr><td>focused on safety — prevents shock, discharges faults</td><td>stabilises voltage levels, avoids over-voltage</td></tr>
+<tr><td>applied to all metallic parts and appliances</td><td>applied mainly to electrical circuits, esp. neutral conductors</td></tr>
+</table>
+
+<div class="box mis"><span class="label">Fixing a common misconception</span>The earth pin of a plug is longer and thicker on purpose: it connects first and breaks last, so the body is earthed whenever the appliance is live. Never remove it, and never rely on the neutral as a substitute for the earth wire.</div>
+
+<div class="foreshadow">The 'measurement of earth resistance' lab experiment checks exactly this: an electrode's resistance should be as low as practicable so that the fault current is large enough to trip the protective device.</div>
+
+<h3 class="topic" id="e2">E2. Electrical Hazards &amp; Safety</h3>
+<div class="box terms"><span class="label">Key terms — know these words</span>
+<ul>
+<li><b>Electric shock</b> — current passing through the body.</li>
+<li><b>Burns</b> — heating of tissue by current or by an arc.</li>
+<li><b>Arc (arc flash)</b> — a sudden discharge through air that releases intense heat and light.</li>
+<li><b>Fibrillation</b> — uncontrolled twitching of the heart that stops circulation.</li>
+<li><b>Insulation</b> — non-conducting covering that keeps live parts from contact.</li>
+<li><b>Fuse / MCB</b> — devices that interrupt a circuit on overcurrent.</li>
+<li><b>PPE</b> — personal protective equipment: insulating gloves, shoes, mats, face shield.</li>
+</ul>
+</div>
+
+<ul>
+<li><b>Shock</b></li>
+<li><b>Burns</b></li>
+<li><b>Arc</b></li>
+<li><b>Explosions</b></li>
+<li><b>Fires</b></li>
+</ul>
+
+<p><b>Common causes of electrocution:</b> touching overhead lines; maintenance on live equipment; damaged equipment (extension leads, plugs, sockets); equipment affected by rain or water.</p>
+<div class="diagram">
+<svg viewBox="0 0 710 165" width="710" style="max-width:100%;height:auto" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#1b1f24"><text x="350.0" y="20.0" text-anchor="middle" fill="#1b1f24" font-size="13" font-weight="bold">AC current through the body  →  increasing severity</text><rect x="10.0" y="36.0" width="112.0" height="112.0" rx="4" fill="#f6e58d" stroke="#1b1f24" stroke-width="1.2"/><text x="66.0" y="62.0" text-anchor="middle" fill="#1b1f24" font-size="14" font-weight="bold">1 mA</text><text x="66.0" y="92.0" text-anchor="middle" fill="#1b1f24" font-size="12">tingling</text><rect x="125.0" y="36.0" width="112.0" height="112.0" rx="4" fill="#f2c94c" stroke="#1b1f24" stroke-width="1.2"/><text x="181.0" y="62.0" text-anchor="middle" fill="#1b1f24" font-size="14" font-weight="bold">2–9 mA</text><text x="181.0" y="92.0" text-anchor="middle" fill="#1b1f24" font-size="12">small shock</text><rect x="240.0" y="36.0" width="112.0" height="112.0" rx="4" fill="#f2994a" stroke="#1b1f24" stroke-width="1.2"/><text x="296.0" y="62.0" text-anchor="middle" fill="#1b1f24" font-size="14" font-weight="bold">10–24 mA</text><text x="296.0" y="92.0" text-anchor="middle" fill="#1b1f24" font-size="12">muscles lock —</text><text x="296.0" y="108.0" text-anchor="middle" fill="#1b1f24" font-size="12">can't let go</text><rect x="355.0" y="36.0" width="112.0" height="112.0" rx="4" fill="#eb5757" stroke="#1b1f24" stroke-width="1.2"/><text x="411.0" y="62.0" text-anchor="middle" fill="#fff" font-size="14" font-weight="bold">25–74 mA</text><text x="411.0" y="92.0" text-anchor="middle" fill="#fff" font-size="12">breathing muscles</text><text x="411.0" y="108.0" text-anchor="middle" fill="#fff" font-size="12">paralysed,</text><text x="411.0" y="124.0" text-anchor="middle" fill="#fff" font-size="12">burns</text><rect x="470.0" y="36.0" width="112.0" height="112.0" rx="4" fill="#b32d2d" stroke="#1b1f24" stroke-width="1.2"/><text x="526.0" y="62.0" text-anchor="middle" fill="#fff" font-size="14" font-weight="bold">75–300 mA</text><text x="526.0" y="92.0" text-anchor="middle" fill="#fff" font-size="12">ventricular</text><text x="526.0" y="108.0" text-anchor="middle" fill="#fff" font-size="12">fibrillation,</text><text x="526.0" y="124.0" text-anchor="middle" fill="#fff" font-size="12">usually fatal</text><rect x="585.0" y="36.0" width="112.0" height="112.0" rx="4" fill="#5c1a1a" stroke="#1b1f24" stroke-width="1.2"/><text x="641.0" y="62.0" text-anchor="middle" fill="#fff" font-size="14" font-weight="bold">> 300 mA</text><text x="641.0" y="92.0" text-anchor="middle" fill="#fff" font-size="12">death almost</text><text x="641.0" y="108.0" text-anchor="middle" fill="#fff" font-size="12">certain; severe</text><text x="641.0" y="124.0" text-anchor="middle" fill="#fff" font-size="12">burns</text></svg>
+<p class="caption">Effect of AC current on the human body (bands are not to scale). Currents of only tens of milliamperes through the chest are dangerous — far below what a fuse is designed to notice.</p>
+</div>
+<table>
+<tr><th>AC current (mA)</th><th>Effect on the human body</th></tr>
+<tr><td>1</td><td>slight tingling</td></tr>
+<tr><td>2–9</td><td>small shock</td></tr>
+<tr><td>10–24</td><td>muscles contract, you 'freeze' to the conductor</td></tr>
+<tr><td>25–74</td><td>respiratory muscles can be paralysed; pain; exit burns often visible</td></tr>
+<tr><td>75–300</td><td>usually fatal — ventricular fibrillation</td></tr>
+<tr><td>&gt; 300</td><td>death almost certain; if survived, badly burnt organs, possible amputation</td></tr>
+</table>
+
+<div class="box ex"><span class="label">Worked example</span>Body resistance depends on skin condition: dry ≈ 100 kΩ, wet or sweaty only ≈ 1 kΩ. At 230 V: dry skin → 2.3 mA (a tingle), wet skin → 230 mA (fatal). The same supply is harmless or deadly depending on the circuit through the body — which is why water and electricity are such a dangerous combination.</div>
+
+<h4 class="sub">Preventing electrical accidents</h4>
+
+<ul>
+<li><b>Insulation</b> on all live conductors.</li>
+<li><b>Electrical protective devices</b> — fuses, circuit breakers, earth-leakage devices (RCCB/ELCB) that cut the supply in milliseconds.</li>
+<li><b>Guarding</b> — live parts enclosed so accidental contact is impossible.</li>
+<li><b>Earthing &amp; grounding</b> (E1).</li>
+<li><b>Personal protective equipment</b> — gloves, insulated shoes and mats, tools.</li>
+</ul>
+
+<div class="box mis"><span class="label">Fixing a common misconception</span>A fuse or MCB protects the <em>wiring and equipment</em> from overload and short circuit; it does <em>not</em> reliably protect a person, because a fatal 100 mA is far below its rating. Personal protection needs an earth-leakage device (which trips at about 30 mA).</div>
+
+<h2 class="part" id="glossary">Glossary (A–Z) <span class="marks">212 terms</span></h2>
 <p>Every key term from the boxes above in one alphabetical list — skim this the night before the exam.</p>
 <table class="gloss">
 <tr><th>Term</th><th>Meaning</th></tr>
 <tr><td>Active / passive element</td><td>active elements (sources) can deliver energy; passive elements (R, L, C) only absorb, dissipate or store it.</td></tr>
 <tr><td>Admittance (Y)</td><td>Y = 1/Z = G + jB, unit siemens (S); B is <b>susceptance</b>, G is <b>conductance</b>.</td></tr>
+<tr><td>Affinity laws</td><td>for fans and pumps: flow ∝ N, pressure ∝ N², power ∝ N³.</td></tr>
+<tr><td>Air gap</td><td>the small gap between pole shoe and armature across which the flux passes.</td></tr>
 <tr><td>Alternation</td><td>half a cycle (one positive <em>or</em> one negative loop).</td></tr>
+<tr><td>Alternator</td><td>AC generator: converts mechanical energy to AC electrical energy.</td></tr>
 <tr><td>Angular frequency (ω)</td><td>ω = 2πf, in rad/s. Mains: 2π × 50 ≈ 314 rad/s.</td></tr>
 <tr><td>Apparent power S</td><td>S = V<sub>rms</sub>I<sub>rms</sub>; unit volt-ampere (VA). What cables and transformers must be rated for.</td></tr>
+<tr><td>Arc (arc flash)</td><td>a sudden discharge through air that releases intense heat and light.</td></tr>
+<tr><td>Armature</td><td>the rotating part: core + winding; it carries the current that interacts with the field to make torque.</td></tr>
+<tr><td>Armature core</td><td>slotted cylinder of insulated soft-steel laminations mounted on the shaft.</td></tr>
+<tr><td>Armature current (I<sub>a</sub>) and resistance (R<sub>a</sub>)</td><td>the current in, and resistance of, the armature winding.</td></tr>
+<tr><td>Armature winding</td><td>insulated conductors placed in the slots and suitably interconnected — lap winding or wave winding.</td></tr>
+<tr><td>Auxiliary (starting) winding</td><td>second winding, 90° away in space, used to make a rotating field at start.</td></tr>
 <tr><td>Average (mean) value</td><td>for a symmetrical AC wave the full-cycle mean is 0, so 'average' means the mean of the rectified half-cycle.</td></tr>
+<tr><td>Back EMF (counter EMF), E<sub>b</sub></td><td>the EMF induced in the armature of a running motor; it opposes the supply voltage.</td></tr>
+<tr><td>BLDC</td><td>brushless DC motor: DC-supplied, electronically commutated.</td></tr>
 <tr><td>Branch</td><td>a single element (or a series string of elements) connecting two nodes; it carries one current.</td></tr>
+<tr><td>Brushes / brush holder</td><td>carbon blocks pressed on the commutator by springs; they carry current between the supply and the armature.</td></tr>
+<tr><td>Burns</td><td>heating of tissue by current or by an arc.</td></tr>
 <tr><td>Capacitive circuit</td><td>X<sub>C</sub> &gt; X<sub>L</sub>: net reactance negative, current leads.</td></tr>
+<tr><td>Capacitor-start / CSCR / PSC</td><td>ways of making the auxiliary current lead the main current.</td></tr>
+<tr><td>Centrifugal switch</td><td>disconnects the starting winding at about 70–80% of synchronous speed.</td></tr>
 <tr><td>Charge (Q)</td><td>the basic electrical quantity, measured in coulombs (C).</td></tr>
 <tr><td>Clockwise convention</td><td>choosing every mesh current clockwise makes all the shared-resistor terms negative — a built-in error check.</td></tr>
+<tr><td>Commutation</td><td>the reversal of current in an armature coil as it passes from under one pole to the next.</td></tr>
+<tr><td>Commutator</td><td>a mechanical rectifier/inverter of wedge-shaped copper segments insulated by mica; connects the rotating armature to the fixed supply.</td></tr>
 <tr><td>Complex power</td><td><b>S</b> = P + jQ = V·I* (I* is the complex conjugate of the current phasor).</td></tr>
+<tr><td>Compound motor</td><td>both shunt and series field windings.</td></tr>
 <tr><td>Conductance (G)</td><td>reciprocal of resistance, G = 1/R; unit siemens (S). Makes parallel-circuit sums easier.</td></tr>
 <tr><td>Conductance form</td><td>writing branch current as G × (voltage difference) instead of (voltage difference)/R; gives a symmetric equation matrix.</td></tr>
+<tr><td>Converter</td><td>a circuit changing the form of electrical energy (AC/DC, voltage level, frequency).</td></tr>
+<tr><td>Core</td><td>the laminated silicon-steel path that carries the mutual flux.</td></tr>
+<tr><td>Core-type / shell-type</td><td>windings around the limbs of a two-limb core / windings on the centre limb of a three-limb core.</td></tr>
+<tr><td>Cumulative / differential compound</td><td>cumulative: series field <em>aids</em> the shunt flux. Differential: it <em>opposes</em> it.</td></tr>
 <tr><td>Current (I)</td><td>rate of flow of charge, I = dQ/dt; unit ampere (A = C/s). Conventional direction = the way positive charge would move (from + to −).</td></tr>
 <tr><td>Current divider</td><td>parallel resistors splitting a supply current in inverse proportion to their resistances.</td></tr>
 <tr><td>Cycle</td><td>one complete set of positive and negative values of the wave.</td></tr>
+<tr><td>Cylindrical (concentric) winding</td><td>LV coil next to the core, HV coil concentric over it — used in core-type.</td></tr>
+<tr><td>Cylindrical (non-salient) rotor</td><td>smooth round rotor; high speed (steam turbines).</td></tr>
 <tr><td>Dependent source (caution)</td><td>stays <em>in</em> the circuit during superposition; only independent sources are killed.</td></tr>
+<tr><td>Duty cycle D</td><td>ON time ÷ period.</td></tr>
+<tr><td>Earth electrode</td><td>plate, rod or pipe buried in the ground.</td></tr>
+<tr><td>Earthing</td><td>connecting exposed metal parts of an installation to the general mass of earth through a low-resistance conductor.</td></tr>
+<tr><td>Eddy current</td><td>circulating currents induced inside the iron by changing flux; they only waste heat, so they are minimised.</td></tr>
 <tr><td>Effective value</td><td>another name for RMS — it produces the same heating as the equal DC.</td></tr>
 <tr><td>Efficiency (η)</td><td>η = power in load ÷ total power supplied = R<sub>L</sub>/(R<sub>th</sub> + R<sub>L</sub>).</td></tr>
+<tr><td>Electric drive</td><td>system that converts electrical energy to controlled mechanical motion.</td></tr>
+<tr><td>Electric shock</td><td>current passing through the body.</td></tr>
+<tr><td>Electronic commutation</td><td>an inverter/driver switches coil currents using rotor-position information.</td></tr>
+<tr><td>EMF per turn</td><td>E/N = 4.44 f Φ<sub>m</sub> — the same in both windings.</td></tr>
+<tr><td>End rings</td><td>the rings that short-circuit the rotor bars at both ends.</td></tr>
+<tr><td>Energy</td><td>power × time; joules (J) or watt-hours. 1 kWh = 3.6 × 10⁶ J.</td></tr>
 <tr><td>Energy (W)</td><td>power × time; unit joule (J). Electricity bills use the kilowatt-hour (1 kWh = 3.6 MJ).</td></tr>
+<tr><td>Energy meter</td><td>an instrument that integrates P over time and shows kWh.</td></tr>
+<tr><td>Equipotential</td><td>all metal parts held at nearly the same potential, so no dangerous voltage difference.</td></tr>
 <tr><td>Equivalent resistance (R<sub>eq</sub>)</td><td>the single resistor that draws the same current as the whole network at the same voltage.</td></tr>
 <tr><td>Equivalent sources</td><td>two sources with identical open-circuit voltage and short-circuit current at the terminals.</td></tr>
 <tr><td>Essential node (junction)</td><td>a node where <b>three or more</b> branches meet — the only nodes that need a KCL equation.</td></tr>
+<tr><td>Excitation (magnetising) current</td><td>the small no-load primary current needed to set up the flux.</td></tr>
+<tr><td>Faraday's law</td><td>induced EMF = rate of change of flux linkage: e = −N dΦ/dt.</td></tr>
+<tr><td>Fault current</td><td>abnormal current from a leak or short circuit.</td></tr>
+<tr><td>Feedback loop</td><td>sensor → control unit → converter, so the drive follows the reference.</td></tr>
+<tr><td>Fibrillation</td><td>uncontrolled twitching of the heart that stops circulation.</td></tr>
+<tr><td>Field system</td><td>the stationary part that produces the main flux: an even number of pole cores bolted to the yoke, with field winding on each.</td></tr>
+<tr><td>Field winding</td><td>the coils on the poles that, when energised, create alternate N and S poles.</td></tr>
+<tr><td>Fleming's left-hand rule</td><td>for MOTORS: thuMb = Motion (force), First finger = Field, seCond finger = Current.</td></tr>
+<tr><td>Fleming's right-hand rule</td><td>for GENERATORS: thuMb = Motion, First finger = Field, seCond finger = induced EMF/current.</td></tr>
+<tr><td>Flux (Φ, Φ<sub>m</sub>)</td><td>magnetic flux in webers (Wb); Φ<sub>m</sub> is its peak value.</td></tr>
 <tr><td>Form factor</td><td>V<sub>rms</sub> / V<sub>avg</sub>. Sine wave: 1.11.</td></tr>
+<tr><td>Forward / backward flux (φf, φb)</td><td>the two equal, oppositely rotating halves of a pulsating field.</td></tr>
 <tr><td>Frequency (f)</td><td>cycles per second; unit hertz (Hz). Indian mains = 50 Hz.</td></tr>
+<tr><td>Fuse / MCB</td><td>devices that interrupt a circuit on overcurrent.</td></tr>
+<tr><td>Generating action</td><td>mechanical input → electrical output (E drives current out to the load).</td></tr>
+<tr><td>Hall sensors</td><td>sense rotor position so the controller knows when to switch.</td></tr>
+<tr><td>Harmonics</td><td>unwanted extra frequencies produced by switching.</td></tr>
+<tr><td>Holding torque</td><td>torque at standstill with the winding energised.</td></tr>
+<tr><td>Hysteresis / eddy-current loss</td><td>core losses; silicon steel cuts the first, lamination cuts the second.</td></tr>
 <tr><td>Ideal current source</td><td>forces a fixed current whatever voltage appears across it (internal resistance = ∞).</td></tr>
 <tr><td>Ideal source</td><td>no internal resistance; the source transformation does <b>not</b> apply to an ideal source on its own.</td></tr>
 <tr><td>Ideal voltage source</td><td>keeps its terminal voltage fixed whatever current it supplies (internal resistance = 0).</td></tr>
 <tr><td>Impedance (Z)</td><td>V/I for AC circuits; Z = R + jX, unit ohm (Ω).</td></tr>
 <tr><td>Independent / dependent source</td><td>independent: value set by itself. Dependent (controlled): value set by a voltage or current elsewhere in the circuit (drawn as a diamond).</td></tr>
 <tr><td>Independent source</td><td>a source whose value does not depend on anything else in the circuit.</td></tr>
+<tr><td>Induction (asynchronous) motor</td><td>a motor whose rotor current is <em>induced</em> by the stator field, and which never quite reaches synchronous speed.</td></tr>
 <tr><td>Inductive circuit</td><td>X<sub>L</sub> &gt; X<sub>C</sub>: net reactance positive, current lags.</td></tr>
 <tr><td>Inductor (L) / Capacitor (C)</td><td>energy-storage elements: L stores energy in a magnetic field (henry, H); C in an electric field (farad, F).</td></tr>
+<tr><td>Inrush (starting) current</td><td>the very large current drawn when the motor is first switched on, often 5–7× rated.</td></tr>
 <tr><td>Instantaneous power p(t)</td><td>p = v·i at each instant; it oscillates at twice the supply frequency.</td></tr>
 <tr><td>Instantaneous value</td><td>the value at one particular time, e.g. v(t) = V<sub>m</sub> sin ωt.</td></tr>
+<tr><td>Insulation</td><td>non-conducting covering that keeps live parts from contact.</td></tr>
 <tr><td>Internal resistance</td><td>the resistance inside a real source that makes its terminal voltage sag under load.</td></tr>
 <tr><td>Killing a source</td><td>voltage source → replace by a short; current source → replace by an open circuit.</td></tr>
 <tr><td>Lagging / leading pf</td><td>lagging = inductive load (motors); leading = capacitive load.</td></tr>
+<tr><td>Lamination</td><td>thin insulated steel sheet; stacking them breaks up the paths for eddy currents.</td></tr>
 <tr><td>Leading / lagging</td><td>'current lags voltage' means the current wave peaks <em>later</em> than the voltage wave.</td></tr>
+<tr><td>Leakage flux</td><td>flux that links only one winding; it is minimised by winding layout.</td></tr>
+<tr><td>Limb / yoke (transformer)</td><td>limb: the part of the core carrying a winding; yoke: the part that joins the limbs.</td></tr>
 <tr><td>Linear element</td><td>an element whose V–I graph is a straight line through the origin (double V, double I).</td></tr>
 <tr><td>Linear network</td><td>a network whose elements obey superposition/proportionality; Thevenin's theorem holds only for these.</td></tr>
 <tr><td>Load (R<sub>L</sub>)</td><td>the element receiving power from the source network.</td></tr>
+<tr><td>Load profile</td><td>how long, and at what duty, each appliance runs.</td></tr>
 <tr><td>Loop</td><td>any closed path that visits each node at most once.</td></tr>
+<tr><td>Main winding</td><td>low resistance, high reactance winding that stays in circuit.</td></tr>
 <tr><td>Matched load</td><td>R<sub>L</sub> = R<sub>th</sub>; the condition for maximum power to the load.</td></tr>
 <tr><td>Mesh</td><td>a loop that contains no other loop inside it (a 'window' of the circuit).</td></tr>
 <tr><td>Mesh current</td><td>an imaginary current circulating round one mesh; real branch currents are built from these.</td></tr>
+<tr><td>Missed step</td><td>a step lost because of overload; undetectable in open loop.</td></tr>
+<tr><td>Motoring action</td><td>electrical input → mechanical output (supply pushes current against E<sub>b</sub>).</td></tr>
+<tr><td>Mutual inductance</td><td>the property by which a changing current in one coil induces an EMF in a neighbouring coil.</td></tr>
 <tr><td>Node</td><td>a point where two or more circuit elements join.</td></tr>
 <tr><td>Node voltage</td><td>the voltage of a node with respect to the reference node.</td></tr>
 <tr><td>Norton equivalent</td><td>current source I<sub>N</sub> in parallel with R<sub>N</sub> = R<sub>th</sub>.</td></tr>
 <tr><td>Open-circuit voltage (V<sub>oc</sub>)</td><td>voltage across a–b with nothing connected; equals V<sub>th</sub>.</td></tr>
+<tr><td>Open-loop control</td><td>pulses are counted; no position feedback.</td></tr>
+<tr><td>Over-compounded generator</td><td>a cumulative compound generator whose terminal voltage <em>rises</em> with load, compensating line drop.</td></tr>
 <tr><td>Parallel connection</td><td>elements joined across the <em>same two nodes</em> so they share the <em>same voltage</em>.</td></tr>
 <tr><td>Passive sign convention</td><td>if current enters the <b>+</b> terminal of an element, then P = VI &gt; 0 means the element <em>absorbs</em> power; P &lt; 0 means it delivers power.</td></tr>
 <tr><td>Peak (maximum) value V<sub>m</sub></td><td>the amplitude — the largest instantaneous value.</td></tr>
 <tr><td>Peak factor (crest factor)</td><td>V<sub>m</sub> / V<sub>rms</sub>. Sine wave: 1.414.</td></tr>
 <tr><td>Peak-to-peak value</td><td>2V<sub>m</sub>, from the positive crest to the negative crest.</td></tr>
 <tr><td>Period (T)</td><td>time for one cycle; T = 1/f, in seconds.</td></tr>
+<tr><td>Permanent-magnet rotor</td><td>rotor carries the magnets; no windings, no brushes.</td></tr>
+<tr><td>Phase</td><td>one stator winding set that is energised as a unit.</td></tr>
 <tr><td>Phase angle (φ)</td><td>the angular shift of a wave relative to a reference; v = V<sub>m</sub> sin(ωt + φ).</td></tr>
+<tr><td>Phase of EMF</td><td>e lags the flux by 90°.</td></tr>
 <tr><td>Phasor</td><td>a complex number (magnitude + angle) representing a sinusoid at a known frequency.</td></tr>
 <tr><td>Planar circuit</td><td>a circuit that can be drawn on paper with no wires crossing — needed for mesh analysis.</td></tr>
+<tr><td>PM / VR / hybrid</td><td>permanent-magnet, variable-reluctance and hybrid stepper types.</td></tr>
 <tr><td>P<sub>max</sub></td><td>V<sub>th</sub>²/(4R<sub>th</sub>) — the peak of the power-vs-R<sub>L</sub> curve.</td></tr>
 <tr><td>Polar / rectangular form</td><td>V∠θ  ↔  a + jb, where j = √−1 and a = V cos θ, b = V sin θ.</td></tr>
+<tr><td>Pole core / pole shoe</td><td>the core carries the field coil; the curved shoe spreads the flux over the armature, supports the coil and lowers reluctance.</td></tr>
+<tr><td>Poles (P)</td><td>number of magnetic poles wound into the stator; more poles = slower speed.</td></tr>
 <tr><td>Power (P)</td><td>rate of energy conversion, P = VI = I²R = V²/R; unit watt (W).</td></tr>
+<tr><td>Power electronics</td><td>use of semiconductor switches to convert and control electrical power.</td></tr>
 <tr><td>Power factor (pf)</td><td>cos φ = P/S, from 0 to 1.</td></tr>
 <tr><td>Power-factor correction</td><td>adding capacitance in parallel with an inductive load to cancel Q and raise pf.</td></tr>
+<tr><td>PPE</td><td>personal protective equipment: insulating gloves, shoes, mats, face shield.</td></tr>
 <tr><td>Practical source</td><td>an ideal source plus its internal resistance (in series for a voltage source, in parallel for a current source).</td></tr>
+<tr><td>Primary / secondary winding</td><td>the winding connected to the source / the winding connected to the load.</td></tr>
+<tr><td>Prime mover</td><td>the engine or turbine that turns the rotor.</td></tr>
+<tr><td>Protective device</td><td>fuse, MCB, ELCB/RCCB that disconnects the supply on a fault.</td></tr>
+<tr><td>Pulsating field</td><td>the field of one winding on single-phase AC: fixed axis, magnitude varying sinusoidally.</td></tr>
+<tr><td>PWM</td><td>pulse-width modulation: varying the ON fraction (duty cycle) to control the average output.</td></tr>
 <tr><td>Quality factor (Q)</td><td>at resonance Q = X<sub>L</sub>/R; a big Q means a sharp, narrow resonance peak and large L and C voltages.</td></tr>
+<tr><td>Rating</td><td>the power (W) an appliance draws at rated voltage.</td></tr>
 <tr><td>Reactance (X)</td><td>the imaginary part of impedance: X<sub>L</sub> = ωL (inductive, +), X<sub>C</sub> = 1/(ωC) (capacitive, −).</td></tr>
 <tr><td>Reactive power Q</td><td>power swapped back and forth with L and C; unit volt-ampere-reactive (VAR). Positive for inductive loads.</td></tr>
 <tr><td>Real (active) power P</td><td>the average power actually converted to heat/work; unit watt (W).</td></tr>
 <tr><td>Rectified wave</td><td>a wave with the negative half flipped (full-wave) or removed (half-wave).</td></tr>
+<tr><td>Rectifier / Inverter / Chopper</td><td>AC→DC / DC→AC / DC→DC converters.</td></tr>
 <tr><td>Reference node (ground)</td><td>the node chosen as 0 V; every other node voltage is measured relative to it.</td></tr>
+<tr><td>Regenerative braking</td><td>the motor acts as a generator, returning energy to the supply/battery.</td></tr>
 <tr><td>Resistance (R)</td><td>opposition to current flow; unit ohm (Ω). For a wire, R = ρL/A (resistivity × length ÷ area).</td></tr>
 <tr><td>Resonance</td><td>X<sub>L</sub> = X<sub>C</sub>: reactances cancel, Z = R (minimum), current is maximum and in phase with V.</td></tr>
 <tr><td>Resonant frequency (f<sub>0</sub>)</td><td>f<sub>0</sub> = 1/(2π√(LC)).</td></tr>
 <tr><td>Response</td><td>the voltage or current you are solving for.</td></tr>
 <tr><td>RMS (root mean square)</td><td>square it, average it over a period, take the root. Also called the <b>effective value</b> — the DC value that would heat a resistor equally.</td></tr>
+<tr><td>RMS EMF (E)</td><td>E = 4.44 f Φ<sub>m</sub> N — the effective value of the induced EMF.</td></tr>
+<tr><td>Rotating magnetic field (RMF)</td><td>a field of constant magnitude that rotates in space, produced by a balanced three-phase supply.</td></tr>
+<tr><td>Rotor</td><td>the rotating part, either squirrel-cage or wound.</td></tr>
+<tr><td>Salient pole</td><td>a pole that projects inward towards the armature.</td></tr>
+<tr><td>Salient-pole rotor</td><td>projecting poles; low speed (hydro, diesel).</td></tr>
+<tr><td>Sandwich (disc) winding</td><td>LV and HV sections stacked alternately — used in shell-type.</td></tr>
+<tr><td>SCR (thyristor), MOSFET, IGBT</td><td>common switching devices; the BJT and diode are also used.</td></tr>
+<tr><td>Self-excited</td><td>field winding fed from the machine's own armature supply (shunt, series, compound).</td></tr>
+<tr><td>Separately excited</td><td>field winding fed from an independent DC source.</td></tr>
 <tr><td>Series connection</td><td>elements strung end-to-end so they carry the <em>same current</em>.</td></tr>
+<tr><td>Series motor</td><td>field winding (low resistance, few heavy turns) in <em>series</em> with the armature.</td></tr>
 <tr><td>Series RLC circuit</td><td>R, L and C carrying the same current; total impedance Z = R + j(X<sub>L</sub> − X<sub>C</sub>).</td></tr>
 <tr><td>Series–parallel network</td><td>a mix of both; reduce it step by step, innermost combination first.</td></tr>
+<tr><td>Shaded-pole</td><td>copper rings on part of each pole delay the flux there, giving a weak rotating effect.</td></tr>
 <tr><td>Shared (common) branch</td><td>a branch belonging to two meshes; its real current = difference of the two mesh currents.</td></tr>
 <tr><td>Short circuit / open circuit</td><td>short: R = 0, V = 0, any current. Open: R = ∞, I = 0, any voltage.</td></tr>
+<tr><td>Short shunt / long shunt</td><td>short: shunt field across the armature only, series field in the supply line. Long: shunt field across armature + series field together.</td></tr>
 <tr><td>Short-circuit current (I<sub>sc</sub>)</td><td>current when a–b are shorted together; equals I<sub>N</sub>.</td></tr>
+<tr><td>Shunt motor</td><td>field winding (high resistance, many turns) in <em>parallel</em> with the armature.</td></tr>
+<tr><td>Six-step (120°) drive</td><td>two of three coils energised at a time; six states per electrical revolution.</td></tr>
+<tr><td>Slip (s)</td><td>s = (N<sub>s</sub> − N<sub>r</sub>)/N<sub>s</sub>; typically 2–5% at full load.</td></tr>
+<tr><td>Slip rings</td><td>insulated rings on the shaft of a wound rotor that connect the rotor winding to external resistors through brushes.</td></tr>
+<tr><td>Speed equation</td><td>N ∝ E<sub>b</sub>/Φ — speed rises with back-EMF and falls with flux.</td></tr>
+<tr><td>Speed regulation</td><td>how little the speed changes from no-load to full-load; excellent for shunt motors.</td></tr>
+<tr><td>Spider</td><td>a spoked frame on which laminations are mounted in large machines instead of being keyed directly to the shaft.</td></tr>
+<tr><td>Squirrel-cage rotor</td><td>rotor bars (copper/aluminium) short-circuited by end rings.</td></tr>
+<tr><td>Starter</td><td>a series resistor (or electronic controller) that limits the very large starting current.</td></tr>
+<tr><td>Starting torque</td><td>the torque at zero speed; high for series motors.</td></tr>
+<tr><td>Stator</td><td>the stationary part: steel frame + slotted silicon-steel core + three-phase winding.</td></tr>
+<tr><td>Stator coils</td><td>three coils (U, V, W) fixed on the stator.</td></tr>
+<tr><td>Step angle</td><td>the rotation per pulse; typically 0.9°–1.8° (200–400 steps/rev).</td></tr>
+<tr><td>Step-up / step-down</td><td>step-up: V<sub>2</sub> &gt; V<sub>1</sub> (N<sub>2</sub> &gt; N<sub>1</sub>). Step-down: V<sub>2</sub> &lt; V<sub>1</sub>.</td></tr>
 <tr><td>Supermesh</td><td>two meshes sharing a current source; the source's branch is left out and one KVL is written round the combined outer loop.</td></tr>
 <tr><td>Supernode</td><td>two non-reference nodes joined by a voltage source; treated as one node for KCL, plus one extra equation from the source.</td></tr>
 <tr><td>Superposition</td><td>total response = algebraic sum of responses to each independent source acting alone.</td></tr>
+<tr><td>Synchronous speed</td><td>N = 120f/P — the speed that gives frequency f.</td></tr>
+<tr><td>Synchronous speed (N<sub>s</sub>)</td><td>the speed of the RMF, N<sub>s</sub> = 120f/P rpm.</td></tr>
+<tr><td>Tariff</td><td>the price per unit (₹/kWh); may be slab-based.</td></tr>
 <tr><td>Terminals a–b</td><td>the two points where the load will connect and from which we 'look into' the network.</td></tr>
 <tr><td>Thevenin resistance (R<sub>th</sub>)</td><td>resistance seen at a–b with independent sources killed; also R<sub>th</sub> = V<sub>oc</sub>/I<sub>sc</sub>.</td></tr>
+<tr><td>Torque (T)</td><td>the turning effort of the shaft; T ∝ Φ·I<sub>a</sub>.</td></tr>
+<tr><td>Touch voltage</td><td>the voltage a person touching a faulty metal body would experience.</td></tr>
+<tr><td>Turns ratio</td><td>N<sub>1</sub>/N<sub>2</sub>, the number of primary turns to secondary turns.</td></tr>
+<tr><td>Unit (kWh)</td><td>the billing unit: 1 kW used for 1 hour.</td></tr>
 <tr><td>Unity power factor</td><td>pf = 1: purely resistive; all the apparent power is real power.</td></tr>
+<tr><td>V/f control</td><td>keeping voltage ∝ frequency so the motor flux stays constant.</td></tr>
+<tr><td>VFD (variable-frequency drive)</td><td>converter that varies the frequency and voltage fed to an AC motor to control its speed.</td></tr>
 <tr><td>Voltage / potential difference (V)</td><td>energy per unit charge between <em>two points</em>; unit volt (V = J/C).</td></tr>
 <tr><td>Voltage divider</td><td>series resistors splitting a supply voltage in proportion to their resistances.</td></tr>
 <tr><td>Voltage rise / drop</td><td>going through a source from − to + is a rise; going through a resistor <em>along</em> the current is a drop.</td></tr>
 <tr><td>Voltage triangle</td><td>V<sub>R</sub>, V<sub>X</sub> and V form a right triangle — the impedance triangle multiplied by I.</td></tr>
 <tr><td>Waveform</td><td>the graph of a quantity against time.</td></tr>
+<tr><td>Wound (slip-ring) rotor</td><td>rotor with a three-phase winding (star-connected) brought out to slip rings.</td></tr>
+<tr><td>Yoke</td><td>the outer frame (cast/rolled steel): supports the poles, protects the machine and carries the magnetic flux between poles.</td></tr>
 </table>
 
-</div>
-<a href="#top" class="backtop">↑</a>
-
-</body>
-</html>
+<h2 class="part" id="selftest">Self-Test Checklist</h2>
+<p>Can you do each of these <em>right now</em>, without looking back? If not, that is the section to re-read.</p>
+<ul class="checklist">
+  <li>State Ohm's law and use it to find power two independent ways for the same resistor.</li>
+  <li>Write KCL at a node and KVL around a loop for a circuit you sketch yourself.</li>
+  <li>Derive the current-divider formula from KCL + Ohm's law (don't just quote it).</li>
+  <li>Solve a 2-node circuit by node-voltage analysis, unaided.</li>
+  <li>Solve a 2-mesh circuit by mesh-current analysis, and recover the actual branch current in the shared resistor.</li>
+  <li>Transform a voltage source + series R into its current-source equivalent, and explain why they're indistinguishable from outside.</li>
+  <li>Find V<sub>th</sub> and R<sub>th</sub> for a simple network and state Norton's equivalent from it.</li>
+  <li>Derive, from calculus, why R<sub>L</sub>=R<sub>th</sub> maximises load power — and explain why this is <em>not</em> the same as maximum efficiency.</li>
+  <li>Use superposition to solve for one unknown in a two-source circuit, and check it against a direct method.</li>
+  <li>Derive V<sub>rms</sub>=V<sub>m</sub>/√2 and V<sub>avg</sub>=2V<sub>m</sub>/π from the defining integrals.</li>
+  <li>Explain in one sentence why phasors turn AC differential equations into algebra.</li>
+  <li>Given R and X<sub>L</sub> for a series RL circuit, find |Z|, φ, and I — and draw the impedance triangle.</li>
+  <li>Compute P, Q, S for an AC circuit and verify S²=P²+Q².</li>
+  <li>Explain why a low power factor costs money even though Q isn't dissipated as heat.</li>
+  <li>Sketch a DC motor cross-section and apply Fleming's left-hand rule to find the force direction.</li>
+  <li>Write V=E<sub>b</sub>+I<sub>a</sub>R<sub>a</sub> and use it to find mechanical power developed.</li>
+  <li>State the difference between shunt, series and compound DC motors, and why a series motor must never run unloaded.</li>
+  <li>Derive the transformer EMF equation E=4.44fΦ<sub>m</sub>N from Faraday's law.</li>
+  <li>Compute synchronous speed and slip for a 3-phase induction motor given pole count, frequency and rotor speed.</li>
+  <li>Explain, in your own words, why the induction motor needs a nonzero slip to produce any torque at all.</li>
+  <li>Name every part of a DC machine and say what each does, including why the iron is laminated.</li>
+  <li>Explain how the same armature works as a motor and as a generator, and why the commutator is needed in both.</li>
+  <li>Write the supply/terminal-voltage equation for shunt, series, and short/long-shunt compound machines.</li>
+  <li>State the working principle of a transformer in your own words and explain why it fails on DC.</li>
+  <li>Explain why a wound-rotor induction motor starts better than a squirrel-cage one, and what it costs.</li>
+  <li>Explain why a single-phase induction motor is not self-starting and compare the five starting methods.</li>
+  <li>Describe a BLDC motor's six-step commutation and a stepper motor's step angle/speed relations.</li>
+  <li>State how an alternator differs from a DC generator and compute its speed for a given frequency.</li>
+  <li>Describe the four converter families, PWM and why switching converters are efficient.</li>
+  <li>Explain V/f control in a VFD and the fan-law energy saving.</li>
+  <li>Explain the principle of earthing and why the earth wire protects a person; list the effects of current levels and the five preventive measures.</li>
+  <li>Compute the energy used and cost for a set of appliances.</li>
+</ul>
+</div></body></html>

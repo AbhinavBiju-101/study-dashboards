@@ -1,0 +1,649 @@
+{% extends "base.html" %}
+{% block title %}Basic Engineering — Module 3{% endblock %}
+{% block extra_style %}
+<style>
+  :root{
+    --ink:#1b1f24; --sub:#4a5568; --bg:#fbfbfa; --card:#ffffff;
+    --def:#4a5568; --def-bg:#f3f4f6;
+    --why:#1e468c; --why-bg:#eef3fb;
+    --mis:#b45a0a; --mis-bg:#fdf3e7;
+    --ex:#166e3c; --ex-bg:#eaf6ee;
+    --line:#e3e6ea; --accent:#7c3aed;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; font-family:"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    background:var(--bg); color:var(--ink); line-height:1.55;
+  }
+  .wrap{max-width:900px;margin:0 auto;padding:0 22px 80px;}
+  header.hero{
+    background:linear-gradient(135deg,#1e2a4a,#3949ab 60%,#7c3aed);
+    color:#fff; padding:48px 22px 60px; text-align:center;
+  }
+  header.hero h1{margin:0 0 8px;font-size:2rem;}
+  header.hero p{margin:4px 0;opacity:.9;font-size:1.05rem;}
+  nav.toc{
+    background:var(--card); border:1px solid var(--line); border-radius:12px;
+    padding:20px 26px; margin:-36px auto 34px; max-width:860px;
+    box-shadow:0 6px 24px rgba(20,20,40,.08);
+  }
+  nav.toc h2{margin-top:0;font-size:1.05rem;color:var(--sub);text-transform:uppercase;letter-spacing:.06em;}
+  nav.toc ol{columns:2;column-gap:30px;padding-left:20px;margin:0;}
+  nav.toc li{margin-bottom:6px;break-inside:avoid;}
+  nav.toc a{color:var(--accent);text-decoration:none;font-size:.95rem;}
+  nav.toc a:hover{text-decoration:underline;}
+  h2.part{
+    font-size:1.6rem;margin-top:64px;padding-bottom:10px;border-bottom:3px solid var(--accent);
+  }
+  h3.topic{
+    font-size:1.25rem;margin-top:42px;color:#1e2a4a;
+    border-left:5px solid var(--accent);padding-left:12px;
+  }
+  h4.sub{margin-top:26px;font-size:1.05rem;color:var(--sub);}
+  p{margin:10px 0;}
+  .box{border-radius:10px;padding:16px 18px;margin:16px 0;border:1px solid transparent;}
+  .box .label{font-weight:700;font-size:.78rem;text-transform:uppercase;letter-spacing:.05em;display:block;margin-bottom:8px;}
+  .def{background:var(--def-bg);border-color:#d4d8de;}
+  .def .label{color:var(--def);}
+  .why{background:var(--why-bg);border-color:#c3d4ef;}
+  .why .label{color:var(--why);}
+  .mis{background:var(--mis-bg);border-color:#f1cf9f;}
+  .mis .label{color:var(--mis);}
+  .ex{background:var(--ex-bg);border-color:#b8e2c6;}
+  .ex .label{color:var(--ex);}
+  .foreshadow{background:#f4effc;border:1px dashed #b39ce8;border-radius:8px;padding:10px 14px;font-size:.93rem;color:#4b3480;margin:14px 0;}
+  .foreshadow::before{content:"↳ ";font-weight:700;}
+  table{border-collapse:collapse;width:100%;margin:14px 0;font-size:.93rem;}
+  th,td{border:1px solid var(--line);padding:7px 10px;text-align:left;}
+  th{background:#eef0f4;}
+  .diagram{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px;margin:18px 0;text-align:center;}
+  .diagram svg{max-width:100%;height:auto;}
+  .caption{font-size:.85rem;color:var(--sub);margin-top:8px;font-style:italic;}
+  code{background:#eef0f4;padding:1px 5px;border-radius:4px;font-size:.92em;}
+  .formula{
+    background:#fff; border:1px solid var(--line); border-left:4px solid var(--accent);
+    padding:10px 16px; margin:12px 0; font-size:1.05rem; overflow-x:auto;
+  }
+  .checklist{list-style:none;padding-left:0;}
+  .checklist li{padding:8px 0 8px 30px;position:relative;border-bottom:1px dashed var(--line);}
+  .checklist li::before{content:"☐";position:absolute;left:0;font-size:1.2rem;color:var(--accent);}
+  .marks{display:inline-block;background:#1e2a4a;color:#fff;font-size:.72rem;padding:2px 8px;border-radius:12px;margin-left:8px;vertical-align:middle;}
+  footer{text-align:center;color:var(--sub);font-size:.85rem;margin-top:60px;padding-top:20px;border-top:1px solid var(--line);}
+  .backtop{position:fixed;bottom:20px;right:20px;background:var(--accent);color:#fff;border-radius:50%;width:42px;height:42px;text-align:center;line-height:42px;text-decoration:none;box-shadow:0 4px 12px rgba(0,0,0,.2);font-size:1.1rem;}
+
+  .terms{background:#fff9e6;border-color:#f0dfa0;}
+  .terms .label{color:#8a6d00;}
+  .terms ul{list-style:none;margin:0;padding:0;}
+  .terms li{padding:5px 0;border-bottom:1px dotted #ecdca2;font-size:.94rem;}
+  .terms li:last-child{border-bottom:none;}
+  .terms li b{color:#5c4700;}
+  ol,ul{padding-left:22px;}
+  .gloss td:first-child{font-weight:600;white-space:nowrap;vertical-align:top;}
+</style>
+<style>
+  .bio .s{stroke:#333;fill:none;stroke-width:1.5}.bio .a{fill:#e8f0fc}.bio .b{fill:#e6f4ec}.bio .c{fill:#fdf0e3}.bio .d{fill:#f3ecfb}
+  .bio svg text{font:12.5px sans-serif;fill:#1d2330}.bio figure{margin:16px 0;text-align:center}.bio figcaption,.bio .note{color:#5b6475;font-size:.92rem}
+  .bio table{display:block;overflow-x:auto}.bio .box .t{font-weight:700}
+  .cover{text-align:center;padding:90px 20px}.cover h1{font-size:2.4rem;margin:0 0 10px}.module{margin-top:30px}
+  @media print{
+    body{background:#fff}.backtop,nav.site-nav{display:none!important}.wrap{max-width:none;padding:0}
+    header.hero{box-shadow:none;border-radius:0!important;margin:0!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    .module{break-before:page}h2.part{break-before:page}h2.part:first-of-type{break-before:auto}
+    .box,.diagram,table,tr,.foreshadow,h3.topic,h4.sub{break-inside:avoid}h3.topic{break-after:avoid}
+    *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    nav.toc{box-shadow:none;margin:12px 0}
+  }
+</style>
+{% endblock %}
+{% block content %}
+<div class="wrap">
+{% raw %}<header class="hero" style="border-radius:12px;margin-top:24px;"><h1>Module 3 — Engineering Graphics &amp; CAD</h1><p>BIS standards, orthographic projection (first/third angle), projection of solids, isometric and perspective, freehand sketching, building drawing, CAD — plus the CAT-1 question patterns.</p></header><nav class="toc"><h2>Subtopics in this module</h2><ol><li><a href="#g1">G1. Engineering Drawing: Importance &amp; Scope</a></li><li><a href="#g2">G2. Drawing Sheets, Scales &amp; Title Block</a></li><li><a href="#g3">G3. Types of Lines</a></li><li><a href="#g4">G4. Lettering &amp; Dimensioning</a></li><li><a href="#g5">G5. Dimensioning Rules &amp; Checking Errors</a></li><li><a href="#g6">G6. Orthographic Projection: Principles, First &amp; Third Angle</a></li><li><a href="#g7">G7. Drawing Orthographic Views: Method &amp; Worked Examples</a></li><li><a href="#g8">G8. Projection of Solids</a></li><li><a href="#g9">G9. Isometric Projection</a></li><li><a href="#g10">G10. Freehand Sketching</a></li><li><a href="#g11">G11. Perspective Projection</a></li><li><a href="#g12">G12. Introduction to Building Drawing (Floor Plan)</a></li><li><a href="#g13">G13. Introduction to CAD</a></li><li><a href="#g14">G14. CAT-1 Pattern — What the Paper Asked</a></li><li><a href="#glossary">Glossary (A–Z)</a></li><li><a href="#selftest">Self-test checklist</a></li></ol></nav>
+<h3 class="topic" id="g1">G1. Engineering Drawing: Importance &amp; Scope</h3>
+<div class="box terms"><span class="label">Key terms — know these words</span>
+<ul>
+<li><b>Engineering drawing</b> — a graphical language giving the shape, size, material and finish of an object so it can be made.</li>
+<li><b>BIS</b> — Bureau of Indian Standards; SP 46 is its drawing code, first-angle projection since 1991.</li>
+<li><b>Machine / assembly / production drawing</b> — part drawings, how parts fit, and manufacturing details.</li>
+<li><b>Pictorial view</b> — a 3-D-looking view (isometric, perspective).</li>
+<li><b>Orthographic view</b> — flat views (front, top, side) that show true shapes.</li>
+<li><b>CAD</b> — computer-aided design/drafting.</li>
+</ul>
+</div>
+
+<p>Words alone cannot describe a shape exactly. An engineering drawing communicates <em>shape, size, material, tolerances and surface finish</em> in a standard form that a designer in one place and a machinist in another read identically. It is the link between design and manufacture and the legal record of a design. A standard (BIS) fixes the symbols, line types, lettering and layout so that the drawing means the same to everyone.</p>
+
+<ul>
+<li><b>Scope:</b> mechanical, civil (building drawings), electrical and electronic layouts, piping, shipbuilding, aircraft.</li>
+<li><b>Before CAD (1950–80):</b> rooms full of draughtsmen on drawing boards; <b>today:</b> 3-D CAD models from which drawings, analysis and CNC/3-D-printing files are generated.</li>
+<li><b>CAD is used for:</b> product design, simulation/analysis, manufacturing drawings, architecture, animation and visualisation, and rapid prototyping.</li>
+</ul>
+
+<div class="foreshadow">Learn the standards (G2–G5) and the views (G6–G10) by hand first — CAD (G13) automates the drawing, but the exam asks you to draw, dimension and read views correctly.</div>
+
+<h3 class="topic" id="g2">G2. Drawing Sheets, Scales &amp; Title Block</h3>
+<div class="box terms"><span class="label">Key terms — know these words</span>
+<ul>
+<li><b>A-series</b> — sheet sizes in which every size is half of the previous; sides in ratio 1 : √2.</li>
+<li><b>A0</b> — 841 × 1189 mm, area 1 m².</li>
+<li><b>Title block</b> — box at the bottom right giving drawing identity and details.</li>
+<li><b>Scale</b> — ratio of drawing size to actual size (1:2 reduces, 2:1 enlarges, 1:1 full size).</li>
+<li><b>Revision</b> — recorded change to a drawing.</li>
+</ul>
+</div>
+<div class="diagram">
+<svg viewBox="0 0 600 445.6585365853658" width="600" style="max-width:100%;height:auto" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#1b1f24"><rect x="40.0" y="30.0" width="500.0" height="353.7" rx="0" fill="#f4f7ff" stroke="#1b1f24" stroke-width="2.2"/><line x1="289.8" y1="30.0" x2="289.8" y2="383.7" stroke="#1b1f24" stroke-width="1.6" stroke-linecap="round"/><text x="164.9" y="206.8" text-anchor="middle" fill="#1b1f24" font-size="26" font-weight="bold">A1</text><text x="164.9" y="226.8" text-anchor="middle" fill="#8a93a3" font-size="12">594 × 841</text><line x1="289.8" y1="206.6" x2="540.0" y2="206.6" stroke="#1b1f24" stroke-width="1.6" stroke-linecap="round"/><text x="414.9" y="126.3" text-anchor="middle" fill="#1b1f24" font-size="22" font-weight="bold">A2</text><text x="414.9" y="144.3" text-anchor="middle" fill="#8a93a3" font-size="12">420 × 594</text><line x1="414.7" y1="206.6" x2="414.7" y2="383.7" stroke="#1b1f24" stroke-width="1.6" stroke-linecap="round"/><text x="352.2" y="303.1" text-anchor="middle" fill="#1b1f24" font-size="20" font-weight="bold">A3</text><text x="352.2" y="319.1" text-anchor="middle" fill="#8a93a3" font-size="11">297 × 420</text><line x1="414.7" y1="295.1" x2="540.0" y2="295.1" stroke="#1b1f24" stroke-width="1.6" stroke-linecap="round"/><text x="477.3" y="252.9" text-anchor="middle" fill="#1b1f24" font-size="16" font-weight="bold">A4</text><text x="477.3" y="266.9" text-anchor="middle" fill="#8a93a3" font-size="10">210 × 297</text><text x="477.3" y="341.4" text-anchor="middle" fill="#1b1f24" font-size="16" font-weight="bold">A4</text><text x="477.3" y="355.4" text-anchor="middle" fill="#8a93a3" font-size="10">210 × 297</text><text x="60.0" y="58.0" text-anchor="start" fill="#1e468c" font-size="14" font-weight="bold">A0 = 841 × 1189</text><line x1="54.0" y1="405.7" x2="45.6" y2="405.7" stroke="#1b1f24" stroke-width="1.3" stroke-linecap="round"/><polygon points="40.0,405.7 47.0,402.7 47.0,408.6" fill="#1b1f24"/><line x1="526.0" y1="405.7" x2="534.4" y2="405.7" stroke="#1b1f24" stroke-width="1.3" stroke-linecap="round"/><polygon points="540.0,405.7 533.0,408.6 533.0,402.7" fill="#1b1f24"/><line x1="40.0" y1="405.7" x2="540.0" y2="405.7" stroke="#1b1f24" stroke-width="1.3" stroke-linecap="round"/><text x="290.0" y="401.7" text-anchor="middle" fill="#1b1f24" font-size="12">1189</text><line x1="24.0" y1="30.0" x2="24.0" y2="383.7" stroke="#1b1f24" stroke-width="1.3" stroke-linecap="round"/><line x1="24.0" y1="44.0" x2="24.0" y2="35.6" stroke="#1b1f24" stroke-width="1.3" stroke-linecap="round"/><polygon points="24.0,30.0 26.9,37.0 21.1,37.0" fill="#1b1f24"/><line x1="24.0" y1="369.7" x2="24.0" y2="378.1" stroke="#1b1f24" stroke-width="1.3" stroke-linecap="round"/><polygon points="24.0,383.7 21.1,376.7 26.9,376.7" fill="#1b1f24"/><text transform="rotate(-90 19.0 206.8)" x="19.0" y="206.8" text-anchor="middle" fill="#1b1f24" font-size="12">841</text><text x="290.0" y="429.7" text-anchor="middle" fill="#8a93a3" font-size="12" font-style="italic">all dimensions in mm — each size is half the one before; sides are in the ratio 1 : √2</text></svg>
+<p class="caption">BIS drawing-sheet sizes (A-series). A0 has an area of 1 m²; folding a sheet across its longer side gives the next size.</p>
+</div>
+<table>
+<tr><th>Size</th><th>Dimensions (mm)</th></tr>
+<tr><td>A0</td><td>841 × 1189</td></tr>
+<tr><td>A1</td><td>594 × 841</td></tr>
+<tr><td>A2</td><td>420 × 594</td></tr>
+<tr><td>A3</td><td>297 × 420</td></tr>
+<tr><td>A4</td><td>210 × 297</td></tr>
+</table>
+<div class="diagram">
+<svg viewBox="0 0 640 259.0" width="640" style="max-width:100%;height:auto" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#1b1f24"><rect x="44.0" y="24.0" width="555.0" height="195.0" rx="0" fill="#fff" stroke="#1b1f24" stroke-width="2.4"/><line x1="434.0" y1="24.0" x2="434.0" y2="219.0" stroke="#1b1f24" stroke-width="2" stroke-linecap="round"/><line x1="44.0" y1="159.0" x2="434.0" y2="159.0" stroke="#1b1f24" stroke-width="2" stroke-linecap="round"/><line x1="434.0" y1="54.0" x2="599.0" y2="54.0" stroke="#1b1f24" stroke-width="2" stroke-linecap="round"/><line x1="434.0" y1="159.0" x2="599.0" y2="159.0" stroke="#1b1f24" stroke-width="2" stroke-linecap="round"/><line x1="434.0" y1="75.0" x2="599.0" y2="75.0" stroke="#1b1f24" stroke-width="1" stroke-linecap="round"/><line x1="434.0" y1="96.0" x2="599.0" y2="96.0" stroke="#1b1f24" stroke-width="1" stroke-linecap="round"/><line x1="434.0" y1="117.0" x2="599.0" y2="117.0" stroke="#1b1f24" stroke-width="1" stroke-linecap="round"/><line x1="434.0" y1="138.0" x2="599.0" y2="138.0" stroke="#1b1f24" stroke-width="1" stroke-linecap="round"/><line x1="434.0" y1="159.0" x2="599.0" y2="159.0" stroke="#1b1f24" stroke-width="1" stroke-linecap="round"/><line x1="494.0" y1="24.0" x2="494.0" y2="159.0" stroke="#1b1f24" stroke-width="2" stroke-linecap="round"/><line x1="569.0" y1="24.0" x2="569.0" y2="159.0" stroke="#1b1f24" stroke-width="2" stroke-linecap="round"/><text x="531.5" y="43.5" text-anchor="middle" fill="#1b1f24" font-size="11">NAME</text><text x="584.0" y="43.5" text-anchor="middle" fill="#1b1f24" font-size="10">DATE</text><text x="436.0" y="68.4" text-anchor="start" fill="#1b1f24" font-size="10">DESIGNED</text><text x="436.0" y="89.4" text-anchor="start" fill="#1b1f24" font-size="10">DRAWN</text><text x="436.0" y="110.4" text-anchor="start" fill="#1b1f24" font-size="10">CHECKED</text><text x="436.0" y="131.4" text-anchor="start" fill="#1b1f24" font-size="10">STANDARD</text><text x="436.0" y="152.4" text-anchor="start" fill="#1b1f24" font-size="10">APPROVED</text><text x="52.0" y="46.0" text-anchor="start" fill="#1b1f24" font-size="14" font-weight="bold">NAME OF THE FIRM</text><line x1="119.0" y1="159.0" x2="119.0" y2="219.0" stroke="#1b1f24" stroke-width="1.4" stroke-linecap="round"/><text x="50.0" y="177.0" text-anchor="start" fill="#1b1f24" font-size="11">SCALE</text><text x="127.0" y="177.0" text-anchor="start" fill="#1b1f24" font-size="11">TITLE</text><polygon points="54.0,192.0 54.0,210.0 74.0,213.0 74.0,189.0" fill="#fff" stroke="#1b1f24" stroke-width="1.2" stroke-linejoin="round"/><circle cx="92" cy="201.0" r="9" fill="none" stroke="#1b1f24" stroke-width="1.2"/><circle cx="92" cy="201.0" r="4" fill="none" stroke="#1b1f24" stroke-width="1.2"/><text x="438.0" y="175.0" text-anchor="start" fill="#1b1f24" font-size="11">DRAWING NO.</text><text x="593.0" y="212.0" text-anchor="end" fill="#1b1f24" font-size="9">SHEET 3 OF 12</text><line x1="58.0" y1="18.0" x2="49.6" y2="18.0" stroke="#1b1f24" stroke-width="1.3" stroke-linecap="round"/><polygon points="44.0,18.0 51.0,15.1 51.0,20.9" fill="#1b1f24"/><line x1="585.0" y1="18.0" x2="593.4" y2="18.0" stroke="#1b1f24" stroke-width="1.3" stroke-linecap="round"/><polygon points="599.0,18.0 592.0,20.9 592.0,15.1" fill="#1b1f24"/><line x1="44.0" y1="18.0" x2="599.0" y2="18.0" stroke="#1b1f24" stroke-width="1.3" stroke-linecap="round"/><text x="321.5" y="14.0" text-anchor="middle" fill="#1b1f24" font-size="12">185</text><line x1="448.0" y1="241.0" x2="439.6" y2="241.0" stroke="#1b1f24" stroke-width="1.3" stroke-linecap="round"/><polygon points="434.0,241.0 441.0,238.1 441.0,243.9" fill="#1b1f24"/><line x1="480.0" y1="241.0" x2="488.4" y2="241.0" stroke="#1b1f24" stroke-width="1.3" stroke-linecap="round"/><polygon points="494.0,241.0 487.0,243.9 487.0,238.1" fill="#1b1f24"/><line x1="434.0" y1="241.0" x2="494.0" y2="241.0" stroke="#1b1f24" stroke-width="1.3" stroke-linecap="round"/><text x="464.0" y="237.0" text-anchor="middle" fill="#1b1f24" font-size="12">20</text><line x1="508.0" y1="241.0" x2="499.6" y2="241.0" stroke="#1b1f24" stroke-width="1.3" stroke-linecap="round"/><polygon points="494.0,241.0 501.0,238.1 501.0,243.9" fill="#1b1f24"/><line x1="555.0" y1="241.0" x2="563.4" y2="241.0" stroke="#1b1f24" stroke-width="1.3" stroke-linecap="round"/><polygon points="569.0,241.0 562.0,243.9 562.0,238.1" fill="#1b1f24"/><line x1="494.0" y1="241.0" x2="569.0" y2="241.0" stroke="#1b1f24" stroke-width="1.3" stroke-linecap="round"/><text x="531.5" y="237.0" text-anchor="middle" fill="#1b1f24" font-size="12">25</text><line x1="583.0" y1="241.0" x2="574.6" y2="241.0" stroke="#1b1f24" stroke-width="1.3" stroke-linecap="round"/><polygon points="569.0,241.0 576.0,238.1 576.0,243.9" fill="#1b1f24"/><line x1="585.0" y1="241.0" x2="593.4" y2="241.0" stroke="#1b1f24" stroke-width="1.3" stroke-linecap="round"/><polygon points="599.0,241.0 592.0,243.9 592.0,238.1" fill="#1b1f24"/><line x1="569.0" y1="241.0" x2="599.0" y2="241.0" stroke="#1b1f24" stroke-width="1.3" stroke-linecap="round"/><text x="584.0" y="237.0" text-anchor="middle" fill="#1b1f24" font-size="12">10</text><line x1="34.0" y1="24.0" x2="34.0" y2="219.0" stroke="#1b1f24" stroke-width="1.3" stroke-linecap="round"/><line x1="34.0" y1="38.0" x2="34.0" y2="29.6" stroke="#1b1f24" stroke-width="1.3" stroke-linecap="round"/><polygon points="34.0,24.0 36.9,31.0 31.1,31.0" fill="#1b1f24"/><line x1="34.0" y1="205.0" x2="34.0" y2="213.4" stroke="#1b1f24" stroke-width="1.3" stroke-linecap="round"/><polygon points="34.0,219.0 31.1,212.0 36.9,212.0" fill="#1b1f24"/><text transform="rotate(-90 29.0 121.5)" x="29.0" y="121.5" text-anchor="middle" fill="#1b1f24" font-size="12">65</text></svg>
+<p class="caption">Title block (drawn in the bottom right corner of the sheet): it identifies the drawing, its owner, scale and projection symbol, and records who designed, drew, checked and approved it.</p>
+</div>
+<ul>
+<li><b>Key functions of the title block:</b> identifies the drawing (title, number, revision); shows ownership (company, designer, approver); gives scale and projection method; tracks revisions and dates; lists material and technical details; ensures standardisation; helps organisation (sheet numbers, references).</li>
+</ul>
+
+<div class="box ex"><span class="label">Worked example</span>A 1.5 m long object drawn at scale 1:20 is 1500/20 = <code>75 mm</code> on paper. A 30 mm part drawn at 2:1 appears <code>60 mm</code> long — but the dimension figure still reads 30.</div>
+
+<div class="box mis"><span class="label">Fixing a common misconception</span>The dimension figure on a drawing is the <em>actual</em> size, never the measured length on paper; the scale only affects how big the drawn line is.</div>
+
+<h3 class="topic" id="g3">G3. Types of Lines</h3>
+<div class="box terms"><span class="label">Key terms — know these words</span>
+<ul>
+<li><b>Visible outline</b> — thick continuous line (type A).</li>
+<li><b>Hidden line</b> — dashed thin line (F) for edges not visible.</li>
+<li><b>Centre line</b> — long-dash-dot thin line (G).</li>
+<li><b>Dimension / extension / leader</b> — thin continuous lines (B).</li>
+<li><b>Cutting plane line</b> — chain thin with thick ends and at changes of direction (H).</li>
+<li><b>Hatching</b> — thin parallel lines (B) on cut surfaces.</li>
+<li><b>Break line</b> — freehand wavy (C) or zig-zag (D).</li>
+</ul>
+</div>
+<div class="diagram">
+<svg viewBox="0 0 760 364" width="760" style="max-width:100%;height:auto" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#1b1f24"><text x="20.0" y="18.0" text-anchor="start" fill="#8a93a3" font-size="12" font-weight="bold">Type</text><text x="70.0" y="18.0" text-anchor="start" fill="#8a93a3" font-size="12" font-weight="bold">Sample</text><text x="260.0" y="18.0" text-anchor="start" fill="#8a93a3" font-size="12" font-weight="bold">Name</text><text x="450.0" y="18.0" text-anchor="start" fill="#8a93a3" font-size="12" font-weight="bold">Typical use</text><text x="24.0" y="48.0" text-anchor="start" fill="#1b1f24" font-size="15" font-weight="bold">A</text><line x1="70.0" y1="44.0" x2="235.0" y2="44.0" stroke="#1b1f24" stroke-width="3.2" stroke-linecap="round"/><text x="260.0" y="48.0" text-anchor="start" fill="#1b1f24" font-size="13">Continuous thick</text><text x="450.0" y="48.0" text-anchor="start" fill="#8a93a3" font-size="12">visible outlines and edges</text><text x="24.0" y="78.0" text-anchor="start" fill="#1b1f24" font-size="15" font-weight="bold">B</text><line x1="70.0" y1="74.0" x2="235.0" y2="74.0" stroke="#1b1f24" stroke-width="1.2" stroke-linecap="round"/><text x="260.0" y="78.0" text-anchor="start" fill="#1b1f24" font-size="13">Continuous thin</text><text x="450.0" y="78.0" text-anchor="start" fill="#8a93a3" font-size="12">dimension, extension, projection, leader lines; hatching</text><text x="24.0" y="108.0" text-anchor="start" fill="#1b1f24" font-size="15" font-weight="bold">C</text><path d="M70,104 q10,-6 20,0 t20,0 t20,0 t20,0 t20,0 t20,0 t20,0 t20,0" fill="none" stroke="#1b1f24" stroke-width="1.2"/><text x="260.0" y="108.0" text-anchor="start" fill="#1b1f24" font-size="13">Continuous thin freehand</text><text x="450.0" y="108.0" text-anchor="start" fill="#8a93a3" font-size="12">limits of partial / interrupted views</text><text x="24.0" y="138.0" text-anchor="start" fill="#1b1f24" font-size="15" font-weight="bold">D</text><line x1="70.0" y1="134.0" x2="130.0" y2="134.0" stroke="#1b1f24" stroke-width="1.2" stroke-linecap="round"/><polyline points="130.0,134.0 138.0,125.0 146.0,143.0 154.0,134.0" fill="none" stroke="#1b1f24" stroke-width="1.2" stroke-linejoin="round"/><line x1="154.0" y1="134.0" x2="235.0" y2="134.0" stroke="#1b1f24" stroke-width="1.2" stroke-linecap="round"/><text x="260.0" y="138.0" text-anchor="start" fill="#1b1f24" font-size="13">Thin with zig-zags</text><text x="450.0" y="138.0" text-anchor="start" fill="#8a93a3" font-size="12">long break lines</text><text x="24.0" y="168.0" text-anchor="start" fill="#1b1f24" font-size="15" font-weight="bold">E</text><line x1="70.0" y1="164.0" x2="235.0" y2="164.0" stroke="#1b1f24" stroke-width="3" stroke-dasharray="12,6" stroke-linecap="round"/><text x="260.0" y="168.0" text-anchor="start" fill="#1b1f24" font-size="13">Dashed thick</text><text x="450.0" y="168.0" text-anchor="start" fill="#8a93a3" font-size="12">permissible surface treatment</text><text x="24.0" y="198.0" text-anchor="start" fill="#1b1f24" font-size="15" font-weight="bold">F</text><line x1="70.0" y1="194.0" x2="235.0" y2="194.0" stroke="#1b1f24" stroke-width="1.4" stroke-dasharray="12,6" stroke-linecap="round"/><text x="260.0" y="198.0" text-anchor="start" fill="#1b1f24" font-size="13">Dashed thin</text><text x="450.0" y="198.0" text-anchor="start" fill="#8a93a3" font-size="12">hidden outlines and edges</text><text x="24.0" y="228.0" text-anchor="start" fill="#1b1f24" font-size="15" font-weight="bold">G</text><line x1="70.0" y1="224.0" x2="235.0" y2="224.0" stroke="#1b1f24" stroke-width="1.4" stroke-dasharray="20,4,3,4" stroke-linecap="round"/><text x="260.0" y="228.0" text-anchor="start" fill="#1b1f24" font-size="13">Chain thin (long-dash dot)</text><text x="450.0" y="228.0" text-anchor="start" fill="#8a93a3" font-size="12">centre lines, lines of symmetry, pitch circles</text><text x="24.0" y="258.0" text-anchor="start" fill="#1b1f24" font-size="15" font-weight="bold">H</text><line x1="70.0" y1="254.0" x2="92.0" y2="254.0" stroke="#1b1f24" stroke-width="3" stroke-linecap="round"/><line x1="92.0" y1="254.0" x2="213.0" y2="254.0" stroke="#1b1f24" stroke-width="1.2" stroke-dasharray="16,4,3,4" stroke-linecap="round"/><line x1="213.0" y1="254.0" x2="235.0" y2="254.0" stroke="#1b1f24" stroke-width="3" stroke-linecap="round"/><text x="260.0" y="258.0" text-anchor="start" fill="#1b1f24" font-size="13">Chain thin, thick at ends</text><text x="450.0" y="258.0" text-anchor="start" fill="#8a93a3" font-size="12">cutting planes</text><text x="24.0" y="288.0" text-anchor="start" fill="#1b1f24" font-size="15" font-weight="bold">J</text><line x1="70.0" y1="284.0" x2="235.0" y2="284.0" stroke="#1b1f24" stroke-width="3" stroke-dasharray="20,4,3,4" stroke-linecap="round"/><text x="260.0" y="288.0" text-anchor="start" fill="#1b1f24" font-size="13">Chain thick</text><text x="450.0" y="288.0" text-anchor="start" fill="#8a93a3" font-size="12">surfaces with a special requirement</text><text x="24.0" y="318.0" text-anchor="start" fill="#1b1f24" font-size="15" font-weight="bold">K</text><line x1="70.0" y1="314.0" x2="235.0" y2="314.0" stroke="#1b1f24" stroke-width="1.4" stroke-dasharray="18,4,3,4,3,4" stroke-linecap="round"/><text x="260.0" y="318.0" text-anchor="start" fill="#1b1f24" font-size="13">Chain thin double-dash</text><text x="450.0" y="318.0" text-anchor="start" fill="#8a93a3" font-size="12">adjacent parts, alternate/extreme positions</text><text x="20.0" y="350.0" text-anchor="start" fill="#8a93a3" font-size="12" font-style="italic">Pencil grades: thick lines HB, thin lines 2H.  (Types A–K as in the lecture table, after N.D. Bhatt.)</text></svg>
+<p class="caption">BIS line types used in engineering drawing. In orthographic views the commonest are A (visible), F (hidden), G (centre lines), B (dimensions) and H (cutting planes).</p>
+</div>
+<p>In orthographic projection the lines normally met are A (visible outlines/edges), F (hidden), G (centre lines, symmetry, trajectories, pitch circles), B (dimension, extension, projection, short centre, leader and reference lines, hatching) and H (cutting planes). Use <b>HB</b> pencils for thick and <b>2H</b> for thin lines.</p>
+
+<div class="box mis"><span class="label">Which line wins?</span>When lines coincide the usual order of preference is: visible outline first, then hidden line, then centre line, then cutting-plane line, then dimension/projection lines — draw the one that takes priority.</div>
+
+<h3 class="topic" id="g4">G4. Lettering &amp; Dimensioning</h3>
+<div class="box terms"><span class="label">Key terms — know these words</span>
+<ul>
+<li><b>Lettering</b> — writing of words and numerals on a drawing — plain, single-stroke, uniform.</li>
+<li><b>Extension (projection) line</b> — thin line showing the extent of a dimension.</li>
+<li><b>Dimension line</b> — thin line with arrowheads between extension lines.</li>
+<li><b>Leader line</b> — thin line from a feature to a note or size.</li>
+<li><b>Aligned / unidirectional system</b> — figures placed parallel to the dimension line (readable from bottom or right) / all figures horizontal.</li>
+<li><b>Datum</b> — reference surface from which dimensions are measured.</li>
+<li><b>Fully defined</b> — all geometry dimensioned, nothing missing or redundant.</li>
+</ul>
+</div>
+
+<p><b>Lettering</b> must be neat, uniform and legible. Capital letters in single-stroke style are used; recommended heights are roughly 6–8 mm for main titles, 3–6 mm for sub-titles and 3–5 mm for notes and dimension figures.</p>
+<div class="diagram">
+<svg viewBox="0 0 660 250" width="660" style="max-width:100%;height:auto" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#1b1f24"><rect x="170.0" y="90.0" width="240.0" height="120.0" rx="0" fill="#f7f9fc" stroke="#1b1f24" stroke-width="3"/><circle cx="240" cy="150" r="22" fill="none" stroke="#1b1f24" stroke-width="3"/><line x1="208.0" y1="150.0" x2="272.0" y2="150.0" stroke="#1b1f24" stroke-width="1.4" stroke-dasharray="14,3,2,3" stroke-linecap="round"/><line x1="240.0" y1="118.0" x2="240.0" y2="182.0" stroke="#1b1f24" stroke-width="1.4" stroke-dasharray="14,3,2,3" stroke-linecap="round"/><line x1="170.0" y1="87.0" x2="170.0" y2="44.0" stroke="#1b1f24" stroke-width="1" stroke-linecap="round"/><line x1="410.0" y1="87.0" x2="410.0" y2="44.0" stroke="#1b1f24" stroke-width="1" stroke-linecap="round"/><line x1="188.0" y1="50.0" x2="176.4" y2="50.0" stroke="#1b1f24" stroke-width="1.3" stroke-linecap="round"/><polygon points="170.0,50.0 178.0,46.6 178.0,53.4" fill="#1b1f24"/><line x1="392.0" y1="50.0" x2="403.6" y2="50.0" stroke="#1b1f24" stroke-width="1.3" stroke-linecap="round"/><polygon points="410.0,50.0 402.0,53.4 402.0,46.6" fill="#1b1f24"/><line x1="188.0" y1="50.0" x2="392.0" y2="50.0" stroke="#1b1f24" stroke-width="1.3" stroke-linecap="round"/><text x="290.0" y="45.0" text-anchor="middle" fill="#1b1f24" font-size="14" font-weight="bold">80</text><line x1="413.0" y1="90.0" x2="456.0" y2="90.0" stroke="#1b1f24" stroke-width="1" stroke-linecap="round"/><line x1="413.0" y1="210.0" x2="456.0" y2="210.0" stroke="#1b1f24" stroke-width="1" stroke-linecap="round"/><line x1="450.0" y1="108.0" x2="450.0" y2="96.4" stroke="#1b1f24" stroke-width="1.3" stroke-linecap="round"/><polygon points="450.0,90.0 453.4,98.0 446.6,98.0" fill="#1b1f24"/><line x1="450.0" y1="192.0" x2="450.0" y2="203.6" stroke="#1b1f24" stroke-width="1.3" stroke-linecap="round"/><polygon points="450.0,210.0 446.6,202.0 453.4,202.0" fill="#1b1f24"/><line x1="450.0" y1="108.0" x2="450.0" y2="192.0" stroke="#1b1f24" stroke-width="1.3" stroke-linecap="round"/><text transform="rotate(-90 444 150.0)" x="444.0" y="155.0" text-anchor="middle" fill="#1b1f24" font-size="14" font-weight="bold">50</text><line x1="256.0" y1="166.0" x2="310.0" y2="202.0" stroke="#1b1f24" stroke-width="1.2" stroke-linecap="round"/><line x1="276.0" y1="183.0" x2="260.9" y2="170.1" stroke="#1b1f24" stroke-width="1.2" stroke-linecap="round"/><polygon points="256.0,166.0 264.3,168.6 259.9,173.7" fill="#1b1f24"/><line x1="310.0" y1="202.0" x2="350.0" y2="202.0" stroke="#1b1f24" stroke-width="1.2" stroke-linecap="round"/><text x="314.0" y="197.0" text-anchor="start" fill="#1b1f24" font-size="14" font-weight="bold">Ø20</text><text x="140.0" y="54.0" text-anchor="end" fill="#1e468c" font-size="12" font-weight="bold">dimension line</text><line x1="146.0" y1="51.0" x2="200.0" y2="50.0" stroke="#1e468c" stroke-width="1" stroke-linecap="round"/><text x="140.0" y="86.0" text-anchor="end" fill="#c0392b" font-size="12" font-weight="bold">extension line</text><line x1="146.0" y1="83.0" x2="169.0" y2="80.0" stroke="#c0392b" stroke-width="1" stroke-linecap="round"/><text x="140.0" y="205.0" text-anchor="end" fill="#166e3c" font-size="12" font-weight="bold">outline (thick)</text><line x1="146.0" y1="202.0" x2="172.0" y2="190.0" stroke="#166e3c" stroke-width="1" stroke-linecap="round"/><text x="474.0" y="62.0" text-anchor="start" fill="#7c3aed" font-size="12" font-weight="bold">arrowhead</text><line x1="470.0" y1="66.0" x2="454.0" y2="96.0" stroke="#7c3aed" stroke-width="1" stroke-linecap="round"/><text x="474.0" y="178.0" text-anchor="start" fill="#1b1f24" font-size="12" font-weight="bold">dimension figure</text><line x1="470.0" y1="172.0" x2="448.0" y2="150.0" stroke="#1b1f24" stroke-width="1" stroke-linecap="round"/><text x="314.0" y="240.0" text-anchor="start" fill="#d4a017" font-size="12" font-weight="bold">leader line</text><line x1="312.0" y1="232.0" x2="296.0" y2="206.0" stroke="#d4a017" stroke-width="1" stroke-linecap="round"/><text x="240.0" y="198.0" text-anchor="middle" fill="#8a93a3" font-size="11">centre lines</text></svg>
+<p class="caption">Elements of dimensioning: extension (projection) lines start just clear of the outline and run slightly past the dimension line; the dimension line ends in arrowheads; figures read from the bottom or the right; diameters carry Ø and use a leader.</p>
+</div>
+<p><b>Systems:</b> in the <em>aligned</em> system figures are written parallel to the dimension line and read from the bottom or from the right; in the <em>unidirectional</em> system all figures read from the bottom. Dimension lines carry arrowheads (about 3 mm long, 1 mm wide); extension lines start about 1 mm from the outline and extend about 3 mm beyond the dimension line.</p>
+<div class="diagram">
+<svg viewBox="0 0 680 225" width="680" style="max-width:100%;height:auto" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#1b1f24"><text x="150.0" y="20.0" text-anchor="middle" fill="#1b1f24" font-size="13" font-weight="bold">Chain (continuous) dimensioning</text><text x="520.0" y="20.0" text-anchor="middle" fill="#1b1f24" font-size="13" font-weight="bold">Parallel (progressive) dimensioning</text><rect x="30.0" y="70.0" width="240.0" height="36.0" rx="0" fill="#f7f9fc" stroke="#1b1f24" stroke-width="2.4"/><circle cx="80" cy="88" r="7" fill="none" stroke="#1b1f24" stroke-width="2"/><circle cx="130" cy="88" r="7" fill="none" stroke="#1b1f24" stroke-width="2"/><circle cx="180" cy="88" r="7" fill="none" stroke="#1b1f24" stroke-width="2"/><circle cx="230" cy="88" r="7" fill="none" stroke="#1b1f24" stroke-width="2"/><rect x="400.0" y="70.0" width="240.0" height="36.0" rx="0" fill="#f7f9fc" stroke="#1b1f24" stroke-width="2.4"/><circle cx="450" cy="88" r="7" fill="none" stroke="#1b1f24" stroke-width="2"/><circle cx="500" cy="88" r="7" fill="none" stroke="#1b1f24" stroke-width="2"/><circle cx="550" cy="88" r="7" fill="none" stroke="#1b1f24" stroke-width="2"/><circle cx="600" cy="88" r="7" fill="none" stroke="#1b1f24" stroke-width="2"/><line x1="94.0" y1="140.0" x2="85.6" y2="140.0" stroke="#1b1f24" stroke-width="1.3" stroke-linecap="round"/><polygon points="80.0,140.0 87.0,137.1 87.0,142.9" fill="#1b1f24"/><line x1="116.0" y1="140.0" x2="124.4" y2="140.0" stroke="#1b1f24" stroke-width="1.3" stroke-linecap="round"/><polygon points="130.0,140.0 123.0,142.9 123.0,137.1" fill="#1b1f24"/><line x1="80.0" y1="140.0" x2="130.0" y2="140.0" stroke="#1b1f24" stroke-width="1.3" stroke-linecap="round"/><line x1="80.0" y1="136.0" x2="80.0" y2="100.0" stroke="#1b1f24" stroke-width="0.9" stroke-linecap="round"/><line x1="130.0" y1="136.0" x2="130.0" y2="100.0" stroke="#1b1f24" stroke-width="0.9" stroke-linecap="round"/><text x="105.0" y="136.0" text-anchor="middle" fill="#1b1f24" font-size="11">50</text><line x1="144.0" y1="140.0" x2="135.6" y2="140.0" stroke="#1b1f24" stroke-width="1.3" stroke-linecap="round"/><polygon points="130.0,140.0 137.0,137.1 137.0,142.9" fill="#1b1f24"/><line x1="166.0" y1="140.0" x2="174.4" y2="140.0" stroke="#1b1f24" stroke-width="1.3" stroke-linecap="round"/><polygon points="180.0,140.0 173.0,142.9 173.0,137.1" fill="#1b1f24"/><line x1="130.0" y1="140.0" x2="180.0" y2="140.0" stroke="#1b1f24" stroke-width="1.3" stroke-linecap="round"/><line x1="130.0" y1="136.0" x2="130.0" y2="100.0" stroke="#1b1f24" stroke-width="0.9" stroke-linecap="round"/><line x1="180.0" y1="136.0" x2="180.0" y2="100.0" stroke="#1b1f24" stroke-width="0.9" stroke-linecap="round"/><text x="155.0" y="136.0" text-anchor="middle" fill="#1b1f24" font-size="11">50</text><line x1="194.0" y1="140.0" x2="185.6" y2="140.0" stroke="#1b1f24" stroke-width="1.3" stroke-linecap="round"/><polygon points="180.0,140.0 187.0,137.1 187.0,142.9" fill="#1b1f24"/><line x1="216.0" y1="140.0" x2="224.4" y2="140.0" stroke="#1b1f24" stroke-width="1.3" stroke-linecap="round"/><polygon points="230.0,140.0 223.0,142.9 223.0,137.1" fill="#1b1f24"/><line x1="180.0" y1="140.0" x2="230.0" y2="140.0" stroke="#1b1f24" stroke-width="1.3" stroke-linecap="round"/><line x1="180.0" y1="136.0" x2="180.0" y2="100.0" stroke="#1b1f24" stroke-width="0.9" stroke-linecap="round"/><line x1="230.0" y1="136.0" x2="230.0" y2="100.0" stroke="#1b1f24" stroke-width="0.9" stroke-linecap="round"/><text x="205.0" y="136.0" text-anchor="middle" fill="#1b1f24" font-size="11">50</text><text x="150.0" y="170.0" text-anchor="middle" fill="#c0392b" font-size="12" font-weight="bold">each error adds to the next</text><text x="150.0" y="186.0" text-anchor="middle" fill="#8a93a3" font-size="11">(tolerances accumulate along the chain)</text><line x1="464.0" y1="124.0" x2="455.6" y2="124.0" stroke="#1b1f24" stroke-width="1.3" stroke-linecap="round"/><polygon points="450.0,124.0 457.0,121.1 457.0,126.9" fill="#1b1f24"/><line x1="486.0" y1="124.0" x2="494.4" y2="124.0" stroke="#1b1f24" stroke-width="1.3" stroke-linecap="round"/><polygon points="500.0,124.0 493.0,126.9 493.0,121.1" fill="#1b1f24"/><line x1="450.0" y1="124.0" x2="500.0" y2="124.0" stroke="#1b1f24" stroke-width="1.3" stroke-linecap="round"/><line x1="450.0" y1="120.0" x2="450.0" y2="100.0" stroke="#1b1f24" stroke-width="0.9" stroke-linecap="round"/><line x1="500.0" y1="120.0" x2="500.0" y2="100.0" stroke="#1b1f24" stroke-width="0.9" stroke-linecap="round"/><text x="475.0" y="120.0" text-anchor="middle" fill="#1b1f24" font-size="11">50</text><line x1="464.0" y1="146.0" x2="455.6" y2="146.0" stroke="#1b1f24" stroke-width="1.3" stroke-linecap="round"/><polygon points="450.0,146.0 457.0,143.1 457.0,148.9" fill="#1b1f24"/><line x1="536.0" y1="146.0" x2="544.4" y2="146.0" stroke="#1b1f24" stroke-width="1.3" stroke-linecap="round"/><polygon points="550.0,146.0 543.0,148.9 543.0,143.1" fill="#1b1f24"/><line x1="450.0" y1="146.0" x2="550.0" y2="146.0" stroke="#1b1f24" stroke-width="1.3" stroke-linecap="round"/><line x1="450.0" y1="142.0" x2="450.0" y2="100.0" stroke="#1b1f24" stroke-width="0.9" stroke-linecap="round"/><line x1="550.0" y1="142.0" x2="550.0" y2="100.0" stroke="#1b1f24" stroke-width="0.9" stroke-linecap="round"/><text x="500.0" y="142.0" text-anchor="middle" fill="#1b1f24" font-size="11">100</text><line x1="464.0" y1="168.0" x2="455.6" y2="168.0" stroke="#1b1f24" stroke-width="1.3" stroke-linecap="round"/><polygon points="450.0,168.0 457.0,165.1 457.0,170.9" fill="#1b1f24"/><line x1="586.0" y1="168.0" x2="594.4" y2="168.0" stroke="#1b1f24" stroke-width="1.3" stroke-linecap="round"/><polygon points="600.0,168.0 593.0,170.9 593.0,165.1" fill="#1b1f24"/><line x1="450.0" y1="168.0" x2="600.0" y2="168.0" stroke="#1b1f24" stroke-width="1.3" stroke-linecap="round"/><line x1="450.0" y1="164.0" x2="450.0" y2="100.0" stroke="#1b1f24" stroke-width="0.9" stroke-linecap="round"/><line x1="600.0" y1="164.0" x2="600.0" y2="100.0" stroke="#1b1f24" stroke-width="0.9" stroke-linecap="round"/><text x="525.0" y="164.0" text-anchor="middle" fill="#1b1f24" font-size="11">150</text><text x="520.0" y="196.0" text-anchor="middle" fill="#166e3c" font-size="12" font-weight="bold">all measured from one datum</text><text x="520.0" y="212.0" text-anchor="middle" fill="#8a93a3" font-size="11">(error cannot accumulate)</text><circle cx="450.0" cy="100.0" r="4" fill="#166e3c"/><text x="440.0" y="112.0" text-anchor="end" fill="#166e3c" font-size="11" font-weight="bold">datum</text></svg>
+<p class="caption">Why parallel dimensioning is preferred for inspection: every feature is positioned from the same datum surface, so one hole's error does not shift the others.</p>
+</div>
+<ul>
+<li><b>Chain (continuous):</b> each dimension relates to the previous one; tolerances accumulate.</li>
+<li><b>Parallel / progressive:</b> all dimensions from one datum; errors do not accumulate; preferred for functional features.</li>
+<li><b>Combined:</b> a mix of both.</li>
+</ul>
+
+<h3 class="topic" id="g5">G5. Dimensioning Rules &amp; Checking Errors</h3>
+<div class="box terms"><span class="label">Key terms — know these words</span>
+<ul>
+<li><b>Overall dimension</b> — the total length, width or height of the object.</li>
+<li><b>Redundant (duplicate) dimension</b> — a size given twice — not allowed.</li>
+<li><b>Ø / R / SR / □</b> — diameter, radius, spherical radius and square symbols.</li>
+<li><b>Chamfer</b> — bevelled edge, dimensioned as angle × length.</li>
+<li><b>Functional dimension</b> — one needed for the function of the part.</li>
+</ul>
+</div>
+
+<ul>
+<li>Dimension lines are <b>outside</b> the views where possible; avoid dimensioning inside the outline.</li>
+<li>Give each dimension <b>once</b>, on the view where the feature is most clearly seen; no duplicates and no unnecessary closed chains.</li>
+<li>Place smaller dimensions nearer the view and larger ones outside; keep about 8–10 mm between parallel dimension lines.</li>
+<li>Never use an outline, centre line or extension line as a dimension line; do not cross dimension lines with other lines.</li>
+<li>Dimension a circle with <b>Ø</b> (leader line), an arc with <b>R</b>; give holes by their centre position (from two edges) and size.</li>
+<li>Write plain numbers, no unit (the unit is stated once — mm); no trailing decimals such as '.00'.</li>
+<li>Dimensions are those of the <em>finished</em> part.</li>
+</ul>
+
+<div class="box ex"><span class="label">Worked example</span><b>CAT-1 Q1 (10 marks):</b> a plate 110 × 70 with a 40-wide slot, two Ø20 holes and a 20 × 40 post is dimensioned with the overall length twice (110 top and bottom), some figures inside the outline, values written as '110.00', and centre lines used as dimension lines.<br><b>Corrected version (the key):</b> one overall length 110 (bottom) and one overall height 70 (left); positions from the left/bottom edges — 25 to the first hole's centre, 40 slot width, 20 post width, 20 from the top, 15 and 40 from the right; Ø20 shown with leaders for both holes; all dimension lines outside the views; no '.00'. List the errors first, then redraw.</div>
+
+<div class="foreshadow">Marks are given for (i) naming each error, (ii) a clean redrawn view with correct line types, (iii) every dimension given once, outside, with arrowheads, extension lines and the Ø symbol.</div>
+
+<h3 class="topic" id="g6">G6. Orthographic Projection: Principles, First &amp; Third Angle</h3>
+<div class="box terms"><span class="label">Key terms — know these words</span>
+<ul>
+<li><b>Projection</b> — representing a 3-D object on a plane by projectors from its points.</li>
+<li><b>Parallel / perspective projection</b> — projectors parallel / converging to the eye.</li>
+<li><b>Orthographic projection</b> — projectors parallel to each other and perpendicular to the plane.</li>
+<li><b>VP / HP / PP</b> — vertical, horizontal and profile (side) planes.</li>
+<li><b>Front view (FV) / top view (TV) / side view</b> — elevation / plan / end elevation.</li>
+<li><b>Quadrant</b> — one of the four regions formed by HP and VP.</li>
+<li><b>XY line</b> — line of intersection of HP and VP (reference line).</li>
+</ul>
+</div>
+
+<p>In <b>orthographic projection</b> the object is viewed along lines of sight that are parallel to each other and perpendicular to the plane of projection, so each view shows true shapes and sizes. Normally the front view (from the front), top view and a side view are used; together they define the object completely.</p>
+<div class="diagram">
+<svg viewBox="0 0 600 352" width="600" style="max-width:100%;height:auto" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#1b1f24"><line x1="300.0" y1="20.0" x2="300.0" y2="320.0" stroke="#1b1f24" stroke-width="2.2" stroke-linecap="round"/><line x1="80.0" y1="170.0" x2="520.0" y2="170.0" stroke="#1b1f24" stroke-width="2.2" stroke-linecap="round"/><text x="308.0" y="32.0" text-anchor="start" fill="#1e468c" font-size="13" font-weight="bold">VP (vertical plane)</text><text x="500.0" y="162.0" text-anchor="end" fill="#1e468c" font-size="13" font-weight="bold">HP (horizontal plane)</text><text x="150.0" y="50.0" text-anchor="middle" fill="#8a93a3" font-size="26" font-weight="bold">I</text><text x="450.0" y="50.0" text-anchor="middle" fill="#8a93a3" font-size="26" font-weight="bold">II</text><text x="450.0" y="310.0" text-anchor="middle" fill="#8a93a3" font-size="26" font-weight="bold">III</text><text x="150.0" y="310.0" text-anchor="middle" fill="#8a93a3" font-size="26" font-weight="bold">IV</text><text x="150.0" y="72.0" text-anchor="middle" fill="#8a93a3" font-size="11">above HP, in front of VP</text><text x="450.0" y="72.0" text-anchor="middle" fill="#8a93a3" font-size="11">above HP, behind VP</text><text x="450.0" y="288.0" text-anchor="middle" fill="#8a93a3" font-size="11">below HP, behind VP</text><text x="150.0" y="288.0" text-anchor="middle" fill="#8a93a3" font-size="11">below HP, in front of VP</text><rect x="170.0" y="80.0" width="60.0" height="60.0" rx="0" fill="#e8f0fc" stroke="#1e468c" stroke-width="2.2"/><text x="200.0" y="116.0" text-anchor="middle" fill="#1e468c" font-size="12" font-weight="bold">object</text><text x="200.0" y="158.0" text-anchor="middle" fill="#1e468c" font-size="12" font-weight="bold">FIRST ANGLE (I)</text><rect x="370.0" y="200.0" width="60.0" height="60.0" rx="0" fill="#fdf0e3" stroke="#d4a017" stroke-width="2.2"/><text x="400.0" y="236.0" text-anchor="middle" fill="#d4a017" font-size="12" font-weight="bold">object</text><text x="400.0" y="192.0" text-anchor="middle" fill="#d4a017" font-size="12" font-weight="bold">THIRD ANGLE (III)</text><circle cx="60" cy="110" r="10" fill="none" stroke="#1b1f24" stroke-width="2"/><circle cx="60" cy="110" r="3" fill="#1b1f24"/><text x="60.0" y="92.0" text-anchor="middle" fill="#1b1f24" font-size="12">observer</text><line x1="78.0" y1="110.0" x2="158.6" y2="110.0" stroke="#8a93a3" stroke-width="1.5" stroke-linecap="round"/><polygon points="165.0,110.0 157.0,113.4 157.0,106.6" fill="#8a93a3"/><text x="300.0" y="340.0" text-anchor="middle" fill="#8a93a3" font-size="12" font-style="italic">Side view of the planes (looking from the left). Observer is on the left in both systems.</text></svg>
+<p class="caption">The four quadrants. First angle: the object lies between the observer and the vertical plane (the plane is behind the object and treated as opaque). Third angle: the plane lies between the observer and the object (transparent).</p>
+</div>
+<table>
+<tr><th>Point in quadrant</th><th>Front view vs XY</th><th>Top view vs XY</th></tr>
+<tr><td>I (above HP, in front of VP)</td><td>above</td><td>below</td></tr>
+<tr><td>II (above HP, behind VP)</td><td>above</td><td>above</td></tr>
+<tr><td>III (below HP, behind VP)</td><td>below</td><td>above</td></tr>
+<tr><td>IV (below HP, in front of VP)</td><td>below</td><td>below</td></tr>
+</table>
+<div class="diagram">
+<svg viewBox="0 0 740 380" width="740" style="max-width:100%;height:auto" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#1b1f24"><text x="170.0" y="18.0" text-anchor="middle" fill="#1b1f24" font-size="14" font-weight="bold">FIRST ANGLE projection (BIS)</text><rect x="40.0" y="40.0" width="120.0" height="80.0" rx="0" fill="#f2f6ff" stroke="#1b1f24" stroke-width="1.6"/><text x="100.0" y="84.0" text-anchor="middle" fill="#1b1f24" font-size="13" font-weight="bold">Front view</text><rect x="190.0" y="40.0" width="80.0" height="80.0" rx="0" fill="#fdf0e3" stroke="#1b1f24" stroke-width="1.6"/><text x="230.0" y="84.0" text-anchor="middle" fill="#1b1f24" font-size="13" font-weight="bold">Left side</text><rect x="40.0" y="150.0" width="120.0" height="80.0" rx="0" fill="#e6f4ec" stroke="#1b1f24" stroke-width="1.6"/><text x="100.0" y="194.0" text-anchor="middle" fill="#1b1f24" font-size="13" font-weight="bold">Top view</text><text x="230.0" y="140.0" text-anchor="middle" fill="#8a93a3" font-size="10">(LSV is drawn on the RIGHT of FV)</text><text x="100.0" y="250.0" text-anchor="middle" fill="#8a93a3" font-size="11">top view BELOW front view</text><text x="540.0" y="18.0" text-anchor="middle" fill="#1b1f24" font-size="14" font-weight="bold">THIRD ANGLE projection</text><rect x="410.0" y="40.0" width="120.0" height="80.0" rx="0" fill="#e6f4ec" stroke="#1b1f24" stroke-width="1.6"/><text x="470.0" y="84.0" text-anchor="middle" fill="#1b1f24" font-size="13" font-weight="bold">Top view</text><rect x="410.0" y="150.0" width="120.0" height="80.0" rx="0" fill="#f2f6ff" stroke="#1b1f24" stroke-width="1.6"/><text x="470.0" y="194.0" text-anchor="middle" fill="#1b1f24" font-size="13" font-weight="bold">Front view</text><rect x="560.0" y="150.0" width="80.0" height="80.0" rx="0" fill="#fdf0e3" stroke="#1b1f24" stroke-width="1.6"/><text x="600.0" y="194.0" text-anchor="middle" fill="#1b1f24" font-size="13" font-weight="bold">Right side</text><text x="470.0" y="250.0" text-anchor="middle" fill="#8a93a3" font-size="11">top view ABOVE front view</text><text x="390.0" y="252.0" text-anchor="middle" fill="#1b1f24" font-size="13"></text><text x="150.0" y="275.0" text-anchor="middle" fill="#1b1f24" font-size="13"></text><text x="150.0" y="290.0" text-anchor="middle" fill="#8a93a3" font-size="12">Symbol (put in the title block):</text><polygon points="60.0,312.0 106.0,302.0 106.0,346.0 60.0,336.0" fill="none" stroke="#1b1f24" stroke-width="1.6" stroke-linejoin="round"/><text x="83.0" y="370.0" text-anchor="middle" fill="#1b1f24" font-size="11">F.V.</text><circle cx="198" cy="324" r="20" fill="none" stroke="#1b1f24" stroke-width="1.6"/><circle cx="198" cy="324" r="9" fill="none" stroke="#1b1f24" stroke-width="1.6"/><line x1="170.0" y1="324.0" x2="226.0" y2="324.0" stroke="#1b1f24" stroke-width="1" stroke-dasharray="14,3,2,3" stroke-linecap="round"/><line x1="198.0" y1="300.0" x2="198.0" y2="348.0" stroke="#1b1f24" stroke-width="1" stroke-dasharray="14,3,2,3" stroke-linecap="round"/><text x="198.0" y="370.0" text-anchor="middle" fill="#1b1f24" font-size="11">L.H.S.V.</text><text x="520.0" y="290.0" text-anchor="middle" fill="#8a93a3" font-size="12">Symbol:</text><circle cx="440" cy="324" r="20" fill="none" stroke="#1b1f24" stroke-width="1.6"/><circle cx="440" cy="324" r="9" fill="none" stroke="#1b1f24" stroke-width="1.6"/><line x1="412.0" y1="324.0" x2="468.0" y2="324.0" stroke="#1b1f24" stroke-width="1" stroke-dasharray="14,3,2,3" stroke-linecap="round"/><line x1="440.0" y1="300.0" x2="440.0" y2="348.0" stroke="#1b1f24" stroke-width="1" stroke-dasharray="14,3,2,3" stroke-linecap="round"/><polygon points="500.0,302.0 500.0,346.0 546.0,336.0 546.0,312.0" fill="none" stroke="#1b1f24" stroke-width="1.6" stroke-linejoin="round"/><text x="440.0" y="370.0" text-anchor="middle" fill="#1b1f24" font-size="11">L.H.S.V.</text><text x="523.0" y="370.0" text-anchor="middle" fill="#1b1f24" font-size="11">F.V.</text></svg>
+<p class="caption">Layout of views and the identifying symbol. First angle (BIS standard in India): front view on top, top view BELOW it, left-side view to the RIGHT of it. Third angle (USA and others): top view ABOVE, right-side view to the right.</p>
+</div>
+<table>
+<tr><th>First angle projection</th><th>Third angle projection</th></tr>
+<tr><td>object kept in the first quadrant</td><td>object kept in the third quadrant</td></tr>
+<tr><td>object lies <b>between</b> observer and the plane</td><td>plane lies <b>between</b> observer and object</td></tr>
+<tr><td>plane assumed non-transparent</td><td>plane assumed transparent</td></tr>
+<tr><td>top view comes <b>below</b> the front view</td><td>top view comes <b>above</b> the front view</td></tr>
+<tr><td>left-side view is drawn to the <b>right</b> of the elevation</td><td>left-side view is drawn to the <b>left</b> of the elevation</td></tr>
+<tr><td>recommended by BIS (since 1991) — use in exams unless told otherwise</td><td>used in the USA and other countries</td></tr>
+</table>
+
+<div class="box mis"><span class="label">Fixing a common misconception</span><b>Hidden edges:</b> draw them dashed thin; if a hidden line coincides with a visible edge, the visible line is drawn. <b>Centre lines</b> are shown for holes and axes.</div>
+
+<h3 class="topic" id="g7">G7. Drawing Orthographic Views: Method &amp; Worked Examples</h3>
+<div class="box terms"><span class="label">Key terms — know these words</span>
+<ul>
+<li><b>Pictorial view</b> — the 3-D picture given in the question.</li>
+<li><b>Direction of view (X)</b> — arrow showing which face is the front view.</li>
+<li><b>Hidden detail</b> — edges seen only through the object, shown dashed.</li>
+<li><b>Projector (construction line)</b> — thin line carrying a point from one view to another.</li>
+<li><b>Landscape layout</b> — sheet orientation required for the views.</li>
+</ul>
+</div>
+
+<ol>
+<li>Choose the <b>front-view direction</b> (the X arrow) so that the front view shows the most shape.</li>
+<li>Measure the overall <b>length, height, depth</b>; plan the layout so all three views fit with gaps for dimensions.</li>
+<li>Draw thin boxes of overall size for each view (first angle: FV top-left, TV below it, LSV to the right of FV).</li>
+<li>Add the details one feature at a time, carrying points between views with thin projectors (height between FV and LSV; width between FV and TV).</li>
+<li>Show hidden detail dashed; add centre lines for holes (a hole is a circle in the view along its axis, dashed lines in the others).</li>
+<li>Darken the outlines (HB), then dimension each feature once.</li>
+</ol>
+<div class="diagram">
+<svg viewBox="0 0 520 280" width="520" style="max-width:100%;height:auto" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#1b1f24"><polygon points="70.0,120.0 190.0,120.0 190.0,40.0 130.0,40.0 130.0,80.0 70.0,80.0" fill="#f2f6ff" stroke="#1b1f24" stroke-width="2.6" stroke-linejoin="round"/><text x="130.0" y="32.0" text-anchor="middle" fill="#1b1f24" font-size="12" font-weight="bold">FRONT VIEW</text><rect x="70.0" y="170.0" width="120.0" height="80.0" rx="0" fill="#f2f6ff" stroke="#1b1f24" stroke-width="2.6"/><line x1="130.0" y1="170.0" x2="130.0" y2="250.0" stroke="#1b1f24" stroke-width="2.6" stroke-linecap="round"/><text x="130.0" y="268.0" text-anchor="middle" fill="#1b1f24" font-size="12" font-weight="bold">TOP VIEW</text><rect x="240.0" y="40.0" width="80.0" height="80.0" rx="0" fill="#f2f6ff" stroke="#1b1f24" stroke-width="2.6"/><line x1="240.0" y1="80.0" x2="320.0" y2="80.0" stroke="#1b1f24" stroke-width="2.6" stroke-linecap="round"/><text x="280.0" y="32.0" text-anchor="middle" fill="#1b1f24" font-size="12" font-weight="bold">LEFT SIDE VIEW</text><line x1="70.0" y1="122.0" x2="70.0" y2="168.0" stroke="#8a93a3" stroke-width="1" stroke-dasharray="5,3" stroke-linecap="round"/><line x1="130.0" y1="122.0" x2="130.0" y2="168.0" stroke="#8a93a3" stroke-width="1" stroke-dasharray="5,3" stroke-linecap="round"/><line x1="190.0" y1="122.0" x2="190.0" y2="168.0" stroke="#8a93a3" stroke-width="1" stroke-dasharray="5,3" stroke-linecap="round"/><line x1="192.0" y1="40.0" x2="238.0" y2="40.0" stroke="#8a93a3" stroke-width="1" stroke-dasharray="5,3" stroke-linecap="round"/><line x1="192.0" y1="80.0" x2="238.0" y2="80.0" stroke="#8a93a3" stroke-width="1" stroke-dasharray="5,3" stroke-linecap="round"/><line x1="192.0" y1="120.0" x2="238.0" y2="120.0" stroke="#8a93a3" stroke-width="1" stroke-dasharray="5,3" stroke-linecap="round"/><line x1="84.0" y1="142.0" x2="75.6" y2="142.0" stroke="#1b1f24" stroke-width="1.3" stroke-linecap="round"/><polygon points="70.0,142.0 77.0,139.1 77.0,144.9" fill="#1b1f24"/><line x1="176.0" y1="142.0" x2="184.4" y2="142.0" stroke="#1b1f24" stroke-width="1.3" stroke-linecap="round"/><polygon points="190.0,142.0 183.0,144.9 183.0,139.1" fill="#1b1f24"/><line x1="70.0" y1="142.0" x2="190.0" y2="142.0" stroke="#1b1f24" stroke-width="1.3" stroke-linecap="round"/><text x="130.0" y="138.0" text-anchor="middle" fill="#1b1f24" font-size="11">60</text><line x1="48.0" y1="40.0" x2="48.0" y2="120.0" stroke="#1b1f24" stroke-width="1.3" stroke-linecap="round"/><line x1="48.0" y1="54.0" x2="48.0" y2="45.6" stroke="#1b1f24" stroke-width="1.3" stroke-linecap="round"/><polygon points="48.0,40.0 50.9,47.0 45.1,47.0" fill="#1b1f24"/><line x1="48.0" y1="106.0" x2="48.0" y2="114.4" stroke="#1b1f24" stroke-width="1.3" stroke-linecap="round"/><polygon points="48.0,120.0 45.1,113.0 50.9,113.0" fill="#1b1f24"/><text transform="rotate(-90 43.0 80.0)" x="43.0" y="80.0" text-anchor="middle" fill="#1b1f24" font-size="11">40</text><line x1="30.0" y1="80.0" x2="30.0" y2="120.0" stroke="#1b1f24" stroke-width="1.3" stroke-linecap="round"/><line x1="30.0" y1="94.0" x2="30.0" y2="85.6" stroke="#1b1f24" stroke-width="1.3" stroke-linecap="round"/><polygon points="30.0,80.0 32.9,87.0 27.1,87.0" fill="#1b1f24"/><line x1="30.0" y1="106.0" x2="30.0" y2="114.4" stroke="#1b1f24" stroke-width="1.3" stroke-linecap="round"/><polygon points="30.0,120.0 27.1,113.0 32.9,113.0" fill="#1b1f24"/><text transform="rotate(-90 25.0 100.0)" x="25.0" y="100.0" text-anchor="middle" fill="#1b1f24" font-size="11">20</text><line x1="212.0" y1="170.0" x2="212.0" y2="250.0" stroke="#1b1f24" stroke-width="1.3" stroke-linecap="round"/><line x1="212.0" y1="184.0" x2="212.0" y2="175.6" stroke="#1b1f24" stroke-width="1.3" stroke-linecap="round"/><polygon points="212.0,170.0 214.9,177.0 209.1,177.0" fill="#1b1f24"/><line x1="212.0" y1="236.0" x2="212.0" y2="244.4" stroke="#1b1f24" stroke-width="1.3" stroke-linecap="round"/><polygon points="212.0,250.0 209.1,243.0 214.9,243.0" fill="#1b1f24"/><text transform="rotate(-90 207.0 210.0)" x="207.0" y="210.0" text-anchor="middle" fill="#1b1f24" font-size="11">40</text><text x="280.0" y="138.0" text-anchor="middle" fill="#8a93a3" font-size="11" font-style="italic">first-angle arrangement</text></svg>
+<p class="caption">Three views of a stepped block (first angle). The step appears as the L-shaped outline in the front view, as an edge in the top view and as a horizontal line in the left-side view. No hidden lines are needed because every edge is visible from the viewing side.</p>
+</div>
+<div class="box ex"><span class="label">Worked example</span><b>CAT-1 Q3 (10 marks):</b> a base 75 × 48 × 10 carries a raised block with a Ø22 hole and a triangular rib on one end. Using first angle: (a) front view looking along X — base rectangle 75 × 10 with the block and its Ø22 circle above; (b) top view — 75 × 48 base with the block and rib; (c) left-side view — shows the base, the block and the sloping rib, with the hole as dashed lines. The key shows the hole's axis as centre lines and its hidden edges dashed in TV and LSV.</div>
+
+<p><b>Pyramid question (CAT-1 Q2):</b> see G8. <b>Practice approach:</b> sketch the views freehand first (G10) to check proportions, then draw to scale.</p>
+
+<div class="foreshadow">For '<em>identify the missing view</em>' questions, use the same projector rules in reverse: widths must match between FV and TV, heights between FV and LSV.</div>
+
+<h3 class="topic" id="g8">G8. Projection of Solids</h3>
+<div class="box terms"><span class="label">Key terms — know these words</span>
+<ul>
+<li><b>Polyhedron</b> — solid bounded by plane faces (prism, pyramid, cube).</li>
+<li><b>Solid of revolution</b> — generated by rotating a figure (cylinder, cone, sphere).</li>
+<li><b>Axis</b> — line joining the centres of the two ends (bases).</li>
+<li><b>Base / apex</b> — the face on which a solid rests / the top point of a pyramid or cone.</li>
+<li><b>Simple position</b> — axis perpendicular or parallel to a reference plane.</li>
+<li><b>Generator</b> — slant line of a cone/cylinder surface.</li>
+</ul>
+</div>
+
+<p><b>Solids:</b> prisms (square, hexagonal …), pyramids, cylinders, cones, spheres. <b>Simple positions:</b> axis ⟂ HP (resting on its base), axis ⟂ VP, axis ∥ to both (resting on a face or generator). Rule: <em>when the axis is perpendicular to a plane, the view on that plane shows the true shape of the base</em>.</p>
+<div class="diagram">
+<svg viewBox="0 0 600 274" width="600" style="max-width:100%;height:auto" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#1b1f24"><line x1="30.0" y1="150.0" x2="570.0" y2="150.0" stroke="#1b1f24" stroke-width="1.4" stroke-linecap="round"/><text x="34.0" y="146.0" text-anchor="start" fill="#8a93a3" font-size="12">X</text><text x="566.0" y="146.0" text-anchor="end" fill="#8a93a3" font-size="12">Y</text><text x="566.0" y="164.0" text-anchor="end" fill="#8a93a3" font-size="11">HP</text><text x="566.0" y="136.0" text-anchor="end" fill="#8a93a3" font-size="11">VP</text><text x="95.0" y="16.0" text-anchor="middle" fill="#1b1f24" font-size="13" font-weight="bold">Square pyramid</text><polygon points="70.0,150.0 120.0,150.0 95.0,80.0" fill="#e8f0fc" stroke="#1b1f24" stroke-width="2.4" stroke-linejoin="round"/><polygon points="70.0,162.0 120.0,162.0 120.0,212.0 70.0,212.0" fill="#e8f0fc" stroke="#1b1f24" stroke-width="2.4" stroke-linejoin="round"/><line x1="70.0" y1="162.0" x2="120.0" y2="212.0" stroke="#1b1f24" stroke-width="1.8" stroke-linecap="round"/><line x1="120.0" y1="162.0" x2="70.0" y2="212.0" stroke="#1b1f24" stroke-width="1.8" stroke-linecap="round"/><text x="225.0" y="16.0" text-anchor="middle" fill="#1b1f24" font-size="13" font-weight="bold">Hexagonal prism</text><rect x="200.0" y="85.0" width="50.0" height="65.0" rx="0" fill="#e8f0fc" stroke="#1b1f24" stroke-width="2.4"/><line x1="212.5" y1="85.0" x2="212.5" y2="150.0" stroke="#1b1f24" stroke-width="2" stroke-linecap="round"/><line x1="237.5" y1="85.0" x2="237.5" y2="150.0" stroke="#1b1f24" stroke-width="2" stroke-linecap="round"/><polygon points="200.0,183.7 212.5,162.0 237.5,162.0 250.0,183.7 237.5,205.3 212.5,205.3" fill="#e8f0fc" stroke="#1b1f24" stroke-width="2.4" stroke-linejoin="round"/><text x="355.0" y="16.0" text-anchor="middle" fill="#1b1f24" font-size="13" font-weight="bold">Cone</text><polygon points="325.0,150.0 385.0,150.0 355.0,80.0" fill="#e8f0fc" stroke="#1b1f24" stroke-width="2.4" stroke-linejoin="round"/><circle cx="355" cy="192" r="30" fill="#e8f0fc" stroke="#1b1f24" stroke-width="2.4"/><circle cx="355.0" cy="192.0" r="2.5" fill="#1b1f24"/><text x="485.0" y="16.0" text-anchor="middle" fill="#1b1f24" font-size="13" font-weight="bold">Cylinder</text><rect x="460.0" y="85.0" width="50.0" height="65.0" rx="0" fill="#e8f0fc" stroke="#1b1f24" stroke-width="2.4"/><line x1="485.0" y1="77.0" x2="485.0" y2="156.0" stroke="#8a93a3" stroke-width="1" stroke-dasharray="14,3,2,3" stroke-linecap="round"/><circle cx="485" cy="187" r="25" fill="#e8f0fc" stroke="#1b1f24" stroke-width="2.4"/><line x1="454.0" y1="187.0" x2="516.0" y2="187.0" stroke="#8a93a3" stroke-width="1" stroke-dasharray="14,3,2,3" stroke-linecap="round"/><line x1="485.0" y1="156.0" x2="485.0" y2="218.0" stroke="#8a93a3" stroke-width="1" stroke-dasharray="14,3,2,3" stroke-linecap="round"/><text x="10.0" y="60.0" text-anchor="start" fill="#1b1f24" font-size="12" font-weight="bold">FV</text><text x="10.0" y="186.0" text-anchor="start" fill="#1b1f24" font-size="12" font-weight="bold">TV</text><text x="300.0" y="262.0" text-anchor="middle" fill="#8a93a3" font-size="12" font-style="italic">all four: axis ⟂ HP, resting on the base on HP (simple position)</text></svg>
+<p class="caption">Front and top views of regular solids in simple position. The pyramid is from the CAT-1 key (base 50, axis 70, a base side parallel to VP); the hexagonal prism has side 25, height 65, base edge parallel to VP.</p>
+</div>
+<table>
+<tr><th>Solid, axis ⟂ HP</th><th>Top view</th><th>Front view</th></tr>
+<tr><td>Square prism</td><td>square</td><td>rectangle</td></tr>
+<tr><td>Square pyramid</td><td>square with diagonals</td><td>isosceles triangle</td></tr>
+<tr><td>Hexagonal prism</td><td>regular hexagon</td><td>rectangle with 2 inner lines (edge ∥ VP)</td></tr>
+<tr><td>Cylinder</td><td>circle</td><td>rectangle</td></tr>
+<tr><td>Cone</td><td>circle with centre dot</td><td>isosceles triangle</td></tr>
+<tr><td>Sphere</td><td>circle</td><td>circle</td></tr>
+</table>
+
+<div class="box ex"><span class="label">Worked example</span><b>CAT-1 Q2:</b> square pyramid, base 50, axis 70, resting on its base on HP with a base side parallel to VP. <b>TV:</b> square 50 × 50 with both diagonals to the apex (o is at the centre). <b>FV:</b> an isosceles triangle with base 50 on the XY line (a′(d′) and b′(c′) — rear corners coincide) and apex o′ <code>70</code> above XY, on the axis. Label corners, show the axis as a chain line, dimension 50 and 70.<br><b>Hexagonal prism</b>, side 25, height 65, base edge ∥ VP: TV hexagon of side 25 (width across corners 50, across flats 25√3 = 43.3); FV a 50 × 65 rectangle with inner lines at ±12.5 from the axis.</div>
+
+<div class="box mis"><span class="label">Fixing a common misconception</span>Do not forget the <em>rear</em> corners: in the front view the corners behind the front ones coincide with them (written a′(d′)); hidden edges are dashed only if they are really hidden.</div>
+
+<h3 class="topic" id="g9">G9. Isometric Projection</h3>
+<div class="box terms"><span class="label">Key terms — know these words</span>
+<ul>
+<li><b>Isometric</b> — equal measure — all three axes equally foreshortened.</li>
+<li><b>Isometric axes</b> — one vertical, two at 30° to the horizontal; 120° apart.</li>
+<li><b>Isometric scale</b> — scale of shortened lengths; 0.816 of true length.</li>
+<li><b>Isometric drawing</b> — drawn with true lengths (scale 1) — easier, 22% larger.</li>
+<li><b>Isometric projection</b> — drawn with the isometric scale.</li>
+<li><b>Isometric / non-isometric lines</b> — lines parallel to the axes / all others.</li>
+<li><b>Four-centre method</b> — arcs construction of the isometric ellipse inside a rhombus.</li>
+</ul>
+</div>
+
+<p>Orthographic views are accurate but need spatial imagination; an <b>isometric view</b> presents the object in 3-D in one picture. The cube is turned so that its three visible edges make equal angles with the picture plane, so they are drawn 120° apart.</p>
+<div class="diagram">
+<svg viewBox="0 0 780 290" width="780" style="max-width:100%;height:auto" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#1b1f24"><polygon points="190.0,142.0 283.5,88.0 190.0,34.0 96.5,88.0" fill="#f3f4f7" stroke="#1b1f24" stroke-width="2.2" stroke-linejoin="round"/><polygon points="190.0,250.0 283.5,196.0 283.5,88.0 190.0,142.0" fill="#dfe4ee" stroke="#1b1f24" stroke-width="2.2" stroke-linejoin="round"/><polygon points="190.0,250.0 96.5,196.0 96.5,88.0 190.0,142.0" fill="#c9d2e3" stroke="#1b1f24" stroke-width="2.2" stroke-linejoin="round"/><line x1="190.0" y1="250.0" x2="342.8" y2="161.8" stroke="#c0392b" stroke-width="2" stroke-linecap="round"/><polygon points="349.0,158.2 343.1,166.0 339.3,159.4" fill="#c0392b"/><text x="357.0" y="162.2" text-anchor="start" fill="#c0392b" font-size="12" font-weight="bold">x axis</text><line x1="190.0" y1="250.0" x2="37.2" y2="161.8" stroke="#c0392b" stroke-width="2" stroke-linecap="round"/><polygon points="31.0,158.2 40.7,159.4 36.9,166.0" fill="#c0392b"/><text x="23.0" y="162.2" text-anchor="end" fill="#c0392b" font-size="12" font-weight="bold">y axis</text><line x1="190.0" y1="250.0" x2="190.0" y2="68.2" stroke="#c0392b" stroke-width="2" stroke-linecap="round"/><polygon points="190.0,61.0 193.8,70.0 186.2,70.0" fill="#c0392b"/><text x="190.0" y="53.0" text-anchor="middle" fill="#c0392b" font-size="12" font-weight="bold">z axis (vertical)</text><text x="190.0" y="280.0" text-anchor="middle" fill="#1b1f24" font-size="12" font-weight="bold">120° between each pair of axes</text><text x="120.0" y="246.0" text-anchor="end" fill="#1b1f24" font-size="12">30°</text><text x="260.0" y="246.0" text-anchor="start" fill="#1b1f24" font-size="12">30°</text><line x1="70.0" y1="250.0" x2="310.0" y2="250.0" stroke="#8a93a3" stroke-width="1" stroke-dasharray="4,3" stroke-linecap="round"/><text x="400.0" y="90.0" text-anchor="start" fill="#1b1f24" font-size="13" font-weight="bold">Isometric axes: one vertical, two at 30°</text><text x="400.0" y="108.0" text-anchor="start" fill="#1b1f24" font-size="13" font-weight="bold">to the horizontal.</text><text x="400.0" y="138.0" text-anchor="start" fill="#8a93a3" font-size="12">Lines parallel to an axis = isometric lines</text><text x="400.0" y="154.0" text-anchor="start" fill="#8a93a3" font-size="12">(true length in an isometric DRAWING,</text><text x="400.0" y="170.0" text-anchor="start" fill="#8a93a3" font-size="12">×0.816 in an isometric PROJECTION).</text><text x="400.0" y="198.0" text-anchor="start" fill="#8a93a3" font-size="12">Other lines = non-isometric lines: locate their</text><text x="400.0" y="214.0" text-anchor="start" fill="#8a93a3" font-size="12">end points, then join (never measure directly).</text></svg>
+<p class="caption">Isometric axes drawn on a cube. All three faces are foreshortened equally, which is why it is called ‘iso-metric’ (equal measure).</p>
+</div>
+<div class="box why"><span class="label">Why 0.816?</span>The cube's diagonal is in the vertical plane; a true edge BP and its isometric image BA satisfy BA/BO = 1/cos 30° = 2/√3 and BP/BO = 1/cos 45° = √2. Hence BA/BP = (2/√3)(1/√2) = √2/√3 = <b>0.816</b> (≈ 9/11).</div>
+<div class="diagram">
+<svg viewBox="0 0 680 250" width="680" style="max-width:100%;height:auto" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#1b1f24"><line x1="50.0" y1="210.0" x2="330.0" y2="210.0" stroke="#1b1f24" stroke-width="1.6" stroke-linecap="round"/><line x1="50.0" y1="210.0" x2="233.8" y2="26.2" stroke="#1e468c" stroke-width="2" stroke-linecap="round"/><line x1="50.0" y1="210.0" x2="309.8" y2="60.0" stroke="#c0392b" stroke-width="2" stroke-linecap="round"/><text x="146.0" y="198.0" text-anchor="start" fill="#c0392b" font-size="12" font-weight="bold">30°</text><text x="120.0" y="158.0" text-anchor="start" fill="#1e468c" font-size="12" font-weight="bold">45°</text><path d="M110,210 A60,60 0 0 0 102.0,180.0" fill="none" stroke="#c0392b" stroke-width="1.4"/><path d="M130,210 A80,80 0 0 0 106.6,153.4" fill="none" stroke="#1e468c" stroke-width="1.4"/><line x1="79.7" y1="180.3" x2="79.7" y2="192.9" stroke="#8a93a3" stroke-width="1" stroke-dasharray="3,3" stroke-linecap="round"/><circle cx="79.7" cy="180.3" r="3.5" fill="#1e468c"/><circle cx="79.7" cy="192.9" r="3.5" fill="#c0392b"/><text x="73.7" y="176.3" text-anchor="end" fill="#1e468c" font-size="11" font-weight="bold">10</text><text x="87.7" y="206.9" text-anchor="start" fill="#c0392b" font-size="10">8.2</text><line x1="109.4" y1="150.6" x2="109.4" y2="175.7" stroke="#8a93a3" stroke-width="1" stroke-dasharray="3,3" stroke-linecap="round"/><circle cx="109.4" cy="150.6" r="3.5" fill="#1e468c"/><circle cx="109.4" cy="175.7" r="3.5" fill="#c0392b"/><text x="103.4" y="146.6" text-anchor="end" fill="#1e468c" font-size="11" font-weight="bold">20</text><text x="117.4" y="189.7" text-anchor="start" fill="#c0392b" font-size="10">16.3</text><line x1="139.1" y1="120.9" x2="139.1" y2="158.6" stroke="#8a93a3" stroke-width="1" stroke-dasharray="3,3" stroke-linecap="round"/><circle cx="139.1" cy="120.9" r="3.5" fill="#1e468c"/><circle cx="139.1" cy="158.6" r="3.5" fill="#c0392b"/><text x="133.1" y="116.9" text-anchor="end" fill="#1e468c" font-size="11" font-weight="bold">30</text><text x="147.1" y="172.6" text-anchor="start" fill="#c0392b" font-size="10">24.5</text><line x1="168.8" y1="91.2" x2="168.8" y2="141.4" stroke="#8a93a3" stroke-width="1" stroke-dasharray="3,3" stroke-linecap="round"/><circle cx="168.8" cy="91.2" r="3.5" fill="#1e468c"/><circle cx="168.8" cy="141.4" r="3.5" fill="#c0392b"/><text x="162.8" y="87.2" text-anchor="end" fill="#1e468c" font-size="11" font-weight="bold">40</text><text x="176.8" y="155.4" text-anchor="start" fill="#c0392b" font-size="10">32.7</text><line x1="198.5" y1="61.5" x2="198.5" y2="124.3" stroke="#8a93a3" stroke-width="1" stroke-dasharray="3,3" stroke-linecap="round"/><circle cx="198.5" cy="61.5" r="3.5" fill="#1e468c"/><circle cx="198.5" cy="124.3" r="3.5" fill="#c0392b"/><text x="192.5" y="57.5" text-anchor="end" fill="#1e468c" font-size="11" font-weight="bold">50</text><text x="206.5" y="138.3" text-anchor="start" fill="#c0392b" font-size="10">40.8</text><text x="250.0" y="40.0" text-anchor="start" fill="#1e468c" font-size="12" font-weight="bold">TRUE LENGTHS (mm) — on the 45° line</text><text x="210.0" y="236.0" text-anchor="middle" fill="#c0392b" font-size="12" font-weight="bold">ISOMETRIC LENGTHS — on the 30° line</text><text x="400.0" y="100.0" text-anchor="start" fill="#1b1f24" font-size="13" font-weight="bold">isometric length ÷ true length</text><text x="400.0" y="120.0" text-anchor="start" fill="#1b1f24" font-size="13" font-weight="bold">= cos 45° / cos 30° = 0.816</text><text x="400.0" y="140.0" text-anchor="start" fill="#8a93a3" font-size="12">(≈ 9/11 in the lecture)</text></svg>
+<p class="caption">Constructing the isometric scale: mark true lengths on the 45° line, drop verticals onto the 30° line, and read the shortened (isometric) lengths there. Every length along an isometric axis is multiplied by about 0.816.</p>
+</div>
+<table>
+<tr><th></th><th>Isometric projection</th><th>Isometric drawing</th></tr>
+<tr><td>Lengths along axes</td><td>× 0.816 (isometric scale)</td><td>true length</td></tr>
+<tr><td>Size</td><td>smaller, true projection</td><td>22% larger, same shape</td></tr>
+<tr><td>Used</td><td>exact representation</td><td>exam drawings (faster)</td></tr>
+</table>
+<div class="diagram">
+<svg viewBox="0 0 520 300" width="520" style="max-width:100%;height:auto" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#1b1f24"><polygon points="230.0,270.0 146.9,222.0 146.9,174.0 230.0,222.0" fill="#c9d2e3" stroke="#1b1f24" stroke-width="2.2" stroke-linejoin="round"/><polygon points="230.0,270.0 292.4,234.0 292.4,186.0 230.0,222.0" fill="#dfe4ee" stroke="#1b1f24" stroke-width="2.2" stroke-linejoin="round"/><polygon points="230.0,222.0 292.4,186.0 209.2,138.0 146.9,174.0" fill="#f3f4f7" stroke="#1b1f24" stroke-width="2.2" stroke-linejoin="round"/><polygon points="292.4,186.0 209.2,138.0 209.2,90.0 292.4,138.0" fill="#c9d2e3" stroke="#1b1f24" stroke-width="2.2" stroke-linejoin="round"/><polygon points="292.4,234.0 354.7,198.0 354.7,102.0 292.4,138.0" fill="#dfe4ee" stroke="#1b1f24" stroke-width="2.2" stroke-linejoin="round"/><polygon points="292.4,138.0 354.7,102.0 271.6,54.0 209.2,90.0" fill="#f3f4f7" stroke="#1b1f24" stroke-width="2.2" stroke-linejoin="round"/><text x="306.4" y="256.0" text-anchor="middle" fill="#1b1f24" font-size="13" font-weight="bold">60</text><text x="174.4" y="266.0" text-anchor="middle" fill="#1b1f24" font-size="13" font-weight="bold">40</text><text x="370.7" y="150.0" text-anchor="start" fill="#1b1f24" font-size="13" font-weight="bold">40</text><text x="136.9" y="202.0" text-anchor="end" fill="#1b1f24" font-size="13" font-weight="bold">20</text></svg>
+<p class="caption">Isometric view of the same stepped block (axes at 30°, true lengths). Compare it with the three orthographic views: the step, the riser face and the top surfaces are all visible in one picture.</p>
+</div>
+<h4 class="sub">Isometric of a circle (four-centre method)</h4>
+
+<ol>
+<li>Draw a rhombus of side equal to the circle's diameter on the 30° axes.</li>
+<li>Mark the midpoints of each side.</li>
+<li>Join them to the opposite acute corners to locate the centres; draw the four arcs inside the rhombus.</li>
+<li>The result is the isometric ellipse.</li>
+</ol>
+
+<div class="box ex"><span class="label">Worked example</span><b>CAT-1 Q4:</b> vertical cylinder Ø50, axis 60. Draw a rhombus of side 50 (30° lines) for the top, make the ellipse (major axis ≈ 1.22 × 50 = <code>61 mm</code>, minor ≈ 0.71 × 50 = <code>35 mm</code> in an isometric drawing), repeat at the bottom 60 below along the vertical, and join the two ellipses by vertical tangents. In true isometric <em>projection</em> the ellipse's major axis equals the true diameter (50) and the minor is 50/√3 = 29.</div>
+<div class="diagram">
+<svg viewBox="0 0 720 340" width="720" style="max-width:100%;height:auto" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#1b1f24"><polygon points="470.0,113.0 565.3,168.0 470.0,223.0 374.7,168.0" fill="none" stroke="#8a93a3" stroke-width="1.1" stroke-dasharray="4,3"/><polygon points="470.0,245.0 565.3,300.0 470.0,355.0 374.7,300.0" fill="none" stroke="#8a93a3" stroke-width="1.1" stroke-dasharray="4,3"/><line x1="402.6" y1="300.0" x2="402.6" y2="168.0" stroke="#1b1f24" stroke-width="2.6" stroke-linecap="round"/><line x1="537.4" y1="300.0" x2="537.4" y2="168.0" stroke="#1b1f24" stroke-width="2.6" stroke-linecap="round"/><polyline points="402.6,300.0 402.6,300.7 402.7,301.4 402.7,302.0 402.8,302.7 402.9,303.4 403.0,304.1 403.1,304.7 403.3,305.4 403.5,306.1 403.7,306.8 403.9,307.4 404.1,308.1 404.4,308.7 404.6,309.4 404.9,310.1 405.2,310.7 405.6,311.4 405.9,312.0 406.3,312.7 406.7,313.3 407.1,313.9 407.5,314.6 408.0,315.2 408.5,315.8 409.0,316.4 409.5,317.0 410.0,317.7 410.5,318.3 411.1,318.9 411.7,319.4 412.3,320.0 412.9,320.6 413.5,321.2 414.2,321.7 414.8,322.3 415.5,322.9 416.2,323.4 416.9,323.9 417.7,324.5 418.4,325.0 419.2,325.5 419.9,326.0 420.7,326.5 421.5,327.0 422.4,327.5 423.2,328.0 424.1,328.4 424.9,328.9 425.8,329.4 426.7,329.8 427.6,330.2 428.5,330.6 429.5,331.1 430.4,331.5 431.4,331.9 432.3,332.2 433.3,332.6 434.3,333.0 435.3,333.3 436.3,333.7 437.3,334.0 438.4,334.3 439.4,334.7 440.5,335.0 441.5,335.2 442.6,335.5 443.7,335.8 444.8,336.1 445.9,336.3 447.0,336.5 448.1,336.8 449.2,337.0 450.3,337.2 451.4,337.4 452.6,337.6 453.7,337.7 454.8,337.9 456.0,338.0 457.1,338.2 458.3,338.3 459.5,338.4 460.6,338.5 461.8,338.6 463.0,338.7 464.1,338.7 465.3,338.8 466.5,338.8 467.6,338.9 468.8,338.9 470.0,338.9 471.2,338.9 472.4,338.9 473.5,338.8 474.7,338.8 475.9,338.7 477.0,338.7 478.2,338.6 479.4,338.5 480.5,338.4 481.7,338.3 482.9,338.2 484.0,338.0 485.2,337.9 486.3,337.7 487.4,337.6 488.6,337.4 489.7,337.2 490.8,337.0 491.9,336.8 493.0,336.5 494.1,336.3 495.2,336.1 496.3,335.8 497.4,335.5 498.5,335.2 499.5,335.0 500.6,334.7 501.6,334.3 502.7,334.0 503.7,333.7 504.7,333.3 505.7,333.0 506.7,332.6 507.7,332.2 508.6,331.9 509.6,331.5 510.5,331.1 511.5,330.6 512.4,330.2 513.3,329.8 514.2,329.4 515.1,328.9 515.9,328.4 516.8,328.0 517.6,327.5 518.5,327.0 519.3,326.5 520.1,326.0 520.8,325.5 521.6,325.0 522.3,324.5 523.1,323.9 523.8,323.4 524.5,322.9 525.2,322.3 525.8,321.7 526.5,321.2 527.1,320.6 527.7,320.0 528.3,319.4 528.9,318.9 529.5,318.3 530.0,317.7 530.5,317.0 531.0,316.4 531.5,315.8 532.0,315.2 532.5,314.6 532.9,313.9 533.3,313.3 533.7,312.7 534.1,312.0 534.4,311.4 534.8,310.7 535.1,310.1 535.4,309.4 535.6,308.7 535.9,308.1 536.1,307.4 536.3,306.8 536.5,306.1 536.7,305.4 536.9,304.7 537.0,304.1 537.1,303.4 537.2,302.7 537.3,302.0 537.3,301.4 537.4,300.7 537.4,300.0" fill="none" stroke="#1b1f24" stroke-width="2.6" stroke-linejoin="round"/><polyline points="517.6,140.5 516.1,139.6 514.5,138.8 512.9,138.0 511.3,137.3 509.6,136.5 507.9,135.8 506.1,135.2 504.3,134.5 502.5,133.9 500.6,133.3 498.7,132.8 496.8,132.3 494.8,131.8 492.8,131.4 490.8,131.0 488.8,130.7 486.8,130.3 484.7,130.0 482.6,129.8 480.5,129.6 478.4,129.4 476.3,129.3 474.2,129.2 472.1,129.1 470.0,129.1 467.9,129.1 465.8,129.2 463.7,129.3 461.6,129.4 459.5,129.6 457.4,129.8 455.3,130.0 453.2,130.3 451.2,130.7 449.2,131.0 447.2,131.4 445.2,131.8 443.2,132.3 441.3,132.8 439.4,133.3 437.5,133.9 435.7,134.5 433.9,135.2 432.1,135.8 430.4,136.5 428.7,137.3 427.1,138.0 425.5,138.8 423.9,139.6 422.4,140.5 420.9,141.4 419.5,142.3 418.1,143.2 416.8,144.2 415.5,145.1 414.3,146.1 413.1,147.2 412.0,148.2 411.0,149.3 410.0,150.3 409.0,151.4 408.2,152.6 407.4,153.7 406.6,154.8 405.9,156.0 405.3,157.1 404.8,158.3 404.3,159.5 403.8,160.7 403.5,161.9 403.2,163.1 402.9,164.3 402.8,165.6 402.7,166.8 402.6,168.0 402.7,169.2 402.8,170.4 402.9,171.7 403.2,172.9 403.5,174.1 403.8,175.3 404.3,176.5 404.8,177.7 405.3,178.9 405.9,180.0 406.6,181.2 407.4,182.3 408.2,183.4 409.0,184.6 410.0,185.7 411.0,186.7 412.0,187.8 413.1,188.8 414.3,189.9 415.5,190.9 416.8,191.8 418.1,192.8 419.5,193.7 420.9,194.6 422.4,195.5 423.9,196.4 425.5,197.2 427.1,198.0 428.7,198.7 430.4,199.5 432.1,200.2 433.9,200.8 435.7,201.5 437.5,202.1 439.4,202.7 441.3,203.2 443.2,203.7 445.2,204.2 447.2,204.6 449.2,205.0 451.2,205.3 453.2,205.7 455.3,206.0 457.4,206.2 459.5,206.4 461.6,206.6 463.7,206.7 465.8,206.8 467.9,206.9 470.0,206.9 472.1,206.9 474.2,206.8 476.3,206.7 478.4,206.6 480.5,206.4 482.6,206.2 484.7,206.0 486.8,205.7 488.8,205.3 490.8,205.0 492.8,204.6 494.8,204.2 496.8,203.7 498.7,203.2 500.6,202.7 502.5,202.1 504.3,201.5 506.1,200.8 507.9,200.2 509.6,199.5 511.3,198.7 512.9,198.0 514.5,197.2 516.1,196.4 517.6,195.5 519.1,194.6 520.5,193.7 521.9,192.8 523.2,191.8 524.5,190.9 525.7,189.9 526.9,188.8 528.0,187.8 529.0,186.7 530.0,185.7 531.0,184.6 531.8,183.4 532.6,182.3 533.4,181.2 534.1,180.0 534.7,178.9 535.2,177.7 535.7,176.5 536.2,175.3 536.5,174.1 536.8,172.9 537.1,171.7 537.2,170.4 537.3,169.2 537.4,168.0 537.3,166.8 537.2,165.6 537.1,164.3 536.8,163.1 536.5,161.9 536.2,160.7 535.7,159.5 535.2,158.3 534.7,157.1 534.1,156.0 533.4,154.8 532.6,153.7 531.8,152.6 531.0,151.4 530.0,150.3 529.0,149.3 528.0,148.2 526.9,147.2 525.7,146.1 524.5,145.1 523.2,144.2 521.9,143.2 520.5,142.3 519.1,141.4 517.6,140.5" fill="none" stroke="#1b1f24" stroke-width="2.6" stroke-linejoin="round"/><path d="M0,0" /><line x1="470.0" y1="113.0" x2="470.0" y2="355.0" stroke="#8a93a3" stroke-width="1" stroke-dasharray="14,3,2,3" stroke-linecap="round"/><circle cx="470.0" cy="168.0" r="3" fill="#1b1f24"/><circle cx="470.0" cy="300.0" r="3" fill="#1b1f24"/><line x1="582.4" y1="168.0" x2="582.4" y2="300.0" stroke="#1b1f24" stroke-width="1.3" stroke-linecap="round"/><line x1="582.4" y1="182.0" x2="582.4" y2="173.6" stroke="#1b1f24" stroke-width="1.3" stroke-linecap="round"/><polygon points="582.4,168.0 585.3,175.0 579.4,175.0" fill="#1b1f24"/><line x1="582.4" y1="286.0" x2="582.4" y2="294.4" stroke="#1b1f24" stroke-width="1.3" stroke-linecap="round"/><polygon points="582.4,300.0 579.4,293.0 585.3,293.0" fill="#1b1f24"/><text transform="rotate(-90 577.4 234.0)" x="577.4" y="234.0" text-anchor="middle" fill="#1b1f24" font-size="13">60</text><text x="20.0" y="70.0" text-anchor="start" fill="#1b1f24" font-size="13" font-weight="bold">Four-centre method, isometric DRAWING (true lengths):</text><text x="20.0" y="92.0" text-anchor="start" fill="#8a93a3" font-size="12">1. rhombus of side = diameter (50 mm) on the 30° axes</text><text x="20.0" y="110.0" text-anchor="start" fill="#8a93a3" font-size="12">2. ellipse inside it: major axis ≈ 1.22 × 50 = 61 mm,</text><text x="20.0" y="126.0" text-anchor="start" fill="#8a93a3" font-size="12">    minor axis ≈ 0.71 × 50 = 35 mm</text><text x="20.0" y="144.0" text-anchor="start" fill="#8a93a3" font-size="12">3. repeat at the top, raised by the 60 mm height</text><text x="20.0" y="162.0" text-anchor="start" fill="#8a93a3" font-size="12">4. join the two ellipses with vertical tangents</text></svg>
+<p class="caption">Isometric view of a vertical cylinder (Ø50 × 60), as asked in CAT-1 Q4: two identical ellipses joined by vertical tangents; only the lower half of the bottom ellipse is visible.</p>
+</div>
+<p><b>Orthographic → isometric (from the freehand lecture):</b> construct a box of the overall length, width and height on the 30° axes, then cut away or add the features measured along the axes; transfer non-isometric (sloping) edges by locating their end points.</p>
+
+<h3 class="topic" id="g10">G10. Freehand Sketching</h3>
+<div class="box terms"><span class="label">Key terms — know these words</span>
+<ul>
+<li><b>Freehand sketch</b> — drawn without instruments, quickly, with correct proportions.</li>
+<li><b>Proportion</b> — the correct relative sizes of features.</li>
+<li><b>Construction (thin) lines</b> — light guide lines later darkened.</li>
+<li><b>Visualisation</b> — the ability to picture an object in 3-D.</li>
+<li><b>Overall size box</b> — thin rectangle of length × height for each view.</li>
+</ul>
+</div>
+
+<ul>
+<li><b>Why sketch:</b> quick idea generation; flexible; effective communication; encourages creativity; supports problem solving; useful in early design stages; improves visualisation; needs no special tools.</li>
+</ul>
+<div class="diagram">
+<svg viewBox="0 0 720 205" width="720" style="max-width:100%;height:auto" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#1b1f24"><text x="80.0" y="20.0" text-anchor="middle" fill="#1b1f24" font-size="12" font-weight="bold">vertical: top → bottom</text><line x1="60.0" y1="40.0" x2="60.0" y2="150.0" stroke="#1b1f24" stroke-width="2.4" stroke-linecap="round"/><line x1="100.0" y1="50.0" x2="100.0" y2="130.4" stroke="#1e468c" stroke-width="3" stroke-linecap="round"/><polygon points="100.0,140.0 95.0,128.0 105.0,128.0" fill="#1e468c"/><circle cx="60.0" cy="40.0" r="4" fill="#1b1f24"/><circle cx="60.0" cy="150.0" r="4" fill="#1b1f24"/><text x="230.0" y="20.0" text-anchor="middle" fill="#1b1f24" font-size="12" font-weight="bold">horizontal: left → right</text><line x1="160.0" y1="100.0" x2="310.0" y2="100.0" stroke="#1b1f24" stroke-width="2.4" stroke-linecap="round"/><line x1="170.0" y1="70.0" x2="290.4" y2="70.0" stroke="#1e468c" stroke-width="3" stroke-linecap="round"/><polygon points="300.0,70.0 288.0,75.0 288.0,65.0" fill="#1e468c"/><circle cx="160.0" cy="100.0" r="4" fill="#1b1f24"/><circle cx="310.0" cy="100.0" r="4" fill="#1b1f24"/><text x="430.0" y="20.0" text-anchor="middle" fill="#1b1f24" font-size="12" font-weight="bold">inclined (↗ or ↙)</text><line x1="380.0" y1="150.0" x2="470.0" y2="45.0" stroke="#1b1f24" stroke-width="2.4" stroke-linecap="round"/><circle cx="380.0" cy="150.0" r="4" fill="#1b1f24"/><circle cx="470.0" cy="45.0" r="4" fill="#1b1f24"/><text x="620.0" y="20.0" text-anchor="middle" fill="#1b1f24" font-size="12" font-weight="bold">circle</text><line x1="564.0" y1="100.0" x2="676.0" y2="100.0" stroke="#8a93a3" stroke-width="1" stroke-dasharray="14,3,2,3" stroke-linecap="round"/><line x1="620.0" y1="44.0" x2="620.0" y2="156.0" stroke="#8a93a3" stroke-width="1" stroke-dasharray="14,3,2,3" stroke-linecap="round"/><line x1="582.0" y1="62.0" x2="658.0" y2="138.0" stroke="#8a93a3" stroke-width="1" stroke-dasharray="14,3,2,3" stroke-linecap="round"/><line x1="582.0" y1="138.0" x2="658.0" y2="62.0" stroke="#8a93a3" stroke-width="1" stroke-dasharray="14,3,2,3" stroke-linecap="round"/><circle cx="666.0" cy="100.0" r="3" fill="#c0392b"/><circle cx="652.5" cy="132.5" r="3" fill="#c0392b"/><circle cx="620.0" cy="146.0" r="3" fill="#c0392b"/><circle cx="587.5" cy="132.5" r="3" fill="#c0392b"/><circle cx="574.0" cy="100.0" r="3" fill="#c0392b"/><circle cx="587.5" cy="67.5" r="3" fill="#c0392b"/><circle cx="620.0" cy="54.0" r="3" fill="#c0392b"/><circle cx="652.5" cy="67.5" r="3" fill="#c0392b"/><circle cx="620" cy="100" r="46" fill="none" stroke="#1b1f24" stroke-width="2.2"/><text x="620.0" y="178.0" text-anchor="middle" fill="#8a93a3" font-size="11">radius marks on centre lines</text><text x="620.0" y="192.0" text-anchor="middle" fill="#8a93a3" font-size="11">+ diagonals, then sweep through</text><text x="60.0" y="190.0" text-anchor="start" fill="#c0392b" font-size="12" font-weight="bold">eye on the END point; mark both end points first</text></svg>
+<p class="caption">Freehand sketching technique from the lecture: always mark the end points, look at the end point (not the pencil tip), and build circles and ellipses from centre lines with radius marks.</p>
+</div>
+<ul>
+<li><b>Vertical lines</b> are drawn from top to bottom (long lines with overlapping strokes); <b>horizontal</b> lines from left to right; the eye must be on the end point.</li>
+<li><b>Inclined lines</b> are drawn upward from left to right or downward from right to left.</li>
+<li>Always <b>mark the end points first</b>.</li>
+<li><b>Circle:</b> draw centre lines, mark points at the radius on them (add diagonals for accuracy), then sweep through the marks; an ellipse is built the same way.</li>
+</ul>
+
+<h4 class="sub">Guidelines for orthographic sketches</h4>
+
+<ol>
+<li>Decide the views to be drawn.</li>
+<li>Draw boxes with thin lines of the overall length, width and height of the object.</li>
+<li>Add the details; dark outlines for visible edges, dashed for hidden edges.</li>
+<li>Dimension.</li>
+</ol>
+
+<div class="box ex"><span class="label">Worked example</span>Object with overall 70 (length) × 30 (height) × 50 (depth): boxes — FV 70 × 30, TV 70 × 50 below it, right-side view 50 × 30 to the left of the front view (third angle). Then add the step (15 mm high, 40 wide), the 20 slot, and so on. A second example (slot 16 wide × 10 deep through a 60 × 40 × 40 block) is sketched the same way: FV with the slot notch, TV with three strips, LSV with two dashed lines for the hidden slot.</div>
+
+<p><b>Simple machine components</b> to practise: bolt and nut, washer, V-block, bearing block, shaft with keyway, bracket — sketch the proportions first, then add holes, fillets and centre lines.</p>
+
+<h3 class="topic" id="g11">G11. Perspective Projection</h3>
+<div class="box terms"><span class="label">Key terms — know these words</span>
+<ul>
+<li><b>Perspective</b> — the image formed on a picture plane by visual rays from the eye to the object.</li>
+<li><b>PP (picture plane)</b> — transparent vertical plane on which the image is formed.</li>
+<li><b>GP (ground plane)</b> — horizontal plane on which the object stands.</li>
+<li><b>GL (ground line)</b> — intersection of PP and GP.</li>
+<li><b>Station point (S)</b> — position of the observer's eye.</li>
+<li><b>Horizon line (HL)</b> — horizontal line at eye level on the PP.</li>
+<li><b>Centre of vision (C)</b> — foot of the axis of vision on the PP.</li>
+<li><b>Visual ray</b> — line from the eye to a point of the object.</li>
+<li><b>Vanishing point</b> — where receding parallel lines appear to meet.</li>
+</ul>
+</div>
+
+<p>In parallel (orthographic/isometric) projection the projectors are parallel; in <b>perspective</b> they converge on the eye, so parts farther away look smaller, as in a photograph. The object is placed behind the transparent picture plane and the image is formed where the visual rays pierce the PP.</p>
+<div class="diagram">
+<svg viewBox="0 0 600 290" width="600" style="max-width:100%;height:auto" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#1b1f24"><line x1="30.0" y1="230.0" x2="570.0" y2="230.0" stroke="#1b1f24" stroke-width="2.4" stroke-linecap="round"/><text x="560.0" y="248.0" text-anchor="end" fill="#8a93a3" font-size="12" font-weight="bold">GP (ground plane)</text><line x1="300.0" y1="40.0" x2="300.0" y2="230.0" stroke="#1e468c" stroke-width="2.4" stroke-linecap="round"/><text x="306.0" y="52.0" text-anchor="start" fill="#1e468c" font-size="12" font-weight="bold">PP (picture plane)</text><circle cx="300.0" cy="230.0" r="4" fill="#1b1f24"/><text x="292.0" y="248.0" text-anchor="end" fill="#1e468c" font-size="12" font-weight="bold">GL</text><line x1="30.0" y1="100.0" x2="570.0" y2="100.0" stroke="#d4a017" stroke-width="1.4" stroke-dasharray="5,3" stroke-linecap="round"/><text x="570.0" y="94.0" text-anchor="end" fill="#d4a017" font-size="12" font-weight="bold">HL — horizon line (eye level)</text><circle cx="90" cy="100" r="9" fill="#fff" stroke="#1b1f24" stroke-width="2"/><circle cx="90.0" cy="100.0" r="3.5" fill="#1b1f24"/><text x="90.0" y="82.0" text-anchor="middle" fill="#1b1f24" font-size="12" font-weight="bold">S (station point)</text><line x1="90.0" y1="100.0" x2="300.0" y2="100.0" stroke="#166e3c" stroke-width="1.6" stroke-linecap="round"/><circle cx="300.0" cy="100.0" r="4" fill="#166e3c"/><text x="306.0" y="118.0" text-anchor="start" fill="#166e3c" font-size="12" font-weight="bold">C (centre of vision)</text><text x="195.0" y="92.0" text-anchor="middle" fill="#166e3c" font-size="11">axis of vision ⟂ PP</text><rect x="380.0" y="150.0" width="70.0" height="80.0" rx="0" fill="#e8f0fc" stroke="#1b1f24" stroke-width="2.4"/><text x="415.0" y="195.0" text-anchor="middle" fill="#1e468c" font-size="13" font-weight="bold">object</text><line x1="90.0" y1="100.0" x2="380.0" y2="150.0" stroke="#c0392b" stroke-width="1.4" stroke-linecap="round"/><circle cx="300.0" cy="136.2" r="4.5" fill="#c0392b"/><line x1="90.0" y1="100.0" x2="380.0" y2="230.0" stroke="#c0392b" stroke-width="1.4" stroke-linecap="round"/><circle cx="300.0" cy="194.1" r="4.5" fill="#c0392b"/><text x="30.0" y="44.0" text-anchor="start" fill="#c0392b" font-size="11">each visual ray from S to the object cuts the PP</text><text x="30.0" y="58.0" text-anchor="start" fill="#c0392b" font-size="11">at a perspective point (red dots)</text><line x1="104.0" y1="266.0" x2="95.6" y2="266.0" stroke="#1b1f24" stroke-width="1.3" stroke-linecap="round"/><polygon points="90.0,266.0 97.0,263.1 97.0,268.9" fill="#1b1f24"/><line x1="286.0" y1="266.0" x2="294.4" y2="266.0" stroke="#1b1f24" stroke-width="1.3" stroke-linecap="round"/><polygon points="300.0,266.0 293.0,268.9 293.0,263.1" fill="#1b1f24"/><line x1="90.0" y1="266.0" x2="300.0" y2="266.0" stroke="#1b1f24" stroke-width="1.3" stroke-linecap="round"/><text x="195.0" y="262.0" text-anchor="middle" fill="#1b1f24" font-size="11">distance of S in front of PP</text><line x1="314.0" y1="266.0" x2="305.6" y2="266.0" stroke="#1b1f24" stroke-width="1.3" stroke-linecap="round"/><polygon points="300.0,266.0 307.0,263.1 307.0,268.9" fill="#1b1f24"/><line x1="366.0" y1="266.0" x2="374.4" y2="266.0" stroke="#1b1f24" stroke-width="1.3" stroke-linecap="round"/><polygon points="380.0,266.0 373.0,268.9 373.0,263.1" fill="#1b1f24"/><line x1="300.0" y1="266.0" x2="380.0" y2="266.0" stroke="#1b1f24" stroke-width="1.3" stroke-linecap="round"/><text x="340.0" y="262.0" text-anchor="middle" fill="#1b1f24" font-size="11">behind PP</text><line x1="40.0" y1="100.0" x2="40.0" y2="230.0" stroke="#1b1f24" stroke-width="1.3" stroke-linecap="round"/><line x1="40.0" y1="114.0" x2="40.0" y2="105.6" stroke="#1b1f24" stroke-width="1.3" stroke-linecap="round"/><polygon points="40.0,100.0 42.9,107.0 37.1,107.0" fill="#1b1f24"/><line x1="40.0" y1="216.0" x2="40.0" y2="224.4" stroke="#1b1f24" stroke-width="1.3" stroke-linecap="round"/><polygon points="40.0,230.0 37.1,223.0 42.9,223.0" fill="#1b1f24"/><text transform="rotate(-90 35.0 165.0)" x="35.0" y="165.0" text-anchor="middle" fill="#1b1f24" font-size="11">S above GP</text></svg>
+<p class="caption">Side view of the perspective set-up (visual-ray method): the observer at S looks through the transparent picture plane PP at an object standing on the ground plane GP; where each visual ray cuts the PP is a point of the perspective image.</p>
+</div>
+<ul>
+<li><b>One-point</b> perspective: one face parallel to the PP; <b>two-point</b>: object turned so two sets of horizontals vanish at two points on the horizon; <b>three-point</b>: also a vanishing point for verticals.</li>
+</ul>
+
+<h4 class="sub">Visual-ray method (square pyramid example)</h4>
+
+<p>Data: pyramid base 20, axis height 40, base 25 behind the PP; station point 50 above GP, 40 in front of PP and 40 to the left of the axis.</p>
+
+<ol>
+<li>Draw the PP and GL; mark the plan (top view) of the pyramid at its distance behind the PP, and the station point's plan.</li>
+<li>Join the station point's plan to each plan point (visual rays); mark where each ray cuts the PP line.</li>
+<li>Project these cut points down to the elevation, drawing the elevation of the object and of the station point above GL.</li>
+<li>In elevation, join the station point to each point of the object; the intersection of each of these lines with the projector from step 3 is that point's perspective.</li>
+<li>Join the perspective points in order, hidden edges dashed.</li>
+</ol>
+
+<div class="box mis"><span class="label">Fixing a common misconception</span>The result depends on the station point: moving the observer closer to the object increases the foreshortening and the convergence.</div>
+
+<h3 class="topic" id="g12">G12. Introduction to Building Drawing (Floor Plan)</h3>
+<div class="box terms"><span class="label">Key terms — know these words</span>
+<ul>
+<li><b>Plan</b> — horizontal section through the building about 1 m above floor level.</li>
+<li><b>Elevation</b> — outside view of a face of the building.</li>
+<li><b>Section</b> — vertical cut showing heights and construction.</li>
+<li><b>PCC / RCC</b> — plain / reinforced cement concrete.</li>
+<li><b>Plinth</b> — part of the wall between ground and floor level.</li>
+<li><b>Lintel</b> — beam above a door or window opening.</li>
+<li><b>Parapet</b> — low wall at the edge of a roof.</li>
+<li><b>Weathering course</b> — waterproof layer on a roof.</li>
+<li><b>Habitable room</b> — room for living, sleeping, etc.</li>
+</ul>
+</div>
+
+<p>A <b>building drawing</b> shows what to build: a <b>plan</b> (rooms, walls, doors, windows), <b>elevations</b> and a <b>section</b> (foundation, wall, floor, roof heights). Drawings follow BIS conventions (your lecture cites IS 962:1967; the syllabus mentions SP 7, the National Building Code) with standard symbols and material hatching for brick, stone, concrete and so on. Scales: 1:100 for plans; 1:50 or larger for sections and details.</p>
+
+<ul>
+<li><b>Parts of a building:</b> foundation (PCC footings), plinth, superstructure (walls), lintel, roof slab (RCC), parapet, weathering course, floor finish, steps.</li>
+<li><b>Typical thicknesses in the lecture pump-house example:</b> parapet 200, weathering course 100, RCC roof slab 120, PCC (1:4:8) flooring 120, cement-mortar plaster about 20.</li>
+<li><b>Material notation:</b> cement mortar ratios (e.g. CM 1:5, 1:3) and concrete mixes (e.g. 1:4:8, 1:2:4) are written on the section.</li>
+</ul>
+<div class="diagram">
+<svg viewBox="0 0 420 350" width="420" style="max-width:100%;height:auto" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#1b1f24"><rect x="50.0" y="40.0" width="272.0" height="240.0" rx="0" fill="#fbfcff" stroke="#1b1f24" stroke-width="5"/><line x1="194.0" y1="40.0" x2="194.0" y2="184.0" stroke="#1b1f24" stroke-width="3" stroke-linecap="round"/><line x1="50.0" y1="184.0" x2="322.0" y2="184.0" stroke="#1b1f24" stroke-width="3" stroke-linecap="round"/><line x1="194.0" y1="184.0" x2="194.0" y2="280.0" stroke="#1b1f24" stroke-width="3" stroke-linecap="round"/><line x1="258.0" y1="184.0" x2="258.0" y2="280.0" stroke="#1b1f24" stroke-width="3" stroke-linecap="round"/><line x1="194.0" y1="88.0" x2="194.0" y2="124.0" stroke="#fbfcff" stroke-width="6" stroke-linecap="round"/><line x1="194.0" y1="88.0" x2="230.0" y2="88.0" stroke="#1b1f24" stroke-width="1.6" stroke-linecap="round"/><path d="M230.0,88.0 A36.0,36.0 0 0 1 194.0,124.0" fill="none" stroke="#1b1f24" stroke-width="1.2"/><line x1="106.0" y1="184.0" x2="142.0" y2="184.0" stroke="#fbfcff" stroke-width="6" stroke-linecap="round"/><line x1="106.0" y1="184.0" x2="106.0" y2="220.0" stroke="#1b1f24" stroke-width="1.6" stroke-linecap="round"/><path d="M106.0,220.0 A36.0,36.0 0 0 0 142.0,184.0" fill="none" stroke="#1b1f24" stroke-width="1.2"/><line x1="258.0" y1="212.0" x2="258.0" y2="244.0" stroke="#fbfcff" stroke-width="6" stroke-linecap="round"/><line x1="258.0" y1="212.0" x2="290.0" y2="212.0" stroke="#1b1f24" stroke-width="1.6" stroke-linecap="round"/><path d="M290.0,212.0 A32.0,32.0 0 0 1 258.0,244.0" fill="none" stroke="#1b1f24" stroke-width="1.2"/><line x1="210.0" y1="184.0" x2="242.0" y2="184.0" stroke="#fbfcff" stroke-width="6" stroke-linecap="round"/><line x1="210.0" y1="184.0" x2="210.0" y2="216.0" stroke="#1b1f24" stroke-width="1.6" stroke-linecap="round"/><path d="M210.0,216.0 A32.0,32.0 0 0 0 242.0,184.0" fill="none" stroke="#1b1f24" stroke-width="1.2"/><line x1="194.0" y1="216.0" x2="194.0" y2="248.0" stroke="#fbfcff" stroke-width="6" stroke-linecap="round"/><line x1="194.0" y1="216.0" x2="226.0" y2="216.0" stroke="#1b1f24" stroke-width="1.6" stroke-linecap="round"/><path d="M226.0,216.0 A32.0,32.0 0 0 1 194.0,248.0" fill="none" stroke="#1b1f24" stroke-width="1.2"/><line x1="90.0" y1="40.0" x2="154.0" y2="40.0" stroke="#fbfcff" stroke-width="6" stroke-linecap="round"/><line x1="90.0" y1="38.0" x2="154.0" y2="38.0" stroke="#1e468c" stroke-width="1.4" stroke-linecap="round"/><line x1="90.0" y1="42.0" x2="154.0" y2="42.0" stroke="#1e468c" stroke-width="1.4" stroke-linecap="round"/><line x1="226.0" y1="40.0" x2="290.0" y2="40.0" stroke="#fbfcff" stroke-width="6" stroke-linecap="round"/><line x1="226.0" y1="38.0" x2="290.0" y2="38.0" stroke="#1e468c" stroke-width="1.4" stroke-linecap="round"/><line x1="226.0" y1="42.0" x2="290.0" y2="42.0" stroke="#1e468c" stroke-width="1.4" stroke-linecap="round"/><line x1="50.0" y1="216.0" x2="50.0" y2="256.0" stroke="#fbfcff" stroke-width="6" stroke-linecap="round"/><line x1="50.0" y1="216.0" x2="50.0" y2="256.0" stroke="#1e468c" stroke-width="1.4" stroke-linecap="round"/><line x1="50.0" y1="216.0" x2="50.0" y2="256.0" stroke="#1e468c" stroke-width="1.4" stroke-linecap="round"/><text x="122.0" y="112.0" text-anchor="middle" fill="#1b1f24" font-size="13" font-weight="bold">LIVING</text><text x="122.0" y="128.0" text-anchor="middle" fill="#8a93a3" font-size="11">3.6 × 3.6 m</text><text x="258.0" y="112.0" text-anchor="middle" fill="#1b1f24" font-size="13" font-weight="bold">BEDROOM</text><text x="258.0" y="128.0" text-anchor="middle" fill="#8a93a3" font-size="11">3.2 × 3.6 m</text><text x="122.0" y="232.0" text-anchor="middle" fill="#1b1f24" font-size="13" font-weight="bold">KITCHEN</text><text x="122.0" y="248.0" text-anchor="middle" fill="#8a93a3" font-size="11">3.6 × 2.4 m</text><text x="226.0" y="260.0" text-anchor="middle" fill="#1b1f24" font-size="10" font-weight="bold">PASSAGE</text><text x="290.0" y="256.0" text-anchor="middle" fill="#1b1f24" font-size="11" font-weight="bold">BATH</text><text x="290.0" y="269.0" text-anchor="middle" fill="#8a93a3" font-size="10">1.6×2.4</text><line x1="64.0" y1="24.0" x2="55.6" y2="24.0" stroke="#1b1f24" stroke-width="1.3" stroke-linecap="round"/><polygon points="50.0,24.0 57.0,21.1 57.0,26.9" fill="#1b1f24"/><line x1="180.0" y1="24.0" x2="188.4" y2="24.0" stroke="#1b1f24" stroke-width="1.3" stroke-linecap="round"/><polygon points="194.0,24.0 187.0,26.9 187.0,21.1" fill="#1b1f24"/><line x1="50.0" y1="24.0" x2="194.0" y2="24.0" stroke="#1b1f24" stroke-width="1.3" stroke-linecap="round"/><text x="122.0" y="20.0" text-anchor="middle" fill="#1b1f24" font-size="11">3600</text><line x1="208.0" y1="24.0" x2="199.6" y2="24.0" stroke="#1b1f24" stroke-width="1.3" stroke-linecap="round"/><polygon points="194.0,24.0 201.0,21.1 201.0,26.9" fill="#1b1f24"/><line x1="308.0" y1="24.0" x2="316.4" y2="24.0" stroke="#1b1f24" stroke-width="1.3" stroke-linecap="round"/><polygon points="322.0,24.0 315.0,26.9 315.0,21.1" fill="#1b1f24"/><line x1="194.0" y1="24.0" x2="322.0" y2="24.0" stroke="#1b1f24" stroke-width="1.3" stroke-linecap="round"/><text x="258.0" y="20.0" text-anchor="middle" fill="#1b1f24" font-size="11">3200</text><line x1="28.0" y1="40.0" x2="28.0" y2="184.0" stroke="#1b1f24" stroke-width="1.3" stroke-linecap="round"/><line x1="28.0" y1="54.0" x2="28.0" y2="45.6" stroke="#1b1f24" stroke-width="1.3" stroke-linecap="round"/><polygon points="28.0,40.0 30.9,47.0 25.1,47.0" fill="#1b1f24"/><line x1="28.0" y1="170.0" x2="28.0" y2="178.4" stroke="#1b1f24" stroke-width="1.3" stroke-linecap="round"/><polygon points="28.0,184.0 25.1,177.0 30.9,177.0" fill="#1b1f24"/><text transform="rotate(-90 23.0 112.0)" x="23.0" y="112.0" text-anchor="middle" fill="#1b1f24" font-size="11">3600</text><line x1="28.0" y1="184.0" x2="28.0" y2="280.0" stroke="#1b1f24" stroke-width="1.3" stroke-linecap="round"/><line x1="28.0" y1="198.0" x2="28.0" y2="189.6" stroke="#1b1f24" stroke-width="1.3" stroke-linecap="round"/><polygon points="28.0,184.0 30.9,191.0 25.1,191.0" fill="#1b1f24"/><line x1="28.0" y1="266.0" x2="28.0" y2="274.4" stroke="#1b1f24" stroke-width="1.3" stroke-linecap="round"/><polygon points="28.0,280.0 25.1,273.0 30.9,273.0" fill="#1b1f24"/><text transform="rotate(-90 23.0 232.0)" x="23.0" y="232.0" text-anchor="middle" fill="#1b1f24" font-size="11">2400</text><text x="186.0" y="304.0" text-anchor="middle" fill="#8a93a3" font-size="11" font-style="italic">walls: external 230 mm (thick), partitions 115 mm (thin)</text></svg>
+<p class="caption">A simple one-bedroom residential plan: external walls thick, partition walls thinner, door swings as quarter-circles, windows as double lines in the wall. Dimensions in mm as in a real plan; room sizes meet the usual minimum-area rules.</p>
+</div>
+<ul>
+<li>External walls 230 mm, partitions 115 mm; doors shown with the swing arc; windows as double lines in the wall.</li>
+<li>Typical minimum sizes (National Building Code, check the latest): habitable room ≈ 9.5 m² (width ≥ 2.4 m); kitchen ≈ 4.5 m² (width ≥ 1.8 m); bathroom ≈ 1.8 m².</li>
+<li>Lines: thick for sectioned walls, thin for furniture and dimension lines; room names and sizes written inside.</li>
+</ul>
+
+<div class="box ex"><span class="label">Worked example</span>Plot 10 m × 12 m = 120 m²; built-up area of the plan above = 6.8 × 6.0 = 40.8 m² → <code>34%</code> of the plot. Living 3.6 × 3.6 = 13 m² and bedroom 3.2 × 3.6 = 11.5 m² both exceed the 9.5 m² minimum; kitchen 3.6 × 2.4 = 8.6 m² exceeds 4.5 m².</div>
+
+<h3 class="topic" id="g13">G13. Introduction to CAD</h3>
+<div class="box terms"><span class="label">Key terms — know these words</span>
+<ul>
+<li><b>CAD</b> — computer-aided design — creating and modifying drawings/models on a computer.</li>
+<li><b>Sketch & constraint</b> — 2-D profile with geometric (parallel, tangent) and dimensional constraints.</li>
+<li><b>Feature</b> — extrude, revolve, cut, fillet, chamfer, shell.</li>
+<li><b>Parametric model</b> — model whose dimensions drive the geometry.</li>
+<li><b>Layer</b> — transparent overlay organising drawing content.</li>
+<li><b>DWG / DXF / STEP / STL</b> — drawing, exchange, neutral solid and 3-D-printing mesh file types.</li>
+<li><b>CAM</b> — computer-aided manufacturing.</li>
+</ul>
+</div>
+
+<p>In CAD software you <b>sketch</b> a 2-D profile with basic tools (line, circle, arc), add <b>geometric and dimensional constraints</b>, then build a 3-D solid with <b>features</b> — <em>extrude</em> (push a profile to a depth), <em>revolve</em> (spin it about an axis), <em>cut</em>, <em>fillet</em> (round an edge), <em>chamfer</em> (bevel an edge) and <em>shell</em> (hollow out). The 2-D engineering drawing — multiple views, dimensions, annotations — is then generated from the 3-D model, so a change in the model updates the drawing. (This is the content of the SolidWorks lab experiments.)</p>
+
+<ul>
+<li><b>Advantages:</b> accuracy, easy editing, storage and sharing, standard parts libraries, simulation, direct link to CNC and 3-D printing.</li>
+<li><b>Common packages:</b> AutoCAD (2-D drafting), SolidWorks, CATIA, Fusion 360, FreeCAD (3-D).</li>
+</ul>
+
+<div class="box ex"><span class="label">Worked example</span><b>Coordinate input.</b> Absolute: type <code>50,30</code> → point (50, 30). Relative polar: <code>@50&lt;30</code> → a line 50 long at 30°: Δx = 50 cos 30° = <code>43.3</code>, Δy = 50 sin 30° = <code>25</code>.</div>
+
+<div class="foreshadow">CAD files feed Module 4: an STL file goes to the 3-D-printer slicer (H6) and the CAM toolpath goes to the CNC machine (H5).</div>
+
+<h3 class="topic" id="g14">G14. CAT-1 Pattern — What the Paper Asked</h3>
+<div class="box terms"><span class="label">Key terms — know these words</span>
+<ul>
+<li><b>BL</b> — Bloom's level of a question (1 Remember … 6 Create).</li>
+<li><b>CO</b> — course outcome the question tests (CO3 graphics, CO4 manufacturing).</li>
+</ul>
+</div>
+
+<table>
+<tr><th>Q</th><th>Task</th><th>Marks / BL</th><th>Revise</th></tr>
+<tr><td>1</td><td>identify dimensioning errors; redraw and dimension to BIS</td><td>10 / 3 (Apply)</td><td>G4, G5</td></tr>
+<tr><td>2</td><td>top and front view of a square pyramid (base 50, axis 70, side ∥ VP)</td><td>10 / 3</td><td>G8</td></tr>
+<tr><td>3</td><td>pictorial view → FV, TV and left-side view, first angle</td><td>10 / 3</td><td>G6, G7</td></tr>
+<tr><td>4</td><td>isometric view of a vertical cylinder (Ø50 × 60)</td><td>10 / 3</td><td>G9</td></tr>
+<tr><td>5</td><td>types of pattern allowances; what if shrinkage and draft are neglected</td><td>10 / 2 (Understand), CO4</td><td>H1</td></tr>
+</table>
+
+<p><b>Instructions on the paper:</b> all dimensions in mm; neat drawings with proper pencil grades for each line type; BIS lettering, numbering and dimensioning; <em>orthographic projections in landscape orientation</em>; plan the layout so that every view (including the side view) fits.</p>
+
+<ul>
+<li>Draw outlines in HB, thin lines in 2H.</li>
+<li>Always label views (FRONT VIEW, TOP VIEW, …) and state 'ALL DIMENSIONS ARE IN mm'.</li>
+<li>Show hidden lines and centre lines where needed; keep construction lines light.</li>
+</ul>
+
+<h2 class="part" id="glossary">Glossary (A–Z) <span class="marks">85 terms</span></h2>
+<p>Every key term from the boxes above in one alphabetical list — skim this the night before the exam.</p>
+<table class="gloss">
+<tr><th>Term</th><th>Meaning</th></tr>
+<tr><td>A-series</td><td>sheet sizes in which every size is half of the previous; sides in ratio 1 : √2.</td></tr>
+<tr><td>A0</td><td>841 × 1189 mm, area 1 m².</td></tr>
+<tr><td>Aligned / unidirectional system</td><td>figures placed parallel to the dimension line (readable from bottom or right) / all figures horizontal.</td></tr>
+<tr><td>Axis</td><td>line joining the centres of the two ends (bases).</td></tr>
+<tr><td>Base / apex</td><td>the face on which a solid rests / the top point of a pyramid or cone.</td></tr>
+<tr><td>BIS</td><td>Bureau of Indian Standards; SP 46 is its drawing code, first-angle projection since 1991.</td></tr>
+<tr><td>BL</td><td>Bloom's level of a question (1 Remember … 6 Create).</td></tr>
+<tr><td>Break line</td><td>freehand wavy (C) or zig-zag (D).</td></tr>
+<tr><td>CAD</td><td>computer-aided design/drafting.</td></tr>
+<tr><td>CAM</td><td>computer-aided manufacturing.</td></tr>
+<tr><td>Centre line</td><td>long-dash-dot thin line (G).</td></tr>
+<tr><td>Centre of vision (C)</td><td>foot of the axis of vision on the PP.</td></tr>
+<tr><td>Chamfer</td><td>bevelled edge, dimensioned as angle × length.</td></tr>
+<tr><td>CO</td><td>course outcome the question tests (CO3 graphics, CO4 manufacturing).</td></tr>
+<tr><td>Construction (thin) lines</td><td>light guide lines later darkened.</td></tr>
+<tr><td>Cutting plane line</td><td>chain thin with thick ends and at changes of direction (H).</td></tr>
+<tr><td>Datum</td><td>reference surface from which dimensions are measured.</td></tr>
+<tr><td>Dimension / extension / leader</td><td>thin continuous lines (B).</td></tr>
+<tr><td>Dimension line</td><td>thin line with arrowheads between extension lines.</td></tr>
+<tr><td>Direction of view (X)</td><td>arrow showing which face is the front view.</td></tr>
+<tr><td>DWG / DXF / STEP / STL</td><td>drawing, exchange, neutral solid and 3-D-printing mesh file types.</td></tr>
+<tr><td>Elevation</td><td>outside view of a face of the building.</td></tr>
+<tr><td>Engineering drawing</td><td>a graphical language giving the shape, size, material and finish of an object so it can be made.</td></tr>
+<tr><td>Extension (projection) line</td><td>thin line showing the extent of a dimension.</td></tr>
+<tr><td>Feature</td><td>extrude, revolve, cut, fillet, chamfer, shell.</td></tr>
+<tr><td>Four-centre method</td><td>arcs construction of the isometric ellipse inside a rhombus.</td></tr>
+<tr><td>Freehand sketch</td><td>drawn without instruments, quickly, with correct proportions.</td></tr>
+<tr><td>Front view (FV) / top view (TV) / side view</td><td>elevation / plan / end elevation.</td></tr>
+<tr><td>Fully defined</td><td>all geometry dimensioned, nothing missing or redundant.</td></tr>
+<tr><td>Functional dimension</td><td>one needed for the function of the part.</td></tr>
+<tr><td>Generator</td><td>slant line of a cone/cylinder surface.</td></tr>
+<tr><td>GL (ground line)</td><td>intersection of PP and GP.</td></tr>
+<tr><td>GP (ground plane)</td><td>horizontal plane on which the object stands.</td></tr>
+<tr><td>Habitable room</td><td>room for living, sleeping, etc.</td></tr>
+<tr><td>Hatching</td><td>thin parallel lines (B) on cut surfaces.</td></tr>
+<tr><td>Hidden detail</td><td>edges seen only through the object, shown dashed.</td></tr>
+<tr><td>Hidden line</td><td>dashed thin line (F) for edges not visible.</td></tr>
+<tr><td>Horizon line (HL)</td><td>horizontal line at eye level on the PP.</td></tr>
+<tr><td>Isometric</td><td>equal measure — all three axes equally foreshortened.</td></tr>
+<tr><td>Isometric / non-isometric lines</td><td>lines parallel to the axes / all others.</td></tr>
+<tr><td>Isometric axes</td><td>one vertical, two at 30° to the horizontal; 120° apart.</td></tr>
+<tr><td>Isometric drawing</td><td>drawn with true lengths (scale 1) — easier, 22% larger.</td></tr>
+<tr><td>Isometric projection</td><td>drawn with the isometric scale.</td></tr>
+<tr><td>Isometric scale</td><td>scale of shortened lengths; 0.816 of true length.</td></tr>
+<tr><td>Landscape layout</td><td>sheet orientation required for the views.</td></tr>
+<tr><td>Layer</td><td>transparent overlay organising drawing content.</td></tr>
+<tr><td>Leader line</td><td>thin line from a feature to a note or size.</td></tr>
+<tr><td>Lettering</td><td>writing of words and numerals on a drawing — plain, single-stroke, uniform.</td></tr>
+<tr><td>Lintel</td><td>beam above a door or window opening.</td></tr>
+<tr><td>Machine / assembly / production drawing</td><td>part drawings, how parts fit, and manufacturing details.</td></tr>
+<tr><td>Orthographic projection</td><td>projectors parallel to each other and perpendicular to the plane.</td></tr>
+<tr><td>Orthographic view</td><td>flat views (front, top, side) that show true shapes.</td></tr>
+<tr><td>Overall dimension</td><td>the total length, width or height of the object.</td></tr>
+<tr><td>Overall size box</td><td>thin rectangle of length × height for each view.</td></tr>
+<tr><td>Parallel / perspective projection</td><td>projectors parallel / converging to the eye.</td></tr>
+<tr><td>Parametric model</td><td>model whose dimensions drive the geometry.</td></tr>
+<tr><td>Parapet</td><td>low wall at the edge of a roof.</td></tr>
+<tr><td>PCC / RCC</td><td>plain / reinforced cement concrete.</td></tr>
+<tr><td>Perspective</td><td>the image formed on a picture plane by visual rays from the eye to the object.</td></tr>
+<tr><td>Pictorial view</td><td>a 3-D-looking view (isometric, perspective).</td></tr>
+<tr><td>Plan</td><td>horizontal section through the building about 1 m above floor level.</td></tr>
+<tr><td>Plinth</td><td>part of the wall between ground and floor level.</td></tr>
+<tr><td>Polyhedron</td><td>solid bounded by plane faces (prism, pyramid, cube).</td></tr>
+<tr><td>PP (picture plane)</td><td>transparent vertical plane on which the image is formed.</td></tr>
+<tr><td>Projection</td><td>representing a 3-D object on a plane by projectors from its points.</td></tr>
+<tr><td>Projector (construction line)</td><td>thin line carrying a point from one view to another.</td></tr>
+<tr><td>Proportion</td><td>the correct relative sizes of features.</td></tr>
+<tr><td>Quadrant</td><td>one of the four regions formed by HP and VP.</td></tr>
+<tr><td>Redundant (duplicate) dimension</td><td>a size given twice — not allowed.</td></tr>
+<tr><td>Revision</td><td>recorded change to a drawing.</td></tr>
+<tr><td>Scale</td><td>ratio of drawing size to actual size (1:2 reduces, 2:1 enlarges, 1:1 full size).</td></tr>
+<tr><td>Section</td><td>vertical cut showing heights and construction.</td></tr>
+<tr><td>Simple position</td><td>axis perpendicular or parallel to a reference plane.</td></tr>
+<tr><td>Sketch & constraint</td><td>2-D profile with geometric (parallel, tangent) and dimensional constraints.</td></tr>
+<tr><td>Solid of revolution</td><td>generated by rotating a figure (cylinder, cone, sphere).</td></tr>
+<tr><td>Station point (S)</td><td>position of the observer's eye.</td></tr>
+<tr><td>Title block</td><td>box at the bottom right giving drawing identity and details.</td></tr>
+<tr><td>Vanishing point</td><td>where receding parallel lines appear to meet.</td></tr>
+<tr><td>Visible outline</td><td>thick continuous line (type A).</td></tr>
+<tr><td>Visual ray</td><td>line from the eye to a point of the object.</td></tr>
+<tr><td>Visualisation</td><td>the ability to picture an object in 3-D.</td></tr>
+<tr><td>VP / HP / PP</td><td>vertical, horizontal and profile (side) planes.</td></tr>
+<tr><td>Weathering course</td><td>waterproof layer on a roof.</td></tr>
+<tr><td>XY line</td><td>line of intersection of HP and VP (reference line).</td></tr>
+<tr><td>Ø / R / SR / □</td><td>diameter, radius, spherical radius and square symbols.</td></tr>
+</table>
+
+<h2 class="part" id="selftest">Self-Test Checklist</h2>
+<p>Can you do each of these <em>right now</em>, without looking back? If not, that is the section to re-read.</p>
+<ul class="checklist">
+  <li>State the A0–A4 sheet sizes and the contents of a title block.</li>
+  <li>Name the BIS line types and what each is used for; state the pencil grades.</li>
+  <li>Identify and correct dimensioning errors in a given figure.</li>
+  <li>Sketch the four quadrants and state where each view lies in first and third angle.</li>
+  <li>Draw FV, TV and LSV of a pictorial object in first angle, with hidden lines and centre lines.</li>
+  <li>Draw the views of a pyramid, prism, cone and cylinder in simple position.</li>
+  <li>Derive the isometric scale 0.816 and draw an isometric view including a circle/cylinder.</li>
+  <li>Sketch lines, circles and orthographic views freehand with the right technique.</li>
+  <li>Define the terms of perspective projection and outline the visual-ray method.</li>
+  <li>Name the parts of a building and draw a simple plan with BIS conventions.</li>
+  <li>Describe a CAD workflow: sketch, constraints, features, drawing generation.</li>
+</ul>
+{% endraw %}
+</div>
+<a href="#top" class="backtop">↑</a>
+{% endblock %}

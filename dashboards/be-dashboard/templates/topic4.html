@@ -1,0 +1,689 @@
+{% extends "base.html" %}
+{% block title %}Basic Engineering — Module 4{% endblock %}
+{% block extra_style %}
+<style>
+  :root{
+    --ink:#1b1f24; --sub:#4a5568; --bg:#fbfbfa; --card:#ffffff;
+    --def:#4a5568; --def-bg:#f3f4f6;
+    --why:#1e468c; --why-bg:#eef3fb;
+    --mis:#b45a0a; --mis-bg:#fdf3e7;
+    --ex:#166e3c; --ex-bg:#eaf6ee;
+    --line:#e3e6ea; --accent:#7c3aed;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; font-family:"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    background:var(--bg); color:var(--ink); line-height:1.55;
+  }
+  .wrap{max-width:900px;margin:0 auto;padding:0 22px 80px;}
+  header.hero{
+    background:linear-gradient(135deg,#1e2a4a,#3949ab 60%,#7c3aed);
+    color:#fff; padding:48px 22px 60px; text-align:center;
+  }
+  header.hero h1{margin:0 0 8px;font-size:2rem;}
+  header.hero p{margin:4px 0;opacity:.9;font-size:1.05rem;}
+  nav.toc{
+    background:var(--card); border:1px solid var(--line); border-radius:12px;
+    padding:20px 26px; margin:-36px auto 34px; max-width:860px;
+    box-shadow:0 6px 24px rgba(20,20,40,.08);
+  }
+  nav.toc h2{margin-top:0;font-size:1.05rem;color:var(--sub);text-transform:uppercase;letter-spacing:.06em;}
+  nav.toc ol{columns:2;column-gap:30px;padding-left:20px;margin:0;}
+  nav.toc li{margin-bottom:6px;break-inside:avoid;}
+  nav.toc a{color:var(--accent);text-decoration:none;font-size:.95rem;}
+  nav.toc a:hover{text-decoration:underline;}
+  h2.part{
+    font-size:1.6rem;margin-top:64px;padding-bottom:10px;border-bottom:3px solid var(--accent);
+  }
+  h3.topic{
+    font-size:1.25rem;margin-top:42px;color:#1e2a4a;
+    border-left:5px solid var(--accent);padding-left:12px;
+  }
+  h4.sub{margin-top:26px;font-size:1.05rem;color:var(--sub);}
+  p{margin:10px 0;}
+  .box{border-radius:10px;padding:16px 18px;margin:16px 0;border:1px solid transparent;}
+  .box .label{font-weight:700;font-size:.78rem;text-transform:uppercase;letter-spacing:.05em;display:block;margin-bottom:8px;}
+  .def{background:var(--def-bg);border-color:#d4d8de;}
+  .def .label{color:var(--def);}
+  .why{background:var(--why-bg);border-color:#c3d4ef;}
+  .why .label{color:var(--why);}
+  .mis{background:var(--mis-bg);border-color:#f1cf9f;}
+  .mis .label{color:var(--mis);}
+  .ex{background:var(--ex-bg);border-color:#b8e2c6;}
+  .ex .label{color:var(--ex);}
+  .foreshadow{background:#f4effc;border:1px dashed #b39ce8;border-radius:8px;padding:10px 14px;font-size:.93rem;color:#4b3480;margin:14px 0;}
+  .foreshadow::before{content:"↳ ";font-weight:700;}
+  table{border-collapse:collapse;width:100%;margin:14px 0;font-size:.93rem;}
+  th,td{border:1px solid var(--line);padding:7px 10px;text-align:left;}
+  th{background:#eef0f4;}
+  .diagram{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px;margin:18px 0;text-align:center;}
+  .diagram svg{max-width:100%;height:auto;}
+  .caption{font-size:.85rem;color:var(--sub);margin-top:8px;font-style:italic;}
+  code{background:#eef0f4;padding:1px 5px;border-radius:4px;font-size:.92em;}
+  .formula{
+    background:#fff; border:1px solid var(--line); border-left:4px solid var(--accent);
+    padding:10px 16px; margin:12px 0; font-size:1.05rem; overflow-x:auto;
+  }
+  .checklist{list-style:none;padding-left:0;}
+  .checklist li{padding:8px 0 8px 30px;position:relative;border-bottom:1px dashed var(--line);}
+  .checklist li::before{content:"☐";position:absolute;left:0;font-size:1.2rem;color:var(--accent);}
+  .marks{display:inline-block;background:#1e2a4a;color:#fff;font-size:.72rem;padding:2px 8px;border-radius:12px;margin-left:8px;vertical-align:middle;}
+  footer{text-align:center;color:var(--sub);font-size:.85rem;margin-top:60px;padding-top:20px;border-top:1px solid var(--line);}
+  .backtop{position:fixed;bottom:20px;right:20px;background:var(--accent);color:#fff;border-radius:50%;width:42px;height:42px;text-align:center;line-height:42px;text-decoration:none;box-shadow:0 4px 12px rgba(0,0,0,.2);font-size:1.1rem;}
+
+  .terms{background:#fff9e6;border-color:#f0dfa0;}
+  .terms .label{color:#8a6d00;}
+  .terms ul{list-style:none;margin:0;padding:0;}
+  .terms li{padding:5px 0;border-bottom:1px dotted #ecdca2;font-size:.94rem;}
+  .terms li:last-child{border-bottom:none;}
+  .terms li b{color:#5c4700;}
+  ol,ul{padding-left:22px;}
+  .gloss td:first-child{font-weight:600;white-space:nowrap;vertical-align:top;}
+</style>
+<style>
+  .bio .s{stroke:#333;fill:none;stroke-width:1.5}.bio .a{fill:#e8f0fc}.bio .b{fill:#e6f4ec}.bio .c{fill:#fdf0e3}.bio .d{fill:#f3ecfb}
+  .bio svg text{font:12.5px sans-serif;fill:#1d2330}.bio figure{margin:16px 0;text-align:center}.bio figcaption,.bio .note{color:#5b6475;font-size:.92rem}
+  .bio table{display:block;overflow-x:auto}.bio .box .t{font-weight:700}
+  .cover{text-align:center;padding:90px 20px}.cover h1{font-size:2.4rem;margin:0 0 10px}.module{margin-top:30px}
+  @media print{
+    body{background:#fff}.backtop,nav.site-nav{display:none!important}.wrap{max-width:none;padding:0}
+    header.hero{box-shadow:none;border-radius:0!important;margin:0!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    .module{break-before:page}h2.part{break-before:page}h2.part:first-of-type{break-before:auto}
+    .box,.diagram,table,tr,.foreshadow,h3.topic,h4.sub{break-inside:avoid}h3.topic{break-after:avoid}
+    *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    nav.toc{box-shadow:none;margin:12px 0}
+  }
+</style>
+{% endblock %}
+{% block content %}
+<div class="wrap">
+{% raw %}<header class="hero" style="border-radius:12px;margin-top:24px;"><h1>Module 4 — Manufacturing, Energy Conversion &amp; Mechanical Automation</h1><p>Casting, forming, joining, machining, CNC and 3-D printing; IC engines, power plants, refrigeration, fuel cells; mechanisms, mechanical components, robotics and pneumatic/hydraulic actuators.</p></header><nav class="toc"><h2>Subtopics in this module</h2><ol><li><a href="#h1">H1. Metal Casting</a></li><li><a href="#h2">H2. Forming Processes</a></li><li><a href="#h3">H3. Joining Processes</a></li><li><a href="#h4">H4. Cutting (Machining) Processes</a></li><li><a href="#h5">H5. CNC Machining</a></li><li><a href="#h6">H6. Additive Manufacturing (3-D Printing)</a></li><li><a href="#h7">H7. Thermal Engineering &amp; the IC Engine</a></li><li><a href="#h8">H8. Power Plants</a></li><li><a href="#h9">H9. Refrigeration &amp; Air Conditioning</a></li><li><a href="#h10">H10. Fuel Cells &amp; Sustainable Energy</a></li><li><a href="#h11">H11. Mechanisms: Four-Bar &amp; Hexapod</a></li><li><a href="#h12">H12. Mechanical Components &amp; Motion Control</a></li><li><a href="#h13">H13. Introduction to Robotics &amp; Automation</a></li><li><a href="#h14">H14. Pneumatic &amp; Hydraulic Actuators</a></li><li><a href="#glossary">Glossary (A–Z)</a></li><li><a href="#selftest">Self-test checklist</a></li></ol></nav>
+<h3 class="topic" id="h1">H1. Metal Casting</h3>
+<div class="box terms"><span class="label">Key terms — know these words</span>
+<ul>
+<li><b>Casting</b> — shaping metal by pouring it molten into a mould cavity and letting it solidify.</li>
+<li><b>Pattern</b> — replica of the part (made larger) used to make the mould cavity.</li>
+<li><b>Mould / cope / drag</b> — sand cavity; upper / lower box.</li>
+<li><b>Core</b> — insert forming internal cavities.</li>
+<li><b>Sprue / runner / gate / riser</b> — vertical channel / horizontal channel / entry to cavity / reservoir that feeds the shrinking casting.</li>
+<li><b>Parting line</b> — joint face between cope and drag.</li>
+<li><b>Fettling</b> — cleaning: cutting gates and risers, grinding.</li>
+<li><b>Shrinkage / machining / draft allowance</b> — extra size or taper built into the pattern.</li>
+</ul>
+</div>
+
+<div class="box mis"><span class="label">Source note</span>Your syllabus lists this topic but I did not have your lecturer's slides for Module 4, so this is written from the standard textbook treatment (plus the CAT-1 casting question and key). Send the slides and I will align terms and examples to them.</div>
+<div class="diagram">
+<svg viewBox="0 0 760 250" width="760" style="max-width:100%;height:auto" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#1b1f24"><rect x="40.0" y="50.0" width="260.0" height="90.0" rx="0" fill="#f1e7d6" stroke="#1b1f24" stroke-width="2"/><rect x="40.0" y="140.0" width="260.0" height="90.0" rx="0" fill="#e6d8bf" stroke="#1b1f24" stroke-width="2"/><text x="124.0" y="66.0" text-anchor="start" fill="#1b1f24" font-size="12" font-weight="bold">COPE (upper box)</text><text x="50.0" y="222.0" text-anchor="start" fill="#1b1f24" font-size="12" font-weight="bold">DRAG (lower box)</text><line x1="30.0" y1="140.0" x2="310.0" y2="140.0" stroke="#c0392b" stroke-width="1.6" stroke-dasharray="5,3" stroke-linecap="round"/><text x="316.0" y="144.0" text-anchor="start" fill="#c0392b" font-size="12" font-weight="bold">parting line</text><rect x="120.0" y="120.0" width="130.0" height="40.0" rx="0" fill="#fff" stroke="#1b1f24" stroke-width="1.8"/><text x="185.0" y="144.0" text-anchor="middle" fill="#1b1f24" font-size="12" font-weight="bold">mould cavity</text><rect x="224.0" y="80.0" width="30.0" height="40.0" rx="0" fill="#fff" stroke="#1b1f24" stroke-width="1.6"/><text x="239.0" y="76.0" text-anchor="middle" fill="#1b1f24" font-size="11" font-weight="bold">riser</text><polygon points="60.0,50.0 110.0,50.0 104.0,72.0 66.0,72.0" fill="#fff" stroke="#1b1f24" stroke-width="1.6" stroke-linejoin="round"/><text x="85.0" y="44.0" text-anchor="middle" fill="#1b1f24" font-size="11" font-weight="bold">pouring basin</text><rect x="80.0" y="72.0" width="16.0" height="68.0" rx="0" fill="#fff" stroke="#1b1f24" stroke-width="1.6"/><text x="118.0" y="96.0" text-anchor="start" fill="#1b1f24" font-size="11" font-weight="bold">sprue</text><line x1="114.0" y1="92.0" x2="97.0" y2="92.0" stroke="#8a93a3" stroke-width="1" stroke-linecap="round"/><rect x="80.0" y="140.0" width="16.0" height="14.0" rx="0" fill="#fff" stroke="#1b1f24" stroke-width="1.6"/><rect x="96.0" y="142.0" width="24.0" height="10.0" rx="0" fill="#fff" stroke="#1b1f24" stroke-width="1.6"/><text x="105.0" y="182.0" text-anchor="middle" fill="#1b1f24" font-size="11" font-weight="bold">runner & gate</text><line x1="105.0" y1="168.0" x2="100.0" y2="154.0" stroke="#8a93a3" stroke-width="1" stroke-linecap="round"/><line x1="85.0" y1="8.0" x2="85.0" y2="32.8" stroke="#c0392b" stroke-width="2" stroke-linecap="round"/><polygon points="85.0,40.0 81.2,31.0 88.8,31.0" fill="#c0392b"/><text x="96.0" y="14.0" text-anchor="start" fill="#c0392b" font-size="11" font-weight="bold">molten metal</text><text x="420.0" y="60.0" text-anchor="start" fill="#1b1f24" font-size="13" font-weight="bold">Steps:</text><text x="420.0" y="80.0" text-anchor="start" fill="#8a93a3" font-size="12">1 pattern making (with allowances)</text><text x="420.0" y="100.0" text-anchor="start" fill="#8a93a3" font-size="12">2 mould making (sand packed round pattern)</text><text x="420.0" y="120.0" text-anchor="start" fill="#8a93a3" font-size="12">3 core setting, closing the mould</text><text x="420.0" y="140.0" text-anchor="start" fill="#8a93a3" font-size="12">4 melting & pouring</text><text x="420.0" y="160.0" text-anchor="start" fill="#8a93a3" font-size="12">5 solidification & cooling</text><text x="420.0" y="180.0" text-anchor="start" fill="#8a93a3" font-size="12">6 shake-out, fettling (cut gates/risers), inspection</text></svg>
+<p class="caption">Sand-casting mould (cross-section): metal runs down the sprue, along the runner and gate into the cavity; the riser feeds extra molten metal as the casting shrinks.</p>
+</div>
+<ol>
+<li><b>Pattern making</b> (with allowances).</li>
+<li><b>Moulding:</b> sand rammed round the pattern in cope and drag; pattern removed; cores set; mould closed.</li>
+<li><b>Melting</b> the metal and <b>pouring</b> through the sprue.</li>
+<li><b>Solidification</b> and cooling (riser feeds shrinkage).</li>
+<li><b>Shake-out</b>, fettling, inspection and heat treatment/machining if needed.</li>
+</ol>
+
+<h4 class="sub">Pattern allowances — CAT-1 Q5 (answer in the key)</h4>
+<div class="diagram">
+<svg viewBox="0 0 520 250" width="520" style="max-width:100%;height:auto" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#1b1f24"><polygon points="220.0,180.0 220.0,60.0 420.0,60.0 420.0,180.0" fill="none" stroke="#1b1f24" stroke-width="3"/><polygon points="210.0,190.0 210.0,50.0 430.0,50.0 430.0,190.0" fill="none" stroke="#8a93a3" stroke-width="2.2" stroke-dasharray="3,3"/><polygon points="196.0,200.0 204.0,40.0 436.0,40.0 444.0,200.0" fill="none" stroke="#1e468c" stroke-width="2.2" stroke-dasharray="14,3,2,3"/><text x="30.0" y="70.0" text-anchor="start" fill="#1b1f24" font-size="13" font-weight="bold">component</text><text x="30.0" y="86.0" text-anchor="start" fill="#8a93a3" font-size="11">(full line)</text><line x1="110.0" y1="72.0" x2="224.0" y2="78.0" stroke="#1b1f24" stroke-width="1" stroke-linecap="round"/><text x="30.0" y="120.0" text-anchor="start" fill="#8a93a3" font-size="13" font-weight="bold">casting size = component</text><text x="30.0" y="136.0" text-anchor="start" fill="#8a93a3" font-size="11">+ machining allowance (dotted)</text><line x1="190.0" y1="124.0" x2="212.0" y2="124.0" stroke="#8a93a3" stroke-width="1" stroke-linecap="round"/><text x="30.0" y="170.0" text-anchor="start" fill="#1e468c" font-size="13" font-weight="bold">pattern size = casting</text><text x="30.0" y="186.0" text-anchor="start" fill="#1e468c" font-size="11">+ shrinkage (chain-dotted)</text><line x1="180.0" y1="172.0" x2="202.0" y2="172.0" stroke="#1e468c" stroke-width="1" stroke-linecap="round"/><text x="320.0" y="228.0" text-anchor="middle" fill="#c0392b" font-size="12" font-weight="bold">draft: vertical faces ⟂ parting line are tapered</text><line x1="320.0" y1="212.0" x2="438.0" y2="190.0" stroke="#c0392b" stroke-width="1" stroke-linecap="round"/></svg>
+<p class="caption">Pattern allowances (CAT-1 Q5): the pattern is made larger than the finished component — for shrinkage on cooling and extra stock to machine off — and its vertical faces are tapered (draft) so it can be withdrawn from the sand without damaging the mould.</p>
+</div>
+<ul>
+<li><b>Shrinkage allowance:</b> the pattern is made larger than the casting because the metal contracts as it cools from the liquid to the solid state; the value depends on the material and its contraction.</li>
+<li><b>Machining allowance:</b> as-cast surfaces are rough; extra stock is added so that it can be machined off to reach the required size and finish.</li>
+<li><b>Draft allowance:</b> vertical faces of the pattern (⟂ the parting line) are given a slight taper so the pattern can be withdrawn without damaging the mould.</li>
+</ul>
+
+<div class="box ex"><span class="label">Worked example</span><b>Part (b) of the question — what if shrinkage and draft are neglected?</b><br>No shrinkage allowance → the cast part ends up <em>smaller</em> than the target, so it malfunctions in service or will not fit the assembly. No draft → the pattern jams when drawn from the sand, damaging mould surfaces and causing defects in the casting.<br>Numerical: cast-iron shrinkage ≈ 1% (10 mm per metre): a 500 mm casting needs a pattern of 500 × 1.01 = <code>505 mm</code> (before machining allowance).</div>
+
+<table>
+<tr><th>Method</th><th>Feature</th></tr>
+<tr><td>Sand casting</td><td>cheap, any size/metal, rough finish</td></tr>
+<tr><td>Die casting</td><td>metal dies, high accuracy, large volumes, non-ferrous</td></tr>
+<tr><td>Investment (lost wax)</td><td>fine detail, excellent finish, costly</td></tr>
+<tr><td>Centrifugal</td><td>rotating mould; pipes, rings, sound castings</td></tr>
+</table>
+
+<p><b>Common defects:</b> blowholes/porosity (trapped gas), shrinkage cavities (poor feeding), misruns and cold shuts (metal too cold), sand inclusions, hot tears.</p>
+
+<h3 class="topic" id="h2">H2. Forming Processes</h3>
+<div class="box terms"><span class="label">Key terms — know these words</span>
+<ul>
+<li><b>Plastic deformation</b> — permanent shape change under load.</li>
+<li><b>Hot / cold working</b> — deforming above / below the recrystallisation temperature.</li>
+<li><b>Forging</b> — shaping by compressive hammering/pressing.</li>
+<li><b>Rolling</b> — reducing thickness by passing between rolls.</li>
+<li><b>Extrusion</b> — forcing metal through a die.</li>
+<li><b>Drawing</b> — pulling through a die (wire, tube).</li>
+<li><b>Blanking / piercing / bending / deep drawing</b> — sheet-metal operations.</li>
+</ul>
+</div>
+
+<div class="box mis"><span class="label">Source note</span>Your syllabus lists this topic but I did not have your lecturer's slides for Module 4, so this is written from the standard textbook treatment (plus the CAT-1 casting question and key). Send the slides and I will align terms and examples to them.</div>
+
+<p>In <b>forming</b> the volume of metal is conserved while its shape is changed by plastic flow; there is little material waste and the grain flow improves strength.</p>
+
+<table>
+<tr><th>Process</th><th>How</th><th>Typical products</th></tr>
+<tr><td>Forging</td><td>compressive force in open or closed dies</td><td>crankshafts, connecting rods, tools</td></tr>
+<tr><td>Rolling</td><td>metal squeezed between rotating rolls</td><td>plates, sheets, rails, beams</td></tr>
+<tr><td>Extrusion</td><td>pushed through a shaped die</td><td>tubes, window frames, rods</td></tr>
+<tr><td>Drawing</td><td>pulled through a die</td><td>wire, thin tubes</td></tr>
+<tr><td>Sheet metal</td><td>blanking (cut out), piercing (hole), bending, deep drawing</td><td>car panels, utensils, cans</td></tr>
+</table>
+
+<ul>
+<li><b>Hot working:</b> large deformation at low force, no strain hardening, poorer finish and accuracy.</li>
+<li><b>Cold working:</b> better finish, accuracy and strength (strain hardening), needs more force and gives less deformation.</li>
+</ul>
+
+<div class="box ex"><span class="label">Worked example</span>Rolling a plate from 20 mm to 15 mm: draft = 5 mm, reduction = 5/20 = <code>25%</code>.</div>
+
+<h3 class="topic" id="h3">H3. Joining Processes</h3>
+<div class="box terms"><span class="label">Key terms — know these words</span>
+<ul>
+<li><b>Welding</b> — joining by melting (fusion) or pressure so the joint becomes one piece.</li>
+<li><b>Filler metal</b> — added material that fills the joint.</li>
+<li><b>Flux / shielding gas</b> — protects molten metal from oxidation.</li>
+<li><b>Soldering</b> — joining with a filler melting below 450 °C.</li>
+<li><b>Brazing</b> — filler melts above 450 °C but below the base metal's melting point.</li>
+<li><b>Weld joint types</b> — butt, lap, T, corner, edge.</li>
+</ul>
+</div>
+
+<div class="box mis"><span class="label">Source note</span>Your syllabus lists this topic but I did not have your lecturer's slides for Module 4, so this is written from the standard textbook treatment (plus the CAT-1 casting question and key). Send the slides and I will align terms and examples to them.</div>
+
+<table>
+<tr><th>Process</th><th>Principle</th><th>Use</th></tr>
+<tr><td>Arc welding (SMAW, MIG/GMAW, TIG/GTAW)</td><td>an electric arc between electrode and work melts the metal</td><td>structures, pipes, general fabrication</td></tr>
+<tr><td>Gas (oxy-acetylene) welding</td><td>flame from burning acetylene in oxygen</td><td>thin sheets, repair, cutting</td></tr>
+<tr><td>Resistance (spot) welding</td><td>heat from current through contact resistance + pressure</td><td>car body sheets</td></tr>
+<tr><td>Soldering</td><td>low-melting filler, base not melted</td><td>electronics, plumbing</td></tr>
+<tr><td>Brazing</td><td>higher-melting filler, base not melted</td><td>tool tips, pipes</td></tr>
+<tr><td>Riveting / bolting</td><td>mechanical, non-permanent or permanent</td><td>bridges, aircraft</td></tr>
+<tr><td>Adhesive bonding</td><td>glue</td><td>composites, dissimilar materials</td></tr>
+</table>
+
+<p><b>Defects:</b> porosity, cracks, incomplete fusion/penetration, undercut, distortion. In soldering/brazing the base metal is <em>not</em> melted — the key difference from welding.</p>
+
+<h3 class="topic" id="h4">H4. Cutting (Machining) Processes</h3>
+<div class="box terms"><span class="label">Key terms — know these words</span>
+<ul>
+<li><b>Machining</b> — removing material with a cutting tool.</li>
+<li><b>Cutting speed V</b> — surface speed of the work/tool, m/min.</li>
+<li><b>Feed f</b> — tool advance per revolution (mm/rev).</li>
+<li><b>Depth of cut d</b> — thickness of material removed in one pass.</li>
+<li><b>MRR</b> — material removal rate, mm³/min.</li>
+<li><b>Turning / drilling / milling / shaping / grinding</b> — the basic operations.</li>
+</ul>
+</div>
+
+<div class="box mis"><span class="label">Source note</span>Your syllabus lists this topic but I did not have your lecturer's slides for Module 4, so this is written from the standard textbook treatment (plus the CAT-1 casting question and key). Send the slides and I will align terms and examples to them.</div>
+
+<table>
+<tr><th>Operation</th><th>Machine</th><th>Motion</th></tr>
+<tr><td>Turning, facing, threading</td><td>lathe</td><td>work rotates, tool feeds</td></tr>
+<tr><td>Drilling</td><td>drilling machine</td><td>drill rotates and feeds</td></tr>
+<tr><td>Milling</td><td>milling machine</td><td>multi-tooth cutter rotates, work feeds</td></tr>
+<tr><td>Shaping / planing</td><td>shaper / planer</td><td>reciprocating tool or work, flat surfaces</td></tr>
+<tr><td>Grinding</td><td>grinder</td><td>abrasive wheel, fine finish</td></tr>
+</table>
+
+<div class="formula">V = π D N / 1000 &nbsp;(m/min) &nbsp;;&nbsp; turning MRR ≈ (π D N) × f × d &nbsp;(mm³/min)</div>
+
+<div class="box ex"><span class="label">Worked example</span>D = 50 mm at N = 400 rpm: V = π×50×400/1000 = <code>62.8 m/min</code>. With f = 0.2 mm/rev, d = 2 mm: MRR = (π×50×400) × 0.2 × 2 = 62 832 × 0.4 ≈ <code>25 100 mm³/min</code>.</div>
+
+<p><b>Tool materials:</b> high-speed steel (HSS), carbide, ceramic, diamond — harder (and costlier) materials allow higher speeds.</p>
+
+<h3 class="topic" id="h5">H5. CNC Machining</h3>
+<div class="box terms"><span class="label">Key terms — know these words</span>
+<ul>
+<li><b>NC / CNC</b> — numerical / computer numerical control.</li>
+<li><b>MCU</b> — machine control unit — reads the program, drives the axes.</li>
+<li><b>G-code</b> — motion commands (G00 rapid, G01 linear feed, G02/G03 arcs).</li>
+<li><b>M-code</b> — machine functions (M03 spindle on, M05 stop, M06 tool change, M30 end).</li>
+<li><b>Servo motor + encoder</b> — drive and position feedback.</li>
+<li><b>ATC</b> — automatic tool changer.</li>
+<li><b>Axes (X, Y, Z)</b> — directions of table/tool motion; 3-axis, 5-axis machines.</li>
+</ul>
+</div>
+
+<div class="box mis"><span class="label">Source note</span>Your syllabus lists this topic but I did not have your lecturer's slides for Module 4, so this is written from the standard textbook treatment (plus the CAT-1 casting question and key). Send the slides and I will align terms and examples to them.</div>
+<div class="diagram">
+<svg viewBox="0 0 690 230" width="690" style="max-width:100%;height:auto" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#1b1f24"><rect x="10.0" y="40.0" width="100.0" height="56.0" rx="6" fill="#eef0f4" stroke="#1b1f24" stroke-width="1.8"/><text x="60.0" y="64.5" text-anchor="middle" fill="#1b1f24" font-size="13">Part program</text><text x="60.0" y="80.5" text-anchor="middle" fill="#1b1f24" font-size="13">(G / M codes)</text><rect x="150.0" y="40.0" width="100.0" height="56.0" rx="6" fill="#eef0f4" stroke="#1b1f24" stroke-width="1.8"/><text x="200.0" y="64.5" text-anchor="middle" fill="#1b1f24" font-size="13">Machine control</text><text x="200.0" y="80.5" text-anchor="middle" fill="#1b1f24" font-size="13">unit (MCU)</text><rect x="290.0" y="40.0" width="100.0" height="56.0" rx="6" fill="#eef0f4" stroke="#1b1f24" stroke-width="1.8"/><text x="340.0" y="64.5" text-anchor="middle" fill="#1b1f24" font-size="13">Drive</text><text x="340.0" y="80.5" text-anchor="middle" fill="#1b1f24" font-size="13">amplifier</text><rect x="430.0" y="40.0" width="100.0" height="56.0" rx="6" fill="#eef0f4" stroke="#1b1f24" stroke-width="1.8"/><text x="480.0" y="64.5" text-anchor="middle" fill="#1b1f24" font-size="13">Servo</text><text x="480.0" y="80.5" text-anchor="middle" fill="#1b1f24" font-size="13">motor</text><rect x="570.0" y="40.0" width="100.0" height="56.0" rx="6" fill="#fff7cc" stroke="#1b1f24" stroke-width="1.8"/><text x="620.0" y="64.5" text-anchor="middle" fill="#1b1f24" font-size="13">Ball screw</text><text x="620.0" y="80.5" text-anchor="middle" fill="#1b1f24" font-size="13">+ table / spindle</text><line x1="110.0" y1="68.0" x2="142.8" y2="68.0" stroke="#1b1f24" stroke-width="2" stroke-linecap="round"/><polygon points="150.0,68.0 141.0,71.8 141.0,64.2" fill="#1b1f24"/><line x1="250.0" y1="68.0" x2="282.8" y2="68.0" stroke="#1b1f24" stroke-width="2" stroke-linecap="round"/><polygon points="290.0,68.0 281.0,71.8 281.0,64.2" fill="#1b1f24"/><line x1="390.0" y1="68.0" x2="422.8" y2="68.0" stroke="#1b1f24" stroke-width="2" stroke-linecap="round"/><polygon points="430.0,68.0 421.0,71.8 421.0,64.2" fill="#1b1f24"/><line x1="530.0" y1="68.0" x2="562.8" y2="68.0" stroke="#1b1f24" stroke-width="2" stroke-linecap="round"/><polygon points="570.0,68.0 561.0,71.8 561.0,64.2" fill="#1b1f24"/><rect x="430.0" y="150.0" width="100.0" height="46.0" rx="6" fill="#e6f4ec" stroke="#1b1f24" stroke-width="1.8"/><text x="480.0" y="169.5" text-anchor="middle" fill="#1b1f24" font-size="13">Encoder /</text><text x="480.0" y="185.5" text-anchor="middle" fill="#1b1f24" font-size="13">feedback</text><line x1="620.0" y1="96.0" x2="620.0" y2="173.0" stroke="#8a93a3" stroke-width="2" stroke-linecap="round"/><line x1="620.0" y1="173.0" x2="539.2" y2="173.0" stroke="#8a93a3" stroke-width="2" stroke-linecap="round"/><polygon points="532.0,173.0 541.0,169.2 541.0,176.8" fill="#8a93a3"/><line x1="430.0" y1="173.0" x2="207.2" y2="173.0" stroke="#166e3c" stroke-width="2" stroke-linecap="round"/><polygon points="200.0,173.0 209.0,169.2 209.0,176.8" fill="#166e3c"/><line x1="200.0" y1="173.0" x2="200.0" y2="98.0" stroke="#166e3c" stroke-width="2" stroke-linecap="round"/><line x1="200.0" y1="120.0" x2="200.0" y2="105.2" stroke="#166e3c" stroke-width="2" stroke-linecap="round"/><polygon points="200.0,98.0 203.8,107.0 196.2,107.0" fill="#166e3c"/><text x="315.0" y="216.0" text-anchor="middle" fill="#166e3c" font-size="12" font-weight="bold">position / speed feedback (closed loop)</text></svg>
+<p class="caption">A CNC axis: the controller turns the program into commands, the drive and servo motor move the table through a ball screw, and an encoder reports the real position back so the controller can correct any error.</p>
+</div>
+<p>Workflow: <b>CAD model → CAM (toolpaths) → G-code part program → CNC machine</b>. A <b>closed loop</b> compares commanded and measured position (encoder) so errors are corrected. Advantages: accuracy and repeatability, complex shapes, less labour, lights-out production.</p>
+
+<div class="box ex"><span class="label">Worked example</span><code>G21 G90</code> (mm, absolute); <code>G00 X0 Y0</code> (rapid to origin); <code>G01 X50 F100</code> (feed 50 mm along X at 100 mm/min) — takes 50/100 = 0.5 min = <code>30 s</code>; <code>M30</code> end.</div>
+
+<h3 class="topic" id="h6">H6. Additive Manufacturing (3-D Printing)</h3>
+<div class="box terms"><span class="label">Key terms — know these words</span>
+<ul>
+<li><b>Additive manufacturing</b> — making a part by adding material layer by layer.</li>
+<li><b>STL</b> — triangulated surface file sent to the printer.</li>
+<li><b>Slicing</b> — cutting the model into layers and generating toolpath (G-code).</li>
+<li><b>FDM / FFF</b> — fused deposition modelling: melts and extrudes thermoplastic filament.</li>
+<li><b>SLA</b> — stereolithography: UV light cures liquid resin.</li>
+<li><b>SLS / SLM</b> — laser fuses powder (polymer / metal).</li>
+<li><b>Layer height</b> — thickness of each layer.</li>
+<li><b>Support structure</b> — temporary material supporting overhangs.</li>
+</ul>
+</div>
+
+<div class="box mis"><span class="label">Source note</span>Your syllabus lists this topic but I did not have your lecturer's slides for Module 4, so this is written from the standard textbook treatment (plus the CAT-1 casting question and key). Send the slides and I will align terms and examples to them.</div>
+<div class="diagram">
+<svg viewBox="0 0 540 290" width="540" style="max-width:100%;height:auto" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#1b1f24"><rect x="110.0" y="230.0" width="240.0" height="18.0" rx="0" fill="#d9dde6" stroke="#1b1f24" stroke-width="2"/><text x="230.0" y="244.0" text-anchor="middle" fill="#1b1f24" font-size="11" font-weight="bold">build platform (heated bed)</text><rect x="150.0" y="218.0" width="160.0" height="7.0" rx="0" fill="#b8cdf5" stroke="#1b1f24" stroke-width="1"/><rect x="150.0" y="211.0" width="160.0" height="7.0" rx="0" fill="#9ab8ef" stroke="#1b1f24" stroke-width="1"/><rect x="150.0" y="204.0" width="160.0" height="7.0" rx="0" fill="#b8cdf5" stroke="#1b1f24" stroke-width="1"/><rect x="150.0" y="197.0" width="160.0" height="7.0" rx="0" fill="#9ab8ef" stroke="#1b1f24" stroke-width="1"/><rect x="150.0" y="190.0" width="160.0" height="7.0" rx="0" fill="#b8cdf5" stroke="#1b1f24" stroke-width="1"/><rect x="150.0" y="183.0" width="160.0" height="7.0" rx="0" fill="#9ab8ef" stroke="#1b1f24" stroke-width="1"/><rect x="150.0" y="176.0" width="160.0" height="7.0" rx="0" fill="#b8cdf5" stroke="#1b1f24" stroke-width="1"/><rect x="150.0" y="169.0" width="160.0" height="7.0" rx="0" fill="#9ab8ef" stroke="#1b1f24" stroke-width="1"/><text x="330.0" y="190.0" text-anchor="start" fill="#8a93a3" font-size="11">printed part, built</text><text x="330.0" y="204.0" text-anchor="start" fill="#8a93a3" font-size="11">layer by layer</text><rect x="205.0" y="110.0" width="50.0" height="34.0" rx="0" fill="#f2c94c" stroke="#1b1f24" stroke-width="2"/><text x="230.0" y="131.0" text-anchor="middle" fill="#1b1f24" font-size="11" font-weight="bold">heater</text><polygon points="213.0,144.0 247.0,144.0 237.0,160.0 223.0,160.0" fill="#cfd4dd" stroke="#1b1f24" stroke-width="2" stroke-linejoin="round"/><text x="262.0" y="156.0" text-anchor="start" fill="#1b1f24" font-size="11" font-weight="bold">nozzle</text><line x1="230.0" y1="48.0" x2="230.0" y2="110.0" stroke="#c0392b" stroke-width="3" stroke-linecap="round"/><text x="240.0" y="78.0" text-anchor="start" fill="#c0392b" font-size="12" font-weight="bold">filament</text><circle cx="230" cy="26" r="22" fill="#fff" stroke="#1b1f24" stroke-width="2"/><text x="230.0" y="30.0" text-anchor="middle" fill="#1b1f24" font-size="11">spool</text><line x1="150.0" y1="104.0" x2="182.8" y2="104.0" stroke="#1e468c" stroke-width="2" stroke-linecap="round"/><polygon points="190.0,104.0 181.0,107.8 181.0,100.2" fill="#1e468c"/><line x1="270.0" y1="104.0" x2="302.8" y2="104.0" stroke="#1e468c" stroke-width="2" stroke-linecap="round"/><polygon points="310.0,104.0 301.0,107.8 301.0,100.2" fill="#1e468c"/><text x="340.0" y="108.0" text-anchor="start" fill="#1e468c" font-size="12" font-weight="bold">nozzle moves in X–Y</text><line x1="60.0" y1="190.0" x2="60.0" y2="218.8" stroke="#7c3aed" stroke-width="2" stroke-linecap="round"/><polygon points="60.0,226.0 56.2,217.0 63.8,217.0" fill="#7c3aed"/><text x="10.0" y="262.0" text-anchor="start" fill="#7c3aed" font-size="11" font-weight="bold">platform lowers</text><text x="10.0" y="276.0" text-anchor="start" fill="#7c3aed" font-size="11" font-weight="bold">one layer in Z</text></svg>
+<p class="caption">FDM / FFF 3D printing: a heated nozzle melts thermoplastic filament and deposits it in a path; after each layer the platform moves down (or the nozzle up) by the layer height.</p>
+</div>
+<ol>
+<li><b>CAD model</b> → export <b>STL</b>.</li>
+<li><b>Slice</b> into layers, choose orientation, supports, infill.</li>
+<li><b>Print</b> layer by layer.</li>
+<li><b>Post-process:</b> remove supports, sand, cure, heat-treat.</li>
+</ol>
+
+<table>
+<tr><th>Technology</th><th>Material</th><th>Feature</th></tr>
+<tr><td>FDM / FFF</td><td>PLA, ABS filament</td><td>cheap, common, visible layer lines</td></tr>
+<tr><td>SLA</td><td>photopolymer resin</td><td>fine detail and smooth surface</td></tr>
+<tr><td>SLS</td><td>nylon powder</td><td>strong, no supports needed</td></tr>
+<tr><td>SLM / DMLS</td><td>metal powder</td><td>functional metal parts (aerospace, medical)</td></tr>
+</table>
+
+<ul>
+<li><b>Advantages:</b> complex geometry, no tooling, low waste, quick prototypes, customisation.</li>
+<li><b>Limits:</b> slow for volume, surface finish, anisotropic strength, size and material limits.</li>
+<li><b>Applications:</b> prototypes, tooling, medical implants, aerospace parts, customised products.</li>
+</ul>
+
+<div class="box ex"><span class="label">Worked example</span>FDM: 0.4 mm nozzle, 0.2 mm layers, 60 mm/s → volumetric rate 0.4 × 0.2 × 60 = 4.8 mm³/s. A 30 cm³ (30 000 mm³) part takes 30 000/4.8 = 6250 s ≈ <code>1.7 h</code> of pure printing.</div>
+
+<h3 class="topic" id="h7">H7. Thermal Engineering &amp; the IC Engine</h3>
+<div class="box terms"><span class="label">Key terms — know these words</span>
+<ul>
+<li><b>Heat engine</b> — device converting heat to work.</li>
+<li><b>IC engine</b> — engine burning fuel inside the cylinder.</li>
+<li><b>TDC / BDC</b> — top / bottom dead centre — extreme piston positions.</li>
+<li><b>Stroke / bore</b> — piston travel / cylinder diameter.</li>
+<li><b>Compression ratio r</b> — V<sub>max</sub>/V<sub>min</sub>.</li>
+<li><b>SI / CI</b> — spark-ignition (petrol) / compression-ignition (diesel).</li>
+<li><b>Brake power BP</b> — power at the shaft, 2πNT/60.</li>
+<li><b>Thermal efficiency</b> — work output ÷ heat input.</li>
+</ul>
+</div>
+
+<div class="box mis"><span class="label">Source note</span>Your syllabus lists this topic but I did not have your lecturer's slides for Module 4, so this is written from the standard textbook treatment (plus the CAT-1 casting question and key). Send the slides and I will align terms and examples to them.</div>
+<div class="diagram">
+<svg viewBox="0 0 620 300" width="620" style="max-width:100%;height:auto" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#1b1f24"><text x="70.0" y="14.0" text-anchor="middle" fill="#1b1f24" font-size="13" font-weight="bold">1  Suction</text><g transform="translate(0,36)"><rect x="38.0" y="38.0" width="64.0" height="64.7" rx="0" fill="#dbeafe" stroke="none" stroke-width="0"/><line x1="36.0" y1="38.0" x2="36.0" y2="150.0" stroke="#1b1f24" stroke-width="3" stroke-linecap="round"/><line x1="104.0" y1="38.0" x2="104.0" y2="150.0" stroke="#1b1f24" stroke-width="3" stroke-linecap="round"/><line x1="36.0" y1="38.0" x2="104.0" y2="38.0" stroke="#1b1f24" stroke-width="4" stroke-linecap="round"/><rect x="38.0" y="102.7" width="64.0" height="16.0" rx="0" fill="#c9d2e3" stroke="#1b1f24" stroke-width="2"/><line x1="70.0" y1="118.7" x2="85.6" y2="181.0" stroke="#1b1f24" stroke-width="4" stroke-linecap="round"/><circle cx="70" cy="190" r="18" fill="#fff" stroke="#1b1f24" stroke-width="2"/><circle cx="85.6" cy="181.0" r="4" fill="#c0392b"/><circle cx="70.0" cy="190.0" r="2.5" fill="#1b1f24"/><path d="M46.6,176.5 A27,27 0 0 1 83.5,166.6" fill="none" stroke="#7c3aed" stroke-width="2"/><polygon points="83.5,166.6 74.9,165.5 78.3,159.7" fill="#7c3aed"/><line x1="52.0" y1="11.0" x2="52.0" y2="31.0" stroke="#1b1f24" stroke-width="3" stroke-linecap="round"/><line x1="45.0" y1="31.0" x2="59.0" y2="31.0" stroke="#1b1f24" stroke-width="3" stroke-linecap="round"/><text x="52.0" y="5.0" text-anchor="middle" fill="#166e3c" font-size="10" font-weight="bold">IN</text><line x1="88.0" y1="20.0" x2="88.0" y2="40.0" stroke="#1b1f24" stroke-width="3" stroke-linecap="round"/><line x1="81.0" y1="40.0" x2="95.0" y2="40.0" stroke="#1b1f24" stroke-width="3" stroke-linecap="round"/><text x="88.0" y="14.0" text-anchor="middle" fill="#8a93a3" font-size="10" font-weight="bold">EX</text><line x1="114.0" y1="100.7" x2="114.0" y2="125.5" stroke="#c0392b" stroke-width="2.2" stroke-linecap="round"/><polygon points="114.0,132.7 110.2,123.7 117.8,123.7" fill="#c0392b"/></g><text x="220.0" y="14.0" text-anchor="middle" fill="#1b1f24" font-size="13" font-weight="bold">2  Compression</text><g transform="translate(0,36)"><rect x="188.0" y="38.0" width="64.0" height="64.7" rx="0" fill="#bfd3f5" stroke="none" stroke-width="0"/><line x1="186.0" y1="38.0" x2="186.0" y2="150.0" stroke="#1b1f24" stroke-width="3" stroke-linecap="round"/><line x1="254.0" y1="38.0" x2="254.0" y2="150.0" stroke="#1b1f24" stroke-width="3" stroke-linecap="round"/><line x1="186.0" y1="38.0" x2="254.0" y2="38.0" stroke="#1b1f24" stroke-width="4" stroke-linecap="round"/><rect x="188.0" y="102.7" width="64.0" height="16.0" rx="0" fill="#c9d2e3" stroke="#1b1f24" stroke-width="2"/><line x1="220.0" y1="118.7" x2="204.4" y2="181.0" stroke="#1b1f24" stroke-width="4" stroke-linecap="round"/><circle cx="220" cy="190" r="18" fill="#fff" stroke="#1b1f24" stroke-width="2"/><circle cx="204.4" cy="181.0" r="4" fill="#c0392b"/><circle cx="220.0" cy="190.0" r="2.5" fill="#1b1f24"/><path d="M196.6,176.5 A27,27 0 0 1 233.5,166.6" fill="none" stroke="#7c3aed" stroke-width="2"/><polygon points="233.5,166.6 224.9,165.5 228.3,159.7" fill="#7c3aed"/><line x1="202.0" y1="20.0" x2="202.0" y2="40.0" stroke="#1b1f24" stroke-width="3" stroke-linecap="round"/><line x1="195.0" y1="40.0" x2="209.0" y2="40.0" stroke="#1b1f24" stroke-width="3" stroke-linecap="round"/><text x="202.0" y="14.0" text-anchor="middle" fill="#8a93a3" font-size="10" font-weight="bold">IN</text><line x1="238.0" y1="20.0" x2="238.0" y2="40.0" stroke="#1b1f24" stroke-width="3" stroke-linecap="round"/><line x1="231.0" y1="40.0" x2="245.0" y2="40.0" stroke="#1b1f24" stroke-width="3" stroke-linecap="round"/><text x="238.0" y="14.0" text-anchor="middle" fill="#8a93a3" font-size="10" font-weight="bold">EX</text><line x1="264.0" y1="132.7" x2="264.0" y2="107.9" stroke="#c0392b" stroke-width="2.2" stroke-linecap="round"/><polygon points="264.0,100.7 267.8,109.7 260.2,109.7" fill="#c0392b"/></g><text x="370.0" y="14.0" text-anchor="middle" fill="#1b1f24" font-size="13" font-weight="bold">3  Power</text><g transform="translate(0,36)"><rect x="338.0" y="38.0" width="64.0" height="64.7" rx="0" fill="#ffd9a8" stroke="none" stroke-width="0"/><line x1="336.0" y1="38.0" x2="336.0" y2="150.0" stroke="#1b1f24" stroke-width="3" stroke-linecap="round"/><line x1="404.0" y1="38.0" x2="404.0" y2="150.0" stroke="#1b1f24" stroke-width="3" stroke-linecap="round"/><line x1="336.0" y1="38.0" x2="404.0" y2="38.0" stroke="#1b1f24" stroke-width="4" stroke-linecap="round"/><rect x="338.0" y="102.7" width="64.0" height="16.0" rx="0" fill="#c9d2e3" stroke="#1b1f24" stroke-width="2"/><line x1="370.0" y1="118.7" x2="385.6" y2="181.0" stroke="#1b1f24" stroke-width="4" stroke-linecap="round"/><circle cx="370" cy="190" r="18" fill="#fff" stroke="#1b1f24" stroke-width="2"/><circle cx="385.6" cy="181.0" r="4" fill="#c0392b"/><circle cx="370.0" cy="190.0" r="2.5" fill="#1b1f24"/><path d="M346.6,176.5 A27,27 0 0 1 383.5,166.6" fill="none" stroke="#7c3aed" stroke-width="2"/><polygon points="383.5,166.6 374.9,165.5 378.3,159.7" fill="#7c3aed"/><line x1="352.0" y1="20.0" x2="352.0" y2="40.0" stroke="#1b1f24" stroke-width="3" stroke-linecap="round"/><line x1="345.0" y1="40.0" x2="359.0" y2="40.0" stroke="#1b1f24" stroke-width="3" stroke-linecap="round"/><text x="352.0" y="14.0" text-anchor="middle" fill="#8a93a3" font-size="10" font-weight="bold">IN</text><line x1="388.0" y1="20.0" x2="388.0" y2="40.0" stroke="#1b1f24" stroke-width="3" stroke-linecap="round"/><line x1="381.0" y1="40.0" x2="395.0" y2="40.0" stroke="#1b1f24" stroke-width="3" stroke-linecap="round"/><text x="388.0" y="14.0" text-anchor="middle" fill="#8a93a3" font-size="10" font-weight="bold">EX</text><polygon points="367.0,40.0 374.0,50.0 369.0,50.0 375.0,64.0 364.0,52.0 369.0,52.0" fill="#f2c94c" stroke="#b8860b" stroke-width="1" stroke-linejoin="round"/><line x1="414.0" y1="100.7" x2="414.0" y2="125.5" stroke="#c0392b" stroke-width="2.2" stroke-linecap="round"/><polygon points="414.0,132.7 410.2,123.7 417.8,123.7" fill="#c0392b"/></g><text x="520.0" y="14.0" text-anchor="middle" fill="#1b1f24" font-size="13" font-weight="bold">4  Exhaust</text><g transform="translate(0,36)"><rect x="488.0" y="38.0" width="64.0" height="64.7" rx="0" fill="#dcdcdc" stroke="none" stroke-width="0"/><line x1="486.0" y1="38.0" x2="486.0" y2="150.0" stroke="#1b1f24" stroke-width="3" stroke-linecap="round"/><line x1="554.0" y1="38.0" x2="554.0" y2="150.0" stroke="#1b1f24" stroke-width="3" stroke-linecap="round"/><line x1="486.0" y1="38.0" x2="554.0" y2="38.0" stroke="#1b1f24" stroke-width="4" stroke-linecap="round"/><rect x="488.0" y="102.7" width="64.0" height="16.0" rx="0" fill="#c9d2e3" stroke="#1b1f24" stroke-width="2"/><line x1="520.0" y1="118.7" x2="504.4" y2="181.0" stroke="#1b1f24" stroke-width="4" stroke-linecap="round"/><circle cx="520" cy="190" r="18" fill="#fff" stroke="#1b1f24" stroke-width="2"/><circle cx="504.4" cy="181.0" r="4" fill="#c0392b"/><circle cx="520.0" cy="190.0" r="2.5" fill="#1b1f24"/><path d="M496.6,176.5 A27,27 0 0 1 533.5,166.6" fill="none" stroke="#7c3aed" stroke-width="2"/><polygon points="533.5,166.6 524.9,165.5 528.3,159.7" fill="#7c3aed"/><line x1="502.0" y1="20.0" x2="502.0" y2="40.0" stroke="#1b1f24" stroke-width="3" stroke-linecap="round"/><line x1="495.0" y1="40.0" x2="509.0" y2="40.0" stroke="#1b1f24" stroke-width="3" stroke-linecap="round"/><text x="502.0" y="14.0" text-anchor="middle" fill="#8a93a3" font-size="10" font-weight="bold">IN</text><line x1="538.0" y1="11.0" x2="538.0" y2="31.0" stroke="#1b1f24" stroke-width="3" stroke-linecap="round"/><line x1="531.0" y1="31.0" x2="545.0" y2="31.0" stroke="#1b1f24" stroke-width="3" stroke-linecap="round"/><text x="538.0" y="5.0" text-anchor="middle" fill="#166e3c" font-size="10" font-weight="bold">EX</text><line x1="564.0" y1="132.7" x2="564.0" y2="107.9" stroke="#c0392b" stroke-width="2.2" stroke-linecap="round"/><polygon points="564.0,100.7 567.8,109.7 560.2,109.7" fill="#c0392b"/></g><text x="300.0" y="288.0" text-anchor="middle" fill="#8a93a3" font-size="12" font-style="italic">fuel-air in  →  squeezed  →  burns and expands (spark)  →  burnt gas out</text></svg>
+<p class="caption">Four-stroke petrol (SI) engine: one power stroke every two crank revolutions (720°). Valves open only for suction (IN) and exhaust (EX); the shading shows fresh charge, compressed charge, burning gas and exhaust above the piston. Red arrow = piston direction.</p>
+</div>
+<ul>
+<li><b>Four-stroke:</b> suction, compression, power, exhaust — 2 crank revolutions, one power stroke per cycle.</li>
+<li><b>Two-stroke:</b> the cycle is completed in one revolution (a power stroke every revolution) with ports instead of valves; simpler and lighter but less efficient and more polluting.</li>
+</ul>
+
+<table>
+<tr><th></th><th>SI (petrol)</th><th>CI (diesel)</th></tr>
+<tr><td>Fuel intake</td><td>air + fuel mixture</td><td>air only; fuel injected at the end of compression</td></tr>
+<tr><td>Ignition</td><td>spark plug</td><td>heat of compression</td></tr>
+<tr><td>Compression ratio</td><td>6–10</td><td>15–22</td></tr>
+<tr><td>Ideal cycle</td><td>Otto</td><td>Diesel</td></tr>
+<tr><td>Efficiency</td><td>lower</td><td>higher</td></tr>
+</table>
+
+<div class="formula">swept volume = (π/4) D² L &nbsp;;&nbsp; Otto efficiency η = 1 − 1 / r<sup>γ−1</sup> &nbsp;;&nbsp; BP = 2π N T / 60</div>
+
+<div class="box ex"><span class="label">Worked example</span>4-cylinder engine, bore 80 mm, stroke 90 mm: V<sub>s</sub> = π/4 × 80² × 90 = 452 389 mm³ ≈ 0.452 L per cylinder → <code>1.81 L</code> total. With r = 10, γ = 1.4: η = 1 − 10<sup>−0.4</sup> = 1 − 0.398 = <code>0.60</code> (ideal). Torque 150 N·m at 3000 rpm: BP = 2π×3000×150/60 = <code>47.1 kW</code>.</div>
+
+<h3 class="topic" id="h8">H8. Power Plants</h3>
+<div class="box terms"><span class="label">Key terms — know these words</span>
+<ul>
+<li><b>Rankine cycle</b> — steam power cycle: boiler → turbine → condenser → pump.</li>
+<li><b>Prime mover</b> — turbine or engine driving the generator.</li>
+<li><b>Penstock</b> — pipe carrying water to a hydro turbine.</li>
+<li><b>Reactor / moderator / control rods</b> — nuclear: fission vessel / slows neutrons / absorbs neutrons.</li>
+<li><b>Capacity factor</b> — actual output ÷ maximum possible.</li>
+<li><b>Overall efficiency</b> — electrical output ÷ fuel energy input.</li>
+</ul>
+</div>
+
+<div class="box mis"><span class="label">Source note</span>Your syllabus lists this topic but I did not have your lecturer's slides for Module 4, so this is written from the standard textbook treatment (plus the CAT-1 casting question and key). Send the slides and I will align terms and examples to them.</div>
+<div class="diagram">
+<svg viewBox="0 0 640 240" width="640" style="max-width:100%;height:auto" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#1b1f24"><rect x="30.0" y="40.0" width="120.0" height="60.0" rx="6" fill="#fde8d9" stroke="#1b1f24" stroke-width="1.8"/><text x="90.0" y="66.5" text-anchor="middle" fill="#1b1f24" font-size="13">Boiler</text><text x="90.0" y="82.5" text-anchor="middle" fill="#1b1f24" font-size="13">(steam generator)</text><polygon points="240.0,40.0 240.0,100.0 320.0,85.0 320.0,55.0" fill="#d4e8d0" stroke="#1b1f24" stroke-width="2" stroke-linejoin="round"/><text x="280.0" y="74.0" text-anchor="middle" fill="#1b1f24" font-size="12" font-weight="bold">Turbine</text><circle cx="400" cy="70" r="24" fill="#fff" stroke="#1b1f24" stroke-width="2"/><text x="400.0" y="75.0" text-anchor="middle" fill="#1b1f24" font-size="16" font-weight="bold">G</text><line x1="320.0" y1="70.0" x2="376.0" y2="70.0" stroke="#1b1f24" stroke-width="3" stroke-linecap="round"/><rect x="240.0" y="170.0" width="100.0" height="50.0" rx="6" fill="#d4dff0" stroke="#1b1f24" stroke-width="1.8"/><text x="290.0" y="199.5" text-anchor="middle" fill="#1b1f24" font-size="13">Condenser</text><rect x="30.0" y="170.0" width="120.0" height="50.0" rx="6" fill="#eee" stroke="#1b1f24" stroke-width="1.8"/><text x="90.0" y="199.5" text-anchor="middle" fill="#1b1f24" font-size="13">Feed pump</text><line x1="150.0" y1="70.0" x2="230.0" y2="70.0" stroke="#c0392b" stroke-width="2.5" stroke-linecap="round"/><polygon points="238.0,70.0 228.0,74.2 228.0,65.8" fill="#c0392b"/><text x="194.0" y="56.0" text-anchor="middle" fill="#c0392b" font-size="11" font-weight="bold">HP steam</text><line x1="280.0" y1="100.0" x2="280.0" y2="160.0" stroke="#8a93a3" stroke-width="2.5" stroke-linecap="round"/><polygon points="280.0,168.0 275.8,158.0 284.2,158.0" fill="#8a93a3"/><text x="288.0" y="138.0" text-anchor="start" fill="#8a93a3" font-size="11" font-weight="bold">exhaust steam</text><line x1="240.0" y1="195.0" x2="160.0" y2="195.0" stroke="#1e468c" stroke-width="2.5" stroke-linecap="round"/><polygon points="152.0,195.0 162.0,190.8 162.0,199.2" fill="#1e468c"/><text x="196.0" y="187.0" text-anchor="middle" fill="#1e468c" font-size="11" font-weight="bold">water</text><line x1="90.0" y1="168.0" x2="90.0" y2="110.0" stroke="#1e468c" stroke-width="2.5" stroke-linecap="round"/><polygon points="90.0,102.0 94.2,112.0 85.8,112.0" fill="#1e468c"/><text x="98.0" y="140.0" text-anchor="start" fill="#1e468c" font-size="11" font-weight="bold">feed water</text><line x1="60.0" y1="18.0" x2="60.0" y2="30.8" stroke="#1b1f24" stroke-width="2" stroke-linecap="round"/><polygon points="60.0,38.0 56.2,29.0 63.8,29.0" fill="#1b1f24"/><text x="30.0" y="12.0" text-anchor="start" fill="#1b1f24" font-size="11" font-weight="bold">fuel + air</text><line x1="345.0" y1="205.0" x2="387.8" y2="205.0" stroke="#1e468c" stroke-width="2" stroke-linecap="round"/><polygon points="395.0,205.0 386.0,208.8 386.0,201.2" fill="#1e468c"/><text x="400.0" y="209.0" text-anchor="start" fill="#1e468c" font-size="11">cooling water in/out</text><text x="440.0" y="74.0" text-anchor="start" fill="#166e3c" font-size="12" font-weight="bold">→ electrical output</text></svg>
+<p class="caption">Steam (Rankine-cycle) power plant: the boiler makes high-pressure steam, the turbine expands it to drive the generator, the condenser turns the exhaust back into water and the pump returns it to the boiler.</p>
+</div>
+<table>
+<tr><th>Plant</th><th>Energy source → conversion</th><th>Notes</th></tr>
+<tr><td>Thermal (steam)</td><td>coal/gas heat → steam → turbine → generator</td><td>≈35–40% efficient; needs cooling water; emissions</td></tr>
+<tr><td>Hydro</td><td>water potential energy → turbine</td><td>P = ρ g Q H η; clean, flexible, site-limited</td></tr>
+<tr><td>Nuclear</td><td>U-235 fission heat → steam</td><td>no CO₂ in operation; waste and safety issues</td></tr>
+<tr><td>Gas turbine</td><td>fuel burnt in compressed air → turbine</td><td>fast start, peaking plants; combined cycle ≈ 55–60%</td></tr>
+<tr><td>Diesel</td><td>diesel engine + alternator</td><td>standby and remote areas</td></tr>
+</table>
+
+<div class="box ex"><span class="label">Worked example</span><b>Hydro:</b> Q = 10 m³/s, H = 50 m, η = 0.85: P = 1000×9.81×10×50×0.85 = <code>4.17 MW</code>.<br><b>Thermal:</b> 500 MW output at 38% overall efficiency needs 500/0.38 = 1316 MW of fuel heat; with coal of 20 MJ/kg that is 65.8 kg/s ≈ <code>237 t/h</code>.</div>
+
+<h3 class="topic" id="h9">H9. Refrigeration &amp; Air Conditioning</h3>
+<div class="box terms"><span class="label">Key terms — know these words</span>
+<ul>
+<li><b>Refrigeration</b> — removing heat from a cold space and rejecting it to a warmer place.</li>
+<li><b>Refrigerant</b> — working fluid (R134a, R32…).</li>
+<li><b>Compressor / condenser / expansion valve / evaporator</b> — the four main components.</li>
+<li><b>COP</b> — coefficient of performance = Q<sub>L</sub>/W.</li>
+<li><b>Ton of refrigeration</b> — 3.517 kW (211 kJ/min).</li>
+<li><b>Air conditioning</b> — controlling temperature, humidity, cleanliness and distribution of air.</li>
+</ul>
+</div>
+
+<div class="box mis"><span class="label">Source note</span>Your syllabus lists this topic but I did not have your lecturer's slides for Module 4, so this is written from the standard textbook treatment (plus the CAT-1 casting question and key). Send the slides and I will align terms and examples to them.</div>
+<div class="diagram">
+<svg viewBox="0 0 640 296" width="640" style="max-width:100%;height:auto" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#1b1f24"><rect x="250.0" y="30.0" width="170.0" height="50.0" rx="6" fill="#fde8d9" stroke="#1b1f24" stroke-width="1.8"/><text x="335.0" y="51.5" text-anchor="middle" fill="#1b1f24" font-size="13">CONDENSER</text><text x="335.0" y="67.5" text-anchor="middle" fill="#1b1f24" font-size="13">(rejects heat Q<tspan baseline-shift="sub" font-size="75%">H</tspan>)</text><rect x="250.0" y="210.0" width="170.0" height="50.0" rx="6" fill="#d4e8f5" stroke="#1b1f24" stroke-width="1.8"/><text x="335.0" y="231.5" text-anchor="middle" fill="#1b1f24" font-size="13">EVAPORATOR</text><text x="335.0" y="247.5" text-anchor="middle" fill="#1b1f24" font-size="13">(absorbs heat Q<tspan baseline-shift="sub" font-size="75%">L</tspan>)</text><circle cx="530" cy="145" r="42" fill="#fff" stroke="#1b1f24" stroke-width="2.4"/><text x="530.0" y="141.0" text-anchor="middle" fill="#1b1f24" font-size="9.5" font-weight="bold">COMPRESSOR</text><text x="530.0" y="156.0" text-anchor="middle" fill="#1b1f24" font-size="9.5">(work W in)</text><polygon points="100.0,130.0 140.0,130.0 100.0,160.0 140.0,160.0" fill="#fff" stroke="#1b1f24" stroke-width="2.4" stroke-linejoin="round"/><text x="86.0" y="140.0" text-anchor="end" fill="#1b1f24" font-size="10" font-weight="bold">EXPANSION</text><text x="86.0" y="154.0" text-anchor="end" fill="#1b1f24" font-size="10" font-weight="bold">VALVE</text><line x1="420.0" y1="55.0" x2="530.0" y2="55.0" stroke="#c0392b" stroke-width="2.6" stroke-linecap="round"/><line x1="530.0" y1="55.0" x2="530.0" y2="93.0" stroke="#c0392b" stroke-width="2.6" stroke-linecap="round"/><polygon points="530.0,101.0 525.8,91.0 534.2,91.0" fill="#c0392b"/><text x="540.0" y="80.0" text-anchor="start" fill="#c0392b" font-size="11" font-weight="bold">2: hot HP vapour</text><line x1="420.0" y1="235.0" x2="530.0" y2="235.0" stroke="#1e468c" stroke-width="2.6" stroke-linecap="round"/><line x1="530.0" y1="235.0" x2="530.0" y2="197.0" stroke="#1e468c" stroke-width="2.6" stroke-linecap="round"/><polygon points="530.0,189.0 534.2,199.0 525.8,199.0" fill="#1e468c"/><text x="540.0" y="215.0" text-anchor="start" fill="#1e468c" font-size="11" font-weight="bold">1: LP vapour</text><line x1="250.0" y1="55.0" x2="120.0" y2="55.0" stroke="#d4a017" stroke-width="2.6" stroke-linecap="round"/><line x1="120.0" y1="55.0" x2="120.0" y2="120.0" stroke="#d4a017" stroke-width="2.6" stroke-linecap="round"/><polygon points="120.0,128.0 115.8,118.0 124.2,118.0" fill="#d4a017"/><text x="112.0" y="95.0" text-anchor="end" fill="#d4a017" font-size="11" font-weight="bold">3: HP liquid</text><line x1="120.0" y1="162.0" x2="120.0" y2="235.0" stroke="#5b8bd6" stroke-width="2.6" stroke-linecap="round"/><line x1="120.0" y1="235.0" x2="240.0" y2="235.0" stroke="#5b8bd6" stroke-width="2.6" stroke-linecap="round"/><polygon points="248.0,235.0 238.0,239.2 238.0,230.8" fill="#5b8bd6"/><text x="185.0" y="258.0" text-anchor="middle" fill="#5b8bd6" font-size="11" font-weight="bold">4: cold mixture</text><text x="335.0" y="22.0" text-anchor="middle" fill="#c0392b" font-size="11" font-weight="bold">Q<tspan baseline-shift="sub" font-size="75%">H</tspan> → rejected to the surroundings</text><text x="335.0" y="284.0" text-anchor="middle" fill="#1e468c" font-size="11" font-weight="bold">Q<tspan baseline-shift="sub" font-size="75%">L</tspan> ← absorbed from the cold space</text><text x="335.0" y="150.0" text-anchor="middle" fill="#1b1f24" font-size="15" font-weight="bold">COP = Q<tspan baseline-shift="sub" font-size="75%">L</tspan> / W</text></svg>
+<p class="caption">Vapour-compression refrigeration cycle: compressor raises pressure; the condenser rejects heat; the expansion valve drops pressure and temperature; the evaporator absorbs heat from the cold space.</p>
+</div>
+<div class="formula">COP = refrigeration effect / work input = Q<sub>L</sub> / W &nbsp;;&nbsp; Carnot COP = T<sub>L</sub> / (T<sub>H</sub> − T<sub>L</sub>) &nbsp; (kelvin)</div>
+
+<div class="box ex"><span class="label">Worked example</span>An evaporator absorbs 3.5 kW with a 1 kW compressor: COP = <code>3.5</code>. Limit between −10 °C (263 K) and 35 °C (308 K): COP<sub>Carnot</sub> = 263/45 = <code>5.8</code>; a real cycle is lower. A 1.5-ton AC removes 1.5 × 3.517 ≈ 5.3 kW of heat.</div>
+
+<p><b>Air conditioning</b> adds control of humidity (dehumidifying at the cold coil), filtering and air circulation; window, split and central types. Heat taken from the room plus the compressor work is rejected outdoors at the condenser.</p>
+
+<h3 class="topic" id="h10">H10. Fuel Cells &amp; Sustainable Energy</h3>
+<div class="box terms"><span class="label">Key terms — know these words</span>
+<ul>
+<li><b>Fuel cell</b> — electrochemical device converting fuel's chemical energy directly into electricity.</li>
+<li><b>Anode / cathode / electrolyte (PEM)</b> — fuel electrode / oxidant electrode / proton-conducting membrane.</li>
+<li><b>Renewable energy</b> — from sources replenished naturally.</li>
+<li><b>Photovoltaic effect</b> — light generating voltage in a semiconductor.</li>
+<li><b>Betz limit</b> — maximum 59.3% of wind power can be extracted.</li>
+<li><b>Sustainability</b> — meeting present needs without harming future generations.</li>
+</ul>
+</div>
+
+<div class="box mis"><span class="label">Source note</span>Your syllabus lists this topic but I did not have your lecturer's slides for Module 4, so this is written from the standard textbook treatment (plus the CAT-1 casting question and key). Send the slides and I will align terms and examples to them.</div>
+<div class="diagram">
+<svg viewBox="0 0 520 285" width="520" style="max-width:100%;height:auto" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#1b1f24"><rect x="110.0" y="100.0" width="90.0" height="140.0" rx="0" fill="#e8f0fc" stroke="#1b1f24" stroke-width="2.4"/><rect x="200.0" y="100.0" width="100.0" height="140.0" rx="0" fill="#f6e9ff" stroke="#1b1f24" stroke-width="2"/><rect x="300.0" y="100.0" width="90.0" height="140.0" rx="0" fill="#e6f4ec" stroke="#1b1f24" stroke-width="2.4"/><text x="155.0" y="92.0" text-anchor="middle" fill="#1e468c" font-size="12" font-weight="bold">ANODE</text><text x="250.0" y="92.0" text-anchor="middle" fill="#7c3aed" font-size="11" font-weight="bold">ELECTROLYTE</text><text x="345.0" y="92.0" text-anchor="middle" fill="#166e3c" font-size="12" font-weight="bold">CATHODE</text><line x1="20.0" y1="170.0" x2="98.0" y2="170.0" stroke="#1e468c" stroke-width="2.6" stroke-linecap="round"/><polygon points="106.0,170.0 96.0,174.2 96.0,165.8" fill="#1e468c"/><text x="20.0" y="158.0" text-anchor="start" fill="#1e468c" font-size="13" font-weight="bold">H₂ in</text><line x1="480.0" y1="170.0" x2="402.0" y2="170.0" stroke="#166e3c" stroke-width="2.6" stroke-linecap="round"/><polygon points="394.0,170.0 404.0,165.8 404.0,174.2" fill="#166e3c"/><text x="480.0" y="158.0" text-anchor="end" fill="#166e3c" font-size="13" font-weight="bold">O₂ (air) in</text><text x="155.0" y="135.0" text-anchor="middle" fill="#1e468c" font-size="11" font-weight="bold">H₂ → 2H⁺</text><text x="155.0" y="150.0" text-anchor="middle" fill="#1e468c" font-size="11" font-weight="bold">+ 2e⁻</text><text x="345.0" y="130.0" text-anchor="middle" fill="#166e3c" font-size="11" font-weight="bold">½O₂ + 2H⁺</text><text x="345.0" y="145.0" text-anchor="middle" fill="#166e3c" font-size="11" font-weight="bold">+ 2e⁻ → H₂O</text><line x1="214.0" y1="200.0" x2="278.8" y2="200.0" stroke="#7c3aed" stroke-width="2.4" stroke-linecap="round"/><polygon points="286.0,200.0 277.0,203.8 277.0,196.2" fill="#7c3aed"/><text x="250.0" y="220.0" text-anchor="middle" fill="#7c3aed" font-size="11" font-weight="bold">H⁺ ions</text><line x1="155.0" y1="100.0" x2="155.0" y2="44.0" stroke="#c0392b" stroke-width="2.4" stroke-linecap="round"/><line x1="155.0" y1="44.0" x2="345.0" y2="44.0" stroke="#c0392b" stroke-width="2.4" stroke-linecap="round"/><line x1="345.0" y1="44.0" x2="345.0" y2="100.0" stroke="#c0392b" stroke-width="2.4" stroke-linecap="round"/><rect x="230.0" y="32.0" width="40.0" height="24.0" rx="0" fill="#fff" stroke="#1b1f24" stroke-width="2"/><text x="250.0" y="48.0" text-anchor="middle" fill="#1b1f24" font-size="11" font-weight="bold">load</text><line x1="168.0" y1="44.0" x2="218.8" y2="44.0" stroke="#c0392b" stroke-width="2.2" stroke-linecap="round"/><polygon points="226.0,44.0 217.0,47.8 217.0,40.2" fill="#c0392b"/><text x="190.0" y="36.0" text-anchor="middle" fill="#c0392b" font-size="11" font-weight="bold">e⁻ flow</text><line x1="345.0" y1="242.0" x2="345.0" y2="264.8" stroke="#166e3c" stroke-width="2.4" stroke-linecap="round"/><polygon points="345.0,272.0 341.2,263.0 348.8,263.0" fill="#166e3c"/><text x="354.0" y="266.0" text-anchor="start" fill="#166e3c" font-size="12" font-weight="bold">water + heat out</text></svg>
+<p class="caption">Hydrogen PEM fuel cell: hydrogen splits at the anode, protons cross the membrane, electrons take the external circuit (the useful current) and all meet oxygen at the cathode to make water.</p>
+</div>
+<div class="formula">overall: 2H₂ + O₂ → 2H₂O + electricity + heat &nbsp;;&nbsp; ideal cell voltage ≈ 1.23 V (≈ 0.6–0.8 V under load)</div>
+
+<ul>
+<li><b>Efficiency:</b> typically 40–60% electrical (higher with heat recovery) — not limited by the Carnot cycle; emits only water if hydrogen is used.</li>
+<li><b>Types:</b> PEMFC (vehicles), SOFC, alkaline, phosphoric-acid, molten-carbonate.</li>
+<li><b>Uses:</b> fuel-cell vehicles, backup power, portable power.</li>
+</ul>
+
+<table>
+<tr><th>Technology</th><th>Principle</th></tr>
+<tr><td>Solar PV</td><td>photovoltaic effect in silicon cells → DC (then inverter)</td></tr>
+<tr><td>Solar thermal</td><td>sunlight heats a fluid → steam or hot water</td></tr>
+<tr><td>Wind</td><td>P = ½ ρ A v³ C<sub>p</sub></td></tr>
+<tr><td>Biomass</td><td>burning/digesting organic matter</td></tr>
+<tr><td>Geothermal</td><td>Earth's internal heat</td></tr>
+<tr><td>Tidal/hydro</td><td>water motion</td></tr>
+</table>
+
+<div class="box ex"><span class="label">Worked example</span>A stack of 100 cells each giving 0.7 V under load: <code>70 V</code> (series). Wind: rotor radius 40 m (A = 5027 m²), v = 12 m/s, C<sub>p</sub> = 0.4: P = 0.5×1.225×5027×12³×0.4 = <code>2.1 MW</code> (note the v³ — doubling wind speed gives 8× power).</div>
+
+<h3 class="topic" id="h11">H11. Mechanisms: Four-Bar &amp; Hexapod</h3>
+<div class="box terms"><span class="label">Key terms — know these words</span>
+<ul>
+<li><b>Link</b> — rigid body joining others.</li>
+<li><b>Kinematic pair</b> — joint between two links (revolute, prismatic).</li>
+<li><b>Kinematic chain / mechanism</b> — assembly of links; mechanism = chain with one link fixed.</li>
+<li><b>Degrees of freedom (DOF)</b> — independent motions.</li>
+<li><b>Grashof's law</b> — s + l ≤ p + q for a link to rotate fully.</li>
+<li><b>Crank / rocker / coupler</b> — fully rotating / oscillating / floating link.</li>
+<li><b>Inversion</b> — a different mechanism obtained by fixing another link.</li>
+<li><b>Hexapod (Stewart platform)</b> — parallel mechanism with six linear actuators.</li>
+</ul>
+</div>
+
+<div class="box mis"><span class="label">Source note</span>Your syllabus lists this topic but I did not have your lecturer's slides for Module 4, so this is written from the standard textbook treatment (plus the CAT-1 casting question and key). Send the slides and I will align terms and examples to them.</div>
+<div class="diagram">
+<svg viewBox="0 0 720 290" width="720" style="max-width:100%;height:auto" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#1b1f24"><line x1="130.0" y1="230.0" x2="330.0" y2="230.0" stroke="#1b1f24" stroke-width="5" stroke-linecap="round"/><polygon points="130.0,230.0 116.0,250.0 144.0,250.0" fill="#e0e3ea" stroke="#1b1f24" stroke-width="1.6" stroke-linejoin="round"/><line x1="110.0" y1="250.0" x2="150.0" y2="250.0" stroke="#1b1f24" stroke-width="2.4" stroke-linecap="round"/><polygon points="330.0,230.0 316.0,250.0 344.0,250.0" fill="#e0e3ea" stroke="#1b1f24" stroke-width="1.6" stroke-linejoin="round"/><line x1="310.0" y1="250.0" x2="350.0" y2="250.0" stroke="#1b1f24" stroke-width="2.4" stroke-linecap="round"/><line x1="130.0" y1="230.0" x2="142.9" y2="181.7" stroke="#c0392b" stroke-width="5" stroke-linecap="round"/><line x1="142.9" y1="181.7" x2="283.8" y2="130.2" stroke="#1e468c" stroke-width="5" stroke-linecap="round"/><line x1="330.0" y1="230.0" x2="283.8" y2="130.2" stroke="#166e3c" stroke-width="5" stroke-linecap="round"/><circle cx="130.0" cy="230.0" r="7" fill="#fff" stroke="#1b1f24" stroke-width="2.4"/><circle cx="330.0" cy="230.0" r="7" fill="#fff" stroke="#1b1f24" stroke-width="2.4"/><circle cx="142.9" cy="181.7" r="7" fill="#fff" stroke="#1b1f24" stroke-width="2.4"/><circle cx="283.8" cy="130.2" r="7" fill="#fff" stroke="#1b1f24" stroke-width="2.4"/><text x="230.0" y="252.0" text-anchor="middle" fill="#1b1f24" font-size="12" font-weight="bold">link 1: frame (fixed) = 200</text><text x="116.0" y="205.9" text-anchor="end" fill="#c0392b" font-size="12" font-weight="bold">link 2: crank = 50</text><text x="209.4" y="141.9" text-anchor="end" fill="#1e468c" font-size="12" font-weight="bold">link 3: coupler = 150</text><text x="346.0" y="180.1" text-anchor="start" fill="#166e3c" font-size="12" font-weight="bold">link 4: rocker = 110</text><text x="130.0" y="270.0" text-anchor="middle" fill="#8a93a3" font-size="11">O₂</text><text x="330.0" y="270.0" text-anchor="middle" fill="#8a93a3" font-size="11">O₄</text><text x="154.9" y="173.7" text-anchor="start" fill="#8a93a3" font-size="11">A</text><text x="287.8" y="118.2" text-anchor="middle" fill="#8a93a3" font-size="11">B</text><text x="480.0" y="70.0" text-anchor="start" fill="#1b1f24" font-size="14" font-weight="bold">Grashof's law: s + l ≤ p + q</text><text x="480.0" y="92.0" text-anchor="start" fill="#8a93a3" font-size="12">s = 50, l = 200, p, q = 150, 110</text><text x="480.0" y="112.0" text-anchor="start" fill="#166e3c" font-size="12" font-weight="bold">50 + 200 = 250 ≤ 150 + 110 = 260  ✓</text><text x="480.0" y="134.0" text-anchor="start" fill="#8a93a3" font-size="12">shortest link (crank) is next to the frame</text><text x="480.0" y="152.0" text-anchor="start" fill="#8a93a3" font-size="12">⇒ CRANK-ROCKER (crank turns fully,</text><text x="480.0" y="168.0" text-anchor="start" fill="#8a93a3" font-size="12">rocker only swings)</text></svg>
+<p class="caption">A four-bar mechanism: four rigid links, four revolute pairs, one degree of freedom (3(n−1) − 2j = 3·3 − 2·4 = 1). With these lengths Grashof's condition holds and it is a crank-rocker.</p>
+</div>
+<div class="formula">planar DOF (Grübler): F = 3(n − 1) − 2j &nbsp; (n links, j lower pairs) &nbsp;;&nbsp; four-bar: F = 3·3 − 2·4 = 1</div>
+
+<table>
+<tr><th>Fixed link</th><th>Mechanism (Grashof chain)</th></tr>
+<tr><td>link adjacent to the shortest</td><td><b>crank-rocker</b> — crank rotates fully, rocker oscillates</td></tr>
+<tr><td>the shortest link</td><td><b>double-crank</b> (drag link) — both cranks rotate</td></tr>
+<tr><td>link opposite to the shortest</td><td><b>double-rocker</b> — both oscillate (shortest link = coupler rotates)</td></tr>
+</table>
+
+<p>If s + l &gt; p + q (non-Grashof) no link can rotate fully and every inversion is a triple/double-rocker. Common four-bar uses: windscreen wipers (crank-rocker), locomotive coupling rods (double crank), and the slider-crank (IC engine, pumps) as a related chain.</p>
+
+<div class="box ex"><span class="label">Worked example</span>Links 20, 40, 50, 60: s + l = 20 + 60 = 80 ≤ p + q = 40 + 50 = 90 → Grashof. Fix the link next to the 20 → crank-rocker; fix the 20 → double-crank; fix the link opposite the 20 → double-rocker.</div>
+<div class="diagram">
+<svg viewBox="0 0 620 300" width="620" style="max-width:100%;height:auto" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#1b1f24"><ellipse cx="200" cy="230" rx="140" ry="36" fill="#e9edf5" stroke="#1b1f24" stroke-width="2.4"/><text x="200.0" y="292.0" text-anchor="middle" fill="#1b1f24" font-size="12" font-weight="bold">fixed base</text><line x1="331.6" y1="242.3" x2="300.3" y2="173.9" stroke="#1b1f24" stroke-width="5" stroke-linecap="round"/><line x1="300.3" y1="173.9" x2="268.9" y2="105.4" stroke="#7c8aa8" stroke-width="3" stroke-linecap="round"/><circle cx="331.6" cy="242.3" r="4" fill="#fff" stroke="#1b1f24" stroke-width="2"/><circle cx="268.9" cy="105.4" r="4" fill="#fff" stroke="#1b1f24" stroke-width="2"/><line x1="175.7" y1="265.5" x2="195.7" y2="189.5" stroke="#1b1f24" stroke-width="5" stroke-linecap="round"/><line x1="195.7" y1="189.5" x2="215.6" y2="113.6" stroke="#7c8aa8" stroke-width="3" stroke-linecap="round"/><circle cx="175.7" cy="265.5" r="4" fill="#fff" stroke="#1b1f24" stroke-width="2"/><circle cx="215.6" cy="113.6" r="4" fill="#fff" stroke="#1b1f24" stroke-width="2"/><line x1="92.8" y1="253.1" x2="104.1" y2="175.7" stroke="#1b1f24" stroke-width="5" stroke-linecap="round"/><line x1="104.1" y1="175.7" x2="115.4" y2="98.2" stroke="#7c8aa8" stroke-width="3" stroke-linecap="round"/><circle cx="92.8" cy="253.1" r="4" fill="#fff" stroke="#1b1f24" stroke-width="2"/><circle cx="115.4" cy="98.2" r="4" fill="#fff" stroke="#1b1f24" stroke-width="2"/><line x1="92.8" y1="206.9" x2="104.1" y2="144.3" stroke="#1b1f24" stroke-width="5" stroke-linecap="round"/><line x1="104.1" y1="144.3" x2="115.4" y2="81.8" stroke="#7c8aa8" stroke-width="3" stroke-linecap="round"/><circle cx="92.8" cy="206.9" r="4" fill="#fff" stroke="#1b1f24" stroke-width="2"/><circle cx="115.4" cy="81.8" r="4" fill="#fff" stroke="#1b1f24" stroke-width="2"/><line x1="175.7" y1="194.5" x2="195.7" y2="130.5" stroke="#1b1f24" stroke-width="5" stroke-linecap="round"/><line x1="195.7" y1="130.5" x2="215.6" y2="66.4" stroke="#7c8aa8" stroke-width="3" stroke-linecap="round"/><circle cx="175.7" cy="194.5" r="4" fill="#fff" stroke="#1b1f24" stroke-width="2"/><circle cx="215.6" cy="66.4" r="4" fill="#fff" stroke="#1b1f24" stroke-width="2"/><line x1="331.6" y1="217.7" x2="300.3" y2="146.1" stroke="#1b1f24" stroke-width="5" stroke-linecap="round"/><line x1="300.3" y1="146.1" x2="268.9" y2="74.6" stroke="#7c8aa8" stroke-width="3" stroke-linecap="round"/><circle cx="331.6" cy="217.7" r="4" fill="#fff" stroke="#1b1f24" stroke-width="2"/><circle cx="268.9" cy="74.6" r="4" fill="#fff" stroke="#1b1f24" stroke-width="2"/><ellipse cx="200" cy="90" rx="90" ry="24" fill="#f3e9ff" stroke="#7c3aed" stroke-width="2.4"/><text x="200.0" y="95.0" text-anchor="middle" fill="#7c3aed" font-size="12" font-weight="bold">moving platform</text><text x="350.0" y="100.0" text-anchor="start" fill="#1b1f24" font-size="13" font-weight="bold">6 telescopic (linear)</text><text x="350.0" y="118.0" text-anchor="start" fill="#1b1f24" font-size="13" font-weight="bold">actuators, each with a</text><text x="350.0" y="136.0" text-anchor="start" fill="#1b1f24" font-size="13" font-weight="bold">universal/spherical joint</text><text x="350.0" y="154.0" text-anchor="start" fill="#1b1f24" font-size="13" font-weight="bold">at both ends.</text><text x="350.0" y="184.0" text-anchor="start" fill="#8a93a3" font-size="12">Changing the six lengths moves</text><text x="350.0" y="200.0" text-anchor="start" fill="#8a93a3" font-size="12">the platform in all 6 degrees of</text><text x="350.0" y="216.0" text-anchor="start" fill="#8a93a3" font-size="12">freedom (3 translations + 3 rotations).</text></svg>
+<p class="caption">Hexapod (Stewart platform): a parallel mechanism in which six variable-length legs connect a fixed base to a moving platform — used in flight simulators, machine-tool positioning tables and precision alignment.</p>
+</div>
+<p>A <b>hexapod</b> moves the platform in all 6 DOF by changing six leg lengths; parallel structure gives high stiffness and precision — flight simulators, positioning stages, telescopes, machining.</p>
+
+<h3 class="topic" id="h12">H12. Mechanical Components &amp; Motion Control</h3>
+<div class="box terms"><span class="label">Key terms — know these words</span>
+<ul>
+<li><b>Gear ratio</b> — speed ratio N₁/N₂ = z₂/z₁.</li>
+<li><b>Module m</b> — d/z; teeth sizes must match to mesh.</li>
+<li><b>Cam & follower</b> — profile converting rotation into a programmed linear motion.</li>
+<li><b>Bearing</b> — supports a rotating shaft with low friction.</li>
+<li><b>Coupling / clutch / brake</b> — joins shafts / engages–disengages / slows.</li>
+<li><b>Lead screw</b> — screw converting rotation to linear motion: v = lead × N.</li>
+<li><b>Torque</b> — turning moment; multiplies as speed falls.</li>
+</ul>
+</div>
+
+<div class="box mis"><span class="label">Source note</span>Your syllabus lists this topic but I did not have your lecturer's slides for Module 4, so this is written from the standard textbook treatment (plus the CAT-1 casting question and key). Send the slides and I will align terms and examples to them.</div>
+
+<table>
+<tr><th>Component</th><th>Function</th></tr>
+<tr><td>Spur / helical gears</td><td>transmit motion between parallel shafts; helical quieter</td></tr>
+<tr><td>Bevel gears</td><td>shafts at an angle (usually 90°)</td></tr>
+<tr><td>Worm and worm wheel</td><td>large reduction, often self-locking</td></tr>
+<tr><td>Rack and pinion</td><td>rotary ↔ linear</td></tr>
+<tr><td>Belt (V, timing) and chain</td><td>power over distance; chain/timing belt do not slip</td></tr>
+<tr><td>Cam and follower</td><td>irregular timed motion (valves)</td></tr>
+<tr><td>Bearings (ball, roller, journal)</td><td>support and guide shafts</td></tr>
+<tr><td>Couplings, clutches, brakes</td><td>connect, engage, stop</td></tr>
+</table>
+
+<div class="formula">i = N₁/N₂ = z₂/z₁ = d₂/d₁ &nbsp;;&nbsp; centre distance = m(z₁ + z₂)/2 &nbsp;;&nbsp; belt: N₁D₁ = N₂D₂ &nbsp;;&nbsp; lead-screw speed v = lead × N</div>
+
+<div class="box ex"><span class="label">Worked example</span>Pinion 20 teeth at 1200 rpm drives a 60-tooth gear: N₂ = 1200 × 20/60 = <code>400 rpm</code>, torque ×3 (no losses). With m = 2 mm, centre distance = 2(20+60)/2 = <code>80 mm</code>. A lead screw of 5 mm lead at 300 rpm moves the nut <code>1500 mm/min</code>.</div>
+
+<h3 class="topic" id="h13">H13. Introduction to Robotics &amp; Automation</h3>
+<div class="box terms"><span class="label">Key terms — know these words</span>
+<ul>
+<li><b>Robot</b> — reprogrammable multifunctional manipulator.</li>
+<li><b>Manipulator / end effector</b> — arm made of links and joints / gripper or tool at its tip.</li>
+<li><b>Joint (revolute / prismatic)</b> — rotary / sliding.</li>
+<li><b>Degrees of freedom</b> — number of independent joint motions.</li>
+<li><b>Workspace</b> — region the end effector can reach.</li>
+<li><b>Actuator / sensor / controller</b> — motor, hydraulic or pneumatic drive / encoder, proximity, force, vision / the computer.</li>
+<li><b>PLC</b> — programmable logic controller for automation.</li>
+</ul>
+</div>
+
+<div class="box mis"><span class="label">Source note</span>Your syllabus lists this topic but I did not have your lecturer's slides for Module 4, so this is written from the standard textbook treatment (plus the CAT-1 casting question and key). Send the slides and I will align terms and examples to them.</div>
+<div class="diagram">
+<svg viewBox="0 0 620 305" width="620" style="max-width:100%;height:auto" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#1b1f24"><rect x="70.0" y="250.0" width="80.0" height="20.0" rx="0" fill="#cfd4dd" stroke="#1b1f24" stroke-width="2"/><rect x="95.0" y="232.0" width="30.0" height="18.0" rx="0" fill="#9aa3b2" stroke="#1b1f24" stroke-width="2"/><line x1="110.0" y1="250.0" x2="350.0" y2="250.0" stroke="#8a93a3" stroke-width="1" stroke-dasharray="4,3" stroke-linecap="round"/><line x1="110.0" y1="250.0" x2="224.9" y2="153.6" stroke="#1e468c" stroke-width="9" stroke-linecap="round"/><line x1="224.9" y1="153.6" x2="234.5" y2="44.0" stroke="#166e3c" stroke-width="7" stroke-linecap="round"/><line x1="224.9" y1="153.6" x2="293.9" y2="95.7" stroke="#8a93a3" stroke-width="1.2" stroke-dasharray="5,3" stroke-linecap="round"/><path d="M170,250 A60,60 0 0 0 156.0,211.4" fill="none" stroke="#c0392b" stroke-width="2"/><text x="184.0" y="232.0" text-anchor="start" fill="#c0392b" font-size="14" font-weight="bold">θ₁</text><path d="M263.2,121.4 A50,50 0 0 0 229.3,103.8" fill="none" stroke="#c0392b" stroke-width="2"/><text x="280.9" y="113.6" text-anchor="start" fill="#c0392b" font-size="14" font-weight="bold">θ₂</text><circle cx="110.0" cy="250.0" r="9" fill="#fff" stroke="#1b1f24" stroke-width="2.6"/><circle cx="224.9" cy="153.6" r="9" fill="#fff" stroke="#1b1f24" stroke-width="2.6"/><line x1="234.5" y1="44.0" x2="229.7" y2="29.5" stroke="#1b1f24" stroke-width="3" stroke-linecap="round"/><line x1="234.5" y1="44.0" x2="241.7" y2="30.6" stroke="#1b1f24" stroke-width="3" stroke-linecap="round"/><text x="157.5" y="189.8" text-anchor="end" fill="#1e468c" font-size="14" font-weight="bold">L₁</text><text x="241.7" y="88.8" text-anchor="start" fill="#166e3c" font-size="14" font-weight="bold">L₂</text><text x="254.5" y="32.0" text-anchor="start" fill="#1b1f24" font-size="12" font-weight="bold">end effector (x, y)</text><text x="114.0" y="290.0" text-anchor="middle" fill="#8a93a3" font-size="12">base (fixed)</text><text x="330.0" y="230.0" text-anchor="start" fill="#1b1f24" font-size="13" font-weight="bold">x = L₁cosθ₁ + L₂cos(θ₁+θ₂)</text><text x="330.0" y="250.0" text-anchor="start" fill="#1b1f24" font-size="13" font-weight="bold">y = L₁sinθ₁ + L₂sin(θ₁+θ₂)</text></svg>
+<p class="caption">A two-link planar manipulator (two revolute joints, 2 degrees of freedom): the joint angles θ₁, θ₂ fix the position of the end effector — forward kinematics.</p>
+</div>
+<table>
+<tr><th>Configuration</th><th>Joints</th><th>Example use</th></tr>
+<tr><td>Cartesian</td><td>3 prismatic</td><td>gantry, 3-D printer, pick-and-place</td></tr>
+<tr><td>Cylindrical</td><td>1 revolute + 2 prismatic</td><td>assembly</td></tr>
+<tr><td>Spherical (polar)</td><td>2 revolute + 1 prismatic</td><td>spot welding (older)</td></tr>
+<tr><td>SCARA</td><td>revolute, horizontal compliance</td><td>electronics assembly</td></tr>
+<tr><td>Articulated</td><td>3+ revolute</td><td>welding, painting, general industry</td></tr>
+</table>
+
+<div class="formula">2-link planar arm: x = L₁cosθ₁ + L₂cos(θ₁+θ₂) &nbsp;;&nbsp; y = L₁sinθ₁ + L₂sin(θ₁+θ₂)</div>
+
+<div class="box ex"><span class="label">Worked example</span>L₁ = 0.5 m, L₂ = 0.3 m, θ₁ = 30°, θ₂ = 45°: x = 0.5 cos30° + 0.3 cos75° = 0.433 + 0.078 = <code>0.51 m</code>; y = 0.5 sin30° + 0.3 sin75° = 0.25 + 0.290 = <code>0.54 m</code>.</div>
+
+<ul>
+<li><b>Automation levels:</b> fixed (hard) automation, programmable, flexible.</li>
+<li><b>Applications:</b> welding, painting, assembly, material handling, surgery, inspection, warehouses.</li>
+</ul>
+
+<h3 class="topic" id="h14">H14. Pneumatic &amp; Hydraulic Actuators</h3>
+<div class="box terms"><span class="label">Key terms — know these words</span>
+<ul>
+<li><b>Actuator</b> — device converting fluid or electrical energy into motion.</li>
+<li><b>Pascal's law</b> — pressure in a confined fluid acts equally in all directions.</li>
+<li><b>Pneumatic</b> — uses compressed air (≈ 6–8 bar).</li>
+<li><b>Hydraulic</b> — uses oil under high pressure (to ≈ 200–350 bar).</li>
+<li><b>Cylinder</b> — linear actuator: piston in a barrel.</li>
+<li><b>Valve (DCV)</b> — directs/controls flow.</li>
+<li><b>FRL unit</b> — filter, regulator, lubricator for compressed air.</li>
+</ul>
+</div>
+
+<div class="box mis"><span class="label">Source note</span>Your syllabus lists this topic but I did not have your lecturer's slides for Module 4, so this is written from the standard textbook treatment (plus the CAT-1 casting question and key). Send the slides and I will align terms and examples to them.</div>
+<div class="diagram">
+<svg viewBox="0 0 600 308" width="600" style="max-width:100%;height:auto" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#1b1f24"><rect x="60.0" y="100.0" width="90.0" height="120.0" rx="0" fill="#cfe2f7" stroke="#1b1f24" stroke-width="2.4"/><rect x="150.0" y="190.0" width="200.0" height="30.0" rx="0" fill="#cfe2f7" stroke="#1b1f24" stroke-width="2.4"/><rect x="350.0" y="70.0" width="190.0" height="150.0" rx="0" fill="#cfe2f7" stroke="#1b1f24" stroke-width="2.4"/><rect x="70.0" y="100.0" width="70.0" height="14.0" rx="0" fill="#9aa3b2" stroke="#1b1f24" stroke-width="2"/><line x1="105.0" y1="60.0" x2="105.0" y2="100.0" stroke="#1b1f24" stroke-width="5" stroke-linecap="round"/><line x1="105.0" y1="18.0" x2="105.0" y2="46.4" stroke="#c0392b" stroke-width="3" stroke-linecap="round"/><polygon points="105.0,56.0 100.0,44.0 110.0,44.0" fill="#c0392b"/><text x="120.0" y="36.0" text-anchor="start" fill="#c0392b" font-size="16" font-weight="bold">F₁</text><rect x="372.0" y="70.0" width="146.0" height="14.0" rx="0" fill="#9aa3b2" stroke="#1b1f24" stroke-width="2"/><line x1="445.0" y1="50.0" x2="445.0" y2="70.0" stroke="#1b1f24" stroke-width="5" stroke-linecap="round"/><line x1="445.0" y1="46.0" x2="445.0" y2="17.6" stroke="#166e3c" stroke-width="3" stroke-linecap="round"/><polygon points="445.0,8.0 450.0,20.0 440.0,20.0" fill="#166e3c"/><text x="462.0" y="30.0" text-anchor="start" fill="#166e3c" font-size="16" font-weight="bold">F₂</text><text x="300.0" y="150.0" text-anchor="middle" fill="#1e468c" font-size="12" font-weight="bold">incompressible fluid —</text><text x="300.0" y="166.0" text-anchor="middle" fill="#1e468c" font-size="12" font-weight="bold">same pressure p everywhere</text><text x="105.0" y="244.0" text-anchor="middle" fill="#1b1f24" font-size="12" font-weight="bold">small piston, area A₁</text><text x="445.0" y="244.0" text-anchor="middle" fill="#1b1f24" font-size="12" font-weight="bold">large piston, area A₂</text><text x="105.0" y="268.0" text-anchor="middle" fill="#1b1f24" font-size="14" font-weight="bold">p = F₁ / A₁</text><text x="445.0" y="268.0" text-anchor="middle" fill="#1b1f24" font-size="14" font-weight="bold">F₂ = p·A₂ = F₁ (A₂ / A₁)</text><text x="300.0" y="296.0" text-anchor="middle" fill="#8a93a3" font-size="12" font-style="italic">force is multiplied by A₂/A₁, but the large piston moves only A₁/A₂ as far</text></svg>
+<p class="caption">Pascal's law in a hydraulic press: pressure applied to a confined liquid is transmitted equally in all directions, so a small force on a small piston balances a large force on a large piston.</p>
+</div>
+<div class="formula">p = F/A &nbsp;;&nbsp; F₂ = F₁ (A₂/A₁) &nbsp;;&nbsp; cylinder force F = p × A</div>
+
+<table>
+<tr><th></th><th>Pneumatic</th><th>Hydraulic</th></tr>
+<tr><td>Fluid</td><td>air (compressible)</td><td>oil (incompressible)</td></tr>
+<tr><td>Pressure</td><td>low (≈ 6–8 bar)</td><td>high (≈ 100–350 bar)</td></tr>
+<tr><td>Force</td><td>moderate</td><td>very large</td></tr>
+<tr><td>Speed</td><td>fast</td><td>slower, smooth, accurate positioning</td></tr>
+<tr><td>Cleanliness</td><td>clean, exhaust to air</td><td>oil leaks possible</td></tr>
+<tr><td>Components</td><td>compressor, FRL, valves, cylinders</td><td>pump, reservoir, valves, cylinders/motors</td></tr>
+<tr><td>Uses</td><td>factory automation, pick-and-place, tools</td><td>presses, excavators, brakes, lifts</td></tr>
+</table>
+
+<div class="box ex"><span class="label">Worked example</span><b>Hydraulic press:</b> F₁ = 50 N on A₁ = 10 cm², A₂ = 100 cm²: F₂ = 50 × 100/10 = <code>500 N</code>. <b>Pneumatic cylinder:</b> bore 50 mm (A = 1963 mm²) at 6 bar (0.6 N/mm²): F = 0.6 × 1963 ≈ <code>1180 N</code> (less on the return stroke because of the rod area).</div>
+
+<h2 class="part" id="glossary">Glossary (A–Z) <span class="marks">97 terms</span></h2>
+<p>Every key term from the boxes above in one alphabetical list — skim this the night before the exam.</p>
+<table class="gloss">
+<tr><th>Term</th><th>Meaning</th></tr>
+<tr><td>Actuator</td><td>device converting fluid or electrical energy into motion.</td></tr>
+<tr><td>Actuator / sensor / controller</td><td>motor, hydraulic or pneumatic drive / encoder, proximity, force, vision / the computer.</td></tr>
+<tr><td>Additive manufacturing</td><td>making a part by adding material layer by layer.</td></tr>
+<tr><td>Air conditioning</td><td>controlling temperature, humidity, cleanliness and distribution of air.</td></tr>
+<tr><td>Anode / cathode / electrolyte (PEM)</td><td>fuel electrode / oxidant electrode / proton-conducting membrane.</td></tr>
+<tr><td>ATC</td><td>automatic tool changer.</td></tr>
+<tr><td>Axes (X, Y, Z)</td><td>directions of table/tool motion; 3-axis, 5-axis machines.</td></tr>
+<tr><td>Bearing</td><td>supports a rotating shaft with low friction.</td></tr>
+<tr><td>Betz limit</td><td>maximum 59.3% of wind power can be extracted.</td></tr>
+<tr><td>Blanking / piercing / bending / deep drawing</td><td>sheet-metal operations.</td></tr>
+<tr><td>Brake power BP</td><td>power at the shaft, 2πNT/60.</td></tr>
+<tr><td>Brazing</td><td>filler melts above 450 °C but below the base metal's melting point.</td></tr>
+<tr><td>Cam & follower</td><td>profile converting rotation into a programmed linear motion.</td></tr>
+<tr><td>Capacity factor</td><td>actual output ÷ maximum possible.</td></tr>
+<tr><td>Casting</td><td>shaping metal by pouring it molten into a mould cavity and letting it solidify.</td></tr>
+<tr><td>Compression ratio r</td><td>V<sub>max</sub>/V<sub>min</sub>.</td></tr>
+<tr><td>Compressor / condenser / expansion valve / evaporator</td><td>the four main components.</td></tr>
+<tr><td>COP</td><td>coefficient of performance = Q<sub>L</sub>/W.</td></tr>
+<tr><td>Core</td><td>insert forming internal cavities.</td></tr>
+<tr><td>Coupling / clutch / brake</td><td>joins shafts / engages–disengages / slows.</td></tr>
+<tr><td>Crank / rocker / coupler</td><td>fully rotating / oscillating / floating link.</td></tr>
+<tr><td>Cutting speed V</td><td>surface speed of the work/tool, m/min.</td></tr>
+<tr><td>Cylinder</td><td>linear actuator: piston in a barrel.</td></tr>
+<tr><td>Degrees of freedom</td><td>number of independent joint motions.</td></tr>
+<tr><td>Degrees of freedom (DOF)</td><td>independent motions.</td></tr>
+<tr><td>Depth of cut d</td><td>thickness of material removed in one pass.</td></tr>
+<tr><td>Drawing</td><td>pulling through a die (wire, tube).</td></tr>
+<tr><td>Extrusion</td><td>forcing metal through a die.</td></tr>
+<tr><td>FDM / FFF</td><td>fused deposition modelling: melts and extrudes thermoplastic filament.</td></tr>
+<tr><td>Feed f</td><td>tool advance per revolution (mm/rev).</td></tr>
+<tr><td>Fettling</td><td>cleaning: cutting gates and risers, grinding.</td></tr>
+<tr><td>Filler metal</td><td>added material that fills the joint.</td></tr>
+<tr><td>Flux / shielding gas</td><td>protects molten metal from oxidation.</td></tr>
+<tr><td>Forging</td><td>shaping by compressive hammering/pressing.</td></tr>
+<tr><td>FRL unit</td><td>filter, regulator, lubricator for compressed air.</td></tr>
+<tr><td>Fuel cell</td><td>electrochemical device converting fuel's chemical energy directly into electricity.</td></tr>
+<tr><td>G-code</td><td>motion commands (G00 rapid, G01 linear feed, G02/G03 arcs).</td></tr>
+<tr><td>Gear ratio</td><td>speed ratio N₁/N₂ = z₂/z₁.</td></tr>
+<tr><td>Grashof's law</td><td>s + l ≤ p + q for a link to rotate fully.</td></tr>
+<tr><td>Heat engine</td><td>device converting heat to work.</td></tr>
+<tr><td>Hexapod (Stewart platform)</td><td>parallel mechanism with six linear actuators.</td></tr>
+<tr><td>Hot / cold working</td><td>deforming above / below the recrystallisation temperature.</td></tr>
+<tr><td>Hydraulic</td><td>uses oil under high pressure (to ≈ 200–350 bar).</td></tr>
+<tr><td>IC engine</td><td>engine burning fuel inside the cylinder.</td></tr>
+<tr><td>Inversion</td><td>a different mechanism obtained by fixing another link.</td></tr>
+<tr><td>Joint (revolute / prismatic)</td><td>rotary / sliding.</td></tr>
+<tr><td>Kinematic chain / mechanism</td><td>assembly of links; mechanism = chain with one link fixed.</td></tr>
+<tr><td>Kinematic pair</td><td>joint between two links (revolute, prismatic).</td></tr>
+<tr><td>Layer height</td><td>thickness of each layer.</td></tr>
+<tr><td>Lead screw</td><td>screw converting rotation to linear motion: v = lead × N.</td></tr>
+<tr><td>Link</td><td>rigid body joining others.</td></tr>
+<tr><td>M-code</td><td>machine functions (M03 spindle on, M05 stop, M06 tool change, M30 end).</td></tr>
+<tr><td>Machining</td><td>removing material with a cutting tool.</td></tr>
+<tr><td>Manipulator / end effector</td><td>arm made of links and joints / gripper or tool at its tip.</td></tr>
+<tr><td>MCU</td><td>machine control unit — reads the program, drives the axes.</td></tr>
+<tr><td>Module m</td><td>d/z; teeth sizes must match to mesh.</td></tr>
+<tr><td>Mould / cope / drag</td><td>sand cavity; upper / lower box.</td></tr>
+<tr><td>MRR</td><td>material removal rate, mm³/min.</td></tr>
+<tr><td>NC / CNC</td><td>numerical / computer numerical control.</td></tr>
+<tr><td>Overall efficiency</td><td>electrical output ÷ fuel energy input.</td></tr>
+<tr><td>Parting line</td><td>joint face between cope and drag.</td></tr>
+<tr><td>Pascal's law</td><td>pressure in a confined fluid acts equally in all directions.</td></tr>
+<tr><td>Pattern</td><td>replica of the part (made larger) used to make the mould cavity.</td></tr>
+<tr><td>Penstock</td><td>pipe carrying water to a hydro turbine.</td></tr>
+<tr><td>Photovoltaic effect</td><td>light generating voltage in a semiconductor.</td></tr>
+<tr><td>Plastic deformation</td><td>permanent shape change under load.</td></tr>
+<tr><td>PLC</td><td>programmable logic controller for automation.</td></tr>
+<tr><td>Pneumatic</td><td>uses compressed air (≈ 6–8 bar).</td></tr>
+<tr><td>Prime mover</td><td>turbine or engine driving the generator.</td></tr>
+<tr><td>Rankine cycle</td><td>steam power cycle: boiler → turbine → condenser → pump.</td></tr>
+<tr><td>Reactor / moderator / control rods</td><td>nuclear: fission vessel / slows neutrons / absorbs neutrons.</td></tr>
+<tr><td>Refrigerant</td><td>working fluid (R134a, R32…).</td></tr>
+<tr><td>Refrigeration</td><td>removing heat from a cold space and rejecting it to a warmer place.</td></tr>
+<tr><td>Renewable energy</td><td>from sources replenished naturally.</td></tr>
+<tr><td>Robot</td><td>reprogrammable multifunctional manipulator.</td></tr>
+<tr><td>Rolling</td><td>reducing thickness by passing between rolls.</td></tr>
+<tr><td>Servo motor + encoder</td><td>drive and position feedback.</td></tr>
+<tr><td>Shrinkage / machining / draft allowance</td><td>extra size or taper built into the pattern.</td></tr>
+<tr><td>SI / CI</td><td>spark-ignition (petrol) / compression-ignition (diesel).</td></tr>
+<tr><td>SLA</td><td>stereolithography: UV light cures liquid resin.</td></tr>
+<tr><td>Slicing</td><td>cutting the model into layers and generating toolpath (G-code).</td></tr>
+<tr><td>SLS / SLM</td><td>laser fuses powder (polymer / metal).</td></tr>
+<tr><td>Soldering</td><td>joining with a filler melting below 450 °C.</td></tr>
+<tr><td>Sprue / runner / gate / riser</td><td>vertical channel / horizontal channel / entry to cavity / reservoir that feeds the shrinking casting.</td></tr>
+<tr><td>STL</td><td>triangulated surface file sent to the printer.</td></tr>
+<tr><td>Stroke / bore</td><td>piston travel / cylinder diameter.</td></tr>
+<tr><td>Support structure</td><td>temporary material supporting overhangs.</td></tr>
+<tr><td>Sustainability</td><td>meeting present needs without harming future generations.</td></tr>
+<tr><td>TDC / BDC</td><td>top / bottom dead centre — extreme piston positions.</td></tr>
+<tr><td>Thermal efficiency</td><td>work output ÷ heat input.</td></tr>
+<tr><td>Ton of refrigeration</td><td>3.517 kW (211 kJ/min).</td></tr>
+<tr><td>Torque</td><td>turning moment; multiplies as speed falls.</td></tr>
+<tr><td>Turning / drilling / milling / shaping / grinding</td><td>the basic operations.</td></tr>
+<tr><td>Valve (DCV)</td><td>directs/controls flow.</td></tr>
+<tr><td>Weld joint types</td><td>butt, lap, T, corner, edge.</td></tr>
+<tr><td>Welding</td><td>joining by melting (fusion) or pressure so the joint becomes one piece.</td></tr>
+<tr><td>Workspace</td><td>region the end effector can reach.</td></tr>
+</table>
+
+<h2 class="part" id="selftest">Self-Test Checklist</h2>
+<p>Can you do each of these <em>right now</em>, without looking back? If not, that is the section to re-read.</p>
+<ul class="checklist">
+  <li>Describe the sand-casting steps and the three pattern allowances; explain what happens if shrinkage and draft are neglected.</li>
+  <li>Compare hot and cold working and name the forming processes.</li>
+  <li>Distinguish welding, brazing and soldering.</li>
+  <li>Calculate cutting speed and material-removal rate for turning.</li>
+  <li>Explain CNC components, axes and a few G/M codes.</li>
+  <li>Describe the 3-D printing workflow and compare FDM, SLA and SLS.</li>
+  <li>Explain the four-stroke cycle, compare SI and CI and compute Otto efficiency and brake power.</li>
+  <li>Sketch the layout of a steam power plant and a vapour-compression refrigeration cycle; compute COP.</li>
+  <li>Explain how a hydrogen fuel cell works and compare it with a heat engine.</li>
+  <li>Apply Grashof's law and name the four-bar inversions.</li>
+  <li>Compute gear/belt ratios and lead-screw speed.</li>
+  <li>Describe robot configurations and compute the end position of a 2-link arm.</li>
+  <li>Compare pneumatic and hydraulic actuators and apply Pascal's law.</li>
+</ul>
+{% endraw %}
+</div>
+<a href="#top" class="backtop">↑</a>
+{% endblock %}

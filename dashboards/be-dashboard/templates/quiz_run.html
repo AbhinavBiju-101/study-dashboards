@@ -196,7 +196,7 @@
     </div>
 
     <div class="panel">
-      <h2>Accuracy by topic</h2>
+      <h2>Accuracy by module</h2>
       <div id="week-bars"></div>
     </div>
 
@@ -312,7 +312,7 @@ function goTo(idx){
 function render(){
   const q = QUESTIONS[current];
   progressLabel.textContent = `Question ${current + 1} of ${QUESTIONS.length}`;
-  topicEl.textContent = `Topic ${q.week} · ${q.topic_label}`;
+  topicEl.textContent = `Module ${q.week} · ${q.topic_label}`;
   levelEl.textContent = q.level;
   stemEl.textContent = q.q;
   flagBtn.textContent = flags[current] ? '🚩 Flagged' : '🚩 Flag for review';
@@ -379,11 +379,11 @@ function finishQuiz(){
   window.scrollTo({top:0, behavior:'smooth'});
 
   let correct = 0, wrong = 0, skipped = 0;
-  const byTopic = {};   // "W1 · Topic label" -> {correct, total}
+  const byTopic = {};   // "W1 · Module label" -> {correct, total}
   const byWeek = {};    // week number -> {correct, total}
   QUESTIONS.forEach((q, i) => {
     const a = answers[i];
-    const key = `T${q.week} · ${q.topic_label}`;
+    const key = `M${q.week} · ${q.topic_label}`;
     if (!byTopic[key]) byTopic[key] = {correct:0, total:0};
     if (!byWeek[q.week]) byWeek[q.week] = {correct:0, total:0};
     byTopic[key].total++;
@@ -402,7 +402,7 @@ function finishQuiz(){
   document.getElementById('r-skipped').textContent = skipped;
   const totalTime = timeSpent.reduce((s,t) => s + (t||0), 0);
   // Study Dashboards hub: save this attempt to the shared progress history (no-op when run standalone).
-  if (window.hubRecord) { try { hubRecord({secs: totalTime, rows: QUESTIONS.map((q, i) => [`T${q.week} · ${q.topic_label}`, q.level, answers[i] === null ? -1 : (answers[i] === q.answer ? 1 : 0)])}); } catch (e) {} }
+  if (window.hubRecord) { try { hubRecord({secs: totalTime, rows: QUESTIONS.map((q, i) => [`M${q.week} · ${q.topic_label}`, q.level, answers[i] === null ? -1 : (answers[i] === q.answer ? 1 : 0)])}); } catch (e) {} }
   document.getElementById('r-time').textContent = fmtTime(totalTime).replace(' ','');
 
   // accuracy by week — the "weak weeks" view
@@ -411,11 +411,11 @@ function finishQuiz(){
   Object.entries(byWeek).sort((a,b) => Number(a[0]) - Number(b[0])).forEach(([wk, s]) => {
     const p = Math.round((s.correct / s.total) * 100);
     const cls = p >= 80 ? '' : (p >= 50 ? 'warn' : 'bad');
-    const title = WEEK_TITLES[wk] || `Topic ${wk}`;
+    const title = WEEK_TITLES[wk] || `Module ${wk}`;
     const row = document.createElement('div');
     row.className = 'bar-row';
     row.innerHTML = `
-      <div class="bar-label"><span>Topic ${wk} — ${title}</span><span class="pct">${s.correct}/${s.total} · ${p}%</span></div>
+      <div class="bar-label"><span>Module ${wk} — ${title}</span><span class="pct">${s.correct}/${s.total} · ${p}%</span></div>
       <div class="bar-track"><div class="bar-fill ${cls}" style="width:${p}%"></div></div>`;
     weekBarsEl.appendChild(row);
   });
@@ -458,7 +458,7 @@ function finishQuiz(){
     const row = document.createElement('div');
     row.className = 'time-row';
     row.innerHTML = `
-      <span class="t-label">Q${i+1} · T${q.week} ${q.topic_label}</span>
+      <span class="t-label">Q${i+1} · M${q.week} ${q.topic_label}</span>
       <div class="bar-track"><div class="bar-fill" style="width:${w}%; background:var(--slate);"></div></div>
       <span class="t-val">${t !== null ? fmtTime(t) : 'skip'}</span>`;
     timeBarsEl.appendChild(row);
@@ -516,7 +516,7 @@ function renderReview(){
     const stateLabel = state === 'correct' ? 'Correct' : (state === 'skipped' ? 'Skipped' : 'Incorrect');
     item.innerHTML = `
       <div class="r-meta">
-        <span class="qmeta-tag">T${q.week} · ${q.topic_label}</span>
+        <span class="qmeta-tag">M${q.week} · ${q.topic_label}</span>
         <span class="qmeta-tag level">${q.level}</span>
         <span class="qmeta-tag" style="background:${bg}; color:${fg};">${stateLabel}</span>
         ${flags[i] ? '<span class="qmeta-tag" style="background:#f3e9d4;color:#7a4d10;">🚩 Flagged</span>' : ''}

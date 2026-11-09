@@ -21,11 +21,11 @@ SUBJECTS = [
     },
     {
         "slug": "be",
-        "note_pattern": r"/topic/\d+",
+        "note_pattern": r"/module/\d+",
         "code": "BE",
         "title": "Basic Engineering",
         "blurb": "DC and AC circuits, network theorems, then electrical machines, with an expandable syllabus tree.",
-        "unit": "topics",
+        "unit": "modules",
         "accent": "#3949ab",
         "local_port": 4001,
     },

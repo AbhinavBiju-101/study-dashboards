@@ -10,6 +10,25 @@ from html.parser import HTMLParser
 
 SKIP = {"script", "style", "svg", "noscript", "template", "nav", "footer"}
 HEADINGS = {"h1", "h2", "h3", "h4"}
+_TEX_SYM = {"frac": "", "dfrac": "", "nabla": "∇", "partial": "∂", "int": "∫", "iint": "∬", "iiint": "∭", "oint": "∮", "infty": "∞", "pm": "±",
+            "cdot": "·", "times": "×", "leq": "≤", "le": "≤", "geq": "≥", "ge": "≥", "neq": "≠", "approx": "≈", "to": "→",
+            "theta": "θ", "varphi": "φ", "phi": "φ", "rho": "ρ", "lambda": "λ", "alpha": "α", "beta": "β", "pi": "π",
+            "sqrt": "√", "sum": "Σ", "Delta": "Δ", "epsilon": "ε", "varepsilon": "ε", "xi": "ξ", "omega": "ω"}
+_TEX_ARG = re.compile(r"\\(?:mathbf|mathrm|text|operatorname|hat|vec|boldsymbol|overline|left|right|big|Big|bigg|Bigg|displaystyle)\b")
+_TEX_CMD = re.compile(r"\\([A-Za-z]+)")
+
+
+def clean_tex(text):
+    """Make LaTeX in notes readable in search snippets (best effort; indexing only)."""
+    if "\\" not in text:
+        return text
+    text = re.sub(r"\\[()\[\]]", " ", text)
+    text = _TEX_ARG.sub("", text)
+    text = _TEX_CMD.sub(lambda m: _TEX_SYM.get(m.group(1), m.group(1)), text)
+    text = re.sub(r"[{}]", "", text).replace("\\,", " ").replace("\\;", " ").replace("\\!", "").replace("\\\\", " ")
+    return text
+
+
 WORD = re.compile(r"[\w'’-]+", re.U)
 
 
@@ -56,6 +75,7 @@ class _SectionParser(HTMLParser):
     def handle_data(self, data):
         if self._skip:
             return
+        data = clean_tex(data)
         if self._h:
             self._h[2].append(data)
         elif self._cur is not None:
