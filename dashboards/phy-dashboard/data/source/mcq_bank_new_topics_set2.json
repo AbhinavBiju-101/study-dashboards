@@ -1,0 +1,4772 @@
+[
+ {
+  "module": 1,
+  "topic": "m1-1",
+  "subtopic": "m1-1-1",
+  "bloom": "Understand",
+  "question": "De Broglie argued that matter should also have a dual nature. Which reasoning do the notes give?",
+  "options": [
+   "Electrons are made of light",
+   "Nature loves symmetry: the universe is made of particles and radiation, so the two should be symmetrical",
+   "Only charged particles can be waves",
+   "Matter waves were already seen in Young's experiment"
+  ],
+  "answer": 1,
+  "source": "new bank set 2 1.1 Q1"
+ },
+ {
+  "module": 1,
+  "topic": "m1-1",
+  "subtopic": "m1-1-1",
+  "bloom": "Remember",
+  "question": "Which pair of relations are named as the two bridges between the wave and particle pictures?",
+  "options": [
+   "E = mc² and v = fλ",
+   "E = hν and λ = h/p",
+   "p = mv and E = ½mv²",
+   "λ = d sinθ and β = λD/d"
+  ],
+  "answer": 1,
+  "source": "new bank set 2 1.1 Q2"
+ },
+ {
+  "module": 1,
+  "topic": "m1-1",
+  "subtopic": "m1-1-1",
+  "bloom": "Analyze",
+  "question": "Which grouping of phenomena is correct according to the notes?",
+  "options": [
+   "Interference, diffraction and polarisation need the wave picture; the Compton effect and blackbody radiation need quanta",
+   "Interference and the Compton effect need the wave picture; polarisation needs quanta",
+   "All of them need only the wave picture",
+   "Blackbody radiation needs the wave picture; diffraction needs quanta"
+  ],
+  "answer": 0,
+  "source": "new bank set 2 1.1 Q3"
+ },
+ {
+  "module": 1,
+  "topic": "m1-1",
+  "subtopic": "m1-1-1",
+  "bloom": "Evaluate",
+  "question": "A classmate says X-ray spectra prove that radiation is only a wave. How should this be judged?",
+  "options": [
+   "Right: X-ray spectra are interference patterns",
+   "Wrong: the notes list X-ray spectra among the effects explained by quantum theory",
+   "Right: X-rays are mechanical waves",
+   "Wrong: X-rays are particles of matter, not radiation"
+  ],
+  "answer": 1,
+  "source": "new bank set 2 1.1 Q4"
+ },
+ {
+  "module": 1,
+  "topic": "m1-1",
+  "subtopic": "m1-1-1",
+  "bloom": "Create",
+  "question": "Design a short two-experiment argument that radiation has a dual nature. Which pair is best?",
+  "options": [
+   "Young's double slit and diffraction",
+   "The photoelectric effect and the Compton effect",
+   "Young's double slit (wave) and the photoelectric effect (particle)",
+   "Blackbody radiation and X-ray spectra"
+  ],
+  "answer": 2,
+  "source": "new bank set 2 1.1 Q5"
+ },
+ {
+  "module": 1,
+  "topic": "m1-1",
+  "subtopic": "m1-1-2",
+  "bloom": "Apply",
+  "question": "Green light of wavelength 500 nm travels at 3.0 × 10⁸ m/s. Its frequency is",
+  "options": [
+   "1.5 × 10¹⁷ Hz",
+   "6.0 × 10⁶ Hz",
+   "6.0 × 10¹⁴ Hz",
+   "3.77 × 10¹⁵ Hz"
+  ],
+  "answer": 2,
+  "source": "new bank set 2 1.2 Q1"
+ },
+ {
+  "module": 1,
+  "topic": "m1-1",
+  "subtopic": "m1-1-2",
+  "bloom": "Apply",
+  "question": "For the same green light, ω = 2πf is about",
+  "options": [
+   "6.0 × 10¹⁴ rad/s",
+   "1.26 × 10⁷ rad/s",
+   "9.5 × 10¹³ rad/s",
+   "3.77 × 10¹⁵ rad/s"
+  ],
+  "answer": 3,
+  "source": "new bank set 2 1.2 Q2"
+ },
+ {
+  "module": 1,
+  "topic": "m1-1",
+  "subtopic": "m1-1-2",
+  "bloom": "Analyze",
+  "question": "The check ω/k = 3.0 × 10⁸ m/s for the green light confirms what?",
+  "options": [
+   "That frequency equals wavenumber",
+   "That the light is longitudinal",
+   "That the phase velocity v = ω/k equals c",
+   "That the amplitude is 1"
+  ],
+  "answer": 2,
+  "source": "new bank set 2 1.2 Q3"
+ },
+ {
+  "module": 1,
+  "topic": "m1-1",
+  "subtopic": "m1-1-2",
+  "bloom": "Understand",
+  "question": "Why does light bend on entering glass, according to the notes?",
+  "options": [
+   "Its frequency changes while its speed stays the same",
+   "Its amplitude is absorbed",
+   "Its frequency is fixed by the source, so its speed and wavelength change",
+   "Its wavelength is fixed while frequency changes"
+  ],
+  "answer": 2,
+  "source": "new bank set 2 1.2 Q4"
+ },
+ {
+  "module": 1,
+  "topic": "m1-1",
+  "subtopic": "m1-1-2",
+  "bloom": "Evaluate",
+  "question": "Sound is described as longitudinal and light as transverse. Which statement about media is right?",
+  "options": [
+   "Both need a medium",
+   "Neither needs a medium",
+   "Only transverse waves need a medium",
+   "Electromagnetic waves need no medium, whereas mechanical waves do"
+  ],
+  "answer": 3,
+  "source": "new bank set 2 1.2 Q5"
+ },
+ {
+  "module": 1,
+  "topic": "m1-1",
+  "subtopic": "m1-1-3",
+  "bloom": "Understand",
+  "question": "Why can the notes say destructive interference does not destroy energy?",
+  "options": [
+   "Energy is redistributed: where waves cancel, elsewhere they add, so the total is conserved",
+   "The energy is stored in the screen",
+   "Waves never really cancel",
+   "The energy becomes frequency"
+  ],
+  "answer": 0,
+  "source": "new bank set 2 1.3 Q1"
+ },
+ {
+  "module": 1,
+  "topic": "m1-1",
+  "subtopic": "m1-1-3",
+  "bloom": "Apply",
+  "question": "Two equal waves of amplitude A meet in antiphase. The resultant amplitude is",
+  "options": [
+   "2A",
+   "0",
+   "A",
+   "A/2"
+  ],
+  "answer": 1,
+  "source": "new bank set 2 1.3 Q2"
+ },
+ {
+  "module": 1,
+  "topic": "m1-1",
+  "subtopic": "m1-1-3",
+  "bloom": "Analyze",
+  "question": "In the figure of two equal waves and their sum, what is true about the frequency of the sum?",
+  "options": [
+   "It is double that of the originals",
+   "It equals that of the original waves",
+   "It is half that of the originals",
+   "It is zero"
+  ],
+  "answer": 1,
+  "source": "new bank set 2 1.3 Q3"
+ },
+ {
+  "module": 1,
+  "topic": "m1-1",
+  "subtopic": "m1-1-3",
+  "bloom": "Remember",
+  "question": "Which pair of waves gives a steady interference pattern?",
+  "options": [
+   "Coherent waves: same frequency and constant phase difference",
+   "Waves of random frequencies",
+   "Waves of different types",
+   "Waves with changing phase difference"
+  ],
+  "answer": 0,
+  "source": "new bank set 2 1.3 Q4"
+ },
+ {
+  "module": 1,
+  "topic": "m1-1",
+  "subtopic": "m1-1-3",
+  "bloom": "Evaluate",
+  "question": "A student claims superposition works for any waves in any medium. What qualification do the notes require?",
+  "options": [
+   "Waves of the same type in a linear medium",
+   "Waves of different types in any medium",
+   "Only light waves",
+   "Only waves in vacuum"
+  ],
+  "answer": 0,
+  "source": "new bank set 2 1.3 Q5"
+ },
+ {
+  "module": 1,
+  "topic": "m1-1",
+  "subtopic": "m1-1-4",
+  "bloom": "Apply",
+  "question": "The notes give the dark-fringe positions as",
+  "options": [
+   "y = nλD/d",
+   "y = nλD/(2d)",
+   "y = (2n + 1)λD/(2d)",
+   "y = λd/(nD)"
+  ],
+  "answer": 2,
+  "source": "new bank set 2 1.4 Q1"
+ },
+ {
+  "module": 1,
+  "topic": "m1-1",
+  "subtopic": "m1-1-4",
+  "bloom": "Understand",
+  "question": "Why is a single slit placed before the two slits?",
+  "options": [
+   "To increase the intensity",
+   "To change the wavelength",
+   "To make the light coherent at the two slits",
+   "To make the light white"
+  ],
+  "answer": 2,
+  "source": "new bank set 2 1.4 Q2"
+ },
+ {
+  "module": 1,
+  "topic": "m1-1",
+  "subtopic": "m1-1-4",
+  "bloom": "Analyze",
+  "question": "With white light, which result do the notes state?",
+  "options": [
+   "All colours give identical fringes",
+   "Each colour makes its own pattern; red fringes are wider than violet and the centre is white",
+   "Violet fringes are wider than red",
+   "No fringes appear"
+  ],
+  "answer": 1,
+  "source": "new bank set 2 1.4 Q3"
+ },
+ {
+  "module": 1,
+  "topic": "m1-1",
+  "subtopic": "m1-1-4",
+  "bloom": "Apply",
+  "question": "In the worked example the 3rd bright fringe is at 5.4 mm with D = 1.5 m. What is y/D?",
+  "options": [
+   "3.6 × 10⁻³ rad",
+   "5.4 × 10⁻³ rad",
+   "1.8 × 10⁻³ rad",
+   "3.6 rad"
+  ],
+  "answer": 0,
+  "source": "new bank set 2 1.4 Q4"
+ },
+ {
+  "module": 1,
+  "topic": "m1-1",
+  "subtopic": "m1-1-4",
+  "bloom": "Evaluate",
+  "question": "The path-difference check d·y/D = 1.8 μm equals 3 × 600 nm. This confirms",
+  "options": [
+   "that the fringes are dark",
+   "that y₃ lies at n = 3 for the bright condition",
+   "that d is 1.8 μm",
+   "that D is 600 nm"
+  ],
+  "answer": 1,
+  "source": "new bank set 2 1.4 Q5"
+ },
+ {
+  "module": 1,
+  "topic": "m1-1",
+  "subtopic": "m1-1-4",
+  "bloom": "Create",
+  "question": "A student wants wider fringes without changing the source. Which change works, using β = λD/d?",
+  "options": [
+   "Increase D or decrease d",
+   "Decrease D or increase d",
+   "Immerse the apparatus in water",
+   "Use a double slit with larger d"
+  ],
+  "answer": 0,
+  "source": "new bank set 2 1.4 Q6"
+ },
+ {
+  "module": 1,
+  "topic": "m1-2",
+  "subtopic": "m1-2-1",
+  "bloom": "Understand",
+  "question": "Why does the notes' misconception box say a blackbody does not always look black?",
+  "options": [
+   "Blackbodies are coloured",
+   "A blackbody at 6000 K is white-hot; 'black' means perfect absorption",
+   "A blackbody reflects red light",
+   "Blackbodies never emit light"
+  ],
+  "answer": 1,
+  "source": "new bank set 2 2.1 Q1"
+ },
+ {
+  "module": 1,
+  "topic": "m1-2",
+  "subtopic": "m1-2-1",
+  "bloom": "Remember",
+  "question": "As a body is heated, its glow changes in which order?",
+  "options": [
+   "White, then red, then yellow",
+   "Red, then yellow, then white-blue",
+   "Blue, then yellow, then red",
+   "Yellow, then blue, then red"
+  ],
+  "answer": 1,
+  "source": "new bank set 2 2.1 Q2"
+ },
+ {
+  "module": 1,
+  "topic": "m1-2",
+  "subtopic": "m1-2-1",
+  "bloom": "Analyze",
+  "question": "At room temperature, most thermal emission is",
+  "options": [
+   "ultraviolet",
+   "infrared and invisible",
+   "visible yellow",
+   "X-rays"
+  ],
+  "answer": 1,
+  "source": "new bank set 2 2.1 Q3"
+ },
+ {
+  "module": 1,
+  "topic": "m1-2",
+  "subtopic": "m1-2-1",
+  "bloom": "Apply",
+  "question": "Two bodies of different materials are both at temperature T and absorb all radiation. Per the definition, their emission spectra will be",
+  "options": [
+   "different because their materials differ",
+   "the same, as a blackbody spectrum is independent of the material",
+   "zero",
+   "dependent on their colour"
+  ],
+  "answer": 1,
+  "source": "new bank set 2 2.1 Q4"
+ },
+ {
+  "module": 1,
+  "topic": "m1-2",
+  "subtopic": "m1-2-1",
+  "bloom": "Evaluate",
+  "question": "Kirchhoff's law in the notes says that at constant temperature a body absorbs at the same rate as it emits. A good absorber is therefore",
+  "options": [
+   "a good emitter",
+   "a good reflector",
+   "a poor emitter",
+   "a good transmitter only"
+  ],
+  "answer": 0,
+  "source": "new bank set 2 2.1 Q5"
+ },
+ {
+  "module": 1,
+  "topic": "m1-2",
+  "subtopic": "m1-2-2",
+  "bloom": "Apply",
+  "question": "By Wien's law a body at 4000 K peaks near",
+  "options": [
+   "966 nm",
+   "483 nm",
+   "2.9 μm",
+   "725 nm"
+  ],
+  "answer": 3,
+  "source": "new bank set 2 2.2 Q1"
+ },
+ {
+  "module": 1,
+  "topic": "m1-2",
+  "subtopic": "m1-2-2",
+  "bloom": "Apply",
+  "question": "If the temperature of a blackbody triples, its total radiated power per unit area increases by a factor of",
+  "options": [
+   "9",
+   "27",
+   "3",
+   "81"
+  ],
+  "answer": 3,
+  "source": "new bank set 2 2.2 Q2"
+ },
+ {
+  "module": 1,
+  "topic": "m1-2",
+  "subtopic": "m1-2-2",
+  "bloom": "Analyze",
+  "question": "Which feature of the spectrum is listed in the observations on slide 12?",
+  "options": [
+   "There is little power at very short wavelength, and the power rises to a maximum then falls slowly",
+   "The power is largest at the shortest wavelength",
+   "The power is constant at all wavelengths",
+   "The peak shifts to longer wavelength at higher temperature"
+  ],
+  "answer": 0,
+  "source": "new bank set 2 2.2 Q3"
+ },
+ {
+  "module": 1,
+  "topic": "m1-2",
+  "subtopic": "m1-2-2",
+  "bloom": "Understand",
+  "question": "The Stefan constant is written σ = 2π⁵k⁴/(15h³c²). What does this show?",
+  "options": [
+   "σ is an empirical number with no link to h",
+   "σ depends on the metal",
+   "σ is built from fundamental constants, including h",
+   "σ depends on temperature"
+  ],
+  "answer": 2,
+  "source": "new bank set 2 2.2 Q4"
+ },
+ {
+  "module": 1,
+  "topic": "m1-2",
+  "subtopic": "m1-2-2",
+  "bloom": "Evaluate",
+  "question": "The hot-star curve on slide 15 is at 6000 K and the notes give a peak of 483 nm. Which check confirms this?",
+  "options": [
+   "2.898 × 10⁻³ × 6000 = 17.4 m",
+   "6000/2.898 × 10⁻³",
+   "σ × 6000⁴",
+   "2.898 × 10⁻³/6000 = 4.83 × 10⁻⁷ m"
+  ],
+  "answer": 3,
+  "source": "new bank set 2 2.2 Q5"
+ },
+ {
+  "module": 1,
+  "topic": "m1-2",
+  "subtopic": "m1-2-3",
+  "bloom": "Understand",
+  "question": "How did Rayleigh and Jeans count modes in the cavity?",
+  "options": [
+   "As 8πh ν³/c³",
+   "As kT per mode",
+   "As one mode per frequency",
+   "The number per unit volume between ν and ν + dν is 8πν²dν/c³"
+  ],
+  "answer": 3,
+  "source": "new bank set 2 2.3 Q1"
+ },
+ {
+  "module": 1,
+  "topic": "m1-2",
+  "subtopic": "m1-2-3",
+  "bloom": "Apply",
+  "question": "Each mode is given energy kT by equipartition. Multiplying by the mode density gives",
+  "options": [
+   "u(ν)dν = hν dν",
+   "u(ν)dν = (8πν²/c³)kT dν",
+   "u = σT⁴",
+   "u(ν) = 0 at all ν"
+  ],
+  "answer": 1,
+  "source": "new bank set 2 2.3 Q2"
+ },
+ {
+  "module": 1,
+  "topic": "m1-2",
+  "subtopic": "m1-2-3",
+  "bloom": "Analyze",
+  "question": "In the figure with Planck spectra for 3000–5000 K and the Rayleigh–Jeans curve for 5000 K, what do the two show at long wavelength?",
+  "options": [
+   "Rayleigh–Jeans is far lower",
+   "They cross at the peak only",
+   "They agree",
+   "Planck's curve diverges"
+  ],
+  "answer": 2,
+  "source": "new bank set 2 2.3 Q3"
+ },
+ {
+  "module": 1,
+  "topic": "m1-2",
+  "subtopic": "m1-2-3",
+  "bloom": "Evaluate",
+  "question": "'The ultraviolet catastrophe is a catastrophe in the lab.' Evaluate.",
+  "options": [
+   "Correct: labs saw infinite energy",
+   "Correct at high T",
+   "Wrong: it only affects the visible region",
+   "Wrong: it is a failure of the theory; real bodies do not emit infinite energy"
+  ],
+  "answer": 3,
+  "source": "new bank set 2 2.3 Q4"
+ },
+ {
+  "module": 1,
+  "topic": "m1-2",
+  "subtopic": "m1-2-3",
+  "bloom": "Create",
+  "question": "To patch the classical derivation, which modification must be made to the energy given to a mode at high frequency?",
+  "options": [
+   "Make it larger than kT",
+   "Make it zero at all frequencies",
+   "Make it independent of frequency",
+   "Make it smaller than kT for high-frequency modes"
+  ],
+  "answer": 3,
+  "source": "new bank set 2 2.3 Q5"
+ },
+ {
+  "module": 1,
+  "topic": "m1-3",
+  "subtopic": "m1-3-1",
+  "bloom": "Remember",
+  "question": "Which of Planck's hypotheses says the oscillator energies are weighted by the Boltzmann distribution?",
+  "options": [
+   "The first: simple harmonic oscillators",
+   "The second: all frequencies allowed",
+   "The fourth: emission lowers oscillator energy",
+   "The fifth: probability ∝ e^{−E/kT}, not equipartition"
+  ],
+  "answer": 3,
+  "source": "new bank set 2 3.1 Q1"
+ },
+ {
+  "module": 1,
+  "topic": "m1-3",
+  "subtopic": "m1-3-1",
+  "bloom": "Apply",
+  "question": "A quantum of green light (500 nm) has energy about",
+  "options": [
+   "2.48 × 10⁻¹⁹ J",
+   "6.6 × 10⁻³⁴ J",
+   "3.98 × 10⁻¹⁹ J",
+   "1.24 × 10⁻¹⁹ J"
+  ],
+  "answer": 2,
+  "source": "new bank set 2 3.1 Q2"
+ },
+ {
+  "module": 1,
+  "topic": "m1-3",
+  "subtopic": "m1-3-1",
+  "bloom": "Analyze",
+  "question": "Planck's hypothesis quantised which objects, according to the misconception box?",
+  "options": [
+   "Light itself",
+   "The oscillators in the cavity walls, not light itself",
+   "The cavity volume",
+   "Temperature"
+  ],
+  "answer": 1,
+  "source": "new bank set 2 3.1 Q3"
+ },
+ {
+  "module": 1,
+  "topic": "m1-3",
+  "subtopic": "m1-3-1",
+  "bloom": "Understand",
+  "question": "Which statement about quanta of E = hc/λ is correct?",
+  "options": [
+   "A longer wavelength means a larger energy per quantum",
+   "A longer wavelength means a smaller energy per quantum",
+   "Energy is independent of wavelength",
+   "Energy depends on intensity"
+  ],
+  "answer": 1,
+  "source": "new bank set 2 3.1 Q4"
+ },
+ {
+  "module": 1,
+  "topic": "m1-3",
+  "subtopic": "m1-3-1",
+  "bloom": "Evaluate",
+  "question": "Planck is sometimes said to have believed that light is made of particles. The notes say",
+  "options": [
+   "Planck proposed light quanta first",
+   "Neither proposed any quanta",
+   "Einstein quantised the walls",
+   "it was Einstein who proposed that light itself comes in quanta"
+  ],
+  "answer": 3,
+  "source": "new bank set 2 3.1 Q5"
+ },
+ {
+  "module": 1,
+  "topic": "m1-3",
+  "subtopic": "m1-3-2",
+  "bloom": "Remember",
+  "question": "Planck's radiation formula in the notes is",
+  "options": [
+   "u(ν)dν = (8πν²kT/c³) dν",
+   "u(ν)dν = (8πhν³/c³) dν/(e^{hν/kT} − 1)",
+   "u = σT⁴",
+   "u = kT/λ⁴"
+  ],
+  "answer": 1,
+  "source": "new bank set 2 3.2 Q1"
+ },
+ {
+  "module": 1,
+  "topic": "m1-3",
+  "subtopic": "m1-3-2",
+  "bloom": "Apply",
+  "question": "For ν = 5.6 × 10¹² Hz and T = 330 K, hν/kT is about",
+  "options": [
+   "0.0815",
+   "0.815",
+   "8.15",
+   "1.0"
+  ],
+  "answer": 1,
+  "source": "new bank set 2 3.2 Q2"
+ },
+ {
+  "module": 1,
+  "topic": "m1-3",
+  "subtopic": "m1-3-2",
+  "bloom": "Analyze",
+  "question": "At hν ≪ kT, e^{hν/kT} − 1 ≈ hν/kT. This leads to which result?",
+  "options": [
+   "⟨ε⟩ → kT and the Rayleigh–Jeans law",
+   "⟨ε⟩ → 0",
+   "⟨ε⟩ → ∞",
+   "the Wien displacement law"
+  ],
+  "answer": 0,
+  "source": "new bank set 2 3.2 Q3"
+ },
+ {
+  "module": 1,
+  "topic": "m1-3",
+  "subtopic": "m1-3-2",
+  "bloom": "Evaluate",
+  "question": "'Planck's law and Rayleigh–Jeans disagree everywhere.' Evaluate.",
+  "options": [
+   "Correct",
+   "Wrong: they agree at long wavelength where hν ≪ kT",
+   "Correct at the peak only",
+   "Wrong: they agree at short wavelength"
+  ],
+  "answer": 1,
+  "source": "new bank set 2 3.2 Q4"
+ },
+ {
+  "module": 1,
+  "topic": "m1-3",
+  "subtopic": "m1-3-2",
+  "bloom": "Understand",
+  "question": "At high frequency (hν ≫ kT) what does Planck's u(ν) do?",
+  "options": [
+   "Grows without limit",
+   "Tends to zero (the Wien form)",
+   "Becomes constant",
+   "Becomes kT"
+  ],
+  "answer": 1,
+  "source": "new bank set 2 3.2 Q5"
+ },
+ {
+  "module": 1,
+  "topic": "m1-4",
+  "subtopic": "m1-4-1",
+  "bloom": "Understand",
+  "question": "What is the saturation current?",
+  "options": [
+   "The current when all emitted electrons reach the anode",
+   "The current at the stopping potential",
+   "The current when light has no intensity",
+   "The current at the threshold frequency"
+  ],
+  "answer": 0,
+  "source": "new bank set 2 4.1 Q1"
+ },
+ {
+  "module": 1,
+  "topic": "m1-4",
+  "subtopic": "m1-4-1",
+  "bloom": "Analyze",
+  "question": "Which two facts show that the stopping potential reflects electron energy, not light intensity?",
+  "options": [
+   "V_s grows with intensity and falls with frequency",
+   "V_s is constant for all light",
+   "V_s is independent of intensity and increases with frequency",
+   "V_s depends only on the area illuminated"
+  ],
+  "answer": 2,
+  "source": "new bank set 2 4.1 Q2"
+ },
+ {
+  "module": 1,
+  "topic": "m1-4",
+  "subtopic": "m1-4-1",
+  "bloom": "Remember",
+  "question": "Photoemission is practically instantaneous, with a delay of about",
+  "options": [
+   "10⁻⁹ s",
+   "1 s",
+   "10⁻³ s",
+   "1 minute"
+  ],
+  "answer": 0,
+  "source": "new bank set 2 4.1 Q3"
+ },
+ {
+  "module": 1,
+  "topic": "m1-4",
+  "subtopic": "m1-4-1",
+  "bloom": "Evaluate",
+  "question": "Why does the classical wave theory fail on the time delay?",
+  "options": [
+   "It predicts no emission",
+   "It predicts emission only at high intensity",
+   "It predicts a delay while energy accumulates, but emission is instantaneous",
+   "It predicts a negative delay"
+  ],
+  "answer": 2,
+  "source": "new bank set 2 4.1 Q4"
+ },
+ {
+  "module": 1,
+  "topic": "m1-4",
+  "subtopic": "m1-4-1",
+  "bloom": "Apply",
+  "question": "If photoelectrons are collected with current proportional to intensity at a fixed frequency, doubling the intensity (above threshold) makes the current",
+  "options": [
+   "halve",
+   "stay the same",
+   "double",
+   "zero"
+  ],
+  "answer": 2,
+  "source": "new bank set 2 4.1 Q5"
+ },
+ {
+  "module": 1,
+  "topic": "m1-4",
+  "subtopic": "m1-4-2",
+  "bloom": "Apply",
+  "question": "A metal has W₀ = 2.0 eV. Light of 310 nm (hc ≈ 1240 eV·nm) gives KEmax of",
+  "options": [
+   "4.0 eV",
+   "2.0 eV",
+   "1.1 eV",
+   "6.0 eV"
+  ],
+  "answer": 1,
+  "source": "new bank set 2 4.2 Q1"
+ },
+ {
+  "module": 1,
+  "topic": "m1-4",
+  "subtopic": "m1-4-2",
+  "bloom": "Apply",
+  "question": "The threshold frequency f₀ = W₀/h for W₀ = 2.0 eV is about",
+  "options": [
+   "3.0 × 10¹⁵ Hz",
+   "4.8 × 10⁸ Hz",
+   "4.8 × 10¹⁴ Hz",
+   "2.0 × 10¹⁴ Hz"
+  ],
+  "answer": 2,
+  "source": "new bank set 2 4.2 Q2"
+ },
+ {
+  "module": 1,
+  "topic": "m1-4",
+  "subtopic": "m1-4-2",
+  "bloom": "Analyze",
+  "question": "A graph of V_s against f is a straight line. What do its slope and intercept represent?",
+  "options": [
+   "Slope e/h; intercept at W₀",
+   "Slope h/e; intercept on the f axis at f₀",
+   "Slope W₀; intercept at h",
+   "Slope c; intercept at λ"
+  ],
+  "answer": 1,
+  "source": "new bank set 2 4.2 Q3"
+ },
+ {
+  "module": 1,
+  "topic": "m1-4",
+  "subtopic": "m1-4-2",
+  "bloom": "Understand",
+  "question": "In the worked example the notes say v ≪ c. Why does this matter?",
+  "options": [
+   "It proves v = c",
+   "It justifies the non-relativistic KE formula",
+   "It makes W₀ irrelevant",
+   "It makes the threshold zero"
+  ],
+  "answer": 1,
+  "source": "new bank set 2 4.2 Q4"
+ },
+ {
+  "module": 1,
+  "topic": "m1-4",
+  "subtopic": "m1-4-2",
+  "bloom": "Evaluate",
+  "question": "'Brighter light gives faster electrons.' Evaluate.",
+  "options": [
+   "Correct",
+   "Correct below threshold",
+   "Wrong: brighter light gives slower electrons",
+   "Wrong: brighter light gives more electrons; faster ones need higher frequency"
+  ],
+  "answer": 3,
+  "source": "new bank set 2 4.2 Q5"
+ },
+ {
+  "module": 1,
+  "topic": "m1-5",
+  "subtopic": "m1-5-1",
+  "bloom": "Apply",
+  "question": "An electron is accelerated through 25 V. Its de Broglie wavelength is about",
+  "options": [
+   "0.49 Å",
+   "2.45 Å",
+   "12.26 Å",
+   "6.1 Å"
+  ],
+  "answer": 1,
+  "source": "new bank set 2 5.1 Q1"
+ },
+ {
+  "module": 1,
+  "topic": "m1-5",
+  "subtopic": "m1-5-1",
+  "bloom": "Apply",
+  "question": "A proton accelerated through 100 V has wavelength about (coefficient 0.286 Å/√V)",
+  "options": [
+   "0.286 Å",
+   "0.0286 Å",
+   "2.86 Å",
+   "0.00286 Å"
+  ],
+  "answer": 1,
+  "source": "new bank set 2 5.1 Q2"
+ },
+ {
+  "module": 1,
+  "topic": "m1-5",
+  "subtopic": "m1-5-1",
+  "bloom": "Understand",
+  "question": "For a photon, E = hc/λ and E = mc² (p = mc) give",
+  "options": [
+   "p = hλ",
+   "p = c/λ",
+   "p = h/λ, which de Broglie extended to all particles",
+   "λ = hp"
+  ],
+  "answer": 2,
+  "source": "new bank set 2 5.1 Q3"
+ },
+ {
+  "module": 1,
+  "topic": "m1-5",
+  "subtopic": "m1-5-1",
+  "bloom": "Analyze",
+  "question": "For a thermal particle with E = (3/2)kT the wavelength is",
+  "options": [
+   "h/√(2mkT)",
+   "h/√(mkT)",
+   "h/(3mkT)",
+   "h/√(3mkT)"
+  ],
+  "answer": 3,
+  "source": "new bank set 2 5.1 Q4"
+ },
+ {
+  "module": 1,
+  "topic": "m1-5",
+  "subtopic": "m1-5-1",
+  "bloom": "Evaluate",
+  "question": "The notes say the slide-7 answer of 0.166 MeV for an electron of wavelength 3 × 10⁻¹² m is correct although an intermediate line is garbled. Which check supports it?",
+  "options": [
+   "E = h²/2mλ² = 2.67 × 10⁻¹⁴ J = 1.67 × 10⁵ eV",
+   "E = hc/λ = 1240 eV",
+   "E = kT",
+   "E = 12.26/√V"
+  ],
+  "answer": 0,
+  "source": "new bank set 2 5.1 Q5"
+ },
+ {
+  "module": 1,
+  "topic": "m1-5",
+  "subtopic": "m1-5-2",
+  "bloom": "Understand",
+  "question": "Why are matter waves not electromagnetic waves?",
+  "options": [
+   "They need a medium",
+   "They travel faster than c",
+   "They are not produced by accelerated charges",
+   "They have no amplitude"
+  ],
+  "answer": 2,
+  "source": "new bank set 2 5.2 Q1"
+ },
+ {
+  "module": 1,
+  "topic": "m1-5",
+  "subtopic": "m1-5-2",
+  "bloom": "Analyze",
+  "question": "A particle at rest has a de Broglie wavelength that is",
+  "options": [
+   "zero",
+   "infinite",
+   "one angström",
+   "h/c"
+  ],
+  "answer": 1,
+  "source": "new bank set 2 5.2 Q2"
+ },
+ {
+  "module": 1,
+  "topic": "m1-5",
+  "subtopic": "m1-5-2",
+  "bloom": "Understand",
+  "question": "Matter waves are described as probability waves because",
+  "options": [
+   "the square of the amplitude gives the probability of finding the particle",
+   "their amplitude is mass",
+   "they carry heat",
+   "they travel in a medium"
+  ],
+  "answer": 0,
+  "source": "new bank set 2 5.2 Q3"
+ },
+ {
+  "module": 1,
+  "topic": "m1-5",
+  "subtopic": "m1-5-2",
+  "bloom": "Apply",
+  "question": "Two particles move at the same speed; one is 4 times as massive. The heavier one's wavelength is",
+  "options": [
+   "one quarter",
+   "four times",
+   "the same",
+   "sixteen times"
+  ],
+  "answer": 0,
+  "source": "new bank set 2 5.2 Q4"
+ },
+ {
+  "module": 1,
+  "topic": "m1-5",
+  "subtopic": "m1-5-2",
+  "bloom": "Evaluate",
+  "question": "'Everything has a significant wavelength.' The notes reply that",
+  "options": [
+   "λ is observable only when comparable to obstacle size, and macroscopic bodies have λ ~ 10⁻³⁴ m",
+   "every body shows diffraction",
+   "only light has a wavelength",
+   "only charged bodies have wavelengths"
+  ],
+  "answer": 0,
+  "source": "new bank set 2 5.2 Q5"
+ },
+ {
+  "module": 1,
+  "topic": "m1-5",
+  "subtopic": "m1-5-3",
+  "bloom": "Understand",
+  "question": "In a wave packet, the envelope and ripples move respectively at",
+  "options": [
+   "the phase velocity and group velocity",
+   "c and v",
+   "the group velocity and the phase velocity",
+   "zero and v"
+  ],
+  "answer": 2,
+  "source": "new bank set 2 5.3 Q1"
+ },
+ {
+  "module": 1,
+  "topic": "m1-5",
+  "subtopic": "m1-5-3",
+  "bloom": "Analyze",
+  "question": "In the notes' wave-packet figure made from 15 cosines, adding more spread in k",
+  "options": [
+   "makes the packet wider",
+   "has no effect",
+   "makes the packet narrower",
+   "removes the packet"
+  ],
+  "answer": 2,
+  "source": "new bank set 2 5.3 Q2"
+ },
+ {
+  "module": 1,
+  "topic": "m1-5",
+  "subtopic": "m1-5-3",
+  "bloom": "Remember",
+  "question": "The relation connecting group and phase velocity in general is",
+  "options": [
+   "v_g = v_p + c",
+   "v_g = v_p − λ dv_p/dλ",
+   "v_g = 1/v_p",
+   "v_g = λ/v_p"
+  ],
+  "answer": 1,
+  "source": "new bank set 2 5.3 Q3"
+ },
+ {
+  "module": 1,
+  "topic": "m1-5",
+  "subtopic": "m1-5-3",
+  "bloom": "Apply",
+  "question": "Light in vacuum is non-dispersive. Therefore",
+  "options": [
+   "v_g = v_p",
+   "v_g = c²/v_p with v_p < c",
+   "v_g = 0",
+   "v_p = 0"
+  ],
+  "answer": 0,
+  "source": "new bank set 2 5.3 Q4"
+ },
+ {
+  "module": 1,
+  "topic": "m1-5",
+  "subtopic": "m1-5-3",
+  "bloom": "Analyze",
+  "question": "The notes say de Broglie waves have v_g ≠ v_p, whereas light in vacuum has v_g = v_p. Which term describes the first case?",
+  "options": [
+   "Non-dispersive behaviour",
+   "Superluminal signalling",
+   "Total internal reflection",
+   "Dispersive medium behaviour"
+  ],
+  "answer": 3,
+  "source": "new bank set 2 5.3 Q5"
+ },
+ {
+  "module": 1,
+  "topic": "m1-5",
+  "subtopic": "m1-5-4",
+  "bloom": "Understand",
+  "question": "Why does a crystal act like a set of planes for electrons?",
+  "options": [
+   "Electrons are absorbed by the planes",
+   "The planes emit electrons",
+   "Electrons are ionised by planes",
+   "Waves scattered from successive planes interfere, exactly as for X-rays"
+  ],
+  "answer": 3,
+  "source": "new bank set 2 5.4 Q1"
+ },
+ {
+  "module": 1,
+  "topic": "m1-5",
+  "subtopic": "m1-5-4",
+  "bloom": "Apply",
+  "question": "With 2d sinθ = nλ, n = 1, λ = 1.67 Å and sinθ = 0.5, the plane spacing d is",
+  "options": [
+   "3.34 Å",
+   "0.835 Å",
+   "1.67 Å",
+   "0.5 Å"
+  ],
+  "answer": 2,
+  "source": "new bank set 2 5.4 Q2"
+ },
+ {
+  "module": 1,
+  "topic": "m1-5",
+  "subtopic": "m1-5-4",
+  "bloom": "Analyze",
+  "question": "The notes say the experiment's numerical details are in Beiser. What does that tell you about the deck?",
+  "options": [
+   "The deck gives only a description, not numbers",
+   "The deck gives all numbers",
+   "Beiser is wrong",
+   "The experiment is not in the deck"
+  ],
+  "answer": 0,
+  "source": "new bank set 2 5.4 Q3"
+ },
+ {
+  "module": 1,
+  "topic": "m1-5",
+  "subtopic": "m1-5-4",
+  "bloom": "Remember",
+  "question": "In which year did Davisson and Germer carry out the experiment, per the notes?",
+  "options": [
+   "1801",
+   "1926",
+   "1905",
+   "1927"
+  ],
+  "answer": 3,
+  "source": "new bank set 2 5.4 Q4"
+ },
+ {
+  "module": 1,
+  "topic": "m1-5",
+  "subtopic": "m1-5-4",
+  "bloom": "Evaluate",
+  "question": "The λ = 1.67 Å for 54 V is of the same order as atomic spacings. This supports which conclusion?",
+  "options": [
+   "Electrons have no wavelength",
+   "The crystal is amorphous",
+   "Electrons behave only as particles",
+   "Crystals can diffract such electrons, so electron wave behaviour is observable"
+  ],
+  "answer": 3,
+  "source": "new bank set 2 5.4 Q5"
+ },
+ {
+  "module": 1,
+  "topic": "m1-6",
+  "subtopic": "m1-6-1",
+  "bloom": "Understand",
+  "question": "Why does a narrow wave packet in position imply uncertainty in momentum?",
+  "options": [
+   "It has one wavelength",
+   "It needs many wavelengths (a spread of k) to build",
+   "It has no wavelength",
+   "It travels faster than light"
+  ],
+  "answer": 1,
+  "source": "new bank set 2 6.1 Q1"
+ },
+ {
+  "module": 1,
+  "topic": "m1-6",
+  "subtopic": "m1-6-1",
+  "bloom": "Analyze",
+  "question": "The slides state the principle in three forms: ΔxΔp ≈ h, ΔxΔp ≥ h and ΔxΔp ≥ h/4π. Which is the accurate one?",
+  "options": [
+   "ΔxΔp ≈ h",
+   "ΔxΔp ≥ h/4π = ħ/2",
+   "ΔxΔp ≥ h",
+   "ΔxΔp ≤ h/4π"
+  ],
+  "answer": 1,
+  "source": "new bank set 2 6.1 Q2"
+ },
+ {
+  "module": 1,
+  "topic": "m1-6",
+  "subtopic": "m1-6-1",
+  "bloom": "Evaluate",
+  "question": "A problem set says 'Δp = h/Δx'. How should you answer?",
+  "options": [
+   "Use the order-of-magnitude form and say so",
+   "Always use ħ/2",
+   "Reject the question",
+   "Use ΔxΔp = 0"
+  ],
+  "answer": 0,
+  "source": "new bank set 2 6.1 Q3"
+ },
+ {
+  "module": 1,
+  "topic": "m1-6",
+  "subtopic": "m1-6-1",
+  "bloom": "Apply",
+  "question": "If Δx is halved (ħ/2 form), the minimum Δp",
+  "options": [
+   "doubles",
+   "halves",
+   "stays the same",
+   "becomes zero"
+  ],
+  "answer": 0,
+  "source": "new bank set 2 6.1 Q4"
+ },
+ {
+  "module": 1,
+  "topic": "m1-6",
+  "subtopic": "m1-6-1",
+  "bloom": "Remember",
+  "question": "The limit is described as existing",
+  "options": [
+   "only in poor instruments",
+   "only at high temperature",
+   "in nature itself, not from the instruments",
+   "only for light"
+  ],
+  "answer": 2,
+  "source": "new bank set 2 6.1 Q5"
+ },
+ {
+  "module": 1,
+  "topic": "m1-6",
+  "subtopic": "m1-6-2",
+  "bloom": "Analyze",
+  "question": "Both answers (6.6 × 10⁻²³ and 5.3 × 10⁻²⁴) give Δv far above ~10⁶ m/s. What does this show?",
+  "options": [
+   "Electrons move at c in atoms",
+   "The microscope is faulty",
+   "An electron cannot be pinned to 0.1 Å without a huge momentum uncertainty",
+   "Δx is negligible"
+  ],
+  "answer": 2,
+  "source": "new bank set 2 6.2 Q1"
+ },
+ {
+  "module": 1,
+  "topic": "m1-6",
+  "subtopic": "m1-6-2",
+  "bloom": "Apply",
+  "question": "With Δp = h/Δx and Δx = 0.1 Å, Δp is about",
+  "options": [
+   "5.3 × 10⁻²⁴ kg·m/s",
+   "6.6 × 10⁻³⁴ kg·m/s",
+   "1.0 × 10⁻²⁰ kg·m/s",
+   "6.6 × 10⁻²³ kg·m/s"
+  ],
+  "answer": 3,
+  "source": "new bank set 2 6.2 Q2"
+ },
+ {
+  "module": 1,
+  "topic": "m1-6",
+  "subtopic": "m1-6-2",
+  "bloom": "Understand",
+  "question": "Why does using a longer wavelength not solve the problem?",
+  "options": [
+   "It increases the kick",
+   "It removes the photon",
+   "It changes h",
+   "It disturbs the electron less but blurs the position"
+  ],
+  "answer": 3,
+  "source": "new bank set 2 6.2 Q3"
+ },
+ {
+  "module": 1,
+  "topic": "m1-6",
+  "subtopic": "m1-6-2",
+  "bloom": "Evaluate",
+  "question": "The two estimates differ by the factor 4π = 12.6. Which is the stricter lower bound?",
+  "options": [
+   "h/Δx",
+   "They are equal",
+   "Neither is a bound",
+   "ħ/(2Δx), the h/4π form"
+  ],
+  "answer": 3,
+  "source": "new bank set 2 6.2 Q4"
+ },
+ {
+  "module": 1,
+  "topic": "m1-6",
+  "subtopic": "m1-6-2",
+  "bloom": "Create",
+  "question": "To compare two estimates for an electron located to 0.2 Å, what should the lower-bound Δp (ħ/2Δx form) be?",
+  "options": [
+   "About 5.3 × 10⁻²⁴ kg·m/s",
+   "About 2.6 × 10⁻²⁴ kg·m/s",
+   "About 6.6 × 10⁻²³ kg·m/s",
+   "About 1.3 × 10⁻²⁴ kg·m/s"
+  ],
+  "answer": 1,
+  "source": "new bank set 2 6.2 Q5"
+ },
+ {
+  "module": 1,
+  "topic": "m1-6",
+  "subtopic": "m1-6-3",
+  "bloom": "Remember",
+  "question": "Which is listed as an application of the uncertainty principle?",
+  "options": [
+   "The photoelectric effect",
+   "Young's fringes",
+   "The Stefan law",
+   "The non-existence of the electron inside the nucleus"
+  ],
+  "answer": 3,
+  "source": "new bank set 2 6.3 Q1"
+ },
+ {
+  "module": 1,
+  "topic": "m1-6",
+  "subtopic": "m1-6-3",
+  "bloom": "Understand",
+  "question": "Why are spectral lines of short-lived states broadened?",
+  "options": [
+   "They collide with each other",
+   "A short lifetime Δt gives a large energy uncertainty ΔE",
+   "They are heated",
+   "They lose mass"
+  ],
+  "answer": 1,
+  "source": "new bank set 2 6.3 Q2"
+ },
+ {
+  "module": 1,
+  "topic": "m1-6",
+  "subtopic": "m1-6-3",
+  "bloom": "Apply",
+  "question": "ΔE ≥ ħ/(2Δt) with Δt = 10⁻⁸ s gives, in eV, about",
+  "options": [
+   "3.3 × 10⁻² eV",
+   "5.3 × 10⁻²⁷ eV",
+   "3.3 × 10⁻⁸ eV",
+   "2 eV"
+  ],
+  "answer": 2,
+  "source": "new bank set 2 6.3 Q3"
+ },
+ {
+  "module": 1,
+  "topic": "m1-6",
+  "subtopic": "m1-6-3",
+  "bloom": "Analyze",
+  "question": "The result 3.3 × 10⁻⁸ eV is tiny compared with a few-eV transition. Hence the line is",
+  "options": [
+   "very broad",
+   "very sharp but not infinitely so",
+   "absent",
+   "invisible"
+  ],
+  "answer": 1,
+  "source": "new bank set 2 6.3 Q4"
+ },
+ {
+  "module": 1,
+  "topic": "m1-6",
+  "subtopic": "m1-6-3",
+  "bloom": "Evaluate",
+  "question": "Which application links back to the particle in a box?",
+  "options": [
+   "Zero-point energy (Module 4, 2.2)",
+   "Spectral line width",
+   "Binding energy",
+   "Hydrogen radius"
+  ],
+  "answer": 0,
+  "source": "new bank set 2 6.3 Q5"
+ },
+ {
+  "module": 1,
+  "topic": "m1-7",
+  "subtopic": "m1-7-1",
+  "bloom": "Understand",
+  "question": "Why can the sign of Ψ have no physical significance?",
+  "options": [
+   "Ψ is always positive",
+   "Positive and negative regions give the same |Ψ|²",
+   "|Ψ|² is negative",
+   "Ψ is a probability"
+  ],
+  "answer": 1,
+  "source": "new bank set 2 7.1 Q1"
+ },
+ {
+  "module": 1,
+  "topic": "m1-7",
+  "subtopic": "m1-7-1",
+  "bloom": "Remember",
+  "question": "In 1926 who proposed the wave equation for matter waves?",
+  "options": [
+   "Heisenberg",
+   "Planck",
+   "Young",
+   "Schrödinger"
+  ],
+  "answer": 3,
+  "source": "new bank set 2 7.1 Q2"
+ },
+ {
+  "module": 1,
+  "topic": "m1-7",
+  "subtopic": "m1-7-1",
+  "bloom": "Analyze",
+  "question": "Why can Ψ itself not be the probability?",
+  "options": [
+   "Ψ can be complex or negative",
+   "Ψ is always real",
+   "Ψ is always 1",
+   "Ψ has no time dependence"
+  ],
+  "answer": 0,
+  "source": "new bank set 2 7.1 Q3"
+ },
+ {
+  "module": 1,
+  "topic": "m1-7",
+  "subtopic": "m1-7-1",
+  "bloom": "Apply",
+  "question": "The probability of finding the particle between a and b in 1D is",
+  "options": [
+   "∫ₐᵇ Ψ dx",
+   "|Ψ(b) − Ψ(a)|",
+   "∫ₐᵇ |Ψ|² dx",
+   "Ψ(a)Ψ(b)"
+  ],
+  "answer": 2,
+  "source": "new bank set 2 7.1 Q4"
+ },
+ {
+  "module": 1,
+  "topic": "m1-7",
+  "subtopic": "m1-7-1",
+  "bloom": "Evaluate",
+  "question": "'Ψ is the probability.' Evaluate.",
+  "options": [
+   "Wrong: |Ψ|² is the probability density",
+   "Correct",
+   "Correct for real Ψ only",
+   "Wrong: Ψ² is the energy"
+  ],
+  "answer": 0,
+  "source": "new bank set 2 7.1 Q5"
+ },
+ {
+  "module": 1,
+  "topic": "m1-7",
+  "subtopic": "m1-7-2",
+  "bloom": "Apply",
+  "question": "Normalising ψ = Ax on 0 ≤ x ≤ 1 gives A =",
+  "options": [
+   "√3",
+   "3",
+   "1/3",
+   "√2"
+  ],
+  "answer": 0,
+  "source": "new bank set 2 7.2 Q1"
+ },
+ {
+  "module": 1,
+  "topic": "m1-7",
+  "subtopic": "m1-7-2",
+  "bloom": "Analyze",
+  "question": "Why is ψ = tan x rejected on an interval containing π/2?",
+  "options": [
+   "It becomes infinite there, so it is not finite or square-integrable",
+   "It is discontinuous at 0",
+   "It is complex",
+   "It is periodic"
+  ],
+  "answer": 0,
+  "source": "new bank set 2 7.2 Q2"
+ },
+ {
+  "module": 1,
+  "topic": "m1-7",
+  "subtopic": "m1-7-2",
+  "bloom": "Remember",
+  "question": "Two wavefunctions are orthogonal if",
+  "options": [
+   "∫ ψₘ ψₙ dx = 1",
+   "∫ ψₘ* ψₙ dx = 0",
+   "ψₘ = ψₙ",
+   "|ψₘ|² = |ψₙ|²"
+  ],
+  "answer": 1,
+  "source": "new bank set 2 7.2 Q3"
+ },
+ {
+  "module": 1,
+  "topic": "m1-7",
+  "subtopic": "m1-7-2",
+  "bloom": "Understand",
+  "question": "In the worked example ∫A²x²(1 − x)²dx = A²/30. This follows because",
+  "options": [
+   "1/3 + 1/2 + 1/5 = 1/30",
+   "1/3 × 1/2 × 1/5 = 1/30",
+   "1/3 − 1/2 + 1/5 = 1/30",
+   "1/3 − 1/2 − 1/5 = 1/30"
+  ],
+  "answer": 2,
+  "source": "new bank set 2 7.2 Q4"
+ },
+ {
+  "module": 1,
+  "topic": "m1-7",
+  "subtopic": "m1-7-2",
+  "bloom": "Evaluate",
+  "question": "A function with a kink (discontinuous slope) is proposed. Which verdict follows from the notes?",
+  "options": [
+   "Accept it",
+   "Accept if normalised",
+   "Accept if real",
+   "Reject it: the first derivative must be continuous"
+  ],
+  "answer": 3,
+  "source": "new bank set 2 7.2 Q5"
+ },
+ {
+  "module": 1,
+  "topic": "m1-7",
+  "subtopic": "m1-7-3",
+  "bloom": "Analyze",
+  "question": "The operators x̂ and p̂ do not commute (p̂x̂ ≠ x̂p̂). What consequence do the notes draw?",
+  "options": [
+   "x and p are always equal",
+   "x and p cannot both be sharp",
+   "p̂ has no eigenvalues",
+   "x is complex"
+  ],
+  "answer": 1,
+  "source": "new bank set 2 7.3 Q1"
+ },
+ {
+  "module": 1,
+  "topic": "m1-7",
+  "subtopic": "m1-7-3",
+  "bloom": "Remember",
+  "question": "The operator for the z-component of angular momentum in the table is",
+  "options": [
+   "x p_y",
+   "−iħ ∂/∂z",
+   "−iħ(x ∂/∂y − y ∂/∂x)",
+   "ħ²∇²"
+  ],
+  "answer": 2,
+  "source": "new bank set 2 7.3 Q2"
+ },
+ {
+  "module": 1,
+  "topic": "m1-7",
+  "subtopic": "m1-7-3",
+  "bloom": "Apply",
+  "question": "The kinetic-energy operator in 1D is",
+  "options": [
+   "−iħ ∂/∂x",
+   "iħ ∂/∂t",
+   "V(x)",
+   "−(ħ²/2m) ∂²/∂x²"
+  ],
+  "answer": 3,
+  "source": "new bank set 2 7.3 Q3"
+ },
+ {
+  "module": 1,
+  "topic": "m1-7",
+  "subtopic": "m1-7-3",
+  "bloom": "Understand",
+  "question": "The check ħk = (h/2π)(2π/λ) = h/λ shows that",
+  "options": [
+   "k = 0",
+   "h = ħ",
+   "a plane wave has the sharp de Broglie momentum h/λ",
+   "λ = 0"
+  ],
+  "answer": 2,
+  "source": "new bank set 2 7.3 Q4"
+ },
+ {
+  "module": 1,
+  "topic": "m1-7",
+  "subtopic": "m1-7-3",
+  "bloom": "Evaluate",
+  "question": "Which claim about eigenvalues follows from the postulate in the notes?",
+  "options": [
+   "Any real number can be observed",
+   "Eigenvalues are never observed",
+   "Observed values equal the average of ψ",
+   "The only values ever observed for G are its eigenvalues"
+  ],
+  "answer": 3,
+  "source": "new bank set 2 7.3 Q5"
+ },
+ {
+  "module": 1,
+  "topic": "m1-8",
+  "subtopic": "m1-8-1",
+  "bloom": "Remember",
+  "question": "Where does the experiment described appear in the notes?",
+  "options": [
+   "In Module 1, Section 6",
+   "In Module 5, Section 2",
+   "In full in Module 3, Section 4",
+   "In Module 4, Section 1"
+  ],
+  "answer": 2,
+  "source": "new bank set 2 8.1 Q1"
+ },
+ {
+  "module": 1,
+  "topic": "m1-8",
+  "subtopic": "m1-8-1",
+  "bloom": "Understand",
+  "question": "Why does Module 1's Section 8 not contain the experiment itself?",
+  "options": [
+   "The experiment is not about spin",
+   "It is in Module 2",
+   "None of the Module 1 decks sent contain it, although the contents slide lists it",
+   "It is wrong"
+  ],
+  "answer": 2,
+  "source": "new bank set 2 8.1 Q2"
+ },
+ {
+  "module": 1,
+  "topic": "m1-8",
+  "subtopic": "m1-8-1",
+  "bloom": "Analyze",
+  "question": "The apparatus in the notes splits a beam of silver atoms using",
+  "options": [
+   "a crystal",
+   "a double slit",
+   "a prism",
+   "an inhomogeneous magnetic field"
+  ],
+  "answer": 3,
+  "source": "new bank set 2 8.1 Q3"
+ },
+ {
+  "module": 1,
+  "topic": "m1-8",
+  "subtopic": "m1-8-1",
+  "bloom": "Apply",
+  "question": "To study the experiment a student should start at",
+  "options": [
+   "Module 1, 8.1",
+   "Module 4, 5.1",
+   "Module 3, 4.1",
+   "Module 5, 1.1"
+  ],
+  "answer": 2,
+  "source": "new bank set 2 8.1 Q4"
+ },
+ {
+  "module": 1,
+  "topic": "m1-8",
+  "subtopic": "m1-8-1",
+  "bloom": "Evaluate",
+  "question": "What does the beam splitting into two show, per the notes?",
+  "options": [
+   "Spin is continuous",
+   "The atoms are charged",
+   "Spin is quantised",
+   "Silver is non-magnetic"
+  ],
+  "answer": 2,
+  "source": "new bank set 2 8.1 Q5"
+ },
+ {
+  "module": 3,
+  "topic": "m3-5",
+  "subtopic": "m3-5-1",
+  "bloom": "Apply",
+  "question": "An electron moves at 2.0 × 10⁶ m/s. Its de Broglie wavelength is about",
+  "options": [
+   "0.364 nm",
+   "3.64 nm",
+   "0.0364 nm",
+   "36.4 nm"
+  ],
+  "answer": 0,
+  "source": "new bank set 2 5.1 Q1"
+ },
+ {
+  "module": 3,
+  "topic": "m3-5",
+  "subtopic": "m3-5-1",
+  "bloom": "Apply",
+  "question": "Its wave number k = 2π/λ is about",
+  "options": [
+   "1.73 × 10¹⁰ m⁻¹",
+   "1.73 × 10⁶ m⁻¹",
+   "3.64 × 10¹⁰ m⁻¹",
+   "6.28 × 10⁹ m⁻¹"
+  ],
+  "answer": 0,
+  "source": "new bank set 2 5.1 Q2"
+ },
+ {
+  "module": 3,
+  "topic": "m3-5",
+  "subtopic": "m3-5-1",
+  "bloom": "Analyze",
+  "question": "The check ħk = 1.82 × 10⁻²⁴ kg·m/s equals mv. What does this confirm?",
+  "options": [
+   "That ħ = m",
+   "That ħk is the particle's momentum",
+   "That k = v",
+   "That λ = h"
+  ],
+  "answer": 1,
+  "source": "new bank set 2 5.1 Q3"
+ },
+ {
+  "module": 3,
+  "topic": "m3-5",
+  "subtopic": "m3-5-1",
+  "bloom": "Evaluate",
+  "question": "The slide lists a 'ghost particle' assumption about a complex conjugate. The notes leave it out because",
+  "options": [
+   "it is the most important assumption",
+   "it defines λ",
+   "it could not be tied to anything else in the decks",
+   "it is in Module 4"
+  ],
+  "answer": 2,
+  "source": "new bank set 2 5.1 Q4"
+ },
+ {
+  "module": 3,
+  "topic": "m3-5",
+  "subtopic": "m3-5-1",
+  "bloom": "Understand",
+  "question": "In the comparison table, what does quantum mechanics predict instead of a path?",
+  "options": [
+   "The exact position",
+   "Probabilities and allowed energies",
+   "The exact momentum",
+   "Only the mass"
+  ],
+  "answer": 1,
+  "source": "new bank set 2 5.1 Q5"
+ },
+ {
+  "module": 3,
+  "topic": "m3-5",
+  "subtopic": "m3-5-2",
+  "bloom": "Apply",
+  "question": "For Ψ = e^{i(kx−ωt)} to solve the 1D wave equation, ω must equal",
+  "options": [
+   "k/v",
+   "v/k",
+   "vk",
+   "k²v"
+  ],
+  "answer": 2,
+  "source": "new bank set 2 5.2 Q1"
+ },
+ {
+  "module": 3,
+  "topic": "m3-5",
+  "subtopic": "m3-5-2",
+  "bloom": "Apply",
+  "question": "For v = 3 m/s and k = 2 rad/m, ω is",
+  "options": [
+   "6 rad/s",
+   "1.5 rad/s",
+   "12 rad/s",
+   "0.67 rad/s"
+  ],
+  "answer": 0,
+  "source": "new bank set 2 5.2 Q2"
+ },
+ {
+  "module": 3,
+  "topic": "m3-5",
+  "subtopic": "m3-5-2",
+  "bloom": "Analyze",
+  "question": "Using ω/v = 2π/λ turns ∇²Ψ = −(ω²/v²)Ψ into",
+  "options": [
+   "∇²Ψ = λΨ",
+   "∇²Ψ + λ²Ψ = 0",
+   "∇²Ψ + (4π²/λ²)Ψ = 0",
+   "∇²Ψ = 4π²Ψ"
+  ],
+  "answer": 2,
+  "source": "new bank set 2 5.2 Q3"
+ },
+ {
+  "module": 3,
+  "topic": "m3-5",
+  "subtopic": "m3-5-2",
+  "bloom": "Evaluate",
+  "question": "A student drops the minus sign in (−iω)² = −ω². Which error results?",
+  "options": [
+   "Nothing changes",
+   "The wave becomes longitudinal",
+   "λ becomes zero",
+   "The oscillating solution would become growing"
+  ],
+  "answer": 3,
+  "source": "new bank set 2 5.2 Q4"
+ },
+ {
+  "module": 3,
+  "topic": "m3-5",
+  "subtopic": "m3-5-2",
+  "bloom": "Understand",
+  "question": "At this stage of the derivation, which idea has entered?",
+  "options": [
+   "Only that a wave has a frequency and wavelength; the quantum idea enters in 5.3",
+   "λ = h/mv",
+   "E = hν",
+   "The uncertainty principle"
+  ],
+  "answer": 0,
+  "source": "new bank set 2 5.2 Q5"
+ },
+ {
+  "module": 3,
+  "topic": "m3-5",
+  "subtopic": "m3-5-3",
+  "bloom": "Apply",
+  "question": "A free electron has λ = 0.50 nm. Its energy is about",
+  "options": [
+   "6.02 eV",
+   "60.2 eV",
+   "0.602 eV",
+   "1.5 eV"
+  ],
+  "answer": 0,
+  "source": "new bank set 2 5.3 Q1"
+ },
+ {
+  "module": 3,
+  "topic": "m3-5",
+  "subtopic": "m3-5-3",
+  "bloom": "Analyze",
+  "question": "Two routes give the same energy: E = ħ²k²/2m and p²/2m with p = h/λ. What does this show?",
+  "options": [
+   "h and ħ are unrelated",
+   "E = 0",
+   "The equation is self-consistent for a free particle",
+   "k = p"
+  ],
+  "answer": 2,
+  "source": "new bank set 2 5.3 Q2"
+ },
+ {
+  "module": 3,
+  "topic": "m3-5",
+  "subtopic": "m3-5-3",
+  "bloom": "Understand",
+  "question": "Why does E − V in the equation represent kinetic energy?",
+  "options": [
+   "E is the kinetic energy",
+   "E is the total energy and V the potential",
+   "V is the momentum",
+   "E is the potential"
+  ],
+  "answer": 1,
+  "source": "new bank set 2 5.3 Q3"
+ },
+ {
+  "module": 3,
+  "topic": "m3-5",
+  "subtopic": "m3-5-3",
+  "bloom": "Evaluate",
+  "question": "The notes call the slide derivation a plausibility argument. How should the equation be treated?",
+  "options": [
+   "As the starting postulate, not a proof from deeper axioms",
+   "As a theorem proved from Newton's laws",
+   "As an approximation to classical waves",
+   "As valid only for light"
+  ],
+  "answer": 0,
+  "source": "new bank set 2 5.3 Q4"
+ },
+ {
+  "module": 3,
+  "topic": "m3-5",
+  "subtopic": "m3-5-3",
+  "bloom": "Create",
+  "question": "Starting from ∇²Ψ + (4π²m²v²/h²)Ψ = 0, which step gives the energy form?",
+  "options": [
+   "Use m²v² = 2m(E − V)",
+   "Use E = hν",
+   "Set V = 0",
+   "Use ħ = 1"
+  ],
+  "answer": 0,
+  "source": "new bank set 2 5.3 Q5"
+ },
+ {
+  "module": 3,
+  "topic": "m3-5",
+  "subtopic": "m3-5-4",
+  "bloom": "Apply",
+  "question": "For a free electron with k = 5 × 10⁹ m⁻¹, ω = ħk²/2m is about",
+  "options": [
+   "1.45 × 10¹⁵ rad/s",
+   "1.45 × 10¹⁰ rad/s",
+   "5 × 10⁹ rad/s",
+   "2.5 × 10¹⁹ rad/s"
+  ],
+  "answer": 0,
+  "source": "new bank set 2 5.4 Q1"
+ },
+ {
+  "module": 3,
+  "topic": "m3-5",
+  "subtopic": "m3-5-4",
+  "bloom": "Apply",
+  "question": "The corresponding energy E = ħω is about",
+  "options": [
+   "9.53 eV",
+   "0.0953 eV",
+   "0.953 eV",
+   "1.5 eV"
+  ],
+  "answer": 2,
+  "source": "new bank set 2 5.4 Q2"
+ },
+ {
+  "module": 3,
+  "topic": "m3-5",
+  "subtopic": "m3-5-4",
+  "bloom": "Analyze",
+  "question": "Starting from ∂Ψ/∂t = −i(E/ħ)Ψ, multiplying by iħ gives",
+  "options": [
+   "EΨ = iħ ∂Ψ/∂t",
+   "EΨ = −iħ ∂Ψ/∂t",
+   "E = ħ ∂Ψ/∂t",
+   "Ψ = Eħ"
+  ],
+  "answer": 0,
+  "source": "new bank set 2 5.4 Q3"
+ },
+ {
+  "module": 3,
+  "topic": "m3-5",
+  "subtopic": "m3-5-4",
+  "bloom": "Evaluate",
+  "question": "The deck's operator table prints −iħ ∂/∂t. The notes use +iħ ∂/∂t because",
+  "options": [
+   "the minus sign is standard",
+   "the sign is arbitrary",
+   "the deck's own derivation gives +iħ",
+   "it makes E negative"
+  ],
+  "answer": 2,
+  "source": "new bank set 2 5.4 Q4"
+ },
+ {
+  "module": 3,
+  "topic": "m3-5",
+  "subtopic": "m3-5-4",
+  "bloom": "Understand",
+  "question": "Which statement compares the two forms correctly?",
+  "options": [
+   "Both contain t",
+   "The time-dependent one contains t and shows how Ψ develops; the other gives allowed energies",
+   "Neither contains ħ",
+   "The time-independent one shows evolution"
+  ],
+  "answer": 1,
+  "source": "new bank set 2 5.4 Q5"
+ },
+ {
+  "module": 3,
+  "topic": "m3-5",
+  "subtopic": "m3-5-5",
+  "bloom": "Apply",
+  "question": "For the n = 1 state of a 0.50 nm box (E₁ = 1.50 eV), the phase period T = h/E₁ is about",
+  "options": [
+   "27.5 fs",
+   "0.275 fs",
+   "2.75 fs",
+   "2.75 ps"
+  ],
+  "answer": 2,
+  "source": "new bank set 2 5.5 Q1"
+ },
+ {
+  "module": 3,
+  "topic": "m3-5",
+  "subtopic": "m3-5-5",
+  "bloom": "Apply",
+  "question": "For the n = 2 state of the same box the phase period is about",
+  "options": [
+   "1.38 fs",
+   "2.75 fs",
+   "0.69 fs",
+   "11 fs"
+  ],
+  "answer": 2,
+  "source": "new bank set 2 5.5 Q2"
+ },
+ {
+  "module": 3,
+  "topic": "m3-5",
+  "subtopic": "m3-5-5",
+  "bloom": "Analyze",
+  "question": "|Ψ₁(L/2, t)|² = 2/L = 4.0 × 10⁹ m⁻¹ at every t because",
+  "options": [
+   "t = 0",
+   "the phase factor has modulus 1",
+   "L = 0",
+   "the amplitude oscillates"
+  ],
+  "answer": 1,
+  "source": "new bank set 2 5.5 Q3"
+ },
+ {
+  "module": 3,
+  "topic": "m3-5",
+  "subtopic": "m3-5-5",
+  "bloom": "Evaluate",
+  "question": "'A stationary state is one that is not moving.' Evaluate.",
+  "options": [
+   "Correct",
+   "Correct for E = 0",
+   "Wrong: |Ψ|² changes",
+   "Wrong: the phase turns; what is constant is |Ψ|² and the energy"
+  ],
+  "answer": 3,
+  "source": "new bank set 2 5.5 Q4"
+ },
+ {
+  "module": 3,
+  "topic": "m3-5",
+  "subtopic": "m3-5-5",
+  "bloom": "Understand",
+  "question": "Why can the box be solved without t?",
+  "options": [
+   "Energy eigenstates differ from ψ(x) only by a phase factor",
+   "Time is zero in a box",
+   "V depends on time",
+   "t is complex"
+  ],
+  "answer": 0,
+  "source": "new bank set 2 5.5 Q5"
+ },
+ {
+  "module": 4,
+  "topic": "m4-3",
+  "subtopic": "m4-3-3",
+  "bloom": "Apply",
+  "question": "For nₓ = 4 in the slab 0 < x < L/4, P = 1/4 − sin(nₓπ/2)/(2nₓπ) equals",
+  "options": [
+   "0.25",
+   "0.091",
+   "0.303",
+   "0.5"
+  ],
+  "answer": 0,
+  "source": "new bank set 2 3.3 Q1"
+ },
+ {
+  "module": 4,
+  "topic": "m4-3",
+  "subtopic": "m4-3-3",
+  "bloom": "Apply",
+  "question": "For n_z = 2 in the slab 0 < z < L/3, P = 1/3 − sin(4π/3)/(4π) is about",
+  "options": [
+   "0.402",
+   "0.196",
+   "0.333",
+   "0.250"
+  ],
+  "answer": 0,
+  "source": "new bank set 2 3.3 Q2"
+ },
+ {
+  "module": 4,
+  "topic": "m4-3",
+  "subtopic": "m4-3-3",
+  "bloom": "Analyze",
+  "question": "For n = 1 the middle third of the box has P = 0.609. What does each outer third hold?",
+  "options": [
+   "0.196",
+   "0.391",
+   "0.304",
+   "0.609"
+  ],
+  "answer": 0,
+  "source": "new bank set 2 3.3 Q3"
+ },
+ {
+  "module": 4,
+  "topic": "m4-3",
+  "subtopic": "m4-3-3",
+  "bloom": "Understand",
+  "question": "Why does only nₓ matter for the slab 0 < x < X?",
+  "options": [
+   "The y and z integrals run over the whole box and each give 1",
+   "y and z are not in ψ",
+   "nᵧ = nₓ",
+   "L is the same"
+  ],
+  "answer": 0,
+  "source": "new bank set 2 3.3 Q4"
+ },
+ {
+  "module": 4,
+  "topic": "m4-3",
+  "subtopic": "m4-3-3",
+  "bloom": "Evaluate",
+  "question": "A student normalises a 3D box with C = √(2/L). Evaluate.",
+  "options": [
+   "Correct",
+   "Correct for a cube only",
+   "Wrong: that is the 1D constant; in 3D C = (2/L)^{3/2}",
+   "Correct if V = 0"
+  ],
+  "answer": 2,
+  "source": "new bank set 2 3.3 Q5"
+ },
+ {
+  "module": 4,
+  "topic": "m4-3",
+  "subtopic": "m4-3-3",
+  "bloom": "Create",
+  "question": "A student wants P(0 < y < L/4) for a state (1,2,1). Which quantum number decides the result?",
+  "options": [
+   "nₓ = 1 only",
+   "n_z = 1 only",
+   "All three",
+   "nᵧ = 2 only"
+  ],
+  "answer": 3,
+  "source": "new bank set 2 3.3 Q6"
+ },
+ {
+  "module": 4,
+  "topic": "m4-4",
+  "subtopic": "m4-4-1",
+  "bloom": "Understand",
+  "question": "Why is the 1D box non-degenerate?",
+  "options": [
+   "It has one particle",
+   "It has no walls",
+   "Its states are all identical",
+   "Eₙ = n²E₁ is strictly increasing, so each n has its own energy"
+  ],
+  "answer": 3,
+  "source": "new bank set 2 4.1 Q1"
+ },
+ {
+  "module": 4,
+  "topic": "m4-4",
+  "subtopic": "m4-4-1",
+  "bloom": "Analyze",
+  "question": "The 2D square box is degenerate because (1,2) and (2,1) give",
+  "options": [
+   "different energies",
+   "the same nₓ² + nᵧ²",
+   "the same quantum numbers",
+   "zero energy"
+  ],
+  "answer": 1,
+  "source": "new bank set 2 4.1 Q2"
+ },
+ {
+  "module": 4,
+  "topic": "m4-4",
+  "subtopic": "m4-4-1",
+  "bloom": "Evaluate",
+  "question": "'Degenerate means unstable.' Evaluate.",
+  "options": [
+   "Correct",
+   "Correct for cubes only",
+   "Wrong: degeneracy is a statement about counting states at one energy, not stability",
+   "Wrong: degenerate means equal quantum numbers"
+  ],
+  "answer": 2,
+  "source": "new bank set 2 4.1 Q3"
+ },
+ {
+  "module": 4,
+  "topic": "m4-4",
+  "subtopic": "m4-4-1",
+  "bloom": "Apply",
+  "question": "In the 1 nm cube the three states (2,1,1), (1,2,1), (1,1,2) each have energy",
+  "options": [
+   "1.13 eV",
+   "2.26 eV",
+   "0.376 eV",
+   "6.0 eV"
+  ],
+  "answer": 1,
+  "source": "new bank set 2 4.1 Q4"
+ },
+ {
+  "module": 4,
+  "topic": "m4-4",
+  "subtopic": "m4-4-1",
+  "bloom": "Remember",
+  "question": "Degeneracy reflects an underlying",
+  "options": [
+   "random coincidence",
+   "symmetry (a cube has three equivalent directions)",
+   "particle spin",
+   "wall roughness"
+  ],
+  "answer": 1,
+  "source": "new bank set 2 4.1 Q5"
+ },
+ {
+  "module": 4,
+  "topic": "m4-4",
+  "subtopic": "m4-4-2",
+  "bloom": "Apply",
+  "question": "The level N = 11 is made from (1,1,3). Its degeneracy is",
+  "options": [
+   "3",
+   "6",
+   "1",
+   "2"
+  ],
+  "answer": 0,
+  "source": "new bank set 2 4.2 Q1"
+ },
+ {
+  "module": 4,
+  "topic": "m4-4",
+  "subtopic": "m4-4-2",
+  "bloom": "Apply",
+  "question": "The energy of the N = 9 level for L = 1 nm (0.376 eV per unit N) is about",
+  "options": [
+   "3.38 eV",
+   "2.26 eV",
+   "1.13 eV",
+   "4.89 eV"
+  ],
+  "answer": 0,
+  "source": "new bank set 2 4.2 Q2"
+ },
+ {
+  "module": 4,
+  "topic": "m4-4",
+  "subtopic": "m4-4-2",
+  "bloom": "Analyze",
+  "question": "For the slides' label in units of E₁,₁,₁ = 3E₀, the N = 12 level is labelled",
+  "options": [
+   "12",
+   "4",
+   "3",
+   "2"
+  ],
+  "answer": 1,
+  "source": "new bank set 2 4.2 Q3"
+ },
+ {
+  "module": 4,
+  "topic": "m4-4",
+  "subtopic": "m4-4-2",
+  "bloom": "Understand",
+  "question": "The counting rule for orderings of a triple is",
+  "options": [
+   "all different → 3, two equal → 6",
+   "always 6",
+   "all different → 6, exactly two equal → 3, all equal → 1",
+   "always 1"
+  ],
+  "answer": 2,
+  "source": "new bank set 2 4.2 Q4"
+ },
+ {
+  "module": 4,
+  "topic": "m4-4",
+  "subtopic": "m4-4-2",
+  "bloom": "Evaluate",
+  "question": "Slide 26 starts the quantum numbers at 0 and shows a 3-fold lowest level. The notes reject this because",
+  "options": [
+   "it contradicts slide 24 and n = 0 gives ψ = 0",
+   "slide 26 is correct",
+   "n ≥ 2 is required",
+   "lowest levels are always 3-fold"
+  ],
+  "answer": 0,
+  "source": "new bank set 2 4.2 Q5"
+ },
+ {
+  "module": 4,
+  "topic": "m4-4",
+  "subtopic": "m4-4-2",
+  "bloom": "Create",
+  "question": "To find the degeneracy of a new level, what is the correct procedure?",
+  "options": [
+   "Count only permutations of the first triple found",
+   "Divide N by 3",
+   "List all unordered triples with the right sum of squares, count orderings of each, and add",
+   "Use E = nhν"
+  ],
+  "answer": 2,
+  "source": "new bank set 2 4.2 Q6"
+ },
+ {
+  "module": 4,
+  "topic": "m4-4",
+  "subtopic": "m4-4-3",
+  "bloom": "Analyze",
+  "question": "The (1,1,3) state in the box with a = b = 1 nm, c = 2 nm has energy 4.25E₀. How does it compare with (1,1,2)?",
+  "options": [
+   "Lower",
+   "Equal",
+   "Not allowed",
+   "Higher, because n_z² /4 is larger"
+  ],
+  "answer": 3,
+  "source": "new bank set 2 4.3 Q1"
+ },
+ {
+  "module": 4,
+  "topic": "m4-4",
+  "subtopic": "m4-4-3",
+  "bloom": "Understand",
+  "question": "A box with two equal sides keeps degeneracy",
+  "options": [
+   "in all three directions",
+   "in none",
+   "between those two directions only",
+   "only for the ground state"
+  ],
+  "answer": 2,
+  "source": "new bank set 2 4.3 Q2"
+ },
+ {
+  "module": 4,
+  "topic": "m4-4",
+  "subtopic": "m4-4-3",
+  "bloom": "Evaluate",
+  "question": "'Degeneracy is removed by making the box bigger.' Evaluate.",
+  "options": [
+   "Wrong: size alone does not matter; loss of symmetry between directions does",
+   "Correct",
+   "Correct for L > 1 nm",
+   "Wrong: bigger boxes have more symmetry"
+  ],
+  "answer": 0,
+  "source": "new bank set 2 4.3 Q3"
+ },
+ {
+  "module": 4,
+  "topic": "m4-4",
+  "subtopic": "m4-4-3",
+  "bloom": "Apply",
+  "question": "If all three sides differ, the remaining 2-fold pair",
+  "options": [
+   "stays degenerate",
+   "becomes 3-fold",
+   "is also split",
+   "vanishes"
+  ],
+  "answer": 2,
+  "source": "new bank set 2 4.3 Q4"
+ },
+ {
+  "module": 4,
+  "topic": "m4-4",
+  "subtopic": "m4-4-3",
+  "bloom": "Remember",
+  "question": "The energy of a box with sides a, b, c in the ħ form is",
+  "options": [
+   "(h²/8m)(nₓ + nᵧ + n_z)",
+   "(π²ħ²/2m)(n/L)",
+   "mc²",
+   "(π²ħ²/2m)(nₓ²/a² + nᵧ²/b² + n_z²/c²)"
+  ],
+  "answer": 3,
+  "source": "new bank set 2 4.3 Q5"
+ },
+ {
+  "module": 4,
+  "topic": "m4-5",
+  "subtopic": "m4-5-1",
+  "bloom": "Understand",
+  "question": "Classically the region inside the barrier is forbidden because",
+  "options": [
+   "V₀ is zero",
+   "the particle has no mass",
+   "the barrier is infinitely wide",
+   "the kinetic energy E − V₀ would be negative"
+  ],
+  "answer": 3,
+  "source": "new bank set 2 5.1 Q1"
+ },
+ {
+  "module": 4,
+  "topic": "m4-5",
+  "subtopic": "m4-5-1",
+  "bloom": "Analyze",
+  "question": "After tunnelling, what is the energy of the transmitted particle?",
+  "options": [
+   "Unchanged; only the amplitude is reduced",
+   "Reduced",
+   "Increased by V₀",
+   "Zero"
+  ],
+  "answer": 0,
+  "source": "new bank set 2 5.1 Q2"
+ },
+ {
+  "module": 4,
+  "topic": "m4-5",
+  "subtopic": "m4-5-1",
+  "bloom": "Evaluate",
+  "question": "'The tunnelling particle borrows energy to climb the barrier.' Evaluate.",
+  "options": [
+   "Correct",
+   "Wrong: the wave simply extends into the forbidden region",
+   "Correct for light",
+   "Wrong: tunnelling needs E > V₀"
+  ],
+  "answer": 1,
+  "source": "new bank set 2 5.1 Q3"
+ },
+ {
+  "module": 4,
+  "topic": "m4-5",
+  "subtopic": "m4-5-1",
+  "bloom": "Remember",
+  "question": "Per slide 8, tunnelling gives",
+  "options": [
+   "reduced energy but not probability",
+   "both reduced",
+   "neither reduced",
+   "reduced probability but not reduced energy"
+  ],
+  "answer": 3,
+  "source": "new bank set 2 5.1 Q4"
+ },
+ {
+  "module": 4,
+  "topic": "m4-5",
+  "subtopic": "m4-5-1",
+  "bloom": "Apply",
+  "question": "In the notes' table, quantum outcome for E < V₀ is R + T = 1 with",
+  "options": [
+   "T = 0",
+   "0 < T < 1",
+   "T = 1",
+   "R = 1"
+  ],
+  "answer": 1,
+  "source": "new bank set 2 5.1 Q5"
+ },
+ {
+  "module": 4,
+  "topic": "m4-5",
+  "subtopic": "m4-5-2",
+  "bloom": "Analyze",
+  "question": "For E > V₀ inside the barrier, k_II = √(2m(E − V₀))/ħ gives",
+  "options": [
+   "decaying exponentials",
+   "a constant",
+   "oscillating solutions",
+   "zero"
+  ],
+  "answer": 2,
+  "source": "new bank set 2 5.2 Q1"
+ },
+ {
+  "module": 4,
+  "topic": "m4-5",
+  "subtopic": "m4-5-2",
+  "bloom": "Understand",
+  "question": "Why is G = 0 in Region III?",
+  "options": [
+   "The barrier absorbs the wave",
+   "The wave is real",
+   "Nothing comes in from the right",
+   "A = 0"
+  ],
+  "answer": 2,
+  "source": "new bank set 2 5.2 Q2"
+ },
+ {
+  "module": 4,
+  "topic": "m4-5",
+  "subtopic": "m4-5-2",
+  "bloom": "Evaluate",
+  "question": "'Region II also has a reflected wave Be^{−ikx}.' Evaluate.",
+  "options": [
+   "Wrong: Region I has the reflected wave; Region II has Ce^{κx} + De^{−κx}",
+   "Correct",
+   "Correct for E > V₀ only",
+   "Wrong: Region III has it"
+  ],
+  "answer": 0,
+  "source": "new bank set 2 5.2 Q3"
+ },
+ {
+  "module": 4,
+  "topic": "m4-5",
+  "subtopic": "m4-5-2",
+  "bloom": "Remember",
+  "question": "The incident wave in Region I is",
+  "options": [
+   "Be^{−ikx}",
+   "Ae^{ikx}",
+   "Fe^{ikx}",
+   "Ge^{−ikx}"
+  ],
+  "answer": 1,
+  "source": "new bank set 2 5.2 Q4"
+ },
+ {
+  "module": 4,
+  "topic": "m4-5",
+  "subtopic": "m4-5-2",
+  "bloom": "Create",
+  "question": "To write the ψ for E < V₀ in all three regions, which set is right?",
+  "options": [
+   "Ae^{ikx}; Be^{κx}; Fe^{ikx}",
+   "Ae^{κx}; Ce^{ikx}; Fe^{−κx}",
+   "Ae^{ikx} + Be^{−ikx} in all regions",
+   "Ae^{ikx} + Be^{−ikx}; Ce^{κx} + De^{−κx}; Fe^{ikx}"
+  ],
+  "answer": 3,
+  "source": "new bank set 2 5.2 Q5"
+ },
+ {
+  "module": 4,
+  "topic": "m4-5",
+  "subtopic": "m4-5-3",
+  "bloom": "Understand",
+  "question": "R is defined as",
+  "options": [
+   "F*F/A*A",
+   "B/A",
+   "F/A",
+   "B*B/A*A"
+  ],
+  "answer": 3,
+  "source": "new bank set 2 5.3 Q1"
+ },
+ {
+  "module": 4,
+  "topic": "m4-5",
+  "subtopic": "m4-5-3",
+  "bloom": "Apply",
+  "question": "If B*B/A*A = 0.235, about how many of 1000 incident particles are transmitted?",
+  "options": [
+   "765",
+   "235",
+   "500",
+   "1000"
+  ],
+  "answer": 0,
+  "source": "new bank set 2 5.3 Q2"
+ },
+ {
+  "module": 4,
+  "topic": "m4-5",
+  "subtopic": "m4-5-3",
+  "bloom": "Analyze",
+  "question": "How many equations fix B, C, D, F in terms of A?",
+  "options": [
+   "Two",
+   "Six",
+   "Four, from ψ and dψ/dx continuous at x = 0 and x = L",
+   "One"
+  ],
+  "answer": 2,
+  "source": "new bank set 2 5.3 Q3"
+ },
+ {
+  "module": 4,
+  "topic": "m4-5",
+  "subtopic": "m4-5-3",
+  "bloom": "Evaluate",
+  "question": "'T = F/A.' Evaluate.",
+  "options": [
+   "Wrong: probabilities use squared moduli, T = |F|²/|A|²",
+   "Correct",
+   "Correct if k differs",
+   "Wrong: T = F² only"
+  ],
+  "answer": 0,
+  "source": "new bank set 2 5.3 Q4"
+ },
+ {
+  "module": 4,
+  "topic": "m4-5",
+  "subtopic": "m4-5-3",
+  "bloom": "Remember",
+  "question": "Why does no extra k-ratio factor appear in T here?",
+  "options": [
+   "Both outer regions have V = 0, so the same k",
+   "k is zero",
+   "The barrier is thin",
+   "T = R"
+  ],
+  "answer": 0,
+  "source": "new bank set 2 5.3 Q5"
+ },
+ {
+  "module": 4,
+  "topic": "m4-5",
+  "subtopic": "m4-5-4",
+  "bloom": "Understand",
+  "question": "Inside the barrier ψ″ = κ²ψ gives",
+  "options": [
+   "sine waves",
+   "a constant",
+   "real exponentials with no oscillation",
+   "zero"
+  ],
+  "answer": 2,
+  "source": "new bank set 2 5.4 Q1"
+ },
+ {
+  "module": 4,
+  "topic": "m4-5",
+  "subtopic": "m4-5-4",
+  "bloom": "Apply",
+  "question": "With e^{−κL} = 0.17 for the amplitude, the probability falls to about",
+  "options": [
+   "3%",
+   "17%",
+   "8.5%",
+   "0.17%"
+  ],
+  "answer": 0,
+  "source": "new bank set 2 5.4 Q2"
+ },
+ {
+  "module": 4,
+  "topic": "m4-5",
+  "subtopic": "m4-5-4",
+  "bloom": "Analyze",
+  "question": "Why does the e^{−κx} term dominate across the barrier?",
+  "options": [
+   "κ is zero",
+   "L is small",
+   "E > V₀",
+   "κL is usually large"
+  ],
+  "answer": 3,
+  "source": "new bank set 2 5.4 Q3"
+ },
+ {
+  "module": 4,
+  "topic": "m4-5",
+  "subtopic": "m4-5-4",
+  "bloom": "Evaluate",
+  "question": "'ψ inside is zero, so nothing gets through.' Evaluate.",
+  "options": [
+   "Correct",
+   "Correct for E = 0",
+   "Wrong: ψ is large",
+   "Wrong: ψ is small but non-zero and joins smoothly to outside waves"
+  ],
+  "answer": 3,
+  "source": "new bank set 2 5.4 Q4"
+ },
+ {
+  "module": 4,
+  "topic": "m4-5",
+  "subtopic": "m4-5-4",
+  "bloom": "Remember",
+  "question": "A zero ψ at x = L would represent",
+  "options": [
+   "tunnelling",
+   "the infinite-wall case, not a finite barrier",
+   "resonance",
+   "a free particle"
+  ],
+  "answer": 1,
+  "source": "new bank set 2 5.4 Q5"
+ },
+ {
+  "module": 4,
+  "topic": "m4-5",
+  "subtopic": "m4-5-5",
+  "bloom": "Apply",
+  "question": "With E/V₀ = 0.4, the prefactor 16(E/V₀)(1 − E/V₀) is",
+  "options": [
+   "6.4",
+   "0.96",
+   "16",
+   "3.84"
+  ],
+  "answer": 3,
+  "source": "new bank set 2 5.5 Q1"
+ },
+ {
+  "module": 4,
+  "topic": "m4-5",
+  "subtopic": "m4-5-5",
+  "bloom": "Apply",
+  "question": "Using this prefactor and e^{−2κL} = 0.0287, T is about",
+  "options": [
+   "0.029",
+   "0.105",
+   "0.84",
+   "0.110"
+  ],
+  "answer": 3,
+  "source": "new bank set 2 5.5 Q2"
+ },
+ {
+  "module": 4,
+  "topic": "m4-5",
+  "subtopic": "m4-5-5",
+  "bloom": "Analyze",
+  "question": "Doubling the width from 0.2 nm to 0.4 nm changes the exact T from 0.105 to 0.00317, which is",
+  "options": [
+   "half",
+   "about 33 times smaller",
+   "unchanged",
+   "about 3 times smaller"
+  ],
+  "answer": 1,
+  "source": "new bank set 2 5.5 Q3"
+ },
+ {
+  "module": 4,
+  "topic": "m4-5",
+  "subtopic": "m4-5-5",
+  "bloom": "Understand",
+  "question": "The slide-7 prefactor 16/[4 + (k₂/k₁)²] gives 0.084 against the exact 0.105. The notes advise",
+  "options": [
+   "always use slide 7",
+   "use only e^{−2κL}",
+   "ignore all prefactors",
+   "use the slide-12 formula when both are available and say so"
+  ],
+  "answer": 3,
+  "source": "new bank set 2 5.5 Q4"
+ },
+ {
+  "module": 4,
+  "topic": "m4-5",
+  "subtopic": "m4-5-5",
+  "bloom": "Evaluate",
+  "question": "T = 1 for E > V₀ occurs when",
+  "options": [
+   "L = 0",
+   "E = 0",
+   "sin(k_II L) = 0 (resonance)",
+   "κL is large"
+  ],
+  "answer": 2,
+  "source": "new bank set 2 5.5 Q5"
+ },
+ {
+  "module": 4,
+  "topic": "m4-5",
+  "subtopic": "m4-5-5",
+  "bloom": "Remember",
+  "question": "The exact rectangular-barrier result is",
+  "options": [
+   "T = 1/[1 + V₀² sinh²(κL)/(4E(V₀ − E))]",
+   "T = e^{κL}",
+   "T = 1 − e^{−κL}",
+   "T = V₀/E"
+  ],
+  "answer": 0,
+  "source": "new bank set 2 5.5 Q6"
+ },
+ {
+  "module": 4,
+  "topic": "m4-5",
+  "subtopic": "m4-5-6",
+  "bloom": "Understand",
+  "question": "In frustrated total internal reflection, what plays the role of the barrier?",
+  "options": [
+   "The prism glass",
+   "The screen",
+   "The critical angle",
+   "The air gap between the prisms"
+  ],
+  "answer": 3,
+  "source": "new bank set 2 5.6 Q1"
+ },
+ {
+  "module": 4,
+  "topic": "m4-5",
+  "subtopic": "m4-5-6",
+  "bloom": "Analyze",
+  "question": "How does the second beam's intensity vary with the gap?",
+  "options": [
+   "Linearly",
+   "Not at all",
+   "It rises",
+   "Exponentially, just as T falls exponentially with L"
+  ],
+  "answer": 3,
+  "source": "new bank set 2 5.6 Q2"
+ },
+ {
+  "module": 4,
+  "topic": "m4-5",
+  "subtopic": "m4-5-6",
+  "bloom": "Remember",
+  "question": "The notes say the effect was observed by",
+  "options": [
+   "Young",
+   "Newton",
+   "Planck",
+   "Einstein"
+  ],
+  "answer": 1,
+  "source": "new bank set 2 5.6 Q3"
+ },
+ {
+  "module": 4,
+  "topic": "m4-5",
+  "subtopic": "m4-5-6",
+  "bloom": "Evaluate",
+  "question": "Light meets a surface beyond the critical angle. The field just outside is",
+  "options": [
+   "exactly zero",
+   "non-zero and decaying (evanescent)",
+   "uniform",
+   "growing"
+  ],
+  "answer": 1,
+  "source": "new bank set 2 5.6 Q4"
+ },
+ {
+  "module": 4,
+  "topic": "m4-5",
+  "subtopic": "m4-5-6",
+  "bloom": "Apply",
+  "question": "A second prism is brought close to the first. What is seen?",
+  "options": [
+   "No light anywhere",
+   "Only reflected light",
+   "Light of longer wavelength",
+   "Light appears in the second prism"
+  ],
+  "answer": 3,
+  "source": "new bank set 2 5.6 Q5"
+ },
+ {
+  "module": 4,
+  "topic": "m4-5",
+  "subtopic": "m4-5-7",
+  "bloom": "Understand",
+  "question": "In constant-current mode, what is recorded?",
+  "options": [
+   "The wavelength",
+   "The voltage only",
+   "The temperature",
+   "The tip height needed to keep the current constant, mapping surface contours"
+  ],
+  "answer": 3,
+  "source": "new bank set 2 5.7 Q1"
+ },
+ {
+  "module": 4,
+  "topic": "m4-5",
+  "subtopic": "m4-5-7",
+  "bloom": "Apply",
+  "question": "If the gap increases by 0.1 nm, the current falls by the factor 0.17, i.e. to about",
+  "options": [
+   "one sixth",
+   "one half",
+   "one hundredth",
+   "one tenth"
+  ],
+  "answer": 0,
+  "source": "new bank set 2 5.7 Q2"
+ },
+ {
+  "module": 4,
+  "topic": "m4-5",
+  "subtopic": "m4-5-7",
+  "bloom": "Evaluate",
+  "question": "'The STM touches the surface.' Evaluate.",
+  "options": [
+   "Correct",
+   "Wrong: the tip stays a small distance away; current flows by tunnelling",
+   "Correct at low T",
+   "Wrong: it uses light"
+  ],
+  "answer": 1,
+  "source": "new bank set 2 5.7 Q3"
+ },
+ {
+  "module": 4,
+  "topic": "m4-5",
+  "subtopic": "m4-5-7",
+  "bloom": "Analyze",
+  "question": "The notes caution that κ = 8.87 nm⁻¹ for the STM example is",
+  "options": [
+   "the exact STM value",
+   "zero",
+   "an illustration, as real STM barriers depend on the material",
+   "a measured value"
+  ],
+  "answer": 2,
+  "source": "new bank set 2 5.7 Q4"
+ },
+ {
+  "module": 4,
+  "topic": "m4-5",
+  "subtopic": "m4-5-7",
+  "bloom": "Remember",
+  "question": "The STM was developed at",
+  "options": [
+   "IBM by Binnig and Rohrer (Nobel 1986)",
+   "MIT",
+   "Bell Labs by Davisson",
+   "Cambridge by Young"
+  ],
+  "answer": 0,
+  "source": "new bank set 2 5.7 Q5"
+ },
+ {
+  "module": 4,
+  "topic": "m4-5",
+  "subtopic": "m4-5-8",
+  "bloom": "Understand",
+  "question": "Inside the nucleus the alpha particle feels",
+  "options": [
+   "a strong, short-range nuclear attraction (roughly a square well)",
+   "only the Coulomb repulsion",
+   "no force",
+   "gravity"
+  ],
+  "answer": 0,
+  "source": "new bank set 2 5.8 Q1"
+ },
+ {
+  "module": 4,
+  "topic": "m4-5",
+  "subtopic": "m4-5-8",
+  "bloom": "Analyze",
+  "question": "Why do half-lives vary enormously?",
+  "options": [
+   "T is constant",
+   "E_α is constant",
+   "T depends exponentially on barrier width and height",
+   "The nucleus changes mass"
+  ],
+  "answer": 2,
+  "source": "new bank set 2 5.8 Q2"
+ },
+ {
+  "module": 4,
+  "topic": "m4-5",
+  "subtopic": "m4-5-8",
+  "bloom": "Remember",
+  "question": "The barrier region in the slide-14 figure runs from",
+  "options": [
+   "0 to r_N",
+   "r′ to ∞",
+   "r_N to r′ = r_N + L",
+   "0 to ∞"
+  ],
+  "answer": 2,
+  "source": "new bank set 2 5.8 Q3"
+ },
+ {
+  "module": 4,
+  "topic": "m4-5",
+  "subtopic": "m4-5-8",
+  "bloom": "Evaluate",
+  "question": "The Coulomb barrier at r_N is several times E_α. What follows?",
+  "options": [
+   "It escapes classically",
+   "It never escapes",
+   "It gains energy",
+   "Classically the alpha could never escape; quantum mechanically it tunnels"
+  ],
+  "answer": 3,
+  "source": "new bank set 2 5.8 Q4"
+ },
+ {
+  "module": 4,
+  "topic": "m4-5",
+  "subtopic": "m4-5-8",
+  "bloom": "Apply",
+  "question": "If the barrier is made wider, the half-life",
+  "options": [
+   "becomes shorter",
+   "is unchanged",
+   "becomes much longer",
+   "becomes zero"
+  ],
+  "answer": 2,
+  "source": "new bank set 2 5.8 Q5"
+ },
+ {
+  "module": 4,
+  "topic": "m4-5",
+  "subtopic": "m4-5-9",
+  "bloom": "Remember",
+  "question": "Which phenomenon is listed in the deck as explained by tunnelling?",
+  "options": [
+   "Compton scattering",
+   "Young's fringes",
+   "Field emission of electrons from a metallic surface",
+   "The Zeeman effect"
+  ],
+  "answer": 2,
+  "source": "new bank set 2 5.9 Q1"
+ },
+ {
+  "module": 4,
+  "topic": "m4-5",
+  "subtopic": "m4-5-9",
+  "bloom": "Understand",
+  "question": "Which three-item answer fits 'name any three tunnelling effects'?",
+  "options": [
+   "Photoelectric effect, Compton effect, Raman effect",
+   "Alpha emission, tunnel diode switching, breakdown of insulators",
+   "Rayleigh scattering, refraction, polarisation",
+   "Zeeman, Stark, Hall"
+  ],
+  "answer": 1,
+  "source": "new bank set 2 5.9 Q2"
+ },
+ {
+  "module": 4,
+  "topic": "m4-5",
+  "subtopic": "m4-5-9",
+  "bloom": "Analyze",
+  "question": "What does the deck say about the details of the tunnel diode and field emission?",
+  "options": [
+   "It derives them in full",
+   "It gives numerical examples",
+   "It excludes them",
+   "It names them only (slide 11); the deck is silent on details"
+  ],
+  "answer": 3,
+  "source": "new bank set 2 5.9 Q3"
+ },
+ {
+  "module": 4,
+  "topic": "m4-5",
+  "subtopic": "m4-5-9",
+  "bloom": "Evaluate",
+  "question": "Which row of the notes' table pairs an effect with 'light across an air gap'?",
+  "options": [
+   "Alpha decay",
+   "STM",
+   "Tunnel diode",
+   "Frustrated total internal reflection"
+  ],
+  "answer": 3,
+  "source": "new bank set 2 5.9 Q4"
+ },
+ {
+  "module": 4,
+  "topic": "m4-5",
+  "subtopic": "m4-5-9",
+  "bloom": "Apply",
+  "question": "What tunnels in the STM?",
+  "options": [
+   "Alpha particles",
+   "Electrons across the tip–surface gap",
+   "Photons",
+   "Protons"
+  ],
+  "answer": 1,
+  "source": "new bank set 2 5.9 Q5"
+ },
+ {
+  "module": 5,
+  "topic": "m5-1",
+  "subtopic": "m5-1-1",
+  "bloom": "Understand",
+  "question": "Why are quantum effects relevant to computing, per the notes?",
+  "options": [
+   "Transistors are getting larger",
+   "Shrinking transistors toward atomic size means quantum effects can no longer be ignored",
+   "Voltage is disappearing",
+   "Boolean gates are quantum"
+  ],
+  "answer": 1,
+  "source": "new bank set 2 1.1 Q1"
+ },
+ {
+  "module": 5,
+  "topic": "m5-1",
+  "subtopic": "m5-1-1",
+  "bloom": "Analyze",
+  "question": "n qubits are described by 2ⁿ amplitudes. Why does this not mean you can read out all 2ⁿ values?",
+  "options": [
+   "A measurement returns a single definite outcome",
+   "Amplitudes are not numbers",
+   "Only n values exist",
+   "Readout is too slow"
+  ],
+  "answer": 0,
+  "source": "new bank set 2 1.1 Q2"
+ },
+ {
+  "module": 5,
+  "topic": "m5-1",
+  "subtopic": "m5-1-1",
+  "bloom": "Evaluate",
+  "question": "'A qubit is both 0 and 1, so it stores two bits.' Evaluate.",
+  "options": [
+   "Wrong: before measurement it has one definite state (a vector); a measurement yields one bit",
+   "Correct",
+   "Correct for entangled qubits only",
+   "Wrong: it stores three bits"
+  ],
+  "answer": 0,
+  "source": "new bank set 2 1.1 Q3"
+ },
+ {
+  "module": 5,
+  "topic": "m5-1",
+  "subtopic": "m5-1-1",
+  "bloom": "Remember",
+  "question": "Which gate set belongs to classical processing in the comparison table?",
+  "options": [
+   "X, Y, Z, H",
+   "CNOT only",
+   "Unitary gates only",
+   "Boolean gates: AND, OR, NOT"
+  ],
+  "answer": 3,
+  "source": "new bank set 2 1.1 Q4"
+ },
+ {
+  "module": 5,
+  "topic": "m5-1",
+  "subtopic": "m5-1-1",
+  "bloom": "Apply",
+  "question": "A 4-qubit register is described by how many amplitudes?",
+  "options": [
+   "4",
+   "8",
+   "64",
+   "16"
+  ],
+  "answer": 3,
+  "source": "new bank set 2 1.1 Q5"
+ },
+ {
+  "module": 5,
+  "topic": "m5-1",
+  "subtopic": "m5-1-1",
+  "bloom": "Create",
+  "question": "Write a one-line contrast of noise for bits and qubits as in the table.",
+  "options": [
+   "Bits are stable with low error; qubits are very sensitive and need error correction",
+   "Both are equally noise-free",
+   "Qubits are more stable than bits",
+   "Bits need error correction, qubits do not"
+  ],
+  "answer": 0,
+  "source": "new bank set 2 1.1 Q6"
+ },
+ {
+  "module": 5,
+  "topic": "m5-1",
+  "subtopic": "m5-1-2",
+  "bloom": "Understand",
+  "question": "Which statement about |0⟩ and |1⟩ is right?",
+  "options": [
+   "They are parallel vectors",
+   "They are orthonormal column vectors that span the two-dimensional Hilbert space",
+   "They are 3-component vectors",
+   "They are real numbers"
+  ],
+  "answer": 1,
+  "source": "new bank set 2 1.2 Q1"
+ },
+ {
+  "module": 5,
+  "topic": "m5-1",
+  "subtopic": "m5-1-2",
+  "bloom": "Apply",
+  "question": "For |ψ⟩ = (3/5)|0⟩ + (4i/5)|1⟩, the norm check ⟨ψ|ψ⟩ uses the bra (3/5, −4i/5). If the conjugate were forgotten, the result would be",
+  "options": [
+   "1",
+   "9/25 − 16/25",
+   "9/25 + 16/25",
+   "0"
+  ],
+  "answer": 1,
+  "source": "new bank set 2 1.2 Q2"
+ },
+ {
+  "module": 5,
+  "topic": "m5-1",
+  "subtopic": "m5-1-2",
+  "bloom": "Analyze",
+  "question": "(1/2)|0⟩ + (1/2)|1⟩ has α + β = 1. Is it normalised?",
+  "options": [
+   "Yes",
+   "No: its norm² is 1/2",
+   "Yes, since α = β",
+   "Only after measurement"
+  ],
+  "answer": 1,
+  "source": "new bank set 2 1.2 Q3"
+ },
+ {
+  "module": 5,
+  "topic": "m5-1",
+  "subtopic": "m5-1-2",
+  "bloom": "Remember",
+  "question": "Which is listed as a physical choice for |0⟩ and |1⟩?",
+  "options": [
+   "Horizontal / vertical photon polarisation",
+   "Hot / cold water",
+   "Charged / uncharged capacitor",
+   "Red / blue light intensity"
+  ],
+  "answer": 0,
+  "source": "new bank set 2 1.2 Q4"
+ },
+ {
+  "module": 5,
+  "topic": "m5-1",
+  "subtopic": "m5-1-2",
+  "bloom": "Evaluate",
+  "question": "In (3/5)|0⟩ + (4i/5)|1⟩, what does the factor i in the |1⟩ amplitude do?",
+  "options": [
+   "Changes P(1) to 0",
+   "Nothing to the probabilities; it is a relative phase",
+   "Makes the state unnormalised",
+   "Swaps 0 and 1"
+  ],
+  "answer": 1,
+  "source": "new bank set 2 1.2 Q5"
+ },
+ {
+  "module": 5,
+  "topic": "m5-1",
+  "subtopic": "m5-1-3",
+  "bloom": "Apply",
+  "question": "A qubit is (1/√3)|0⟩ + √(2/3)e^{iπ/4}|1⟩. P(1) is",
+  "options": [
+   "2/3",
+   "1/3",
+   "√(2/3)",
+   "0.5"
+  ],
+  "answer": 0,
+  "source": "new bank set 2 1.3 Q1"
+ },
+ {
+  "module": 5,
+  "topic": "m5-1",
+  "subtopic": "m5-1-3",
+  "bloom": "Analyze",
+  "question": "After a measurement gives 1, a second measurement gives 1 with probability",
+  "options": [
+   "1",
+   "2/3",
+   "1/3",
+   "0"
+  ],
+  "answer": 0,
+  "source": "new bank set 2 1.3 Q2"
+ },
+ {
+  "module": 5,
+  "topic": "m5-1",
+  "subtopic": "m5-1-3",
+  "bloom": "Understand",
+  "question": "|+⟩ and |−⟩ give the same probabilities in the {|0⟩, |1⟩} basis. Why are they still different states?",
+  "options": [
+   "They have different norms",
+   "They have different P(0)",
+   "They are the same state",
+   "They differ by a relative sign (phase), which later gates can detect"
+  ],
+  "answer": 3,
+  "source": "new bank set 2 1.3 Q3"
+ },
+ {
+  "module": 5,
+  "topic": "m5-1",
+  "subtopic": "m5-1-3",
+  "bloom": "Evaluate",
+  "question": "'Superposition means the qubit is secretly 0 or 1 and we do not know which.' Evaluate.",
+  "options": [
+   "Correct",
+   "Correct before collapse",
+   "Wrong: the qubit is always 0",
+   "Wrong: the superposition itself is the state, and its phases matter for later gates"
+  ],
+  "answer": 3,
+  "source": "new bank set 2 1.3 Q4"
+ },
+ {
+  "module": 5,
+  "topic": "m5-1",
+  "subtopic": "m5-1-3",
+  "bloom": "Remember",
+  "question": "Why is any linear combination of allowed states allowed, per slide 7?",
+  "options": [
+   "The qubit has two levels",
+   "The gates are unitary",
+   "The Schrödinger equation is linear",
+   "Measurement collapses it"
+  ],
+  "answer": 2,
+  "source": "new bank set 2 1.3 Q5"
+ },
+ {
+  "module": 5,
+  "topic": "m5-1",
+  "subtopic": "m5-1-4",
+  "bloom": "Understand",
+  "question": "What does the deck's coin analogy illustrate?",
+  "options": [
+   "Coins are always heads",
+   "Independent fair coins both show heads with probability 1/4; linked coins with 1/2",
+   "Coins are quantum",
+   "Probability is 1 for entangled coins"
+  ],
+  "answer": 1,
+  "source": "new bank set 2 1.4 Q1"
+ },
+ {
+  "module": 5,
+  "topic": "m5-1",
+  "subtopic": "m5-1-4",
+  "bloom": "Analyze",
+  "question": "Slide 25 says entanglement lies not in the values themselves but",
+  "options": [
+   "in the energy",
+   "in the mass",
+   "in the correlation between the values",
+   "in the spin direction"
+  ],
+  "answer": 2,
+  "source": "new bank set 2 1.4 Q2"
+ },
+ {
+  "module": 5,
+  "topic": "m5-1",
+  "subtopic": "m5-1-4",
+  "bloom": "Evaluate",
+  "question": "The notes add a no-signalling remark. Which is the safe exam wording?",
+  "options": [
+   "Measuring one qubit sends a signal to the other",
+   "Each person's own results are random, so no information passes until results are compared",
+   "Entanglement transmits messages instantly",
+   "Entanglement carries energy"
+  ],
+  "answer": 1,
+  "source": "new bank set 2 1.4 Q3"
+ },
+ {
+  "module": 5,
+  "topic": "m5-1",
+  "subtopic": "m5-1-4",
+  "bloom": "Remember",
+  "question": "Which is named as a natural source of entanglement?",
+  "options": [
+   "A battery",
+   "Blackbody radiation",
+   "Atomic decay",
+   "Reflection"
+  ],
+  "answer": 2,
+  "source": "new bank set 2 1.4 Q4"
+ },
+ {
+  "module": 5,
+  "topic": "m5-1",
+  "subtopic": "m5-1-4",
+  "bloom": "Apply",
+  "question": "Which tool creates entanglement in a circuit?",
+  "options": [
+   "A CNOT gate",
+   "A single Z gate",
+   "A single X gate",
+   "Measurement of a lone qubit"
+  ],
+  "answer": 0,
+  "source": "new bank set 2 1.4 Q5"
+ },
+ {
+  "module": 5,
+  "topic": "m5-2",
+  "subtopic": "m5-2-1",
+  "bloom": "Understand",
+  "question": "After removing normalisation and overall phase, how many real parameters remain for a qubit state?",
+  "options": [
+   "Four",
+   "One",
+   "Six",
+   "Two (the angles θ and φ)"
+  ],
+  "answer": 3,
+  "source": "new bank set 2 2.1 Q1"
+ },
+ {
+  "module": 5,
+  "topic": "m5-2",
+  "subtopic": "m5-2-1",
+  "bloom": "Analyze",
+  "question": "Where on the Bloch sphere are |0⟩ and |1⟩ in relation to each other?",
+  "options": [
+   "90° apart on the equator",
+   "At the same point",
+   "At the centre",
+   "At opposite poles, 180° apart"
+  ],
+  "answer": 3,
+  "source": "new bank set 2 2.1 Q2"
+ },
+ {
+  "module": 5,
+  "topic": "m5-2",
+  "subtopic": "m5-2-1",
+  "bloom": "Remember",
+  "question": "The +y state in the table is",
+  "options": [
+   "(|0⟩ + |1⟩)/√2",
+   "(|0⟩ + i|1⟩)/√2",
+   "(|0⟩ − |1⟩)/√2",
+   "|1⟩"
+  ],
+  "answer": 1,
+  "source": "new bank set 2 2.1 Q3"
+ },
+ {
+  "module": 5,
+  "topic": "m5-2",
+  "subtopic": "m5-2-1",
+  "bloom": "Evaluate",
+  "question": "'Orthogonal states are at right angles on the Bloch sphere.' Evaluate.",
+  "options": [
+   "Correct",
+   "Correct for |+⟩ and |−⟩ only",
+   "Wrong: they coincide",
+   "Wrong: orthogonal states are at opposite points"
+  ],
+  "answer": 3,
+  "source": "new bank set 2 2.1 Q4"
+ },
+ {
+  "module": 5,
+  "topic": "m5-2",
+  "subtopic": "m5-2-1",
+  "bloom": "Apply",
+  "question": "Applying a quantum gate corresponds to",
+  "options": [
+   "measuring it",
+   "rotating the state vector",
+   "shrinking the sphere",
+   "changing the poles"
+  ],
+  "answer": 1,
+  "source": "new bank set 2 2.1 Q5"
+ },
+ {
+  "module": 5,
+  "topic": "m5-2",
+  "subtopic": "m5-2-2",
+  "bloom": "Apply",
+  "question": "For θ = π/3 and φ = 0, P(0) = (1 + cosθ)/2 is",
+  "options": [
+   "0.25",
+   "0.75",
+   "0.5",
+   "1"
+  ],
+  "answer": 1,
+  "source": "new bank set 2 2.2 Q1"
+ },
+ {
+  "module": 5,
+  "topic": "m5-2",
+  "subtopic": "m5-2-2",
+  "bloom": "Understand",
+  "question": "Why is φ meaningless at the poles?",
+  "options": [
+   "φ is always 0",
+   "The poles are not states",
+   "cos(θ/2) or sin(θ/2) is zero there, so the phase multiplies nothing",
+   "φ is infinite"
+  ],
+  "answer": 2,
+  "source": "new bank set 2 2.2 Q2"
+ },
+ {
+  "module": 5,
+  "topic": "m5-2",
+  "subtopic": "m5-2-2",
+  "bloom": "Analyze",
+  "question": "(θ, φ) = (π/2, π/2) gives",
+  "options": [
+   "|0⟩",
+   "|−⟩",
+   "(|0⟩ + i|1⟩)/√2, the +y point",
+   "|1⟩"
+  ],
+  "answer": 2,
+  "source": "new bank set 2 2.2 Q3"
+ },
+ {
+  "module": 5,
+  "topic": "m5-2",
+  "subtopic": "m5-2-2",
+  "bloom": "Evaluate",
+  "question": "The vector (−0.866, 0, −0.5) has length 1. What does this confirm?",
+  "options": [
+   "The state is unnormalised",
+   "It is a point on the unit sphere, a valid pure state",
+   "The state is a mixture",
+   "P(0) = 1"
+  ],
+  "answer": 1,
+  "source": "new bank set 2 2.2 Q4"
+ },
+ {
+  "module": 5,
+  "topic": "m5-2",
+  "subtopic": "m5-2-2",
+  "bloom": "Remember",
+  "question": "The Bloch vector is",
+  "options": [
+   "(cosθ, sinθ, φ)",
+   "(θ, φ, 1)",
+   "(sinθ cosφ, sinθ sinφ, cosθ)",
+   "(cosφ, sinφ, θ)"
+  ],
+  "answer": 2,
+  "source": "new bank set 2 2.2 Q5"
+ },
+ {
+  "module": 5,
+  "topic": "m5-2",
+  "subtopic": "m5-2-2",
+  "bloom": "Create",
+  "question": "To prepare a state with P(0) = 0.25, which θ do you choose?",
+  "options": [
+   "π/3",
+   "π/2",
+   "0",
+   "2π/3 (cosθ = −1/2)"
+  ],
+  "answer": 3,
+  "source": "new bank set 2 2.2 Q6"
+ },
+ {
+  "module": 5,
+  "topic": "m5-3",
+  "subtopic": "m5-3-1",
+  "bloom": "Apply",
+  "question": "|+⟩ ⊗ |0⟩ equals",
+  "options": [
+   "(|00⟩ + |01⟩)/√2",
+   "|00⟩",
+   "(|01⟩ + |10⟩)/√2",
+   "(|00⟩ + |10⟩)/√2"
+  ],
+  "answer": 3,
+  "source": "new bank set 2 3.1 Q1"
+ },
+ {
+  "module": 5,
+  "topic": "m5-3",
+  "subtopic": "m5-3-1",
+  "bloom": "Understand",
+  "question": "Why does the joint space have dimension 2 × 2 = 4, not 2 + 2?",
+  "options": [
+   "Spaces add",
+   "Tensor products multiply dimensions",
+   "Qubits are classical",
+   "The basis is orthogonal"
+  ],
+  "answer": 1,
+  "source": "new bank set 2 3.1 Q2"
+ },
+ {
+  "module": 5,
+  "topic": "m5-3",
+  "subtopic": "m5-3-1",
+  "bloom": "Analyze",
+  "question": "(a, b)ᵀ ⊗ (c, d)ᵀ equals",
+  "options": [
+   "(ac, bd, ad, bc)ᵀ",
+   "(a + c, b + d)ᵀ",
+   "(ab, cd)ᵀ",
+   "(ac, ad, bc, bd)ᵀ"
+  ],
+  "answer": 3,
+  "source": "new bank set 2 3.1 Q3"
+ },
+ {
+  "module": 5,
+  "topic": "m5-3",
+  "subtopic": "m5-3-1",
+  "bloom": "Evaluate",
+  "question": "'|01⟩ and |10⟩ are the same state.' Evaluate.",
+  "options": [
+   "Correct",
+   "Wrong: |01⟩ has A = 0, B = 1 and |10⟩ has A = 1, B = 0; they are orthogonal",
+   "Correct as vectors",
+   "Wrong: |01⟩ = |11⟩"
+  ],
+  "answer": 1,
+  "source": "new bank set 2 3.1 Q4"
+ },
+ {
+  "module": 5,
+  "topic": "m5-3",
+  "subtopic": "m5-3-1",
+  "bloom": "Remember",
+  "question": "The notation H₍₂₎ means",
+  "options": [
+   "a space of dimension 2",
+   "Hadamard squared",
+   "a single qubit",
+   "tensor product of order two, with dimension still 4"
+  ],
+  "answer": 3,
+  "source": "new bank set 2 3.1 Q5"
+ },
+ {
+  "module": 5,
+  "topic": "m5-3",
+  "subtopic": "m5-3-2",
+  "bloom": "Apply",
+  "question": "After the first qubit of (|00⟩ + |01⟩ + |10⟩)/√3 is measured as 0, the renormalised state is",
+  "options": [
+   "(|00⟩ + |01⟩)/√3",
+   "|00⟩",
+   "(|00⟩ + |01⟩)/√2",
+   "(|01⟩ + |10⟩)/√2"
+  ],
+  "answer": 2,
+  "source": "new bank set 2 3.2 Q1"
+ },
+ {
+  "module": 5,
+  "topic": "m5-3",
+  "subtopic": "m5-3-2",
+  "bloom": "Analyze",
+  "question": "That post-measurement state can be written as",
+  "options": [
+   "|+⟩ ⊗ |0⟩",
+   "|0⟩ ⊗ |0⟩",
+   "|1⟩ ⊗ |+⟩",
+   "|0⟩ ⊗ |+⟩"
+  ],
+  "answer": 3,
+  "source": "new bank set 2 3.2 Q2"
+ },
+ {
+  "module": 5,
+  "topic": "m5-3",
+  "subtopic": "m5-3-2",
+  "bloom": "Understand",
+  "question": "Why does P(first = 0) × P(second = 0) = 4/9 differ from P(00) = 1/3?",
+  "options": [
+   "The rule holds only for product states; this state is entangled",
+   "The state is not normalised",
+   "Probabilities cannot multiply",
+   "P(00) = 0"
+  ],
+  "answer": 0,
+  "source": "new bank set 2 3.2 Q3"
+ },
+ {
+  "module": 5,
+  "topic": "m5-3",
+  "subtopic": "m5-3-2",
+  "bloom": "Evaluate",
+  "question": "The renormalisation by √(2/3) is needed because",
+  "options": [
+   "the state was wrong",
+   "√(2/3) = 1",
+   "amplitudes must be real",
+   "only the surviving terms remain after collapse and must have total probability 1"
+  ],
+  "answer": 3,
+  "source": "new bank set 2 3.2 Q4"
+ },
+ {
+  "module": 5,
+  "topic": "m5-3",
+  "subtopic": "m5-3-2",
+  "bloom": "Remember",
+  "question": "In (|00⟩ + |01⟩ + |10⟩)/√3 the probability of 11 is",
+  "options": [
+   "0",
+   "1/3",
+   "2/3",
+   "1"
+  ],
+  "answer": 0,
+  "source": "new bank set 2 3.2 Q5"
+ },
+ {
+  "module": 5,
+  "topic": "m5-3",
+  "subtopic": "m5-3-3",
+  "bloom": "Understand",
+  "question": "What does the superscript in the encoded form |1⟩² give?",
+  "options": [
+   "The number of qubits",
+   "The square of the state",
+   "The probability",
+   "The amplitude"
+  ],
+  "answer": 0,
+  "source": "new bank set 2 3.3 Q1"
+ },
+ {
+  "module": 5,
+  "topic": "m5-3",
+  "subtopic": "m5-3-3",
+  "bloom": "Apply",
+  "question": "|+−⟩ in the computational basis is",
+  "options": [
+   "½(|00⟩ + |01⟩ + |10⟩ + |11⟩)",
+   "(|00⟩ − |11⟩)/√2",
+   "½(|00⟩ − |01⟩ + |10⟩ − |11⟩)",
+   "|01⟩"
+  ],
+  "answer": 2,
+  "source": "new bank set 2 3.3 Q2"
+ },
+ {
+  "module": 5,
+  "topic": "m5-3",
+  "subtopic": "m5-3-3",
+  "bloom": "Analyze",
+  "question": "The inner product of |++⟩ with |+−⟩ is",
+  "options": [
+   "0",
+   "1",
+   "½",
+   "−1"
+  ],
+  "answer": 0,
+  "source": "new bank set 2 3.3 Q3"
+ },
+ {
+  "module": 5,
+  "topic": "m5-3",
+  "subtopic": "m5-3-3",
+  "bloom": "Remember",
+  "question": "Subscripts A and B in H_A ⊗ H_B label",
+  "options": [
+   "amplitude and basis",
+   "the order of gates",
+   "the number of qubits",
+   "which space each factor lives in"
+  ],
+  "answer": 3,
+  "source": "new bank set 2 3.3 Q4"
+ },
+ {
+  "module": 5,
+  "topic": "m5-3",
+  "subtopic": "m5-3-3",
+  "bloom": "Evaluate",
+  "question": "|1⟩² means the same as",
+  "options": [
+   "|10⟩",
+   "|01⟩",
+   "|11⟩",
+   "|00⟩"
+  ],
+  "answer": 1,
+  "source": "new bank set 2 3.3 Q5"
+ },
+ {
+  "module": 5,
+  "topic": "m5-4",
+  "subtopic": "m5-4-1",
+  "bloom": "Apply",
+  "question": "(|00⟩ + |10⟩)/√2 has α₀₀α₁₁ = 0 and α₀₁α₁₀ = 0. It is",
+  "options": [
+   "entangled",
+   "a Bell state",
+   "a product state, |+⟩|0⟩",
+   "unnormalised"
+  ],
+  "answer": 2,
+  "source": "new bank set 2 4.1 Q1"
+ },
+ {
+  "module": 5,
+  "topic": "m5-4",
+  "subtopic": "m5-4-1",
+  "bloom": "Analyze",
+  "question": "To show (|00⟩ + |11⟩)/√2 is not a product, the notes require ad = 0 and bc = 0. Why does that fail?",
+  "options": [
+   "Then ac or bd would be zero, but both equal 1/√2",
+   "a and d are complex",
+   "The state has four terms",
+   "ad = bc always"
+  ],
+  "answer": 0,
+  "source": "new bank set 2 4.1 Q2"
+ },
+ {
+  "module": 5,
+  "topic": "m5-4",
+  "subtopic": "m5-4-1",
+  "bloom": "Evaluate",
+  "question": "'Any superposition of two basis states is entangled.' Evaluate.",
+  "options": [
+   "Correct",
+   "Correct for Bell states only",
+   "Wrong: (|00⟩ + |10⟩)/√2 factors as |+⟩|0⟩",
+   "Wrong: such states are not normalised"
+  ],
+  "answer": 2,
+  "source": "new bank set 2 4.1 Q3"
+ },
+ {
+  "module": 5,
+  "topic": "m5-4",
+  "subtopic": "m5-4-1",
+  "bloom": "Understand",
+  "question": "What does a product state's amplitude set (ac, ad, bc, bd) imply?",
+  "options": [
+   "α₀₀ = α₁₁",
+   "α₀₁ = 0",
+   "α₀₀ + α₁₁ = 1",
+   "α₀₀α₁₁ = α₀₁α₁₀"
+  ],
+  "answer": 3,
+  "source": "new bank set 2 4.1 Q4"
+ },
+ {
+  "module": 5,
+  "topic": "m5-4",
+  "subtopic": "m5-4-1",
+  "bloom": "Remember",
+  "question": "The test α₀₀α₁₁ = α₀₁α₁₀ is described in the notes as",
+  "options": [
+   "my packaging of the slide-23 expansion, not a statement in the deck",
+   "a theorem in the deck",
+   "a Bell inequality",
+   "a gate rule"
+  ],
+  "answer": 0,
+  "source": "new bank set 2 4.1 Q5"
+ },
+ {
+  "module": 5,
+  "topic": "m5-4",
+  "subtopic": "m5-4-2",
+  "bloom": "Apply",
+  "question": "⟨Φ⁺|Φ⁻⟩ equals",
+  "options": [
+   "0",
+   "1",
+   "½",
+   "−1"
+  ],
+  "answer": 0,
+  "source": "new bank set 2 4.2 Q1"
+ },
+ {
+  "module": 5,
+  "topic": "m5-4",
+  "subtopic": "m5-4-2",
+  "bloom": "Analyze",
+  "question": "If qubit A of |Ψ⁻⟩ is measured as 1, the state collapses to",
+  "options": [
+   "|01⟩",
+   "|11⟩",
+   "(|01⟩ − |10⟩)/√2",
+   "|10⟩, so B is 0 with certainty"
+  ],
+  "answer": 3,
+  "source": "new bank set 2 4.2 Q2"
+ },
+ {
+  "module": 5,
+  "topic": "m5-4",
+  "subtopic": "m5-4-2",
+  "bloom": "Understand",
+  "question": "Why are |Φ⁺⟩ and |Φ⁻⟩ distinct states with the same computational-basis probabilities?",
+  "options": [
+   "They are the same state",
+   "They have different norms",
+   "They differ by a relative sign that the computational basis cannot reveal",
+   "They have different dimension"
+  ],
+  "answer": 2,
+  "source": "new bank set 2 4.2 Q3"
+ },
+ {
+  "module": 5,
+  "topic": "m5-4",
+  "subtopic": "m5-4-2",
+  "bloom": "Evaluate",
+  "question": "'In a Φ state each qubit already is |0⟩ or |1⟩.' Evaluate.",
+  "options": [
+   "Wrong: neither qubit alone has a definite value; each result is 50/50",
+   "Correct",
+   "Correct after measurement",
+   "Wrong: each is |+⟩"
+  ],
+  "answer": 0,
+  "source": "new bank set 2 4.2 Q4"
+ },
+ {
+  "module": 5,
+  "topic": "m5-4",
+  "subtopic": "m5-4-2",
+  "bloom": "Remember",
+  "question": "The four Bell states form",
+  "options": [
+   "a basis of one qubit",
+   "only product states",
+   "a non-orthogonal set",
+   "an orthonormal basis of the four-dimensional two-qubit space"
+  ],
+  "answer": 3,
+  "source": "new bank set 2 4.2 Q5"
+ },
+ {
+  "module": 5,
+  "topic": "m5-4",
+  "subtopic": "m5-4-3",
+  "bloom": "Understand",
+  "question": "Which phrase describes superdense coding?",
+  "options": [
+   "Sending 1 bit using 2 qubits",
+   "Sending 2 classical bits using 1 qubit and a shared entangled pair",
+   "Copying an unknown state",
+   "Erasing a qubit"
+  ],
+  "answer": 1,
+  "source": "new bank set 2 4.3 Q1"
+ },
+ {
+  "module": 5,
+  "topic": "m5-4",
+  "subtopic": "m5-4-3",
+  "bloom": "Remember",
+  "question": "Teleportation, in the notes, transfers",
+  "options": [
+   "a physical qubit",
+   "energy",
+   "a classical bit only",
+   "an unknown qubit state using entanglement"
+  ],
+  "answer": 3,
+  "source": "new bank set 2 4.3 Q2"
+ },
+ {
+  "module": 5,
+  "topic": "m5-4",
+  "subtopic": "m5-4-3",
+  "bloom": "Analyze",
+  "question": "Violation of Bell inequalities in experiments shows that the correlations",
+  "options": [
+   "are classical",
+   "are non-local and stronger than classical correlation",
+   "are zero",
+   "are local"
+  ],
+  "answer": 1,
+  "source": "new bank set 2 4.3 Q3"
+ },
+ {
+  "module": 5,
+  "topic": "m5-4",
+  "subtopic": "m5-4-3",
+  "bloom": "Evaluate",
+  "question": "Which is a listed experimental realisation of entanglement?",
+  "options": [
+   "Entangled bulbs",
+   "Entangled batteries",
+   "Acoustic waves in air",
+   "Spin entanglement in quantum dots"
+  ],
+  "answer": 3,
+  "source": "new bank set 2 4.3 Q4"
+ },
+ {
+  "module": 5,
+  "topic": "m5-4",
+  "subtopic": "m5-4-3",
+  "bloom": "Apply",
+  "question": "In the two-station figure sharing |Φ⁺⟩, what can station A predict about its own result?",
+  "options": [
+   "Exactly 0",
+   "Nothing; it is random, though it will match B",
+   "Exactly 1",
+   "Always the opposite of B"
+  ],
+  "answer": 1,
+  "source": "new bank set 2 4.3 Q5"
+ },
+ {
+  "module": 5,
+  "topic": "m5-5",
+  "subtopic": "m5-5-1",
+  "bloom": "Apply",
+  "question": "Show H is unitary: H² =",
+  "options": [
+   "H",
+   "0",
+   "X",
+   "I, so H is its own inverse"
+  ],
+  "answer": 3,
+  "source": "new bank set 2 5.1 Q1"
+ },
+ {
+  "module": 5,
+  "topic": "m5-5",
+  "subtopic": "m5-5-1",
+  "bloom": "Analyze",
+  "question": "Why is an AND gate not reversible?",
+  "options": [
+   "It has one input",
+   "It uses voltage",
+   "Inputs 00, 01 and 10 all give output 0",
+   "It is probabilistic"
+  ],
+  "answer": 2,
+  "source": "new bank set 2 5.1 Q2"
+ },
+ {
+  "module": 5,
+  "topic": "m5-5",
+  "subtopic": "m5-5-1",
+  "bloom": "Evaluate",
+  "question": "[[1,1],[0,1]] is proposed as a gate. Verdict?",
+  "options": [
+   "A valid gate",
+   "Valid if normalised",
+   "Not a gate: it sends (0,1)ᵀ to (1,1)ᵀ, norm √2, so it is not unitary",
+   "Valid for one qubit only"
+  ],
+  "answer": 2,
+  "source": "new bank set 2 5.1 Q3"
+ },
+ {
+  "module": 5,
+  "topic": "m5-5",
+  "subtopic": "m5-5-1",
+  "bloom": "Understand",
+  "question": "A quantum gate has the same number of input and output qubits. Why?",
+  "options": [
+   "The number of qubits is conserved, unlike AND (two inputs, one output)",
+   "It has no output",
+   "It is classical",
+   "It is faster"
+  ],
+  "answer": 0,
+  "source": "new bank set 2 5.1 Q4"
+ },
+ {
+  "module": 5,
+  "topic": "m5-5",
+  "subtopic": "m5-5-1",
+  "bloom": "Remember",
+  "question": "The two columns of H, (1,1)/√2 and (1,−1)/√2, are",
+  "options": [
+   "parallel",
+   "zero",
+   "orthonormal",
+   "non-unit"
+  ],
+  "answer": 2,
+  "source": "new bank set 2 5.1 Q5"
+ },
+ {
+  "module": 5,
+  "topic": "m5-5",
+  "subtopic": "m5-5-2",
+  "bloom": "Apply",
+  "question": "X acting on (3/5)|0⟩ + (4i/5)|1⟩ gives",
+  "options": [
+   "(4i/5)|0⟩ + (3/5)|1⟩",
+   "(3/5)|0⟩ + (4i/5)|1⟩",
+   "(3/5)|0⟩ − (4i/5)|1⟩",
+   "(−4i/5)|0⟩ + (3/5)|1⟩"
+  ],
+  "answer": 0,
+  "source": "new bank set 2 5.2 Q1"
+ },
+ {
+  "module": 5,
+  "topic": "m5-5",
+  "subtopic": "m5-5-2",
+  "bloom": "Understand",
+  "question": "The eigenvalues of X for |+⟩ and |−⟩ are",
+  "options": [
+   "−1 and +1",
+   "0 and 1",
+   "+1 and −1",
+   "i and −i"
+  ],
+  "answer": 2,
+  "source": "new bank set 2 5.2 Q2"
+ },
+ {
+  "module": 5,
+  "topic": "m5-5",
+  "subtopic": "m5-5-2",
+  "bloom": "Analyze",
+  "question": "X swaps P(0) = 0.36 and P(1) = 0.64 of the state above. The new P(0) is",
+  "options": [
+   "0.36",
+   "0.64",
+   "0.8",
+   "0.5"
+  ],
+  "answer": 1,
+  "source": "new bank set 2 5.2 Q3"
+ },
+ {
+  "module": 5,
+  "topic": "m5-5",
+  "subtopic": "m5-5-2",
+  "bloom": "Evaluate",
+  "question": "'X turns every state into its opposite, including |+⟩.' Evaluate.",
+  "options": [
+   "Correct",
+   "Wrong: X swaps amplitudes and leaves |+⟩ unchanged",
+   "Correct for |−⟩",
+   "Wrong: X sends |+⟩ to |1⟩"
+  ],
+  "answer": 1,
+  "source": "new bank set 2 5.2 Q4"
+ },
+ {
+  "module": 5,
+  "topic": "m5-5",
+  "subtopic": "m5-5-2",
+  "bloom": "Remember",
+  "question": "X² equals",
+  "options": [
+   "X",
+   "Z",
+   "0",
+   "I"
+  ],
+  "answer": 3,
+  "source": "new bank set 2 5.2 Q5"
+ },
+ {
+  "module": 5,
+  "topic": "m5-5",
+  "subtopic": "m5-5-3",
+  "bloom": "Apply",
+  "question": "Y acting on α|0⟩ + β|1⟩ gives",
+  "options": [
+   "iβ|0⟩ − iα|1⟩",
+   "−iβ|0⟩ + iα|1⟩",
+   "β|0⟩ + α|1⟩",
+   "α|0⟩ − β|1⟩"
+  ],
+  "answer": 1,
+  "source": "new bank set 2 5.3 Q1"
+ },
+ {
+  "module": 5,
+  "topic": "m5-5",
+  "subtopic": "m5-5-3",
+  "bloom": "Analyze",
+  "question": "Y|+⟩ = −i|−⟩. The overall factor −i",
+  "options": [
+   "changes P(0)",
+   "makes the state unnormalised",
+   "swaps 0 and 1",
+   "has no physical effect"
+  ],
+  "answer": 3,
+  "source": "new bank set 2 5.3 Q2"
+ },
+ {
+  "module": 5,
+  "topic": "m5-5",
+  "subtopic": "m5-5-3",
+  "bloom": "Understand",
+  "question": "Y moves the +x point to the −x point. This matches Y as a",
+  "options": [
+   "π rotation about the x axis",
+   "π rotation about the y axis",
+   "quarter turn about z",
+   "reflection through the centre"
+  ],
+  "answer": 1,
+  "source": "new bank set 2 5.3 Q3"
+ },
+ {
+  "module": 5,
+  "topic": "m5-5",
+  "subtopic": "m5-5-3",
+  "bloom": "Evaluate",
+  "question": "The deck says Y is 'anti-Hermitian'. Which check refutes this?",
+  "options": [
+   "Y² = 0",
+   "Y has no inverse",
+   "Y is real",
+   "Y† = Y (the conjugate transpose of [[0,−i],[i,0]] is the same matrix)"
+  ],
+  "answer": 3,
+  "source": "new bank set 2 5.3 Q4"
+ },
+ {
+  "module": 5,
+  "topic": "m5-5",
+  "subtopic": "m5-5-3",
+  "bloom": "Remember",
+  "question": "Y² equals",
+  "options": [
+   "Y",
+   "−I",
+   "I",
+   "Z"
+  ],
+  "answer": 2,
+  "source": "new bank set 2 5.3 Q5"
+ },
+ {
+  "module": 5,
+  "topic": "m5-5",
+  "subtopic": "m5-5-4",
+  "bloom": "Apply",
+  "question": "After Z|+⟩ = |−⟩, applying H gives",
+  "options": [
+   "|0⟩",
+   "|+⟩",
+   "|1⟩",
+   "|−⟩"
+  ],
+  "answer": 2,
+  "source": "new bank set 2 5.4 Q1"
+ },
+ {
+  "module": 5,
+  "topic": "m5-5",
+  "subtopic": "m5-5-4",
+  "bloom": "Understand",
+  "question": "Z|+⟩ and |+⟩ have the same P(0) = P(1) = 1/2. How does the notes' check make the difference visible?",
+  "options": [
+   "Apply X",
+   "Measure twice",
+   "Apply Z again",
+   "Apply H: H|+⟩ = |0⟩ but H|−⟩ = |1⟩"
+  ],
+  "answer": 3,
+  "source": "new bank set 2 5.4 Q2"
+ },
+ {
+  "module": 5,
+  "topic": "m5-5",
+  "subtopic": "m5-5-4",
+  "bloom": "Analyze",
+  "question": "In the x basis, Z acts as",
+  "options": [
+   "a flip: Z|+⟩ = |−⟩ and Z|−⟩ = |+⟩",
+   "the identity",
+   "a phase of i",
+   "a bit flip in z"
+  ],
+  "answer": 0,
+  "source": "new bank set 2 5.4 Q3"
+ },
+ {
+  "module": 5,
+  "topic": "m5-5",
+  "subtopic": "m5-5-4",
+  "bloom": "Evaluate",
+  "question": "'A phase change is not a real change.' Evaluate.",
+  "options": [
+   "Wrong: a relative phase is physical; only the overall phase is unobservable",
+   "Correct",
+   "Correct for all phases",
+   "Wrong: all phases are observable"
+  ],
+  "answer": 0,
+  "source": "new bank set 2 5.4 Q4"
+ },
+ {
+  "module": 5,
+  "topic": "m5-5",
+  "subtopic": "m5-5-4",
+  "bloom": "Remember",
+  "question": "Z(α|0⟩ + β|1⟩) equals",
+  "options": [
+   "−α|0⟩ + β|1⟩",
+   "α|0⟩ − β|1⟩",
+   "β|0⟩ + α|1⟩",
+   "α|0⟩ + iβ|1⟩"
+  ],
+  "answer": 1,
+  "source": "new bank set 2 5.4 Q5"
+ },
+ {
+  "module": 5,
+  "topic": "m5-5",
+  "subtopic": "m5-5-5",
+  "bloom": "Apply",
+  "question": "H applied to (3/5, 4/5) gives amplitudes about",
+  "options": [
+   "0.6 and 0.8",
+   "0.990 and −0.141",
+   "0.141 and 0.990",
+   "0.707 and 0.707"
+  ],
+  "answer": 1,
+  "source": "new bank set 2 5.5 Q1"
+ },
+ {
+  "module": 5,
+  "topic": "m5-5",
+  "subtopic": "m5-5-5",
+  "bloom": "Analyze",
+  "question": "Applying H twice to |0⟩ gives |0⟩ with certainty. Why does this show H is not a classical coin?",
+  "options": [
+   "H is deterministic classically",
+   "H flips the bit",
+   "The two amplitude paths interfere; a classical random coin could not do that",
+   "H measures"
+  ],
+  "answer": 2,
+  "source": "new bank set 2 5.5 Q2"
+ },
+ {
+  "module": 5,
+  "topic": "m5-5",
+  "subtopic": "m5-5-5",
+  "bloom": "Understand",
+  "question": "H|−⟩ equals",
+  "options": [
+   "|1⟩",
+   "|0⟩",
+   "|+⟩",
+   "|−⟩"
+  ],
+  "answer": 0,
+  "source": "new bank set 2 5.5 Q3"
+ },
+ {
+  "module": 5,
+  "topic": "m5-5",
+  "subtopic": "m5-5-5",
+  "bloom": "Evaluate",
+  "question": "'H|0⟩ is a random bit, so H is a coin flip.' Evaluate.",
+  "options": [
+   "Wrong: one H then measuring is a fair coin, but two H's return |0⟩ with certainty",
+   "Correct",
+   "Correct for |1⟩",
+   "Wrong: H has no randomness"
+  ],
+  "answer": 0,
+  "source": "new bank set 2 5.5 Q4"
+ },
+ {
+  "module": 5,
+  "topic": "m5-5",
+  "subtopic": "m5-5-5",
+  "bloom": "Remember",
+  "question": "H(α|0⟩ + β|1⟩) equals",
+  "options": [
+   "α|0⟩ − β|1⟩",
+   "β|0⟩ + α|1⟩",
+   "[(α + β)|0⟩ + (α − β)|1⟩]/√2",
+   "(α|0⟩ + β|1⟩)/√2"
+  ],
+  "answer": 2,
+  "source": "new bank set 2 5.5 Q5"
+ },
+ {
+  "module": 5,
+  "topic": "m5-5",
+  "subtopic": "m5-5-6",
+  "bloom": "Remember",
+  "question": "The S gate is",
+  "options": [
+   "[[0,1],[1,0]]",
+   "[[1, 0], [0, i]], a quarter turn about z",
+   "[[1,0],[0,−1]]",
+   "a π rotation about y"
+  ],
+  "answer": 1,
+  "source": "new bank set 2 5.6 Q1"
+ },
+ {
+  "module": 5,
+  "topic": "m5-5",
+  "subtopic": "m5-5-6",
+  "bloom": "Understand",
+  "question": "Which gates are marked in the deck as 'not in syllabus'?",
+  "options": [
+   "X and Y",
+   "S and T",
+   "Z and H",
+   "CNOT"
+  ],
+  "answer": 1,
+  "source": "new bank set 2 5.6 Q2"
+ },
+ {
+  "module": 5,
+  "topic": "m5-5",
+  "subtopic": "m5-5-6",
+  "bloom": "Apply",
+  "question": "Z sends +x to",
+  "options": [
+   "+y",
+   "−x",
+   "−z",
+   "+z"
+  ],
+  "answer": 1,
+  "source": "new bank set 2 5.6 Q3"
+ },
+ {
+  "module": 5,
+  "topic": "m5-5",
+  "subtopic": "m5-5-6",
+  "bloom": "Analyze",
+  "question": "HZH on |0⟩ gives |1⟩, the same as",
+  "options": [
+   "X|0⟩",
+   "Z|0⟩",
+   "H|0⟩",
+   "Y|0⟩ without phase"
+  ],
+  "answer": 0,
+  "source": "new bank set 2 5.6 Q4"
+ },
+ {
+  "module": 5,
+  "topic": "m5-5",
+  "subtopic": "m5-5-6",
+  "bloom": "Evaluate",
+  "question": "The H rotation axis (halfway between x and z) is described by the notes as",
+  "options": [
+   "stated in the deck",
+   "wrong",
+   "the author's addition to complete the table",
+   "a Z rotation"
+  ],
+  "answer": 2,
+  "source": "new bank set 2 5.6 Q5"
+ },
+ {
+  "module": 5,
+  "topic": "m5-5",
+  "subtopic": "m5-5-6",
+  "bloom": "Create",
+  "question": "Plan a path on the Bloch sphere from |0⟩ to |−⟩. Which gate sequence works?",
+  "options": [
+   "Apply X",
+   "Apply Z only",
+   "Apply H then Z",
+   "Apply H only"
+  ],
+  "answer": 2,
+  "source": "new bank set 2 5.6 Q6"
+ },
+ {
+  "module": 5,
+  "topic": "m5-6",
+  "subtopic": "m5-6-1",
+  "bloom": "Apply",
+  "question": "CNOT on (α|0⟩ + β|1⟩) ⊗ |0⟩ gives",
+  "options": [
+   "α|00⟩ + β|10⟩",
+   "α|01⟩ + β|10⟩",
+   "(α + β)|00⟩",
+   "α|00⟩ + β|11⟩"
+  ],
+  "answer": 3,
+  "source": "new bank set 2 6.1 Q1"
+ },
+ {
+  "module": 5,
+  "topic": "m5-6",
+  "subtopic": "m5-6-1",
+  "bloom": "Apply",
+  "question": "CNOT on |+⟩ ⊗ |1⟩ gives",
+  "options": [
+   "|Φ⁺⟩",
+   "|Φ⁻⟩",
+   "|11⟩",
+   "|Ψ⁺⟩ = (|01⟩ + |10⟩)/√2"
+  ],
+  "answer": 3,
+  "source": "new bank set 2 6.1 Q2"
+ },
+ {
+  "module": 5,
+  "topic": "m5-6",
+  "subtopic": "m5-6-1",
+  "bloom": "Understand",
+  "question": "In classical terms CNOT sends |c, t⟩ to",
+  "options": [
+   "|c ⊕ t, t⟩",
+   "|t, c⟩",
+   "|c, c⟩",
+   "|c, c ⊕ t⟩"
+  ],
+  "answer": 3,
+  "source": "new bank set 2 6.1 Q3"
+ },
+ {
+  "module": 5,
+  "topic": "m5-6",
+  "subtopic": "m5-6-1",
+  "bloom": "Evaluate",
+  "question": "'The control is unchanged, so CNOT does nothing to it.' Evaluate.",
+  "options": [
+   "Correct",
+   "Correct for all inputs",
+   "Wrong: with a superposed control, control and target become correlated (entangled)",
+   "Wrong: CNOT flips the control"
+  ],
+  "answer": 2,
+  "source": "new bank set 2 6.1 Q4"
+ },
+ {
+  "module": 5,
+  "topic": "m5-6",
+  "subtopic": "m5-6-1",
+  "bloom": "Analyze",
+  "question": "CNOT|10⟩ = |11⟩ is still a product state. Why?",
+  "options": [
+   "The control is not in superposition",
+   "CNOT is not unitary",
+   "|11⟩ is entangled",
+   "The target is flipped"
+  ],
+  "answer": 0,
+  "source": "new bank set 2 6.1 Q5"
+ },
+ {
+  "module": 5,
+  "topic": "m5-6",
+  "subtopic": "m5-6-2",
+  "bloom": "Apply",
+  "question": "CNOT applied to (|00⟩ + |10⟩)/√2 gives",
+  "options": [
+   "(|00⟩ + |11⟩)/√2",
+   "(|00⟩ + |10⟩)/√2",
+   "(|01⟩ + |10⟩)/√2",
+   "|00⟩"
+  ],
+  "answer": 0,
+  "source": "new bank set 2 6.2 Q1"
+ },
+ {
+  "module": 5,
+  "topic": "m5-6",
+  "subtopic": "m5-6-2",
+  "bloom": "Understand",
+  "question": "Column 3 of the CNOT matrix is",
+  "options": [
+   "(0,0,1,0)ᵀ",
+   "(0,0,0,1)ᵀ = |11⟩",
+   "(0,1,0,0)ᵀ",
+   "(1,0,0,0)ᵀ"
+  ],
+  "answer": 1,
+  "source": "new bank set 2 6.2 Q2"
+ },
+ {
+  "module": 5,
+  "topic": "m5-6",
+  "subtopic": "m5-6-2",
+  "bloom": "Analyze",
+  "question": "Why is the CNOT matrix its own inverse?",
+  "options": [
+   "It is diagonal",
+   "It has complex entries",
+   "It is zero",
+   "It is a permutation matrix and CNOT² = I"
+  ],
+  "answer": 3,
+  "source": "new bank set 2 6.2 Q3"
+ },
+ {
+  "module": 5,
+  "topic": "m5-6",
+  "subtopic": "m5-6-2",
+  "bloom": "Evaluate",
+  "question": "A student multiplies row by row instead of matrix times column. What is wrong?",
+  "options": [
+   "Nothing",
+   "Rows are columns",
+   "The matrix is 2×2",
+   "You must multiply each row entry by entry with the single column and add"
+  ],
+  "answer": 3,
+  "source": "new bank set 2 6.2 Q4"
+ },
+ {
+  "module": 5,
+  "topic": "m5-6",
+  "subtopic": "m5-6-2",
+  "bloom": "Remember",
+  "question": "In Module 2 language CNOT equals",
+  "options": [
+   "|0⟩⟨0| ⊗ I + |1⟩⟨1| ⊗ X",
+   "|0⟩⟨0| ⊗ X + |1⟩⟨1| ⊗ I",
+   "X ⊗ X",
+   "I ⊗ I"
+  ],
+  "answer": 0,
+  "source": "new bank set 2 6.2 Q5"
+ },
+ {
+  "module": 5,
+  "topic": "m5-6",
+  "subtopic": "m5-6-3",
+  "bloom": "Apply",
+  "question": "H on qubit 1 then CNOT on |11⟩ gives",
+  "options": [
+   "|Φ⁺⟩",
+   "|Ψ⁺⟩",
+   "|Ψ⁻⟩ = (|01⟩ − |10⟩)/√2",
+   "|Φ⁻⟩"
+  ],
+  "answer": 2,
+  "source": "new bank set 2 6.3 Q1"
+ },
+ {
+  "module": 5,
+  "topic": "m5-6",
+  "subtopic": "m5-6-3",
+  "bloom": "Understand",
+  "question": "After H on qubit 1 of |01⟩ the state is",
+  "options": [
+   "(|00⟩ + |10⟩)/√2",
+   "|01⟩",
+   "(|01⟩ + |11⟩)/√2",
+   "(|01⟩ − |11⟩)/√2"
+  ],
+  "answer": 2,
+  "source": "new bank set 2 6.3 Q2"
+ },
+ {
+  "module": 5,
+  "topic": "m5-6",
+  "subtopic": "m5-6-3",
+  "bloom": "Analyze",
+  "question": "The circuit maps the computational basis onto",
+  "options": [
+   "the x basis",
+   "a single product state",
+   "nothing",
+   "the Bell basis"
+  ],
+  "answer": 3,
+  "source": "new bank set 2 6.3 Q3"
+ },
+ {
+  "module": 5,
+  "topic": "m5-6",
+  "subtopic": "m5-6-3",
+  "bloom": "Evaluate",
+  "question": "The deck shows only the |00⟩ case. The other three rows in the notes",
+  "options": [
+   "come from the deck",
+   "are guesses",
+   "are not Bell states",
+   "were worked out with the same two steps"
+  ],
+  "answer": 3,
+  "source": "new bank set 2 6.3 Q4"
+ },
+ {
+  "module": 5,
+  "topic": "m5-6",
+  "subtopic": "m5-6-3",
+  "bloom": "Create",
+  "question": "Design a check that the final state of H then CNOT on |00⟩ is entangled",
+  "options": [
+   "α₀₀ = α₁₁",
+   "P(00) = 1",
+   "α₀₀α₁₁ = 1/2 ≠ α₀₁α₁₀ = 0",
+   "P(01) = P(10)"
+  ],
+  "answer": 2,
+  "source": "new bank set 2 6.3 Q5"
+ },
+ {
+  "module": 5,
+  "topic": "m5-6",
+  "subtopic": "m5-6-3",
+  "bloom": "Remember",
+  "question": "Measuring the state gives",
+  "options": [
+   "00 or 11 with probability 1/2 each",
+   "00 only",
+   "01 or 10",
+   "all four equally"
+  ],
+  "answer": 0,
+  "source": "new bank set 2 6.3 Q6"
+ },
+ {
+  "module": 5,
+  "topic": "m5-6",
+  "subtopic": "m5-6-4",
+  "bloom": "Remember",
+  "question": "SWAP equals how many CNOTs (alternating control and target)?",
+  "options": [
+   "one",
+   "three",
+   "two",
+   "four"
+  ],
+  "answer": 1,
+  "source": "new bank set 2 6.4 Q1"
+ },
+ {
+  "module": 5,
+  "topic": "m5-6",
+  "subtopic": "m5-6-4",
+  "bloom": "Apply",
+  "question": "Controlled-Z = diag(1, 1, 1, −1) acting on |11⟩ gives",
+  "options": [
+   "|11⟩",
+   "|00⟩",
+   "|10⟩",
+   "−|11⟩"
+  ],
+  "answer": 3,
+  "source": "new bank set 2 6.4 Q2"
+ },
+ {
+  "module": 5,
+  "topic": "m5-6",
+  "subtopic": "m5-6-4",
+  "bloom": "Understand",
+  "question": "Toffoli (CCNOT) flips the target when",
+  "options": [
+   "both controls are 1",
+   "either control is 1",
+   "no control is 1",
+   "the target is 1"
+  ],
+  "answer": 0,
+  "source": "new bank set 2 6.4 Q3"
+ },
+ {
+  "module": 5,
+  "topic": "m5-6",
+  "subtopic": "m5-6-4",
+  "bloom": "Analyze",
+  "question": "The notes file's Toffoli table appears to list |100⟩ twice. What else is wrong?",
+  "options": [
+   "It lists |111⟩ twice",
+   "It has no |110⟩",
+   "It omits |000⟩",
+   "It is correct"
+  ],
+  "answer": 2,
+  "source": "new bank set 2 6.4 Q4"
+ },
+ {
+  "module": 5,
+  "topic": "m5-6",
+  "subtopic": "m5-6-4",
+  "bloom": "Evaluate",
+  "question": "The notes file's SWAP table shows |10⟩ → |11⟩ and |11⟩ → |10⟩. This is",
+  "options": [
+   "the CNOT table, not SWAP",
+   "correct",
+   "the Toffoli table",
+   "the CZ table"
+  ],
+  "answer": 0,
+  "source": "new bank set 2 6.4 Q5"
+ }
+]
