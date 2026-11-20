@@ -22,11 +22,13 @@
       var r=document.createElement('input'); r.type='radio'; r.name='opt'; r.checked=ans[cur]===i; r.onchange=function(){ ans[cur]=i; draw(); };
       l.appendChild(r); l.appendChild(document.createTextNode(' '+t)); o.appendChild(l); });
     $('prev').disabled = !ALLOW_BACK || cur===0; $('next').disabled = cur===Q.length-1;
+    $('clear').disabled = ans[cur]===null;
     $('flag').textContent = flags[cur] ? '⚑ Unflag' : '⚑ Flag for review';
     drawPalette();
   }
   function go(i){ if(i<0||i>=Q.length||!canGo(i)) return; cur=i; maxSeen=Math.max(maxSeen,i); draw(); }
   $('prev').onclick=function(){ go(cur-1); }; $('next').onclick=function(){ go(cur+1); };
+  $('clear').onclick=function(){ ans[cur]=null; draw(); };
   $('flag').onclick=function(){ flags[cur]=!flags[cur]; draw(); };
   $('submit').onclick=function(){
     var un=ans.filter(function(a){return a===null;}).length;
@@ -40,6 +42,7 @@
     Q.forEach(function(q,i){ var ok = ans[i]===q.answer, sk = ans[i]===null; if(ok) right++;
       if(!sk){ bump(byMod,q.module,ok); bump(byTop,q.topic,ok); bump(byBloom,q.bloom,ok); }
       rows.push({i:i,q:q,ok:ok,skipped:sk,flag:flags[i]}); });
+    if(window.hubRecord) try{ hubRecord({secs:secs, rows:Q.map(function(q,i){ return [label[q.subtopic]||label[q.topic], q.bloom, ans[i]===null?-1:(ans[i]===q.answer?1:0)]; })}); }catch(e){}
     var saved = QMProgress.record(rows.filter(function(r){return !r.skipped;}).map(function(r){return {subtopic:r.q.subtopic, correct:r.ok};}));
     $('runner').style.display='none'; var R=$('results'); R.style.display='block';
     function table(map){ return '<table class="t"><tr><th></th><th>Correct</th><th>Accuracy</th></tr>'+Object.keys(map).map(function(k){var s=map[k];

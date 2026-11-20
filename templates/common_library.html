@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Common reader · Study Dashboards{% endblock %}
+{% block content %}
+<div class="wrap">
+  <div class="page-head">
+    <p class="eyebrow">Experimental</p>
+    <h1>Common reader.</h1>
+    <p class="lede">One reader reads every dashboard's notes and rebuilds them in the same shape: course → modules → topics → subtopics. Nothing is copied; every item links to the original notes.</p>
+  </div>
+  <ul class="grid cols-2" style="list-style:none;padding:0;margin:0">
+  {% for c in courses %}
+    <li class="card subject" style="--accent: {{ c.accent }}">
+      <a class="stretch" href="/c/{{ c.slug }}" aria-label="Open {{ c.title }}"></a>
+      <span class="code">{{ c.code }}</span>
+      <h3>{{ c.title }}</h3>
+      <p>{{ c.blurb }}</p>
+      <div class="stats">
+        <div><b>{{ c.stats.modules }}</b><span>Modules</span></div>
+        <div><b>{{ c.stats.sections }}</b><span>Topics</span></div>
+        <div><b>{{ c.stats.minutes }}</b><span>Min read</span></div>
+      </div>
+    </li>
+  {% endfor %}
+  </ul>
+</div>
+{% endblock %}

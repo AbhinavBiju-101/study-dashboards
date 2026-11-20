@@ -171,6 +171,7 @@
         <span class="qmeta-tag" id="q-topic"></span>
         <span class="qmeta-tag level" id="q-level"></span>
         <button type="button" class="flag-btn" id="flag-btn">🚩 Flag for review</button>
+        <button type="button" class="flag-btn" id="clear-btn" title="Clear my answer (leave unanswered)">✕ Clear answer</button>
       </div>
       <p class="stem" id="q-stem"></p>
       <div class="options" id="q-options"></div>
@@ -272,6 +273,7 @@ const nextBtn = document.getElementById('next-btn');
 const submitBtn = document.getElementById('submit-btn');
 const timerEl = document.getElementById('timer');
 const flagBtn = document.getElementById('flag-btn');
+const clearBtn = document.getElementById('clear-btn');
 
 function buildPalette(){
   paletteEl.innerHTML = '';
@@ -317,6 +319,7 @@ function render(){
   stemEl.textContent = q.q;
   flagBtn.textContent = flags[current] ? '🚩 Flagged' : '🚩 Flag for review';
   flagBtn.classList.toggle('on', flags[current]);
+  clearBtn.disabled = answers[current] === null;
   optionsEl.innerHTML = '';
   const letters = ['A','B','C','D'];
   q.options.forEach((opt, i) => {
@@ -325,7 +328,7 @@ function render(){
     btn.className = 'opt' + (answers[current] === i ? ' selected' : '');
     btn.innerHTML = `<span class="letter">${letters[i]}</span><span>${opt}</span>`;
     btn.addEventListener('click', () => {
-      answers[current] = i;
+      answers[current] = (answers[current] === i) ? null : i;   // click the chosen option again to clear it
       render();
       refreshPalette();
     });
@@ -343,6 +346,8 @@ function render(){
 
 prevBtn.addEventListener('click', () => goTo(current - 1));
 nextBtn.addEventListener('click', () => goTo(Math.min(current + 1, QUESTIONS.length - 1)));
+
+clearBtn.addEventListener('click', () => { answers[current] = null; render(); refreshPalette(); });
 
 flagBtn.addEventListener('click', () => {
   flags[current] = !flags[current];

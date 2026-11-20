@@ -31,6 +31,7 @@
     var correct = rows.filter(function (r) { return r[3] === 1; }).length;
     var att = { id: uid(), ts: Date.now(), subject: a.subject, mode: a.mode || 'subject', secs: Math.round(a.secs || 0),
                 total: rows.length, answered: answered, correct: correct, rows: rows };
+    if (typeof a.marks === 'number') { att.marks = a.marks; att.max = a.max; att.scheme = a.scheme; }
     var d = read();
     d.attempts.push(att);
     if (d.attempts.length > MAX_ATTEMPTS) d.attempts = d.attempts.slice(-MAX_ATTEMPTS);

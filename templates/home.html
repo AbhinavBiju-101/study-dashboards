@@ -51,6 +51,33 @@
 </div>
 {% endblock %}
 {% block scripts %}
+<div class="si-back" id="si" hidden role="dialog" aria-modal="true" aria-labelledby="si-t">
+  <div class="si-box">
+    <h2 id="si-t">Keep your progress with you</h2>
+    <p>Sign in with Google to save quiz history and your marking scheme to your account, and pick up on any device. Prefer not to? You can use everything anonymously.</p>
+    <div class="si-actions">
+      <button class="btn primary" id="si-go" type="button">Continue with Google</button>
+      <button class="si-skip" id="si-no" type="button">Stay anonymous for now</button>
+    </div>
+  </div>
+</div>
+<script>
+(function () {
+  var KEY = 'hub.signin.dismissed', box = document.getElementById('si');
+  function dismissed() { try { return Date.now() - (+localStorage.getItem(KEY) || 0) < 14 * 864e5; } catch (e) { return true; } }
+  function close(remember) { box.hidden = true; if (remember) try { localStorage.setItem(KEY, String(Date.now())); } catch (e) {} }
+  var shown = false;
+  HubAuth.on(function (s) {
+    if (shown || !s.enabled || s.user || dismissed() || /[?&#](code|access_token)=/.test(location.href)) return;
+    shown = true; setTimeout(function () { box.hidden = false; document.getElementById('si-go').focus(); }, 700);
+  });
+  document.getElementById('si-go').onclick = function () { HubAuth.signIn().catch(function (e) { alert(e.message); }); };
+  document.getElementById('si-no').onclick = function () { close(true); };
+  box.addEventListener('click', function (e) { if (e.target === box) close(true); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !box.hidden) close(true); });
+})();
+</script>
+
 <script>
 (function () {
   var H = Hub, S = HubStore.summarize(), $ = function (id) { return document.getElementById(id); };

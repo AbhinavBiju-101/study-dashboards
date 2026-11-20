@@ -47,7 +47,7 @@
 
     <div class="card section">
       <h2>History</h2>
-      <div class="table-scroll"><table class="t" id="hist"><thead><tr><th>When</th><th>Subject</th><th>Score</th><th>Accuracy</th><th>Time</th></tr></thead><tbody></tbody></table></div>
+      <div class="table-scroll"><table class="t" id="hist"><thead><tr><th>When</th><th>Subject</th><th>Score</th><th>Marks</th><th>Accuracy</th><th>Time</th></tr></thead><tbody></tbody></table></div>
       <p class="muted small" id="hist-more" style="margin-top:10px"></p>
     </div>
   </div>
@@ -142,6 +142,7 @@
       return '<tr><td>' + new Date(a.ts).toLocaleString(undefined, { day: 'numeric', month: 'short', hour: 'numeric', minute: '2-digit' }) + '</td>' +
         '<td><span class="tag" style="--accent:' + H.accent(a.subject) + '">' + H.esc(a.subject === 'mixed' ? 'Mixed' : ((H.subjects[a.subject] || {}).code || a.subject)) + '</span></td>' +
         '<td><strong>' + a.correct + '/' + a.answered + '</strong>' + (a.total > a.answered ? ' <span class="muted small">(' + (a.total - a.answered) + ' skipped)</span>' : '') + '</td>' +
+        '<td>' + (typeof a.marks === 'number' ? '<strong>' + a.marks + '</strong><span class="muted small"> / ' + a.max + '</span>' : '<span class="muted">–</span>') + '</td>' +
         '<td style="min-width:130px"><div class="bar-track"><div class="bar-fill ' + H.cls(p) + '" style="width:' + p + '%"></div></div><span class="small muted">' + p + '%</span></td>' +
         '<td class="muted">' + H.fmtTime(a.secs) + '</td></tr>';
     }).join('');

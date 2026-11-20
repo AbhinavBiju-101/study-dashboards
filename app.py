@@ -16,7 +16,7 @@ import sys
 import threading
 from pathlib import Path
 
-from flask import Flask, jsonify, redirect, render_template, request, send_from_directory
+from flask import Flask, abort, jsonify, redirect, render_template, request, send_from_directory
 from werkzeug.middleware.dispatcher import DispatcherMiddleware
 
 from banks import build_bank
@@ -24,6 +24,7 @@ from search import NoteIndex
 from subjects import SUBJECTS
 
 ROOT = Path(__file__).resolve().parent
+SELF_GRADED = {"bamat101"}  # open-ended problem banks: no marking scheme
 SECRET = os.environ.get("SECRET_KEY", "dev-only-change-me")
 
 # Small additions made to every dashboard page when served through the hub (standalone runs are unaffected).
@@ -65,8 +66,11 @@ def load_subapp(slug):
         if not _HAS_ICON.search(page):
             page = _HEAD_END.sub(lambda m: FAVICON + m.group(0), page, count=1)
         tail = HUB_PILL
+        selfgraded = slug in SELF_GRADED
+        if request.path == "/quiz" and "quiz/start" in page and not selfgraded:  # quiz setup: marking-scheme panel
+            tail += '<script src="/static/hub-marking.js" data-mode="setup"></script>'
         if request.path == "/quiz/start" or "hubRecord(" in page:  # quiz result screens call hubRecord() to save progress here
-            tail += ('<script src="/static/hub-store.js"></script>'
+            tail += ('<script src="/static/hub-store.js"></script><script src="/static/hub-marking.js"></script><script src="/static/hub-auth.js"></script>'
                      f'<script src="/static/hub-record.js" data-slug="{slug}"></script>')
         resp.set_data(_BODY_END.sub(lambda m: tail + m.group(0), page, count=1))
         return resp
@@ -82,6 +86,8 @@ for _s in SUBJECTS:
     SUBAPPS[_s["slug"]] = load_subapp(_s["slug"])
 
 INDEX = NoteIndex(SUBAPPS, SUBJECTS)
+from reader import CommonReader  # experimental: one reader for every dashboard's notes
+READER = CommonReader(SUBAPPS, SUBJECTS, lambda: {c["slug"]: c["questions"] for c in subject_cards()})
 threading.Thread(target=INDEX.ensure, daemon=True).start()  # warm the search index in the background
 
 _bank_cache = {}
@@ -121,7 +127,7 @@ def shared():
     public = {s["slug"]: {"code": s["code"], "title": s["title"], "accent": s["accent"]} for s in SUBJECTS}
     return {"subjects_json": json.dumps(public), "nav": [
         ("home", "/", "Home"), ("subjects", "/subjects", "Subjects"), ("quiz", "/quiz", "Mixed quiz"),
-        ("progress", "/progress", "Progress"), ("search", "/search", "Search")]}
+        ("progress", "/progress", "Progress"), ("search", "/search", "Search"), ("common", "/c", "Common ⚗"), ("account", "/account", "Account")]}
 
 
 def page(template, active, **ctx):
@@ -137,6 +143,27 @@ def home():
 @hub.route("/subjects")
 def subjects():
     return page("subjects.html", "subjects", subjects=subject_cards())
+
+
+@hub.route("/c")
+def common_library():
+    return page("common_library.html", "common", courses=READER.library())
+
+
+@hub.route("/c/<slug>")
+def common_course(slug):
+    course = READER.course(slug)
+    if not course:
+        abort(404)
+    return page("common_course.html", "common", c=course, others=[c for c in READER.library() if c["slug"] != slug])
+
+
+@hub.route("/api/common/<slug>.json")
+def common_json(slug):
+    course = READER.course(slug)
+    if not course:
+        abort(404)
+    return jsonify(course)
 
 
 @hub.route("/quiz")
@@ -168,6 +195,20 @@ def api_search():
     if subject and subject not in SUBAPPS:
         subject = None
     return jsonify(INDEX.search(q, subject))
+
+
+@hub.route("/account")
+def account():
+    return page("account.html", "account")
+
+
+@hub.route("/api/config")
+def api_config():
+    """Public client config for optional sign-in. The anon key is designed to be public: row-level security protects the data."""
+    url, key = os.environ.get("SUPABASE_URL", "").strip(), os.environ.get("SUPABASE_ANON_KEY", "").strip()
+    resp = jsonify({"enabled": bool(url and key), "url": url, "anonKey": key})
+    resp.headers["Cache-Control"] = "no-store"
+    return resp
 
 
 @hub.route("/healthz")

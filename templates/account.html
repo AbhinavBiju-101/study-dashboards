@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+{% block title %}Account · Study Dashboards{% endblock %}
+{% block content %}
+<div class="wrap">
+  <div class="page-head">
+    <p class="eyebrow">Account</p>
+    <h1 id="acct-title">Anonymous</h1>
+    <p class="lede" id="acct-lede">You are using Study Dashboards without an account. Your progress lives in this browser only.</p>
+  </div>
+
+  <div class="card section" id="box-anon" hidden>
+    <h2>Sign in to keep your progress everywhere</h2>
+    <p class="muted" style="margin:6px 0 14px">Sign in with Google and your quiz history and marking scheme are saved to your account, then merged on every device you sign in on. Whatever you already did in this browser is uploaded the first time.</p>
+    <button class="btn primary" id="signin" type="button">Continue with Google</button>
+    <p class="small muted" style="margin-top:12px">We only store your quiz results and marking scheme, plus the name and email Google shares so you can see who is signed in. You can delete the cloud copy below at any time.</p>
+  </div>
+
+  <div class="card section" id="box-off" hidden>
+    <h2>Accounts are not switched on for this site</h2>
+    <p class="muted" style="margin:6px 0 10px">Everything still works anonymously. To enable Google sign-in and cloud sync, the site owner sets two environment variables (<code>SUPABASE_URL</code> and <code>SUPABASE_ANON_KEY</code>) and runs <code>supabase/schema.sql</code> once; the README has the five-minute setup.</p>
+  </div>
+
+  <div class="card section" id="box-user" hidden>
+    <div style="display:flex;gap:16px;align-items:center;flex-wrap:wrap">
+      <img id="u-img" alt="" width="56" height="56" style="border-radius:50%;background:var(--soft);display:none" referrerpolicy="no-referrer">
+      <div style="flex:1;min-width:200px"><div style="font-weight:700;font-size:1.1rem" id="u-name"></div><div class="muted" id="u-mail"></div></div>
+      <button class="btn" id="signout" type="button">Sign out</button>
+    </div>
+    <hr style="border:0;border-top:1px solid var(--line);margin:18px 0">
+    <div class="preset-row">
+      <span id="sync-state" class="small" role="status"></span>
+      <button class="btn" id="syncnow" type="button">Sync now</button>
+    </div>
+    <p class="small" id="sync-err" style="color:var(--bad);margin-top:8px"></p>
+  </div>
+
+  <div class="card section">
+    <h2>On this device</h2>
+    <dl class="grid cols-4" style="margin:12px 0 0">
+      <div class="card tile"><dt>Quizzes stored</dt><dd id="l-quizzes">0</dd></div>
+      <div class="card tile"><dt>Marking scheme</dt><dd style="font-size:1.1rem" id="l-mark"></dd></div>
+    </dl>
+    <p class="muted small" style="margin-top:12px">Change the marking scheme on any quiz setup page. Back up or move data manually from <a href="/progress#data">Progress</a>.</p>
+  </div>
+
+  <div class="card section" id="box-danger" hidden>
+    <h2>Delete my cloud data</h2>
+    <p class="muted" style="margin:6px 0 12px">Removes your saved quiz history and settings from the cloud. The copy in this browser stays.</p>
+    <button class="btn danger" id="delcloud" type="button">Delete cloud data</button>
+  </div>
+</div>
+{% endblock %}
+{% block scripts %}
+<script>
+(function () {
+  var $ = function (id) { return document.getElementById(id); };
+  function show(id, on) { $(id).hidden = !on; }
+  function local() {
+    $('l-quizzes').textContent = HubStore.read().attempts.length;
+    $('l-mark').textContent = HubMarking.label();
+  }
+  function paint(s) {
+    local();
+    var signed = !!s.user;
+    show('box-off', s.status === 'disabled');
+    show('box-anon', s.enabled && !signed);
+    show('box-user', signed); show('box-danger', signed);
+    if (signed) {
+      var m = s.user.user_metadata || {};
+      $('acct-title').textContent = m.full_name || m.name || s.user.email || 'Signed in';
+      $('acct-lede').textContent = 'Your progress is saved to your account and merged across devices.';
+      $('u-name').textContent = m.full_name || m.name || 'Google account'; $('u-mail').textContent = s.user.email || '';
+      if (m.avatar_url || m.picture) { $('u-img').src = m.avatar_url || m.picture; $('u-img').style.display = ''; }
+      $('sync-state').textContent = s.status === 'syncing' ? 'Syncing…' : (s.lastSync ? 'Synced ' + Hub.ago(s.lastSync) : 'Not synced yet');
+      $('sync-err').textContent = s.error ? 'Sync problem: ' + s.error + ' (did you run supabase/schema.sql?)' : '';
+    } else {
+      $('acct-title').textContent = 'Anonymous';
+      $('acct-lede').textContent = 'You are using Study Dashboards without an account. Your progress lives in this browser only.';
+    }
+  }
+  HubAuth.on(paint); document.addEventListener('hubstore-changed', local);
+  $('signin').onclick = function () { HubAuth.signIn().catch(function (e) { alert(e.message); }); };
+  $('signout').onclick = function () { HubAuth.signOut(); };
+  $('syncnow').onclick = function () { HubAuth.sync(); };
+  $('delcloud').onclick = function () { if (confirm('Delete your saved history and settings from the cloud? This browser keeps its own copy.')) HubAuth.deleteCloud().then(function () { alert('Cloud data deleted.'); }); };
+  HubAuth.init();
+})();
+</script>
+{% endblock %}

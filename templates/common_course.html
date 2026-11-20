@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}{{ c.code }} · Common view{% endblock %}
+{% block content %}
+<div class="wrap" style="--accent: {{ c.accent }}">
+  <div class="page-head">
+    <p class="eyebrow"><a href="/c" style="color:inherit">Common reader</a> · {{ c.code }}</p>
+    <h1>{{ c.title }}</h1>
+    <p class="lede">{{ c.blurb }}</p>
+    <div class="preset-row" style="margin-top:14px">
+      <a class="btn primary" href="{{ c.quiz_url }}">Quiz ({{ c.questions }} {{ c.practice }})</a>
+      <a class="btn" href="{{ c.url }}">Original dashboard</a>
+      <a class="btn" href="/api/common/{{ c.slug }}.json">JSON</a>
+    </div>
+  </div>
+  <dl class="grid cols-4" style="margin:0 0 22px">
+    <div class="card tile"><dt>Modules</dt><dd>{{ c.stats.modules }}</dd></div>
+    <div class="card tile"><dt>Topics</dt><dd>{{ c.stats.sections }}</dd></div>
+    <div class="card tile"><dt>Subtopics</dt><dd>{{ c.stats.subsections }}</dd></div>
+    <div class="card tile"><dt>Reading time</dt><dd>{{ c.stats.minutes }}<small> min</small></dd></div>
+  </dl>
+  {% for m in c.modules %}
+  <section class="card section" id="{{ m.id }}">
+    <div class="section-head"><h2>{{ loop.index }}. {{ m.title }}</h2><a class="btn sm" href="{{ m.url }}">Open notes · {{ m.minutes }} min</a></div>
+    {% if m.summary %}<p class="muted">{{ m.summary }}</p>{% endif %}
+    <ol class="ctopics" style="padding-left:20px;margin:10px 0 0">
+    {% for t in m.topics %}
+      <li style="margin:8px 0">
+        <a href="{{ t.url }}"><b>{{ t.title }}</b></a> <span class="muted small">{{ t.minutes }} min</span>
+        {% if t.summary %}<div class="muted small">{{ t.summary }}</div>{% endif %}
+        {% if t.subtopics %}<details><summary class="small muted">{{ t.subtopics|length }} subtopic{{ 's' if t.subtopics|length > 1 }}</summary>
+          <ul style="margin:6px 0 0">{% for s in t.subtopics %}<li><a href="{{ s.url }}">{{ s.title }}</a></li>{% endfor %}</ul></details>{% endif %}
+      </li>
+    {% endfor %}
+    </ol>
+  </section>
+  {% endfor %}
+</div>
+{% endblock %}

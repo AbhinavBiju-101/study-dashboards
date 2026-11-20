@@ -18,7 +18,7 @@
   <div class="wrap">
     <a class="brand" href="/"><img src="{{ url_for('static', filename='favicon.svg') }}" alt="" width="30" height="30">Study Dashboards</a>
     <nav class="nav" aria-label="Main">
-      {% for key, href, label in nav %}<a href="{{ href }}"{% if key == active %} aria-current="page"{% endif %}>{{ label }}</a>{% endfor %}
+      {% for key, href, label in nav %}<a href="{{ href }}"{% if key == active %} aria-current="page"{% endif %}{% if key == 'account' %} data-acct{% endif %}>{{ label }}</a>{% endfor %}
     </nav>
     <form class="nav-search" action="/search" role="search">
       <label class="sr" for="nav-q">Search notes</label>
@@ -34,7 +34,10 @@
 </footer>
 <script>window.HUB={subjects:{{ subjects_json|safe }}};</script>
 <script src="{{ url_for('static', filename='hub-store.js') }}"></script>
+<script src="{{ url_for('static', filename='hub-marking.js') }}"></script>
+<script src="{{ url_for('static', filename='hub-auth.js') }}"></script>
 <script src="{{ url_for('static', filename='hub.js') }}"></script>
+<script>HubAuth.on(function(s){var a=document.querySelector('[data-acct]');if(a){var m=s.user&&(s.user.user_metadata||{});a.textContent=s.user?('● '+String((m.full_name||m.name||s.user.email||'You')).split(' ')[0]):'Account';}});HubAuth.init();</script>
 {% block scripts %}{% endblock %}
 </body>
 </html>

@@ -7,3 +7,8 @@ services:
     envVars:
       - key: SECRET_KEY
         generateValue: true
+      # Optional: Google sign-in + cloud sync (see README "Accounts"). Leave empty to stay anonymous-only.
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_ANON_KEY
+        sync: false

@@ -70,8 +70,10 @@
         '<div class="field"><span class="lbl">Bloom\'s levels</span><div class="chips" id="lvls">' + LEVELS.map(function (l) { return '<button class="chip" data-l="' + esc(l) + '" aria-pressed="' + !!lvlOn[l] + '">' + esc(l) + '</button>'; }).join('') + '</div></div>' +
         '<label class="toggle"><input type="checkbox" id="bal"' + (opts.balance ? ' checked' : '') + '><span>Balance across subjects<small>Take a similar number from each ticked subject instead of fully random.</small></span></label>' +
         '<label class="toggle"><input type="checkbox" id="back"' + (opts.back ? ' checked' : '') + '><span>Allow going back<small>Turn off to lock questions once you move on.</small></span></label>' +
+        '<div id="hm-slot"></div>' +
         '<button class="btn primary" id="go" style="width:100%;justify-content:center;margin-top:6px">Start quiz →</button>' +
       '</aside></div>';
+    if (window.HubMarking) HubMarking.panel(document.getElementById('hm-slot'));
     notice = '';
     sync();
   }
@@ -158,7 +160,8 @@
     tick = setInterval(function () { var el = document.getElementById('tm'); if (el && !run.done) el.textContent = fmt((Date.now() - run.t0) / 1000); }, 500);
     keyHandler = function (e) {
       if (!run || run.done || /^(INPUT|TEXTAREA)$/.test(e.target.tagName)) return;
-      if (e.key >= '1' && e.key <= '9' && +e.key <= run.Q[run.i].o.length) { run.Q[run.i].ans = +e.key - 1; drawRun(); }
+      if (e.key >= '1' && e.key <= '9' && +e.key <= run.Q[run.i].o.length) { run.Q[run.i].ans = (run.Q[run.i].ans === +e.key - 1) ? null : +e.key - 1; drawRun(); }
+      else if (e.key === 'Backspace' || e.key === 'Delete' || e.key === '0') { run.Q[run.i].ans = null; drawRun(); }
       else if (e.key === 'ArrowRight') go(run.i + 1); else if (e.key === 'ArrowLeft') go(run.i - 1);
       else if (e.key === 'f' || e.key === 'F') { run.Q[run.i].flag = !run.Q[run.i].flag; drawRun(); }
     };
@@ -183,9 +186,9 @@
       '<div class="run-layout"><div class="card qcard"><div class="meta"><span class="tag" style="--accent:' + (subj.accent || '#555') + '">' + esc(subj.code || q.s) + '</span><span>' + esc(sec ? sec.label : '') + '</span><span class="tag" style="--accent:#5f6b63">' + esc(q.l) + '</span><span style="margin-left:auto">Question ' + (R.i + 1) + ' of ' + R.Q.length + '</span></div>' +
         '<p class="stem">' + esc(q.q) + '</p><div role="radiogroup" aria-label="Answers">' +
         q.o.map(function (o, k) { return '<button class="opt ' + (q.ans === k ? 'sel' : '') + '" role="radio" aria-checked="' + (q.ans === k) + '" data-pick="' + k + '"><span class="letter">' + LETTERS[k] + '</span><span>' + esc(o) + '</span></button>'; }).join('') + '</div>' +
-        '<div class="nav-row"><button class="btn" data-go="-1"' + (!R.back || !R.i ? ' disabled' : '') + '>← Previous</button><button class="btn" data-flag>' + (q.flag ? '🚩 Flagged' : '⚑ Flag for review') + '</button>' +
+        '<div class="nav-row"><button class="btn" data-go="-1"' + (!R.back || !R.i ? ' disabled' : '') + '>← Previous</button><button class="btn" data-flag>' + (q.flag ? '🚩 Flagged' : '⚑ Flag for review') + '</button><button class="btn" data-clear' + (q.ans === null ? ' disabled' : '') + ' title="Clear my answer (leave unanswered)">✕ Clear answer</button>' +
         '<span class="grow"></span><button class="btn" data-go="1"' + (R.i === R.Q.length - 1 ? ' disabled' : '') + '>Next →</button><button class="btn primary" data-submit>Submit</button></div>' +
-        '<p class="muted small" style="margin-top:12px">Shortcuts: 1–' + q.o.length + ' answer · ← → move · F flag</p></div>' +
+        '<p class="muted small" style="margin-top:12px">Shortcuts: 1–' + q.o.length + ' answer · Backspace clear · ← → move · F flag</p></div>' +
       '<aside class="card"><div class="muted small" style="font-weight:700;margin-bottom:10px;text-transform:uppercase;letter-spacing:.07em">Questions</div><div class="palette">' +
         R.Q.map(function (x, k) { return '<button class="' + (x.ans !== null ? 'ans ' : '') + (k === R.i ? 'cur ' : '') + (x.flag ? 'flag' : '') + '" data-jump="' + k + '"' + (!R.back && k < R.i ? ' disabled' : '') + ' aria-label="Question ' + (k + 1) + '">' + (k + 1) + '</button>'; }).join('') +
         '</div></aside></div></div>';
@@ -195,7 +198,8 @@
     var t = e.target.closest('button,a'); if (!t || !run || run.done) return;
     var d = t.dataset;
     if (t.id === 'quit') { if (run.Q.some(function (q) { return q.ans !== null; }) && !confirm('Quit this quiz? Your answers so far will not be saved.')) e.preventDefault(); else { stopRun(); e.preventDefault(); setup(); } return; }
-    if (d.pick !== undefined) { run.Q[run.i].ans = +d.pick; return drawRun(); }
+    if (d.pick !== undefined) { run.Q[run.i].ans = (run.Q[run.i].ans === +d.pick) ? null : +d.pick; return drawRun(); }
+    if (d.clear !== undefined) { run.Q[run.i].ans = null; return drawRun(); }
     if (d.go) return go(run.i + +d.go);
     if (d.jump !== undefined) return go(+d.jump);
     if (d.flag !== undefined) { run.Q[run.i].flag = !run.Q[run.i].flag; return drawRun(); }
@@ -212,7 +216,10 @@
   function finish() {
     var R = run; R.Q[R.i].t += (Date.now() - R.ts) / 1000; R.done = true; clearInterval(tick); window.onbeforeunload = null;
     var secs = R.Q.reduce(function (a, q) { return a + q.t; }, 0);
-    var saved = HubStore.record({ subject: 'mixed', mode: 'mixed', secs: secs, rows: R.Q.map(function (q) { return [q.s, SECS[q.c].label, q.l, q.ans === null ? -1 : (q.ans === q.a ? 1 : 0)]; }) });
+    var rows = R.Q.map(function (q) { return [q.s, SECS[q.c].label, q.l, q.ans === null ? -1 : (q.ans === q.a ? 1 : 0)]; });
+    var sc = window.HubMarking ? HubMarking.score(rows.map(function (r) { return r[3]; })) : null;
+    R.marks = sc;
+    var saved = HubStore.record({ subject: 'mixed', mode: 'mixed', secs: secs, rows: rows, marks: sc && sc.marks, max: sc && sc.max, scheme: sc && [sc.scheme.c, sc.scheme.w, sc.scheme.u] });
     R.saved = !!saved; R.secs = secs; R.filter = 'all';
     drawResults();
     window.scrollTo(0, 0);
@@ -232,6 +239,7 @@
     var f = R.filter, list = Q.map(function (q, i) { return [q, i]; }).filter(function (x) { return f === 'all' || (f === 'flagged' ? x[0].flag : status(x[0]) === f); });
     app.innerHTML = '<div class="wrap" style="padding:0"><div class="page-head" style="padding:30px 0 18px"><p class="eyebrow">Results</p></div>' +
       '<div class="score-hero"><div class="big">' + c + ' / ' + n + '</div><div style="opacity:.9">' + p + '% correct' + (p >= 85 ? ' · excellent' : p >= 60 ? ' · solid' : ' · keep at it') + '</div><div class="stats"><div><b>' + c + '</b>Correct</div><div><b>' + (n - c - sk) + '</b>Wrong</div><div><b>' + sk + '</b>Skipped</div><div><b>' + H.fmtTime(R.secs) + '</b>Time</div></div></div>' +
+      (R.marks ? '<div class="card" style="margin-top:12px"><div style="font-size:26px;font-weight:700">Marks: ' + R.marks.marks + ' / ' + R.marks.max + '</div><div class="muted small">' + R.marks.right + ' right × ' + HubMarking.sign(R.marks.scheme.c) + ', ' + R.marks.wrong + ' wrong × ' + HubMarking.sign(R.marks.scheme.w) + ', ' + R.marks.skipped + ' unanswered × ' + HubMarking.sign(R.marks.scheme.u) + '</div></div>' : '') +
       '<p class="small" style="margin-top:10px;color:' + (R.saved ? 'var(--muted)' : 'var(--bad)') + '">' + (R.saved ? 'Saved to your <a href="/progress">progress</a>.' : 'Could not save progress (browser storage is blocked).') + '</p>' +
       '<div class="grid cols-2 section" style="margin-top:20px"><div class="card"><h2>By subject</h2>' + bars(agg(Q, function (q) { return q.s; }), function (k) { return esc(H.name(k)); }) + '</div>' +
       '<div class="card"><h2>By Bloom\'s level</h2>' + bars(agg(Q, function (q) { return q.l; }).sort(function (a, b) { return (LV.indexOf(a[0]) + 99) % 99 - (LV.indexOf(b[0]) + 99) % 99; }), esc) + '</div></div>' +

@@ -65,3 +65,19 @@ All reads and writes go through `static/hub-store.js` (`read`, `record`, `clear`
 means changing that one file: `record()` posts the attempt (`subject, mode, secs, rows`) to a `/api/results` endpoint
 backed by Supabase (`SUPABASE_URL` / `SUPABASE_KEY` as Render env vars) and `read()` loads it back. Nothing else changes.
 Until then, history lives in each browser, so use Progress -> Export backup to move it between devices.
+
+## Quiz marking & clearing answers
+- Every quiz (dashboards and the mixed quiz) has a **Clear answer** control (click a chosen option again to deselect; skipped = unanswered).
+- Before starting, a **marking scheme** panel sets marks for correct / incorrect / unanswered (default +2 / −1 / 0). It is saved in the browser (`hub.marking`) and shown on result screens and the Progress history. BAMAT101 (self-graded) is exempt.
+- Marking is injected by the hub, so it only appears when dashboards are served through the hub.
+
+## Accounts (optional, Google sign-in via Supabase)
+The app is anonymous by default (data in localStorage). To enable accounts you **do** need a free Supabase project (it provides Google OAuth + Postgres):
+1. Create a project at supabase.com. In *SQL editor*, run `supabase/schema.sql` (tables + row-level security).
+2. *Authentication → Providers → Google*: enable it with a Google Cloud OAuth client (Web). Put Supabase's callback URL in Google's "Authorized redirect URIs".
+3. *Authentication → URL configuration*: set Site URL to your Render URL and add it to Redirect URLs.
+4. On Render set env vars `SUPABASE_URL` and `SUPABASE_ANON_KEY` (the public anon key; safe in the browser because RLS limits each user to their own rows).
+Without these, the Account page says sign-in isn't configured and nothing else changes. Free-tier Supabase projects pause after inactivity.
+
+## Common reader (experimental)
+`reader.py` → `CommonReader` reads each dashboard's notes pages in-process (via the test client, using `note_pattern` in `subjects.py`) and builds one normalised outline: course → modules → topics → subtopics, with reading time. Views: `/c` (library), `/c/<slug>` (common dashboard), `/api/common/<slug>.json`. A new subject needs only a `subjects.py` entry. Quality depends on each dashboard's headings; repeated box labels are filtered.
